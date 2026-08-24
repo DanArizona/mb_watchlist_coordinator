@@ -1,7 +1,10 @@
 from datetime import datetime, timezone
 
-from mb_watchlist_coordinator.models import IntentType, ProducerIntent
-
+from mb_watchlist_coordinator.models import (
+    CanonicalWatchlist,
+    IntentType,
+    ProducerIntent,
+)
 
 def test_create_base_set_intent():
     intent = ProducerIntent(
@@ -49,3 +52,39 @@ def test_producer_intent_is_immutable():
         pass
     else:
         raise AssertionError("ProducerIntent should be immutable")
+
+
+def test_create_canonical_watchlist():
+    watchlist = CanonicalWatchlist(
+        revision=42,
+        symbols=frozenset({"AAPL", "NVDA", "TEMC"}),
+        created_at=datetime(2026, 8, 24, 15, 30, tzinfo=timezone.utc),
+        derived_from_intent_ids=(
+            "ov-20260824-082500",
+            "nasdaq-temc-20260824-101432",
+        ),
+        policy_version="v1",
+    )
+
+    assert watchlist.revision == 42
+    assert watchlist.symbols == frozenset({"AAPL", "NVDA", "TEMC"})
+    assert watchlist.derived_from_intent_ids == (
+        "ov-20260824-082500",
+        "nasdaq-temc-20260824-101432",
+    )
+    assert watchlist.policy_version == "v1"
+
+
+def test_canonical_watchlist_is_immutable():
+    watchlist = CanonicalWatchlist(
+        revision=42,
+        symbols=frozenset({"AAPL", "NVDA"}),
+        created_at=datetime(2026, 8, 24, 15, 30, tzinfo=timezone.utc),
+    )
+
+    try:
+        watchlist.revision = 43
+    except (AttributeError, TypeError):
+        pass
+    else:
+        raise AssertionError("CanonicalWatchlist should be immutable")
