@@ -38,5 +38,6 @@ class CanonicalWatchlist:
     symbols: frozenset[str]
     created_at: datetime
 
-    derived_from_intent_ids: tuple[str, ...] = ()
+    input_intent_ids: tuple[str, ...] = ()
+
     policy_version: str = "v1"

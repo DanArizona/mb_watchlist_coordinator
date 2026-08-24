@@ -59,7 +59,7 @@ def test_create_canonical_watchlist():
         revision=42,
         symbols=frozenset({"AAPL", "NVDA", "TEMC"}),
         created_at=datetime(2026, 8, 24, 15, 30, tzinfo=timezone.utc),
-        derived_from_intent_ids=(
+        input_intent_ids=(
             "ov-20260824-082500",
             "nasdaq-temc-20260824-101432",
         ),
@@ -68,7 +68,7 @@ def test_create_canonical_watchlist():
 
     assert watchlist.revision == 42
     assert watchlist.symbols == frozenset({"AAPL", "NVDA", "TEMC"})
-    assert watchlist.derived_from_intent_ids == (
+    assert watchlist.input_intent_ids == (
         "ov-20260824-082500",
         "nasdaq-temc-20260824-101432",
     )
