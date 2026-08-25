@@ -3,6 +3,7 @@ from .tos import (
     ToSMaterializationPlan,
     plan_tos_materialization,
     create_tos_materialization_transaction,
+    plan_tos_from_context,
 )
 
 __all__ = [
@@ -10,4 +11,5 @@ __all__ = [
     "ToSMaterializationPlan",
     "plan_tos_materialization",
     "create_tos_materialization_transaction",
+    "plan_tos_from_context",
 ]

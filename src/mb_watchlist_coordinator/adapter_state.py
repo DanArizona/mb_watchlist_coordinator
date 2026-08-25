@@ -21,6 +21,12 @@ class AdapterObservedState:
 
 
 @dataclass(frozen=True, slots=True)
+class AdapterReconciliationContext:
+    target: AdapterTarget
+    observed: AdapterObservedState | None
+
+
+@dataclass(frozen=True, slots=True)
 class AdapterConfirmedState:
     adapter_id: str
     canonical_revision: int

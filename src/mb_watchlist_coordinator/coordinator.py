@@ -10,7 +10,10 @@ from .models import (
 )
 from .policy import build_canonical_watchlist
 from .state_store import AdapterStateStore
-from .adapter_state import AdapterTarget
+from .adapter_state import (
+    AdapterReconciliationContext,
+    AdapterTarget,
+)
 from .reconciliation import (
     ReconciliationAssessment,
     assess_reconciliation,
@@ -58,19 +61,26 @@ class WatchlistCoordinator:
             symbols=canonical.symbols,
         )
 
+    def adapter_context(
+        self,
+        adapter_id: str,
+    ) -> AdapterReconciliationContext:
+        return AdapterReconciliationContext(
+            target=self.adapter_target(adapter_id),
+            observed=self._adapter_state.latest_observed(
+                adapter_id
+            ),
+        )
+
     def assess_adapter(
         self,
         adapter_id: str,
     ) -> ReconciliationAssessment:
-        target = self.adapter_target(adapter_id)
-
-        observed = self._adapter_state.latest_observed(
-            adapter_id
-        )
+        context = self.adapter_context(adapter_id)
 
         return assess_reconciliation(
-            target,
-            observed,
+            context.target,
+            context.observed,
         )
 
     def accept_intent(

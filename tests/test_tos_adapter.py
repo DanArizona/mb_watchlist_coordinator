@@ -10,6 +10,14 @@ from mb_watchlist_coordinator.adapters.tos import (
     MaterializationOperation,
     plan_tos_materialization,
     create_tos_materialization_transaction,
+    plan_tos_from_context,
+)
+from mb_watchlist_coordinator.coordinator import (
+    WatchlistCoordinator,
+)
+from mb_watchlist_coordinator.models import (
+    IntentType,
+    ProducerIntent,
 )
 
 
@@ -121,6 +129,47 @@ def test_same_projection_on_new_revision_is_no_op():
 
     assert plan.canonical_revision == 65
     assert plan.operation is MaterializationOperation.NO_OP
+
+
+def test_coordinator_context_plans_missing_symbol_as_add():
+    coordinator = WatchlistCoordinator()
+
+    base = ProducerIntent(
+        intent_id="ov-001",
+        producer_id="test",
+        intent_type=IntentType.BASE_SET,
+        symbols=frozenset(
+            {"AAPL", "NVDA", "TEMC"}
+        ),
+        created_at=NOW,
+    )
+
+    coordinator.accept_intent(
+        base,
+        at=NOW,
+    )
+
+    observed = AdapterObservedState(
+        adapter_id="tos",
+        symbols=frozenset({"AAPL", "NVDA"}),
+        observed_at=NOW,
+    )
+
+    coordinator.adapter_state.record_observation(
+        observed
+    )
+
+    context = coordinator.adapter_context("tos")
+
+    plan = plan_tos_from_context(context)
+
+    assert plan.operation is MaterializationOperation.ADD
+    assert plan.target_symbols == frozenset(
+        {"AAPL", "NVDA", "TEMC"}
+    )
+    assert plan.operation_symbols == frozenset(
+        {"TEMC"}
+    )
 
 
 def test_add_plan_creates_materialization_transaction():

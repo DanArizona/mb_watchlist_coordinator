@@ -8,6 +8,7 @@ from .models import (
 from .adapter_state import (
     AdapterConfirmedState,
     AdapterObservedState,
+    AdapterReconciliationContext,
     AdapterTarget,
 )
 from .reconciliation import (
@@ -51,4 +52,5 @@ __all__ = [
     "MaterializationVerificationResult",
     "verify_materialization",
     "AdapterStateStore",
+    "AdapterReconciliationContext",
 ]

@@ -145,6 +145,67 @@ def test_adapter_target_requires_canonical_watchlist():
         coordinator.adapter_target("tos")
 
 
+def test_adapter_context_without_observation_contains_target():
+    coordinator = WatchlistCoordinator()
+
+    base = make_intent(
+        "ov-001",
+        IntentType.BASE_SET,
+        {"AAPL", "NVDA"},
+        created_at=NOW,
+    )
+
+    canonical = coordinator.accept_intent(
+        base,
+        at=NOW,
+    )
+
+    context = coordinator.adapter_context("tos")
+
+    assert context.target.adapter_id == "tos"
+    assert (
+        context.target.canonical_revision
+        == canonical.revision
+    )
+    assert context.target.symbols == frozenset(
+        {"AAPL", "NVDA"}
+    )
+    assert context.observed is None
+
+
+def test_adapter_context_contains_latest_observation():
+    coordinator = WatchlistCoordinator()
+
+    base = make_intent(
+        "ov-001",
+        IntentType.BASE_SET,
+        {"AAPL", "NVDA", "TEMC"},
+        created_at=NOW,
+    )
+
+    coordinator.accept_intent(
+        base,
+        at=NOW,
+    )
+
+    observed = AdapterObservedState(
+        adapter_id="tos",
+        symbols=frozenset({"AAPL", "NVDA"}),
+        observed_at=NOW,
+    )
+
+    coordinator.adapter_state.record_observation(
+        observed
+    )
+
+    context = coordinator.adapter_context("tos")
+
+    assert context.observed == observed
+    assert context.target.symbols == frozenset(
+        {"AAPL", "NVDA", "TEMC"}
+    )
+
+
 def test_adapter_without_observation_requires_observation():
     coordinator = WatchlistCoordinator()
 

@@ -4,7 +4,11 @@ from datetime import datetime
 from dataclasses import dataclass
 from enum import StrEnum
 
-from ..adapter_state import AdapterObservedState, AdapterTarget
+from ..adapter_state import (
+    AdapterObservedState,
+    AdapterReconciliationContext,
+    AdapterTarget,
+)
 from ..reconciliation import (
     ReconciliationStatus,
     assess_reconciliation,
@@ -71,6 +75,15 @@ def plan_tos_materialization(
         operation=MaterializationOperation.REPLACE,
         target_symbols=target.symbols,
         operation_symbols=target.symbols,
+    )
+
+
+def plan_tos_from_context(
+    context: AdapterReconciliationContext,
+) -> ToSMaterializationPlan:
+    return plan_tos_materialization(
+        context.target,
+        context.observed,
     )
 
 
