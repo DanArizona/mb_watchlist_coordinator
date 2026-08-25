@@ -206,6 +206,45 @@ def test_adapter_context_contains_latest_observation():
     )
 
 
+def test_invalidated_observation_is_not_used_for_adapter_context():
+    coordinator = WatchlistCoordinator()
+
+    base = make_intent(
+        "ov-001",
+        IntentType.BASE_SET,
+        {"AAPL", "NVDA", "TEMC"},
+        created_at=NOW,
+    )
+
+    coordinator.accept_intent(
+        base,
+        at=NOW,
+    )
+
+    observed = AdapterObservedState(
+        adapter_id="tos",
+        symbols=frozenset({"AAPL", "NVDA"}),
+        observed_at=NOW,
+    )
+
+    coordinator.adapter_state.record_observation(
+        observed
+    )
+
+    coordinator.adapter_state.invalidate_observation(
+        "tos",
+        at=NOW + timedelta(minutes=1),
+    )
+
+    context = coordinator.adapter_context("tos")
+
+    assert coordinator.adapter_state.latest_observed(
+        "tos"
+    ) == observed
+
+    assert context.observed is None
+
+
 def test_adapter_without_observation_requires_observation():
     coordinator = WatchlistCoordinator()
 

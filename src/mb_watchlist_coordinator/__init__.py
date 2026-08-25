@@ -33,6 +33,9 @@ from .execution import (
     MaterializationExecutionResult,
     MaterializationExecutionStatus,
 )
+from .orchestration import (
+    apply_materialization_execution_result,
+)
 
 
 __all__ = [
@@ -59,4 +62,5 @@ __all__ = [
     "AdapterReconciliationContext",
     "MaterializationExecutionResult",
     "MaterializationExecutionStatus",
+    "apply_materialization_execution_result",
 ]

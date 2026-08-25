@@ -1,4 +1,5 @@
 from __future__ import annotations
+from datetime import datetime
 
 from .adapter_state import (
     AdapterConfirmedState,
@@ -29,6 +30,7 @@ _ALLOWED_TRANSACTION_TRANSITIONS = {
 class AdapterStateStore:
     def __init__(self) -> None:
         self._latest_observed: dict[str, AdapterObservedState] = {}
+        self._observation_invalidated_at: dict[str, datetime] = {}
         self._latest_confirmed: dict[str, AdapterConfirmedState] = {}
 
         self._transactions: dict[
@@ -46,6 +48,27 @@ class AdapterStateStore:
         adapter_id: str,
     ) -> AdapterObservedState | None:
         return self._latest_observed.get(adapter_id)
+
+    def trusted_observed(
+        self,
+        adapter_id: str,
+    ) -> AdapterObservedState | None:
+        observed = self._latest_observed.get(adapter_id)
+
+        if observed is None:
+            return None
+
+        invalidated_at = self._observation_invalidated_at.get(
+            adapter_id
+        )
+
+        if (
+            invalidated_at is not None
+            and observed.observed_at <= invalidated_at
+        ):
+            return None
+
+        return observed
 
     def latest_confirmed(
         self,
@@ -86,6 +109,21 @@ class AdapterStateStore:
                 observed.adapter_id
             ] = observed
 
+    def invalidate_observation(
+        self,
+        adapter_id: str,
+        *,
+        at: datetime,
+    ) -> None:
+        current = self._observation_invalidated_at.get(
+            adapter_id
+        )
+
+        if current is None or at > current:
+            self._observation_invalidated_at[
+                adapter_id
+            ] = at
+            
     def record_confirmation(
         self,
         confirmed: AdapterConfirmedState,

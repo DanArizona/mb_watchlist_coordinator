@@ -67,7 +67,7 @@ class WatchlistCoordinator:
     ) -> AdapterReconciliationContext:
         return AdapterReconciliationContext(
             target=self.adapter_target(adapter_id),
-            observed=self._adapter_state.latest_observed(
+            observed=self._adapter_state.trusted_observed(
                 adapter_id
             ),
         )

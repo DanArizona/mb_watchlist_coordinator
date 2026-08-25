@@ -86,6 +86,51 @@ def test_older_observation_does_not_replace_newer_observation():
     assert store.latest_observed("tos") == newer
 
 
+def test_observation_can_be_invalidated_without_erasing_history():
+    store = AdapterStateStore()
+
+    observed = make_observed(
+        {"AAPL", "NVDA"},
+        observed_at=NOW,
+    )
+
+    store.record_observation(observed)
+
+    store.invalidate_observation(
+        "tos",
+        at=NOW + timedelta(minutes=1),
+    )
+
+    assert store.latest_observed("tos") == observed
+    assert store.trusted_observed("tos") is None
+
+
+def test_new_observation_after_invalidation_becomes_trusted():
+    store = AdapterStateStore()
+
+    old = make_observed(
+        {"AAPL"},
+        observed_at=NOW,
+    )
+
+    store.record_observation(old)
+
+    store.invalidate_observation(
+        "tos",
+        at=NOW + timedelta(minutes=1),
+    )
+
+    newer = make_observed(
+        {"AAPL", "NVDA"},
+        observed_at=NOW + timedelta(minutes=2),
+    )
+
+    store.record_observation(newer)
+
+    assert store.latest_observed("tos") == newer
+    assert store.trusted_observed("tos") == newer
+    
+
 def test_record_confirmation_sets_latest_confirmed():
     store = AdapterStateStore()
 
