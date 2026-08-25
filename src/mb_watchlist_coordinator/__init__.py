@@ -27,6 +27,7 @@ from .verification import (
     MaterializationVerificationResult,
     verify_materialization,
 )
+from .state_store import AdapterStateStore
 
 
 __all__ = [
@@ -49,4 +50,5 @@ __all__ = [
     "succeed_transaction",
     "MaterializationVerificationResult",
     "verify_materialization",
+    "AdapterStateStore",
 ]

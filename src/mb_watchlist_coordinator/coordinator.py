@@ -16,6 +16,7 @@ class WatchlistCoordinator:
         self._intents: dict[str, ProducerIntent] = {}
         self._cancellations: dict[str, IntentCancellation] = {}
         self._revisions: list[CanonicalWatchlist] = []
+        self._next_revision = 1
 
     @property
     def current_canonical(self) -> CanonicalWatchlist | None:
@@ -78,7 +79,7 @@ class WatchlistCoordinator:
             at=at,
         )
 
-        next_revision = len(self._revisions) + 1
+        next_revision = self._next_revision
 
         candidate = build_canonical_watchlist(
             effective_intents,
@@ -99,5 +100,6 @@ class WatchlistCoordinator:
             return current
 
         self._revisions.append(candidate)
+        self._next_revision += 1
 
         return candidate
