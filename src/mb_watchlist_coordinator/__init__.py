@@ -23,6 +23,10 @@ from .transactions import (
     start_transaction,
     succeed_transaction,
 )
+from .verification import (
+    MaterializationVerificationResult,
+    verify_materialization,
+)
 
 
 __all__ = [
@@ -43,4 +47,6 @@ __all__ = [
     "interrupt_transaction",
     "start_transaction",
     "succeed_transaction",
+    "MaterializationVerificationResult",
+    "verify_materialization",
 ]
