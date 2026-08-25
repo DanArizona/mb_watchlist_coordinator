@@ -36,6 +36,10 @@ from .execution import (
 from .orchestration import (
     apply_materialization_execution_result,
 )
+from .health import (
+    AdapterHealthState,
+    AdapterHealthStatus,
+)
 
 
 __all__ = [
@@ -63,4 +67,6 @@ __all__ = [
     "MaterializationExecutionResult",
     "MaterializationExecutionStatus",
     "apply_materialization_execution_result",
+    "AdapterHealthState",
+    "AdapterHealthStatus",
 ]

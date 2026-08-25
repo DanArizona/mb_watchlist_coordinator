@@ -5,6 +5,7 @@ from .adapter_state import (
     AdapterConfirmedState,
     AdapterObservedState,
 )
+from .health import AdapterHealthState
 from .transactions import (
     MaterializationTransaction,
     MaterializationTransactionStatus,
@@ -32,6 +33,7 @@ class AdapterStateStore:
         self._latest_observed: dict[str, AdapterObservedState] = {}
         self._observation_invalidated_at: dict[str, datetime] = {}
         self._latest_confirmed: dict[str, AdapterConfirmedState] = {}
+        self._latest_health: dict[str, AdapterHealthState] = {}
 
         self._transactions: dict[
             str,
@@ -42,6 +44,21 @@ class AdapterStateStore:
             str,
             list[MaterializationTransaction],
         ] = {}
+
+    # def __init__(self) -> None:
+    #     self._latest_observed: dict[str, AdapterObservedState] = {}
+    #     self._observation_invalidated_at: dict[str, datetime] = {}
+    #     self._latest_confirmed: dict[str, AdapterConfirmedState] = {}
+
+    #     self._transactions: dict[
+    #         str,
+    #         MaterializationTransaction,
+    #     ] = {}
+
+    #     self._transaction_history: dict[
+    #         str,
+    #         list[MaterializationTransaction],
+    #     ] = {}
 
     def latest_observed(
         self,
@@ -75,6 +92,26 @@ class AdapterStateStore:
         adapter_id: str,
     ) -> AdapterConfirmedState | None:
         return self._latest_confirmed.get(adapter_id)
+
+    def latest_health(
+        self,
+        adapter_id: str,
+    ) -> AdapterHealthState | None:
+        return self._latest_health.get(adapter_id)
+
+    def record_health(
+        self,
+        health: AdapterHealthState,
+    ) -> None:
+        current = self._latest_health.get(health.adapter_id)
+
+        if (
+            current is not None
+            and health.observed_at < current.observed_at
+        ):
+            return
+
+        self._latest_health[health.adapter_id] = health
 
     def get_transaction(
         self,
