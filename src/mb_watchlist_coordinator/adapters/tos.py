@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime
 from dataclasses import dataclass
 from enum import StrEnum
 
@@ -8,6 +9,7 @@ from ..reconciliation import (
     ReconciliationStatus,
     assess_reconciliation,
 )
+from ..transactions import MaterializationTransaction
 
 
 class MaterializationOperation(StrEnum):
@@ -22,7 +24,9 @@ class ToSMaterializationPlan:
     adapter_id: str
     canonical_revision: int
     operation: MaterializationOperation
-    symbols: frozenset[str]
+
+    target_symbols: frozenset[str]
+    operation_symbols: frozenset[str]
 
 
 def plan_tos_materialization(
@@ -39,7 +43,8 @@ def plan_tos_materialization(
             adapter_id=target.adapter_id,
             canonical_revision=target.canonical_revision,
             operation=MaterializationOperation.OBSERVE,
-            symbols=frozenset(),
+            target_symbols=target.symbols,
+            operation_symbols=frozenset(),
         )
 
     if assessment.status is ReconciliationStatus.CURRENT:
@@ -47,7 +52,8 @@ def plan_tos_materialization(
             adapter_id=target.adapter_id,
             canonical_revision=target.canonical_revision,
             operation=MaterializationOperation.NO_OP,
-            symbols=frozenset(),
+            target_symbols=target.symbols,
+            operation_symbols=frozenset(),
         )
 
     if not assessment.unexpected_symbols:
@@ -55,12 +61,40 @@ def plan_tos_materialization(
             adapter_id=target.adapter_id,
             canonical_revision=target.canonical_revision,
             operation=MaterializationOperation.ADD,
-            symbols=assessment.missing_symbols,
+            target_symbols=target.symbols,
+            operation_symbols=assessment.missing_symbols,
         )
 
     return ToSMaterializationPlan(
         adapter_id=target.adapter_id,
         canonical_revision=target.canonical_revision,
         operation=MaterializationOperation.REPLACE,
-        symbols=target.symbols,
+        target_symbols=target.symbols,
+        operation_symbols=target.symbols,
+    )
+
+
+def create_tos_materialization_transaction(
+    plan: ToSMaterializationPlan,
+    *,
+    transaction_id: str,
+    created_at: datetime,
+) -> MaterializationTransaction:
+    if plan.operation not in {
+        MaterializationOperation.ADD,
+        MaterializationOperation.REPLACE,
+    }:
+        raise ValueError(
+            f"Operation {plan.operation.value} "
+            "does not require a materialization transaction"
+        )
+
+    return MaterializationTransaction(
+        transaction_id=transaction_id,
+        adapter_id=plan.adapter_id,
+        target_canonical_revision=plan.canonical_revision,
+        target_symbols=plan.target_symbols,
+        operation=plan.operation.value,
+        operation_symbols=plan.operation_symbols,
+        created_at=created_at,
     )

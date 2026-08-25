@@ -15,6 +15,14 @@ from .reconciliation import (
     ReconciliationStatus,
     assess_reconciliation,
 )
+from .transactions import (
+    MaterializationTransaction,
+    MaterializationTransactionStatus,
+    fail_transaction,
+    interrupt_transaction,
+    start_transaction,
+    succeed_transaction,
+)
 
 
 __all__ = [
@@ -29,4 +37,10 @@ __all__ = [
     "ReconciliationAssessment",
     "ReconciliationStatus",
     "assess_reconciliation",
+    "MaterializationTransaction",
+    "MaterializationTransactionStatus",
+    "fail_transaction",
+    "interrupt_transaction",
+    "start_transaction",
+    "succeed_transaction",
 ]
