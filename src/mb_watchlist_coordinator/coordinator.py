@@ -9,6 +9,7 @@ from .models import (
     ProducerIntent,
 )
 from .policy import build_canonical_watchlist
+from .state_store import AdapterStateStore
 
 
 class WatchlistCoordinator:
@@ -17,6 +18,7 @@ class WatchlistCoordinator:
         self._cancellations: dict[str, IntentCancellation] = {}
         self._revisions: list[CanonicalWatchlist] = []
         self._next_revision = 1
+        self._adapter_state = AdapterStateStore()
 
     @property
     def current_canonical(self) -> CanonicalWatchlist | None:
@@ -28,6 +30,10 @@ class WatchlistCoordinator:
     @property
     def revision_history(self) -> tuple[CanonicalWatchlist, ...]:
         return tuple(self._revisions)
+
+    @property
+    def adapter_state(self) -> AdapterStateStore:
+        return self._adapter_state
 
     def accept_intent(
         self,

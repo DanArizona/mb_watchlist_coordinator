@@ -55,6 +55,23 @@ def test_accept_base_set_creates_first_canonical_revision():
     assert coordinator.current_canonical == canonical
 
 
+def test_coordinator_owns_adapter_state_store():
+    coordinator = WatchlistCoordinator()
+
+    assert coordinator.adapter_state is not None
+    assert coordinator.adapter_state.latest_observed("tos") is None
+    assert coordinator.adapter_state.latest_confirmed("tos") is None
+
+
+def test_adapter_state_store_is_stable_coordinator_state():
+    coordinator = WatchlistCoordinator()
+
+    first = coordinator.adapter_state
+    second = coordinator.adapter_state
+
+    assert first is second
+    
+
 def test_ludp_manual_override_and_cancel_create_expected_revisions():
     coordinator = WatchlistCoordinator()
 
