@@ -1,3 +1,4 @@
+from .coordinator import WatchlistCoordinator
 from .models import (
     CanonicalWatchlist,
     IntentCancellation,
@@ -10,4 +11,5 @@ __all__ = [
     "IntentCancellation",
     "IntentType",
     "ProducerIntent",
+    "WatchlistCoordinator",
 ]
