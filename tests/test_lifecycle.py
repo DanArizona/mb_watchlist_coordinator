@@ -1,10 +1,16 @@
 from datetime import datetime, timedelta, timezone
 
 from mb_watchlist_coordinator.lifecycle import (
+    is_intent_cancelled,
     is_intent_time_active,
     select_effective_intents,
 )
-from mb_watchlist_coordinator.models import IntentType, ProducerIntent
+from mb_watchlist_coordinator.models import (
+    IntentCancellation,
+    IntentType,
+    ProducerIntent,
+)
+from mb_watchlist_coordinator.policy import build_canonical_watchlist
 
 
 NOW = datetime(2026, 8, 24, 20, 0, tzinfo=timezone.utc)
@@ -29,6 +35,19 @@ def make_intent(
         effective_from=effective_from,
         expires_at=expires_at,
         supersession_key=supersession_key,
+    )
+
+
+def make_cancellation(
+    intent_id: str,
+    *,
+    cancellation_id="cancel-001",
+    created_at=NOW,
+) -> IntentCancellation:
+    return IntentCancellation(
+        cancellation_id=cancellation_id,
+        intent_id=intent_id,
+        created_at=created_at,
     )
 
 
@@ -218,3 +237,128 @@ def test_latest_manual_presence_override_wins():
     )
 
     assert selected == (present,)
+
+
+def test_active_intent_can_be_cancelled():
+    intent = make_intent(
+        intent_id="manual-001",
+        created_at=NOW - timedelta(minutes=10),
+    )
+    cancellation = make_cancellation(
+        "manual-001",
+        created_at=NOW - timedelta(minutes=5),
+    )
+
+    selected = select_effective_intents(
+        [intent],
+        cancellations=[cancellation],
+        at=NOW,
+    )
+
+    assert selected == ()
+
+
+def test_future_cancellation_does_not_apply_yet():
+    intent = make_intent(
+        intent_id="manual-001",
+        created_at=NOW - timedelta(minutes=10),
+    )
+    cancellation = make_cancellation(
+        "manual-001",
+        created_at=NOW + timedelta(minutes=5),
+    )
+
+    selected = select_effective_intents(
+        [intent],
+        cancellations=[cancellation],
+        at=NOW,
+    )
+
+    assert selected == (intent,)
+
+
+def test_cancelled_supersession_winner_does_not_revive_older_intent():
+    older = make_intent(
+        intent_id="manual-old",
+        intent_type=IntentType.FORCE_ABSENT,
+        created_at=NOW - timedelta(minutes=20),
+        supersession_key="manual:TEMC:2026-08-24",
+    )
+    newer = make_intent(
+        intent_id="manual-new",
+        intent_type=IntentType.FORCE_PRESENT,
+        created_at=NOW - timedelta(minutes=10),
+        supersession_key="manual:TEMC:2026-08-24",
+    )
+    cancellation = make_cancellation(
+        "manual-new",
+        created_at=NOW - timedelta(minutes=5),
+    )
+
+    selected = select_effective_intents(
+        [older, newer],
+        cancellations=[cancellation],
+        at=NOW,
+    )
+
+    assert selected == ()
+
+
+def test_cancelling_one_intent_does_not_affect_unrelated_intent():
+    first = make_intent(
+        intent_id="first",
+        symbols={"AAPL"},
+        created_at=NOW - timedelta(minutes=10),
+    )
+    second = make_intent(
+        intent_id="second",
+        symbols={"NVDA"},
+        created_at=NOW - timedelta(minutes=5),
+    )
+    cancellation = make_cancellation(
+        "first",
+        created_at=NOW - timedelta(minutes=1),
+    )
+
+    selected = select_effective_intents(
+        [first, second],
+        cancellations=[cancellation],
+        at=NOW,
+    )
+
+    assert selected == (second,)
+
+
+def test_cancelling_manual_override_exposes_active_nasdaq_intent():
+    nasdaq = make_intent(
+        intent_id="nasdaq-temc",
+        intent_type=IntentType.ENSURE_PRESENT,
+        symbols={"TEMC"},
+        created_at=NOW - timedelta(minutes=20),
+    )
+    manual = make_intent(
+        intent_id="manual-temc",
+        intent_type=IntentType.FORCE_ABSENT,
+        symbols={"TEMC"},
+        created_at=NOW - timedelta(minutes=10),
+        supersession_key="manual:TEMC:2026-08-24",
+    )
+    cancellation = make_cancellation(
+        "manual-temc",
+        created_at=NOW - timedelta(minutes=5),
+    )
+
+    effective = select_effective_intents(
+        [nasdaq, manual],
+        cancellations=[cancellation],
+        at=NOW,
+    )
+
+    canonical = build_canonical_watchlist(
+        effective,
+        revision=1,
+        created_at=NOW,
+    )
+
+    assert effective == (nasdaq,)
+    assert canonical.symbols == frozenset({"TEMC"})

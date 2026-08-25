@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections.abc import Iterable
 from datetime import datetime
 
-from .models import ProducerIntent
+from .models import IntentCancellation, ProducerIntent
 
 
 def is_intent_time_active(
@@ -23,20 +23,43 @@ def is_intent_time_active(
     return True
 
 
+def is_intent_cancelled(
+    intent: ProducerIntent,
+    cancellations: Iterable[IntentCancellation],
+    *,
+    at: datetime,
+) -> bool:
+    return any(
+        cancellation.intent_id == intent.intent_id
+        and cancellation.created_at <= at
+        for cancellation in cancellations
+    )
+
+
 def select_effective_intents(
     intents: Iterable[ProducerIntent],
     *,
     at: datetime,
+    cancellations: Iterable[IntentCancellation] = (),
 ) -> tuple[ProducerIntent, ...]:
     all_intents = tuple(intents)
+    all_cancellations = tuple(cancellations)
 
     selected: list[ProducerIntent] = []
     supersession_groups: dict[str, list[ProducerIntent]] = {}
 
     for intent in all_intents:
         if intent.supersession_key is None:
-            if is_intent_time_active(intent, at=at):
+            if (
+                is_intent_time_active(intent, at=at)
+                and not is_intent_cancelled(
+                    intent,
+                    all_cancellations,
+                    at=at,
+                )
+            ):
                 selected.append(intent)
+
             continue
 
         supersession_groups.setdefault(
@@ -66,8 +89,17 @@ def select_effective_intents(
             ),
         )
 
-        if is_intent_time_active(winner, at=at):
-            selected.append(winner)
+        if not is_intent_time_active(winner, at=at):
+            continue
+
+        if is_intent_cancelled(
+            winner,
+            all_cancellations,
+            at=at,
+        ):
+            continue
+
+        selected.append(winner)
 
     return tuple(
         sorted(
@@ -78,3 +110,4 @@ def select_effective_intents(
             ),
         )
     )
+

@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 
 from mb_watchlist_coordinator.models import (
     CanonicalWatchlist,
+    IntentCancellation,
     IntentType,
     ProducerIntent,
 )
@@ -52,6 +53,50 @@ def test_producer_intent_is_immutable():
         pass
     else:
         raise AssertionError("ProducerIntent should be immutable")
+
+
+def test_create_intent_cancellation():
+    cancellation = IntentCancellation(
+        cancellation_id="cancel-001",
+        intent_id="manual-001",
+        created_at=datetime(
+            2026,
+            8,
+            24,
+            16,
+            0,
+            tzinfo=timezone.utc,
+        ),
+        reason="Operator cleared override",
+    )
+
+    assert cancellation.cancellation_id == "cancel-001"
+    assert cancellation.intent_id == "manual-001"
+    assert cancellation.reason == "Operator cleared override"
+
+
+def test_intent_cancellation_is_immutable():
+    cancellation = IntentCancellation(
+        cancellation_id="cancel-001",
+        intent_id="manual-001",
+        created_at=datetime(
+            2026,
+            8,
+            24,
+            16,
+            0,
+            tzinfo=timezone.utc,
+        ),
+    )
+
+    try:
+        cancellation.intent_id = "changed"
+    except (AttributeError, TypeError):
+        pass
+    else:
+        raise AssertionError(
+            "IntentCancellation should be immutable"
+        )
 
 
 def test_create_canonical_watchlist():

@@ -33,6 +33,16 @@ class ProducerIntent:
 
 
 @dataclass(frozen=True, slots=True)
+class IntentCancellation:
+    cancellation_id: str
+    intent_id: str
+    created_at: datetime
+
+    reason: str | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True, slots=True)
 class CanonicalWatchlist:
     revision: int
     symbols: frozenset[str]

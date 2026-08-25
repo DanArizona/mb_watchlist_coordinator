@@ -1,7 +1,13 @@
-from .models import CanonicalWatchlist, IntentType, ProducerIntent
+from .models import (
+    CanonicalWatchlist,
+    IntentCancellation,
+    IntentType,
+    ProducerIntent,
+)
 
 __all__ = [
     "CanonicalWatchlist",
+    "IntentCancellation",
     "IntentType",
     "ProducerIntent",
 ]
