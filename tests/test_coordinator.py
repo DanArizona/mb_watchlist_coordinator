@@ -70,7 +70,74 @@ def test_adapter_state_store_is_stable_coordinator_state():
     second = coordinator.adapter_state
 
     assert first is second
-    
+
+
+def test_adapter_target_uses_current_canonical_watchlist():
+    coordinator = WatchlistCoordinator()
+
+    base = make_intent(
+        "ov-001",
+        IntentType.BASE_SET,
+        {"AAPL", "NVDA"},
+        created_at=NOW,
+    )
+
+    canonical = coordinator.accept_intent(
+        base,
+        at=NOW,
+    )
+
+    target = coordinator.adapter_target("tos")
+
+    assert target.adapter_id == "tos"
+    assert target.canonical_revision == canonical.revision
+    assert target.symbols == frozenset({"AAPL", "NVDA"})
+
+
+def test_adapter_target_tracks_latest_canonical_revision():
+    coordinator = WatchlistCoordinator()
+
+    base = make_intent(
+        "ov-001",
+        IntentType.BASE_SET,
+        {"AAPL"},
+        created_at=NOW,
+    )
+
+    coordinator.accept_intent(
+        base,
+        at=NOW,
+    )
+
+    ludp = make_intent(
+        "nasdaq-temc",
+        IntentType.ENSURE_PRESENT,
+        {"TEMC"},
+        created_at=NOW + timedelta(minutes=1),
+    )
+
+    canonical = coordinator.accept_intent(
+        ludp,
+        at=NOW + timedelta(minutes=1),
+    )
+
+    target = coordinator.adapter_target("tos")
+
+    assert target.canonical_revision == canonical.revision
+    assert target.symbols == frozenset(
+        {"AAPL", "TEMC"}
+    )
+
+
+def test_adapter_target_requires_canonical_watchlist():
+    coordinator = WatchlistCoordinator()
+
+    with pytest.raises(
+        ValueError,
+        match="without a canonical Watchlist",
+    ):
+        coordinator.adapter_target("tos")
+
 
 def test_ludp_manual_override_and_cancel_create_expected_revisions():
     coordinator = WatchlistCoordinator()

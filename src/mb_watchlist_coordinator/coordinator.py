@@ -10,6 +10,7 @@ from .models import (
 )
 from .policy import build_canonical_watchlist
 from .state_store import AdapterStateStore
+from .adapter_state import AdapterTarget
 
 
 class WatchlistCoordinator:
@@ -34,6 +35,24 @@ class WatchlistCoordinator:
     @property
     def adapter_state(self) -> AdapterStateStore:
         return self._adapter_state
+
+    def adapter_target(
+        self,
+        adapter_id: str,
+    ) -> AdapterTarget:
+        canonical = self.current_canonical
+
+        if canonical is None:
+            raise ValueError(
+                "Cannot create adapter target without "
+                "a canonical Watchlist"
+            )
+
+        return AdapterTarget(
+            adapter_id=adapter_id,
+            canonical_revision=canonical.revision,
+            symbols=canonical.symbols,
+        )
 
     def accept_intent(
         self,
