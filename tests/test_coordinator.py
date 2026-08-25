@@ -8,6 +8,12 @@ from mb_watchlist_coordinator.models import (
     IntentType,
     ProducerIntent,
 )
+from mb_watchlist_coordinator.adapter_state import (
+    AdapterObservedState,
+)
+from mb_watchlist_coordinator.reconciliation import (
+    ReconciliationStatus,
+)
 
 
 NOW = datetime(2026, 8, 24, 14, 0, tzinfo=timezone.utc)
@@ -137,6 +143,146 @@ def test_adapter_target_requires_canonical_watchlist():
         match="without a canonical Watchlist",
     ):
         coordinator.adapter_target("tos")
+
+
+def test_adapter_without_observation_requires_observation():
+    coordinator = WatchlistCoordinator()
+
+    base = make_intent(
+        "ov-001",
+        IntentType.BASE_SET,
+        {"AAPL", "NVDA"},
+        created_at=NOW,
+    )
+
+    coordinator.accept_intent(
+        base,
+        at=NOW,
+    )
+
+    assessment = coordinator.assess_adapter("tos")
+
+    assert assessment.status is (
+        ReconciliationStatus.OBSERVATION_REQUIRED
+    )
+
+
+def test_matching_adapter_observation_is_current():
+    coordinator = WatchlistCoordinator()
+
+    base = make_intent(
+        "ov-001",
+        IntentType.BASE_SET,
+        {"AAPL", "NVDA"},
+        created_at=NOW,
+    )
+
+    coordinator.accept_intent(
+        base,
+        at=NOW,
+    )
+
+    observed = AdapterObservedState(
+        adapter_id="tos",
+        symbols=frozenset({"AAPL", "NVDA"}),
+        observed_at=NOW,
+    )
+
+    coordinator.adapter_state.record_observation(
+        observed
+    )
+
+    assessment = coordinator.assess_adapter("tos")
+
+    assert assessment.status is (
+        ReconciliationStatus.CURRENT
+    )
+
+
+def test_missing_adapter_symbol_requires_reconciliation():
+    coordinator = WatchlistCoordinator()
+
+    base = make_intent(
+        "ov-001",
+        IntentType.BASE_SET,
+        {"AAPL", "NVDA", "TEMC"},
+        created_at=NOW,
+    )
+
+    coordinator.accept_intent(
+        base,
+        at=NOW,
+    )
+
+    observed = AdapterObservedState(
+        adapter_id="tos",
+        symbols=frozenset({"AAPL", "NVDA"}),
+        observed_at=NOW,
+    )
+
+    coordinator.adapter_state.record_observation(
+        observed
+    )
+
+    assessment = coordinator.assess_adapter("tos")
+
+    assert assessment.status is (
+        ReconciliationStatus.RECONCILIATION_REQUIRED
+    )
+    assert assessment.missing_symbols == frozenset(
+        {"TEMC"}
+    )
+
+
+def test_adapter_can_become_stale_after_canonical_advances():
+    coordinator = WatchlistCoordinator()
+
+    base = make_intent(
+        "ov-001",
+        IntentType.BASE_SET,
+        {"AAPL", "NVDA"},
+        created_at=NOW,
+    )
+
+    coordinator.accept_intent(
+        base,
+        at=NOW,
+    )
+
+    observed = AdapterObservedState(
+        adapter_id="tos",
+        symbols=frozenset({"AAPL", "NVDA"}),
+        observed_at=NOW,
+    )
+
+    coordinator.adapter_state.record_observation(
+        observed
+    )
+
+    assert coordinator.assess_adapter("tos").status is (
+        ReconciliationStatus.CURRENT
+    )
+
+    ludp = make_intent(
+        "nasdaq-temc",
+        IntentType.ENSURE_PRESENT,
+        {"TEMC"},
+        created_at=NOW + timedelta(minutes=1),
+    )
+
+    coordinator.accept_intent(
+        ludp,
+        at=NOW + timedelta(minutes=1),
+    )
+
+    assessment = coordinator.assess_adapter("tos")
+
+    assert assessment.status is (
+        ReconciliationStatus.RECONCILIATION_REQUIRED
+    )
+    assert assessment.missing_symbols == frozenset(
+        {"TEMC"}
+    )
 
 
 def test_ludp_manual_override_and_cancel_create_expected_revisions():

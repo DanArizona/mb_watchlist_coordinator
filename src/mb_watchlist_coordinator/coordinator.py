@@ -11,6 +11,10 @@ from .models import (
 from .policy import build_canonical_watchlist
 from .state_store import AdapterStateStore
 from .adapter_state import AdapterTarget
+from .reconciliation import (
+    ReconciliationAssessment,
+    assess_reconciliation,
+)
 
 
 class WatchlistCoordinator:
@@ -52,6 +56,21 @@ class WatchlistCoordinator:
             adapter_id=adapter_id,
             canonical_revision=canonical.revision,
             symbols=canonical.symbols,
+        )
+
+    def assess_adapter(
+        self,
+        adapter_id: str,
+    ) -> ReconciliationAssessment:
+        target = self.adapter_target(adapter_id)
+
+        observed = self._adapter_state.latest_observed(
+            adapter_id
+        )
+
+        return assess_reconciliation(
+            target,
+            observed,
         )
 
     def accept_intent(
