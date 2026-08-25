@@ -25,6 +25,15 @@ from mb_watchlist_coordinator.models import (
 from mb_watchlist_coordinator.transactions import (
     MaterializationTransactionStatus,
 )
+from mb_watchlist_coordinator.execution import (
+    AdapterObservationResult,
+    MaterializationExecutionResult,
+    MaterializationExecutionStatus,
+)
+from mb_watchlist_coordinator.health import (
+    AdapterHealthState,
+    AdapterHealthStatus,
+)
 
 
 NOW = datetime(2026, 8, 25, 18, 0, tzinfo=timezone.utc)
@@ -70,7 +79,7 @@ class FakeToSExecutor:
         self.observe_calls = 0
         self.materialize_calls = []
 
-    def observe(self) -> AdapterObservedState:
+    def observe(self) -> AdapterObservationResult:
         self.observe_calls += 1
 
         if self.observation is None:
@@ -78,7 +87,9 @@ class FakeToSExecutor:
                 "Fake executor has no observation"
             )
 
-        return self.observation
+        return AdapterObservationResult(
+            observed_state=self.observation
+        )
 
     def materialize(
         self,
@@ -438,3 +449,46 @@ def test_mutation_requires_transaction_id_factory():
             executor,
             at=NOW + timedelta(seconds=1),
         )
+
+
+def test_observe_records_returned_health():
+    coordinator = make_coordinator(
+        {"AAPL", "NVDA"}
+    )
+
+    observed = AdapterObservedState(
+        adapter_id="tos",
+        symbols=frozenset({"AAPL", "NVDA"}),
+        observed_at=NOW,
+    )
+
+    health = AdapterHealthState(
+        adapter_id="tos",
+        status=AdapterHealthStatus.DEGRADED,
+        observed_at=NOW,
+        reason="Scheduled exports unavailable",
+    )
+
+    class HealthReportingExecutor(FakeToSExecutor):
+        def observe(self) -> AdapterObservationResult:
+            self.observe_calls += 1
+
+            return AdapterObservationResult(
+                observed_state=observed,
+                health_state=health,
+            )
+
+    executor = HealthReportingExecutor()
+
+    result = run_tos_reconciliation_step(
+        coordinator,
+        executor,
+        at=NOW,
+    )
+
+    assert result.observed_state == observed
+    assert result.health_state == health
+    assert (
+        coordinator.adapter_state.latest_health("tos")
+        == health
+    )

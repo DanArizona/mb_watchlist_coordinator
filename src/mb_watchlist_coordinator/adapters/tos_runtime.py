@@ -7,13 +7,17 @@ from typing import Protocol
 
 from ..adapter_state import AdapterObservedState
 from ..coordinator import WatchlistCoordinator
-from ..execution import MaterializationExecutionResult
+from ..execution import (
+    AdapterObservationResult,
+    MaterializationExecutionResult,
+)
 from ..orchestration import apply_materialization_execution_result
 from ..transactions import (
     MaterializationTransaction,
     start_transaction,
 )
 from ..verification import MaterializationVerificationResult
+from ..health import AdapterHealthState
 from .tos import (
     MaterializationOperation,
     ToSMaterializationPlan,
@@ -23,7 +27,7 @@ from .tos import (
 
 
 class ToSExecutor(Protocol):
-    def observe(self) -> AdapterObservedState:
+    def observe(self) -> AdapterObservationResult:
         ...
 
     def materialize(
@@ -39,6 +43,7 @@ class ToSReconciliationStepResult:
 
     transaction: MaterializationTransaction | None = None
     observed_state: AdapterObservedState | None = None
+    health_state: AdapterHealthState | None = None
     verification_result: MaterializationVerificationResult | None = None
 
 
@@ -53,7 +58,9 @@ def run_tos_reconciliation_step(
     plan = plan_tos_from_context(context)
 
     if plan.operation is MaterializationOperation.OBSERVE:
-        observed = executor.observe()
+        observation_result = executor.observe()
+        observed = observation_result.observed_state
+        health = observation_result.health_state
 
         if observed.adapter_id != "tos":
             raise ValueError(
@@ -61,13 +68,28 @@ def run_tos_reconciliation_step(
                 f"adapter {observed.adapter_id!r}"
             )
 
+        if (
+            health is not None
+            and health.adapter_id != "tos"
+        ):
+            raise ValueError(
+                "ToS executor returned health state for "
+                f"adapter {health.adapter_id!r}"
+            )
+
         coordinator.adapter_state.record_observation(
             observed
         )
 
+        if health is not None:
+            coordinator.adapter_state.record_health(
+                health
+            )
+
         return ToSReconciliationStepResult(
             plan=plan,
             observed_state=observed,
+            health_state=health,
         )
 
     if plan.operation is MaterializationOperation.NO_OP:
@@ -127,4 +149,5 @@ def run_tos_reconciliation_step(
         plan=plan,
         transaction=terminal,
         verification_result=verification_result,
+        health_state=execution_result.health_state,
     )

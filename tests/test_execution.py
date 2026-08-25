@@ -8,6 +8,11 @@ from mb_watchlist_coordinator.adapter_state import (
 from mb_watchlist_coordinator.execution import (
     MaterializationExecutionResult,
     MaterializationExecutionStatus,
+    AdapterObservationResult,
+)
+from mb_watchlist_coordinator.health import (
+    AdapterHealthState,
+    AdapterHealthStatus,
 )
 
 
@@ -114,4 +119,43 @@ def test_failed_result_requires_reason():
         MaterializationExecutionResult(
             transaction_id="T19",
             status=MaterializationExecutionStatus.FAILED,
+        )
+
+
+def test_observation_result_can_include_health():
+    observed = make_observed()
+
+    health = AdapterHealthState(
+        adapter_id="tos",
+        status=AdapterHealthStatus.DEGRADED,
+        observed_at=NOW,
+        reason="Scheduled exports could not be restored",
+    )
+
+    result = AdapterObservationResult(
+        observed_state=observed,
+        health_state=health,
+    )
+
+    assert result.observed_state == observed
+    assert result.health_state == health
+
+
+def test_observation_result_rejects_health_for_other_adapter():
+    observed = make_observed()
+
+    health = AdapterHealthState(
+        adapter_id="other",
+        status=AdapterHealthStatus.DEGRADED,
+        observed_at=NOW,
+        reason="Other adapter degraded",
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="same adapter",
+    ):
+        AdapterObservationResult(
+            observed_state=observed,
+            health_state=health,
         )

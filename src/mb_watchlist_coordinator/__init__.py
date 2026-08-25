@@ -32,6 +32,7 @@ from .state_store import AdapterStateStore
 from .execution import (
     MaterializationExecutionResult,
     MaterializationExecutionStatus,
+    AdapterObservationResult,
 )
 from .orchestration import (
     apply_materialization_execution_result,
@@ -69,4 +70,5 @@ __all__ = [
     "apply_materialization_execution_result",
     "AdapterHealthState",
     "AdapterHealthStatus",
+    "AdapterObservationResult",
 ]

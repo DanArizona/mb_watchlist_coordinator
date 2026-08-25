@@ -39,6 +39,17 @@ def apply_materialization_execution_result(
             f"execution_result={execution_result.transaction_id!r}"
         )
 
+    health = execution_result.health_state
+
+    if (
+        health is not None
+        and health.adapter_id != transaction.adapter_id
+    ):
+        raise ValueError(
+            "Execution health state does not match "
+            f"transaction adapter {transaction.adapter_id!r}"
+        )
+
     if execution_result.status is MaterializationExecutionStatus.OBSERVED:
         observed = execution_result.observed_state
 
@@ -54,6 +65,8 @@ def apply_materialization_execution_result(
         )
 
         store.apply_verification_result(verification)
+        if health is not None:
+            store.record_health(health)
 
         return verification
 
@@ -65,6 +78,8 @@ def apply_materialization_execution_result(
         )
 
         store.update_transaction(failed)
+        if health is not None:
+            store.record_health(health)
 
         return None
 
@@ -84,6 +99,10 @@ def apply_materialization_execution_result(
             transaction.adapter_id,
             at=at,
         )
+        store.invalidate_observation(
+            transaction.adapter_id,
+            at=at,
+)
 
         return None
 

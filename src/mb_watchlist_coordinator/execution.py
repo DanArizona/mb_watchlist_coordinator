@@ -4,6 +4,23 @@ from dataclasses import dataclass
 from enum import StrEnum
 
 from .adapter_state import AdapterObservedState
+from .health import AdapterHealthState
+
+@dataclass(frozen=True, slots=True)
+class AdapterObservationResult:
+    observed_state: AdapterObservedState
+    health_state: AdapterHealthState | None = None
+
+    def __post_init__(self) -> None:
+        if (
+            self.health_state is not None
+            and self.health_state.adapter_id
+            != self.observed_state.adapter_id
+        ):
+            raise ValueError(
+                "Observation and health state must "
+                "refer to the same adapter"
+            )
 
 
 class MaterializationExecutionStatus(StrEnum):
@@ -19,6 +36,7 @@ class MaterializationExecutionResult:
 
     observed_state: AdapterObservedState | None = None
     reason: str | None = None
+    health_state: AdapterHealthState | None = None
 
     def __post_init__(self) -> None:
         if self.status is MaterializationExecutionStatus.OBSERVED:

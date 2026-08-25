@@ -21,6 +21,10 @@ from mb_watchlist_coordinator.transactions import (
     MaterializationTransactionStatus,
     start_transaction,
 )
+from mb_watchlist_coordinator.health import (
+    AdapterHealthState,
+    AdapterHealthStatus,
+)
 
 
 NOW = datetime(2026, 8, 25, 18, 0, tzinfo=timezone.utc)
@@ -275,3 +279,43 @@ def test_execution_result_must_match_transaction():
             execution,
             at=NOW + timedelta(seconds=6),
         )
+
+
+def test_successful_observation_can_record_degraded_health():
+    active = make_active_transaction()
+    store = make_store_with_active(active)
+
+    observed = AdapterObservedState(
+        adapter_id="tos",
+        symbols=frozenset(
+            {"AAPL", "NVDA", "TEMC"}
+        ),
+        observed_at=NOW + timedelta(seconds=5),
+    )
+
+    health = AdapterHealthState(
+        adapter_id="tos",
+        status=AdapterHealthStatus.DEGRADED,
+        observed_at=NOW + timedelta(seconds=6),
+        reason="Could not restore scheduled exports",
+    )
+
+    execution = MaterializationExecutionResult(
+        transaction_id="T19",
+        status=MaterializationExecutionStatus.OBSERVED,
+        observed_state=observed,
+        health_state=health,
+    )
+
+    apply_materialization_execution_result(
+        store,
+        active,
+        execution,
+        at=NOW + timedelta(seconds=6),
+    )
+
+    assert store.get_transaction("T19").status is (
+        MaterializationTransactionStatus.SUCCESS
+    )
+
+    assert store.latest_health("tos") == health
