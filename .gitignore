@@ -9,3 +9,6 @@ dist/
 .env
 
 .vscode/
+
+# Generated experimental journals and reports remain local.
+experiments/sampling_promotion_20261016/runs/

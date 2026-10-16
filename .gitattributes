@@ -1,0 +1,2 @@
+# Preserve the accepted proof bytes used by its hash manifest, including CMD CRLF.
+/experiments/sampling_promotion_20261016/** -text -whitespace

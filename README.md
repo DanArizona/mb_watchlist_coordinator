@@ -400,6 +400,31 @@ The current design follows several important rules:
 6. **Revisions are immutable.**
    New desired state produces a new canonical revision rather than mutating historical state.
 
+## Experimental nested sampling promotion
+
+The accepted October 16 proof is preserved as source under
+[`experiments/sampling_promotion_20261016`](experiments/sampling_promotion_20261016/README_PROOF.md).
+It projects one active promotion request into a complete Uni/Focus/Hot hierarchy,
+atomically publishes a fresh experimental journal, and verifies it with the real
+journal audit and two replays. MasterBot passed all 18 focused tests and the
+retained proof. See the [validation record](docs/validation/sampling_promotion_20261016.md).
+
+This directory is the exact, self-contained accepted proof, including its pinned
+Coordinator and market-data reference source. Its runner deliberately imports
+those bundled references. It preserves a reproducible milestone; it does not
+install or change this package's current flat Coordinator. Further lifecycle and
+production integration belong to subsequent increments.
+
+From a CMD window with the `sea-green` environment active:
+
+```cmd
+call "experiments\sampling_promotion_20261016\01_run_offline_proof.cmd"
+```
+
+The proof needs no password, API, browser or production journal. Each run creates
+only a new `runs` directory below the experiment. Git attributes preserve the
+accepted bytes so the proof's manifest checks also work with Windows Git settings.
+
 ## Current limitations / post-POC work
 
 The following are intentionally not complete yet:

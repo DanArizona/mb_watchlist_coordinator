@@ -1,0 +1,23 @@
+test_manifest_cannot_read_outside_bundle (test_bundle_guard.BundleGuardTests.test_manifest_cannot_read_outside_bundle) ... ok
+test_modified_payload_is_refused (test_bundle_guard.BundleGuardTests.test_modified_payload_is_refused) ... ok
+test_channel_write_failure_rolls_back_whole_hierarchy (test_sampling_promotion.BridgeTests.test_channel_write_failure_rolls_back_whole_hierarchy) ... ok
+test_complete_proposal_retains_immutable_provenance (test_sampling_promotion.BridgeTests.test_complete_proposal_retains_immutable_provenance) ... ok
+test_decision_cannot_precede_its_committed_baseline (test_sampling_promotion.BridgeTests.test_decision_cannot_precede_its_committed_baseline) ... ok
+test_expiry_before_scheduled_effect_is_rejected (test_sampling_promotion.BridgeTests.test_expiry_before_scheduled_effect_is_rejected) ... ok
+test_nonfinite_request_evidence_is_rejected (test_sampling_promotion.BridgeTests.test_nonfinite_request_evidence_is_rejected) ... ok
+test_real_store_audit_and_two_replays_match_decision (test_sampling_promotion.BridgeTests.test_real_store_audit_and_two_replays_match_decision) ... ok
+test_retry_and_conflict_preserve_complete_revision (test_sampling_promotion.BridgeTests.test_retry_and_conflict_preserve_complete_revision) ... ok
+test_session_and_effective_time_are_guarded (test_sampling_promotion.BridgeTests.test_session_and_effective_time_are_guarded) ... ok
+test_demotions_force_and_base_requests_are_rejected (test_sampling_promotion.PromotionTests.test_demotions_force_and_base_requests_are_rejected) ... ok
+test_focus_promotion_keeps_existing_hot (test_sampling_promotion.PromotionTests.test_focus_promotion_keeps_existing_hot) ... ok
+test_future_or_expired_request_is_rejected (test_sampling_promotion.PromotionTests.test_future_or_expired_request_is_rejected) ... ok
+test_hot_adds_focus_and_preserves_uni_and_baseline (test_sampling_promotion.PromotionTests.test_hot_adds_focus_and_preserves_uni_and_baseline) ... ok
+test_invalid_channels_and_supersession_are_rejected (test_sampling_promotion.PromotionTests.test_invalid_channels_and_supersession_are_rejected) ... ok
+test_invalid_membership_and_symbols_are_rejected (test_sampling_promotion.PromotionTests.test_invalid_membership_and_symbols_are_rejected) ... ok
+test_naive_times_are_rejected (test_sampling_promotion.PromotionTests.test_naive_times_are_rejected) ... ok
+test_outside_uni_is_rejected (test_sampling_promotion.PromotionTests.test_outside_uni_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.027s
+
+OK

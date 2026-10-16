@@ -1,0 +1,130 @@
+{
+  "result": "PASS",
+  "scope": "Offline synthetic membership only; no market acquisition or live transition",
+  "session_date": "2026-10-16",
+  "database": "/workspace/scratch/183f6f8c943c/coordinator-promotion-20261016/deliverables/coordinator_promotion_20261016_141902_winclose_e4fa82/runs/20261016T141903Z-05da550c/synthetic_membership.sqlite3",
+  "audit": "PASS",
+  "table_counts": {
+    "poll_run": 0,
+    "sampling_membership_revision": 2,
+    "sampling_channel_revision": 6,
+    "sampling_channel_member": 10,
+    "poll_slot_skip": 0,
+    "quote_acquisition": 0,
+    "quote_observation": 0
+  },
+  "identical_replays": true,
+  "sequence": [
+    {
+      "event_id": "membership_revision:2026-10-16:r0",
+      "effective_at_utc": "2026-10-16T14:29:00+00:00",
+      "content_sha256": "f57adf0db5ecafb111e8c529b2eba21a179ed02a1a85c8532428d22ebf21a988"
+    },
+    {
+      "event_id": "membership_revision:2026-10-16:r1",
+      "effective_at_utc": "2026-10-16T14:29:01+00:00",
+      "content_sha256": "7000b70c21c90d84ddbb0fbbc513ed8500aa3b688d1706642b03ffc1e872b7e9"
+    }
+  ],
+  "checkpoints": [
+    {
+      "revision": 0,
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      }
+    },
+    {
+      "revision": 1,
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      }
+    }
+  ],
+  "sequence_sha256": "5dd92c147fa60c6cefc8aa5a669c61b2169f6972cd7483196b20ba107b4768b9",
+  "request": {
+    "intent_id": "synthetic-promotion-001",
+    "producer_id": "synthetic_halt_producer",
+    "intent_type": "ENSURE_PRESENT",
+    "symbols": [
+      "MSFT"
+    ],
+    "source_event_id": "synthetic-event-001",
+    "created_at_utc": "2026-10-16T14:19:03.427824+00:00",
+    "effective_from_utc": null,
+    "expires_at_utc": null,
+    "supersession_key": null,
+    "reason": "Synthetic event requests faster observation of MSFT",
+    "metadata": {
+      "sampling_channel": "hot",
+      "session_date": "2026-10-16",
+      "synthetic": true
+    }
+  },
+  "revisions": [
+    {
+      "revision": 0,
+      "source": "offline_synthetic_fixture",
+      "reason": "Three-symbol test baseline",
+      "effective_at_utc": "2026-10-16T14:29:00+00:00",
+      "published_at_utc": "2026-10-16T14:19:03.429814+00:00",
+      "content_sha256": "f57adf0db5ecafb111e8c529b2eba21a179ed02a1a85c8532428d22ebf21a988",
+      "metadata": {
+        "experimental": true,
+        "synthetic_membership": true
+      }
+    },
+    {
+      "revision": 1,
+      "source": "watchlist_coordinator_experimental",
+      "reason": "Synthetic event requests faster observation of MSFT",
+      "effective_at_utc": "2026-10-16T14:29:01+00:00",
+      "published_at_utc": "2026-10-16T14:19:03.431775+00:00",
+      "content_sha256": "7000b70c21c90d84ddbb0fbbc513ed8500aa3b688d1706642b03ffc1e872b7e9",
+      "metadata": {
+        "baseline_content_sha256": "f57adf0db5ecafb111e8c529b2eba21a179ed02a1a85c8532428d22ebf21a988",
+        "baseline_revision": 0,
+        "bridge_contract": "experimental-single-promotion-v1",
+        "decided_at_utc": "2026-10-16T14:19:03.430817+00:00",
+        "experimental": true,
+        "request": {
+          "created_at_utc": "2026-10-16T14:19:03.427824+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "synthetic-promotion-001",
+          "intent_type": "ENSURE_PRESENT",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic": true
+          },
+          "producer_id": "synthetic_halt_producer",
+          "reason": "Synthetic event requests faster observation of MSFT",
+          "source_event_id": "synthetic-event-001",
+          "supersession_key": null,
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      }
+    }
+  ]
+}

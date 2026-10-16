@@ -1,0 +1,41 @@
+{
+  "result": "PASS",
+  "tests_run": 18,
+  "bundle_id": "coordinator_promotion_20261016_141902_winclose_e4fa82",
+  "source_pins": {
+    "coordinator": {
+      "repository": "DanArizona/mb_watchlist_coordinator",
+      "commit": "3e31fefd67bdac38ac805ed70dd49ad249e0f0dd"
+    },
+    "market_data": {
+      "repository": "DanArizona/mb_market_data",
+      "commit_prefix": "a082f5441126"
+    }
+  },
+  "loaded_source_files": {
+    "mb_market_data": "market_data/src/mb_market_data/__init__.py",
+    "mb_market_data.sqlite_write_recovery": "market_data/src/mb_market_data/sqlite_write_recovery.py",
+    "mb_market_data.schwab_quotes": "market_data/src/mb_market_data/schwab_quotes.py",
+    "mb_market_data.sampling_membership": "market_data/src/mb_market_data/sampling_membership.py",
+    "mb_market_data.watchlist_polling": "market_data/src/mb_market_data/watchlist_polling.py",
+    "mb_market_data.quote_observation_store": "market_data/src/mb_market_data/quote_observation_store.py",
+    "mb_market_data.quote_journal_audit": "market_data/src/mb_market_data/quote_journal_audit.py",
+    "mb_watchlist_coordinator.models": "coordinator/src/mb_watchlist_coordinator/models.py",
+    "mb_watchlist_coordinator.lifecycle": "coordinator/src/mb_watchlist_coordinator/lifecycle.py",
+    "mb_watchlist_coordinator.policy": "coordinator/src/mb_watchlist_coordinator/policy.py",
+    "mb_watchlist_coordinator.adapter_state": "coordinator/src/mb_watchlist_coordinator/adapter_state.py",
+    "mb_watchlist_coordinator.health": "coordinator/src/mb_watchlist_coordinator/health.py",
+    "mb_watchlist_coordinator.transactions": "coordinator/src/mb_watchlist_coordinator/transactions.py",
+    "mb_watchlist_coordinator.verification": "coordinator/src/mb_watchlist_coordinator/verification.py",
+    "mb_watchlist_coordinator.state_store": "coordinator/src/mb_watchlist_coordinator/state_store.py",
+    "mb_watchlist_coordinator.reconciliation": "coordinator/src/mb_watchlist_coordinator/reconciliation.py",
+    "mb_watchlist_coordinator.coordinator": "coordinator/src/mb_watchlist_coordinator/coordinator.py",
+    "mb_watchlist_coordinator.execution": "coordinator/src/mb_watchlist_coordinator/execution.py",
+    "mb_watchlist_coordinator.orchestration": "coordinator/src/mb_watchlist_coordinator/orchestration.py",
+    "mb_watchlist_coordinator": "coordinator/src/mb_watchlist_coordinator/__init__.py",
+    "mb_watchlist_coordinator.sampling_projection": "coordinator/src/mb_watchlist_coordinator/sampling_projection.py",
+    "mb_market_data.quote_journal_replay": "market_data/src/mb_market_data/quote_journal_replay.py",
+    "mb_market_data.quote_event_state": "market_data/src/mb_market_data/quote_event_state.py"
+  },
+  "proof_report": "proof_report.json"
+}
