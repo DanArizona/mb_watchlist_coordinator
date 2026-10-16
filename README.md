@@ -477,7 +477,8 @@ call "01_run_sampling_policy.cmd"
 
 It runs 43 focused checks and a retained real-journal audit/replay proof with
 21 receipts and 22 revisions, then returns to its prompt. Local repository tests:
-195 tests plus 14 subtests PASS. Windows acceptance of this increment is pending.
+195 tests plus 14 subtests PASS. MasterBot Windows acceptance is complete:
+all 43 focused tests and the retained proof passed, with clean prompt return.
 Recorded/live Nasdaq ingestion, a production publication service/outbox and Hot
 acquisition remain subsequent work.
 

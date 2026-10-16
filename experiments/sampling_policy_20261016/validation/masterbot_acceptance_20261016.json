@@ -1,0 +1,43 @@
+{
+  "result": "PASS",
+  "evidence_source": "user-supplied complete Windows CMD output",
+  "accepted_date": "2026-10-16",
+  "host": "MasterBot",
+  "environment": "sea-green",
+  "review_zip": "coordinator_policy_20261016_162859_5d4455.zip",
+  "implementation_commit": "45a8db628769f5b8a8fb3e5d7fc765f4a26f3d58",
+  "tests_run": 43,
+  "test_wall_seconds": 1.521,
+  "clean_prompt_return": true,
+  "synthetic_policy_clock": true,
+  "publication_timestamps": "real SQLite store timestamps",
+  "proof_settings": {
+    "demotion_grace_seconds": 60,
+    "minimum_residence_seconds": 120,
+    "restriction_timing": "immediate_cap",
+    "production_defaults_selected": false
+  },
+  "checks": {
+    "fast_promotions_and_ordinary_delayed_demotions": "PASS",
+    "one_authority_foreign_and_stale_controls_rejected": "PASS",
+    "clear_expiry_reevaluate_current_demand": "PASS",
+    "superseded_restrictions_stay_superseded": "PASS",
+    "restart_preserves_timers_and_deadlines": "PASS",
+    "reentry_resets_residence": "PASS",
+    "journal_audit": "PASS",
+    "two_journal_replays": "identical",
+    "publication_retry": "idempotent"
+  },
+  "input_receipts": 21,
+  "hierarchy_revisions": 22,
+  "market_acquisitions": 0,
+  "request_replay_sha256": "db6a50172ebc8ba5637d80cb99fcb28dd7af84fb638636fad22c78ac8591f462",
+  "journal_replay_sha256": "1aaba6a8e4ee1a5033c9d5084e3f0f23a89afe24afb6ec22ee3c44b66f676683",
+  "host_reports": "C:/Users/danla/Documents/github/mb_market_data/output/coordinator_policy_20261016_162859_5d4455/experiments/sampling_policy_20261016/runs/20261016T223125Z-c1a0ccb7",
+  "boundaries": [
+    "Synthetic proof; no live acquisition or timing claim",
+    "Production policy values and immediate-cap adoption remain open",
+    "External authentication, live publication service/outbox, Nasdaq ingestion and Hot acquisition remain pending",
+    "Production full-day coverage remains unverified"
+  ]
+}

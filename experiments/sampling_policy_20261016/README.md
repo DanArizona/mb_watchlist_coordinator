@@ -83,4 +83,6 @@ clock scheduler, publication outbox/acknowledgements, authentication, recorded/l
 Nasdaq ingestion and measured Hot acquisition remain to be built. No production
 cadence or rate budget is selected here.
 
-See [VALIDATION.md](VALIDATION.md) for local evidence and Windows acceptance status.
+MasterBot acceptance is complete: all 43 tests and the retained proof passed on
+October 16, with clean prompt return. See [VALIDATION.md](VALIDATION.md) for
+local and Windows evidence and the remaining production boundaries.
