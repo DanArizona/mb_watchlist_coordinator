@@ -425,6 +425,32 @@ The proof needs no password, API, browser or production journal. Each run create
 only a new `runs` directory below the experiment. Git attributes preserve the
 accepted bytes so the proof's manifest checks also work with Windows Git settings.
 
+## Source-owned sampling request lifecycle
+
+The next increment adds `sampling_requests.py` and `sampling_request_store.py`
+under `src/mb_watchlist_coordinator`. Requests are scoped by producer, carry
+immutable provenance and actual receipt times, and are recorded in a SQLite log.
+Cancellation checks the trusted caller identity against the request owner.
+Exact retries keep their original receipt; conflicting identities are refused.
+Restart and replay recover the same active reasons and nested membership.
+
+When the last request ends, the reducer reports demotion eligibility and retains
+promoted membership until a demotion policy is supplied. This does not yet choose
+a delay, implement privileged restrictions, authenticate external callers or run
+a live Coordinator scheduler. The existing flat Coordinator API remains intact.
+
+See [the request proof](experiments/sampling_requests_20261016/README.md) and its
+[validation record](experiments/sampling_requests_20261016/VALIDATION.md).
+From one CMD window with `sea-green` active, run:
+
+```cmd
+call "01_run_sampling_requests.cmd"
+```
+
+This uses the repository's new request modules and the earlier pinned market-data
+reference. It runs 30 focused tests and a fresh synthetic publication/replay proof,
+with no API or production journal. Windows acceptance is pending.
+
 ## Current limitations / post-POC work
 
 The following are intentionally not complete yet:

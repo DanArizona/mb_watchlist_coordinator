@@ -12,3 +12,4 @@ dist/
 
 # Generated experimental journals and reports remain local.
 experiments/sampling_promotion_20261016/runs/
+experiments/sampling_requests_20261016/runs/
