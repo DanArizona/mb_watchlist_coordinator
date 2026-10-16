@@ -1,0 +1,23 @@
+{
+  "evidence_source": "user-supplied Windows CMD output",
+  "host": "MasterBot",
+  "date": "2026-10-16",
+  "bundle": "coordinator_requests_20261016_152658_33cfc3.zip",
+  "implementation_commit": "4c4e9760978934fd59d7f308731cc56c2a3e218c",
+  "tests_run": 30,
+  "test_wall_seconds": 0.864,
+  "tests_result": "OK",
+  "proof_result": "PASS",
+  "request_restart_replay": "identical",
+  "publication_retry": "idempotent",
+  "journal_audit": "PASS",
+  "two_journal_replays": "identical",
+  "request_receipts": 5,
+  "hierarchy_revisions": 6,
+  "market_acquisitions": 0,
+  "last_withdrawal": "eligible for demotion; membership retained pending policy",
+  "clean_prompt_return": true,
+  "request_replay_sha256": "858f2652a3dbba242689a1870301eb07054a248b065d5326d28ef5fa9b4c7ec0",
+  "journal_replay_sha256": "76cc4294fe11f6c730afff3b2ea4c475befad41f9a73467a3a65540dd13e8130",
+  "reports": "C:/Users/danla/Documents/github/mb_market_data/output/coordinator_requests_20261016_152658_33cfc3/experiments/sampling_requests_20261016/runs/20261016T160058Z-dc473211"
+}

@@ -89,4 +89,5 @@ The source manifest checks LF-normalized UTF-8 content to tolerate Windows Git
 line-ending conversion. It is an accidental-change guard, not authentication.
 The first accepted frozen proof and its exact-byte manifest remain unchanged.
 
-See `VALIDATION.md` for local results. Windows acceptance of this increment is pending.
+See `VALIDATION.md` for local results and accepted MasterBot evidence. All 30
+focused tests and the retained proof passed on Windows on October 16.

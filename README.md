@@ -449,7 +449,8 @@ call "01_run_sampling_requests.cmd"
 
 This uses the repository's new request modules and the earlier pinned market-data
 reference. It runs 30 focused tests and a fresh synthetic publication/replay proof,
-with no API or production journal. Windows acceptance is pending.
+with no API or production journal. MasterBot acceptance is complete: all 30
+focused tests and the retained proof passed on October 16, with clean prompt return.
 
 ## Current limitations / post-POC work
 

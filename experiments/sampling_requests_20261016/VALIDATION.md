@@ -1,4 +1,4 @@
-# October 16 source-owned request lifecycle - local validation
+# October 16 source-owned request lifecycle - local and MasterBot validation
 
 - Local runtime: Python 3.12.14, Linux.
 - Repository suite: 160 tests and 5 subtests PASS (138 existing tests + 22 new request-store/reducer tests).
@@ -15,4 +15,34 @@ Local request replay SHA-256: `60b26038bc86b1a546ea69b360df7a7f0d34c2aeb5fe09973
 Local journal replay SHA-256: `bf0546791f87d726262434a3b1ac4d8afbfe6aa1e22986f7840342792e7898a8`.
 Full example reports are in `validation/`; their absolute paths identify the local host. Your run records its own timestamps and hashes.
 
-Actual Windows acceptance of this increment is pending. Trusted actor ownership checks are implemented; external authentication, privileged restrictions, demotion stabilization, live publication scheduling/outbox acknowledgements, Nasdaq ingestion and Hot acquisition remain pending. Production processes and journals are independent.
+Windows acceptance of this increment is COMPLETE, as recorded below. Trusted actor ownership checks are implemented; external authentication, privileged restrictions, demotion stabilization, live publication scheduling/outbox acknowledgements, Nasdaq ingestion and Hot acquisition remain pending. Production processes and journals are independent.
+
+## MasterBot Windows acceptance
+
+The user supplied CMD output from the accepted review ZIP
+`coordinator_requests_20261016_152658_33cfc3.zip`:
+
+```text
+Ran 30 tests in 0.864s
+OK
+Source-owned request proof: PASS
+Manual withdrawal: MSFT stays Hot for halt request
+Foreign withdrawal: rejected and retained in request history
+Last withdrawal: MSFT eligible for demotion; membership retained pending policy
+Request restart/replay: identical; publication retry: idempotent
+Journal audit: PASS; two journal replays: identical
+Receipts: 5; hierarchy revisions: 6; market acquisitions: 0
+```
+
+The command returned cleanly to its prompt. On-host reports:
+`C:/Users/danla/Documents/github/mb_market_data/output/coordinator_requests_20261016_152658_33cfc3/experiments/sampling_requests_20261016/runs/20261016T160058Z-dc473211`.
+
+- Request replay SHA-256: `858f2652a3dbba242689a1870301eb07054a248b065d5326d28ef5fa9b4c7ec0`.
+- Journal replay SHA-256: `76cc4294fe11f6c730afff3b2ea4c475befad41f9a73467a3a65540dd13e8130`.
+
+The evidence is user-supplied console output, retained in structured form in
+`validation/masterbot_acceptance_20261016.json`. Full SQLite journals and detailed
+reports remain on MasterBot. New test runs are unnecessary for this documentation-
+only acceptance update. Restrictions and actual demotion stabilization remain the
+next increment; this acceptance does not claim a live publication service, Nasdaq
+integration or Hot acquisition.
