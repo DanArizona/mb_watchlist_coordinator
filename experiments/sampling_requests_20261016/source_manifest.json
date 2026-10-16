@@ -30,12 +30,13 @@
     "src/mb_watchlist_coordinator/policy.py": "3f9a130ab66d88d314b5b27d8bb977b1411f91f1dbe71f07b1c541f407588a8a",
     "src/mb_watchlist_coordinator/reconciliation.py": "0b775330aee9432f166d728ab94b4826a5683d7000edcc8576a44f044320a6be",
     "src/mb_watchlist_coordinator/sampling_projection.py": "7391e7fc5df2354696c0a07754ad91f90d3ed3f8d36dfa1192fc3f1f531f2cde",
-    "src/mb_watchlist_coordinator/sampling_request_store.py": "449e5fcb0d3314ccf7fcf3374dd4f8ce154699b6f5df8f8743b716a823f1442c",
-    "src/mb_watchlist_coordinator/sampling_requests.py": "d5aa0e8a45aaff58e34161019a747d0d08ddc1031b19b31249d9c2120a74ed44",
+    "src/mb_watchlist_coordinator/sampling_request_store.py": "50c9ee253b20134ef234087bb55136833a513c0b85fe11a91c59f3dc8be5500b",
+    "src/mb_watchlist_coordinator/sampling_requests.py": "cb05983ac8766f671abae4f8cc142944496d5de01417f89e23183039d5e06341",
     "src/mb_watchlist_coordinator/session.py": "450cec82ea0155ab96ef922240f6160729990a8f007d85621c49333fa0279507",
     "src/mb_watchlist_coordinator/state_store.py": "f5c917e0195146c67e1b8e06bbe84251da692610e21888fd4dde77832e6c01a9",
     "src/mb_watchlist_coordinator/transactions.py": "e3977b5d575b47a2f105c22348ec30c267e0026afab8826d037212e9ae206825",
     "src/mb_watchlist_coordinator/verification.py": "1fe05c31664629dae41d0a7ad617acb2dfca7eb16c8d3fbee342a71b3b6660bb",
-    "tests/test_sampling_requests.py": "f57680920d5f3a9fc664d5e4a09f28f27e401b5742526b34b3bfcb3205711af9"
+    "tests/test_sampling_requests.py": "f57680920d5f3a9fc664d5e4a09f28f27e401b5742526b34b3bfcb3205711af9",
+    "src/mb_watchlist_coordinator/sampling_policy.py": "168fc29eaf251babe7559819a4feac4515f6988755ea9437845687c595f621ce"
   }
 }

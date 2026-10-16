@@ -91,3 +91,12 @@ The first accepted frozen proof and its exact-byte manifest remain unchanged.
 
 See `VALIDATION.md` for local results and accepted MasterBot evidence. All 30
 focused tests and the retained proof passed on Windows on October 16.
+
+## Compatibility after the policy increment
+
+The subsequent optional-policy implementation preserves this runner's no-policy
+behavior. Its source manifest now covers the current request modules, including
+the imported policy module. All 30 checks and the retained proof pass locally.
+The original Windows-accepted ZIP and first frozen promotion proof are unchanged.
+See the separate sampling_policy_20261016 review for the new 43-test host check;
+this update does not require repeating the original 30-test Windows acceptance.

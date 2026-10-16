@@ -434,10 +434,10 @@ Cancellation checks the trusted caller identity against the request owner.
 Exact retries keep their original receipt; conflicting identities are refused.
 Restart and replay recover the same active reasons and nested membership.
 
-When the last request ends, the reducer reports demotion eligibility and retains
-promoted membership until a demotion policy is supplied. This does not yet choose
-a delay, implement privileged restrictions, authenticate external callers or run
-a live Coordinator scheduler. The existing flat Coordinator API remains intact.
+With policy omitted, the reducer reports demotion eligibility and retains
+promoted membership after the last request ends. The explicit policy increment
+below adds restrictions and stabilized demotion. External caller authentication
+and a live Coordinator scheduler remain pending. The existing flat Coordinator API remains intact.
 
 See [the request proof](experiments/sampling_requests_20261016/README.md) and its
 [validation record](experiments/sampling_requests_20261016/VALIDATION.md).
@@ -451,6 +451,35 @@ This uses the repository's new request modules and the earlier pinned market-dat
 reference. It runs 30 focused tests and a fresh synthetic publication/replay proof,
 with no API or production journal. MasterBot acceptance is complete: all 30
 focused tests and the retained proof passed on October 16, with clean prompt return.
+
+## Explicit restrictions and stabilized demotion
+
+The optional `SamplingPolicy` now adds one trusted Super User authority,
+session-bounded Focus/Uni caps and replay-derived ordinary demotion timers.
+Promotion remains immediate; ordinary demotion waits for both configured grace
+and minimum residence. Restrictions preserve underlying requests. Clear/expiry
+reevaluates current demand, and replacement expiry never revives an older cap.
+The earlier flat Coordinator API and unconfigured request-ledger behavior remain
+intact.
+
+All settings are mandatory. The offline proof selects 60-second grace,
+120-second residence and immediate privileged caps explicitly as review values,
+not production defaults. The retained proof uses a labeled synthetic policy clock;
+it makes no live timing or acquisition claim.
+
+See the [policy proof](experiments/sampling_policy_20261016/README.md) and
+[validation](experiments/sampling_policy_20261016/VALIDATION.md). From one CMD
+window with `sea-green` active:
+
+```cmd
+call "01_run_sampling_policy.cmd"
+```
+
+It runs 43 focused checks and a retained real-journal audit/replay proof with
+21 receipts and 22 revisions, then returns to its prompt. Local repository tests:
+195 tests plus 14 subtests PASS. Windows acceptance of this increment is pending.
+Recorded/live Nasdaq ingestion, a production publication service/outbox and Hot
+acquisition remain subsequent work.
 
 ## Current limitations / post-POC work
 

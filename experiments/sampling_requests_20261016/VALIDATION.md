@@ -46,3 +46,12 @@ reports remain on MasterBot. New test runs are unnecessary for this documentatio
 only acceptance update. Restrictions and actual demotion stabilization remain the
 next increment; this acceptance does not claim a live publication service, Nasdaq
 integration or Hot acquisition.
+
+## Subsequent optional-policy compatibility check
+
+After adding the explicit restrictions/demotion policy, this runner's source
+manifest was refreshed for the current optional-policy modules. All 30 tests and
+the retained no-policy proof pass locally. Historical Windows evidence above
+continues to refer to the original implementation and uniquely named accepted
+ZIP. New policy behavior has a separate 43-test review; Windows acceptance of
+that increment is pending.

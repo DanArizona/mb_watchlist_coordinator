@@ -1,0 +1,12 @@
+Restriction and demotion policy proof: PASS
+Clock: synthetic logical time; SQLite publication timestamps are real
+Proof settings: grace=60s; minimum residence=120s; immediate restriction cap
+Settings are test configuration; no production defaults selected
+Fast promotions and ordinary delayed demotions: PASS
+One authority; foreign and stale controls rejected: PASS
+Clear/expiry reevaluate demand; superseded restrictions stay superseded: PASS
+Restart preserves deadlines and timers; reentry resets residence: PASS
+Journal audit: PASS; two replays identical; retry idempotent
+Receipts: 21; hierarchy revisions: 22; market acquisitions: 0
+Request replay SHA-256: e71adf098b6242beb184d51e02eec7a4cffcf72cf94fe8dc2898c52701295d3c
+Journal replay SHA-256: 5f7f636ca1ddb4cd34d677ae3d4c5ac056bba313fbdaaa964627cbd17501e639

@@ -1,0 +1,6591 @@
+{
+  "result": "PASS",
+  "synthetic_policy_clock": true,
+  "clock_description": "Injected future logical time; journal published_at uses the real clock",
+  "policy_settings": {
+    "super_user_id": "proof-super-user",
+    "demotion_grace_seconds": 60.0,
+    "minimum_residence_seconds": 120.0,
+    "restriction_timing": "immediate_cap"
+  },
+  "settings_status": "proof_only_no_production_defaults",
+  "trace": [
+    {
+      "label": "fast promotion",
+      "synthetic_seconds": 0,
+      "accepted": true,
+      "state": {
+        "sequence": 1,
+        "event_sha256": "ef204900182cf379921e734b02b20a39d57bdc816a4227e009fa500764296640",
+        "as_of_utc": "2026-10-16T16:33:45+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:33:45+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m1",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m1",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 0,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "ordinary withdrawal starts hold",
+      "synthetic_seconds": 10,
+      "accepted": true,
+      "state": {
+        "sequence": 2,
+        "event_sha256": "84f546823081e1cd1c3826ec912e72c8a95250f7d16dc20357dcdb5392dcca21",
+        "as_of_utc": "2026-10-16T16:33:55+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_requests": [],
+        "demotion_eligible": {
+          "focus": [
+            "MSFT"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "rejected_count": 0,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_restrictions": [],
+        "demotion_holds": [
+          {
+            "channel": "hot",
+            "symbol": "MSFT",
+            "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+            "entered_at_utc": "2026-10-16T16:33:45+00:00",
+            "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+            "held_by": [
+              "demotion_grace",
+              "minimum_residence"
+            ]
+          },
+          {
+            "channel": "focus",
+            "symbol": "MSFT",
+            "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+            "entered_at_utc": "2026-10-16T16:33:45+00:00",
+            "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+            "held_by": [
+              "demotion_grace",
+              "minimum_residence",
+              "hot_dependency"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "before residence deadline",
+      "synthetic_seconds": 119,
+      "accepted": true,
+      "state": {
+        "sequence": 3,
+        "event_sha256": "e20acc197d205af66dab2d68bee675c46c0cdf8bfd0c8f970a3b4725e78e4136",
+        "as_of_utc": "2026-10-16T16:35:44+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_requests": [],
+        "demotion_eligible": {
+          "focus": [
+            "MSFT"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "rejected_count": 0,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_restrictions": [],
+        "demotion_holds": [
+          {
+            "channel": "hot",
+            "symbol": "MSFT",
+            "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+            "entered_at_utc": "2026-10-16T16:33:45+00:00",
+            "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+            "held_by": [
+              "minimum_residence"
+            ]
+          },
+          {
+            "channel": "focus",
+            "symbol": "MSFT",
+            "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+            "entered_at_utc": "2026-10-16T16:33:45+00:00",
+            "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+            "held_by": [
+              "minimum_residence",
+              "hot_dependency"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "ordinary demotion at deadline",
+      "synthetic_seconds": 120,
+      "accepted": true,
+      "state": {
+        "sequence": 4,
+        "event_sha256": "b8bf466734d1e3a479c89a2b186dcfeb4df901661f0d5359fffe8e7e8d179d14",
+        "as_of_utc": "2026-10-16T16:35:45+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_requests": [],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 0,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_restrictions": [],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "halt promotion",
+      "synthetic_seconds": 121,
+      "accepted": true,
+      "state": {
+        "sequence": 5,
+        "event_sha256": "be92190e605723e8056fcba0a3be9e431f14a763a4b6501a0197dbc9295b7b7b",
+        "as_of_utc": "2026-10-16T16:35:46+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:35:46+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "h1",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "halts",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-h1",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 0,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "foreign restriction rejected",
+      "synthetic_seconds": 122,
+      "accepted": false,
+      "state": {
+        "sequence": 6,
+        "event_sha256": "a5542dc94c44f831e23066fa1e03e60d8e26b896e369ebae64cab2e29947ad60",
+        "as_of_utc": "2026-10-16T16:35:47+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:35:46+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "h1",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "halts",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-h1",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 1,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "immediate Focus cap",
+      "synthetic_seconds": 123,
+      "accepted": true,
+      "state": {
+        "sequence": 7,
+        "event_sha256": "434bc53424135ac5a7885a929ac5d96bc9e113145abcd98d298f94ca6b1f1bf6",
+        "as_of_utc": "2026-10-16T16:35:48+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:35:46+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "h1",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "halts",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-h1",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 1,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [
+          {
+            "expires_at_utc": "2026-10-16T16:36:45+00:00",
+            "max_group": "focus",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r1",
+            "symbol": "MSFT"
+          }
+        ],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "demand retained under cap",
+      "synthetic_seconds": 124,
+      "accepted": true,
+      "state": {
+        "sequence": 8,
+        "event_sha256": "ec4183328328e24addfa8b88055c230e1597a43094ef017f4f9dd7ae8128edda",
+        "as_of_utc": "2026-10-16T16:35:49+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:35:46+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "h1",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "halts",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-h1",
+            "symbols": [
+              "MSFT"
+            ]
+          },
+          {
+            "created_at_utc": "2026-10-16T16:35:49+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m2",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m2",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 1,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [
+          {
+            "expires_at_utc": "2026-10-16T16:36:45+00:00",
+            "max_group": "focus",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r1",
+            "symbol": "MSFT"
+          }
+        ],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "replacement Uni cap",
+      "synthetic_seconds": 125,
+      "accepted": true,
+      "state": {
+        "sequence": 9,
+        "event_sha256": "3a4fcaf671ce6d16490ba5244c49eed6f6629633fe94cc4ee1a27f1e7b673cc7",
+        "as_of_utc": "2026-10-16T16:35:50+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:35:46+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "h1",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "halts",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-h1",
+            "symbols": [
+              "MSFT"
+            ]
+          },
+          {
+            "created_at_utc": "2026-10-16T16:35:49+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m2",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m2",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 1,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [
+          {
+            "expires_at_utc": "2026-10-16T16:36:35+00:00",
+            "max_group": "uni",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r2",
+            "symbol": "MSFT"
+          }
+        ],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "stale clear rejected",
+      "synthetic_seconds": 126,
+      "accepted": false,
+      "state": {
+        "sequence": 10,
+        "event_sha256": "4837bc87c7eea45670c086b4dfaf39b226404d005e131fa36332c57f5763bd3c",
+        "as_of_utc": "2026-10-16T16:35:51+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:35:46+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "h1",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "halts",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-h1",
+            "symbols": [
+              "MSFT"
+            ]
+          },
+          {
+            "created_at_utc": "2026-10-16T16:35:49+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m2",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m2",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [
+          {
+            "expires_at_utc": "2026-10-16T16:36:35+00:00",
+            "max_group": "uni",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r2",
+            "symbol": "MSFT"
+          }
+        ],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "replacement expires without old revival",
+      "synthetic_seconds": 170,
+      "accepted": true,
+      "state": {
+        "sequence": 11,
+        "event_sha256": "ae3e85fab538442ea2d6c42781c5c3b0fd5ec0b1fd3bb47a71c100cc4e81ad4c",
+        "as_of_utc": "2026-10-16T16:36:35+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:35:46+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "h1",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "halts",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-h1",
+            "symbols": [
+              "MSFT"
+            ]
+          },
+          {
+            "created_at_utc": "2026-10-16T16:35:49+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m2",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m2",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "new Uni cap",
+      "synthetic_seconds": 171,
+      "accepted": true,
+      "state": {
+        "sequence": 12,
+        "event_sha256": "8a83c3585610c1d2ca976ffd8df4c9d24524cc031a9210005815c21780d0c923",
+        "as_of_utc": "2026-10-16T16:36:36+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:35:46+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "h1",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "halts",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-h1",
+            "symbols": [
+              "MSFT"
+            ]
+          },
+          {
+            "created_at_utc": "2026-10-16T16:35:49+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m2",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m2",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [
+          {
+            "expires_at_utc": "2026-10-16T16:38:45+00:00",
+            "max_group": "uni",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r3",
+            "symbol": "MSFT"
+          }
+        ],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "withdraw halt under cap",
+      "synthetic_seconds": 172,
+      "accepted": true,
+      "state": {
+        "sequence": 13,
+        "event_sha256": "c012d93f97f8834b8616aa390af9101995a68069358ffff21c78f2354c41c70d",
+        "as_of_utc": "2026-10-16T16:36:37+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:35:49+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m2",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m2",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [
+          {
+            "expires_at_utc": "2026-10-16T16:38:45+00:00",
+            "max_group": "uni",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r3",
+            "symbol": "MSFT"
+          }
+        ],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "withdraw manual under cap",
+      "synthetic_seconds": 173,
+      "accepted": true,
+      "state": {
+        "sequence": 14,
+        "event_sha256": "ec0b08f6b6d745245f2b822184ac3644a06c6e6e1bb4903f94faf6e2f29c3ef6",
+        "as_of_utc": "2026-10-16T16:36:38+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_requests": [],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_restrictions": [
+          {
+            "expires_at_utc": "2026-10-16T16:38:45+00:00",
+            "max_group": "uni",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r3",
+            "symbol": "MSFT"
+          }
+        ],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "clear does not restore stale demand",
+      "synthetic_seconds": 174,
+      "accepted": true,
+      "state": {
+        "sequence": 15,
+        "event_sha256": "a7c05035b927e58148c801269384d36163d6fea0fc7eac9241b9cbc74635b9f9",
+        "as_of_utc": "2026-10-16T16:36:39+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_requests": [],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_restrictions": [],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "fresh manual promotion",
+      "synthetic_seconds": 175,
+      "accepted": true,
+      "state": {
+        "sequence": 16,
+        "event_sha256": "3f0fc12c0e66acbb5b9ce9ea7b02d7641159cb0fe8bae7b17287612204d32381",
+        "as_of_utc": "2026-10-16T16:36:40+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:36:40+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m3",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m3",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "session-bounded cap",
+      "synthetic_seconds": 176,
+      "accepted": true,
+      "state": {
+        "sequence": 17,
+        "event_sha256": "d08f6a71d3d594038aaa9ff8dab4c6d07f570411e34e055f74993de7665ac8a9",
+        "as_of_utc": "2026-10-16T16:36:41+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:36:40+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m3",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m3",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [
+          {
+            "expires_at_utc": "2026-10-17T04:00:00+00:00",
+            "max_group": "focus",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r4",
+            "symbol": "MSFT"
+          }
+        ],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "clear reevaluates current demand",
+      "synthetic_seconds": 177,
+      "accepted": true,
+      "state": {
+        "sequence": 18,
+        "event_sha256": "734c1b57975381eb103816ab29a2cbac9c482dc5797a56323b5eb1463693f8c8",
+        "as_of_utc": "2026-10-16T16:36:42+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_requests": [
+          {
+            "created_at_utc": "2026-10-16T16:36:40+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m3",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m3",
+            "symbols": [
+              "MSFT"
+            ]
+          }
+        ],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_restrictions": [],
+        "demotion_holds": []
+      }
+    },
+    {
+      "label": "last withdrawal after reentry",
+      "synthetic_seconds": 178,
+      "accepted": true,
+      "state": {
+        "sequence": 19,
+        "event_sha256": "25d802513bcbcb615ed7bc56a37ae0782cd8cc853a633d16df0a9fc8562cf2d9",
+        "as_of_utc": "2026-10-16T16:36:43+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_requests": [],
+        "demotion_eligible": {
+          "focus": [
+            "MSFT"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_restrictions": [],
+        "demotion_holds": [
+          {
+            "channel": "hot",
+            "symbol": "MSFT",
+            "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+            "entered_at_utc": "2026-10-16T16:36:42+00:00",
+            "demotion_at_utc": "2026-10-16T16:38:42+00:00",
+            "held_by": [
+              "demotion_grace",
+              "minimum_residence"
+            ]
+          },
+          {
+            "channel": "focus",
+            "symbol": "MSFT",
+            "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+            "entered_at_utc": "2026-10-16T16:36:40+00:00",
+            "demotion_at_utc": "2026-10-16T16:38:40+00:00",
+            "held_by": [
+              "demotion_grace",
+              "minimum_residence",
+              "hot_dependency"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "new residence deadline held",
+      "synthetic_seconds": 296,
+      "accepted": true,
+      "state": {
+        "sequence": 20,
+        "event_sha256": "f69ba1eafd4d7e90e464cfb076b6875b227645b46daa70e0bcc4a887cedac0f7",
+        "as_of_utc": "2026-10-16T16:38:41+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "MSFT",
+            "SPY"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "active_requests": [],
+        "demotion_eligible": {
+          "focus": [
+            "MSFT"
+          ],
+          "hot": [
+            "MSFT"
+          ]
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_restrictions": [],
+        "demotion_holds": [
+          {
+            "channel": "hot",
+            "symbol": "MSFT",
+            "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+            "entered_at_utc": "2026-10-16T16:36:42+00:00",
+            "demotion_at_utc": "2026-10-16T16:38:42+00:00",
+            "held_by": [
+              "minimum_residence"
+            ]
+          },
+          {
+            "channel": "focus",
+            "symbol": "MSFT",
+            "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+            "entered_at_utc": "2026-10-16T16:36:40+00:00",
+            "demotion_at_utc": "2026-10-16T16:38:40+00:00",
+            "held_by": [
+              "hot_dependency"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "new residence deadline reached",
+      "synthetic_seconds": 297,
+      "accepted": true,
+      "state": {
+        "sequence": 21,
+        "event_sha256": "c2f934cc013f83c038e9a5f1633447a400951c4030ac990ab9117feef6604e52",
+        "as_of_utc": "2026-10-16T16:38:42+00:00",
+        "desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "retained": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_requests": [],
+        "demotion_eligible": {
+          "focus": [],
+          "hot": []
+        },
+        "rejected_count": 2,
+        "demotion_policy": "configured",
+        "policy": {
+          "super_user_id": "proof-super-user",
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap"
+        },
+        "unrestricted_desired": {
+          "uni": [
+            "AAPL",
+            "MSFT",
+            "SPY"
+          ],
+          "focus": [
+            "SPY"
+          ],
+          "hot": []
+        },
+        "active_restrictions": [],
+        "demotion_holds": []
+      }
+    }
+  ],
+  "request_checkpoints": [
+    {
+      "sequence": 0,
+      "event_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+      "as_of_utc": null,
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 0,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_restrictions": [],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 1,
+      "event_sha256": "ef204900182cf379921e734b02b20a39d57bdc816a4227e009fa500764296640",
+      "as_of_utc": "2026-10-16T16:33:45+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:33:45+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "m1",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "manual",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-m1",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 0,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 2,
+      "event_sha256": "84f546823081e1cd1c3826ec912e72c8a95250f7d16dc20357dcdb5392dcca21",
+      "as_of_utc": "2026-10-16T16:33:55+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_requests": [],
+      "demotion_eligible": {
+        "focus": [
+          "MSFT"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "rejected_count": 0,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_restrictions": [],
+      "demotion_holds": [
+        {
+          "channel": "hot",
+          "symbol": "MSFT",
+          "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+          "entered_at_utc": "2026-10-16T16:33:45+00:00",
+          "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+          "held_by": [
+            "demotion_grace",
+            "minimum_residence"
+          ]
+        },
+        {
+          "channel": "focus",
+          "symbol": "MSFT",
+          "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+          "entered_at_utc": "2026-10-16T16:33:45+00:00",
+          "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+          "held_by": [
+            "demotion_grace",
+            "minimum_residence",
+            "hot_dependency"
+          ]
+        }
+      ]
+    },
+    {
+      "sequence": 3,
+      "event_sha256": "e20acc197d205af66dab2d68bee675c46c0cdf8bfd0c8f970a3b4725e78e4136",
+      "as_of_utc": "2026-10-16T16:35:44+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_requests": [],
+      "demotion_eligible": {
+        "focus": [
+          "MSFT"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "rejected_count": 0,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_restrictions": [],
+      "demotion_holds": [
+        {
+          "channel": "hot",
+          "symbol": "MSFT",
+          "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+          "entered_at_utc": "2026-10-16T16:33:45+00:00",
+          "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+          "held_by": [
+            "minimum_residence"
+          ]
+        },
+        {
+          "channel": "focus",
+          "symbol": "MSFT",
+          "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+          "entered_at_utc": "2026-10-16T16:33:45+00:00",
+          "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+          "held_by": [
+            "minimum_residence",
+            "hot_dependency"
+          ]
+        }
+      ]
+    },
+    {
+      "sequence": 4,
+      "event_sha256": "b8bf466734d1e3a479c89a2b186dcfeb4df901661f0d5359fffe8e7e8d179d14",
+      "as_of_utc": "2026-10-16T16:35:45+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 0,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_restrictions": [],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 5,
+      "event_sha256": "be92190e605723e8056fcba0a3be9e431f14a763a4b6501a0197dbc9295b7b7b",
+      "as_of_utc": "2026-10-16T16:35:46+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:35:46+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "h1",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "halts",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-h1",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 0,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 6,
+      "event_sha256": "a5542dc94c44f831e23066fa1e03e60d8e26b896e369ebae64cab2e29947ad60",
+      "as_of_utc": "2026-10-16T16:35:47+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:35:46+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "h1",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "halts",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-h1",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 1,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 7,
+      "event_sha256": "434bc53424135ac5a7885a929ac5d96bc9e113145abcd98d298f94ca6b1f1bf6",
+      "as_of_utc": "2026-10-16T16:35:48+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:35:46+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "h1",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "halts",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-h1",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 1,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [
+        {
+          "expires_at_utc": "2026-10-16T16:36:45+00:00",
+          "max_group": "focus",
+          "reason": "Synthetic restriction",
+          "restriction_id": "r1",
+          "symbol": "MSFT"
+        }
+      ],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 8,
+      "event_sha256": "ec4183328328e24addfa8b88055c230e1597a43094ef017f4f9dd7ae8128edda",
+      "as_of_utc": "2026-10-16T16:35:49+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:35:46+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "h1",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "halts",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-h1",
+          "symbols": [
+            "MSFT"
+          ]
+        },
+        {
+          "created_at_utc": "2026-10-16T16:35:49+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "m2",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "manual",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-m2",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 1,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [
+        {
+          "expires_at_utc": "2026-10-16T16:36:45+00:00",
+          "max_group": "focus",
+          "reason": "Synthetic restriction",
+          "restriction_id": "r1",
+          "symbol": "MSFT"
+        }
+      ],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 9,
+      "event_sha256": "3a4fcaf671ce6d16490ba5244c49eed6f6629633fe94cc4ee1a27f1e7b673cc7",
+      "as_of_utc": "2026-10-16T16:35:50+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:35:46+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "h1",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "halts",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-h1",
+          "symbols": [
+            "MSFT"
+          ]
+        },
+        {
+          "created_at_utc": "2026-10-16T16:35:49+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "m2",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "manual",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-m2",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 1,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [
+        {
+          "expires_at_utc": "2026-10-16T16:36:35+00:00",
+          "max_group": "uni",
+          "reason": "Synthetic restriction",
+          "restriction_id": "r2",
+          "symbol": "MSFT"
+        }
+      ],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 10,
+      "event_sha256": "4837bc87c7eea45670c086b4dfaf39b226404d005e131fa36332c57f5763bd3c",
+      "as_of_utc": "2026-10-16T16:35:51+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:35:46+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "h1",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "halts",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-h1",
+          "symbols": [
+            "MSFT"
+          ]
+        },
+        {
+          "created_at_utc": "2026-10-16T16:35:49+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "m2",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "manual",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-m2",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [
+        {
+          "expires_at_utc": "2026-10-16T16:36:35+00:00",
+          "max_group": "uni",
+          "reason": "Synthetic restriction",
+          "restriction_id": "r2",
+          "symbol": "MSFT"
+        }
+      ],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 11,
+      "event_sha256": "ae3e85fab538442ea2d6c42781c5c3b0fd5ec0b1fd3bb47a71c100cc4e81ad4c",
+      "as_of_utc": "2026-10-16T16:36:35+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:35:46+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "h1",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "halts",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-h1",
+          "symbols": [
+            "MSFT"
+          ]
+        },
+        {
+          "created_at_utc": "2026-10-16T16:35:49+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "m2",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "manual",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-m2",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 12,
+      "event_sha256": "8a83c3585610c1d2ca976ffd8df4c9d24524cc031a9210005815c21780d0c923",
+      "as_of_utc": "2026-10-16T16:36:36+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:35:46+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "h1",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "halts",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-h1",
+          "symbols": [
+            "MSFT"
+          ]
+        },
+        {
+          "created_at_utc": "2026-10-16T16:35:49+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "m2",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "manual",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-m2",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [
+        {
+          "expires_at_utc": "2026-10-16T16:38:45+00:00",
+          "max_group": "uni",
+          "reason": "Synthetic restriction",
+          "restriction_id": "r3",
+          "symbol": "MSFT"
+        }
+      ],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 13,
+      "event_sha256": "c012d93f97f8834b8616aa390af9101995a68069358ffff21c78f2354c41c70d",
+      "as_of_utc": "2026-10-16T16:36:37+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:35:49+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "m2",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "manual",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-m2",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [
+        {
+          "expires_at_utc": "2026-10-16T16:38:45+00:00",
+          "max_group": "uni",
+          "reason": "Synthetic restriction",
+          "restriction_id": "r3",
+          "symbol": "MSFT"
+        }
+      ],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 14,
+      "event_sha256": "ec0b08f6b6d745245f2b822184ac3644a06c6e6e1bb4903f94faf6e2f29c3ef6",
+      "as_of_utc": "2026-10-16T16:36:38+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_restrictions": [
+        {
+          "expires_at_utc": "2026-10-16T16:38:45+00:00",
+          "max_group": "uni",
+          "reason": "Synthetic restriction",
+          "restriction_id": "r3",
+          "symbol": "MSFT"
+        }
+      ],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 15,
+      "event_sha256": "a7c05035b927e58148c801269384d36163d6fea0fc7eac9241b9cbc74635b9f9",
+      "as_of_utc": "2026-10-16T16:36:39+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_restrictions": [],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 16,
+      "event_sha256": "3f0fc12c0e66acbb5b9ce9ea7b02d7641159cb0fe8bae7b17287612204d32381",
+      "as_of_utc": "2026-10-16T16:36:40+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:36:40+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "m3",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "manual",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-m3",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 17,
+      "event_sha256": "d08f6a71d3d594038aaa9ff8dab4c6d07f570411e34e055f74993de7665ac8a9",
+      "as_of_utc": "2026-10-16T16:36:41+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:36:40+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "m3",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "manual",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-m3",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [
+        {
+          "expires_at_utc": "2026-10-17T04:00:00+00:00",
+          "max_group": "focus",
+          "reason": "Synthetic restriction",
+          "restriction_id": "r4",
+          "symbol": "MSFT"
+        }
+      ],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 18,
+      "event_sha256": "734c1b57975381eb103816ab29a2cbac9c482dc5797a56323b5eb1463693f8c8",
+      "as_of_utc": "2026-10-16T16:36:42+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_requests": [
+        {
+          "created_at_utc": "2026-10-16T16:36:40+00:00",
+          "effective_from_utc": null,
+          "expires_at_utc": null,
+          "intent_id": "m3",
+          "metadata": {
+            "sampling_channel": "hot",
+            "session_date": "2026-10-16",
+            "synthetic_policy_clock": true
+          },
+          "producer_id": "manual",
+          "reason": "Synthetic policy test request",
+          "sampling_channel": "hot",
+          "source_event_id": "synthetic-m3",
+          "symbols": [
+            "MSFT"
+          ]
+        }
+      ],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_restrictions": [],
+      "demotion_holds": []
+    },
+    {
+      "sequence": 19,
+      "event_sha256": "25d802513bcbcb615ed7bc56a37ae0782cd8cc853a633d16df0a9fc8562cf2d9",
+      "as_of_utc": "2026-10-16T16:36:43+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_requests": [],
+      "demotion_eligible": {
+        "focus": [
+          "MSFT"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_restrictions": [],
+      "demotion_holds": [
+        {
+          "channel": "hot",
+          "symbol": "MSFT",
+          "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+          "entered_at_utc": "2026-10-16T16:36:42+00:00",
+          "demotion_at_utc": "2026-10-16T16:38:42+00:00",
+          "held_by": [
+            "demotion_grace",
+            "minimum_residence"
+          ]
+        },
+        {
+          "channel": "focus",
+          "symbol": "MSFT",
+          "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+          "entered_at_utc": "2026-10-16T16:36:40+00:00",
+          "demotion_at_utc": "2026-10-16T16:38:40+00:00",
+          "held_by": [
+            "demotion_grace",
+            "minimum_residence",
+            "hot_dependency"
+          ]
+        }
+      ]
+    },
+    {
+      "sequence": 20,
+      "event_sha256": "f69ba1eafd4d7e90e464cfb076b6875b227645b46daa70e0bcc4a887cedac0f7",
+      "as_of_utc": "2026-10-16T16:38:41+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "active_requests": [],
+      "demotion_eligible": {
+        "focus": [
+          "MSFT"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_restrictions": [],
+      "demotion_holds": [
+        {
+          "channel": "hot",
+          "symbol": "MSFT",
+          "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+          "entered_at_utc": "2026-10-16T16:36:42+00:00",
+          "demotion_at_utc": "2026-10-16T16:38:42+00:00",
+          "held_by": [
+            "minimum_residence"
+          ]
+        },
+        {
+          "channel": "focus",
+          "symbol": "MSFT",
+          "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+          "entered_at_utc": "2026-10-16T16:36:40+00:00",
+          "demotion_at_utc": "2026-10-16T16:38:40+00:00",
+          "held_by": [
+            "hot_dependency"
+          ]
+        }
+      ]
+    },
+    {
+      "sequence": 21,
+      "event_sha256": "c2f934cc013f83c038e9a5f1633447a400951c4030ac990ab9117feef6604e52",
+      "as_of_utc": "2026-10-16T16:38:42+00:00",
+      "desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "retained": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_requests": [],
+      "demotion_eligible": {
+        "focus": [],
+        "hot": []
+      },
+      "rejected_count": 2,
+      "demotion_policy": "configured",
+      "policy": {
+        "super_user_id": "proof-super-user",
+        "demotion_grace_seconds": 60.0,
+        "minimum_residence_seconds": 120.0,
+        "restriction_timing": "immediate_cap"
+      },
+      "unrestricted_desired": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "active_restrictions": [],
+      "demotion_holds": []
+    }
+  ],
+  "request_events": [
+    {
+      "command_id": "m1",
+      "kind": "request",
+      "actor_id": "manual",
+      "payload": {
+        "created_at_utc": "2026-10-16T16:33:45+00:00",
+        "effective_from_utc": null,
+        "expires_at_utc": null,
+        "intent_id": "m1",
+        "metadata": {
+          "sampling_channel": "hot",
+          "session_date": "2026-10-16",
+          "synthetic_policy_clock": true
+        },
+        "producer_id": "manual",
+        "reason": "Synthetic policy test request",
+        "sampling_channel": "hot",
+        "source_event_id": "synthetic-m1",
+        "symbols": [
+          "MSFT"
+        ]
+      },
+      "sequence": 1,
+      "recorded_at_utc": "2026-10-16T16:33:45+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+      "event_sha256": "ef204900182cf379921e734b02b20a39d57bdc816a4227e009fa500764296640"
+    },
+    {
+      "command_id": "c1",
+      "kind": "cancel",
+      "actor_id": "manual",
+      "payload": {
+        "owner_id": "manual",
+        "reason": null,
+        "request_id": "m1"
+      },
+      "sequence": 2,
+      "recorded_at_utc": "2026-10-16T16:33:55+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "ef204900182cf379921e734b02b20a39d57bdc816a4227e009fa500764296640",
+      "event_sha256": "84f546823081e1cd1c3826ec912e72c8a95250f7d16dc20357dcdb5392dcca21"
+    },
+    {
+      "command_id": "early",
+      "kind": "tick",
+      "actor_id": "__coordinator__",
+      "payload": {},
+      "sequence": 3,
+      "recorded_at_utc": "2026-10-16T16:35:44+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "84f546823081e1cd1c3826ec912e72c8a95250f7d16dc20357dcdb5392dcca21",
+      "event_sha256": "e20acc197d205af66dab2d68bee675c46c0cdf8bfd0c8f970a3b4725e78e4136"
+    },
+    {
+      "command_id": "due",
+      "kind": "tick",
+      "actor_id": "__coordinator__",
+      "payload": {},
+      "sequence": 4,
+      "recorded_at_utc": "2026-10-16T16:35:45+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "e20acc197d205af66dab2d68bee675c46c0cdf8bfd0c8f970a3b4725e78e4136",
+      "event_sha256": "b8bf466734d1e3a479c89a2b186dcfeb4df901661f0d5359fffe8e7e8d179d14"
+    },
+    {
+      "command_id": "h1",
+      "kind": "request",
+      "actor_id": "halts",
+      "payload": {
+        "created_at_utc": "2026-10-16T16:35:46+00:00",
+        "effective_from_utc": null,
+        "expires_at_utc": null,
+        "intent_id": "h1",
+        "metadata": {
+          "sampling_channel": "hot",
+          "session_date": "2026-10-16",
+          "synthetic_policy_clock": true
+        },
+        "producer_id": "halts",
+        "reason": "Synthetic policy test request",
+        "sampling_channel": "hot",
+        "source_event_id": "synthetic-h1",
+        "symbols": [
+          "MSFT"
+        ]
+      },
+      "sequence": 5,
+      "recorded_at_utc": "2026-10-16T16:35:46+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "b8bf466734d1e3a479c89a2b186dcfeb4df901661f0d5359fffe8e7e8d179d14",
+      "event_sha256": "be92190e605723e8056fcba0a3be9e431f14a763a4b6501a0197dbc9295b7b7b"
+    },
+    {
+      "command_id": "denied",
+      "kind": "restrict",
+      "actor_id": "manual",
+      "payload": {
+        "expires_at_utc": "2026-10-16T16:38:45+00:00",
+        "max_group": "uni",
+        "reason": "Synthetic restriction",
+        "restriction_id": "denied",
+        "symbol": "MSFT"
+      },
+      "sequence": 6,
+      "recorded_at_utc": "2026-10-16T16:35:47+00:00",
+      "accepted": false,
+      "rejection_reason": "not_restriction_authority",
+      "previous_sha256": "be92190e605723e8056fcba0a3be9e431f14a763a4b6501a0197dbc9295b7b7b",
+      "event_sha256": "a5542dc94c44f831e23066fa1e03e60d8e26b896e369ebae64cab2e29947ad60"
+    },
+    {
+      "command_id": "r1",
+      "kind": "restrict",
+      "actor_id": "proof-super-user",
+      "payload": {
+        "expires_at_utc": "2026-10-16T16:36:45+00:00",
+        "max_group": "focus",
+        "reason": "Synthetic restriction",
+        "restriction_id": "r1",
+        "symbol": "MSFT"
+      },
+      "sequence": 7,
+      "recorded_at_utc": "2026-10-16T16:35:48+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "a5542dc94c44f831e23066fa1e03e60d8e26b896e369ebae64cab2e29947ad60",
+      "event_sha256": "434bc53424135ac5a7885a929ac5d96bc9e113145abcd98d298f94ca6b1f1bf6"
+    },
+    {
+      "command_id": "m2",
+      "kind": "request",
+      "actor_id": "manual",
+      "payload": {
+        "created_at_utc": "2026-10-16T16:35:49+00:00",
+        "effective_from_utc": null,
+        "expires_at_utc": null,
+        "intent_id": "m2",
+        "metadata": {
+          "sampling_channel": "hot",
+          "session_date": "2026-10-16",
+          "synthetic_policy_clock": true
+        },
+        "producer_id": "manual",
+        "reason": "Synthetic policy test request",
+        "sampling_channel": "hot",
+        "source_event_id": "synthetic-m2",
+        "symbols": [
+          "MSFT"
+        ]
+      },
+      "sequence": 8,
+      "recorded_at_utc": "2026-10-16T16:35:49+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "434bc53424135ac5a7885a929ac5d96bc9e113145abcd98d298f94ca6b1f1bf6",
+      "event_sha256": "ec4183328328e24addfa8b88055c230e1597a43094ef017f4f9dd7ae8128edda"
+    },
+    {
+      "command_id": "r2",
+      "kind": "restrict",
+      "actor_id": "proof-super-user",
+      "payload": {
+        "expires_at_utc": "2026-10-16T16:36:35+00:00",
+        "max_group": "uni",
+        "reason": "Synthetic restriction",
+        "restriction_id": "r2",
+        "symbol": "MSFT"
+      },
+      "sequence": 9,
+      "recorded_at_utc": "2026-10-16T16:35:50+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "ec4183328328e24addfa8b88055c230e1597a43094ef017f4f9dd7ae8128edda",
+      "event_sha256": "3a4fcaf671ce6d16490ba5244c49eed6f6629633fe94cc4ee1a27f1e7b673cc7"
+    },
+    {
+      "command_id": "stale",
+      "kind": "clear_restriction",
+      "actor_id": "proof-super-user",
+      "payload": {
+        "reason": null,
+        "restriction_id": "r1",
+        "symbol": "MSFT"
+      },
+      "sequence": 10,
+      "recorded_at_utc": "2026-10-16T16:35:51+00:00",
+      "accepted": false,
+      "rejection_reason": "restriction_not_current",
+      "previous_sha256": "3a4fcaf671ce6d16490ba5244c49eed6f6629633fe94cc4ee1a27f1e7b673cc7",
+      "event_sha256": "4837bc87c7eea45670c086b4dfaf39b226404d005e131fa36332c57f5763bd3c"
+    },
+    {
+      "command_id": "cap-expiry",
+      "kind": "tick",
+      "actor_id": "__coordinator__",
+      "payload": {},
+      "sequence": 11,
+      "recorded_at_utc": "2026-10-16T16:36:35+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "4837bc87c7eea45670c086b4dfaf39b226404d005e131fa36332c57f5763bd3c",
+      "event_sha256": "ae3e85fab538442ea2d6c42781c5c3b0fd5ec0b1fd3bb47a71c100cc4e81ad4c"
+    },
+    {
+      "command_id": "r3",
+      "kind": "restrict",
+      "actor_id": "proof-super-user",
+      "payload": {
+        "expires_at_utc": "2026-10-16T16:38:45+00:00",
+        "max_group": "uni",
+        "reason": "Synthetic restriction",
+        "restriction_id": "r3",
+        "symbol": "MSFT"
+      },
+      "sequence": 12,
+      "recorded_at_utc": "2026-10-16T16:36:36+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "ae3e85fab538442ea2d6c42781c5c3b0fd5ec0b1fd3bb47a71c100cc4e81ad4c",
+      "event_sha256": "8a83c3585610c1d2ca976ffd8df4c9d24524cc031a9210005815c21780d0c923"
+    },
+    {
+      "command_id": "h-cancel",
+      "kind": "cancel",
+      "actor_id": "halts",
+      "payload": {
+        "owner_id": "halts",
+        "reason": null,
+        "request_id": "h1"
+      },
+      "sequence": 13,
+      "recorded_at_utc": "2026-10-16T16:36:37+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "8a83c3585610c1d2ca976ffd8df4c9d24524cc031a9210005815c21780d0c923",
+      "event_sha256": "c012d93f97f8834b8616aa390af9101995a68069358ffff21c78f2354c41c70d"
+    },
+    {
+      "command_id": "m2-cancel",
+      "kind": "cancel",
+      "actor_id": "manual",
+      "payload": {
+        "owner_id": "manual",
+        "reason": null,
+        "request_id": "m2"
+      },
+      "sequence": 14,
+      "recorded_at_utc": "2026-10-16T16:36:38+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "c012d93f97f8834b8616aa390af9101995a68069358ffff21c78f2354c41c70d",
+      "event_sha256": "ec0b08f6b6d745245f2b822184ac3644a06c6e6e1bb4903f94faf6e2f29c3ef6"
+    },
+    {
+      "command_id": "clear-r3",
+      "kind": "clear_restriction",
+      "actor_id": "proof-super-user",
+      "payload": {
+        "reason": null,
+        "restriction_id": "r3",
+        "symbol": "MSFT"
+      },
+      "sequence": 15,
+      "recorded_at_utc": "2026-10-16T16:36:39+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "ec0b08f6b6d745245f2b822184ac3644a06c6e6e1bb4903f94faf6e2f29c3ef6",
+      "event_sha256": "a7c05035b927e58148c801269384d36163d6fea0fc7eac9241b9cbc74635b9f9"
+    },
+    {
+      "command_id": "m3",
+      "kind": "request",
+      "actor_id": "manual",
+      "payload": {
+        "created_at_utc": "2026-10-16T16:36:40+00:00",
+        "effective_from_utc": null,
+        "expires_at_utc": null,
+        "intent_id": "m3",
+        "metadata": {
+          "sampling_channel": "hot",
+          "session_date": "2026-10-16",
+          "synthetic_policy_clock": true
+        },
+        "producer_id": "manual",
+        "reason": "Synthetic policy test request",
+        "sampling_channel": "hot",
+        "source_event_id": "synthetic-m3",
+        "symbols": [
+          "MSFT"
+        ]
+      },
+      "sequence": 16,
+      "recorded_at_utc": "2026-10-16T16:36:40+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "a7c05035b927e58148c801269384d36163d6fea0fc7eac9241b9cbc74635b9f9",
+      "event_sha256": "3f0fc12c0e66acbb5b9ce9ea7b02d7641159cb0fe8bae7b17287612204d32381"
+    },
+    {
+      "command_id": "r4",
+      "kind": "restrict",
+      "actor_id": "proof-super-user",
+      "payload": {
+        "expires_at_utc": "2026-10-17T04:00:00+00:00",
+        "max_group": "focus",
+        "reason": "Synthetic restriction",
+        "restriction_id": "r4",
+        "symbol": "MSFT"
+      },
+      "sequence": 17,
+      "recorded_at_utc": "2026-10-16T16:36:41+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "3f0fc12c0e66acbb5b9ce9ea7b02d7641159cb0fe8bae7b17287612204d32381",
+      "event_sha256": "d08f6a71d3d594038aaa9ff8dab4c6d07f570411e34e055f74993de7665ac8a9"
+    },
+    {
+      "command_id": "clear-r4",
+      "kind": "clear_restriction",
+      "actor_id": "proof-super-user",
+      "payload": {
+        "reason": null,
+        "restriction_id": "r4",
+        "symbol": "MSFT"
+      },
+      "sequence": 18,
+      "recorded_at_utc": "2026-10-16T16:36:42+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "d08f6a71d3d594038aaa9ff8dab4c6d07f570411e34e055f74993de7665ac8a9",
+      "event_sha256": "734c1b57975381eb103816ab29a2cbac9c482dc5797a56323b5eb1463693f8c8"
+    },
+    {
+      "command_id": "m3-cancel",
+      "kind": "cancel",
+      "actor_id": "manual",
+      "payload": {
+        "owner_id": "manual",
+        "reason": null,
+        "request_id": "m3"
+      },
+      "sequence": 19,
+      "recorded_at_utc": "2026-10-16T16:36:43+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "734c1b57975381eb103816ab29a2cbac9c482dc5797a56323b5eb1463693f8c8",
+      "event_sha256": "25d802513bcbcb615ed7bc56a37ae0782cd8cc853a633d16df0a9fc8562cf2d9"
+    },
+    {
+      "command_id": "reentry-early",
+      "kind": "tick",
+      "actor_id": "__coordinator__",
+      "payload": {},
+      "sequence": 20,
+      "recorded_at_utc": "2026-10-16T16:38:41+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "25d802513bcbcb615ed7bc56a37ae0782cd8cc853a633d16df0a9fc8562cf2d9",
+      "event_sha256": "f69ba1eafd4d7e90e464cfb076b6875b227645b46daa70e0bcc4a887cedac0f7"
+    },
+    {
+      "command_id": "reentry-due",
+      "kind": "tick",
+      "actor_id": "__coordinator__",
+      "payload": {},
+      "sequence": 21,
+      "recorded_at_utc": "2026-10-16T16:38:42+00:00",
+      "accepted": true,
+      "rejection_reason": null,
+      "previous_sha256": "f69ba1eafd4d7e90e464cfb076b6875b227645b46daa70e0bcc4a887cedac0f7",
+      "event_sha256": "c2f934cc013f83c038e9a5f1633447a400951c4030ac990ab9117feef6604e52"
+    }
+  ],
+  "journal_checkpoints": [
+    {
+      "revision": 0,
+      "content_sha256": "11f7c3487d36395082877f6b1e3a73dfdd5d0436cfb14c0ac0eb6bd34d7ccc3a",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "policy": {
+          "demotion_grace_seconds": 60.0,
+          "minimum_residence_seconds": 120.0,
+          "restriction_timing": "immediate_cap",
+          "super_user_id": "proof-super-user"
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 1,
+      "content_sha256": "64bec27e2a21f747a4c3cb9ceccc00a939bfe364c2024d97682cdee303f10aa4",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "manual",
+          "command_id": "m1",
+          "kind": "request",
+          "payload": {
+            "created_at_utc": "2026-10-16T16:33:45+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m1",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m1",
+            "symbols": [
+              "MSFT"
+            ]
+          },
+          "previous_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+          "recorded_at_utc": "2026-10-16T16:33:45+00:00",
+          "rejection_reason": null,
+          "sequence": 1
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "ef204900182cf379921e734b02b20a39d57bdc816a4227e009fa500764296640",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:33:45+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "m1",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "manual",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-m1",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:33:45+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "ef204900182cf379921e734b02b20a39d57bdc816a4227e009fa500764296640",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 0,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 1,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 2,
+      "content_sha256": "c942d40a7e99b4663c7e7c304b6f82e6bf230de4c9887cc575ccbcc3e7948ddd",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "manual",
+          "command_id": "c1",
+          "kind": "cancel",
+          "payload": {
+            "owner_id": "manual",
+            "reason": null,
+            "request_id": "m1"
+          },
+          "previous_sha256": "ef204900182cf379921e734b02b20a39d57bdc816a4227e009fa500764296640",
+          "recorded_at_utc": "2026-10-16T16:33:55+00:00",
+          "rejection_reason": null,
+          "sequence": 2
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "84f546823081e1cd1c3826ec912e72c8a95250f7d16dc20357dcdb5392dcca21",
+        "request_state": {
+          "active_requests": [],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:33:55+00:00",
+          "demotion_eligible": {
+            "focus": [
+              "MSFT"
+            ],
+            "hot": [
+              "MSFT"
+            ]
+          },
+          "demotion_holds": [
+            {
+              "channel": "hot",
+              "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+              "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+              "entered_at_utc": "2026-10-16T16:33:45+00:00",
+              "held_by": [
+                "demotion_grace",
+                "minimum_residence"
+              ],
+              "symbol": "MSFT"
+            },
+            {
+              "channel": "focus",
+              "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+              "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+              "entered_at_utc": "2026-10-16T16:33:45+00:00",
+              "held_by": [
+                "demotion_grace",
+                "minimum_residence",
+                "hot_dependency"
+              ],
+              "symbol": "MSFT"
+            }
+          ],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "84f546823081e1cd1c3826ec912e72c8a95250f7d16dc20357dcdb5392dcca21",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 0,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 2,
+          "unrestricted_desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 3,
+      "content_sha256": "7e3efb6498329e74613c9aa37a915cbaa1fecbffa48252c9ad68fb6655b3107d",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "__coordinator__",
+          "command_id": "early",
+          "kind": "tick",
+          "payload": {},
+          "previous_sha256": "84f546823081e1cd1c3826ec912e72c8a95250f7d16dc20357dcdb5392dcca21",
+          "recorded_at_utc": "2026-10-16T16:35:44+00:00",
+          "rejection_reason": null,
+          "sequence": 3
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "e20acc197d205af66dab2d68bee675c46c0cdf8bfd0c8f970a3b4725e78e4136",
+        "request_state": {
+          "active_requests": [],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:35:44+00:00",
+          "demotion_eligible": {
+            "focus": [
+              "MSFT"
+            ],
+            "hot": [
+              "MSFT"
+            ]
+          },
+          "demotion_holds": [
+            {
+              "channel": "hot",
+              "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+              "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+              "entered_at_utc": "2026-10-16T16:33:45+00:00",
+              "held_by": [
+                "minimum_residence"
+              ],
+              "symbol": "MSFT"
+            },
+            {
+              "channel": "focus",
+              "demand_absent_since_utc": "2026-10-16T16:33:55+00:00",
+              "demotion_at_utc": "2026-10-16T16:35:45+00:00",
+              "entered_at_utc": "2026-10-16T16:33:45+00:00",
+              "held_by": [
+                "minimum_residence",
+                "hot_dependency"
+              ],
+              "symbol": "MSFT"
+            }
+          ],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "e20acc197d205af66dab2d68bee675c46c0cdf8bfd0c8f970a3b4725e78e4136",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 0,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 3,
+          "unrestricted_desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 4,
+      "content_sha256": "836ac6d86655229b1888acae52822e59f6b1d7909d58d8ca31756f35a1541a1b",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "__coordinator__",
+          "command_id": "due",
+          "kind": "tick",
+          "payload": {},
+          "previous_sha256": "e20acc197d205af66dab2d68bee675c46c0cdf8bfd0c8f970a3b4725e78e4136",
+          "recorded_at_utc": "2026-10-16T16:35:45+00:00",
+          "rejection_reason": null,
+          "sequence": 4
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "b8bf466734d1e3a479c89a2b186dcfeb4df901661f0d5359fffe8e7e8d179d14",
+        "request_state": {
+          "active_requests": [],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:35:45+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "b8bf466734d1e3a479c89a2b186dcfeb4df901661f0d5359fffe8e7e8d179d14",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 0,
+          "retained": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 4,
+          "unrestricted_desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 5,
+      "content_sha256": "3f45bf12fb1d0a638ca811b81bd71c8979ecc1d13c28373ee8a31e6b58e56665",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "halts",
+          "command_id": "h1",
+          "kind": "request",
+          "payload": {
+            "created_at_utc": "2026-10-16T16:35:46+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "h1",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "halts",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-h1",
+            "symbols": [
+              "MSFT"
+            ]
+          },
+          "previous_sha256": "b8bf466734d1e3a479c89a2b186dcfeb4df901661f0d5359fffe8e7e8d179d14",
+          "recorded_at_utc": "2026-10-16T16:35:46+00:00",
+          "rejection_reason": null,
+          "sequence": 5
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "be92190e605723e8056fcba0a3be9e431f14a763a4b6501a0197dbc9295b7b7b",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:35:46+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "h1",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "halts",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-h1",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:35:46+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "be92190e605723e8056fcba0a3be9e431f14a763a4b6501a0197dbc9295b7b7b",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 0,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 5,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 6,
+      "content_sha256": "bb4f4f638a5ae227f7740e8843c39252e99bad2dae4a1561c27b99fa1eb87a28",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": false,
+          "actor_id": "manual",
+          "command_id": "denied",
+          "kind": "restrict",
+          "payload": {
+            "expires_at_utc": "2026-10-16T16:38:45+00:00",
+            "max_group": "uni",
+            "reason": "Synthetic restriction",
+            "restriction_id": "denied",
+            "symbol": "MSFT"
+          },
+          "previous_sha256": "be92190e605723e8056fcba0a3be9e431f14a763a4b6501a0197dbc9295b7b7b",
+          "recorded_at_utc": "2026-10-16T16:35:47+00:00",
+          "rejection_reason": "not_restriction_authority",
+          "sequence": 6
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "a5542dc94c44f831e23066fa1e03e60d8e26b896e369ebae64cab2e29947ad60",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:35:46+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "h1",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "halts",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-h1",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:35:47+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "a5542dc94c44f831e23066fa1e03e60d8e26b896e369ebae64cab2e29947ad60",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 1,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 6,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 7,
+      "content_sha256": "ab5fd406a04392475cdb6b8216c1f6d887d11915ecfe008bdd0a8125d7b03cdb",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "proof-super-user",
+          "command_id": "r1",
+          "kind": "restrict",
+          "payload": {
+            "expires_at_utc": "2026-10-16T16:36:45+00:00",
+            "max_group": "focus",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r1",
+            "symbol": "MSFT"
+          },
+          "previous_sha256": "a5542dc94c44f831e23066fa1e03e60d8e26b896e369ebae64cab2e29947ad60",
+          "recorded_at_utc": "2026-10-16T16:35:48+00:00",
+          "rejection_reason": null,
+          "sequence": 7
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "434bc53424135ac5a7885a929ac5d96bc9e113145abcd98d298f94ca6b1f1bf6",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:35:46+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "h1",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "halts",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-h1",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [
+            {
+              "expires_at_utc": "2026-10-16T16:36:45+00:00",
+              "max_group": "focus",
+              "reason": "Synthetic restriction",
+              "restriction_id": "r1",
+              "symbol": "MSFT"
+            }
+          ],
+          "as_of_utc": "2026-10-16T16:35:48+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "434bc53424135ac5a7885a929ac5d96bc9e113145abcd98d298f94ca6b1f1bf6",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 1,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 7,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 8,
+      "content_sha256": "0ac4e2949ee2e3f124f3d1ef383bdf4615c4b98e92050d7b1223f25217b29311",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "manual",
+          "command_id": "m2",
+          "kind": "request",
+          "payload": {
+            "created_at_utc": "2026-10-16T16:35:49+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m2",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m2",
+            "symbols": [
+              "MSFT"
+            ]
+          },
+          "previous_sha256": "434bc53424135ac5a7885a929ac5d96bc9e113145abcd98d298f94ca6b1f1bf6",
+          "recorded_at_utc": "2026-10-16T16:35:49+00:00",
+          "rejection_reason": null,
+          "sequence": 8
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "ec4183328328e24addfa8b88055c230e1597a43094ef017f4f9dd7ae8128edda",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:35:46+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "h1",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "halts",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-h1",
+              "symbols": [
+                "MSFT"
+              ]
+            },
+            {
+              "created_at_utc": "2026-10-16T16:35:49+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "m2",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "manual",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-m2",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [
+            {
+              "expires_at_utc": "2026-10-16T16:36:45+00:00",
+              "max_group": "focus",
+              "reason": "Synthetic restriction",
+              "restriction_id": "r1",
+              "symbol": "MSFT"
+            }
+          ],
+          "as_of_utc": "2026-10-16T16:35:49+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "ec4183328328e24addfa8b88055c230e1597a43094ef017f4f9dd7ae8128edda",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 1,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 8,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 9,
+      "content_sha256": "c078e62ddb8e871ba1d96adce13c29f47c8a8c48c497d30f244c8f6fc0503663",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "proof-super-user",
+          "command_id": "r2",
+          "kind": "restrict",
+          "payload": {
+            "expires_at_utc": "2026-10-16T16:36:35+00:00",
+            "max_group": "uni",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r2",
+            "symbol": "MSFT"
+          },
+          "previous_sha256": "ec4183328328e24addfa8b88055c230e1597a43094ef017f4f9dd7ae8128edda",
+          "recorded_at_utc": "2026-10-16T16:35:50+00:00",
+          "rejection_reason": null,
+          "sequence": 9
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "3a4fcaf671ce6d16490ba5244c49eed6f6629633fe94cc4ee1a27f1e7b673cc7",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:35:46+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "h1",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "halts",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-h1",
+              "symbols": [
+                "MSFT"
+              ]
+            },
+            {
+              "created_at_utc": "2026-10-16T16:35:49+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "m2",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "manual",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-m2",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [
+            {
+              "expires_at_utc": "2026-10-16T16:36:35+00:00",
+              "max_group": "uni",
+              "reason": "Synthetic restriction",
+              "restriction_id": "r2",
+              "symbol": "MSFT"
+            }
+          ],
+          "as_of_utc": "2026-10-16T16:35:50+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "3a4fcaf671ce6d16490ba5244c49eed6f6629633fe94cc4ee1a27f1e7b673cc7",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 1,
+          "retained": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 9,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 10,
+      "content_sha256": "30a0d766c5f0a7580594ad3b5411f0ef32572e012e771d096eaaa802b0d46ed4",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": false,
+          "actor_id": "proof-super-user",
+          "command_id": "stale",
+          "kind": "clear_restriction",
+          "payload": {
+            "reason": null,
+            "restriction_id": "r1",
+            "symbol": "MSFT"
+          },
+          "previous_sha256": "3a4fcaf671ce6d16490ba5244c49eed6f6629633fe94cc4ee1a27f1e7b673cc7",
+          "recorded_at_utc": "2026-10-16T16:35:51+00:00",
+          "rejection_reason": "restriction_not_current",
+          "sequence": 10
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "4837bc87c7eea45670c086b4dfaf39b226404d005e131fa36332c57f5763bd3c",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:35:46+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "h1",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "halts",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-h1",
+              "symbols": [
+                "MSFT"
+              ]
+            },
+            {
+              "created_at_utc": "2026-10-16T16:35:49+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "m2",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "manual",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-m2",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [
+            {
+              "expires_at_utc": "2026-10-16T16:36:35+00:00",
+              "max_group": "uni",
+              "reason": "Synthetic restriction",
+              "restriction_id": "r2",
+              "symbol": "MSFT"
+            }
+          ],
+          "as_of_utc": "2026-10-16T16:35:51+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "4837bc87c7eea45670c086b4dfaf39b226404d005e131fa36332c57f5763bd3c",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 10,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 11,
+      "content_sha256": "a383e258710452dc22b5d285d0131f1b5ac4f9d6a200ae617705cd3e6aa842c6",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "__coordinator__",
+          "command_id": "cap-expiry",
+          "kind": "tick",
+          "payload": {},
+          "previous_sha256": "4837bc87c7eea45670c086b4dfaf39b226404d005e131fa36332c57f5763bd3c",
+          "recorded_at_utc": "2026-10-16T16:36:35+00:00",
+          "rejection_reason": null,
+          "sequence": 11
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "ae3e85fab538442ea2d6c42781c5c3b0fd5ec0b1fd3bb47a71c100cc4e81ad4c",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:35:46+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "h1",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "halts",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-h1",
+              "symbols": [
+                "MSFT"
+              ]
+            },
+            {
+              "created_at_utc": "2026-10-16T16:35:49+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "m2",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "manual",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-m2",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:36:35+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "ae3e85fab538442ea2d6c42781c5c3b0fd5ec0b1fd3bb47a71c100cc4e81ad4c",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 11,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 12,
+      "content_sha256": "c87fa4f7c88f56d45f421d462a1e61b928d0e23e2a39515df8f51778be7166b4",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "proof-super-user",
+          "command_id": "r3",
+          "kind": "restrict",
+          "payload": {
+            "expires_at_utc": "2026-10-16T16:38:45+00:00",
+            "max_group": "uni",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r3",
+            "symbol": "MSFT"
+          },
+          "previous_sha256": "ae3e85fab538442ea2d6c42781c5c3b0fd5ec0b1fd3bb47a71c100cc4e81ad4c",
+          "recorded_at_utc": "2026-10-16T16:36:36+00:00",
+          "rejection_reason": null,
+          "sequence": 12
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "8a83c3585610c1d2ca976ffd8df4c9d24524cc031a9210005815c21780d0c923",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:35:46+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "h1",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "halts",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-h1",
+              "symbols": [
+                "MSFT"
+              ]
+            },
+            {
+              "created_at_utc": "2026-10-16T16:35:49+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "m2",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "manual",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-m2",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [
+            {
+              "expires_at_utc": "2026-10-16T16:38:45+00:00",
+              "max_group": "uni",
+              "reason": "Synthetic restriction",
+              "restriction_id": "r3",
+              "symbol": "MSFT"
+            }
+          ],
+          "as_of_utc": "2026-10-16T16:36:36+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "8a83c3585610c1d2ca976ffd8df4c9d24524cc031a9210005815c21780d0c923",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 12,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 13,
+      "content_sha256": "6fbafda78f27423e6286eaf063142011c608db236f8777de30c60bcc69b7a245",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "halts",
+          "command_id": "h-cancel",
+          "kind": "cancel",
+          "payload": {
+            "owner_id": "halts",
+            "reason": null,
+            "request_id": "h1"
+          },
+          "previous_sha256": "8a83c3585610c1d2ca976ffd8df4c9d24524cc031a9210005815c21780d0c923",
+          "recorded_at_utc": "2026-10-16T16:36:37+00:00",
+          "rejection_reason": null,
+          "sequence": 13
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "c012d93f97f8834b8616aa390af9101995a68069358ffff21c78f2354c41c70d",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:35:49+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "m2",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "manual",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-m2",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [
+            {
+              "expires_at_utc": "2026-10-16T16:38:45+00:00",
+              "max_group": "uni",
+              "reason": "Synthetic restriction",
+              "restriction_id": "r3",
+              "symbol": "MSFT"
+            }
+          ],
+          "as_of_utc": "2026-10-16T16:36:37+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "c012d93f97f8834b8616aa390af9101995a68069358ffff21c78f2354c41c70d",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 13,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 14,
+      "content_sha256": "17c9942bee30dd5a65c615333cfb6cb5de585b67453ddaad21324bef6e821368",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "manual",
+          "command_id": "m2-cancel",
+          "kind": "cancel",
+          "payload": {
+            "owner_id": "manual",
+            "reason": null,
+            "request_id": "m2"
+          },
+          "previous_sha256": "c012d93f97f8834b8616aa390af9101995a68069358ffff21c78f2354c41c70d",
+          "recorded_at_utc": "2026-10-16T16:36:38+00:00",
+          "rejection_reason": null,
+          "sequence": 14
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "ec0b08f6b6d745245f2b822184ac3644a06c6e6e1bb4903f94faf6e2f29c3ef6",
+        "request_state": {
+          "active_requests": [],
+          "active_restrictions": [
+            {
+              "expires_at_utc": "2026-10-16T16:38:45+00:00",
+              "max_group": "uni",
+              "reason": "Synthetic restriction",
+              "restriction_id": "r3",
+              "symbol": "MSFT"
+            }
+          ],
+          "as_of_utc": "2026-10-16T16:36:38+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "ec0b08f6b6d745245f2b822184ac3644a06c6e6e1bb4903f94faf6e2f29c3ef6",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 14,
+          "unrestricted_desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 15,
+      "content_sha256": "c9b4780733aa31a9f3a928cb0f794a39eec592d0326d0073fd9a35e6e3cff6ce",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "proof-super-user",
+          "command_id": "clear-r3",
+          "kind": "clear_restriction",
+          "payload": {
+            "reason": null,
+            "restriction_id": "r3",
+            "symbol": "MSFT"
+          },
+          "previous_sha256": "ec0b08f6b6d745245f2b822184ac3644a06c6e6e1bb4903f94faf6e2f29c3ef6",
+          "recorded_at_utc": "2026-10-16T16:36:39+00:00",
+          "rejection_reason": null,
+          "sequence": 15
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "a7c05035b927e58148c801269384d36163d6fea0fc7eac9241b9cbc74635b9f9",
+        "request_state": {
+          "active_requests": [],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:36:39+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "a7c05035b927e58148c801269384d36163d6fea0fc7eac9241b9cbc74635b9f9",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 15,
+          "unrestricted_desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 16,
+      "content_sha256": "3fa7430f5d11eb4ad8f880eb7a04e3fdff443429c99b378b207c75c378c3df7a",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "manual",
+          "command_id": "m3",
+          "kind": "request",
+          "payload": {
+            "created_at_utc": "2026-10-16T16:36:40+00:00",
+            "effective_from_utc": null,
+            "expires_at_utc": null,
+            "intent_id": "m3",
+            "metadata": {
+              "sampling_channel": "hot",
+              "session_date": "2026-10-16",
+              "synthetic_policy_clock": true
+            },
+            "producer_id": "manual",
+            "reason": "Synthetic policy test request",
+            "sampling_channel": "hot",
+            "source_event_id": "synthetic-m3",
+            "symbols": [
+              "MSFT"
+            ]
+          },
+          "previous_sha256": "a7c05035b927e58148c801269384d36163d6fea0fc7eac9241b9cbc74635b9f9",
+          "recorded_at_utc": "2026-10-16T16:36:40+00:00",
+          "rejection_reason": null,
+          "sequence": 16
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "3f0fc12c0e66acbb5b9ce9ea7b02d7641159cb0fe8bae7b17287612204d32381",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:36:40+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "m3",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "manual",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-m3",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:36:40+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "3f0fc12c0e66acbb5b9ce9ea7b02d7641159cb0fe8bae7b17287612204d32381",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 16,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 17,
+      "content_sha256": "beeea4c7d4e070e2dd7584154035aea93d647549346cad5a8b14e59192cb7ff9",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "proof-super-user",
+          "command_id": "r4",
+          "kind": "restrict",
+          "payload": {
+            "expires_at_utc": "2026-10-17T04:00:00+00:00",
+            "max_group": "focus",
+            "reason": "Synthetic restriction",
+            "restriction_id": "r4",
+            "symbol": "MSFT"
+          },
+          "previous_sha256": "3f0fc12c0e66acbb5b9ce9ea7b02d7641159cb0fe8bae7b17287612204d32381",
+          "recorded_at_utc": "2026-10-16T16:36:41+00:00",
+          "rejection_reason": null,
+          "sequence": 17
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "d08f6a71d3d594038aaa9ff8dab4c6d07f570411e34e055f74993de7665ac8a9",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:36:40+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "m3",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "manual",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-m3",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [
+            {
+              "expires_at_utc": "2026-10-17T04:00:00+00:00",
+              "max_group": "focus",
+              "reason": "Synthetic restriction",
+              "restriction_id": "r4",
+              "symbol": "MSFT"
+            }
+          ],
+          "as_of_utc": "2026-10-16T16:36:41+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "d08f6a71d3d594038aaa9ff8dab4c6d07f570411e34e055f74993de7665ac8a9",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 17,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 18,
+      "content_sha256": "22f83abe251c7317f7fa01e8567e31741f050196c54682d9e593e4bd55e35a72",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "proof-super-user",
+          "command_id": "clear-r4",
+          "kind": "clear_restriction",
+          "payload": {
+            "reason": null,
+            "restriction_id": "r4",
+            "symbol": "MSFT"
+          },
+          "previous_sha256": "d08f6a71d3d594038aaa9ff8dab4c6d07f570411e34e055f74993de7665ac8a9",
+          "recorded_at_utc": "2026-10-16T16:36:42+00:00",
+          "rejection_reason": null,
+          "sequence": 18
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "734c1b57975381eb103816ab29a2cbac9c482dc5797a56323b5eb1463693f8c8",
+        "request_state": {
+          "active_requests": [
+            {
+              "created_at_utc": "2026-10-16T16:36:40+00:00",
+              "effective_from_utc": null,
+              "expires_at_utc": null,
+              "intent_id": "m3",
+              "metadata": {
+                "sampling_channel": "hot",
+                "session_date": "2026-10-16",
+                "synthetic_policy_clock": true
+              },
+              "producer_id": "manual",
+              "reason": "Synthetic policy test request",
+              "sampling_channel": "hot",
+              "source_event_id": "synthetic-m3",
+              "symbols": [
+                "MSFT"
+              ]
+            }
+          ],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:36:42+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "734c1b57975381eb103816ab29a2cbac9c482dc5797a56323b5eb1463693f8c8",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 18,
+          "unrestricted_desired": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 19,
+      "content_sha256": "66c4634b9b5d1bbf685df1306d19e4ca002e3d14a76c2087463fc12041406177",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "manual",
+          "command_id": "m3-cancel",
+          "kind": "cancel",
+          "payload": {
+            "owner_id": "manual",
+            "reason": null,
+            "request_id": "m3"
+          },
+          "previous_sha256": "734c1b57975381eb103816ab29a2cbac9c482dc5797a56323b5eb1463693f8c8",
+          "recorded_at_utc": "2026-10-16T16:36:43+00:00",
+          "rejection_reason": null,
+          "sequence": 19
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "25d802513bcbcb615ed7bc56a37ae0782cd8cc853a633d16df0a9fc8562cf2d9",
+        "request_state": {
+          "active_requests": [],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:36:43+00:00",
+          "demotion_eligible": {
+            "focus": [
+              "MSFT"
+            ],
+            "hot": [
+              "MSFT"
+            ]
+          },
+          "demotion_holds": [
+            {
+              "channel": "hot",
+              "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+              "demotion_at_utc": "2026-10-16T16:38:42+00:00",
+              "entered_at_utc": "2026-10-16T16:36:42+00:00",
+              "held_by": [
+                "demotion_grace",
+                "minimum_residence"
+              ],
+              "symbol": "MSFT"
+            },
+            {
+              "channel": "focus",
+              "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+              "demotion_at_utc": "2026-10-16T16:38:40+00:00",
+              "entered_at_utc": "2026-10-16T16:36:40+00:00",
+              "held_by": [
+                "demotion_grace",
+                "minimum_residence",
+                "hot_dependency"
+              ],
+              "symbol": "MSFT"
+            }
+          ],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "25d802513bcbcb615ed7bc56a37ae0782cd8cc853a633d16df0a9fc8562cf2d9",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 19,
+          "unrestricted_desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 20,
+      "content_sha256": "936dd5c9898e57657ffd6f303463a159d8bcad212ecf40a8a866ecbe89eb4500",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "MSFT",
+          "SPY"
+        ],
+        "hot": [
+          "MSFT"
+        ]
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "__coordinator__",
+          "command_id": "reentry-early",
+          "kind": "tick",
+          "payload": {},
+          "previous_sha256": "25d802513bcbcb615ed7bc56a37ae0782cd8cc853a633d16df0a9fc8562cf2d9",
+          "recorded_at_utc": "2026-10-16T16:38:41+00:00",
+          "rejection_reason": null,
+          "sequence": 20
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "f69ba1eafd4d7e90e464cfb076b6875b227645b46daa70e0bcc4a887cedac0f7",
+        "request_state": {
+          "active_requests": [],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:38:41+00:00",
+          "demotion_eligible": {
+            "focus": [
+              "MSFT"
+            ],
+            "hot": [
+              "MSFT"
+            ]
+          },
+          "demotion_holds": [
+            {
+              "channel": "hot",
+              "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+              "demotion_at_utc": "2026-10-16T16:38:42+00:00",
+              "entered_at_utc": "2026-10-16T16:36:42+00:00",
+              "held_by": [
+                "minimum_residence"
+              ],
+              "symbol": "MSFT"
+            },
+            {
+              "channel": "focus",
+              "demand_absent_since_utc": "2026-10-16T16:36:43+00:00",
+              "demotion_at_utc": "2026-10-16T16:38:40+00:00",
+              "entered_at_utc": "2026-10-16T16:36:40+00:00",
+              "held_by": [
+                "hot_dependency"
+              ],
+              "symbol": "MSFT"
+            }
+          ],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "f69ba1eafd4d7e90e464cfb076b6875b227645b46daa70e0bcc4a887cedac0f7",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "MSFT",
+              "SPY"
+            ],
+            "hot": [
+              "MSFT"
+            ],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 20,
+          "unrestricted_desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    },
+    {
+      "revision": 21,
+      "content_sha256": "0c9222deb7d01e0240f5b21bd3b48bc5c38a059d754bec49c352560ea4ce4a71",
+      "membership": {
+        "uni": [
+          "AAPL",
+          "MSFT",
+          "SPY"
+        ],
+        "focus": [
+          "SPY"
+        ],
+        "hot": []
+      },
+      "metadata": {
+        "experimental": true,
+        "input_event": {
+          "accepted": true,
+          "actor_id": "__coordinator__",
+          "command_id": "reentry-due",
+          "kind": "tick",
+          "payload": {},
+          "previous_sha256": "f69ba1eafd4d7e90e464cfb076b6875b227645b46daa70e0bcc4a887cedac0f7",
+          "recorded_at_utc": "2026-10-16T16:38:42+00:00",
+          "rejection_reason": null,
+          "sequence": 21
+        },
+        "request_baseline_sha256": "cc8569acc82fae84a067201d18d7414a6ca218147a97fc41ad103104aefd8ce8",
+        "request_event_sha256": "c2f934cc013f83c038e9a5f1633447a400951c4030ac990ab9117feef6604e52",
+        "request_state": {
+          "active_requests": [],
+          "active_restrictions": [],
+          "as_of_utc": "2026-10-16T16:38:42+00:00",
+          "demotion_eligible": {
+            "focus": [],
+            "hot": []
+          },
+          "demotion_holds": [],
+          "demotion_policy": "configured",
+          "desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "event_sha256": "c2f934cc013f83c038e9a5f1633447a400951c4030ac990ab9117feef6604e52",
+          "policy": {
+            "demotion_grace_seconds": 60.0,
+            "minimum_residence_seconds": 120.0,
+            "restriction_timing": "immediate_cap",
+            "super_user_id": "proof-super-user"
+          },
+          "rejected_count": 2,
+          "retained": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          },
+          "sequence": 21,
+          "unrestricted_desired": {
+            "focus": [
+              "SPY"
+            ],
+            "hot": [],
+            "uni": [
+              "AAPL",
+              "MSFT",
+              "SPY"
+            ]
+          }
+        },
+        "synthetic_policy_clock": true
+      }
+    }
+  ],
+  "audit": "PASS",
+  "table_counts": {
+    "poll_run": 0,
+    "sampling_membership_revision": 22,
+    "sampling_channel_revision": 66,
+    "sampling_channel_member": 111,
+    "poll_slot_skip": 0,
+    "quote_acquisition": 0,
+    "quote_observation": 0
+  },
+  "request_replay_sha256": "e71adf098b6242beb184d51e02eec7a4cffcf72cf94fe8dc2898c52701295d3c",
+  "journal_replay_sha256": "5f7f636ca1ddb4cd34d677ae3d4c5ac056bba313fbdaaa964627cbd17501e639",
+  "journal_publication_times": [
+    "2026-10-16T16:23:45.046052+00:00",
+    "2026-10-16T16:23:45.159744+00:00",
+    "2026-10-16T16:23:45.160936+00:00",
+    "2026-10-16T16:23:45.162126+00:00",
+    "2026-10-16T16:23:45.163104+00:00",
+    "2026-10-16T16:23:45.163978+00:00",
+    "2026-10-16T16:23:45.165079+00:00",
+    "2026-10-16T16:23:45.166170+00:00",
+    "2026-10-16T16:23:45.167133+00:00",
+    "2026-10-16T16:23:45.168380+00:00",
+    "2026-10-16T16:23:45.169538+00:00",
+    "2026-10-16T16:23:45.170896+00:00",
+    "2026-10-16T16:23:45.172179+00:00",
+    "2026-10-16T16:23:45.173231+00:00",
+    "2026-10-16T16:23:45.174156+00:00",
+    "2026-10-16T16:23:45.175174+00:00",
+    "2026-10-16T16:23:45.176012+00:00",
+    "2026-10-16T16:23:45.177109+00:00",
+    "2026-10-16T16:23:45.178309+00:00",
+    "2026-10-16T16:23:45.179546+00:00",
+    "2026-10-16T16:23:45.180752+00:00",
+    "2026-10-16T16:23:45.181745+00:00"
+  ]
+}

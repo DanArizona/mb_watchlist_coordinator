@@ -2,8 +2,8 @@
 
 The caller identity is supplied by a trusted adapter, separately from producer
 payloads. This module checks that identity; it does not authenticate a network
-caller. Promotions apply promptly. Removals are reported as eligible and held
-until a subsequent increment supplies the demotion/restriction policy.
+caller. Without explicit policy, removals remain eligible and retained. An
+explicit policy adds bounded restrictions and replay-derived demotion timers.
 """
 
 from __future__ import annotations
@@ -12,12 +12,13 @@ import hashlib
 import json
 from collections.abc import Mapping
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from types import MappingProxyType
 from typing import Any
 
 from .models import IntentType, ProducerIntent
 from .sampling_projection import SamplingMembership, require_aware
+from .sampling_policy import SamplingPolicy, apply_policy
 from .session import session_expiration, session_start
 
 
@@ -69,11 +70,19 @@ def membership_payload(value: SamplingMembership) -> dict:
     return {c: sorted(getattr(value, c)) for c in ("uni", "focus", "hot")}
 
 
-def baseline_payload(session: date, baseline: SamplingMembership) -> dict:
+def baseline_payload(session: date, baseline: SamplingMembership, policy: SamplingPolicy | None = None) -> dict:
     if isinstance(session, datetime) or not isinstance(session, date):
         raise ValueError("session must be a date")
-    return {"contract": CONTRACT, "session_date": session.isoformat(),
-            "baseline": membership_payload(baseline)}
+    value = {"contract": CONTRACT, "session_date": session.isoformat(),
+             "baseline": membership_payload(baseline)}
+    if policy is not None:
+        for seconds in (policy.demotion_grace_seconds, policy.minimum_residence_seconds):
+            try:
+                session_expiration(session) + timedelta(seconds=seconds)
+            except OverflowError as exc:
+                raise ValueError("Policy duration exceeds the session's supported datetime range") from exc
+        value.update(contract="source-owned-sampling-policy-v1", policy=policy.payload())
+    return value
 
 
 def request_payload(intent: ProducerIntent) -> dict:
@@ -137,7 +146,8 @@ class RequestEvent:
 
 def admission_reason(kind: str, actor: str, payload: Mapping, *, at: datetime,
                      session: date, baseline: SamplingMembership,
-                     requests: Mapping) -> str | None:
+                     requests: Mapping, policy: SamplingPolicy | None = None,
+                     restrictions: Mapping | None = None) -> str | None:
     if kind == "tick":
         return None if actor == "__coordinator__" and not payload else "invalid_clock_command"
     if kind == "request":
@@ -160,6 +170,26 @@ def admission_reason(kind: str, actor: str, payload: Mapping, *, at: datetime,
         if (payload["owner_id"], payload["request_id"]) not in requests:
             return "unknown_request"
         return None
+    if kind in ("restrict", "clear_restriction"):
+        if policy is None:
+            return "policy_not_configured"
+        if actor != policy.super_user_id:
+            return "not_restriction_authority"
+        if payload["symbol"] not in baseline.uni:
+            return "outside_fixed_uni"
+        if kind == "restrict":
+            if not session_start(session) <= at < session_expiration(session):
+                return "outside_session"
+            expiry = timestamp(payload["expires_at_utc"])
+            if expiry > session_expiration(session):
+                return "restriction_exceeds_session"
+            if expiry <= at:
+                return "restriction_already_expired"
+            return None
+        current = (restrictions or {}).get(payload["symbol"])
+        if current is None or current["restriction_id"] != payload["restriction_id"]:
+            return "restriction_not_current"
+        return None
     raise ValueError(f"Unsupported request event kind: {kind}")
 
 
@@ -174,6 +204,15 @@ class RequestState:
     demotion_eligible_focus: tuple[str, ...]
     demotion_eligible_hot: tuple[str, ...]
     rejected_count: int
+    unrestricted_desired: SamplingMembership | None = None
+    active_restrictions: tuple[Mapping, ...] = ()
+    demotion_holds: tuple[Mapping, ...] = ()
+    policy: Mapping | None = None
+
+    @property
+    def applied(self) -> SamplingMembership:
+        """Applied membership; retained is kept as the original API field name."""
+        return self.retained
 
     def reasons_for(self, symbol: str, channel: str) -> tuple[tuple[str, str], ...]:
         if channel not in ("focus", "hot"):
@@ -183,7 +222,7 @@ class RequestState:
                      (channel == "focus" or r["sampling_channel"] == "hot"))
 
     def payload(self) -> dict:
-        return {"sequence": self.sequence, "event_sha256": self.event_sha256,
+        value = {"sequence": self.sequence, "event_sha256": self.event_sha256,
                 "as_of_utc": utc_text(self.as_of) if self.as_of is not None else None,
                 "desired": membership_payload(self.desired),
                 "retained": membership_payload(self.retained),
@@ -192,20 +231,44 @@ class RequestState:
                                       "hot": list(self.demotion_eligible_hot)},
                 "rejected_count": self.rejected_count,
                 "demotion_policy": "not_configured_retain_promoted_members"}
+        if self.policy is not None:
+            value.update(demotion_policy="configured", policy=plain(self.policy),
+                         unrestricted_desired=membership_payload(self.unrestricted_desired),
+                         active_restrictions=plain(self.active_restrictions),
+                         demotion_holds=plain(self.demotion_holds))
+        return value
+
+
+def restriction_heads(events: tuple[RequestEvent, ...]) -> dict:
+    """Latest set per symbol, including expired heads; no superseded revival."""
+    heads = {}
+    for event in events:
+        if not event.accepted:
+            continue
+        if event.kind == "restrict":
+            heads[event.payload["symbol"]] = event.payload
+        elif event.kind == "clear_restriction":
+            heads.pop(event.payload["symbol"], None)
+    return heads
 
 
 def replay_requests(session: date, baseline: SamplingMembership,
-                    events: tuple[RequestEvent, ...]) -> tuple[RequestState, ...]:
+                    events: tuple[RequestEvent, ...], *, policy: SamplingPolicy | None = None) -> tuple[RequestState, ...]:
     """Replay every receipt, including rejected commands and explicit clock ticks.
 
     Reading alone never advances time. Expiry is evaluated at durable receipt or
     tick timestamps, preserving the same decision on restart and replay.
     """
-    seed = digest(baseline_payload(session, baseline))
-    states = [RequestState(0, seed, None, baseline, baseline, (), (), (), 0)]
+    seed = digest(baseline_payload(session, baseline, policy))
+    config = freeze(policy.payload()) if policy is not None else None
+    states = [RequestState(0, seed, None, baseline, baseline, (), (), (), 0,
+                           baseline if policy is not None else None, policy=config)]
     requests: dict[tuple[str, str], Mapping] = {}
     cancelled = set()
     commands = set()
+    restrictions = {}
+    entered = {(c, s): session_start(session) for c in ("focus", "hot") for s in getattr(baseline, c)}
+    missing = {}
     for event in events:
         previous = states[-1]
         if event.sequence != previous.sequence + 1 or event.previous_sha256 != previous.event_sha256:
@@ -219,13 +282,18 @@ def replay_requests(session: date, baseline: SamplingMembership,
             raise ValueError("Duplicate command in request history")
         commands.add(key)
         reason = admission_reason(event.kind, event.actor_id, event.payload, at=event.recorded_at,
-                                  session=session, baseline=baseline, requests=requests)
+                                  session=session, baseline=baseline, requests=requests,
+                                  policy=policy, restrictions=restrictions)
         if event.accepted != (reason is None) or event.rejection_reason != reason:
             raise ValueError("Stored admission outcome differs from replay")
         if event.accepted and event.kind == "request":
             requests[(event.payload["producer_id"], event.payload["intent_id"])] = event.payload
         if event.accepted and event.kind == "cancel":
             cancelled.add((event.payload["owner_id"], event.payload["request_id"]))
+        if event.accepted and event.kind == "restrict":
+            restrictions[event.payload["symbol"]] = event.payload
+        if event.accepted and event.kind == "clear_restriction":
+            restrictions.pop(event.payload["symbol"], None)
         active = []
         for request_key, r in sorted(requests.items()):
             start = timestamp(r["effective_from_utc"] or r["created_at_utc"])
@@ -239,11 +307,20 @@ def replay_requests(session: date, baseline: SamplingMembership,
             if r["sampling_channel"] == "hot":
                 hot.update(r["symbols"])
         desired = SamplingMembership(baseline.uni, frozenset(focus), frozenset(hot))
+        unrestricted = desired
         retained = SamplingMembership(baseline.uni, previous.retained.focus | desired.focus,
                                        previous.retained.hot | desired.hot)
+        active_restrictions = tuple(r for _, r in sorted(restrictions.items())
+                                    if event.recorded_at < timestamp(r["expires_at_utc"]))
+        holds = ()
+        if policy is not None:
+            desired, retained, holds = apply_policy(desired, previous.retained, active_restrictions,
+                at=event.recorded_at, policy=policy, entered=entered, missing=missing)
         states.append(RequestState(event.sequence, event.event_sha256, event.recorded_at,
                                    desired, retained, tuple(active),
                                    tuple(sorted(retained.focus - desired.focus)),
                                    tuple(sorted(retained.hot - desired.hot)),
-                                   previous.rejected_count + int(not event.accepted)))
+                                   previous.rejected_count + int(not event.accepted),
+                                   unrestricted if policy is not None else None,
+                                   active_restrictions, tuple(freeze(h) for h in holds), config))
     return tuple(states)
