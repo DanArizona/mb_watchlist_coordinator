@@ -10,6 +10,8 @@ adds a serialized request/timer loop, durable publication plans and actual journ
 acknowledgements, plus recovery on either side of a journal commit. Its bounded
 offline runner is `01_run_sampling_service.cmd`. This is an isolated development
 review; production deployment and Hot market-data acquisition remain subsequent work.
+MasterBot accepted all 28 focused tests and the bounded running proof on October 17,
+including abrupt-exit recovery and a clean return to the CMD prompt.
 
 ## Purpose
 

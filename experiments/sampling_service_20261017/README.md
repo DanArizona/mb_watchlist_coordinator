@@ -104,5 +104,7 @@ Nasdaq records are not fetched here; the second source is labeled synthetic.
 The accepted recorded Nasdaq adapter remains unchanged. Live transport,
 authentication/permissions, production policy/cadence choices, load capacity,
 isolated Hot acquisition, and a genuinely new live qualifying halt are subsequent
-work. Candle/viewer polish is independent. Windows acceptance of this new review
-is pending until MasterBot returns the supplied runner output.
+work. Candle/viewer polish is independent. MasterBot Windows acceptance is
+complete: 28 tests in 2.401s, retained running proof PASS, 60 real process cycles,
+five hierarchy revisions and clean prompt return. See `VALIDATION.md` and the
+structured acceptance receipt. The next increment is isolated Hot acquisition.

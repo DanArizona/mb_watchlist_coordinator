@@ -1,0 +1,48 @@
+{
+  "result": "PASS",
+  "evidence_source": "user-supplied complete Windows CMD output",
+  "accepted_date_local": "2026-10-17",
+  "timezone": "America/Chicago",
+  "host": "MasterBot",
+  "environment": "sea-green",
+  "review_zip": "coordinator_service_20261017_234453_3f8b4f.zip",
+  "implementation_commit": "bdf5601bd85448a3aeb628b7d903a167e42182aa",
+  "tests_run": 28,
+  "test_wall_seconds": 2.401,
+  "clean_prompt_return": true,
+  "real_process_cycles": 60,
+  "hierarchy_revisions": 5,
+  "market_acquisitions": 0,
+  "checks": {
+    "independent_process_actual_wall_clock": "PASS; repeated cycles and clean stop",
+    "manual_and_synthetic_halt_demand": "PASS",
+    "privileged_cap_and_automatic_expiry": "PASS",
+    "delayed_ordinary_demotion": "PASS",
+    "process_exit_before_journal_commit": "PASS; rechecked and rescheduled without backdating",
+    "process_exit_after_journal_commit": "PASS; original revision/publication receipt acknowledged without duplicate",
+    "durable_plans_outcomes_complete_revisions": "PASS",
+    "journal_audit": "PASS",
+    "two_journal_replays": "identical"
+  },
+  "proof_settings": {
+    "real_loop_policy": {
+      "demotion_grace_seconds": 0.4,
+      "minimum_residence_seconds": 0.8,
+      "restriction_timing": "immediate_cap"
+    },
+    "local_poll_seconds": 0.05,
+    "publication_lead_seconds": 0.35,
+    "logical_unit_drills_include": "60s grace / 120s residence",
+    "production_defaults_selected": false
+  },
+  "journal_replay_sha256": "b8958002f09a4a16c36fbd5d7d96d11dd9a6c576a160dca2c94ac7f2c5f1e7aa",
+  "publication_outcomes_sha256": "56c0bccd087608157d2572b259a90f2aeda562f945cae4b8d112bc4c85bd2941",
+  "host_reports": "C:/Users/danla/Documents/github/mb_market_data/output/coordinator_service_20261017_234453_3f8b4f/experiments/sampling_service_20261017/runs/20261017T235135Z-e030daf5",
+  "detailed_reports_and_databases_remain_on_host": true,
+  "boundaries": [
+    "Isolated review with no network, credentials, production change or market acquisitions",
+    "Actual clocks and receipts produce distinct hashes across runs; equality is required between replays of the same journal",
+    "Accelerated review settings are not production defaults or capacity measurements",
+    "Isolated Hot acquisition, live Nasdaq transport/new-event validation and external authentication remain subsequent work"
+  ]
+}
