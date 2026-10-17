@@ -5,6 +5,12 @@ Authoritative Watchlist coordination and adapter-reconciliation logic for the Ma
 > **Development status:** Work in progress / proof of concept.
 > The core coordination, lifecycle, reconciliation, transaction, verification, and ThinkOrSwim planning models are implemented and tested. Live ThinkOrSwim execution currently lives outside this package, primarily in `schwab_watchlists`.
 
+The October 17 [running nested sampling publication review](experiments/sampling_service_20261017/README.md)
+adds a serialized request/timer loop, durable publication plans and actual journal
+acknowledgements, plus recovery on either side of a journal commit. Its bounded
+offline runner is `01_run_sampling_service.cmd`. This is an isolated development
+review; production deployment and Hot market-data acquisition remain subsequent work.
+
 ## Purpose
 
 `mb_watchlist_coordinator` provides a source-neutral and adapter-neutral model for deciding:

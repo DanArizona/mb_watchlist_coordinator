@@ -1,0 +1,12 @@
+Running Coordinator publication proof: PASS
+Independent process: actual wall clock, local requests, repeated cycles and clean stop
+Manual + synthetic halt demand; privileged cap; automatic expiry and delayed demotion: PASS
+Process exit before journal commit: rechecked and rescheduled; no backdating
+Process exit after journal commit: original revision and publication receipt acknowledged; no duplicate
+Durable plans/outcomes, complete revisions, audit and two identical replays: PASS
+Review settings only; unit timer drills include 60s grace / 120s residence
+Real loop uses accelerated 0.4s grace / 0.8s residence, 0.35s publication lead, 0.05s local polling
+Real process cycles: 69; hierarchy revisions: 5; market acquisitions: 0
+No live Nasdaq, brokerage request, password, production change or Hot polling
+Journal replay SHA-256: 9f7b866cff801cd26526ade53c9ffb27b1ce0c179bc6000b8f35a9a954fcee76
+Publication outcomes SHA-256: d54280b917a9b62a734b0861957939c38378054093062a2db7d8f585a85d65ce

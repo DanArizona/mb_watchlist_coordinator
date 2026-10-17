@@ -1,0 +1,49 @@
+{
+  "result": "PASS",
+  "real_process": true,
+  "elapsed_seconds": 4.232,
+  "worker": {
+    "status": "stopped",
+    "cycles": 69,
+    "pid": 6
+  },
+  "policy_settings": {
+    "super_user_id": "proof-super-user",
+    "demotion_grace_seconds": 0.4,
+    "minimum_residence_seconds": 0.8,
+    "restriction_timing": "immediate_cap"
+  },
+  "service_settings": {
+    "authority_id": "proof-publication-authority",
+    "poll_seconds": 0.05,
+    "publication_lead_seconds": 0.35,
+    "publish_until": "2026-10-17T23:43:51.712144+00:00"
+  },
+  "settings_status": "accelerated_proof_only_no_production_defaults",
+  "journal_audit": "PASS",
+  "table_counts": {
+    "poll_run": 0,
+    "sampling_membership_revision": 5,
+    "sampling_channel_revision": 15,
+    "sampling_channel_member": 24,
+    "poll_slot_skip": 0,
+    "quote_acquisition": 0,
+    "quote_observation": 0
+  },
+  "journal_replay_sha256": "9f7b866cff801cd26526ade53c9ffb27b1ce0c179bc6000b8f35a9a954fcee76",
+  "outcome_replay_sha256": "d54280b917a9b62a734b0861957939c38378054093062a2db7d8f585a85d65ce",
+  "limits": "No network, live halt latency, authentication, production journal, Hot acquisition or capacity claim",
+  "full_suite": {
+    "tests": 260,
+    "subtests": 18,
+    "seconds": 2.01
+  },
+  "focused_tests": 28,
+  "masterbot_windows_acceptance": "pending",
+  "source_preservation": "existing accepted implementation and frozen experiment unchanged",
+  "fault_process_exit_codes": [
+    73,
+    73
+  ],
+  "local_run_relative": "experiments/sampling_service_20261017/runs/20261017T234315Z-0eee427d"
+}
