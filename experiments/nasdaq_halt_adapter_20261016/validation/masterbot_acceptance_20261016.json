@@ -1,0 +1,53 @@
+{
+  "result": "PASS",
+  "evidence_source": "user-supplied complete Windows CMD output",
+  "accepted_date_local": "2026-10-16",
+  "timezone": "America/Chicago",
+  "host": "MasterBot",
+  "environment": "sea-green",
+  "review_zip": "coordinator_nasdaq_20261017_004027_713128.zip",
+  "implementation_commit": "fd9d79530aa3b50832a19123f47020d686369a77",
+  "tests_run": 46,
+  "test_wall_seconds": 2.208,
+  "clean_prompt_return": true,
+  "original_captures": 12,
+  "parsed_rows": 690,
+  "exact_source_hashes_verified": true,
+  "original_current_replay": {
+    "captures": 4,
+    "after_hours": true,
+    "promotion_requests": 0
+  },
+  "promotion_proof": "derived arrival simulation using recorded AEHL examples; original source timestamps retained",
+  "synthetic_policy_clock": true,
+  "simulation_producer_receipts": 5,
+  "simulation_request_receipts": 7,
+  "simulation_hierarchy_revisions": 8,
+  "market_acquisitions": 0,
+  "checks": {
+    "baseline_repeats_updates_distinct_later_halt": "PASS",
+    "request_commit_ack_interruption_restart": "PASS; no duplicate request",
+    "manual_withdrawal_and_privileged_restrictions": "PASS",
+    "journal_audit": "PASS",
+    "two_journal_replays": "identical",
+    "publication_retry": "idempotent"
+  },
+  "proof_settings": {
+    "reason_codes": [
+      "LUDP",
+      "M"
+    ],
+    "membership": "fixed Uni",
+    "request_expiry": "16:00 ET",
+    "production_defaults_selected": false
+  },
+  "request_replay_sha256": "43223147d54b19bc7afd2640bfd4bb26a8ce0f64e28f59ae4842c5814bef9ec8",
+  "journal_replay_sha256": "15209f5c0fed679afcc9afbd7c72654e3e39cf1c8ca5d09016b0afa0b83f92f5",
+  "host_reports": "C:/Users/danla/Documents/github/mb_market_data/output/coordinator_nasdaq_20261017_004027_713128/experiments/nasdaq_halt_adapter_20261016/runs/20261017T021752Z-8d4254fb",
+  "boundaries": [
+    "Original after-hours snapshots do not establish live first-seen latency",
+    "Derived sequence is explicitly simulated",
+    "Production eligibility/lifetime/timing settings remain unadopted",
+    "Running publication/recovery service, external authentication and Hot acquisition remain pending"
+  ]
+}

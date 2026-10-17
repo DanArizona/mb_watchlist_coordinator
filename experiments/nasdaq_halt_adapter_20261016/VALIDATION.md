@@ -33,13 +33,34 @@ Local request replay SHA-256:
 Local journal replay SHA-256:
 15209f5c0fed679afcc9afbd7c72654e3e39cf1c8ca5d09016b0afa0b83f92f5
 
-## Windows acceptance — PENDING
+## MasterBot Windows acceptance — COMPLETE
 
-Run the uniquely named review package's 01_run_nasdaq_halt_adapter.cmd once.
-Expect 46 tests OK, Recorded Nasdaq adapter proof: PASS, and prompt return.
-No rerun of the older accepted proof bundles is required for this review.
+The user supplied full CMD output from
+coordinator_nasdaq_20261017_004027_713128.zip. All **46 tests PASS in 2.208s**,
+followed by **Recorded Nasdaq adapter proof: PASS** and a clean prompt return.
+Twelve original capture pairs/690 parsed rows passed exact source-hash verification.
+Original CURRENT replay: four after-hours snapshots and zero promotion requests.
+The separately labeled derived AEHL arrival simulation passed startup baseline,
+repeat/update/distinct-event handling, request-commit/ACK interruption and restart,
+manual withdrawal and privileged restrictions. Five producer receipts, seven
+request receipts, eight hierarchy revisions and zero market acquisitions.
+Journal audit PASS; two replays identical; publication retry idempotent.
 
-The configured LUDP/M selection, regular_close request lifetime and 60s/120s
-Coordinator settings are proof values, not adopted production defaults. The
-simulated arrival sequence does not prove live halt detection, real latency,
-service scheduling/publication acknowledgement, authentication or Hot acquisition.
+- Request replay SHA-256:
+  43223147d54b19bc7afd2640bfd4bb26a8ce0f64e28f59ae4842c5814bef9ec8
+- Journal replay SHA-256:
+  15209f5c0fed679afcc9afbd7c72654e3e39cf1c8ca5d09016b0afa0b83f92f5
+- On-host reports:
+  C:/Users/danla/Documents/github/mb_market_data/output/coordinator_nasdaq_20261017_004027_713128/experiments/nasdaq_halt_adapter_20261016/runs/20261017T021752Z-8d4254fb
+
+Structured user-supplied evidence is retained in
+validation/masterbot_acceptance_20261016.json. Full reports and journals remain
+on MasterBot. Logical replay hashes match the local fixed-clock fixture; actual
+publication receipts remain real, separate values in each generated journal.
+This documentation-only update changes no implementation, tests, source manifest
+or accepted ZIP; no repeat test is required.
+
+LUDP/M, fixed Uni, request expiry at 16:00 ET and prior 60s/120s/immediate_cap
+settings remain explicit review configuration. Acceptance establishes this scoped
+adapter behavior, not production policy adoption, live halt latency, running
+membership publication/recovery, external authentication or Hot acquisition.

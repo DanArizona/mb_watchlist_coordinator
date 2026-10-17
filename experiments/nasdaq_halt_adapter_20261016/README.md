@@ -100,7 +100,8 @@ To reproduce from a Git checkout, extract the original uploaded evidence ZIP int
 this experiment's evidence directory, preserving its capture subfolders. Full
 new run reports retain their own timestamps/hashes. See VALIDATION.md.
 
-Windows acceptance is pending. No production installation, live halt acquisition,
+MasterBot Windows acceptance is complete: all 46 tests and the retained proof
+passed October 16, with clean prompt return. No production installation, live halt acquisition,
 Hot poller or measured Hot cadence is included. Next after acceptance: the running
 publication/recovery service and isolated Hot acquisition, followed by a genuinely
 new live halt trial. Existing production Uni/Focus polling and candle work retain

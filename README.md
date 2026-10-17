@@ -495,8 +495,8 @@ uses twelve user-supplied real capture pairs (690 parsed rows), separately from 
 labeled derived arrival simulation. Original after-hours replay creates zero
 promotion requests. The simulation verifies request/policy/publication integration
 with five producer receipts, seven request receipts and eight journal revisions.
-All 46 focused checks and the retained audit/repeated-replay proof pass locally;
-Windows acceptance remains pending. Full repository suite: 232 tests plus 14
+All 46 focused checks and the retained proof passed on MasterBot in 2.208s,
+with clean prompt return; Windows acceptance is complete. Full repository suite: 232 tests plus 14
 subtests PASS. Evidence hashes and compact validation are tracked; original raw
 captures are carried in the review ZIP and ignored by Git.
 
