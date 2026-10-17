@@ -1,0 +1,13 @@
+Recorded Nasdaq adapter proof: PASS
+Original captures: 12; parsed rows: 690; exact source hashes verified
+Original CURRENT replay: four after-hours snapshots; zero promotion requests
+Promotion sequence: derived simulation using recorded AEHL examples; original timestamps retained
+Startup baseline, repeats, updates and later distinct halt: PASS
+Request-commit/ack interruption and restart: PASS; no duplicate request
+Manual withdrawal and privileged restriction interaction: PASS
+Proof settings: LUDP/M; fixed Uni; requests until 16:00 ET; replay clock; no production defaults
+Simulation: 5 producer receipts; 7 request receipts; 8 hierarchy revisions
+Journal audit: PASS; two replays identical; publication retry idempotent; market acquisitions: 0
+No live halt latency, running publication service or Hot acquisition claim
+Request replay SHA-256: 43223147d54b19bc7afd2640bfd4bb26a8ce0f64e28f59ae4842c5814bef9ec8
+Journal replay SHA-256: 15209f5c0fed679afcc9afbd7c72654e3e39cf1c8ca5d09016b0afa0b83f92f5

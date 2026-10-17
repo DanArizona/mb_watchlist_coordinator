@@ -14,3 +14,5 @@ dist/
 experiments/sampling_promotion_20261016/runs/
 experiments/sampling_requests_20261016/runs/
 experiments/sampling_policy_20261016/runs/
+experiments/nasdaq_halt_adapter_20261016/evidence/
+experiments/nasdaq_halt_adapter_20261016/runs/

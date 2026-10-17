@@ -482,6 +482,37 @@ all 43 focused tests and the retained proof passed, with clean prompt return.
 Recorded/live Nasdaq ingestion, a production publication service/outbox and Hot
 acquisition remain subsequent work.
 
+## Recorded Nasdaq sampling producer
+
+The next isolated increment adds NasdaqSamplingProducer in nasdaq_sampling.py.
+It records snapshot receipts, suppresses startup history and repeats, distinguishes
+later halts for one symbol and durably retries delivery into the source-owned
+request store. Mutable reason/resumption updates retain their event identity.
+The producer does not fetch the feed or acknowledge membership publication.
+
+The [recorded-feed proof](experiments/nasdaq_halt_adapter_20261016/README.md)
+uses twelve user-supplied real capture pairs (690 parsed rows), separately from a
+labeled derived arrival simulation. Original after-hours replay creates zero
+promotion requests. The simulation verifies request/policy/publication integration
+with five producer receipts, seven request receipts and eight journal revisions.
+All 46 focused checks and the retained audit/repeated-replay proof pass locally;
+Windows acceptance remains pending. Full repository suite: 232 tests plus 14
+subtests PASS. Evidence hashes and compact validation are tracked; original raw
+captures are carried in the review ZIP and ignored by Git.
+
+With sea-green active, run:
+
+```cmd
+call "01_run_nasdaq_halt_adapter.cmd"
+```
+
+This is noninteractive and creates only fresh experimental outputs. Proof settings
+select LUDP/M within fixed Uni, regular-session event/receipt windows and request
+expiry at 16:00 ET; resumption does not cancel that request. These are review
+selections, not production defaults. Running publication/recovery service,
+external authentication, measured Hot acquisition and genuinely new live halt
+validation remain pending. See the [validation record](experiments/nasdaq_halt_adapter_20261016/VALIDATION.md).
+
 ## Current limitations / post-POC work
 
 The following are intentionally not complete yet:

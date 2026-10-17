@@ -1,0 +1,102 @@
+{
+  "source_zip": "nasdaq_halt_evidence_20261017_002647_d1aec5.zip",
+  "source_zip_sha256": "b573c55ea391c95e9193a4e8d4eb416fc7a2e532d271cce5fca7983c451b5f88",
+  "files": {
+    "2026-08-14-16-04-00-HIST-2026-08-13/normalized.json": {
+      "sha256": "e841605a3fe0d66b88fed4815b455e485a09612b5a5893f7c7a69963c9405c97",
+      "size": 19735
+    },
+    "2026-08-14-16-04-00-HIST-2026-08-13/raw.xml": {
+      "sha256": "5b6d7320fa863ab7d3c6da4fdf5526b1e6053e0ae64096c1e9cd39a145dd936c",
+      "size": 64558
+    },
+    "2026-08-14-16-17-24-HIST-2026-08-13/normalized.json": {
+      "sha256": "c467e484be4f6e2e65be82bede56fa7dcf1d7cbd133693cbae1293435d21c1a4",
+      "size": 18811
+    },
+    "2026-08-14-16-17-24-HIST-2026-08-13/raw.xml": {
+      "sha256": "ec46db35688eecc297457d699273983dc2321b2d13ab19650a0c48e0f0fe71f4",
+      "size": 64558
+    },
+    "2026-08-14-16-23-41-HIST-2026-08-13/normalized.json": {
+      "sha256": "a21bb4412f0c6cf2cef52addbd40c55568729818c5a78dbedca57c83c0c67f99",
+      "size": 18853
+    },
+    "2026-08-14-16-23-41-HIST-2026-08-13/raw.xml": {
+      "sha256": "ea06ad49952c4b391f2b008fe34a2a97b579172051dde26e6ad9361056897ae4",
+      "size": 64558
+    },
+    "2026-08-14-16-24-01-HIST-2026-08-13/normalized.json": {
+      "sha256": "c1d3cf5cd3864c82980abf30ace8b57560892fe79beda80112e6125bf7efe352",
+      "size": 18853
+    },
+    "2026-08-14-16-24-01-HIST-2026-08-13/raw.xml": {
+      "sha256": "5294f00cdd34e29cb331f3b66e8dd45c98af0c78a7471f8b059f5604d53f715d",
+      "size": 64558
+    },
+    "2026-08-14-16-41-15-CURRENT/normalized.json": {
+      "sha256": "1cc3cd1ad092e6fdce8adb0f37692660dd2b6c4b708aa498e6710e59d6c35993",
+      "size": 24971
+    },
+    "2026-08-14-16-41-15-CURRENT/raw.xml": {
+      "sha256": "48e1fc3edc55482a213264ed5dbd59c52e945f996cae3d58ebe837dbe3b2b29f",
+      "size": 83302
+    },
+    "2026-08-14-16-57-31-CURRENT/normalized.json": {
+      "sha256": "bd8ebb67014c34d12aa6732141514c212fdb4a01d3b99c31f682daa385d38bdb",
+      "size": 26678
+    },
+    "2026-08-14-16-57-31-CURRENT/raw.xml": {
+      "sha256": "8804f2e43d299c117f955138bee9536cb70b0875b8639d116ed3f7b7e9f53b89",
+      "size": 83302
+    },
+    "2026-08-14-17-01-37-CURRENT/normalized.json": {
+      "sha256": "3792ffc5dd2ea8480cfb597c02f0bacb2301db7602c258308bd324441f982936",
+      "size": 26678
+    },
+    "2026-08-14-17-01-37-CURRENT/raw.xml": {
+      "sha256": "51b461cb6b4dd5efef33184723db81e770d1020247b55a900c156fb30ba7b595",
+      "size": 83302
+    },
+    "2026-08-14-20-14-35-CURRENT/normalized.json": {
+      "sha256": "9be1b6855734b567e23622d4b1413fa652034da5037f4a23aa5baf74c969d42f",
+      "size": 28006
+    },
+    "2026-08-14-20-14-35-CURRENT/raw.xml": {
+      "sha256": "2bb00c29a34c9058e0e95a6330199040c020b1da77775333437ff4e54ece10d1",
+      "size": 87217
+    },
+    "2026-08-14-20-14-54-HIST-2026-08-13/normalized.json": {
+      "sha256": "d7e43f13b11a86918d0795ddd3b514bf47a1c81ba849717510fb66139a4599dc",
+      "size": 20161
+    },
+    "2026-08-14-20-14-54-HIST-2026-08-13/raw.xml": {
+      "sha256": "5e735a180ecb45eb09e57f3e98ddd7cda53ac4440834fd9d43826d90af0d1d47",
+      "size": 64558
+    },
+    "2026-09-30-00-13-36-HIST-2026-09-28/normalized.json": {
+      "sha256": "e3d211058fd29ee8c7327d3823854a8f08c5c32f70892d42818d3bc68adf5440",
+      "size": 39833
+    },
+    "2026-09-30-00-13-36-HIST-2026-09-28/raw.xml": {
+      "sha256": "6d3f51249616bcf20a489ca300f892f2a16d23893ef5f10f24132b736ebae908",
+      "size": 127230
+    },
+    "2026-10-02-09-31-57-HIST-2026-09-28/normalized.json": {
+      "sha256": "ac19841dafec865a3a9f4b60e34eec719a4e4d07e8f0b2d2d025d5dbed3c1bad",
+      "size": 39833
+    },
+    "2026-10-02-09-31-57-HIST-2026-09-28/raw.xml": {
+      "sha256": "7695b0871a829746d1b8ba976fe614999bd2cba1d2c3c678e814d0b676c64b1c",
+      "size": 127230
+    },
+    "2026-10-05-01-43-46-HIST-2026-09-28/normalized.json": {
+      "sha256": "4b0ae2487ea146598caa19238285da43363c4a6bc2b910120aaafe7750c3450b",
+      "size": 39833
+    },
+    "2026-10-05-01-43-46-HIST-2026-09-28/raw.xml": {
+      "sha256": "b7872aa7228ddb9228979a302d994c9d58bbd2dcc6a4ae07f9d9c83184ac540a",
+      "size": 127230
+    }
+  }
+}

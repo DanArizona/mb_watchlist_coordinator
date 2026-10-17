@@ -1,0 +1,159 @@
+{
+  "result": "PASS",
+  "runtime": "Python 3.12.14 Linux",
+  "repository_tests": 232,
+  "repository_subtests": 14,
+  "focused_tests": 46,
+  "focused_seconds": 1.615,
+  "source_inventory": [
+    {
+      "capture_id": "2026-08-14-16-04-00-HIST-2026-08-13",
+      "retrieved_at": "2026-08-14T16:04:00.938901-04:00",
+      "mode": "HISTORICAL",
+      "rows": 42,
+      "raw_sha256": "5b6d7320fa863ab7d3c6da4fdf5526b1e6053e0ae64096c1e9cd39a145dd936c",
+      "differences_from_legacy_json": {
+        "halt_time": 42,
+        "market": 42,
+        "market_code": 42
+      }
+    },
+    {
+      "capture_id": "2026-08-14-16-17-24-HIST-2026-08-13",
+      "retrieved_at": "2026-08-14T16:17:24.227788-04:00",
+      "mode": "HISTORICAL",
+      "rows": 42,
+      "raw_sha256": "ec46db35688eecc297457d699273983dc2321b2d13ab19650a0c48e0f0fe71f4",
+      "differences_from_legacy_json": {
+        "halt_time": 42,
+        "market": 42,
+        "market_code": 42
+      }
+    },
+    {
+      "capture_id": "2026-08-14-16-23-41-HIST-2026-08-13",
+      "retrieved_at": "2026-08-14T16:23:41.486543-04:00",
+      "mode": "HISTORICAL",
+      "rows": 42,
+      "raw_sha256": "ea06ad49952c4b391f2b008fe34a2a97b579172051dde26e6ad9361056897ae4",
+      "differences_from_legacy_json": {
+        "halt_time": 42,
+        "market": 42,
+        "market_code": 42
+      }
+    },
+    {
+      "capture_id": "2026-08-14-16-24-01-HIST-2026-08-13",
+      "retrieved_at": "2026-08-14T16:24:01.409911-04:00",
+      "mode": "HISTORICAL",
+      "rows": 42,
+      "raw_sha256": "5294f00cdd34e29cb331f3b66e8dd45c98af0c78a7471f8b059f5604d53f715d",
+      "differences_from_legacy_json": {
+        "halt_time": 42,
+        "market": 42,
+        "market_code": 42
+      }
+    },
+    {
+      "capture_id": "2026-08-14-16-41-15-CURRENT",
+      "retrieved_at": "2026-08-14T16:41:15.332443-04:00",
+      "mode": "CURRENT",
+      "rows": 57,
+      "raw_sha256": "48e1fc3edc55482a213264ed5dbd59c52e945f996cae3d58ebe837dbe3b2b29f",
+      "differences_from_legacy_json": {
+        "halt_time": 57,
+        "market": 57,
+        "market_code": 57
+      }
+    },
+    {
+      "capture_id": "2026-08-14-16-57-31-CURRENT",
+      "retrieved_at": "2026-08-14T16:57:31.588947-04:00",
+      "mode": "CURRENT",
+      "rows": 57,
+      "raw_sha256": "8804f2e43d299c117f955138bee9536cb70b0875b8639d116ed3f7b7e9f53b89",
+      "differences_from_legacy_json": {
+        "halt_time": 57
+      }
+    },
+    {
+      "capture_id": "2026-08-14-17-01-37-CURRENT",
+      "retrieved_at": "2026-08-14T17:01:37.278583-04:00",
+      "mode": "CURRENT",
+      "rows": 57,
+      "raw_sha256": "51b461cb6b4dd5efef33184723db81e770d1020247b55a900c156fb30ba7b595",
+      "differences_from_legacy_json": {
+        "halt_time": 57
+      }
+    },
+    {
+      "capture_id": "2026-08-14-20-14-35-CURRENT",
+      "retrieved_at": "2026-08-14T20:14:35.017233-04:00",
+      "mode": "CURRENT",
+      "rows": 60,
+      "raw_sha256": "2bb00c29a34c9058e0e95a6330199040c020b1da77775333437ff4e54ece10d1",
+      "differences_from_legacy_json": {
+        "halt_time": 60
+      }
+    },
+    {
+      "capture_id": "2026-08-14-20-14-54-HIST-2026-08-13",
+      "retrieved_at": "2026-08-14T20:14:54.098986-04:00",
+      "mode": "HISTORICAL",
+      "rows": 42,
+      "raw_sha256": "5e735a180ecb45eb09e57f3e98ddd7cda53ac4440834fd9d43826d90af0d1d47",
+      "differences_from_legacy_json": {
+        "halt_time": 42
+      }
+    },
+    {
+      "capture_id": "2026-09-30-00-13-36-HIST-2026-09-28",
+      "retrieved_at": "2026-09-30T00:13:36.499722-04:00",
+      "mode": "HISTORICAL",
+      "rows": 83,
+      "raw_sha256": "6d3f51249616bcf20a489ca300f892f2a16d23893ef5f10f24132b736ebae908",
+      "differences_from_legacy_json": {
+        "halt_time": 83
+      }
+    },
+    {
+      "capture_id": "2026-10-02-09-31-57-HIST-2026-09-28",
+      "retrieved_at": "2026-10-02T09:31:57.893146-04:00",
+      "mode": "HISTORICAL",
+      "rows": 83,
+      "raw_sha256": "7695b0871a829746d1b8ba976fe614999bd2cba1d2c3c678e814d0b676c64b1c",
+      "differences_from_legacy_json": {
+        "halt_time": 83
+      }
+    },
+    {
+      "capture_id": "2026-10-05-01-43-46-HIST-2026-09-28",
+      "retrieved_at": "2026-10-05T01:43:46.180313-04:00",
+      "mode": "HISTORICAL",
+      "rows": 83,
+      "raw_sha256": "b7872aa7228ddb9228979a302d994c9d58bbd2dcc6a4ae07f9d9c83184ac540a",
+      "differences_from_legacy_json": {
+        "halt_time": 83
+      }
+    }
+  ],
+  "source_zip_sha256": "b573c55ea391c95e9193a4e8d4eb416fc7a2e532d271cce5fca7983c451b5f88",
+  "original_current_replay": {
+    "captures": 4,
+    "request_receipts": 0,
+    "after_hours": true
+  },
+  "simulation": {
+    "derived_arrival_simulation": true,
+    "hypothetical_session_date": "2026-10-17",
+    "producer_receipts": 5,
+    "request_receipts": 7,
+    "hierarchy_revisions": 8,
+    "market_acquisitions": 0,
+    "request_replay_sha256": "43223147d54b19bc7afd2640bfd4bb26a8ce0f64e28f59ae4842c5814bef9ec8",
+    "journal_replay_sha256": "15209f5c0fed679afcc9afbd7c72654e3e39cf1c8ca5d09016b0afa0b83f92f5",
+    "producer_replay_sha256": "d25e86e9762f097d7615aff8887fdc4f33f11438a03486fa3f4ce80dd57a7907"
+  },
+  "windows_acceptance": "pending",
+  "production_defaults": false
+}

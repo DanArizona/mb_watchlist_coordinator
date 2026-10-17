@@ -4,3 +4,5 @@
 /01_run_sampling_requests.cmd text eol=crlf
 /experiments/sampling_policy_20261016/** -text -whitespace
 /01_run_sampling_policy.cmd text eol=crlf
+/experiments/nasdaq_halt_adapter_20261016/** -text -whitespace
+/01_run_nasdaq_halt_adapter.cmd text eol=crlf
