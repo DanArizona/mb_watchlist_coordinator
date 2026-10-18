@@ -95,6 +95,8 @@ replay of one journal must match; actual-clock hashes differ between runs.
 
 Reports, journals and error details are under `runs/<unique-run-id>`. Compact local
 evidence is under `validation`. The first frozen promotion experiment and accepted
-ZIPs remain unchanged. Next: Windows acceptance, market-data checkout integration,
-bounded provider timing and production catalog/transport decisions, then a genuinely
-new qualifying live halt.
+ZIPs remain unchanged. MasterBot accepted all 40 tests in 2.405s and the retained
+four-process proof on October 17, with complete coverage and a clean prompt return.
+Windows evidence is in `validation/masterbot_acceptance_20261017.json`. Next:
+market-data checkout integration, bounded provider timing and production
+catalog/transport decisions, then a genuinely new qualifying live halt.

@@ -1,0 +1,80 @@
+{
+  "result": "PASS",
+  "evidence_source": "user-supplied complete Windows CMD output in attached text file",
+  "evidence_file": "Pasted text(20261018-042956).txt",
+  "evidence_sha256": "ccad862284c720bb823fd3de5046bd8bd901b298ddfc23494a2960e81bd16ba1",
+  "accepted_date_local": "2026-10-17",
+  "timezone": "America/Chicago",
+  "host": "MasterBot",
+  "environment": "sea-green",
+  "implementation_commit": "9d72f48f8dbe166746ad3a50dae43c71e7318e16",
+  "review_zip": "coordinator_admission_20261018_034708_0c312b.zip",
+  "review_zip_sha256": "386a4a7ec4180473709b5ea6959e1c4f8148f5a8a063fc4ee467bc22e0ecccad",
+  "tests_run": 40,
+  "test_wall_seconds": 2.405,
+  "clean_prompt_return": true,
+  "independent_processes": 4,
+  "opening_membership": {
+    "uni": [
+      "AAPL",
+      "SPY"
+    ],
+    "focus": [
+      "SPY"
+    ],
+    "hot": []
+  },
+  "added_symbol": "MSFT",
+  "final_membership": {
+    "uni": [
+      "AAPL",
+      "MSFT",
+      "SPY"
+    ],
+    "focus": [
+      "SPY"
+    ],
+    "hot": []
+  },
+  "synthetic_acquisitions": 10,
+  "live_market_acquisitions": 0,
+  "channel_results": {
+    "uni": {
+      "acquisitions": 4,
+      "empty_skips": 0,
+      "synthetic_batch_calls": 7
+    },
+    "focus": {
+      "acquisitions": 5,
+      "empty_skips": 0,
+      "synthetic_batch_calls": 5
+    },
+    "hot": {
+      "acquisitions": 1,
+      "empty_skips": 9,
+      "synthetic_batch_calls": 1
+    }
+  },
+  "checks": {
+    "manual_uni_only_algorithm_focus_synthetic_halt_hot": "PASS",
+    "synthetic_nasdaq_adapter_common_admission_hot_collection": "PASS (logical clock)",
+    "source_withdrawal_and_session_uni_retention": "PASS",
+    "opening_revision_preserved": "PASS",
+    "no_invented_pre_admission_or_pre_response_observations": "PASS",
+    "complete_configured_slot_coverage": "PASS",
+    "journal_audit": "PASS",
+    "request_publication_restart": "PASS",
+    "acquisition_aware_repeated_replay": "identical"
+  },
+  "journal_replay_sha256": "007ed74b9a9ac6c30d5d2eabd57807732f0dcfddb3454e9da0231641c81d96ce",
+  "request_replay_sha256": "1fcfe55669bbd0d254b383453e3b38ce53e4c72fb729dbc0f95ecdb470183809",
+  "host_reports": "C:/Users/danla/Documents/github/mb_market_data/output/coordinator_admission_20261018_034708_0c312b/experiments/sampling_admission_20261017/runs/20261018T042907Z-48184345",
+  "detailed_reports_and_databases_remain_on_host": true,
+  "production_defaults_selected": false,
+  "boundaries": [
+    "Synthetic identity catalog, quote source and halt evidence; no live feed, API/password or production change",
+    "Review catalog/source/capacity/retention and timer settings do not establish production policy or measured provider capacity",
+    "Actual-clock hashes differ across runs; repeated replays of the same journal must agree",
+    "Market-data integration, production catalog/broker resolution, authenticated timing trial and a new live eligible halt remain subsequent work"
+  ]
+}

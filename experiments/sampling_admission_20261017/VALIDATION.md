@@ -16,7 +16,23 @@ checks retain prior membership and never invent earlier observations.
 
 Compact final local/archive evidence is retained in `validation`. The runner is
 checked from the extracted archive under a directory containing spaces. Windows
-acceptance on MasterBot is **PENDING** until the user supplies its result.
+acceptance on MasterBot is **COMPLETE**: all 40 tests PASS in 2.405s, the bounded
+proof passes and the CMD window returns to its prompt. Four independent processes
+complete Uni-only admission, Focus/Hot escalation, independent withdrawals and Uni
+retention. Uni records four acquisitions/seven batch calls; Focus five/five; Hot
+one acquisition/one batch call and nine empty skips. Complete configured coverage,
+journal audit, request/publication restart and two identical acquisition-aware
+replays pass. Synthetic Nasdaq adapter delivery and Hot collection pass in the
+labeled logical-clock trace. Live market acquisitions remain zero.
+
+Structured acceptance is in `validation/masterbot_acceptance_20261017.json`.
+Detailed reports/databases remain on MasterBot in `runs/20261018T042907Z-48184345`.
+Accepted journal replay SHA-256:
+`007ed74b9a9ac6c30d5d2eabd57807732f0dcfddb3454e9da0231641c81d96ce`.
+Request replay SHA-256:
+`1fcfe55669bbd0d254b383453e3b38ce53e4c72fb729dbc0f95ecdb470183809`.
+Actual-clock hashes differ across runs; repeated replay of one journal must agree.
+The accepted ZIP, implementation and tests remain unchanged.
 
 The instrument catalog is synthetic. No actual listing lookup, broker symbol
 resolution, live halt ingestion, authenticated quote, capacity measurement or

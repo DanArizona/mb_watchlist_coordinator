@@ -14,7 +14,9 @@ permissions, capacity reservations and retention are bound to the ledger.
 Run `01_run_sampling_admission.cmd` from this review bundle for 40 focused tests,
 a labeled synthetic Nasdaq trace and a bounded four-process acquisition proof.
 All quotes are synthetic; live catalog/broker resolution, measured capacity and
-production installation remain pending. MasterBot Windows acceptance is pending.
+production installation remain pending. MasterBot accepted all 40 tests in 2.405s
+and the bounded admission/acquisition proof on October 17, with complete coverage,
+matching repeated replay and a clean CMD prompt return.
 Earlier accepted ZIPs remain frozen; their old runners guard their original source
 versions. Use the current admission runner with this checkout, and the original
 ZIP for a repeat of an earlier review.
