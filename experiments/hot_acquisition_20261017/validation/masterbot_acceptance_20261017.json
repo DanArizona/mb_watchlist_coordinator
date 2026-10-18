@@ -1,0 +1,45 @@
+{
+  "result": "PASS",
+  "evidence_source": "user-supplied complete Windows CMD output",
+  "accepted_date_local": "2026-10-17",
+  "timezone": "America/Chicago",
+  "host": "MasterBot",
+  "environment": "sea-green",
+  "review_zip": "hot_acquisition_20261018_011618_b85675.zip",
+  "implementation_commit": "5249b9a5b24c802a780a25ff5e34ac29e70cbf47",
+  "tests_run": 30,
+  "test_wall_seconds": 2.417,
+  "clean_prompt_return": true,
+  "independent_processes": 4,
+  "hierarchy_revisions": 5,
+  "synthetic_acquisitions": 8,
+  "live_market_acquisitions": 0,
+  "channel_results": {
+    "uni": {"acquisitions": 2, "empty_skips": 0, "active_cycle_mean_ms": 122.221, "active_cycle_p95_ms": 143.521, "active_cycle_max_ms": 143.521},
+    "focus": {"acquisitions": 4, "empty_skips": 0, "active_cycle_mean_ms": 160.343, "active_cycle_p95_ms": 225.775, "active_cycle_max_ms": 225.775},
+    "hot": {"acquisitions": 2, "empty_skips": 5, "active_cycle_mean_ms": 247.127, "active_cycle_p95_ms": 257.463, "active_cycle_max_ms": 257.463}
+  },
+  "checks": {
+    "coordinator_promotion_cap_expiry_and_demotion": "PASS",
+    "uni_focus_continuity": "PASS",
+    "complete_configured_slot_coverage": "PASS",
+    "journal_audit": "PASS",
+    "acquisition_aware_repeated_replay": "identical",
+    "receipt_causal_visibility": "PASS; no Hot quote visible before response completion",
+    "saved_response_and_postcommit_exit_recovery": "PASS; no repeat quote request",
+    "unsaved_response_exit": "PASS; explicit gap retained without catch-up request"
+  },
+  "review_grids_seconds": {"hot": 2, "focus": 4, "uni": 6},
+  "production_defaults_selected": false,
+  "journal_replay_sha256": "42ae635b54d98d26f45bf6ae7fd606c3ab203e404b22d85a0f806c928eb97258",
+  "host_reports": "C:/Users/danla/Documents/github/mb_market_data/output/hot_acquisition_20261018_011618_b85675/experiments/hot_acquisition_20261017/runs/20261018T030108Z-95134933",
+  "detailed_reports_and_databases_remain_on_host": true,
+  "operator_observation": "Approximately 10-25 seconds without console output after the fast tests",
+  "code_based_pause_explanation": "About five seconds of start alignment, a 14-second actual-clock polling window, then child-exit/recovery and audit/replay checks; worker progress is written to files and the console summary prints after completion",
+  "boundaries": [
+    "Synthetic quotes and injected latency; no network, credentials, production changes or provider-capacity claim",
+    "Only two active Hot acquisitions; this is not sustained many-symbol capacity validation",
+    "Actual clock/receipt hashes differ across runs; repeated replays of the same journal must agree",
+    "Market-data checkout integration, authenticated Schwab timing trial and live Nasdaq new-event validation remain subsequent work"
+  ]
+}

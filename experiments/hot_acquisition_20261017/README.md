@@ -15,6 +15,12 @@ summaries, a report path and `Finished. This command returns to its prompt.`
 Every run creates new evidence under this experiment's ignored `runs` directory.
 No browser or extra manually managed console is required.
 
+After the fast tests, the console remains quiet during about five seconds of
+startup alignment, a 14-second actual-clock polling window, and final recovery,
+audit and replay checks. Worker progress is recorded in files; the final console
+summary prints when that phase finishes. The interval exercises scheduled slots
+and policy deadlines in real time.
+
 ## Where the implementation belongs
 
 `market_data_extensions/sampling_acquisition.py` is review-stage **market-data**
@@ -117,9 +123,11 @@ an explicitly injected logical clock. The first two preserve an expected auditor
 gap; the latter two recover the exact evidence without another quote request.
 The 30 focused checks also cover slot-time/in-flight revisions, batching, explicit
 error outcomes, full observation rollback, restart, ownership, source guards and
-stop behavior. Windows acceptance is pending until MasterBot supplies its output.
+stop behavior. MasterBot Windows acceptance is complete: all 30 tests in 2.417s,
+four-process proof PASS, eight synthetic acquisitions, five empty Hot skips and a
+clean return to the prompt. See the structured acceptance record in `validation`.
 
-Next steps are MasterBot review, market-data checkout integration, a bounded
+Next steps are market-data checkout integration, a bounded
 authenticated Hot quote trial with measured provider latency, and a genuinely new
 live Nasdaq qualifying-halt path. Production policy/cadence, external authentication
 and deployment remain explicit follow-up decisions. Candle/viewer work is separate.

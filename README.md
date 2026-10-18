@@ -11,6 +11,8 @@ workers using synthetic quotes, the pinned batch collector and schema-v2 journal
 Run `01_run_hot_acquisition.cmd` for its 30 tests and bounded four-process proof.
 The market-data extension is staged under this experiment for review; production
 integration and authenticated Hot/provider-capacity validation remain subsequent work.
+MasterBot accepted all 30 tests and the four-process acquisition/recovery proof
+on October 17, with complete configured coverage and a clean prompt return.
 
 The October 17 [running nested sampling publication review](experiments/sampling_service_20261017/README.md)
 adds a serialized request/timer loop, durable publication plans and actual journal
