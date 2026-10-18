@@ -1,0 +1,267 @@
+{
+  "result": "PASS",
+  "real_independent_processes": 4,
+  "elapsed_seconds": 20.536,
+  "source": "synthetic offline quote responses through pinned fetch_quotes_batched; no network",
+  "window": {
+    "start": "2026-10-18T01:16:32+00:00",
+    "end": "2026-10-18T01:16:46+00:00"
+  },
+  "review_cadences": {
+    "hot": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26,
+      28,
+      30,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      44,
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58
+    ],
+    "focus": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48,
+      52,
+      56
+    ],
+    "uni": [
+      0,
+      6,
+      12,
+      18,
+      24,
+      30,
+      36,
+      42,
+      48,
+      54
+    ]
+  },
+  "review_settings": "Synthetic three-symbol Uni, baseline one-symbol Focus, one-symbol Hot; proof values are not production defaults",
+  "metrics": {
+    "uni": {
+      "acquisitions": 2,
+      "empty_skips": 0,
+      "synthetic_client_calls": 4,
+      "collector": {
+        "n": 2,
+        "mean_ms": 21.783,
+        "p95_ms": 23.075,
+        "max_ms": 23.075
+      },
+      "journal": {
+        "n": 2,
+        "mean_ms": 2.065,
+        "p95_ms": 2.122,
+        "max_ms": 2.122
+      },
+      "cycle": {
+        "n": 2,
+        "mean_ms": 45.699,
+        "p95_ms": 47.325,
+        "max_ms": 47.325
+      },
+      "active_cycle": {
+        "n": 2,
+        "mean_ms": 45.699,
+        "p95_ms": 47.325,
+        "max_ms": 47.325
+      },
+      "empty_cycle": {
+        "n": 0
+      },
+      "dispatch_lateness": {
+        "n": 2,
+        "mean_ms": 5.829,
+        "p95_ms": 7.025,
+        "max_ms": 7.025
+      }
+    },
+    "focus": {
+      "acquisitions": 4,
+      "empty_skips": 0,
+      "synthetic_client_calls": 4,
+      "collector": {
+        "n": 4,
+        "mean_ms": 10.289,
+        "p95_ms": 10.353,
+        "max_ms": 10.353
+      },
+      "journal": {
+        "n": 4,
+        "mean_ms": 2.618,
+        "p95_ms": 3.175,
+        "max_ms": 3.175
+      },
+      "cycle": {
+        "n": 4,
+        "mean_ms": 38.118,
+        "p95_ms": 46.575,
+        "max_ms": 46.575
+      },
+      "active_cycle": {
+        "n": 4,
+        "mean_ms": 38.118,
+        "p95_ms": 46.575,
+        "max_ms": 46.575
+      },
+      "empty_cycle": {
+        "n": 0
+      },
+      "dispatch_lateness": {
+        "n": 4,
+        "mean_ms": 8.268,
+        "p95_ms": 12.444,
+        "max_ms": 12.444
+      }
+    },
+    "hot": {
+      "acquisitions": 2,
+      "empty_skips": 5,
+      "synthetic_client_calls": 2,
+      "collector": {
+        "n": 2,
+        "mean_ms": 150.472,
+        "p95_ms": 150.533,
+        "max_ms": 150.533
+      },
+      "journal": {
+        "n": 7,
+        "mean_ms": 2.137,
+        "p95_ms": 2.367,
+        "max_ms": 2.367
+      },
+      "cycle": {
+        "n": 7,
+        "mean_ms": 68.822,
+        "p95_ms": 183.443,
+        "max_ms": 183.443
+      },
+      "active_cycle": {
+        "n": 2,
+        "mean_ms": 178.181,
+        "p95_ms": 183.443,
+        "max_ms": 183.443
+      },
+      "empty_cycle": {
+        "n": 5,
+        "mean_ms": 25.079,
+        "p95_ms": 33.241,
+        "max_ms": 33.241
+      },
+      "dispatch_lateness": {
+        "n": 7,
+        "mean_ms": 11.112,
+        "p95_ms": 17.216,
+        "max_ms": 17.216
+      }
+    }
+  },
+  "trace": [
+    {
+      "label": "manual promotion observed by Hot",
+      "revision": 1,
+      "slot_id": "hot:2026-10-17T21:16:34-04:00"
+    },
+    {
+      "label": "cap produces empty Hot skip without quote call",
+      "slot_id": "hot:2026-10-17T21:16:36-04:00",
+      "revision": 2
+    },
+    {
+      "label": "cap expiry reentry observed by Hot",
+      "slot_id": "hot:2026-10-17T21:16:38-04:00",
+      "revision": 3
+    }
+  ],
+  "journal_audit": "PASS",
+  "table_counts": {
+    "poll_run": 3,
+    "sampling_membership_revision": 5,
+    "sampling_channel_revision": 15,
+    "sampling_channel_member": 24,
+    "poll_slot_skip": 5,
+    "quote_acquisition": 8,
+    "quote_observation": 12
+  },
+  "journal_replay_sha256": "2b9b3ea1fbe0bd238789ec8a421da83453d2c74ee8e44f666d7da91d762a1bc0",
+  "receipt_causal_replay": "PASS; no Hot quote before its completion time",
+  "limits": "No live Nasdaq/Schwab data, market capacity or production Hot activation claim; staged market-data extension needs integration after review",
+  "full_suite": {
+    "tests": 290,
+    "subtests": 25,
+    "seconds": 3.45
+  },
+  "focused_tests": 30,
+  "focused_test_seconds": 0.92,
+  "extracted_path_with_spaces": true,
+  "bundle_name": "hot_acquisition_20261018_011618_b85675",
+  "masterbot_windows_acceptance": "pending",
+  "fault_recovery": [
+    {
+      "stage": "after_dispatch",
+      "exit_code": 73,
+      "synthetic_client_calls": 0,
+      "clock": "injected logical fault drill; store publication clock remains actual",
+      "journal_audit": "expected gap detected",
+      "outcome_sha256": "82342f4537110d3ec2f710c4d93c9f3853bf9cf0b3b7f518a055f6b3235a3c25"
+    },
+    {
+      "stage": "after_response",
+      "exit_code": 73,
+      "synthetic_client_calls": 1,
+      "clock": "injected logical fault drill; store publication clock remains actual",
+      "journal_audit": "expected gap detected",
+      "outcome_sha256": "bf3a9106ba7aba5085e33ec0a5abc44eac1f65b7fd06e6d7f5fdf249581edd0f"
+    },
+    {
+      "stage": "after_assembled",
+      "exit_code": 73,
+      "synthetic_client_calls": 1,
+      "clock": "injected logical fault drill; store publication clock remains actual",
+      "journal_audit": "PASS",
+      "outcome_sha256": "ae6791368bd61f820dd0bc3031a40d7c1d41bcd7561a05ecc1d6f1ba95902677"
+    },
+    {
+      "stage": "after_journal_commit",
+      "exit_code": 73,
+      "synthetic_client_calls": 1,
+      "clock": "injected logical fault drill; store publication clock remains actual",
+      "journal_audit": "PASS",
+      "outcome_sha256": "59a9aebec8bb20edaa404c3ff9a253555151171f7d9105e13e61f333b30f7dfe"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+Isolated Hot acquisition proof: PASS
+Four independent processes: Coordinator + Uni + Focus + Hot
+Synthetic responses use the existing batch collector and schema-v2 journal; no network/password
+Coordinator promotion, privileged cap, expiry reentry and ordinary demotion drive Hot acquisition/skips: PASS
+Uni/Focus continuity, complete configured-slot coverage and acquisition-aware repeated replay: PASS
+Receipt timing: no Hot quote visible before its completed response
+Abrupt exit after saved response / journal commit: recovered without another quote request
+Abrupt exit before saved response: explicit gap detected; no catch-up request
+Review cadence: Hot every 2s; Focus every 4s; Uni every 6s; existing production cadences unchanged
+Timing below measures local work with injected synthetic latency, not Schwab or market capacity:
+  uni: acquisitions=2; empty skips=0; active cycle mean/p95/max=45.699/47.325/47.325 ms
+  focus: acquisitions=4; empty skips=0; active cycle mean/p95/max=38.118/46.575/46.575 ms
+  hot: acquisitions=2; empty skips=5; active cycle mean/p95/max=178.181/183.443/183.443 ms
+Hierarchy revisions: 5; synthetic acquisitions: 8; live market acquisitions: 0
+Journal replay SHA-256: 2b9b3ea1fbe0bd238789ec8a421da83453d2c74ee8e44f666d7da91d762a1bc0
+Finished bounded processes; production remains unchanged.

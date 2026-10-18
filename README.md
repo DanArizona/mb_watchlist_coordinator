@@ -5,6 +5,13 @@ Authoritative Watchlist coordination and adapter-reconciliation logic for the Ma
 > **Development status:** Work in progress / proof of concept.
 > The core coordination, lifecycle, reconciliation, transaction, verification, and ThinkOrSwim planning models are implemented and tested. Live ThinkOrSwim execution currently lives outside this package, primarily in `schwab_watchlists`.
 
+The [isolated Hot acquisition review](experiments/hot_acquisition_20261017/README.md)
+connects the accepted publication service to separate Uni/Focus/Hot acquisition
+workers using synthetic quotes, the pinned batch collector and schema-v2 journal.
+Run `01_run_hot_acquisition.cmd` for its 30 tests and bounded four-process proof.
+The market-data extension is staged under this experiment for review; production
+integration and authenticated Hot/provider-capacity validation remain subsequent work.
+
 The October 17 [running nested sampling publication review](experiments/sampling_service_20261017/README.md)
 adds a serialized request/timer loop, durable publication plans and actual journal
 acknowledgements, plus recovery on either side of a journal commit. Its bounded
