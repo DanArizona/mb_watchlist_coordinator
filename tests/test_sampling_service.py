@@ -34,7 +34,9 @@ POLICY = SamplingPolicy("proof-super-user", 0, 0, "immediate_cap")
 def fixture(folder, *, policy=POLICY, real_clock=False, settings_values=None):
     # Unit fault drills use an explicit logical clock; the bounded runner below
     # separately exercises the actual loop with the actual wall clock.
-    start = datetime.now(timezone.utc) + timedelta(seconds=0 if real_clock else 600)
+    start = datetime.now(timezone.utc) if real_clock else (
+        datetime.now(ZoneInfo("America/New_York")) + timedelta(days=1)
+    ).replace(hour=10, minute=0, second=0, microsecond=0).astimezone(timezone.utc)
     session = start.astimezone(ZoneInfo("America/New_York")).date()
     clock = [start]
     get_clock = (lambda: datetime.now(timezone.utc)) if real_clock else (lambda: clock[0])

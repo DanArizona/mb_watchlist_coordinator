@@ -1,0 +1,134 @@
+{
+  "result": "PASS",
+  "clock": "actual wall clock for four-process polling; labeled logical Nasdaq sub-proof",
+  "logical_nasdaq": {
+    "clock": "synthetic logical regular-session time; no live halt",
+    "producer_receipts": 2,
+    "request_receipts": 1,
+    "delivery_retry_kept_original_receipt": true,
+    "first_hot_revision": 1,
+    "journal_replay_sha256": "1ea318f73dc20cd7f728495691e6fe7fd25bbd94e7ce7cd6e7585b62ef51c6ec",
+    "audit_passed": true,
+    "audit_note": "Slots :00 and :02 are empty skips; :04 acquires after the admission effective time."
+  },
+  "real_independent_processes": 4,
+  "window": {
+    "start": "2026-10-18T03:47:24+00:00",
+    "end": "2026-10-18T03:47:44+00:00"
+  },
+  "elapsed_real_seconds": 28.393,
+  "trace": [
+    {
+      "stage": "Uni-only manual inclusion",
+      "revision": 1,
+      "slot": "uni:2026-10-17T23:47:30-04:00",
+      "symbols": 3
+    },
+    {
+      "stage": "algorithm Focus demand",
+      "revision": 2,
+      "slot": "focus:2026-10-17T23:47:32-04:00"
+    },
+    {
+      "stage": "synthetic direct halt-source demand",
+      "revision": 3,
+      "slot": "hot:2026-10-17T23:47:34-04:00"
+    },
+    {
+      "stage": "all requests withdrawn; Uni retained",
+      "revision": 4,
+      "slot": "uni:2026-10-17T23:47:36-04:00"
+    }
+  ],
+  "metrics": {
+    "uni": {
+      "acquisitions": 4,
+      "empty_skips": 0,
+      "synthetic_batch_calls": 7
+    },
+    "focus": {
+      "acquisitions": 5,
+      "empty_skips": 0,
+      "synthetic_batch_calls": 5
+    },
+    "hot": {
+      "acquisitions": 1,
+      "empty_skips": 9,
+      "synthetic_batch_calls": 1
+    }
+  },
+  "opening_membership": {
+    "uni": [
+      "AAPL",
+      "SPY"
+    ],
+    "focus": [
+      "SPY"
+    ],
+    "hot": []
+  },
+  "final_membership": {
+    "uni": [
+      "AAPL",
+      "MSFT",
+      "SPY"
+    ],
+    "focus": [
+      "SPY"
+    ],
+    "hot": []
+  },
+  "table_counts": {
+    "poll_run": 3,
+    "sampling_membership_revision": 5,
+    "sampling_channel_revision": 15,
+    "sampling_channel_member": 22,
+    "poll_slot_skip": 9,
+    "quote_acquisition": 10,
+    "quote_observation": 18
+  },
+  "journal_audit": "PASS",
+  "repeated_journal_replay": "identical",
+  "journal_replay_sha256": "a94a4d5b0615d9f67acf17db466b70a413d85da64f39c295a3971a6c7a870961",
+  "request_replay_sha256": "fd08525faf8535030bdf8dfbb7fd84c7bf7775a9cb20c18cf834e96aab5771f4",
+  "live_market_acquisitions": 0,
+  "catalog": "synthetic identity catalog, separate from opening roster",
+  "review_settings": {
+    "contract": "source-owned-sampling-admission-v1",
+    "session_date": "2026-10-17",
+    "baseline": {
+      "uni": [
+        "AAPL",
+        "SPY"
+      ],
+      "focus": [
+        "SPY"
+      ],
+      "hot": []
+    },
+    "policy": {
+      "super_user_id": "proof-super-user",
+      "demotion_grace_seconds": 0.2,
+      "minimum_residence_seconds": 0.5,
+      "restriction_timing": "immediate_cap"
+    },
+    "admission": {
+      "catalog_id": "synthetic-review-catalog-v1",
+      "catalog_symbols": [
+        "AMD",
+        "MSFT",
+        "NVDA"
+      ],
+      "allowed_sources": [
+        "algorithm",
+        "manual",
+        "nasdaq"
+      ],
+      "max_additional_symbols": 2,
+      "uni_retention": "session",
+      "capacity": "admitted_plus_uncancelled_unexpired_reservations",
+      "catalog_scope": "identity_eligibility_not_daily_screen_or_broker_tradability"
+    }
+  },
+  "limits": "No live halt/feed, API request, provider capacity, production settings or activation claim"
+}

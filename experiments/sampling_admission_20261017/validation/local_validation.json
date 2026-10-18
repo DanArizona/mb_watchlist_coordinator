@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "full_suite": {
+    "tests": 373,
+    "subtests": 61,
+    "elapsed_seconds": 5.13
+  },
+  "focused_tests": 40,
+  "archive_with_spaces": "PASS",
+  "independent_actual_clock_processes": 4,
+  "synthetic_market_acquisitions": 10,
+  "live_market_acquisitions": 0,
+  "journal_replay_sha256": "a94a4d5b0615d9f67acf17db466b70a413d85da64f39c295a3971a6c7a870961",
+  "request_replay_sha256": "fd08525faf8535030bdf8dfbb7fd84c7bf7775a9cb20c18cf834e96aab5771f4",
+  "windows_acceptance": "PENDING",
+  "coordinator_parent": "d42ceb3df9ca41f533e84f46d26515d69a2baef4",
+  "fixture_portability": "Logical review and two legacy fixtures use future daytime, avoiding ET-midnight crossing; actual-clock acquisitions stay actual."
+}

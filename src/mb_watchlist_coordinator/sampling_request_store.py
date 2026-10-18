@@ -17,6 +17,7 @@ from typing import Callable
 from .models import ProducerIntent
 from .sampling_projection import SamplingMembership, require_aware
 from .sampling_policy import SamplingPolicy
+from .sampling_admission import AdmissionPolicy
 from .session import session_expiration
 from .sampling_requests import (
     RequestEvent, admission_reason, baseline_payload, canonical, digest,
@@ -36,12 +37,14 @@ class RecordedCommand:
 
 class SamplingRequestStore:
     def __init__(self, path: str | Path, *, session_date: date, baseline: SamplingMembership,
-                 clock: Callable[[], datetime] | None = None, policy: SamplingPolicy | None = None):
+                 clock: Callable[[], datetime] | None = None, policy: SamplingPolicy | None = None,
+                 admission: AdmissionPolicy | None = None):
         self.path = Path(path)
         self.session_date = session_date
         self.baseline = baseline
         self.policy = policy
-        self.identity = baseline_payload(session_date, baseline, policy)
+        self.admission = admission
+        self.identity = baseline_payload(session_date, baseline, policy, admission)
         self.clock = clock or (lambda: datetime.now(timezone.utc))
 
     def initialize(self) -> None:
@@ -68,7 +71,7 @@ class SamplingRequestStore:
                     UNIQUE(actor_id, kind, command_id))""")
 
     def _check_configuration(self) -> None:
-        if baseline_payload(self.session_date, self.baseline, self.policy) != self.identity:
+        if baseline_payload(self.session_date, self.baseline, self.policy, self.admission) != self.identity:
             raise ValueError("Request store configuration changed after construction")
 
     def _read(self, connection: sqlite3.Connection) -> tuple[RequestEvent, ...]:
@@ -79,7 +82,7 @@ class SamplingRequestStore:
         events = tuple(RequestEvent(r[0], r[1], r[2], r[3], json.loads(r[4]), timestamp(r[5]),
                                     bool(r[6]), r[7], r[8], r[9]) for r in connection.execute(
                                         "SELECT * FROM request_event ORDER BY sequence"))
-        replay_requests(self.session_date, self.baseline, events, policy=self.policy)
+        replay_requests(self.session_date, self.baseline, events, policy=self.policy, admission=self.admission)
         return events
 
     def events(self) -> tuple[RequestEvent, ...]:
@@ -87,10 +90,10 @@ class SamplingRequestStore:
             return self._read(connection)
 
     def states(self):
-        return replay_requests(self.session_date, self.baseline, self.events(), policy=self.policy)
+        return replay_requests(self.session_date, self.baseline, self.events(), policy=self.policy, admission=self.admission)
 
     def submit_request(self, intent: ProducerIntent, *, actor_id: str) -> RecordedCommand:
-        return self._record(intent.intent_id, "request", actor_id, request_payload(intent))
+        return self._record(intent.intent_id, "request", actor_id, request_payload(intent, allow_uni=self.admission is not None))
 
     def cancel_request(self, cancellation_id: str, *, owner_id: str, request_id: str,
                        actor_id: str, reason: str | None = None) -> RecordedCommand:
@@ -146,19 +149,22 @@ class SamplingRequestStore:
                         return RecordedCommand(previous, False)
                 now = self.clock()
                 require_aware(now, "receipt clock")
-                state = replay_requests(self.session_date, self.baseline, events, policy=self.policy)[-1]
+                state = replay_requests(self.session_date, self.baseline, events, policy=self.policy, admission=self.admission)[-1]
                 if state.as_of is not None and now < state.as_of:
                     raise ValueError("Request receipt clock moved backwards")
                 requests = {(e.payload["producer_id"], e.payload["intent_id"]): e.payload
                             for e in events if e.accepted and e.kind == "request"}
                 rejection = admission_reason(kind, actor_id, payload, at=now, session=self.session_date,
                                              baseline=self.baseline, requests=requests, policy=self.policy,
-                                             restrictions=restriction_heads(events))
+                                             restrictions=restriction_heads(events), admission=self.admission,
+                                             admitted_symbols=frozenset(r["symbol"] for r in state.session_additions),
+                                             cancelled_requests=frozenset((e.payload["owner_id"], e.payload["request_id"])
+                                                 for e in events if e.accepted and e.kind == "cancel"))
                 event = RequestEvent(state.sequence + 1, command_id, kind, actor_id, payload, now,
                                      rejection is None, rejection, state.event_sha256, "")
                 event = replace(event, event_sha256=digest(event.hash_payload()))
                 # Never commit a receipt that cannot reconstruct its policy state.
-                replay_requests(self.session_date, self.baseline, events + (event,), policy=self.policy)
+                replay_requests(self.session_date, self.baseline, events + (event,), policy=self.policy, admission=self.admission)
                 connection.execute("INSERT INTO request_event VALUES (?,?,?,?,?,?,?,?,?,?)",
                                    (event.sequence, command_id, kind, actor_id, canonical(payload), utc_text(now),
                                     int(event.accepted), rejection, event.previous_sha256, event.event_sha256))

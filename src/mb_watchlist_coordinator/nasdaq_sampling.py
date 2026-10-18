@@ -172,7 +172,7 @@ def _reduce(identity, receipts):
                 status = "outside_halt_window"
             elif record["reason_code"] not in settings["reason_codes"]:
                 status = "reason_not_selected"
-            elif record["symbol"] not in baseline["uni"]:
+            elif record["symbol"] not in baseline["uni"] and "admission" not in identity["request_identity"]:
                 status = "outside_fixed_uni"
             else:
                 status = "request_queued"

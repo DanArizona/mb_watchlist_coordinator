@@ -29,7 +29,9 @@ SOURCE = "synthetic_policy_clock_fixture"
 
 class PolicyClock:
     def __init__(self):
-        self.start = (datetime.now(timezone.utc) + timedelta(minutes=10)).replace(microsecond=0)
+        # A logical daytime fixture remains valid near actual ET midnight.
+        self.start = (datetime.now(ZoneInfo("America/New_York")) + timedelta(days=1)).replace(
+            hour=10, minute=0, second=0, microsecond=0).astimezone(timezone.utc)
         self.value = self.start
 
     def at(self, seconds):

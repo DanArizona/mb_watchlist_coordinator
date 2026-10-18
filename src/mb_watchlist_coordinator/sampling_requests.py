@@ -19,6 +19,7 @@ from typing import Any
 from .models import IntentType, ProducerIntent
 from .sampling_projection import SamplingMembership, require_aware
 from .sampling_policy import SamplingPolicy, apply_policy
+from .sampling_admission import AdmissionPolicy
 from .session import session_expiration, session_start
 
 
@@ -70,7 +71,8 @@ def membership_payload(value: SamplingMembership) -> dict:
     return {c: sorted(getattr(value, c)) for c in ("uni", "focus", "hot")}
 
 
-def baseline_payload(session: date, baseline: SamplingMembership, policy: SamplingPolicy | None = None) -> dict:
+def baseline_payload(session: date, baseline: SamplingMembership, policy: SamplingPolicy | None = None,
+                     admission: AdmissionPolicy | None = None) -> dict:
     if isinstance(session, datetime) or not isinstance(session, date):
         raise ValueError("session must be a date")
     value = {"contract": CONTRACT, "session_date": session.isoformat(),
@@ -82,10 +84,12 @@ def baseline_payload(session: date, baseline: SamplingMembership, policy: Sampli
             except OverflowError as exc:
                 raise ValueError("Policy duration exceeds the session's supported datetime range") from exc
         value.update(contract="source-owned-sampling-policy-v1", policy=policy.payload())
+    if admission is not None:
+        value.update(contract="source-owned-sampling-admission-v1", admission=admission.payload())
     return value
 
 
-def request_payload(intent: ProducerIntent) -> dict:
+def request_payload(intent: ProducerIntent, *, allow_uni: bool = False) -> dict:
     identifier(intent.intent_id, "intent_id")
     identifier(intent.producer_id, "producer_id")
     if intent.intent_type != IntentType.ENSURE_PRESENT:
@@ -96,8 +100,8 @@ def request_payload(intent: ProducerIntent) -> dict:
         raise ValueError("A request must contain symbols")
     # Reuse the canonical-symbol/nesting validation without importing market data.
     members = SamplingMembership(intent.symbols, frozenset(), frozenset())
-    if intent.metadata.get("sampling_channel") not in ("focus", "hot"):
-        raise ValueError("sampling_channel must be focus or hot")
+    if intent.metadata.get("sampling_channel") not in (("uni", "focus", "hot") if allow_uni else ("focus", "hot")):
+        raise ValueError("Unsupported sampling_channel for this ledger")
     created = utc_text(intent.created_at)
     effective = utc_text(intent.effective_from) if intent.effective_from is not None else None
     expires = utc_text(intent.expires_at) if intent.expires_at is not None else None
@@ -147,7 +151,9 @@ class RequestEvent:
 def admission_reason(kind: str, actor: str, payload: Mapping, *, at: datetime,
                      session: date, baseline: SamplingMembership,
                      requests: Mapping, policy: SamplingPolicy | None = None,
-                     restrictions: Mapping | None = None) -> str | None:
+                     restrictions: Mapping | None = None, admission: AdmissionPolicy | None = None,
+                     admitted_symbols: frozenset[str] = frozenset(),
+                     cancelled_requests: frozenset = frozenset()) -> str | None:
     if kind == "tick":
         return None if actor == "__coordinator__" and not payload else "invalid_clock_command"
     if kind == "request":
@@ -155,7 +161,7 @@ def admission_reason(kind: str, actor: str, payload: Mapping, *, at: datetime,
             return "actor_does_not_own_request"
         if payload["metadata"].get("session_date") != session.isoformat():
             return "session_mismatch"
-        if not set(payload["symbols"]) <= baseline.uni:
+        if admission is None and not set(payload["symbols"]) <= baseline.uni:
             return "outside_fixed_uni"
         if timestamp(payload["created_at_utc"]) > at:
             return "creation_after_receipt"
@@ -163,6 +169,21 @@ def admission_reason(kind: str, actor: str, payload: Mapping, *, at: datetime,
             return "outside_session"
         if payload["expires_at_utc"] is not None and timestamp(payload["expires_at_utc"]) <= at:
             return "request_already_expired"
+        if admission is not None:
+            if actor not in admission.allowed_sources:
+                return "source_not_permitted"
+            extra = set(payload["symbols"]) - baseline.uni
+            if not extra <= admission.catalog_symbols:
+                return "symbol_not_in_admission_catalog"
+            reserved = set(admitted_symbols)
+            for key, request in requests.items():
+                end = min(timestamp(request["expires_at_utc"]) if request["expires_at_utc"]
+                          else session_expiration(session), session_expiration(session))
+                start = timestamp(request["effective_from_utc"] or request["created_at_utc"])
+                if key not in cancelled_requests and at < end and start < end:
+                    reserved.update(set(request["symbols"]) - baseline.uni)
+            if len(reserved | extra) > admission.max_additional_symbols:
+                return "session_admission_capacity"
         return None
     if kind == "cancel":
         if actor != payload["owner_id"]:
@@ -176,7 +197,10 @@ def admission_reason(kind: str, actor: str, payload: Mapping, *, at: datetime,
         if actor != policy.super_user_id:
             return "not_restriction_authority"
         if payload["symbol"] not in baseline.uni:
-            return "outside_fixed_uni"
+            if admission is None:
+                return "outside_fixed_uni"
+            if payload["symbol"] not in admission.catalog_symbols:
+                return "symbol_not_in_admission_catalog"
         if kind == "restrict":
             if not session_start(session) <= at < session_expiration(session):
                 return "outside_session"
@@ -208,6 +232,8 @@ class RequestState:
     active_restrictions: tuple[Mapping, ...] = ()
     demotion_holds: tuple[Mapping, ...] = ()
     policy: Mapping | None = None
+    admission: Mapping | None = None
+    session_additions: tuple[Mapping, ...] = ()
 
     @property
     def applied(self) -> SamplingMembership:
@@ -215,11 +241,12 @@ class RequestState:
         return self.retained
 
     def reasons_for(self, symbol: str, channel: str) -> tuple[tuple[str, str], ...]:
-        if channel not in ("focus", "hot"):
-            raise ValueError("channel must be focus or hot")
+        if channel not in ("uni", "focus", "hot"):
+            raise ValueError("channel must be uni, focus or hot")
         return tuple((r["producer_id"], r["intent_id"]) for r in self.active_requests
                      if symbol in r["symbols"] and
-                     (channel == "focus" or r["sampling_channel"] == "hot"))
+                     (channel == "uni" or r["sampling_channel"] == "hot"
+                      or channel == "focus" and r["sampling_channel"] == "focus"))
 
     def payload(self) -> dict:
         value = {"sequence": self.sequence, "event_sha256": self.event_sha256,
@@ -236,6 +263,8 @@ class RequestState:
                          unrestricted_desired=membership_payload(self.unrestricted_desired),
                          active_restrictions=plain(self.active_restrictions),
                          demotion_holds=plain(self.demotion_holds))
+        if self.admission is not None:
+            value.update(admission=plain(self.admission), session_additions=plain(self.session_additions))
         return value
 
 
@@ -253,22 +282,26 @@ def restriction_heads(events: tuple[RequestEvent, ...]) -> dict:
 
 
 def replay_requests(session: date, baseline: SamplingMembership,
-                    events: tuple[RequestEvent, ...], *, policy: SamplingPolicy | None = None) -> tuple[RequestState, ...]:
+                    events: tuple[RequestEvent, ...], *, policy: SamplingPolicy | None = None,
+                    admission: AdmissionPolicy | None = None) -> tuple[RequestState, ...]:
     """Replay every receipt, including rejected commands and explicit clock ticks.
 
     Reading alone never advances time. Expiry is evaluated at durable receipt or
     tick timestamps, preserving the same decision on restart and replay.
     """
-    seed = digest(baseline_payload(session, baseline, policy))
+    seed = digest(baseline_payload(session, baseline, policy, admission))
     config = freeze(policy.payload()) if policy is not None else None
+    admission_config = freeze(admission.payload()) if admission is not None else None
     states = [RequestState(0, seed, None, baseline, baseline, (), (), (), 0,
-                           baseline if policy is not None else None, policy=config)]
+                           baseline if policy is not None else None, policy=config, admission=admission_config)]
     requests: dict[tuple[str, str], Mapping] = {}
     cancelled = set()
     commands = set()
     restrictions = {}
     entered = {(c, s): session_start(session) for c in ("focus", "hot") for s in getattr(baseline, c)}
     missing = {}
+    admitted = {}
+    request_receipts = {}
     for event in events:
         previous = states[-1]
         if event.sequence != previous.sequence + 1 or event.previous_sha256 != previous.event_sha256:
@@ -283,11 +316,13 @@ def replay_requests(session: date, baseline: SamplingMembership,
         commands.add(key)
         reason = admission_reason(event.kind, event.actor_id, event.payload, at=event.recorded_at,
                                   session=session, baseline=baseline, requests=requests,
-                                  policy=policy, restrictions=restrictions)
+                                  policy=policy, restrictions=restrictions, admission=admission,
+                                  admitted_symbols=frozenset(admitted), cancelled_requests=frozenset(cancelled))
         if event.accepted != (reason is None) or event.rejection_reason != reason:
             raise ValueError("Stored admission outcome differs from replay")
         if event.accepted and event.kind == "request":
             requests[(event.payload["producer_id"], event.payload["intent_id"])] = event.payload
+            request_receipts[(event.payload["producer_id"], event.payload["intent_id"])] = event.event_sha256
         if event.accepted and event.kind == "cancel":
             cancelled.add((event.payload["owner_id"], event.payload["request_id"]))
         if event.accepted and event.kind == "restrict":
@@ -303,12 +338,20 @@ def replay_requests(session: date, baseline: SamplingMembership,
                 active.append(r)
         focus, hot = set(baseline.focus), set(baseline.hot)
         for r in active:
-            focus.update(r["symbols"])
+            if admission is not None:
+                for symbol in sorted(set(r["symbols"]) - baseline.uni):
+                    admitted.setdefault(symbol, freeze({"symbol": symbol,
+                        "admitted_at_utc": utc_text(event.recorded_at),
+                        "producer_id": r["producer_id"], "request_id": r["intent_id"],
+                        "request_event_sha256": request_receipts[(r["producer_id"], r["intent_id"])]}))
+            if r["sampling_channel"] in ("focus", "hot"):
+                focus.update(r["symbols"])
             if r["sampling_channel"] == "hot":
                 hot.update(r["symbols"])
-        desired = SamplingMembership(baseline.uni, frozenset(focus), frozenset(hot))
+        uni = baseline.uni | frozenset(admitted)
+        desired = SamplingMembership(uni, frozenset(focus), frozenset(hot))
         unrestricted = desired
-        retained = SamplingMembership(baseline.uni, previous.retained.focus | desired.focus,
+        retained = SamplingMembership(uni, previous.retained.focus | desired.focus,
                                        previous.retained.hot | desired.hot)
         active_restrictions = tuple(r for _, r in sorted(restrictions.items())
                                     if event.recorded_at < timestamp(r["expires_at_utc"]))
@@ -322,5 +365,6 @@ def replay_requests(session: date, baseline: SamplingMembership,
                                    tuple(sorted(retained.hot - desired.hot)),
                                    previous.rejected_count + int(not event.accepted),
                                    unrestricted if policy is not None else None,
-                                   active_restrictions, tuple(freeze(h) for h in holds), config))
+                                   active_restrictions, tuple(freeze(h) for h in holds), config,
+                                   admission_config, tuple(admitted[s] for s in sorted(admitted))))
     return tuple(states)

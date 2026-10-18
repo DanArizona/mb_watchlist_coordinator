@@ -182,7 +182,8 @@ class SamplingPublicationService:
             anchor = json.loads(row[1])
             rows = list(c.execute("SELECT * FROM publication_event ORDER BY sequence"))
         events = self.requests.events()
-        states = replay_requests(self.requests.session_date, self.requests.baseline, events, policy=self.requests.policy)
+        states = replay_requests(self.requests.session_date, self.requests.baseline, events, policy=self.requests.policy,
+                                 admission=self.requests.admission)
         previous = digest({"identity": self.identity, "anchor": anchor})
         outcomes, pending, acknowledgements, processed = [], None, [], 0
         last_time = None

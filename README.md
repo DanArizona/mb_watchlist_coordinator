@@ -5,10 +5,24 @@ Authoritative Watchlist coordination and adapter-reconciliation logic for the Ma
 > **Development status:** Work in progress / proof of concept.
 > The core coordination, lifecycle, reconciliation, transaction, verification, and ThinkOrSwim planning models are implemented and tested. Live ThinkOrSwim execution currently lives outside this package, primarily in `schwab_watchlists`.
 
+The current [outside-Uni admission review](experiments/sampling_admission_20261017/README.md)
+adds an explicit session admission policy to the common request ledger. Permitted
+Nasdaq, manual and algorithmic sources can request Uni, Focus or Hot for symbols
+outside the opening roster. Opening evidence stays immutable; accepted session
+additions retain Uni after higher-group demand ends. Catalog identity, source
+permissions, capacity reservations and retention are bound to the ledger.
+Run `01_run_sampling_admission.cmd` from this review bundle for 40 focused tests,
+a labeled synthetic Nasdaq trace and a bounded four-process acquisition proof.
+All quotes are synthetic; live catalog/broker resolution, measured capacity and
+production installation remain pending. MasterBot Windows acceptance is pending.
+Earlier accepted ZIPs remain frozen; their old runners guard their original source
+versions. Use the current admission runner with this checkout, and the original
+ZIP for a repeat of an earlier review.
+
 The [isolated Hot acquisition review](experiments/hot_acquisition_20261017/README.md)
 connects the accepted publication service to separate Uni/Focus/Hot acquisition
 workers using synthetic quotes, the pinned batch collector and schema-v2 journal.
-Run `01_run_hot_acquisition.cmd` for its 30 tests and bounded four-process proof.
+Its original accepted ZIP runs `01_run_hot_acquisition.cmd` for 30 tests and a bounded four-process proof.
 The market-data extension is staged under this experiment for review; production
 integration and authenticated Hot/provider-capacity validation remain subsequent work.
 MasterBot accepted all 30 tests and the four-process acquisition/recovery proof

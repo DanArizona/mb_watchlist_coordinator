@@ -1,0 +1,15 @@
+Outside-Uni admission proof: PASS
+Opening Uni: AAPL SPY; added MSFT through source-owned requests
+Manual Uni-only -> algorithm Focus -> synthetic halt-source Hot: PASS
+Recorded synthetic Nasdaq adapter -> common admission -> Hot acquisition: PASS (logical clock)
+Independent source withdrawals; last withdrawal demotes higher groups and retains Uni: PASS
+Original opening revision preserved; no pre-admission or pre-receipt observations invented
+Four independent actual-clock processes; complete configured-slot coverage; journal audit: PASS
+Request/publication restart and two identical acquisition-aware journal replays: PASS
+Review catalog/capacity, grace/residence and grids are explicit demonstration settings
+No live feed, API/password, production change or measured provider-capacity claim
+  uni: acquisitions=4; empty skips=0; synthetic batch calls=7
+  focus: acquisitions=5; empty skips=0; synthetic batch calls=5
+  hot: acquisitions=1; empty skips=9; synthetic batch calls=1
+Journal replay SHA-256: a94a4d5b0615d9f67acf17db466b70a413d85da64f39c295a3971a6c7a870961
+Request replay SHA-256: fd08525faf8535030bdf8dfbb7fd84c7bf7775a9cb20c18cf834e96aab5771f4
