@@ -60,10 +60,31 @@ The source inventory is verified before qualification. Preserve the final report
 path and actual CMD prompt return. The command does not install or launch any
 production or experimental live poller.
 
+## Windows acceptance — October 21
+
+The corrected package `coordinator_scaling_20261021_231000_b272a9.zip` is
+MasterBot-accepted for this first offline scaling increment. All 165 checks
+passed in 5.124s, followed by the complete paired benchmark and actual return
+to the sea-green CMD prompt. The original failed attempt remains preserved.
+
+| Events | Old idle cycle (ms) | New idle cycle (ms) | Old state read (ms) | New state read (ms) |
+| ---: | ---: | ---: | ---: | ---: |
+| 11 | 39.047 | 17.776 | 26.337 | 4.706 |
+| 101 | 217.320 | 40.415 | 202.933 | 26.947 |
+| 301 | 659.289 | 98.897 | 598.925 | 78.264 |
+
+All three complete request-state digests, idle decisions, final 532/40/0
+memberships and native cold publication reopens match between old and optimized
+sources. The evidence is the operator-pasted console report, recorded in
+`validation/windows_qualification.json`; the on-host report path and actual
+prompt return are retained there. No unchanged qualification or live trial is
+required to accept this increment. The delivered ZIP remains unchanged.
+
 ## Remaining scope
 
 History still grows and full replay still runs. This removes measured repeated
 work; it does not establish constant-cost replay, full-day real-provider capacity
-or automatic startup/outage halt reconciliation. Native Windows qualification
-is pending for this new increment. Existing accepted runtime packages and source
-pins remain unchanged. Production Hot stays disabled.
+or automatic startup/outage halt reconciliation. Native offline Windows
+qualification is accepted for this increment. Further history-cost work and
+real-provider/production qualification remain pending. Existing accepted runtime
+packages and source pins remain unchanged. Production Hot stays disabled.
