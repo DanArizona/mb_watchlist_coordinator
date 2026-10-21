@@ -1,0 +1,40 @@
+{
+  "baseline": [
+    {
+      "events": 1,
+      "mean_replay_ms": 2.145,
+      "states_digest": "0cbd5b424573f5b44771adb92256386dc7cdfb9544ac18590e477b91fe9429c7"
+    },
+    {
+      "events": 4,
+      "mean_replay_ms": 6.777,
+      "states_digest": "d33f897e06a7a62d8aca318aa070a41dbe1bb85a331a28969075caa6f0c71da8"
+    },
+    {
+      "events": 11,
+      "mean_replay_ms": 17.609,
+      "states_digest": "e7407c99d31d7dba6f7992daea6b97752147d3700a7fbe9384e35c65d2ae4693"
+    }
+  ],
+  "optimized": [
+    {
+      "events": 1,
+      "mean_replay_ms": 1.303,
+      "states_digest": "0cbd5b424573f5b44771adb92256386dc7cdfb9544ac18590e477b91fe9429c7"
+    },
+    {
+      "events": 4,
+      "mean_replay_ms": 2.962,
+      "states_digest": "d33f897e06a7a62d8aca318aa070a41dbe1bb85a331a28969075caa6f0c71da8"
+    },
+    {
+      "events": 11,
+      "mean_replay_ms": 6.331,
+      "states_digest": "e7407c99d31d7dba6f7992daea6b97752147d3700a7fbe9384e35c65d2ae4693"
+    }
+  ],
+  "scope": "Read-only saved experimental request prefixes; 15 warm unprofiled pure replays per size, not live cycles or provider capacity.",
+  "replays_identical": true,
+  "provider_calls": 0,
+  "original_evidence_modified": false
+}

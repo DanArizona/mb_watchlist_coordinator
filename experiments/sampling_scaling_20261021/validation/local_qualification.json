@@ -1,0 +1,131 @@
+{
+  "result": "PASS",
+  "source": "synthetic_only",
+  "network": "denied",
+  "tests": 165,
+  "baseline_commit": "0417b345e2725f4e1e184d3b3202bedb846dbfca",
+  "benchmarks": {
+    "baseline": [
+      {
+        "events": 11,
+        "state_digest": "6a9f61540251c83862fc102ab6b794127028eea2da50626fed267926c6ad1beb",
+        "cold_read_ms": 40.763,
+        "warm_read_mean_ms": 40.144,
+        "pure_replay_mean_ms": 18.756,
+        "idle_cycle_mean_ms": 64.297,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 11,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      },
+      {
+        "events": 101,
+        "state_digest": "757681432b5205250bc1ed0aae9fbb6f805eb6a64e3b00d710a90b80181baf0e",
+        "cold_read_ms": 308.777,
+        "warm_read_mean_ms": 301.586,
+        "pure_replay_mean_ms": 146.419,
+        "idle_cycle_mean_ms": 353.371,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 101,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      },
+      {
+        "events": 301,
+        "state_digest": "477ea8703004bd2ecdd26b7d8cb9f1024e3d8feb3bdc1878ce8ff790aa7e1d71",
+        "cold_read_ms": 946.028,
+        "warm_read_mean_ms": 972.076,
+        "pure_replay_mean_ms": 511.317,
+        "idle_cycle_mean_ms": 996.012,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 301,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      }
+    ],
+    "optimized": [
+      {
+        "events": 11,
+        "state_digest": "6a9f61540251c83862fc102ab6b794127028eea2da50626fed267926c6ad1beb",
+        "cold_read_ms": 9.597,
+        "warm_read_mean_ms": 7.9,
+        "pure_replay_mean_ms": 6.314,
+        "idle_cycle_mean_ms": 26.043,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 11,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      },
+      {
+        "events": 101,
+        "state_digest": "757681432b5205250bc1ed0aae9fbb6f805eb6a64e3b00d710a90b80181baf0e",
+        "cold_read_ms": 46.488,
+        "warm_read_mean_ms": 43.641,
+        "pure_replay_mean_ms": 40.855,
+        "idle_cycle_mean_ms": 64.431,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 101,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      },
+      {
+        "events": 301,
+        "state_digest": "477ea8703004bd2ecdd26b7d8cb9f1024e3d8feb3bdc1878ce8ff790aa7e1d71",
+        "cold_read_ms": 139.872,
+        "warm_read_mean_ms": 125.379,
+        "pure_replay_mean_ms": 123.865,
+        "idle_cycle_mean_ms": 147.329,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 301,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      }
+    ]
+  },
+  "replay_and_decisions_identical": true,
+  "scope": "Logical 531-member history sizes, five measured calls per size; not elapsed market/full-day capacity.",
+  "integrity": "Every history read still fully validates; bounded cache stores only short built-in string predicates.",
+  "remaining": "Full history is still replayed; history growth and real-provider production qualification remain pending."
+}

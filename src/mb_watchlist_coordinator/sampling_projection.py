@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime
+from functools import lru_cache
 
 from .lifecycle import select_effective_intents
 from .models import IntentType, ProducerIntent
@@ -19,12 +20,25 @@ def require_aware(value: datetime, name: str) -> None:
         raise ValueError(f"{name} must be a timezone-aware datetime")
 
 
+def _canonical_symbol(value: str) -> bool:
+    return (isinstance(value, str) and bool(value) and value == value.strip().upper()
+            and not any(c.isspace() or c == ',' for c in value))
+
+
+@lru_cache(maxsize=4096)
+def _canonical_text(value: str) -> bool:
+    """Memoize only short, exact built-in strings; never ledger/state validity."""
+    return _canonical_symbol(value)
+
+
 def _symbols(value: frozenset[str], name: str) -> frozenset[str]:
     if isinstance(value, str):
         raise ValueError(f"{name} must be a collection of symbols")
     result = frozenset(value)
-    if any(not isinstance(s, str) or not s or s != s.strip().upper()
-           or any(c.isspace() or c == ',' for c in s) for s in result):
+    # Subclasses may override string methods; long strings remain supported but
+    # do not occupy the bounded cache. Membership nesting is checked every time.
+    if any(not (_canonical_text(s) if type(s) is str and len(s) <= 64
+                else _canonical_symbol(s)) for s in result):
         raise ValueError(f"{name} must contain canonical uppercase symbols")
     return result
 

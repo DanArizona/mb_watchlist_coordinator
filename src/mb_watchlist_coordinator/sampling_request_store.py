@@ -20,7 +20,7 @@ from .sampling_policy import SamplingPolicy
 from .sampling_admission import AdmissionPolicy
 from .session import session_expiration
 from .sampling_requests import (
-    RequestEvent, admission_reason, baseline_payload, canonical, digest,
+    RequestEvent, RequestState, admission_reason, baseline_payload, canonical, digest,
     identifier, replay_requests, request_payload, restriction_heads, timestamp, utc_text,
 )
 
@@ -74,7 +74,7 @@ class SamplingRequestStore:
         if baseline_payload(self.session_date, self.baseline, self.policy, self.admission) != self.identity:
             raise ValueError("Request store configuration changed after construction")
 
-    def _read(self, connection: sqlite3.Connection) -> tuple[RequestEvent, ...]:
+    def _read_history(self, connection: sqlite3.Connection) -> tuple[tuple[RequestEvent, ...], tuple[RequestState, ...]]:
         self._check_configuration()
         row = connection.execute("SELECT payload FROM request_identity WHERE id=1").fetchone()
         if row is None or row[0] != canonical(self.identity):
@@ -82,15 +82,26 @@ class SamplingRequestStore:
         events = tuple(RequestEvent(r[0], r[1], r[2], r[3], json.loads(r[4]), timestamp(r[5]),
                                     bool(r[6]), r[7], r[8], r[9]) for r in connection.execute(
                                         "SELECT * FROM request_event ORDER BY sequence"))
-        replay_requests(self.session_date, self.baseline, events, policy=self.policy, admission=self.admission)
-        return events
+        states = replay_requests(self.session_date, self.baseline, events, policy=self.policy, admission=self.admission)
+        return events, states
+
+    def _read(self, connection: sqlite3.Connection) -> tuple[RequestEvent, ...]:
+        return self._read_history(connection)[0]
+
+    def validated_history(self) -> tuple[tuple[RequestEvent, ...], tuple[RequestState, ...]]:
+        """Read and fully replay one current prefix, without retaining a cache.
+
+        Callers may reuse these states for this read. A later read always checks
+        configuration, identity, every event hash and every admission outcome.
+        """
+        with closing(sqlite3.connect(self.path.resolve().as_uri() + "?mode=ro", uri=True)) as connection:
+            return self._read_history(connection)
 
     def events(self) -> tuple[RequestEvent, ...]:
-        with closing(sqlite3.connect(self.path.resolve().as_uri() + "?mode=ro", uri=True)) as connection:
-            return self._read(connection)
+        return self.validated_history()[0]
 
     def states(self):
-        return replay_requests(self.session_date, self.baseline, self.events(), policy=self.policy, admission=self.admission)
+        return self.validated_history()[1]
 
     def submit_request(self, intent: ProducerIntent, *, actor_id: str) -> RecordedCommand:
         return self._record(intent.intent_id, "request", actor_id, request_payload(intent, allow_uni=self.admission is not None))
@@ -141,7 +152,7 @@ class SamplingRequestStore:
         with closing(sqlite3.connect(self.path, timeout=5)) as connection:
             with connection:
                 connection.execute("BEGIN IMMEDIATE")
-                events = self._read(connection)
+                events, states = self._read_history(connection)
                 for previous in events:
                     if (previous.actor_id, previous.kind, previous.command_id) == (actor_id, kind, command_id):
                         if canonical(previous.command_payload()) != canonical(command):
@@ -149,7 +160,7 @@ class SamplingRequestStore:
                         return RecordedCommand(previous, False)
                 now = self.clock()
                 require_aware(now, "receipt clock")
-                state = replay_requests(self.session_date, self.baseline, events, policy=self.policy, admission=self.admission)[-1]
+                state = states[-1]
                 if state.as_of is not None and now < state.as_of:
                     raise ValueError("Request receipt clock moved backwards")
                 requests = {(e.payload["producer_id"], e.payload["intent_id"]): e.payload
