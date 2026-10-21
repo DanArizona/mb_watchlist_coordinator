@@ -4,6 +4,7 @@ from __future__ import annotations
 import sqlite3
 import tempfile
 import unittest
+from contextlib import closing
 from dataclasses import replace
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -81,10 +82,34 @@ class VerifiedHistoryTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
+        # Retain every handle so collection cannot hide a missing close on Unix.
+        self.connections = []
+        connect = sqlite3.connect
+        class TrackedConnection(sqlite3.Connection):
+            closed = False
+            def close(self):
+                super().close()
+                self.closed = True
+        def tracked_connect(*args, **kwargs):
+            connection = connect(*args, factory=TrackedConnection, **kwargs)
+            self.connections.append(connection)
+            return connection
+        self.addCleanup(self.assert_connections_closed)
+        patcher = patch('sqlite3.connect', side_effect=tracked_connect)
+        patcher.start()
+        self.addCleanup(patcher.stop)
         self.path = Path(self.temp.name) / 'requests.sqlite3'
         self.store = self.reopen()
         self.store.initialize()
         self.submit('hot-msft', 'MSFT')
+
+    def assert_connections_closed(self):
+        unclosed = [connection for connection in self.connections if not connection.closed]
+        try:
+            self.assertFalse(unclosed, 'SQLite handles must close before temporary-directory cleanup')
+        finally:
+            for connection in unclosed:
+                connection.close()
 
     def reopen(self):
         return SamplingRequestStore(self.path, session_date=date(2026, 10, 22),
@@ -116,7 +141,7 @@ class VerifiedHistoryTests(unittest.TestCase):
 
     def test_warm_read_does_not_hide_hash_corruption(self):
         self.store.validated_history()
-        with sqlite3.connect(self.path) as c:
+        with closing(sqlite3.connect(self.path)) as c, c:
             c.execute("UPDATE request_event SET actor_id='forged' WHERE sequence=1")
         with self.assertRaisesRegex(ValueError, 'hash'):
             self.store.validated_history()
@@ -125,7 +150,7 @@ class VerifiedHistoryTests(unittest.TestCase):
         events, _ = self.store.validated_history()
         forged = replace(events[0], accepted=False, rejection_reason='forged', event_sha256='')
         forged = replace(forged, event_sha256=digest(forged.hash_payload()))
-        with sqlite3.connect(self.path) as c:
+        with closing(sqlite3.connect(self.path)) as c, c:
             c.execute('UPDATE request_event SET accepted=0,rejection_reason=?,event_sha256=? WHERE sequence=1',
                       (forged.rejection_reason, forged.event_sha256))
         with self.assertRaisesRegex(ValueError, 'admission outcome'):

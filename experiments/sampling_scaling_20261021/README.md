@@ -44,6 +44,15 @@ and replay equivalence determine qualification. Source-tree report:
 
 ## Windows handoff
 
+The original package `coordinator_scaling_20261021_211638_62f0a8` stopped after
+165 tests with two Windows temporary-database cleanup errors (WinError 32).
+Two new corruption tests committed edits but left their SQLite handles open.
+This revision explicitly closes those handles and the two benchmark setup
+connections. Each verified-history test also retains and checks every opened
+handle, so garbage collection cannot hide an omitted close on Unix. Corruption
+rejection assertions and all Coordinator implementation files are unchanged.
+The original Windows attempt remains failed; its benchmark did not run.
+
 Use the complete uniquely named `coordinator_scaling_...zip`, extract beneath
 mb_market_data/output, then run its `26_verify_coordinator_scaling.cmd` from an
 idle sea-green CMD. No password, network, production journal or provider call.

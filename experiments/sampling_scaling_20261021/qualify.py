@@ -14,6 +14,7 @@ import tempfile
 import time
 import unittest
 import uuid
+from contextlib import closing
 from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -107,7 +108,7 @@ def fixture(path):
         inserts.append((sequence, event.command_id, event.kind, event.actor_id,
                         canonical(event.payload), utc_text(at), 1, None,
                         event.previous_sha256, event.event_sha256))
-    with sqlite3.connect(path) as c:
+    with closing(sqlite3.connect(path)) as c, c:
         c.executemany('INSERT INTO request_event VALUES (?,?,?,?,?,?,?,?,?,?)', inserts)
     assert len(store.events()) == 301
 
@@ -131,7 +132,7 @@ def worker(source, payload):
         folder.mkdir()
         path = folder / 'requests.sqlite3'
         shutil.copyfile(payload['fixture'], path)
-        with sqlite3.connect(path) as c:
+        with closing(sqlite3.connect(path)) as c, c:
             c.execute('DELETE FROM request_event WHERE sequence > ?', (prefix,))
             identity = json.loads(c.execute('SELECT payload FROM request_identity').fetchone()[0])
         baseline = SamplingMembership(**{k: frozenset(v) for k, v in identity['baseline'].items()})

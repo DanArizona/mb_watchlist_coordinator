@@ -1,0 +1,131 @@
+{
+  "result": "PASS",
+  "source": "synthetic_only",
+  "network": "denied",
+  "tests": 165,
+  "baseline_commit": "0417b345e2725f4e1e184d3b3202bedb846dbfca",
+  "benchmarks": {
+    "baseline": [
+      {
+        "events": 11,
+        "state_digest": "d8ca4ea770e99fa6ba9babf62e2203e6ffc8af459f7dc0ba2e8358f4603a8c84",
+        "cold_read_ms": 35.652,
+        "warm_read_mean_ms": 30.5,
+        "pure_replay_mean_ms": 14.748,
+        "idle_cycle_mean_ms": 44.23,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 11,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      },
+      {
+        "events": 101,
+        "state_digest": "1468a1022b27970848faf3785692ad15ac8ff31d9ce12585db4ab9e6fdebec0e",
+        "cold_read_ms": 234.917,
+        "warm_read_mean_ms": 272.448,
+        "pure_replay_mean_ms": 134.388,
+        "idle_cycle_mean_ms": 276.538,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 101,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      },
+      {
+        "events": 301,
+        "state_digest": "062d6d5543ab0528bf78d6cadf161678a383f2537cd06be90cde0422b960d983",
+        "cold_read_ms": 723.258,
+        "warm_read_mean_ms": 729.717,
+        "pure_replay_mean_ms": 381.842,
+        "idle_cycle_mean_ms": 783.494,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 301,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      }
+    ],
+    "optimized": [
+      {
+        "events": 11,
+        "state_digest": "d8ca4ea770e99fa6ba9babf62e2203e6ffc8af459f7dc0ba2e8358f4603a8c84",
+        "cold_read_ms": 6.96,
+        "warm_read_mean_ms": 6.919,
+        "pure_replay_mean_ms": 5.252,
+        "idle_cycle_mean_ms": 22.58,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 11,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      },
+      {
+        "events": 101,
+        "state_digest": "1468a1022b27970848faf3785692ad15ac8ff31d9ce12585db4ab9e6fdebec0e",
+        "cold_read_ms": 41.333,
+        "warm_read_mean_ms": 34.813,
+        "pure_replay_mean_ms": 34.932,
+        "idle_cycle_mean_ms": 53.904,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 101,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      },
+      {
+        "events": 301,
+        "state_digest": "062d6d5543ab0528bf78d6cadf161678a383f2537cd06be90cde0422b960d983",
+        "cold_read_ms": 104.056,
+        "warm_read_mean_ms": 92.347,
+        "pure_replay_mean_ms": 90.242,
+        "idle_cycle_mean_ms": 105.788,
+        "decision": {
+          "status": "idle",
+          "processed_sequence": 301,
+          "next_at_utc": null
+        },
+        "final_membership": {
+          "uni": 532,
+          "focus": 40,
+          "hot": 0
+        },
+        "cold_publication_reopen_identical": true
+      }
+    ]
+  },
+  "replay_and_decisions_identical": true,
+  "scope": "Logical 531-member history sizes, five measured calls per size; not elapsed market/full-day capacity.",
+  "integrity": "Every history read still fully validates; bounded cache stores only short built-in string predicates.",
+  "remaining": "Full history is still replayed; history growth and real-provider production qualification remain pending."
+}
