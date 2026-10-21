@@ -290,6 +290,29 @@ def replay_requests(session: date, baseline: SamplingMembership,
     tick timestamps, preserving the same decision on restart and replay.
     """
     seed = digest(baseline_payload(session, baseline, policy, admission))
+    # Replay-local values only: never retain a verified event/database prefix.
+    # Copy/validate the immutable baseline before reusing it; string subclasses
+    # can change their methods and must retain per-construction validation.
+    reuse = bool(events) and type(baseline) is SamplingMembership and all(
+        type(getattr(baseline, c)) is frozenset and
+        all(type(symbol) is str for symbol in getattr(baseline, c))
+        for c in ("uni", "focus", "hot"))
+    if reuse:
+        baseline = SamplingMembership(baseline.uni, baseline.focus, baseline.hot)
+
+    def membership(uni, focus, hot, *candidates):
+        nonlocal reuse
+        if reuse:
+            for candidate in candidates:
+                if candidate is not None and (uni, focus, hot) == (candidate.uni, candidate.focus, candidate.hot):
+                    return candidate
+        value = SamplingMembership(uni, focus, hot)
+        # Ordinary RequestEvent payloads contain JSON-native strings. Keep the
+        # original slow path even for unusual directly supplied mutable tokens.
+        if reuse and any(type(s) is not str for c in ("uni", "focus", "hot") for s in getattr(value, c)):
+            reuse = False
+        return value
+
     config = freeze(policy.payload()) if policy is not None else None
     admission_config = freeze(admission.payload()) if admission is not None else None
     states = [RequestState(0, seed, None, baseline, baseline, (), (), (), 0,
@@ -336,6 +359,8 @@ def replay_requests(session: date, baseline: SamplingMembership,
                       session_expiration(session))
             if request_key not in cancelled and start <= event.recorded_at < end:
                 active.append(r)
+        if reuse and any(type(symbol) is not str for r in active for symbol in r["symbols"]):
+            reuse = False
         focus, hot = set(baseline.focus), set(baseline.hot)
         for r in active:
             if admission is not None:
@@ -349,16 +374,19 @@ def replay_requests(session: date, baseline: SamplingMembership,
             if r["sampling_channel"] == "hot":
                 hot.update(r["symbols"])
         uni = baseline.uni | frozenset(admitted)
-        desired = SamplingMembership(uni, frozenset(focus), frozenset(hot))
+        desired = membership(uni, frozenset(focus), frozenset(hot),
+                             previous.unrestricted_desired, previous.desired)
         unrestricted = desired
-        retained = SamplingMembership(uni, previous.retained.focus | desired.focus,
-                                       previous.retained.hot | desired.hot)
         active_restrictions = tuple(r for _, r in sorted(restrictions.items())
                                     if event.recorded_at < timestamp(r["expires_at_utc"]))
         holds = ()
         if policy is not None:
             desired, retained, holds = apply_policy(desired, previous.retained, active_restrictions,
-                at=event.recorded_at, policy=policy, entered=entered, missing=missing)
+                at=event.recorded_at, policy=policy, entered=entered, missing=missing,
+                _membership=membership)
+        else:
+            retained = membership(uni, previous.retained.focus | desired.focus,
+                                  previous.retained.hot | desired.hot, previous.retained, desired)
         states.append(RequestState(event.sequence, event.event_sha256, event.recorded_at,
                                    desired, retained, tuple(active),
                                    tuple(sorted(retained.focus - desired.focus)),

@@ -48,7 +48,7 @@ class SamplingPolicy:
 
 def apply_policy(unrestricted: SamplingMembership, previous: SamplingMembership,
                  restrictions: tuple[Mapping, ...], *, at: datetime, policy: SamplingPolicy,
-                 entered: dict, missing: dict):
+                 entered: dict, missing: dict, _membership=None):
     """Mutate replay-local timers only; receipts and policy fully reconstruct them."""
     desired = {"focus": set(unrestricted.focus), "hot": set(unrestricted.hot)}
     current = {"focus": set(previous.focus) | desired["focus"],
@@ -98,6 +98,10 @@ def apply_policy(unrestricted: SamplingMembership, previous: SamplingMembership,
                           "entered_at_utc": entered[key].astimezone(timezone.utc).isoformat(),
                           "demotion_at_utc": deadline.astimezone(timezone.utc).isoformat(),
                           "held_by": reasons})
-    capped = SamplingMembership(unrestricted.uni, frozenset(desired["focus"]), frozenset(desired["hot"]))
-    applied = SamplingMembership(unrestricted.uni, frozenset(current["focus"]), frozenset(current["hot"]))
+    if _membership is None:
+        capped = SamplingMembership(unrestricted.uni, frozenset(desired["focus"]), frozenset(desired["hot"]))
+        applied = SamplingMembership(unrestricted.uni, frozenset(current["focus"]), frozenset(current["hot"]))
+    else:
+        capped = _membership(unrestricted.uni, frozenset(desired["focus"]), frozenset(desired["hot"]), unrestricted)
+        applied = _membership(unrestricted.uni, frozenset(current["focus"]), frozenset(current["hot"]), previous, capped)
     return capped, applied, tuple(holds)

@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from contextlib import closing
 from dataclasses import replace
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -14,7 +14,9 @@ from mb_watchlist_coordinator.models import IntentType, ProducerIntent
 from mb_watchlist_coordinator import sampling_projection as projection
 from mb_watchlist_coordinator.sampling_projection import SamplingMembership
 from mb_watchlist_coordinator.sampling_request_store import SamplingRequestStore
-from mb_watchlist_coordinator.sampling_requests import digest, replay_requests
+from mb_watchlist_coordinator.sampling_requests import (RequestEvent, baseline_payload, digest,
+                                                       replay_requests, request_payload)
+from mb_watchlist_coordinator.sampling_policy import SamplingPolicy
 
 NOW = datetime(2026, 10, 22, 14, tzinfo=timezone.utc)
 BASELINE = SamplingMembership(frozenset({'AAPL', 'MSFT', 'SPY'}), frozenset({'SPY'}), frozenset())
@@ -166,6 +168,75 @@ class VerifiedHistoryTests(unittest.TestCase):
         self.store.baseline = SamplingMembership({'MSFT'}, set(), set())
         with self.assertRaisesRegex(ValueError, 'configuration changed'):
             self.store.validated_history()
+
+    def test_a_returned_membership_cannot_poison_a_later_read(self):
+        states = self.store.states()
+        expected = [s.payload() for s in states]
+        object.__setattr__(states[-1].retained, 'hot', frozenset({'FORGED'}))
+        self.assertEqual(expected, [s.payload() for s in self.store.states()])
+
+
+class ReplayValueTests(unittest.TestCase):
+    def history(self, *, baseline=BASELINE, policy=None, request=None, ticks=200):
+        previous = digest(baseline_payload(NOW.date(), baseline, policy))
+        events = []
+        for index in range(ticks + int(request is not None)):
+            is_request = request is not None and index == 0
+            event = RequestEvent(index+1, f'command-{index}', 'request' if is_request else 'tick',
+                'manual' if is_request else '__coordinator__', request if is_request else {},
+                NOW + timedelta(seconds=index), True, None, previous, '')
+            event = replace(event, event_sha256=digest(event.hash_payload()))
+            events.append(event)
+            previous = event.event_sha256
+        return tuple(events)
+
+    def test_early_hash_and_sequence_damage_remain_visible_after_quiet_history(self):
+        events = self.history()
+        replay_requests(NOW.date(), BASELINE, events)
+        for damaged in ((replace(events[0], event_sha256='forged'),)+events[1:], events[1:]):
+            with self.subTest(), self.assertRaisesRegex(ValueError, 'hash chain|hash is'):
+                replay_requests(NOW.date(), BASELINE, damaged)
+
+    def test_rehashed_false_tick_admission_is_checked_after_many_equal_states(self):
+        events = self.history()
+        forged = replace(events[-1], actor_id='intruder', event_sha256='')
+        forged = replace(forged, event_sha256=digest(forged.hash_payload()))
+        with self.assertRaisesRegex(ValueError, 'admission outcome'):
+            replay_requests(NOW.date(), BASELINE, events[:-1]+(forged,))
+
+    def test_activation_expiry_and_residence_still_advance_during_quiet_ticks(self):
+        policy = SamplingPolicy('admin', 5, 20, 'immediate_cap')
+        request = request_payload(ProducerIntent('future', 'manual', IntentType.ENSURE_PRESENT,
+            frozenset({'MSFT'}), NOW, effective_from=NOW+timedelta(seconds=100),
+            expires_at=NOW+timedelta(seconds=110),
+            metadata={'sampling_channel':'hot','session_date':NOW.date().isoformat()}))
+        states = replay_requests(NOW.date(), BASELINE, self.history(policy=policy, request=request), policy=policy)
+        by_time = {s.as_of:s for s in states}
+        self.assertFalse(by_time[NOW+timedelta(seconds=99)].applied.hot)
+        self.assertEqual(by_time[NOW+timedelta(seconds=100)].applied.hot, {'MSFT'})
+        self.assertFalse(by_time[NOW+timedelta(seconds=110)].desired.hot)
+        self.assertEqual(by_time[NOW+timedelta(seconds=119)].applied.hot, {'MSFT'})
+        self.assertFalse(by_time[NOW+timedelta(seconds=120)].applied.hot)
+
+    def test_a_tampered_plain_baseline_is_revalidated_before_reuse(self):
+        baseline = SamplingMembership(BASELINE.uni, BASELINE.focus, BASELINE.hot)
+        object.__setattr__(baseline, 'hot', frozenset({'MSFT'}))
+        with self.assertRaisesRegex(ValueError, 'Hot <= Focus <= Uni'):
+            replay_requests(NOW.date(), baseline, self.history())
+
+    def test_mutable_baseline_tokens_keep_per_construction_validation(self):
+        class MutableText(str):
+            valid = True
+            def strip(self):
+                return self
+            def upper(self):
+                return self if self.valid else 'CHANGED'
+        symbol = MutableText('MSFT')
+        baseline = SamplingMembership({symbol}, set(), set())
+        events = self.history(baseline=baseline)
+        symbol.valid = False
+        with self.assertRaisesRegex(ValueError, 'canonical uppercase symbols'):
+            replay_requests(NOW.date(), baseline, events)
 
 
 if __name__ == '__main__':
