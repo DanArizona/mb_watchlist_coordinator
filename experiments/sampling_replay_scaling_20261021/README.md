@@ -68,9 +68,29 @@ sea-green CMD. No password, API, installation, production journal or live poller
 The package verifies its inventory and pins both old and changed source.
 Preserve the final saved report path and actual CMD prompt return.
 
-Native Windows qualification is pending for this second increment. The accepted
-first-increment package and all prior live trials remain unchanged and need no
-repeat. Production cadence and Hot-disabled policy remain unchanged.
+Native Windows qualification of this second increment is now ACCEPTED from
+the complete operator transcript: 171 checks in 5.114s, both paired workloads,
+all six complete replay digests/decisions/memberships/cold reopens matching,
+and actual CMD prompt return. No unchanged qualification rerun is needed.
+The accepted packages and prior live trials remain unchanged. Production cadence
+and Hot-disabled policy remain unchanged.
+
+## Native Windows result
+
+| Workload | Events | Accepted first increment (ms) | Replay-value reuse (ms) |
+| --- | ---: | ---: | ---: |
+| withdrawn_hot | 301 | 89.424 | 27.976 |
+| withdrawn_hot | 1,001 | 266.401 | 54.219 |
+| withdrawn_hot | 3,001 | 828.474 | 131.657 |
+| steady_hot | 301 | 98.390 | 32.899 |
+| steady_hot | 1,001 | 309.284 | 69.167 |
+| steady_hot | 3,001 | 992.792 | 201.429 |
+
+These are three-call means for synthetic logical histories, not elapsed market
+operation or provider capacity. All supplied fields and the on-host report path
+are retained in validation/windows_qualification.json. The original uploaded
+console transcript is identified there; the saved report file itself was not
+uploaded. The delivered ZIP is unchanged.
 
 ## Limits
 
