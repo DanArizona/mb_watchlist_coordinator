@@ -71,14 +71,19 @@ soak, busy-tail, provider capacity, complete recovery fault matrix or production
 adoption is qualified. Shared live/recovery event identity, normal recovered
 Hot request delivery, paced transport and process supervision remain pending.
 
-## Windows operator step
+## Windows affected-path verification accepted
 
-The new handoff has only `31_verify_history_reconstruction.cmd`, for short,
-offline changed-path verification. No password, API or production journal is
-used. Native Windows acceptance is PENDING until the complete console/report
-and actual CMD prompt return are supplied. Do not repeat unchanged commands
-26–28 or 30; command 29 is not requested. New dependency changes require this
-new source-pinned verification; prior Windows acceptance remains historical.
+The complete operator-supplied MasterBot Windows sea-green CMD console confirms
+`31_verify_history_reconstruction.cmd`: 281 tests PASS in
+10.932056899997406 seconds, network denied, production access false, and actual
+CMD prompt return. The reported saved file is
+`runs/verification/20261022T233910Z-e01e2436.json` relative to the handoff;
+that report file was not separately uploaded. See
+`validation/windows_qualification.json` for acceptance and the source pin.
+No unchanged command 31 rerun is required. Earlier accepted commands and the
+original ZIP/delivered README remain historical evidence. This accepts affected
+correctness, not Windows timing, complete recovery, provider capacity or
+production adoption.
 
 ## Results
 
@@ -97,4 +102,4 @@ Idle gate: FAILED (p95 <= 0.5s, maximum <= 1s). Overall qualification remains IN
 
 Extracted final handoff: 281 PASS in 5.844s, with a path containing spaces; altered source refused before tests.
 Delivery: `coordinator_history_reconstruction_20261022_230120_adda03.zip`, 149065 bytes, 55 files, SHA-256 `1bbdf21f1a4526972bbba1f579eaa114c763a078b5d765c93362f1ac817be720`.
-Native Windows command 31 remains PENDING; no production installation is made.
+Native Windows command 31 is ACCEPTED: 281 PASS in 10.932s with actual CMD prompt return; no production installation is made.

@@ -1,0 +1,63 @@
+{
+  "result": "PASS",
+  "qualification": "ACCEPTED_AFFECTED_PATH_WINDOWS_VERIFICATION",
+  "evidence_source": "Complete operator-supplied CMD console; saved report file not independently uploaded",
+  "operator_environment": {
+    "host": "MasterBot",
+    "platform": "Windows",
+    "conda_environment": "sea-green",
+    "shell": "CMD"
+  },
+  "command": "31_verify_history_reconstruction.cmd",
+  "tests": 281,
+  "seconds": 10.932056899997406,
+  "actual_cmd_prompt_return_observed": true,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Changed JSON encoding/read-local reconstruction plus affected request/policy/admission/publication/Nasdaq/native-store tests; not complete recovery or capacity",
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_history_reconstruction",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost",
+    "test_sampling_payload_reader"
+  ],
+  "reported_saved_report_relative_to_handoff": "runs/verification/20261022T233910Z-e01e2436.json",
+  "report_file_uploaded": false,
+  "qualified_public_source_commit": "e64a18d97a94165d04cfdcada396d4e6e82593c7",
+  "delivery": {
+    "folder": "coordinator_history_reconstruction_20261022_230120_adda03",
+    "bytes": 149065,
+    "sha256": "1bbdf21f1a4526972bbba1f579eaa114c763a078b5d765c93362f1ac817be720",
+    "files": 55
+  },
+  "runtime_changes_for_acceptance": false,
+  "repeat_unchanged_command_31_required": false,
+  "unchanged_findings": {
+    "candidate_idle_p95_seconds": 1.118303299001127,
+    "candidate_idle_maximum_seconds": 1.2645057939989783,
+    "performance": "FAILED",
+    "overall_qualification": "INCOMPLETE",
+    "cloud_construction_failure_cause": "UNRESOLVED"
+  },
+  "not_qualified": [
+    "Windows performance/capacity measurement",
+    "Complete recovery or process supervision",
+    "Normal recovered Hot request delivery/publication",
+    "Full-day or real-provider capacity",
+    "Production adoption or Hot activation"
+  ],
+  "next": [
+    "Reduce remaining full validation/binding and request-replay cost",
+    "Implement shared live/recovery event-request identity and normal recovery delivery"
+  ]
+}
