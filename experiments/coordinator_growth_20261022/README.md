@@ -76,7 +76,11 @@ are subsequent implementation work.
 
 The affected local suite covers the new stage/harness plus the existing Nasdaq
 adapter and publication service. Complete run results and measurement findings
-are recorded in `validation/`. Native Windows qualification is pending.
+are recorded in `validation/`. The changed-path suite is now accepted on
+MasterBot Windows: 87 checks passed in 8.311 seconds, with actual CMD prompt
+return. See [the Windows record](validation/windows_qualification.json) and
+[the supplied console](validation/windows_operator_console.txt). This accepts
+command 28 only; complete recovery and native Windows capacity remain pending.
 
 ### First complete cloud result
 
@@ -125,9 +129,15 @@ Its extracted source passes all 87 affected checks in 9.972 seconds locally,
 including a path with spaces; altered inventory is rejected before tests.
 The source-tree run passed those 87 checks in 8.285 seconds.
 
-`28_verify_growth_recovery.cmd` is the next operator check: offline tests only,
-no password/API/production journal. Confirm its report and actual CMD prompt
-return. `29_measure_coordinator_growth.cmd` is the separate long measurement
-entry point; it is not needed for this quick receipt-stage qualification.
+`28_verify_growth_recovery.cmd` is COMPLETE on MasterBot Windows: 87 tests
+passed in 8.311 seconds, network denied, no production access, and the actual
+CMD prompt returned. The operator supplied the complete console; the reported
+JSON file itself was not uploaded. No unchanged repeat is needed.
+
+`29_measure_coordinator_growth.cmd` is the separate long measurement entry
+point. Do not run it unchanged now: the complete cloud fixture has already
+identified a failed idle timing gate. Optimize the measured costs first. This
+Windows verification does not reclassify that failure or qualify complete
+recovery, provider capacity or production adoption.
 The delivered ZIP remains unchanged. Source and delivery/validation records
 are committed on the experimental Coordinator branch; production is unchanged.

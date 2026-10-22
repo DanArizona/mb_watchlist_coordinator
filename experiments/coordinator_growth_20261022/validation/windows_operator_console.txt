@@ -1,0 +1,20 @@
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>powershell -NoProfile -Command "Expand-Archive -LiteralPath 'C:\Users\danla\Downloads\coordinator_growth_20261022_194538_a2fc56.zip' -DestinationPath 'C:\Users\danla\Documents\github\mb_market_data\output' -ErrorAction Stop"
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>call "C:\Users\danla\Documents\github\mb_market_data\output\coordinator_growth_20261022_194538_a2fc56\28_verify_growth_recovery.cmd"
+.......................................................................................
+----------------------------------------------------------------------
+Ran 87 tests in 8.311s
+
+OK
+{
+  "result": "PASS",
+  "tests": 87,
+  "seconds": 8.311348199960776,
+  "network": "denied",
+  "scope": "Changed receipt/harness paths and affected native producer/service tests; not complete recovery or capacity",
+  "production_access": false
+}
+Saved report: C:\Users\danla\Documents\github\mb_market_data\output\coordinator_growth_20261022_194538_a2fc56\runs\verification\20261022T203521Z-eeb6ac91.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>

@@ -1,0 +1,46 @@
+{
+  "result": "PASS",
+  "qualification": "ACCEPTED_CHANGED_PATH_WINDOWS_VERIFICATION",
+  "evidence_source": "Complete operator-supplied console transcript; no independent report-file upload",
+  "operator_environment": {
+    "host": "MasterBot",
+    "platform": "Windows",
+    "conda_environment": "sea-green",
+    "shell": "CMD"
+  },
+  "command": "28_verify_growth_recovery.cmd",
+  "tests": 87,
+  "seconds": 8.311348199960776,
+  "actual_cmd_prompt_return_observed": true,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Changed receipt/harness paths and affected native producer/service tests; not complete recovery or capacity",
+  "reported_saved_report": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\coordinator_growth_20261022_194538_a2fc56\\runs\\verification\\20261022T203521Z-eeb6ac91.json",
+  "report_file_uploaded": false,
+  "delivery": {
+    "archive": "coordinator_growth_20261022_194538_a2fc56.zip",
+    "sha256": "fd6e9795608a23a88c0c8895d972b6d9a0c110b80e3b7744f98e7d26f002802a",
+    "bytes": 110151
+  },
+  "transcript": "windows_operator_console.txt",
+  "transcript_sha256": "9abe5cd9bd4f259df86a4232861a731e27df0ac2a3ab6ee2aa99778c113e4447",
+  "unchanged_findings": {
+    "ordinary_profile_idle_performance": "FAILED",
+    "ordinary_profile_idle_p95_seconds": 4.951636168,
+    "overall_scaling_recovery_qualification": "INCOMPLETE",
+    "first_cloud_construction_failure_cause": "UNRESOLVED"
+  },
+  "not_qualified": [
+    "Command 29 native Windows rich-history measurement",
+    "Complete operational recovery or process supervision",
+    "Normal recovered Hot request delivery/publication",
+    "Full-day or real-provider capacity",
+    "Production adoption or Hot activation"
+  ],
+  "next": [
+    "Optimize measured request replay/publication-history cost while preserving validation",
+    "Implement shared live/recovery event-request identity and normal admission delivery"
+  ],
+  "repeat_unchanged_command_28_required": false,
+  "run_unchanged_command_29_requested": false
+}
