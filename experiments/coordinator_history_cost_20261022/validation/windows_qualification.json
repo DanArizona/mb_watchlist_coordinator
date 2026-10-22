@@ -1,0 +1,63 @@
+{
+  "result": "PASS",
+  "qualification": "ACCEPTED_AFFECTED_PATH_WINDOWS_VERIFICATION",
+  "evidence_source": "Complete operator-supplied console; saved report file not independently uploaded",
+  "operator_environment": {
+    "host": "MasterBot",
+    "platform": "Windows",
+    "conda_environment": "sea-green",
+    "shell": "CMD"
+  },
+  "command": "30_verify_history_cost.cmd",
+  "tests": 264,
+  "seconds": 10.756023699999787,
+  "actual_cmd_prompt_return_observed": true,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Affected request/policy/admission/publication/Nasdaq and native metadata/store tests; not complete recovery or capacity",
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost"
+  ],
+  "reported_saved_report_relative_to_handoff": "runs/verification/20261022T222739Z-dee44c23.json",
+  "report_file_uploaded": false,
+  "delivery": {
+    "archive": "coordinator_history_cost_20261022_205839_ce0f7b.zip",
+    "bytes": 140951,
+    "files": 53,
+    "sha256": "18f971331dfe50f27e0a4b1a5c572be1d84236beed07061d2d536d170fd30541",
+    "source_inventory": "delivery_source_inventory.json",
+    "source_inventory_sha256": "395f368c3c83b995ebbc61da010760269908cfa45512d2eb8a545df016c0233f",
+    "current_coordinator_source_files_matching_delivery": 49
+  },
+  "runtime_changes_for_this_acceptance": false,
+  "unchanged_findings": {
+    "candidate_idle_p95_seconds": 1.530041113000152,
+    "candidate_idle_maximum_seconds": 1.6084540540005037,
+    "performance": "FAILED",
+    "overall_scaling_recovery_qualification": "INCOMPLETE",
+    "first_cloud_construction_failure_cause": "UNRESOLVED"
+  },
+  "not_qualified": [
+    "Windows performance/capacity measurement",
+    "Complete operational recovery or process supervision",
+    "Normal recovered Hot request delivery/publication",
+    "Full-day or real-provider capacity",
+    "Production adoption or Hot activation"
+  ],
+  "next": [
+    "Reduce remaining reconstruction cost while preserving fresh validation",
+    "Implement shared live/recovery event-request identity and normal recovery delivery"
+  ],
+  "repeat_unchanged_command_30_required": false
+}

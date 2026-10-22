@@ -49,15 +49,18 @@ sample is diagnostic; the earlier 100-cycle baseline report remains retained.
 No new full-size construction, state-changing timing, memory soak, recovery
 fault matrix, Windows capacity or provider qualification is claimed.
 
-## Windows operator step
+## Windows affected-path verification accepted
 
-The new unique handoff contains only `30_verify_history_cost.cmd`, the short
-offline affected-suite verification. It asks for no password and accesses no
-API or production journal. Run it from the existing sea-green CMD environment,
-then retain its report, complete console and actual prompt return. Native
-Windows qualification of this increment remains pending until that evidence
-is supplied. Do not repeat commands 26, 27 or 28 unchanged. Command 29 is not
-requested for this increment. Complete operational recovery remains unfinished.
+The complete operator-supplied MasterBot sea-green CMD console confirms
+`30_verify_history_cost.cmd`: 264 tests PASS in 10.756023699999787 seconds,
+network denied, production access false, and actual CMD prompt return.
+The reported saved file is `runs/verification/20261022T222739Z-dee44c23.json`
+relative to the handoff; that report file was not separately uploaded.
+See `validation/windows_qualification.json` for the acceptance and source pin.
+No unchanged command 26, 27, 28 or 30 rerun is required; command 29 is not
+requested. The delivered ZIP and `validation/delivered_README.md` remain
+unchanged historical evidence. This accepts affected-path correctness only;
+Windows performance, provider capacity and complete recovery remain unqualified.
 
 The final candidate also distinguishes boolean, integer and floating-point wire
 values before reusing native validation; two dedicated regression checks reject
@@ -70,7 +73,8 @@ recorded separately and must not be inferred from this verification result.
 
 Local final affected checks: 264 PASS in 7.307s. Extracted final
 handoff: 264 PASS in 8.683s, path with spaces, altered source rejected
-before tests. Native Windows command 30 and actual prompt return remain pending.
+before tests. Native Windows command 30 is now accepted: 264 PASS in 10.756s,
+with actual CMD prompt return; timing results below remain separate.
 
 | Same saved native fixture | Median | p95 | Maximum | Samples |
 | --- | ---: | ---: | ---: | ---: |
@@ -93,6 +97,6 @@ representation regressions pass.
 
 Final delivery: `coordinator_history_cost_20261022_205839_ce0f7b.zip`, 140,951 bytes, 53 files,
 SHA-256 `18f971331dfe50f27e0a4b1a5c572be1d84236beed07061d2d536d170fd30541`.
-Remaining work: full reconstruction cost, Windows affected checks and the
-remaining performance/fault envelope, common live/recovery event-request
+Remaining work: full reconstruction cost and the remaining performance/fault
+envelope, common live/recovery event-request
 identity, normal recovery delivery, paced transport and process supervision.
