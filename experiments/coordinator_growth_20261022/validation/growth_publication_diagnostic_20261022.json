@@ -1,0 +1,8 @@
+{
+  "source": "accepted_runtime_unchanged",
+  "mode": "read_only_membership_prefix_diagnostic_during_fixture_construction",
+  "revisions_including_anchor": 95,
+  "seconds_profiled": 3.3427650600000334,
+  "complete_revisions_sha256": "a5ecb6e22ee1cccf6d8eabb98b338d52fe554d8a48df27bc9096f4810b139c8d",
+  "timing_is_not_isolated_capacity": true
+}

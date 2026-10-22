@@ -1,0 +1,17 @@
+{
+  "result": "PASS",
+  "extracted_tests": 87,
+  "extracted_seconds": 9.972,
+  "source_inventory_tamper_rejected_before_tests": true,
+  "measurement_entrypoint_stubbed_no_long_run": true,
+  "archive_sha256_unchanged": true,
+  "native_windows": "PENDING",
+  "delivery": {
+    "archive": "/workspace/scratch/78e6acba7246/deliverables/coordinator_growth_20261022_194538_a2fc56.zip",
+    "folder": "coordinator_growth_20261022_194538_a2fc56",
+    "bytes": 110151,
+    "sha256": "fd6e9795608a23a88c0c8895d972b6d9a0c110b80e3b7744f98e7d26f002802a",
+    "files": 46,
+    "extracted": "/workspace/scratch/78e6acba7246/growth extracted qualification with spaces/coordinator_growth_20261022_194538_a2fc56"
+  }
+}

@@ -1,0 +1,26 @@
+         10803139 function calls (8272890 primitive calls) in 3.343 seconds
+
+   Ordered by: cumulative time
+   List reduced from 123 to 18 due to restriction <18>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.005    0.005    3.343    3.343 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_journal.py:41(revisions)
+      190    0.005    0.000    2.488    0.013 <string>:2(__init__)
+      190    0.011    0.000    2.484    0.013 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_membership.py:152(__post_init__)
+4664197/3655009    0.735    0.000    1.703    0.000 {built-in method builtins.isinstance}
+      190    0.001    0.000    1.659    0.009 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_membership.py:101(_canonical_metadata_json)
+504404/190    0.416    0.000    1.604    0.008 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_membership.py:80(_plain_json_value)
+       95    0.004    0.000    1.598    0.017 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_journal.py:38(content_hash)
+       95    0.004    0.000    1.594    0.017 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_journal.py:30(value)
+        1    0.000    0.000    1.388    1.388 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/quote_observation_store.py:1206(membership_revisions_in_effective_order)
+       96    0.006    0.000    1.382    0.014 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/quote_observation_store.py:1220(<genexpr>)
+       95    0.019    0.000    1.375    0.014 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/quote_observation_store.py:1256(_membership_revision_from_row)
+   504594    0.179    0.000    0.890    0.000 /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/typing.py:1221(__instancecheck__)
+   504594    0.237    0.000    0.710    0.000 /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/typing.py:1492(__subclasscheck__)
+504404/190    0.286    0.000    0.696    0.004 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_requests.py:29(plain)
+504404/190    0.236    0.000    0.478    0.003 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_membership.py:120(_freeze_json)
+482490/474122    0.133    0.000    0.408    0.000 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_membership.py:126(<genexpr>)
+   504594    0.157    0.000    0.356    0.000 {built-in method builtins.issubclass}
+      570    0.003    0.000    0.213    0.000 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_membership.py:76(_canonical_symbols)
+
+

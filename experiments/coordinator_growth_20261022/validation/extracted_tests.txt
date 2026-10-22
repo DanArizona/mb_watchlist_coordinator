@@ -1,0 +1,14 @@
+.......................................................................................
+----------------------------------------------------------------------
+Ran 87 tests in 9.972s
+
+OK
+{
+  "result": "PASS",
+  "tests": 87,
+  "seconds": 9.97187140799997,
+  "network": "denied",
+  "scope": "Changed receipt/harness paths and affected native producer/service tests; not complete recovery or capacity",
+  "production_access": false
+}
+Saved report: /workspace/scratch/78e6acba7246/growth extracted qualification with spaces/coordinator_growth_20261022_194538_a2fc56/runs/verification/20261022T194548Z-c634d9f0.json
