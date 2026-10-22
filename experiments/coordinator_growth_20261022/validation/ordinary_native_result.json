@@ -1,0 +1,135 @@
+{
+  "report": {
+    "cold_reopens": [
+      {
+        "fixture_bytes_unchanged": true,
+        "gate": "PASS",
+        "seconds": 4.494454596999731,
+        "snapshot_identical": true
+      },
+      {
+        "fixture_bytes_unchanged": true,
+        "gate": "PASS",
+        "seconds": 4.839738996000051,
+        "snapshot_identical": true
+      },
+      {
+        "fixture_bytes_unchanged": true,
+        "gate": "PASS",
+        "seconds": 4.6146064780000415,
+        "snapshot_identical": true
+      }
+    ],
+    "contract": "coordinator-rich-growth-report-v1",
+    "correctness": "PASS",
+    "fixture": {
+      "active_requests_high_water": 5,
+      "clock": "logical_session",
+      "construction_seconds": 2045.0741666289998,
+      "construction_submission_seconds": {
+        "count": 1000,
+        "maximum": 2.331778123999811,
+        "median": 0.6040264894999723,
+        "p95": 1.6968578060000254
+      },
+      "contract": "coordinator-rich-history-fixture-v1",
+      "files_sha256": {
+        "membership.sqlite3": "88529013389fd1d0eaabf11921b0680d44842439d3503526e9bd3aca13247577",
+        "publication.sqlite3": "cc68dad096415a8f10f0f78bc31be935c980660c2d3b2e3f115c5ab5e4f3dfce",
+        "requests.sqlite3": "cc3a40860443fe282bf257896d8a01fc1ecf87c05ed418a482ea075e3d03be87"
+      },
+      "final_clock_utc": "2026-11-02T20:59:59+00:00",
+      "publication_snapshot_sha256": "f6d29079ff4dee3c529c5c61c88180011786fbf5e7f22f44f75e012374c494a4",
+      "publications": 200,
+      "quote_acquisitions": 0,
+      "receipt_dispositions": {
+        "accepted": 700,
+        "actor_does_not_own_request": 100,
+        "not_restriction_authority": 100,
+        "request_already_expired": 50,
+        "symbol_not_in_admission_catalog": 50
+      },
+      "receipt_kinds": {
+        "cancel": 350,
+        "clear_restriction": 50,
+        "request": 450,
+        "restrict": 100,
+        "tick": 50
+      },
+      "receipts": 1000,
+      "reference_runtime": "192eeb516c5011cd404313197e5e95e3ee05a79b",
+      "request_states_sha256": "5539f2c172b9f46272211d7e44357edad1e678ed170ee3d782e36db1d21f08b2",
+      "rounds": 50,
+      "seed": 0,
+      "session": "2026-11-02",
+      "synthetic_only": true,
+      "transport_submissions": {
+        "already_recorded": 50,
+        "conflicting_id": 50,
+        "inserted": 1000
+      }
+    },
+    "idle": {
+      "complete_replay_identical": true,
+      "fixture_bytes_unchanged": true,
+      "gate": "FAILED",
+      "idle_cycle_cpu_seconds": {
+        "count": 100,
+        "maximum": 5.155694627000003,
+        "median": 4.356382536500007,
+        "p95": 4.950344142999995
+      },
+      "idle_cycle_seconds": {
+        "count": 100,
+        "maximum": 5.156493383999987,
+        "median": 4.356894453000223,
+        "p95": 4.951636168000277
+      }
+    },
+    "network": "denied",
+    "not_run": [
+      "real_clock_state_changing",
+      "burst",
+      "ten_minute_memory",
+      "growth_axis_isolation",
+      "busy_and_stress",
+      "recovery_fault_matrix",
+      "Windows",
+      "provider"
+    ],
+    "performance": "FAILED",
+    "pid": 5,
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "qualification": "INCOMPLETE",
+    "reference_runtime": "192eeb516c5011cd404313197e5e95e3ee05a79b",
+    "scope": "Native logical fixture plus elapsed idle/cold measurement; not full qualification.",
+    "source": "synthetic_only",
+    "status": "MEASURED"
+  },
+  "filesystem": "tmpfs",
+  "scope": "Cloud-only first rich-history fixture; not native Windows or provider capacity",
+  "original_failed_construction_preserved": true,
+  "first_failure_cause": "UNRESOLVED",
+  "audit_pass": true,
+  "audit_table_counts": {
+    "poll_run": 0,
+    "sampling_membership_revision": 201,
+    "sampling_channel_revision": 603,
+    "sampling_channel_member": 128483,
+    "poll_slot_skip": 0,
+    "quote_acquisition": 0,
+    "quote_observation": 0
+  },
+  "fresh_replays": [
+    {
+      "events": 201,
+      "sha256": "633ae24f080102d507986f6dae41d210ff14059cabed1f40190e46d0a4902289"
+    },
+    {
+      "events": 201,
+      "sha256": "633ae24f080102d507986f6dae41d210ff14059cabed1f40190e46d0a4902289"
+    }
+  ],
+  "original_journal_bytes_unchanged": true
+}

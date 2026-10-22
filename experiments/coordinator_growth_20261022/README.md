@@ -77,3 +77,57 @@ are subsequent implementation work.
 The affected local suite covers the new stage/harness plus the existing Nasdaq
 adapter and publication service. Complete run results and measurement findings
 are recorded in `validation/`. Native Windows qualification is pending.
+
+### First complete cloud result
+
+The controlled tmpfs run completed all 1,000 native receipts and 200 changed
+publications (201 journal revisions including the anchor). Every complete
+hand-specified hierarchy matched. Of 1,000 receipts, 700 were accepted and 300
+rejected with the expected reasons; 50 identical transport retries and 50
+conflicting ID submissions did not insert additional receipts. Construction
+took 2,045.074 seconds (34.1 minutes), including native validation and the
+separately recorded read-only diagnostic profiles. It is not elapsed session
+capacity.
+
+| Measurement | Observed seconds | Experimental gate | Result |
+| --- | ---: | ---: | --- |
+| 100 idle cycles, median | 4.356894 | descriptive | measured |
+| 100 idle cycles, p95 | 4.951636 | at most 0.5 | FAILED |
+| 100 idle cycles, maximum | 5.156493 | at most 1 | FAILED |
+| Three fresh cold reopens | 4.494455 / 4.839739 / 4.614606 | each at most 10 | PASS |
+
+Complete request states and publication snapshots matched after measurement,
+and fixture database hashes remained unchanged. Native membership audit PASS;
+two fresh-process native replays each yielded 201 membership events with
+sequence digest `633ae24f080102d507986f6dae41d210ff14059cabed1f40190e46d0a4902289`.
+There are zero quote acquisitions/observations, so this is membership evidence.
+
+**Correctness PASS; measured idle performance FAILED; overall qualification
+INCOMPLETE.** This is cloud tmpfs evidence, not MasterBot disk/provider capacity.
+The first workspace-backed construction stopped after reported progress of
+120 receipts/24 publications with `Publication head changed during cycle`.
+Its retained request tail is 125 and publication head is 47 (a pending plan
+with one journal commit awaiting ACK). The failed run is preserved unchanged;
+the successful controlled run does not establish its cause or reclassify it.
+
+The read-only profiles identify request timestamp/replay work and repeated
+membership/metadata reconstruction in the journal bridge. They ran during
+construction and are diagnostic, not isolated capacity timings. Further
+optimization must preserve every identity/hash/admission/clock/publication
+check. Ordinary idle gates must pass before moving to the busy profile or an
+updated longer integration trial.
+
+### Windows handoff
+
+The uniquely named `coordinator_growth_20261022_194538_a2fc56.zip` has SHA-256
+`fd6e9795608a23a88c0c8895d972b6d9a0c110b80e3b7744f98e7d26f002802a`.
+Its extracted source passes all 87 affected checks in 9.972 seconds locally,
+including a path with spaces; altered inventory is rejected before tests.
+The source-tree run passed those 87 checks in 8.285 seconds.
+
+`28_verify_growth_recovery.cmd` is the next operator check: offline tests only,
+no password/API/production journal. Confirm its report and actual CMD prompt
+return. `29_measure_coordinator_growth.cmd` is the separate long measurement
+entry point; it is not needed for this quick receipt-stage qualification.
+The delivered ZIP remains unchanged. Source and delivery/validation records
+are committed on the experimental Coordinator branch; production is unchanged.

@@ -1,0 +1,13 @@
+{
+  "archive": "/workspace/scratch/78e6acba7246/deliverables/coordinator_growth_evidence_20261022.zip",
+  "bytes": 6582032,
+  "sha256": "de8f8c5b5b992f957a9a137fe5251fb4f7ce6c24e0d0a220bb1aced372c66dc9",
+  "contains": [
+    "first_failed_native_construction",
+    "controlled_tmpfs_run",
+    "profiles",
+    "affected_tests",
+    "native_audit_and_replays_if_completed"
+  ],
+  "source_checkpoint": "5bea2f36d36f4785cbd081fe34df8fe835a55bf9"
+}

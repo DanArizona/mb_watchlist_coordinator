@@ -1,6 +1,6 @@
 # Coordinator growth and halt recovery qualification
 
-Version 1 — October 22, 2026. **Design specification; implementation and new qualification results pending.** All session times are America/New_York. Numeric gates below are initial engineering targets for an isolated experiment, not measured capacities or adopted production settings.
+Version 1 — October 22, 2026. **First implementation is locally demonstrated; full qualification remains pending.** The native 1,000-receipt/200-publication workload passed hierarchy/audit/replay checks but FAILED its idle timing gates (p95 4.952s versus 0.5s). The initial recovery receipt/candidate stage and extracted handoff pass 87 affected checks; delivery, transport, full fault qualification and native Windows remain pending. See the [implementation and measured evidence](../../experiments/coordinator_growth_20261022/README.md). All session times are America/New_York. Numeric gates below remain engineering targets for an isolated experiment, not adopted production settings.
 
 ## 1. Outcome and starting point
 
