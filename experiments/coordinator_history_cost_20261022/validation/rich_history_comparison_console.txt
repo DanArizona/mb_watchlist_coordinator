@@ -1,0 +1,75 @@
+Measuring reference measure
+Measuring candidate measure
+Measuring candidate cold
+Measuring candidate cold
+Measuring candidate cold
+{
+  "contract": "coordinator-history-cost-comparison-v1",
+  "status": "MEASURED",
+  "reference_commit": "3588cf8090279bd014417e9560d10e37c75a6dac",
+  "fixture": "/dev/shm/coordinator_growth_1000_20261022/fixture",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "started_at_utc": "2026-10-22T20:58:06.218625+00:00",
+  "scope": "Same saved native 1000-receipt/200-publication fixture, elapsed read-only idle/cold checks; no new construction, provider or full capacity qualification",
+  "reference_sample_is_diagnostic": true,
+  "production_access": false,
+  "network": "denied",
+  "qualification": "INCOMPLETE",
+  "reference": {
+    "idle_cycle_seconds": {
+      "count": 3,
+      "median": 3.8124496200007343,
+      "p95": 3.9279907399995864,
+      "maximum": 3.9279907399995864
+    },
+    "idle_cycle_cpu_seconds": {
+      "count": 3,
+      "median": 3.8118756630000004,
+      "p95": 3.9269113070000006,
+      "maximum": 3.9269113070000006
+    },
+    "gate": "FAILED",
+    "complete_replay_identical": true,
+    "fixture_bytes_unchanged": true
+  },
+  "candidate": {
+    "idle_cycle_seconds": {
+      "count": 100,
+      "median": 1.4164222455001436,
+      "p95": 1.530041113000152,
+      "maximum": 1.6084540540005037
+    },
+    "idle_cycle_cpu_seconds": {
+      "count": 100,
+      "median": 1.4160035365000034,
+      "p95": 1.5296506409999893,
+      "maximum": 1.6080105440000025
+    },
+    "gate": "FAILED",
+    "complete_replay_identical": true,
+    "fixture_bytes_unchanged": true
+  },
+  "candidate_cold_reopens": [
+    {
+      "seconds": 1.879085741000381,
+      "gate": "PASS",
+      "snapshot_identical": true,
+      "fixture_bytes_unchanged": true
+    },
+    {
+      "seconds": 2.0221700279998913,
+      "gate": "PASS",
+      "snapshot_identical": true,
+      "fixture_bytes_unchanged": true
+    },
+    {
+      "seconds": 1.8422252830005164,
+      "gate": "PASS",
+      "snapshot_identical": true,
+      "fixture_bytes_unchanged": true
+    }
+  ],
+  "correctness": "PASS",
+  "performance": "FAILED"
+}

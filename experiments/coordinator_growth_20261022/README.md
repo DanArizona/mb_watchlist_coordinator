@@ -1,5 +1,12 @@
 # Native rich-history measurement and recovery receipts
 
+**Historical baseline:** The retained results and original unchanged ZIP below
+refer to the source pins recorded for that increment. This branch now also has
+a [history-cost follow-up](../coordinator_history_cost_20261022/README.md), which
+changes shared request/publication code and the experimental metadata dependency.
+Its Windows command 30 remains pending; command 28 acceptance applies to its
+original pinned delivery.
+
 This increment implements the first workload in
 [the scaling/recovery specification](../../docs/design/scaling_recovery_qualification_20261022.md).
 It is isolated experimental source. No provider access, credentials, production

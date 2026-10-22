@@ -1,0 +1,19 @@
+{
+  "result": "PASS",
+  "extracted_tests": 264,
+  "extracted_seconds": 8.6826913470004,
+  "network": "denied",
+  "production_access": false,
+  "source_inventory_tamper_rejected_before_tests": true,
+  "path_with_spaces": true,
+  "native_windows": "PENDING",
+  "scope": "Affected request/policy/admission/publication/Nasdaq and native metadata/store tests; not complete recovery or capacity",
+  "delivery": {
+    "archive": "/workspace/scratch/78e6acba7246/deliverables/coordinator_history_cost_20261022_205839_ce0f7b.zip",
+    "folder": "coordinator_history_cost_20261022_205839_ce0f7b",
+    "bytes": 140951,
+    "sha256": "18f971331dfe50f27e0a4b1a5c572be1d84236beed07061d2d536d170fd30541",
+    "files": 53
+  },
+  "cmd_prompt_return": "PENDING_NATIVE_WINDOWS"
+}

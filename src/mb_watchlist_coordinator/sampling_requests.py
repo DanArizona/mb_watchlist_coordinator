@@ -24,9 +24,21 @@ from .session import session_expiration, session_start
 
 
 CONTRACT = "source-owned-sampling-requests-v1"
+_JSON_SCALAR_TYPES = frozenset((str, int, float, bool, type(None)))
 
 
 def plain(value: Any) -> Any:
+    # The ledger's JSON scalars cannot also be mappings. Keep unusual subclasses
+    # on the general path so this changes traversal cost, not normalization.
+    kind = type(value)
+    if kind in _JSON_SCALAR_TYPES:
+        return value
+    if kind is dict:
+        return {k: plain(v) for k, v in value.items()}
+    if kind is tuple or kind is list:
+        if all(type(item) in _JSON_SCALAR_TYPES for item in value):
+            return list(value)
+        return [plain(v) for v in value]
     if isinstance(value, Mapping):
         return {k: plain(v) for k, v in value.items()}
     if isinstance(value, (tuple, list)):
@@ -153,7 +165,8 @@ def admission_reason(kind: str, actor: str, payload: Mapping, *, at: datetime,
                      requests: Mapping, policy: SamplingPolicy | None = None,
                      restrictions: Mapping | None = None, admission: AdmissionPolicy | None = None,
                      admitted_symbols: frozenset[str] = frozenset(),
-                     cancelled_requests: frozenset = frozenset()) -> str | None:
+                     cancelled_requests: frozenset = frozenset(),
+                     _request_windows: Mapping | None = None) -> str | None:
     if kind == "tick":
         return None if actor == "__coordinator__" and not payload else "invalid_clock_command"
     if kind == "request":
@@ -177,9 +190,12 @@ def admission_reason(kind: str, actor: str, payload: Mapping, *, at: datetime,
                 return "symbol_not_in_admission_catalog"
             reserved = set(admitted_symbols)
             for key, request in requests.items():
-                end = min(timestamp(request["expires_at_utc"]) if request["expires_at_utc"]
-                          else session_expiration(session), session_expiration(session))
-                start = timestamp(request["effective_from_utc"] or request["created_at_utc"])
+                if _request_windows is None:
+                    end = min(timestamp(request["expires_at_utc"]) if request["expires_at_utc"]
+                              else session_expiration(session), session_expiration(session))
+                    start = timestamp(request["effective_from_utc"] or request["created_at_utc"])
+                else:
+                    start, end = _request_windows[key]
                 if key not in cancelled_requests and at < end and start < end:
                     reserved.update(set(request["symbols"]) - baseline.uni)
             if len(reserved | extra) > admission.max_additional_symbols:
@@ -307,10 +323,8 @@ def replay_requests(session: date, baseline: SamplingMembership,
                 if candidate is not None and (uni, focus, hot) == (candidate.uni, candidate.focus, candidate.hot):
                     return candidate
         value = SamplingMembership(uni, focus, hot)
-        # Ordinary RequestEvent payloads contain JSON-native strings. Keep the
-        # original slow path even for unusual directly supplied mutable tokens.
-        if reuse and any(type(s) is not str for c in ("uni", "focus", "hot") for s in getattr(value, c)):
-            reuse = False
+        # Baseline tokens were checked once above; active tokens are checked
+        # before constructing memberships below. No need to rescan all of Uni.
         return value
 
     config = freeze(policy.payload()) if policy is not None else None
@@ -318,6 +332,10 @@ def replay_requests(session: date, baseline: SamplingMembership,
     states = [RequestState(0, seed, None, baseline, baseline, (), (), (), 0,
                            baseline if policy is not None else None, policy=config, admission=admission_config)]
     requests: dict[tuple[str, str], Mapping] = {}
+    # Parsed only within this replay, after each event hash/admission is checked.
+    # A later read reparses the fresh prefix; no database verification is cached.
+    request_windows = {}
+    session_end = session_expiration(session)
     cancelled = set()
     commands = set()
     restrictions = {}
@@ -340,12 +358,19 @@ def replay_requests(session: date, baseline: SamplingMembership,
         reason = admission_reason(event.kind, event.actor_id, event.payload, at=event.recorded_at,
                                   session=session, baseline=baseline, requests=requests,
                                   policy=policy, restrictions=restrictions, admission=admission,
-                                  admitted_symbols=frozenset(admitted), cancelled_requests=frozenset(cancelled))
+                                  admitted_symbols=frozenset(admitted), cancelled_requests=frozenset(cancelled),
+                                  _request_windows=request_windows)
         if event.accepted != (reason is None) or event.rejection_reason != reason:
             raise ValueError("Stored admission outcome differs from replay")
         if event.accepted and event.kind == "request":
-            requests[(event.payload["producer_id"], event.payload["intent_id"])] = event.payload
-            request_receipts[(event.payload["producer_id"], event.payload["intent_id"])] = event.event_sha256
+            request_key = (event.payload["producer_id"], event.payload["intent_id"])
+            requests[request_key] = event.payload
+            request_receipts[request_key] = event.event_sha256
+            r = event.payload
+            request_windows[request_key] = (
+                timestamp(r["effective_from_utc"] or r["created_at_utc"]),
+                min(timestamp(r["expires_at_utc"]) if r["expires_at_utc"] else session_end,
+                    session_end))
         if event.accepted and event.kind == "cancel":
             cancelled.add((event.payload["owner_id"], event.payload["request_id"]))
         if event.accepted and event.kind == "restrict":
@@ -354,9 +379,7 @@ def replay_requests(session: date, baseline: SamplingMembership,
             restrictions.pop(event.payload["symbol"], None)
         active = []
         for request_key, r in sorted(requests.items()):
-            start = timestamp(r["effective_from_utc"] or r["created_at_utc"])
-            end = min(timestamp(r["expires_at_utc"]) if r["expires_at_utc"] else session_expiration(session),
-                      session_expiration(session))
+            start, end = request_windows[request_key]
             if request_key not in cancelled and start <= event.recorded_at < end:
                 active.append(r)
         if reuse and any(type(symbol) is not str for r in active for symbol in r["symbols"]):

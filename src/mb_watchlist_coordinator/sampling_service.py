@@ -182,6 +182,22 @@ class SamplingPublicationService:
             anchor = json.loads(row[1])
             rows = list(c.execute("SELECT * FROM publication_event ORDER BY sequence"))
         events, states = self.requests.validated_history()
+        # These values were reconstructed and fully validated by the native
+        # journal on this read. Matching a plan to one exact value avoids a
+        # second native construction of the same membership/metadata.
+        actual = self.journal.revisions()
+        state_payloads, state_hashes = {}, {}
+
+        def state_payload(n):
+            if n not in state_payloads:
+                state_payloads[n] = states[n].payload()
+            return state_payloads[n]
+
+        def state_hash(n):
+            if n not in state_hashes:
+                state_hashes[n] = digest(state_payload(n))
+            return state_hashes[n]
+
         previous = digest({"identity": self.identity, "anchor": anchor})
         outcomes, pending, acknowledgements, processed = [], None, [], 0
         last_time = None
@@ -195,7 +211,7 @@ class SamplingPublicationService:
             last_time = at
             if "request_sequence" in payload:
                 n = payload["request_sequence"]
-                if not isinstance(n, int) or n < processed or n >= len(states) or payload["request_state_sha256"] != digest(states[n].payload()):
+                if not isinstance(n, int) or n < processed or n >= len(states) or payload["request_state_sha256"] != state_hash(n):
                     raise ValueError("Publication outcome request prefix differs")
             kind = payload["kind"]
             if kind == "plan":
@@ -203,10 +219,21 @@ class SamplingPublicationService:
                     raise ValueError("Multiple pending publication plans")
                 proposal = payload["proposal"]
                 n = payload["request_sequence"]
-                if self._members(proposal) != membership_payload(states[n].applied) or proposal["metadata"]["request_state"] != states[n].payload():
+                if self._members(proposal) != membership_payload(states[n].applied) or proposal["metadata"]["request_state"] != state_payload(n):
                     raise ValueError("Publication plan differs from request replay")
                 expected = anchor[-1]["proposal"]["revision"] + len(acknowledgements) + 1
-                if proposal["revision"] != expected or self.journal.content_hash(proposal) != payload["content_sha256"]:
+                index = len(anchor) + len(acknowledgements)
+                known = actual[index] if index < len(actual) else None
+                # Dict equality conflates True/1/1.0. These payloads come from
+                # JSON/native reconstruction; compare their canonical JSON
+                # representation so only identical wire values borrow a hash.
+                same_wire = (known is not None and
+                    json.dumps(proposal, sort_keys=True, separators=(",", ":"), allow_nan=False) ==
+                    json.dumps(known["proposal"], sort_keys=True, separators=(",", ":"), allow_nan=False))
+                content_sha256 = (known["content_sha256"]
+                    if same_wire
+                    else self.journal.content_hash(proposal))
+                if proposal["revision"] != expected or content_sha256 != payload["content_sha256"]:
                     raise ValueError("Publication plan revision/content differs")
                 pending = dict(payload, plan_id=sequence)
             elif kind in ("acknowledged", "abandoned", "write_failed"):
@@ -236,7 +263,6 @@ class SamplingPublicationService:
             outcomes.append(dict(payload, sequence=sequence, event_sha256=sha))
             previous = sha
         expected = anchor + acknowledgements
-        actual = self.journal.revisions()
         if actual[:len(expected)] != expected or len(actual) not in (len(expected), len(expected) + int(pending is not None)):
             raise ValueError("Journal prefix differs from publication ledger")
         unacknowledged = actual[len(expected):]

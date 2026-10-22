@@ -1,0 +1,30 @@
+OFFLINE changed-history-cost verification. No API, password or production journal.
+This does not qualify complete recovery or provider capacity.
+........................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 264 tests in 8.683s
+
+OK
+{
+  "result": "PASS",
+  "tests": 264,
+  "seconds": 8.6826913470004,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Affected request/policy/admission/publication/Nasdaq and native metadata/store tests; not complete recovery or capacity",
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost"
+  ]
+}
+Saved report: /workspace/scratch/78e6acba7246/history cost final extracted qualification with spaces/coordinator_history_cost_20261022_205839_ce0f7b/runs/verification/20261022T210127Z-9e90ca21.json

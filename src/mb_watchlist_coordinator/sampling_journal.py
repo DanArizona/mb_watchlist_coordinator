@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, timezone
+import hashlib
+import json
 
 from .sampling_requests import freeze, plain, timestamp, utc_text
 
@@ -38,6 +40,22 @@ class SamplingJournal:
     def content_hash(self, payload):
         return self.value(payload).content_sha256
 
+    @staticmethod
+    def _reconstructed_hash(payload):
+        """Cross-check a freshly native-validated value without rebuilding it.
+
+        Proposals still use content_hash and the complete native constructor.
+        This wire shape matches the pinned native hierarchy contract exactly;
+        no history, hashes or caller-supplied validation results are cached.
+        """
+        from mb_market_data.sampling_membership import SAMPLING_HIERARCHY_CONTRACT
+        content = dict(payload, contract=SAMPLING_HIERARCHY_CONTRACT,
+            effective_at_utc=timestamp(payload["effective_at_utc"]).astimezone(timezone.utc)
+                .isoformat(timespec="microseconds").replace("+00:00", "Z"))
+        encoded = json.dumps(content, sort_keys=True, separators=(",", ":"),
+                             ensure_ascii=False, allow_nan=False)
+        return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
+
     def revisions(self):
         self._check()
         result = []
@@ -47,7 +65,7 @@ class SamplingJournal:
                        "uni_symbols": list(value.uni_symbols), "focus_symbols": list(value.focus_symbols),
                        "hot_symbols": list(value.hot_symbols), "source": value.source,
                        "reason": value.reason, "metadata": plain(value.metadata)}
-            if self.content_hash(payload) != value.content_sha256:
+            if self._reconstructed_hash(payload) != value.content_sha256:
                 raise ValueError("Journal content hash differs from reconstructed hierarchy")
             result.append({"proposal": payload, "content_sha256": value.content_sha256,
                            "published_at_utc": utc_text(value.published_at)})

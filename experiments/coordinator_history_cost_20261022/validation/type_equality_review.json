@@ -1,0 +1,6 @@
+{
+  "status": "REJECTED_BEFORE_DELIVERY",
+  "reason": "Code review found Python equality could conflate bool/int/float in plan reuse. Added canonical wire equality and two regression tests. Initial 262-test suite and timings remain diagnostic evidence only; final source and handoff are requalified separately.",
+  "undelivered_archive": "coordinator_history_cost_20261022_205349_737db8.zip",
+  "undelivered_sha256": "c727354035bb17312afc4aca822f62a66c78e9f5ec11162c1872583372737cc3"
+}

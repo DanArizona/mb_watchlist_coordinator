@@ -1,0 +1,22 @@
+{
+  "result": "PASS",
+  "tests": 264,
+  "seconds": 7.306706033999944,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Affected request/policy/admission/publication/Nasdaq and native metadata/store tests; not complete recovery or capacity",
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost"
+  ]
+}

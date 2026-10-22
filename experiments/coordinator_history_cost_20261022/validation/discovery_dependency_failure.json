@@ -1,0 +1,9 @@
+{
+  "result": "FAILED",
+  "tests": 272,
+  "seconds": 8.309887391999837,
+  "network": "denied",
+  "scope": "Complete Coordinator tests plus changed native metadata/hierarchy/store tests; not complete recovery or capacity",
+  "production_access": false,
+  "explanation": "Initial overbroad discovery included 10 unrelated pytest-based suites, whose imports failed because pytest is absent in this runtime. No assertion failures were reported. The subsequent explicitly affected unittest suite passed all 262 checks; complete Coordinator pytest regression is not claimed."
+}

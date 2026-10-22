@@ -1,0 +1,31 @@
+         8005780 function calls (4103995 primitive calls) in 2.901 seconds
+
+   Ordered by: cumulative time
+   List reduced from 213 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.003    0.003    2.909    2.909 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_service.py:295(cycle)
+        1    0.058    0.058    2.905    2.905 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_service.py:176(_read)
+        1    0.009    0.009    1.348    1.348 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_journal.py:59(revisions)
+        1    0.003    0.003    1.106    1.106 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/quote_observation_store.py:1206(membership_revisions_in_effective_order)
+      202    0.010    0.000    1.094    0.005 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/quote_observation_store.py:1220(<genexpr>)
+      201    0.029    0.000    1.084    0.005 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/quote_observation_store.py:1256(_membership_revision_from_row)
+      201    0.009    0.000    0.857    0.004 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_membership.py:165(__post_init__)
+2730796/5009    0.759    0.000    0.797    0.000 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_requests.py:30(plain)
+     1602    0.002    0.000    0.698    0.000 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_requests.py:51(digest)
+     2606    0.007    0.000    0.692    0.000 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_requests.py:47(canonical)
+        1    0.000    0.000    0.625    0.625 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_request_store.py:91(validated_history)
+        1    0.000    0.000    0.624    0.624 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_request_store.py:77(_read_history)
+        1    0.071    0.071    0.579    0.579 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_requests.py:298(replay_requests)
+560303/201    0.213    0.000    0.396    0.002 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_membership.py:133(_freeze_json)
+523750/514850    0.097    0.000    0.344    0.000 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_membership.py:139(<genexpr>)
+      200    0.000    0.000    0.341    0.002 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_service.py:196(state_hash)
+     3812    0.009    0.000    0.306    0.000 /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py:183(dumps)
+     3812    0.007    0.000    0.295    0.000 /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/encoder.py:183(encode)
+     3812    0.285    0.000    0.285    0.000 /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/encoder.py:205(iterencode)
+      201    0.001    0.000    0.201    0.001 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_membership.py:114(_canonical_metadata_json)
+     1000    0.063    0.000    0.184    0.000 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_policy.py:49(apply_policy)
+    10454    0.036    0.000    0.178    0.000 {built-in method builtins.any}
+     3000    0.013    0.000    0.171    0.000 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_requests.py:317(membership)
+560303/201    0.144    0.000    0.165    0.001 /workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_membership.py:82(_plain_json_value)
+     2803    0.003    0.000    0.163    0.000 /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py:299(loads)
