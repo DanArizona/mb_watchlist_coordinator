@@ -1,0 +1,83 @@
+diff --git a/src/mb_watchlist_coordinator/sampling_journal.py b/src/mb_watchlist_coordinator/sampling_journal.py
+index 003bd0b..839b456 100644
+--- a/src/mb_watchlist_coordinator/sampling_journal.py
++++ b/src/mb_watchlist_coordinator/sampling_journal.py
+@@ -6,7 +6,7 @@ from datetime import date, timezone
+ import hashlib
+ import json
+ 
+-from .sampling_requests import freeze, plain, timestamp, utc_text
++from .sampling_requests import canonical, freeze, plain, timestamp, utc_text
+ 
+ 
+ class PublicationDeadlineMissed(RuntimeError):
+@@ -64,7 +64,11 @@ class SamplingJournal:
+                        "effective_at_utc": utc_text(value.effective_at),
+                        "uni_symbols": list(value.uni_symbols), "focus_symbols": list(value.focus_symbols),
+                        "hot_symbols": list(value.hot_symbols), "source": value.source,
+-                       "reason": value.reason, "metadata": plain(value.metadata)}
++                       # Native metadata is already finite JSON frozen by its
++                       # constructor. The encoder adapts its mapping nodes and
++                       # C JSON decoding detaches the plain payload, avoiding a
++                       # Python pass over every scalar before serialization.
++                       "reason": value.reason, "metadata": json.loads(canonical(value.metadata))}
+             if self._reconstructed_hash(payload) != value.content_sha256:
+                 raise ValueError("Journal content hash differs from reconstructed hierarchy")
+             result.append({"proposal": payload, "content_sha256": value.content_sha256,
+diff --git a/src/mb_watchlist_coordinator/sampling_requests.py b/src/mb_watchlist_coordinator/sampling_requests.py
+index b153455..b1ded54 100644
+--- a/src/mb_watchlist_coordinator/sampling_requests.py
++++ b/src/mb_watchlist_coordinator/sampling_requests.py
+@@ -46,8 +46,25 @@ def plain(value: Any) -> Any:
+     return value
+ 
+ 
++class _CanonicalJSONEncoder(json.JSONEncoder):
++    """Let the JSON encoder traverse its native containers only once.
++
++    Frozen request metadata also contains MappingProxyType/UserDict values.
++    Adapt those at the encountered node rather than copying the whole tree
++    before encoding. Tuple/list, scalar and key encoding remain JSON's own
++    operations, with the same wire settings as the original plain traversal.
++    No encoded value or validation result survives a call.
++    """
++
++    def default(self, value):
++        if isinstance(value, Mapping):
++            return dict(value.items())
++        return super().default(value)
++
++
+ def canonical(value: Any) -> str:
+-    return json.dumps(plain(value), sort_keys=True, separators=(",", ":"), allow_nan=False)
++    return json.dumps(value, cls=_CanonicalJSONEncoder, sort_keys=True,
++                      separators=(",", ":"), allow_nan=False)
+ 
+ 
+ def digest(value: Any) -> str:
+@@ -315,16 +332,20 @@ def replay_requests(session: date, baseline: SamplingMembership,
+         for c in ("uni", "focus", "hot"))
+     if reuse:
+         baseline = SamplingMembership(baseline.uni, baseline.focus, baseline.hot)
++    memberships = {(baseline.uni, baseline.focus, baseline.hot): baseline} if reuse else {}
+ 
+     def membership(uni, focus, hot, *candidates):
+         nonlocal reuse
+         if reuse:
+-            for candidate in candidates:
+-                if candidate is not None and (uni, focus, hot) == (candidate.uni, candidate.focus, candidate.hot):
+-                    return candidate
++            key = (uni, focus, hot)
++            previous_value = memberships.get(key)
++            if previous_value is not None:
++                return previous_value
+         value = SamplingMembership(uni, focus, hot)
+-        # Baseline tokens were checked once above; active tokens are checked
+-        # before constructing memberships below. No need to rescan all of Uni.
++        if reuse:
++            # These immutable exact-string groups were fully checked on this
++            # replay. The table is discarded with the read, including on error.
++            memberships[key] = value
+         return value
+ 
+     config = freeze(policy.payload()) if policy is not None else None

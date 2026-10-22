@@ -1,0 +1,48 @@
+         6521451 function calls (6121600 primitive calls) in 2.307 seconds
+
+   Ordered by: cumulative time
+   List reduced from 216 to 40 due to restriction <40>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.003    0.003    2.315    2.315 sampling_service.py:301(cycle)
+        1    0.039    0.039    2.311    2.311 sampling_service.py:176(_read)
+        1    0.008    0.008    0.925    0.925 sampling_journal.py:59(revisions)
+        1    0.000    0.000    0.747    0.747 quote_observation_store.py:1206(membership_revisions_in_effective_order)
+      202    0.005    0.000    0.736    0.004 quote_observation_store.py:1220(<genexpr>)
+      201    0.024    0.000    0.731    0.004 quote_observation_store.py:1256(_membership_revision_from_row)
+266062/5009    0.166    0.000    0.647    0.000 sampling_requests.py:30(plain)
+28043/28040    0.229    0.000    0.628    0.000 {built-in method builtins.all}
+     1602    0.002    0.000    0.580    0.000 sampling_requests.py:53(digest)
+     2606    0.005    0.000    0.575    0.000 sampling_requests.py:49(canonical)
+        1    0.000    0.000    0.550    0.550 sampling_request_store.py:91(validated_history)
+        1    0.000    0.000    0.550    0.550 sampling_request_store.py:77(_read_history)
+      201    0.007    0.000    0.546    0.003 sampling_membership.py:171(__post_init__)
+        1    0.061    0.061    0.511    0.511 sampling_requests.py:300(replay_requests)
+     4212    0.007    0.000    0.316    0.000 __init__.py:183(dumps)
+     4212    0.006    0.000    0.304    0.000 encoder.py:183(encode)
+     4212    0.296    0.000    0.296    0.000 encoder.py:205(iterencode)
+  2486869    0.283    0.000    0.283    0.000 sampling_requests.py:39(<genexpr>)
+      200    0.000    0.000    0.238    0.001 sampling_service.py:196(state_hash)
+      201    0.000    0.000    0.165    0.001 sampling_membership.py:116(_canonical_metadata_json)
+     1000    0.056    0.000    0.164    0.000 sampling_policy.py:49(apply_policy)
+    10454    0.032    0.000    0.162    0.000 {built-in method builtins.any}
+46153/201    0.053    0.000    0.156    0.001 sampling_membership.py:135(_freeze_json)
+     3000    0.012    0.000    0.154    0.000 sampling_requests.py:319(membership)
+     2803    0.002    0.000    0.144    0.000 __init__.py:299(loads)
+      551    0.001    0.000    0.142    0.000 <string>:2(__init__)
+      551    0.002    0.000    0.142    0.000 sampling_projection.py:52(__post_init__)
+      603    0.002    0.000    0.141    0.000 sampling_membership.py:78(_canonical_symbols)
+     2803    0.004    0.000    0.141    0.000 decoder.py:333(decode)
+     1653    0.001    0.000    0.140    0.000 sampling_projection.py:34(_symbols)
+      603    0.078    0.000    0.138    0.000 schwab_quotes.py:104(normalize_symbols)
+     2803    0.134    0.000    0.134    0.000 decoder.py:344(raw_decode)
+46153/201    0.025    0.000    0.134    0.001 sampling_membership.py:82(_plain_json_value)
+   355361    0.096    0.000    0.115    0.000 sampling_projection.py:40(<genexpr>)
+    13125    0.103    0.000    0.103    0.000 {built-in method builtins.sorted}
+      400    0.000    0.000    0.088    0.000 sampling_service.py:191(state_payload)
+      200    0.001    0.000    0.088    0.000 sampling_requests.py:267(payload)
+   423224    0.038    0.000    0.065    0.000 {built-in method builtins.isinstance}
+   518499    0.061    0.000    0.061    0.000 sampling_membership.py:143(<genexpr>)
+      603    0.001    0.000    0.059    0.000 quote_observation_store.py:256(_fingerprint)
+
+

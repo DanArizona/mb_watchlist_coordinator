@@ -1,0 +1,7 @@
+{
+  "initial_json_only_candidate": "Retained for comparison; approximately 4% median gain, not a scaling solution",
+  "initial_corruption_test_setup": "SQLite CHECK refused the forged contract before the read; corrected isolated test bypasses that constraint only for corruption injection",
+  "storage_metadata_guard": "Explicitly supplied non-JSON storage values (including None) must not select the regular empty-metadata constructor path; use a missing-argument sentinel. Final 281 checks include this regression. Pre-guard runtime source and timing report are retained separately.",
+  "clock_fixture": "Native reader unit-test publication time is explicitly mocked before effective time so verification does not depend on the real date",
+  "profile_scope": "Instrumented diagnostic timings are not unprofiled performance gates"
+}

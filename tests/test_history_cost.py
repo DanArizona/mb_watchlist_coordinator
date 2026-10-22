@@ -55,7 +55,8 @@ class JournalReadTests(unittest.TestCase):
     def test_reconstructed_hash_refuses_stale_or_altered_native_value(self):
         original = self.store.membership_revisions_in_effective_order()[0]
         object.__setattr__(original, 'reason', 'changed without updating hash')
-        with patch.object(self.store, 'membership_revisions_in_effective_order', return_value=(original,)):
+        with patch.object(self.store, 'validated_membership_revision_payloads', None), patch.object(
+                self.store, 'membership_revisions_in_effective_order', return_value=(original,)):
             with self.assertRaisesRegex(ValueError, 'content hash'):
                 self.service.journal.revisions()
 

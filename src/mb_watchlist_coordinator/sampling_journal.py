@@ -6,7 +6,7 @@ from datetime import date, timezone
 import hashlib
 import json
 
-from .sampling_requests import freeze, plain, timestamp, utc_text
+from .sampling_requests import canonical, freeze, plain, timestamp, utc_text
 
 
 class PublicationDeadlineMissed(RuntimeError):
@@ -58,13 +58,24 @@ class SamplingJournal:
 
     def revisions(self):
         self._check()
+        reader = getattr(self.store, "validated_membership_revision_payloads", None)
+        if reader is not None:
+            result = list(reader())
+            for receipt in result:
+                if self._reconstructed_hash(receipt["proposal"]) != receipt["content_sha256"]:
+                    raise ValueError("Journal content hash differs from reconstructed hierarchy")
+            return result
         result = []
         for value in self.store.membership_revisions_in_effective_order():
             payload = {"session_date": value.session_date.isoformat(), "revision": value.revision,
                        "effective_at_utc": utc_text(value.effective_at),
                        "uni_symbols": list(value.uni_symbols), "focus_symbols": list(value.focus_symbols),
                        "hot_symbols": list(value.hot_symbols), "source": value.source,
-                       "reason": value.reason, "metadata": plain(value.metadata)}
+                       # Native metadata is already finite JSON frozen by its
+                       # constructor. The encoder adapts its mapping nodes and
+                       # C JSON decoding detaches the plain payload, avoiding a
+                       # Python pass over every scalar before serialization.
+                       "reason": value.reason, "metadata": json.loads(canonical(value.metadata))}
             if self._reconstructed_hash(payload) != value.content_sha256:
                 raise ValueError("Journal content hash differs from reconstructed hierarchy")
             result.append({"proposal": payload, "content_sha256": value.content_sha256,

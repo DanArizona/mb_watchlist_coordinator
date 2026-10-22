@@ -46,8 +46,25 @@ def plain(value: Any) -> Any:
     return value
 
 
+class _CanonicalJSONEncoder(json.JSONEncoder):
+    """Let the JSON encoder traverse its native containers only once.
+
+    Frozen request metadata also contains MappingProxyType/UserDict values.
+    Adapt those at the encountered node rather than copying the whole tree
+    before encoding. Tuple/list, scalar and key encoding remain JSON's own
+    operations, with the same wire settings as the original plain traversal.
+    No encoded value or validation result survives a call.
+    """
+
+    def default(self, value):
+        if isinstance(value, Mapping):
+            return dict(value.items())
+        return super().default(value)
+
+
 def canonical(value: Any) -> str:
-    return json.dumps(plain(value), sort_keys=True, separators=(",", ":"), allow_nan=False)
+    return json.dumps(value, cls=_CanonicalJSONEncoder, sort_keys=True,
+                      separators=(",", ":"), allow_nan=False)
 
 
 def digest(value: Any) -> str:
@@ -315,16 +332,20 @@ def replay_requests(session: date, baseline: SamplingMembership,
         for c in ("uni", "focus", "hot"))
     if reuse:
         baseline = SamplingMembership(baseline.uni, baseline.focus, baseline.hot)
+    memberships = {(baseline.uni, baseline.focus, baseline.hot): baseline} if reuse else {}
 
     def membership(uni, focus, hot, *candidates):
         nonlocal reuse
         if reuse:
-            for candidate in candidates:
-                if candidate is not None and (uni, focus, hot) == (candidate.uni, candidate.focus, candidate.hot):
-                    return candidate
+            key = (uni, focus, hot)
+            previous_value = memberships.get(key)
+            if previous_value is not None:
+                return previous_value
         value = SamplingMembership(uni, focus, hot)
-        # Baseline tokens were checked once above; active tokens are checked
-        # before constructing memberships below. No need to rescan all of Uni.
+        if reuse:
+            # These immutable exact-string groups were fully checked on this
+            # replay. The table is discarded with the read, including on error.
+            memberships[key] = value
         return value
 
     config = freeze(policy.payload()) if policy is not None else None
