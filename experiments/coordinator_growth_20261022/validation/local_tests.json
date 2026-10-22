@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "scope": "Local new receipts/harness plus affected Nasdaq producer/publication service; not Windows or complete recovery qualification",
+  "tests": 87,
+  "seconds": 8.285,
+  "accepted_runtime_files_byte_identical": 25,
+  "modules": [
+    "test_nasdaq_recovery",
+    "test_coordinator_growth",
+    "test_nasdaq_sampling",
+    "test_sampling_service"
+  ],
+  "transcript_sha256": "fb345332ee8222820ffea8d624c7890b0c86584b2ceb115bc80bb2b83eb8e07f",
+  "runtime_delivery": "NOT_IMPLEMENTED",
+  "production_changes": false
+}

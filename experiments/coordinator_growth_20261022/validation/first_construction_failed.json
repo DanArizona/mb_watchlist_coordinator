@@ -1,0 +1,43 @@
+{
+  "result": "FAILED_RETAINED",
+  "error": "Publication head changed during cycle",
+  "last_reported_progress": {
+    "elapsed_seconds": 21.17,
+    "publications": 24,
+    "receipts": 120,
+    "round": 6
+  },
+  "retained_request_tail": [
+    125,
+    "2026-11-02T15:16:52+00:00"
+  ],
+  "retained_publication_head": 47,
+  "retained_publication_tail": [
+    [
+      43,
+      "plan"
+    ],
+    [
+      44,
+      "acknowledged"
+    ],
+    [
+      45,
+      "plan"
+    ],
+    [
+      46,
+      "acknowledged"
+    ],
+    [
+      47,
+      "plan"
+    ]
+  ],
+  "cause": "UNRESOLVED",
+  "files_sha256": {
+    "publication.sqlite3": "0825bc1381164cf7e8d878251c5e9616f329b4935442ba5590de95fed3d43db1",
+    "requests.sqlite3": "81d98d5f0f65f9bb92e1c5098901b8c9e8ef7d7800d2003db31497969c657e3c",
+    "membership.sqlite3": "08eafa981004158e7e5bb6ab95b81f463862f8418ea8df89b6adf9cf2b16b100"
+  }
+}
