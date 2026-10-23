@@ -1,0 +1,29 @@
+{
+  "result": "PASS",
+  "tests": 372,
+  "seconds": 7.626273061999882,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Shared live/recovered identity and normal request delivery; affected source/store/admission/publication/native tests. Not HTTP transport, process recovery, live acquisition or capacity.",
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_history_reconstruction",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost",
+    "test_sampling_payload_reader",
+    "test_nasdaq_request_reuse",
+    "test_nasdaq_reuse_workload",
+    "test_nasdaq_recovery_delivery"
+  ],
+  "windows_acceptance": "PENDING",
+  "execution_host": "Linux/cloud local checkout"
+}

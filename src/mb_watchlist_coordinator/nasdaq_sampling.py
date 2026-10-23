@@ -33,6 +33,7 @@ class HaltProducerSettings:
     request_lifetime: str
     replay_mode: bool
     reuse_active_symbol_requests: bool = False
+    delivery_mode: str = "direct"
 
     def __post_init__(self):
         identifier(self.producer_id, "producer_id")
@@ -50,6 +51,8 @@ class HaltProducerSettings:
             raise ValueError("replay_mode must be explicit boolean")
         if type(self.reuse_active_symbol_requests) is not bool:
             raise ValueError("reuse_active_symbol_requests must be boolean")
+        if self.delivery_mode not in ("direct", "external"):
+            raise ValueError("delivery_mode must be direct or external")
 
     def payload(self):
         value = {"producer_id": self.producer_id, "reason_codes": list(self.reason_codes),
@@ -57,6 +60,8 @@ class HaltProducerSettings:
                 "first_current_snapshot": "baseline_only", "window_et": ["09:30:00", "16:00:00"]}
         if self.reuse_active_symbol_requests:
             value["reuse_active_symbol_requests"] = True
+        if self.delivery_mode == "external":
+            value["delivery_mode"] = "external"
         return value
 
 
@@ -218,6 +223,8 @@ class NasdaqSamplingProducer:
 
     @property
     def contract(self):
+        if self.settings.delivery_mode == "external":
+            return "nasdaq-source-observations-v3"
         return "nasdaq-source-requests-v2" if self.settings.reuse_active_symbol_requests else "nasdaq-source-requests-v1"
 
     def _check(self):
@@ -337,6 +344,8 @@ class NasdaqSamplingProducer:
         An interruption after request commit leaves a pending command. Exact retry
         reuses its original request receipt; withdrawal cannot be undone by retry.
         """
+        if self.settings.delivery_mode == "external":
+            raise ValueError("External delivery mode requires the shared live/recovery outbox")
         results = []
         with closing(sqlite3.connect(self.path, timeout=5)) as conn:
             with conn:
