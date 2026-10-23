@@ -27,15 +27,15 @@ def verify_inventory():
             raise ValueError('Changed bundled source: '+name)
 if __name__=='__main__':
     verify_inventory()
-    print('OFFLINE paced Nasdaq retrieval and recovery supervision qualification. No API, password or production journal.',flush=True)
-    print('Affected tests and owned synthetic process drills. No live HTTP, broker collector or production access.',flush=True)
+    print('OFFLINE corrected recovery-worker qualification. No API, password or production journal.',flush=True)
+    print('Command 34 failure retained. Bounded Windows sharing retries and owned-worker exit diagnostics; synthetic process drills.',flush=True)
     args=[sys.executable,'-I','-B',str(ROOT/'coordinator/experiments/nasdaq_recovery_supervision_20261023/verify.py'),'--output-root',str(ROOT/'runs')]
     raise SystemExit(subprocess.call(args))
 '''
 
 def build(destination):
     destination=Path(destination);destination.mkdir(parents=True,exist_ok=True)
-    name='nasdaq_recovery_supervision_'+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')+'_'+uuid.uuid4().hex[:6]
+    name='nasdaq_recovery_worker_fix_'+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')+'_'+uuid.uuid4().hex[:6]
     with tempfile.TemporaryDirectory(prefix='recovery delivery bundle ') as temporary:
         root=Path(temporary)/name;root.mkdir()
         for source in [ROOT/'src',ROOT/'experiments/sampling_promotion_20261016/market_data/src']:
@@ -50,7 +50,7 @@ def build(destination):
         shutil.copyfile(ROOT/'tests/fixtures/recovery_probe_worker.py',root/'coordinator/tests/fixtures/recovery_probe_worker.py')
         shutil.copyfile(HERE/'README.md',root/'README.md')
         (root/'verify_source.py').write_text(LAUNCHER)
-        (root/'34_verify_nasdaq_recovery_supervision.cmd').write_bytes(b'@echo off\r\nsetlocal\r\npython -I -B "%~dp0verify_source.py"\r\nexit /b %errorlevel%\r\n')
+        (root/'35_verify_nasdaq_recovery_worker.cmd').write_bytes(b'@echo off\r\nsetlocal\r\npython -I -B "%~dp0verify_source.py"\r\nexit /b %errorlevel%\r\n')
         files={p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(root.rglob('*')) if p.is_file()}
         (root/'SOURCE_INVENTORY.json').write_text(json.dumps({'contract':'nasdaq-recovery-supervision-handoff-v1','files':files},indent=2)+'\n')
         out=destination/(name+'.zip')

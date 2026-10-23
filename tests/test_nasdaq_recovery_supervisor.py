@@ -1,19 +1,22 @@
 from contextlib import closing
 from datetime import datetime, timedelta, timezone
 import json
+import os
 from pathlib import Path
 import sqlite3
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 import unittest
+from unittest.mock import patch
 
 from test_nasdaq_feed_recovery import EMPTY, HTML, rss
 import test_nasdaq_recovery_delivery as delivery_fixtures
 from mb_watchlist_coordinator.nasdaq_feed_recovery import FeedRecoveryTransport, query_url
 from mb_watchlist_coordinator.nasdaq_recovery_supervisor import NasdaqRecoverySupervisor
-from mb_watchlist_coordinator.recovery_workers import ManagedRecoveryWorker, next_future_slot
+from mb_watchlist_coordinator.recovery_workers import ManagedRecoveryWorker, next_future_slot, atomic_json
 from mb_watchlist_coordinator.sampling_requests import canonical, digest, plain
 from mb_watchlist_coordinator.sampling_service import owner_lock, SamplingPublicationService, PublicationSettings
 from mb_watchlist_coordinator.sampling_journal import SamplingJournal
@@ -131,6 +134,80 @@ class ManagedWorkerTests(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):reopened.ensure(start_allowed=True,resume_after_utc=datetime.now(timezone.utc).isoformat())
         self.assertIsNone(reopened.child)
 
+    def test_transient_windows_heartbeat_replacement_keeps_same_owned_worker(self):
+        w=self.worker(command=(sys.executable,'-I','-B',str(PROBE),'--sharing-race'))
+        first=w.ensure(start_allowed=True,resume_after_utc=datetime.now(timezone.utc).isoformat())
+        ready=wait_for(lambda:(v if (v:=w.ensure(start_allowed=True,resume_after_utc=datetime.now(timezone.utc).isoformat()))['status']=='RUNNING' else None))
+        self.assertEqual(ready['pid'],first['pid']);self.assertEqual(w._job()['generation'],1)
+        self.assertIsNone(w.last_exit)
+
+    def test_owned_worker_failure_retains_bounded_stderr_and_exit_status(self):
+        w=self.worker(command=(sys.executable,'-I','-B',str(PROBE),'--fail-stderr'))
+        w.ensure(start_allowed=True,resume_after_utc=datetime.now(timezone.utc).isoformat())
+        wait_for(lambda:w.child.poll() is not None)
+        report=w.ensure(start_allowed=False,resume_after_utc=datetime.now(timezone.utc).isoformat())
+        evidence=report['previous_worker_exit']
+        self.assertEqual(evidence['returncode'],9)
+        self.assertIn('synthetic worker failure',evidence['stderr_tail'])
+        self.assertEqual(len(evidence['stderr_tail'].encode()),8192)
+        self.assertEqual(json.loads((w.root/(w.owned_token+'.exit.json')).read_text()),evidence)
+        self.assertIsNone(w.child)
+
+
+class AtomicWorkerRecordTests(unittest.TestCase):
+    def setUp(self):
+        temp=tempfile.TemporaryDirectory();self.addCleanup(temp.cleanup)
+        self.path=Path(temp.name)/'heartbeat.json';atomic_json(self.path,{'old':True})
+
+    def error(self, code):
+        error=PermissionError('injected Windows sharing conflict');error.winerror=code
+        return error
+
+    def test_windows_sharing_conflicts_retry_same_complete_temporary_value(self):
+        replace=os.replace
+        for code in (5,32,33):
+            with self.subTest(winerror=code):
+                seen=[]
+                def once(source,target):
+                    seen.append(Path(source))
+                    if len(seen)==1:
+                        self.assertEqual(json.loads(self.path.read_text()),{'old':True})
+                        raise self.error(code)
+                    replace(source,target)
+                with patch('mb_watchlist_coordinator.recovery_workers.os.replace',side_effect=once):
+                    atomic_json(self.path,{'new':True},sleep=lambda _:None)
+                self.assertEqual(seen[0],seen[1])
+                self.assertEqual(json.loads(self.path.read_text()),{'new':True})
+                atomic_json(self.path,{'old':True})
+        self.assertFalse(list(self.path.parent.glob('*.tmp')))
+
+    def test_persistent_windows_conflict_is_bounded_and_keeps_previous_record(self):
+        elapsed=[0.0]
+        def sleep(seconds):elapsed[0]+=seconds
+        with patch('mb_watchlist_coordinator.recovery_workers.os.replace',side_effect=self.error(32)) as replace:
+            with self.assertRaises(PermissionError):
+                atomic_json(self.path,{'new':True},monotonic=lambda:elapsed[0],sleep=sleep)
+        self.assertLessEqual(replace.call_count,26);self.assertLessEqual(elapsed[0],.25)
+        self.assertEqual(json.loads(self.path.read_text()),{'old':True})
+        self.assertFalse(list(self.path.parent.glob('*.tmp')))
+
+    def test_unrelated_error_has_no_retry(self):
+        for error in (PermissionError('ordinary permission denied'),self.error(87)):
+            with self.subTest(error=str(error)):
+                with patch('mb_watchlist_coordinator.recovery_workers.os.replace',side_effect=error) as replace:
+                    with self.assertRaises(PermissionError):atomic_json(self.path,{'new':True})
+                self.assertEqual(replace.call_count,1)
+
+    @unittest.skipUnless(os.name=='nt','Actual Windows file sharing requires Windows')
+    def test_native_windows_reader_releases_replacement_before_retry_deadline(self):
+        handle=self.path.open('rb')
+        release=threading.Timer(.05,handle.close);release.start()
+        try:
+            atomic_json(self.path,{'new':True})
+            self.assertEqual(json.loads(self.path.read_text()),{'new':True})
+        finally:
+            release.join();handle.close()
+
 
 class RecoverySupervisorTests(unittest.TestCase):
     def setUp(self):
@@ -194,7 +271,8 @@ class RecoverySupervisorTests(unittest.TestCase):
         report=self.supervisor.cycle()
         self.assertEqual(report['status'],'INCOMPLETE')
         self.assertEqual(self.case.requests.states()[-1].applied,original)
-        self.assertEqual(self.worker.child.pid,pid);self.assertIsNone(self.worker.child.poll())
+        self.assertIsNotNone(self.worker.child,report)
+        self.assertEqual(self.worker.child.pid,pid,report);self.assertIsNone(self.worker.child.poll())
 
     def test_source_commit_before_ingestion_ack_retries_without_duplicate_receipt(self):
         def fault(stage):
@@ -217,7 +295,7 @@ class RecoverySupervisorTests(unittest.TestCase):
 
     def test_valid_empty_dated_scope_does_not_claim_full_trace(self):
         report=self.recover(raw=EMPTY)
-        self.assertEqual(report['status'],'READY_WITH_GAPS')
+        self.assertEqual(report['status'],'READY_WITH_GAPS',report)
         self.assertFalse(self.case.requests.states()[-1].applied.hot)
         self.assertIn('older_unknown_carryovers_not_proven_complete',report['reasons'])
 
@@ -334,7 +412,8 @@ class RecoverySupervisorTests(unittest.TestCase):
             supervisor.cycle();self.advance();report=supervisor.cycle()
             self.assertTrue(report['discovery_scope_reconciled'])
             self.assertEqual(len(feed.snapshot()['attempts']),3)
-            self.assertEqual(self.worker.child.pid,old_pid)
+            self.assertIsNotNone(self.worker.child,report)
+            self.assertEqual(self.worker.child.pid,old_pid,report)
         self.assertEqual(self.case.requests.states()[-1].applied.hot,{'NVDA','MSFT'})
 
     def test_prior_query_completion_cannot_satisfy_new_window_or_early_recovery_delivery(self):

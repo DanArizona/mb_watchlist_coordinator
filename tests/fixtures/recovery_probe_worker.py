@@ -19,6 +19,21 @@ assert digest(value)==checksum
 begin=time.monotonic()
 exit_after=next((float(a.split('=',1)[1]) for a in sys.argv[1:-1] if a.startswith('--exit-after=')),None)
 hang='--hang' in sys.argv
+if '--fail-stderr' in sys.argv:
+    sys.stderr.write('x'*20000+'\nsynthetic worker failure\n');sys.stderr.flush()
+    raise SystemExit(9)
+if '--sharing-race' in sys.argv:
+    replace = os.replace
+    remaining = 2
+    def sharing_race(source, target):
+        global remaining
+        if Path(target) == Path(job['heartbeat_path']) and remaining:
+            remaining -= 1
+            error = PermissionError('synthetic Windows reader denies replacement')
+            error.winerror = 32
+            raise error
+        return replace(source, target)
+    os.replace = sharing_race
 try:
     with owner_lock(Path(job['lease_path'])):
         current=json.loads(Path(job['registry_path']).read_text(encoding='utf-8'))

@@ -1,5 +1,39 @@
 # Paced feed retrieval and isolated recovery supervision
 
+## Windows command 34 failure and corrective command 35
+
+The completed MasterBot command-34 run FAILED: 432 tests, two errors and one
+failure in 31.085244499961846s. Two checks lost the expected healthy worker
+handle; another reported RECOVERING instead of READY_WITH_GAPS. The original
+stderr was discarded, so that console does not establish the exact child-exit
+cause. Its failed result remains retained; command 34 is not accepted.
+
+Inspection found a reproducible heartbeat failure path: an ordinary reader can
+briefly prevent replacement of an existing file on Windows. Previously, one
+such exception escaped the worker and ended it. The corrective writer retries
+only Windows errors 5/32/33, using the same already-flushed temporary file,
+for at most 250ms/26 attempts. It preserves the previous complete record on
+exhaustion, propagates other errors and never grants health without a valid
+fresh heartbeat. Heartbeat/startup/staleness/restart limits are unchanged.
+
+The owned-worker wrapper now drains stderr while retaining at most its last
+8 KiB, saves the exact handle's exit code/reason to a generation-specific
+exit receipt, and includes that receipt in subsequent supervisor reports.
+Unhealthy-worker reports also expose heartbeat age/validation information.
+Healthy periodic status receipts do not acquire changing heartbeat timestamps.
+Tests retain these details in assertion failures instead of only raising an
+unhelpful NoneType exception. This addresses the reproduced failure mode;
+Windows qualification is still required to resolve the original three failures.
+
+Command 35 adds deterministic transient/persistent sharing-conflict cases,
+same-process survival and bounded exit-diagnostic checks. One additional check
+holds a real reader open and releases it during retry on Windows; it is skipped
+on other operating systems. Reports count passed/skipped/failed checks explicitly.
+
+Microsoft's [file-sharing contract](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea)
+documents that rename/delete access requires compatible sharing on open handles.
+No live RSS or broker request was made while investigating this failure.
+
 This increment implements a bounded current/dated RSS acquisition client and an
 isolated recovery authority. It orchestrates retained feed evidence, normal
 source-owned request delivery, native Coordinator publication and registered
@@ -102,7 +136,7 @@ readiness is not an unqualified production-ready or live-Hot claim.
 
 ## Offline Windows qualification
 
-Run new source-inventory-pinned `34_verify_nasdaq_recovery_supervision.cmd`.
+Run new source-inventory-pinned `35_verify_nasdaq_recovery_worker.cmd`.
 It runs the affected suites and isolated real child-process fault drills. No
 password, API, credentials or production journal is used. Temporary process
 fixtures start/stop without acquiring market data. Allow roughly a minute on
@@ -134,7 +168,7 @@ document current, halt-date, resumption-date and combined union selections.
 Both were reviewed for this increment. Only these documentation pages were
 retrieved during development; the actual trade-halt feed was not queried.
 
-## Final extracted qualification
+## Original command-34 extracted qualification (historical)
 
 All 432 affected checks PASS from the final source-pinned package extracted in
 a path containing spaces, in 19.322003510000286s. The extracted inventory matches
@@ -144,7 +178,7 @@ no live feed, credentials or broker API was used. Native audit/replays pass.
 
 Delivery: `nasdaq_recovery_supervision_20261023_043222_f640c7.zip`, 205,269 bytes,
 68 files, SHA-256 `6d3da546d7de6280d46811cd74cb74fa9a8988006521cf5156a64dfa8b672763`.
-Windows command 34 remains PENDING for these new bytes. Earlier command 33
+Windows command 34 subsequently FAILED as recorded above. Earlier command 33
 remains accepted for its source pin. The exact delivered README and inventory,
 final extracted report and superseded intermediate checkout report are retained
 under validation. No qualification gate is raised by this increment.

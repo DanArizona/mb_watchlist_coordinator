@@ -1,0 +1,22 @@
+{
+  "kind": "deterministic_injected_windows_sharing_conflict",
+  "original_source": "4ed3f6a6a190fa0803e651f594aeb226773330a3",
+  "original_console_root_cause": "NOT_PROVEN",
+  "network": "denied",
+  "production_access": false,
+  "original": {
+    "outcome": "uncaught_PermissionError",
+    "winerror": 32,
+    "attempts": 1,
+    "record": {
+      "old": true
+    }
+  },
+  "corrected": {
+    "outcome": "published",
+    "attempts": 2,
+    "record": {
+      "new": true
+    }
+  }
+}

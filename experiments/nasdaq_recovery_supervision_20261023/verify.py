@@ -36,6 +36,8 @@ def main():
     folder = args.output_root/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-'+uuid.uuid4().hex[:8])
     folder.mkdir(parents=True, exist_ok=False)
     report = {'result': 'PASS' if result.wasSuccessful() else 'FAILED', 'tests': result.testsRun,
+        'skipped': len(result.skipped), 'failures': len(result.failures), 'errors': len(result.errors),
+        'passed': result.testsRun-len(result.skipped)-len(result.failures)-len(result.errors),
         'seconds': time.perf_counter()-start, 'network': 'denied', 'production_access': False,
         'scope': 'Paced feed transport and isolated recovery authority/owned-worker protocol; synthetic HTTP children, source/store/admission/publication/native integration. Not live HTTP, broker collector integration, production adoption or capacity.',
         'suites': list(SUITES), 'execution_environment': 'offline_current_host', 'windows_operator_acceptance_recorded_separately': True}
