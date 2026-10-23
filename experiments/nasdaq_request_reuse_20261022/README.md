@@ -76,8 +76,12 @@ API, password or production journal. Progress appears during construction.
 Each fixture has a 600-second construction budget. The command returns to its
 prompt and saves the detailed verification/workload reports below its own runs.
 
-Windows correctness and workload results are PENDING until the operator supplies
-the output. Source-only checkpoint publication does not install this increment,
+Windows correctness and selected native workload results are ACCEPTED from the
+complete MasterBot sea-green CMD console (run `20261023T021322Z-f9b1e24a`).
+All 341 tests pass in 13.570929800043814s, every paired workload reports PASS,
+and the actual CMD prompt returns. Saved detailed Windows reports/databases have
+not been uploaded; rounded console timings below are not invented exact values.
+No unchanged command 32 rerun is needed. Checkpoint publication does not install this increment,
 change production polling cadence or activate production Hot.
 
 Complete operational recovery, shared live/recovered delivery, provider/combined
@@ -119,7 +123,26 @@ those decision boundaries, concurrency, corrupt/rehashed bindings and lost ACKs.
 | busiest | 107 / 27 | 0.277s | 0.128s | 0.144s |
 | margin | 160 / 40 | 0.463s | 0.203s | 0.216s |
 
-All final-source candidate idle gates PASS on this Linux/cloud host, 100 samples per variant. All full source facts, applied membership checkpoints and native effective membership timelines match between paired variants. Native audit and replay checks pass, complete source/service fresh-object reopens match, and every database byte remains unchanged during measurement. All three fresh-object candidate reopens per case remain below the 10s gate. These are local selected-workload results, with Windows qualification pending.
+All final-source candidate idle gates PASS on this Linux/cloud host, 100 samples per variant. All full source facts, applied membership checkpoints and native effective membership timelines match between paired variants. Native audit and replay checks pass, complete source/service fresh-object reopens match, and every database byte remains unchanged during measurement. All three fresh-object candidate reopens per case remain below the 10s gate. These are local selected-workload results; the separate Windows results below are now accepted.
 
-The final extracted package passes all 341 affected checks in 7.374s from a path containing spaces. Altered source is refused before tests. Windows command 32 remains PENDING.
+The final extracted package passes all 341 affected checks in 7.374s from a path containing spaces. Altered source is refused before tests. Windows command 32 is now ACCEPTED for these pinned bytes and selected workloads.
 Delivery: `nasdaq_request_reuse_20261023_004809_6660ad.zip`, 163669 bytes, 59 files, SHA-256 `a72647cfbb99f881ca9ed2aa7bdc39c097c286ad2ebf0e4eba0cf132f5ce1101`.
+
+## Windows acceptance
+
+The complete operator console and structured acceptance are saved under
+`validation/windows_console.txt` and `validation/windows_qualification.json`.
+
+| Case | Receipts per event / reuse | Per-event idle p95 | Reuse idle p95 |
+|---|---:|---:|---:|
+| Typical | 42 / 21 | 0.0856s | 0.0641s |
+| Busiest | 107 / 27 | 0.1939s | 0.0976s |
+| Synthetic margin | 160 / 40 | 0.3389s | 0.1500s |
+
+Timings are the rounded values printed by the pinned 30-sample harness. Its
+completed result accepts the affected correctness and selected workload gates;
+full Windows source-history/mixed-source/provider capacity remains unqualified.
+The earlier stress failure and unresolved cloud construction failure are retained.
+Next implement shared live/recovery event-request identity and normal recovered
+request delivery. No runtime, production process, journal or cadence changes
+are part of recording this acceptance.

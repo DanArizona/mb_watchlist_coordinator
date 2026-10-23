@@ -1,0 +1,67 @@
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>powershell -NoProfile -Command "Expand-Archive -LiteralPath 'C:\Users\danla\Downloads\nasdaq_request_reuse_20261023_004809_6660ad.zip' -DestinationPath 'C:\Users\danla\Documents\github\mb_market_data\output' -ErrorAction Stop"
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>call "C:\Users\danla\Documents\github\mb_market_data\output\nasdaq_request_reuse_20261023_004809_6660ad\32_verify_nasdaq_request_reuse.cmd"
+OFFLINE Nasdaq request reuse qualification. No API, password or production journal.
+Affected tests, then typical/busiest/margin native logical workloads. No full-day/provider claim.
+.....................................................................................................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 341 tests in 13.570s
+
+OK
+Building typical per_event logical workload; no market/provider activity.
+typical per_event receipts 42 idle p95 0.0856
+Building typical reuse logical workload; no market/provider activity.
+typical reuse receipts 21 idle p95 0.0641
+Building busiest per_event logical workload; no market/provider activity.
+  Synthetic actions 133 / 214 elapsed 15.0 seconds
+  Synthetic actions 195 / 214 elapsed 30.1 seconds
+busiest per_event receipts 107 idle p95 0.1939
+Building busiest reuse logical workload; no market/provider activity.
+  Synthetic actions 147 / 214 elapsed 15.1 seconds
+busiest reuse receipts 27 idle p95 0.0976
+Building margin per_event logical workload; no market/provider activity.
+  Synthetic actions 82 / 320 elapsed 15.2 seconds
+  Synthetic actions 143 / 320 elapsed 30.2 seconds
+  Synthetic actions 193 / 320 elapsed 45.3 seconds
+  Synthetic actions 235 / 320 elapsed 60.6 seconds
+  Synthetic actions 274 / 320 elapsed 75.7 seconds
+  Synthetic actions 309 / 320 elapsed 91.2 seconds
+margin per_event receipts 160 idle p95 0.3389
+Building margin reuse logical workload; no market/provider activity.
+  Synthetic actions 85 / 320 elapsed 15.1 seconds
+  Synthetic actions 156 / 320 elapsed 30.2 seconds
+  Synthetic actions 218 / 320 elapsed 45.4 seconds
+  Synthetic actions 275 / 320 elapsed 60.5 seconds
+margin reuse receipts 40 idle p95 0.15
+Saved workload report: C:\Users\danla\Documents\github\mb_market_data\output\nasdaq_request_reuse_20261023_004809_6660ad\runs\20261023T021322Z-f9b1e24a\workloads\report.json
+{
+  "result": "PASS",
+  "tests": 341,
+  "seconds": 13.570929800043814,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Changed Nasdaq reuse/store paths plus affected admission/replay/publication/native integration. Recovery transport and provider capacity are not qualified.",
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_history_reconstruction",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost",
+    "test_sampling_payload_reader",
+    "test_nasdaq_request_reuse",
+    "test_nasdaq_reuse_workload"
+  ],
+  "workloads": "PASS"
+}
+Saved report: C:\Users\danla\Documents\github\mb_market_data\output\nasdaq_request_reuse_20261023_004809_6660ad\runs\20261023T021322Z-f9b1e24a\verification.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
