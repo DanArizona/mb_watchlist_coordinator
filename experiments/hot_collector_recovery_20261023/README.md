@@ -38,7 +38,9 @@ it does not add an incremental cache or establish long-history recovery speed.
 
 ## Offline qualification
 
-Run only new `37_verify_hot_collector_cleanup.cmd` from the extracted package.
+Command `37_verify_hot_collector_cleanup.cmd` is accepted on MasterBot Windows:
+491/491 PASS in 55.021683200029656s, no skips/errors/failures and actual CMD
+prompt return. No unchanged repeat of this package is needed.
 It verifies the source inventory before running the affected suites. Main and
 fixture child processes deny network. No password, API or production journal
 is required; allow roughly one to two minutes on Windows and retain the final
@@ -64,7 +66,8 @@ HTTP and market-hours recovery, full-day/cumulative history/mixed-source/soak
 capacity, original direct-producer migration and production adoption remain
 pending. Configured heartbeat/startup gates are not raised to hide slow cold
 reconstruction. Production main, Uni/Focus cadence and Hot-disabled policy stay
-unchanged. Windows acceptance for this new source is pending.
+unchanged. Offline Windows acceptance is complete for the corrected command-37
+source pin; authenticated/live-provider qualification remains pending.
 
 ## Windows command-36 cleanup failure
 
@@ -84,3 +87,20 @@ native dependency, corruption rejection and qualification gates are unchanged.
 
 Command 37 is a fresh source-pinned offline delivery with this test-only
 correction. Earlier packages and the command-36 failed result remain preserved.
+
+
+## Completed corrected Windows acceptance — command 37
+
+The completed MasterBot/sea-green operator console, run
+`20261023T090727Z-4ace00da`, reports all 491 tests PASS in
+55.021683200029656s, zero skipped tests/errors/failures, network denied,
+production access false and actual CMD prompt return. This includes the native
+Windows check and corrected corruption-test cleanup. The saved report file was
+not independently uploaded; the completed console supports this acceptance.
+
+The acceptance commit changes documentation/records only. Runtime, tests,
+archive/inventory hashes and gates are unchanged. Original command 36 retains
+FAILED. Commands 32/33/35 and 37 need no unchanged rerun. Next prepare the
+authenticated noninteractive client/SDK startup and credential-handoff contract,
+then separately bounded live HTTP and market-hours recovery. No production
+adoption, full-day capacity or complete historical quote restoration is implied.

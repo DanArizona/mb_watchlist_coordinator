@@ -1,0 +1,48 @@
+Operator-supplied console excerpt; progress dots omitted.
+
+OFFLINE native Hot collector and acquisition-recovery qualification. No API, password or production journal.
+Corrected test-owned SQLite cleanup. Collector runtime unchanged; synthetic provider/process drills only.
+----------------------------------------------------------------------
+Ran 491 tests in 55.021s
+
+OK
+{
+  "result": "PASS",
+  "tests": 491,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "passed": 491,
+  "seconds": 55.021683200029656,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Native Hot collector integration and saved-acquisition recovery under fenced worker supervision; synthetic provider responses and actual process fault drills. Not authenticated broker access, live HTTP, market-hours recovery, production adoption or capacity.",
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_history_reconstruction",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost",
+    "test_sampling_payload_reader",
+    "test_nasdaq_request_reuse",
+    "test_nasdaq_reuse_workload",
+    "test_nasdaq_recovery_delivery",
+    "test_nasdaq_feed_recovery",
+    "test_nasdaq_recovery_supervisor",
+    "test_hot_recovery_collector",
+    "test_sampling_acquisition"
+  ],
+  "execution_environment": "offline_current_host",
+  "windows_operator_acceptance_recorded_separately": true
+}
+Saved report: C:\Users\danla\Documents\github\mb_market_data\output\hot_collector_cleanup_20261023_084558_055166\runs\20261023T090727Z-4ace00da\verification.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
