@@ -1,0 +1,8 @@
+{
+  "result": "PASS",
+  "checkout_files": 69,
+  "altered_source_refused_before_tests": true,
+  "restored": true,
+  "native_collector_sha256": "47edfd2e1b3f34485a29d1ecaed440f6dc9fc4e482f7d7cdb7b5bba675af06f4",
+  "native_source_copied_unchanged_from_market_data": true
+}
