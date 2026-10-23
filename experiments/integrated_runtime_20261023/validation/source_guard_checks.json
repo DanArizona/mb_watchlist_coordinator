@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "case": "changed_source",
+      "returncode": 70,
+      "blocked_before_tests": true
+    },
+    {
+      "case": "extra_source",
+      "returncode": 70,
+      "blocked_before_tests": true
+    }
+  ],
+  "restored_inventory_identical": true,
+  "repository_files_matched": 89,
+  "accepted_command43_mapped_files_unchanged": 79,
+  "accepted_command43_archive_unchanged": true,
+  "network": "denied",
+  "production_access": false
+}

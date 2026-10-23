@@ -77,3 +77,15 @@ Windows-only file-sharing check skipped, zero failures/errors, in
 92.56318843699955 seconds (runner 92.425 seconds). The skipped native Windows
 replacement-sharing check is named in the report and will run on Windows.
 Source-pinned extraction and operator Windows acceptance are separate gates.
+
+The source-pinned extraction in a path containing spaces passes 293 tests
+(292 passed, one Windows-only skip, zero failures/errors) in
+93.51348462100032 seconds (runner 93.302 seconds). All 89 mapped repository
+files match source 0bc6c554a2a033906049709a96f4852f177f6e7f, tree
+874b5bb5fa1e60a9a410a583a38c5523f9a3fb0d. Altered and extra source both
+return 70 before tests, then the complete original inventory is restored.
+The immutable archive integrated_runtime_20261023_201031_c76e79.zip is
+272646 bytes/93 files, SHA-256
+2617a11a09151231e15d68a32232ab7b435b3fd7a8796bbc152b60406a0dfe6f.
+Windows command-44 operator acceptance remains pending. This delivery update
+changes documentation/records only and does not rebuild the original archive.

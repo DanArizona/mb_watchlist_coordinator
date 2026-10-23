@@ -1,0 +1,22 @@
+{
+  "archive": "/workspace/scratch/78e6acba7246/deliverables/integrated_runtime_20261023_201031_c76e79.zip",
+  "folder": "integrated_runtime_20261023_201031_c76e79",
+  "bytes": 272646,
+  "sha256": "2617a11a09151231e15d68a32232ab7b435b3fd7a8796bbc152b60406a0dfe6f",
+  "files": 93,
+  "inventory_sha256": "fc4b9ac2877fe19cee91a94fed020fb4eb0fd346df8b5d46b16c0c185c661e98",
+  "repository_files_matched": 89,
+  "source_commit": "0bc6c554a2a033906049709a96f4852f177f6e7f",
+  "source_tree": "874b5bb5fa1e60a9a410a583a38c5523f9a3fb0d",
+  "local_tests": 293,
+  "local_passed": 292,
+  "local_skipped": 1,
+  "local_seconds": 92.56318843699955,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "scope": "Fresh runtime pump and independent original first-work startup gate, synthetic HTTP/SDK only. Outer hard controller/profile harness, full manual resume, live acquisition/recovery and capacity are not qualified.",
+  "extracted_tests": 293,
+  "extracted_passed": 292,
+  "extracted_skipped": 1,
+  "extracted_seconds": 93.51348462100032,
+  "source_guard_checks": "PASS"
+}
