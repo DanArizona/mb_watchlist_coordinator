@@ -1,0 +1,10 @@
+{
+  "result": "NO_FAILURE_REPRODUCED_IN_THREE_ORDINARY_TARGETED_RUNS",
+  "tests": 3,
+  "passed": 3,
+  "seconds": 10.992,
+  "network": "denied",
+  "production_access": false,
+  "test": "test_owned_child_fault_restarts_future_slots_with_original_symbol_window_and_budgets (test_integrated_runtime_process.RuntimeProcessTests)",
+  "scope": "Original command-44 fault test repeated on current host before corrections, with temporary outcome observation. Does not qualify Windows or establish the original failure cause."
+}

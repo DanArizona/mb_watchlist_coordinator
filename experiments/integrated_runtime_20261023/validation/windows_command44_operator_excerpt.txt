@@ -1,0 +1,16 @@
+Operator console excerpt, retained verbatim; not a reconstruction of the complete console.
+
+FAIL: test_owned_child_fault_restarts_future_slots_with_original_symbol_window_and_budgets (test_integrated_runtime_process.RuntimeProcessTests.test_owned_child_fault_restarts_future_slots_with_original_symbol_window_and_budgets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danla\Documents\github\mb_market_data\output\integrated_runtime_20261023_201031_c76e79\coordinator\tests\test_integrated_runtime_process.py", line 183, in test_owned_child_fault_restarts_future_slots_with_original_symbol_window_and_budgets
+    self.begin(); self.ready(); self.emit_halt(); self.wait(lambda: self.native_count() >= 1)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danla\Documents\github\mb_market_data\output\integrated_runtime_20261023_201031_c76e79\coordinator\tests\test_integrated_runtime_process.py", line 66, in wait
+    self.fail('Owned synthetic runtime did not reach its bounded state')
+AssertionError: Owned synthetic runtime did not reach its bounded state
+
+----------------------------------------------------------------------
+Ran 293 tests in 129.829s
+
+FAILED (failures=1)

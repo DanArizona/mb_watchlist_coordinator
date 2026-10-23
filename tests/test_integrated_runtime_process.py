@@ -1,5 +1,4 @@
 from contextlib import closing
-from datetime import timedelta
 import json
 from pathlib import Path
 import sqlite3
@@ -10,14 +9,14 @@ import time
 import unittest
 from unittest.mock import patch
 
-from runtime_fixtures import RuntimeFixture, ScriptedFeed, SECRET
+from runtime_fixtures import RuntimeFixture, SECRET
+from runtime_process_evidence import subsequent_halt_snapshot
 from test_nasdaq_feed_recovery import EMPTY
 from mb_market_data.quote_journal_audit import audit_quote_journal
 from mb_market_data.quote_journal_replay import QuoteJournalReplayReader
 from mb_watchlist_coordinator.integrated_runtime import IntegratedRuntime
 from mb_watchlist_coordinator.nasdaq_feed_recovery import BoundedFeedClient
-from mb_watchlist_coordinator.nasdaq_sampling import HaltSnapshot
-from mb_watchlist_coordinator.sampling_requests import digest, timestamp, utc_text
+from mb_watchlist_coordinator.sampling_requests import timestamp, utc_text
 from mb_watchlist_coordinator.supervised_hot_worker import progress_receipt
 
 PROBE = Path(__file__).parent/'fixtures/supervised_hot_worker_probe.py'
@@ -25,6 +24,7 @@ PROBE = Path(__file__).parent/'fixtures/supervised_hot_worker_probe.py'
 
 class RuntimeProcessTests(unittest.TestCase):
     def setUp(self):
+        self.phase = 'setup'
         tmp = tempfile.TemporaryDirectory(); self.addCleanup(tmp.cleanup)
         self.f = RuntimeFixture(tmp.name); self.addCleanup(self.f.session.close)
         self.feed = BoundedFeedClient(self.f.session.feed)
@@ -42,6 +42,13 @@ class RuntimeProcessTests(unittest.TestCase):
             worker_command=(sys.executable, '-I', '-B', str(PROBE),
                 str(self.f.target/'authenticated-worker.json'), str(self.simulation)))
         self.r.initialize(); self.addCleanup(self.r.close)
+        original_cycle = self.r.authority.cycle
+        self.authority_observation = {}
+        def observed_cycle(**kwargs):
+            report = original_cycle(**kwargs)
+            self.authority_observation = report
+            return report
+        self.r.authority.cycle = observed_cycle
 
     def step(self):
         return self.r.step(synthetic=self.scenario)
@@ -54,7 +61,8 @@ class RuntimeProcessTests(unittest.TestCase):
         self.step()
         return self.r.managed.child
 
-    def wait(self, predicate, seconds=8, pump=True):
+    def wait(self, predicate, seconds=8, pump=True, phase='wait'):
+        self.phase = phase
         until = time.monotonic()+seconds
         while time.monotonic() < until:
             if pump and not self.r.closed:
@@ -62,12 +70,15 @@ class RuntimeProcessTests(unittest.TestCase):
             result = predicate()
             if result:
                 return result
+            if pump and self.r.closed:
+                self.fail('Owned synthetic runtime stopped before phase '+phase)
             time.sleep(.03)
-        self.fail('Owned synthetic runtime did not reach its bounded state')
+        self.fail('Owned synthetic runtime did not reach phase '+phase+' within its original bounded wait')
 
     def ready(self):
         return self.wait(lambda: self.r.last_report if self.r.last_report
-            and self.r.last_report.get('worker', {}).get('status') == 'RUNNING' else None)
+            and self.r.last_report.get('worker', {}).get('status') == 'RUNNING' else None,
+            phase='worker_first_completed_work')
 
     def events(self):
         return [json.loads(s) for s in self.log.read_text().splitlines()] if self.log.exists() else []
@@ -76,20 +87,19 @@ class RuntimeProcessTests(unittest.TestCase):
         with closing(sqlite3.connect(self.f.session.store.database_path)) as c:
             return c.execute('SELECT count(*) FROM poll_run').fetchone()[0]
 
-    def emit_halt(self, seconds=0):
+    def emit_halt(self):
         # The transport baseline is already saved by the controller. This
         # external-observation source fixture provides a genuinely subsequent
         # synthetic update without compressing the accepted 60s HTTP cadence.
-        self.wait(lambda: self.f.session.live.snapshot()['receipts'])
-        now = self.f.clock()
-        halt = now-timedelta(milliseconds=10)+timedelta(seconds=seconds)
-        from mb_market_data.watchlist_polling import ET
-        et = halt.astimezone(ET)
-        rows = ({'symbol': 'NVDA', 'halt_date': et.strftime('%m/%d/%Y'),
-            'halt_time': et.strftime('%H:%M:%S.%f'), 'reason_code': 'LUDP'},)
-        snapshot = HaltSnapshot('synthetic-runtime-'+str(len(self.f.session.live.snapshot()['receipts'])),
-            now, 'CURRENT', digest(rows), rows, {'synthetic_only': True, 'test_external_observation': True})
+        receipts = self.wait(lambda: self.f.session.live.snapshot()['receipts'], phase='startup_baseline')
+        baseline = receipts[0]['snapshot']
+        self.wait(lambda: self.f.clock() > timestamp(baseline['retrieved_at_utc']), phase='later_observation_clock')
+        snapshot = subsequent_halt_snapshot(baseline, observed_at=self.f.clock(),
+            capture_id='synthetic-runtime-'+str(len(receipts)))
         self.f.session.live.record_snapshot(snapshot)
+        self.phase = 'source_request_queued'
+        outcome = self.f.session.live.snapshot()['outcomes'][-1]
+        self.assertEqual([e['status'] for e in outcome['events']], ['request_queued'])
 
     def native_count(self):
         return len(self.f.session.store.acquisitions_in_replay_order())
@@ -116,7 +126,7 @@ class RuntimeProcessTests(unittest.TestCase):
 
     def test_source_identity_request_publication_and_actual_native_hot_quote_share_one_session(self):
         self.begin(); self.ready(); self.emit_halt()
-        self.wait(lambda: self.native_count() >= 1)
+        self.wait(lambda: self.native_count() >= 1, phase='first_native_acquisition')
         stop = self.r.close(); self.assertTrue(stop['counts_verified'])
         self.assertEqual(stop['selected_symbol'], 'NVDA'); self.assertEqual(stop['identity_quote_permits'], 1)
         self.assertEqual(stop['hot_quote_permits'], self.native_count())
@@ -180,16 +190,18 @@ class RuntimeProcessTests(unittest.TestCase):
         self.assertEqual(self.r.managed._job()['generation'], 1); self.no_secrets()
 
     def test_owned_child_fault_restarts_future_slots_with_original_symbol_window_and_budgets(self):
-        self.begin(); self.ready(); self.emit_halt(); self.wait(lambda: self.native_count() >= 1)
+        self.begin(); self.ready(); self.emit_halt()
+        self.wait(lambda: self.native_count() >= 1, phase='first_native_acquisition')
         first = self.r.managed._job(); child = self.r.managed.child
-        self.wait(lambda: (self.f.clock()-timestamp(first['started_at_utc'])).total_seconds() >= 3.1)
+        self.wait(lambda: (self.f.clock()-timestamp(first['started_at_utc'])).total_seconds() >= 3.1,
+            phase='pre_fault_startup_age')
         child.terminate(); child.wait(timeout=2)
         after_fault = self.f.clock()
-        self.wait(lambda: self.r.managed._job()['generation'] == 2)
+        self.wait(lambda: self.r.managed._job()['generation'] == 2, phase='replacement_generation')
         second = self.r.managed._job()
         self.assertEqual(first['identity'], second['identity']); self.assertNotEqual(first['token'], second['token'])
         self.assertGreater(timestamp(second['first_eligible_slot_utc']), after_fault)
-        self.wait(lambda: self.native_count() >= 2)
+        self.wait(lambda: self.native_count() >= 2, phase='post_fault_native_acquisition')
         stop = self.r.close()
         self.assertEqual(stop['identity_quote_permits'], 1); self.assertEqual(stop['selected_symbol'], 'NVDA')
         self.assertLessEqual(stop['hot_quote_permits'], 60)

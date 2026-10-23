@@ -1,0 +1,30 @@
+{
+  "result": "REPRODUCED_FIXTURE_BOUNDARY",
+  "network": "denied",
+  "production_access": false,
+  "baseline_retrieved_at_utc": "2026-10-24T14:01:01+00:00",
+  "observation_after_baseline_ms": 5,
+  "old_fixture_backdating_ms": 10,
+  "outcomes": [
+    {
+      "capture_id": "feed-a3a97b648ff8404ba1aa7a27fa65fc9c",
+      "mode": "CURRENT",
+      "events": [],
+      "status": "initial_baseline"
+    },
+    {
+      "capture_id": "controlled-command44-boundary",
+      "mode": "CURRENT",
+      "events": [
+        {
+          "event_id": "nasdaq-halt-3de889e67b493673b891622ea48edff8d22220eab1e97228be5059fbc80283e0",
+          "symbol": "NVDA",
+          "status": "predates_startup"
+        }
+      ],
+      "status": "incremental"
+    }
+  ],
+  "commands": 0,
+  "interpretation": "Demonstrates an independent command-44 fixture defect. Does not establish the cause of the operator Windows failure."
+}

@@ -1,5 +1,13 @@
 # Fresh authenticated runtime coupling — command 44
 
+**Windows command 44 FAILED:** 292/293 passed, one first-native-acquisition
+timeout before fault injection, no skips/errors; 130.09843080001883 seconds.
+The supplied console and actual prompt return are retained separately. The
+original archive and earlier local/extracted PASS records remain unchanged.
+The Windows cause is unknown. A separately demonstrated 10ms fixture
+backdating boundary is investigated without attributing it to that failure.
+
+
 Run only the offline verifier in sea-green. No real password, vault, installed
 SDK, public directory/feed/broker request, production journal or production
 process is used. Pinned public mb_tools interfaces operate on fabricated
@@ -87,5 +95,5 @@ return 70 before tests, then the complete original inventory is restored.
 The immutable archive integrated_runtime_20261023_201031_c76e79.zip is
 272646 bytes/93 files, SHA-256
 2617a11a09151231e15d68a32232ab7b435b3fd7a8796bbc152b60406a0dfe6f.
-Windows command-44 operator acceptance remains pending. This delivery update
+Windows command-44 operator result is FAILED; it is not accepted. This delivery update
 changes documentation/records only and does not rebuild the original archive.
