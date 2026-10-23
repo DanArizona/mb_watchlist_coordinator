@@ -61,3 +61,20 @@ SHA-256 eefc144d560aee53e7b3a82e6e11ac7c39aaf3bb48e634bc6877f7670b432515.
 Windows command-45 validation and actual prompt return remain pending. This
 delivery follow-up changes documentation/records only, without rebuilding
 the archive or changing the bundled fixture/runtime/reference bytes.
+
+## MasterBot Windows acceptance
+
+Command 45 is **ACCEPTED** from the completed operator console: 52/52 PASS,
+zero skips/failures/errors, 47.389066500007175 seconds (runner 47.184s),
+run 20261023T204926Z-387b5b9c, with actual CMD prompt return. Python 3.12.13
+on Windows-11-10.0.26300-SP0 in sea-green. The raw fixed report label
+OPERATOR_RESULT_REQUIRED is preserved; the separate acceptance records the
+completed result. The saved report was not independently uploaded.
+
+All 92 bundled repository files and the archive remain unchanged; this update
+changes documentation/records only. The 61 runtime/reference hashes still
+match command 44. Command 44 remains FAILED and its original cause UNKNOWN;
+this later PASS does not establish that cause. No unchanged command-45 or
+earlier accepted verification needs repeating. Full manual controller resume
+is next, followed by the independently bounded outer/profile harness and
+separately invoked live profiles. Their qualification remains pending.
