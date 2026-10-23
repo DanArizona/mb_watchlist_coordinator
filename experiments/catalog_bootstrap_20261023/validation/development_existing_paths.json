@@ -1,0 +1,15 @@
+{
+  "phase": "shared_bootstrap_entry_regression_development",
+  "result": "PASS",
+  "tests": 53,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 14.585277885999972,
+  "network": "denied",
+  "changed_accepted_source_paths": [
+    "controller_bootstrap.py",
+    "bootstrap_entry.py"
+  ],
+  "failure_details": []
+}

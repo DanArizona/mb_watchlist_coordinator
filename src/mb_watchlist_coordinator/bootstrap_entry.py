@@ -12,10 +12,12 @@ from .controller_bootstrap import (BootstrapSettings, BootstrapError, bootstrap_
     CONTRACT, CODES, EXPECTED_HELPERS, strict_json)
 from .installed_startup_probe import _silence, inspect_dependencies
 from .sampling_requests import digest
+from .catalog_startup import CONTRACT as CATALOG_CONTRACT
 
 
 def run_entry(configuration, configuration_sha256, *, stream=None, clock=None,
-              inventory=None, secure_api=None, fault_hook=None, startup_seconds=8, hard_seconds=60):
+              inventory=None, secure_api=None, fault_hook=None, startup_seconds=8, hard_seconds=60,
+              catalog_acquirer=None, contract=CONTRACT):
     """One-shot bootstrap proof. A future controller uses bootstrap_fresh in place.
 
     Injectable APIs are trusted offline test seams, not command-line modes.
@@ -28,9 +30,12 @@ def run_entry(configuration, configuration_sha256, *, stream=None, clock=None,
     lock = threading.Lock()
     emitted = False
     safe_sha = configuration_sha256 if isinstance(configuration_sha256, str) and re.fullmatch('[0-9a-f]{64}', configuration_sha256) else None
-    state = {'contract': CONTRACT, 'configuration_sha256': safe_sha,
+    state = {'contract': contract if contract in (CONTRACT, CATALOG_CONTRACT) else CONTRACT,
+        'configuration_sha256': safe_sha,
         'result': 'FAILED', 'reason': 'configuration_invalid', 'native_run_registered': False,
         'quote_dispatches_started': 0, 'feed_attempts_started': 0, 'client_close_invoked': False}
+    if contract == CATALOG_CONTRACT:
+        state.update(bound_configuration_sha256=None, reserved_directory_permits=0)
     def emit(reason=None):
         nonlocal emitted
         with lock:
@@ -49,7 +54,8 @@ def run_entry(configuration, configuration_sha256, *, stream=None, clock=None,
                 os._exit(124)
     session = password = None
     try:
-        if safe_sha is None or not 0 < startup_seconds <= 8 or not 0 < hard_seconds <= 60:
+        if (safe_sha is None or contract not in (CONTRACT, CATALOG_CONTRACT)
+                or not 0 < startup_seconds <= 8 or not 0 < hard_seconds <= 60):
             raise BootstrapError('configuration_invalid')
         threading.Thread(target=watchdog, args=(done, hard_seconds, 'bootstrap_deadline_ended'), daemon=True).start()
         threading.Thread(target=watchdog, args=(authenticated, startup_seconds, 'credential_deadline_ended'), daemon=True).start()
@@ -59,9 +65,16 @@ def run_entry(configuration, configuration_sha256, *, stream=None, clock=None,
         raw = strict_json(p.read_text(encoding='utf-8'))
         raw['catalog_symbols'] = tuple(raw['catalog_symbols'])
         plan = BootstrapSettings(**raw).plan()
+        if plan.public['contract'] != contract or contract == CATALOG_CONTRACT and not callable(catalog_acquirer):
+            raise BootstrapError('configuration_invalid')
         if plan.configuration_sha256 != configuration_sha256:
             raise BootstrapError('inputs_changed')
         plan.fresh(clock)
+        if contract == CATALOG_CONTRACT:
+            remaining = min(hard_seconds, (plan.bootstrap_deadline-clock()).total_seconds())
+            if remaining <= 0:
+                raise BootstrapError('bootstrap_window_ended')
+            threading.Thread(target=watchdog, args=(done, remaining, 'bootstrap_deadline_ended'), daemon=True).start()
         observed = (inventory or inspect_dependencies)(EXPECTED_HELPERS)
         if observed.get('qualified') is not True or digest(observed) != plan.settings.dependency_sha256:
             raise BootstrapError('dependency_rejected')
@@ -71,10 +84,14 @@ def run_entry(configuration, configuration_sha256, *, stream=None, clock=None,
                 authenticated.set()
             if name == 'initial_poll_run_registered':
                 state['native_run_registered'] = True
+            if name == 'directory_invocation_reserved':
+                state['reserved_directory_permits'] = 2
             if fault_hook:
                 fault_hook(name)
         session = bootstrap_fresh(plan, password, clock=clock, inventory=inventory,
-            secure_api=secure_api, fault_hook=stage)
+            secure_api=secure_api, fault_hook=stage, catalog_acquirer=catalog_acquirer)
+        if contract == CATALOG_CONTRACT:
+            state['bound_configuration_sha256'] = session.plan.configuration_sha256
         state.update(result='PASS', reason='bootstrap_pass')
         return 0
     except (BootstrapError, StartupError) as error:
@@ -99,15 +116,24 @@ def run_entry(configuration, configuration_sha256, *, stream=None, clock=None,
         os.close(channel)
 
 
-def parse_receipt(raw, configuration_sha256):
+def parse_receipt(raw, configuration_sha256, *, contract=CONTRACT):
     """No unexpected child text/exception is returned or echoed to a caller."""
     try:
         if len(raw) > 8192:
             raise ValueError()
         value = strict_json(raw)
-        if (set(value) != {'contract', 'configuration_sha256', 'result', 'reason',
-                'native_run_registered', 'quote_dispatches_started', 'feed_attempts_started', 'client_close_invoked'}
-                or value['contract'] != CONTRACT or value['configuration_sha256'] != configuration_sha256
+        expected = {'contract', 'configuration_sha256', 'result', 'reason',
+            'native_run_registered', 'quote_dispatches_started', 'feed_attempts_started', 'client_close_invoked'}
+        if contract == CATALOG_CONTRACT:
+            expected |= {'bound_configuration_sha256', 'reserved_directory_permits'}
+            if (type(value['reserved_directory_permits']) is not int or value['reserved_directory_permits'] not in (0, 2)
+                    or value['bound_configuration_sha256'] is not None and
+                    not re.fullmatch('[0-9a-f]{64}', value['bound_configuration_sha256'])
+                    or value['result'] == 'PASS' and (value['reserved_directory_permits'] != 2
+                        or value['bound_configuration_sha256'] in (None, configuration_sha256))):
+                raise ValueError()
+        if (contract not in (CONTRACT, CATALOG_CONTRACT) or set(value) != expected
+                or value['contract'] != contract or value['configuration_sha256'] != configuration_sha256
                 or value['result'] not in ('PASS', 'FAILED') or value['reason'] not in CODES | AUTH_CODES
                 or type(value['native_run_registered']) is not bool or type(value['client_close_invoked']) is not bool
                 or type(value['quote_dispatches_started']) is not int or value['quote_dispatches_started'] != 0

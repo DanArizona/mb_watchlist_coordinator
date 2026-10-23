@@ -1,0 +1,11 @@
+{
+  "phase": "initial_catalog_startup_development",
+  "result": "PASS",
+  "tests": 23,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 0.7829595340000424,
+  "network": "denied",
+  "failure_details": []
+}

@@ -32,7 +32,7 @@ EXPECTED_HELPERS = {
 }
 CODES = frozenset(('configuration_invalid', 'dependency_rejected', 'inputs_changed',
     'target_exists', 'bootstrap_window_ended', 'initialization_failed', 'bootstrap_pass',
-    'bootstrap_deadline_ended', 'credential_deadline_ended', 'operator_interrupted'))
+    'bootstrap_deadline_ended', 'credential_deadline_ended', 'operator_interrupted', 'catalog_failed'))
 
 
 class BootstrapError(RuntimeError):
@@ -83,13 +83,10 @@ class BootstrapSettings:
     catalog_id: str
     catalog_symbols: tuple[str, ...]
     profile: str = 'ordinary'
+    catalog_mode: str = 'caller_supplied'
 
     def plan(self):
-        """Pure validation. Catalog eligibility is supplied by a trusted caller.
-
-        Actual directory retrieval/broker identity qualification is a subsequent
-        controller increment, not something inferred from this catalog ID.
-        """
+        """Pure validation; owned_directory binds actual eligibility after auth."""
         from mb_market_data.watchlist_polling import ET
         from .sampling_admission import AdmissionPolicy
         try:
@@ -102,7 +99,9 @@ class BootstrapSettings:
                     or any(root == p or root in p.parents for p in paths[1:])
                     or self.profile not in ('ordinary', 'owned_worker_recovery')
                     or type(self.catalog_symbols) is not tuple
-                    or not self.catalog_symbols
+                    or self.catalog_mode not in ('caller_supplied', 'owned_directory')
+                    or self.catalog_mode == 'caller_supplied' and not self.catalog_symbols
+                    or self.catalog_mode == 'owned_directory' and (self.catalog_id != '' or self.catalog_symbols)
                     or not re.fullmatch('[0-9a-f]{32}', self.nonce)
                     or any(not re.fullmatch('[0-9a-f]{64}', h) for h in (
                         self.dependency_sha256, self.opening_content_sha256, self.focus_content_sha256))):
@@ -126,15 +125,24 @@ class BootstrapSettings:
                     or submitted.astimezone(ET).date() != r0.session_date
                     or start < opening or stop > close):
                 raise ValueError()
-            admission = AdmissionPolicy(self.catalog_id, frozenset(self.catalog_symbols),
-                frozenset({OWNER}), 1, 'session')
-            public = {'contract': CONTRACT, 'settings': asdict(self),
+            owned = self.catalog_mode == 'owned_directory'
+            admission = (None if owned else AdmissionPolicy(self.catalog_id, frozenset(self.catalog_symbols),
+                frozenset({OWNER}), 1, 'session'))
+            wire = asdict(self)
+            if not owned:
+                wire.pop('catalog_mode')  # Preserve the accepted v1 public identity exactly.
+            from .catalog_startup import CONTRACT as CATALOG_CONTRACT
+            public = {'contract': CATALOG_CONTRACT if owned else CONTRACT, 'settings': wire,
                 'source_file_sha256': {'opening': h0, 'focus': h1},
                 'session_date': r0.session_date.isoformat(), 'start_at_utc': utc_text(start),
-                'stop_at_utc': utc_text(stop), 'admission': admission.payload(),
+                'stop_at_utc': utc_text(stop), 'admission': admission.payload() if admission else None,
                 'maximum_hot_quote_permits': 60, 'maximum_identity_quote_permits': 3,
-                'catalog_scope': 'caller_supplied_identity_eligibility_not_live_source_qualification',
+                'catalog_scope': ('directory_acquisition_required_after_credentials' if owned else
+                    'caller_supplied_identity_eligibility_not_live_source_qualification'),
                 'production_access': False}
+            if owned:
+                public['directory_limits'] = {'maximum_invocations': 1, 'reserved_source_permits': 2,
+                    'maximum_seconds_each': 10, 'unknown_consumes_budget': True}
             return BootstrapPlan(self, r0, r1, admission, freeze(public), digest(public))
         except Exception:
             raise BootstrapError('configuration_invalid') from None
@@ -149,6 +157,13 @@ class BootstrapPlan:
     public: object
     configuration_sha256: str
 
+    @property
+    def bootstrap_deadline(self):
+        start = timestamp(self.public['start_at_utc'])
+        if self.settings.catalog_mode == 'owned_directory':
+            return min(start, timestamp(self.settings.password_submitted_at_utc)+timedelta(seconds=60))
+        return start
+
     def fresh(self, clock):
         root = Path(self.settings.experiment_root)
         if root.exists() or root.is_symlink():
@@ -160,7 +175,7 @@ class BootstrapPlan:
         if not unchanged:
             raise BootstrapError('inputs_changed')
         now = clock()
-        if not timestamp(self.settings.password_submitted_at_utc) <= now < timestamp(self.public['start_at_utc']):
+        if not timestamp(self.settings.password_submitted_at_utc) <= now < self.bootstrap_deadline:
             raise BootstrapError('bootstrap_window_ended')
 
 
@@ -180,15 +195,20 @@ class BootstrapSession:
             self.client.close()
 
 
-def bootstrap_fresh(plan, password, *, clock=None, inventory=None, secure_api=None, fault_hook=None):
+def bootstrap_fresh(plan, password, *, clock=None, inventory=None, secure_api=None, fault_hook=None,
+                    catalog_acquirer=None):
     """Prepare native bindings after authentication, without feed/quote collection.
 
     The supplied credential API can perform normal SDK authentication/refresh.
-    No feed transport is opened and no quote method is called here. A hard
+    owned_directory requires an explicit trusted acquisition driver; no network
+    is implicitly authorized by this API. No RSS/quote method is called. A hard
     owned-process watchdog must surround this synchronous building block.
     """
     clock = clock or (lambda: datetime.now(timezone.utc))
     client = retained = None
+    catalog = catalog_ledger = gated_delivery = initialization_owner = None
+    preflight_sha256 = plan.configuration_sha256
+    preflight_public = plan.public
     claimed = False
     stages = []
     root = Path(plan.settings.experiment_root)
@@ -197,13 +217,19 @@ def bootstrap_fresh(plan, password, *, clock=None, inventory=None, secure_api=No
         if fault_hook:
             fault_hook(name)
     def before_write():
-        if not timestamp(plan.settings.password_submitted_at_utc) <= clock() < timestamp(plan.public['start_at_utc']):
+        if not timestamp(plan.settings.password_submitted_at_utc) <= clock() < plan.bootstrap_deadline:
             raise BootstrapError('bootstrap_window_ended')
-        if plan.settings.plan().configuration_sha256 != plan.configuration_sha256:
+        if plan.settings.plan().configuration_sha256 != preflight_sha256:
             raise BootstrapError('inputs_changed')
+        if catalog is not None:
+            catalog.validate()
+            if catalog_ledger.snapshot()['status'] != 'BOUND':
+                raise BootstrapError('inputs_changed')
     try:
         if not isinstance(password, bytearray) or not password:
             raise StartupError('credentials_unavailable')
+        if plan.settings.catalog_mode == 'owned_directory' and not callable(catalog_acquirer):
+            raise BootstrapError('configuration_invalid')
         plan.fresh(clock)
         observed = (inventory or inspect_dependencies)(EXPECTED_HELPERS)
         if observed.get('qualified') is not True or digest(observed) != plan.settings.dependency_sha256:
@@ -217,11 +243,38 @@ def bootstrap_fresh(plan, password, *, clock=None, inventory=None, secure_api=No
         except FileExistsError:
             raise BootstrapError('target_exists') from None
         claimed = True
-        receipt = {'contract': CONTRACT, 'status': 'INITIALIZING',
+        receipt = {'contract': plan.public['contract'], 'status': 'INITIALIZING',
             'configuration': plain(plan.public), 'configuration_sha256': plan.configuration_sha256,
             'quote_dispatches_started': 0, 'feed_attempts_started': 0, 'stages': stages}
         atomic_json(root/'bootstrap.json', receipt)
         stage('root_claimed')
+        if plan.settings.catalog_mode == 'owned_directory':
+            from .catalog_startup import CatalogStartupLedger, bind_catalog
+            from .integrated_catalog import CatalogError
+            from .integrated_identity import IdentityGatedDelivery
+            from .sampling_service import owner_lock
+            initialization_owner = owner_lock(root/'directory.owner.lock')
+            initialization_owner.__enter__()
+            before_write()
+            catalog_ledger = CatalogStartupLedger(root/'directory.sqlite3', preflight=preflight_public, clock=clock)
+            catalog_ledger.initialize(create=True)
+            catalog_ledger.reserve()
+            stage('directory_invocation_reserved')
+            try:
+                acquired = catalog_acquirer(deadline=plan.bootstrap_deadline, clock=clock)
+            except CatalogError as error:
+                catalog_ledger.failed(error)
+                raise BootstrapError('catalog_failed') from None
+            catalog_ledger.captured(acquired)
+            stage('directory_captured')
+            catalog = acquired.persist(root/'catalog')
+            catalog_ledger.bound(catalog)
+            plan = bind_catalog(plan, catalog)
+            receipt.update(configuration=plain(plan.public), configuration_sha256=plan.configuration_sha256,
+                preflight_configuration_sha256=preflight_sha256, reserved_directory_permits=2,
+                catalog_id=catalog.catalog_id)
+            atomic_json(root/'bootstrap.json', receipt)
+            stage('catalog_bound')
         from mb_market_data.quote_observation_store import QuoteObservationStore
         from mb_market_data.sampling_membership import SamplingHierarchyRevision
         from mb_market_data.sampling_acquisition import MARKER
@@ -272,6 +325,10 @@ def bootstrap_fresh(plan, password, *, clock=None, inventory=None, secure_api=No
         delivery = NasdaqRecoveryDelivery(root/'delivery.sqlite3', live_producer=live,
             recovery_receipts=recovery, producer_id=OWNER, clock=clock)
         delivery.initialize(create=True)
+        if catalog is not None:
+            gated_delivery = IdentityGatedDelivery(root/'identity.sqlite3', delivery=delivery, catalog=catalog,
+                start_at=plan.public['start_at_utc'], stop_at=plan.public['stop_at_utc'], clock=clock)
+            gated_delivery.initialize(create=True)
         stage('source_ledgers_initialized')
         before_write()
         collector_settings = HotCollectorSettings(str(store.database_path.resolve()), plain(service.identity),
@@ -287,12 +344,16 @@ def bootstrap_fresh(plan, password, *, clock=None, inventory=None, secure_api=No
         receipt.update(status='BOOTSTRAPPED_NOT_RUNNING', stages=stages,
             initial_membership_sha256=anchor.content_sha256, native_run_id=collector.poller.run.run_id,
             worker_configuration_sha256=digest(worker_config),
-            remaining='runtime loop, live catalog/resolution, cumulative identity budget and one-symbol fence, resume and coupled qualification')
+            remaining=('runtime loop, owned worker timing, full manual controller resume and live qualification'
+                if catalog is not None else
+                'runtime loop, live catalog/resolution, cumulative identity budget and one-symbol fence, resume and coupled qualification'))
         atomic_json(root/'bootstrap.json', receipt)
         session = BootstrapSession()
         session.plan, session.client, session.password = plan, client, retained
         session.store, session.requests, session.service = store, requests, service
-        session.feed, session.live, session.recovery, session.delivery = feed, live, recovery, delivery
+        session.feed, session.live, session.recovery = feed, live, recovery
+        session.base_delivery, session.delivery = delivery, gated_delivery if gated_delivery is not None else delivery
+        session.catalog, session.catalog_ledger, session.gated_delivery = catalog, catalog_ledger, gated_delivery
         session.collector, session.receipt, session.closed = collector, receipt, False
         client = retained = None
         return session
@@ -308,9 +369,11 @@ def bootstrap_fresh(plan, password, *, clock=None, inventory=None, secure_api=No
             client.close()
         if retained is not None:
             retained.close()
+        if initialization_owner is not None:
+            initialization_owner.__exit__(None, None, None)
         if claimed and client is not None:
             try:
-                atomic_json(root/'bootstrap-failed.json', {'contract': CONTRACT,
+                atomic_json(root/'bootstrap-failed.json', {'contract': preflight_public['contract'],
                     'status': 'PARTIAL_REQUIRES_REVIEW', 'configuration_sha256': plan.configuration_sha256,
                     'stages': stages, 'automatic_reset': False})
             except Exception:
