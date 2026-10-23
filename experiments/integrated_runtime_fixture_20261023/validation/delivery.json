@@ -1,0 +1,22 @@
+{
+  "archive": "/workspace/scratch/78e6acba7246/deliverables/integrated_runtime_fixture_20261023_204217_bc2903.zip",
+  "folder": "integrated_runtime_fixture_20261023_204217_bc2903",
+  "bytes": 282984,
+  "files": 96,
+  "sha256": "eefc144d560aee53e7b3a82e6e11ac7c39aaf3bb48e634bc6877f7670b432515",
+  "inventory_sha256": "9b58a331cabaef06df5a53e686afb3f9b748cf735f68bfb0265dcd6844102399",
+  "repository_files_matched": 92,
+  "source_commit": "d257e1d726f13349c789eacf9dc14d4c57397b98",
+  "source_tree": "378b5f5a66c1cb6c155dcbfdc96c01168f8fb592",
+  "local_tests": 52,
+  "local_passed": 52,
+  "local_seconds": 38.96151868299967,
+  "extracted_tests": 52,
+  "extracted_passed": 52,
+  "extracted_seconds": 39.045404442999825,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "command44_windows_result": "FAILED",
+  "command44_windows_cause": "UNKNOWN",
+  "runtime_source_files_unchanged": 61,
+  "scope": "Synthetic fixture causality and failure evidence with affected coupled-runtime/process regressions. No runtime change, live/profile/full resume/capacity qualification."
+}

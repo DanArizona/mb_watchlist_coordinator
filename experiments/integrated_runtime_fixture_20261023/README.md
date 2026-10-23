@@ -50,3 +50,14 @@ Current-host affected qualification: **52/52 PASS**, zero skips/failures/errors,
 38.96151868299967 seconds (runner 38.865s). All 61 runtime/reference hashes
 match command 44. This is local evidence; source-pinned extraction and Windows
 operator validation are separate gates.
+
+Source-pinned extraction in a path containing spaces: **52/52 PASS**, zero
+skips/failures/errors, 39.045404442999825 seconds (runner 38.892s). All 92
+mapped files match published source d257e1d726f13349c789eacf9dc14d4c57397b98,
+tree 378b5f5a66c1cb6c155dcbfdc96c01168f8fb592. Altered/extra source returns
+70 before tests and the complete inventory is restored. The immutable archive
+is integrated_runtime_fixture_20261023_204217_bc2903.zip, 282984 bytes/96 files,
+SHA-256 eefc144d560aee53e7b3a82e6e11ac7c39aaf3bb48e634bc6877f7670b432515.
+Windows command-45 validation and actual prompt return remain pending. This
+delivery follow-up changes documentation/records only, without rebuilding
+the archive or changing the bundled fixture/runtime/reference bytes.
