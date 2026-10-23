@@ -4,6 +4,9 @@ The accepted command-38 implementation remains unchanged. This increment adds
 a separate installed-client check, with an offline qualification command first.
 It starts no native polling run and makes no Nasdaq request or membership change.
 
+Commands 39 and 40 are accepted on MasterBot Windows. The original sequence
+below documents the completed handoff; no unchanged rerun is needed.
+
 ## Windows sequence
 
 1. Run `39_verify_installed_probe.cmd` in sea-green CMD. This is offline,
@@ -83,7 +86,7 @@ hung quote/close, preserved unknown dispatch and qualification receipt guards.
 The real installed-client command has no synthetic CLI option. Its offline
 tests do not establish real authentication; command 40's operator result does.
 
-Successful command 40 would qualify only the observed installed interfaces,
+Completed command 40 qualifies only the observed installed interfaces,
 human-started client construction and one authenticated SPY quote. It provides
 no market freshness, native collector, outage/restart, historical completeness,
 long-history/mixed-source/soak/provider capacity or production adoption claim.
@@ -95,3 +98,31 @@ main branches, Uni/Focus cadence and Hot-disabled policy remain unchanged.
 
 The existing command-34/36 and history-stress/cloud failure records retain their
 original verdicts. Command 38 remains accepted at its original source pin.
+
+
+## Completed operator acceptance — commands 39 and 40
+
+The complete MasterBot/sea-green console accepts command 39 at 51/51 PASS in
+20.524087899946608s, zero skips/errors/failures, network denied and actual CMD
+prompt return (run `20261023T115019Z-7bbbb8dc`). Its second offline banner comes
+from an expected negative launcher test. Command 40 then reports PASS with
+one SPY dispatch permit, a returned HTTP 200 response, matching requested
+identity, close invoked, child exit code 0 and observed child exit (run
+`20261023T120609Z-73eee953`). The saved files were not independently uploaded;
+acceptance uses the complete supplied console and final JSON.
+
+Reported installed versions are Python 3.12.13, mb-tools 0.6.0, Schwabdev 4.0.0
+and cryptography 49.0.0. All eight canonical helper hashes match the reviewed
+pin; six raw hashes differ after the intended CRLF normalization. The full
+reported dependency fingerprint matches the child's receipt. Qualified runtime
+remains Coordinator `905af96d531a24e43f122bcb19b9d0f4f625fc84`; all 54 bundled
+repository source/test/reference/verifier hashes and the original archive remain
+unchanged. This acceptance changes only documentation and validation records.
+
+This accepts observed installed startup and one authenticated quote, not native
+collection/outage recovery or market freshness/capacity. Token-refresh occurrence
+and a complete SDK HTTP audit were not reported; precise startup/quote latency
+was not measured in the supplied result. Next compose bounded live Nasdaq/feed
+recovery, Coordinator publication and authenticated native Hot collection, then
+obtain separate market-hours interruption/recovery evidence. All earlier accepted
+pins and failed verdicts retain their scope. Production Hot remains disabled.

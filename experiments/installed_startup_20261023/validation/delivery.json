@@ -1,5 +1,5 @@
 {
-  "status": "LOCAL_OFFLINE_PASS_OPERATOR_RESULTS_PENDING",
+  "status": "WINDOWS_OFFLINE_AND_INSTALLED_STARTUP_TRANSPORT_ACCEPTED",
   "offline_command": "39_verify_installed_probe.cmd",
   "installed_command": "40_check_installed_client.cmd",
   "date": "2026-10-23",
@@ -18,11 +18,9 @@
   "errors": 0,
   "failures": 0,
   "extracted_seconds": 21.65595559799999,
-  "network_in_qualification": "denied",
-  "actual_credentials_in_qualification": false,
-  "installed_sdk_or_live_authentication_qualified": false,
-  "operator_command39_result": "PENDING",
-  "operator_command40_result": "PENDING",
+  "installed_sdk_or_live_authentication_qualified": true,
+  "operator_command39_result": "PASS_WINDOWS_ACCEPTED",
+  "operator_command40_result": "PASS_INSTALLED_STARTUP_TRANSPORT_ACCEPTED",
   "installed_probe_scope": {
     "symbol": "SPY",
     "maximum_quote_client_invocations": 1,
@@ -39,7 +37,6 @@
   "dependency_gate": "Stable installed Schwabdev 4.x and eight installed mb_tools sources matching the reviewed public pin after only CRLF-to-LF normalization; never use bundled reference for command40",
   "source_and_qualification_guards": "Source inventory verified before either mode; command40 requires same-package/interpreter command39 success; new failed verification revokes prior success receipt",
   "not_qualified": [
-    "actual installed SDK authentication until command40",
     "native collector/recovery integration with real SDK",
     "live Nasdaq HTTP",
     "market-hours outage recovery",
@@ -48,5 +45,10 @@
     "production adoption"
   ],
   "prior_results": "Commands 32/33/35/37/38 retain acceptance; command34/36 and prior stress/cloud verdicts retained; no unchanged reruns",
-  "next": "Windows command39 then command40 with explicit ecfg path, one hidden prompt and at most one SPY quote-client invocation; retain sanitized JSON and actual CMD prompt return"
+  "next": "Compose and qualify bounded live Nasdaq/feed recovery, Coordinator publication and authenticated native Hot collection under accepted ownership/recovery supervision; separate market-hours interruption/recovery evidence remains pending",
+  "installed_qualification_scope": "Observed installed interfaces, human-started startup and one authenticated SPY quote only",
+  "operator_acceptance_record": "windows_commands39_40_acceptance.json",
+  "network_in_local_and_command39_qualification": "denied",
+  "actual_credentials_in_local_and_command39_qualification": false,
+  "actual_operator_credentials_used_in_command40": true
 }

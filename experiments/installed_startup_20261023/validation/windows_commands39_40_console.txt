@@ -1,0 +1,132 @@
+Operator-supplied Windows console; progress-dot lines omitted.
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>powershell -NoProfile -Command "Expand-Archive -LiteralPath 'C:\Users\danla\Downloads\installed_client_probe_20261023_113947_111588.zip' -DestinationPath 'C:\Users\danla\Documents\github\mb_market_data\output' -ErrorAction Stop"
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>call "C:\Users\danla\Documents\github\mb_market_data\output\installed_client_probe_20261023_113947_111588\39_verify_installed_probe.cmd"
+OFFLINE installed-client probe qualification. Synthetic credentials/SDK only; no API or password.
+OFFLINE installed-client probe qualification. Synthetic credentials/SDK only; no API or password.
+----------------------------------------------------------------------
+Ran 51 tests in 20.392s
+
+OK
+{
+  "result": "PASS",
+  "tests": 51,
+  "passed": 51,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 20.524087899946608,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Changed installed-client probe/launcher plus accepted credential interface regressions; synthetic encrypted configuration/SDK and owned process deadline/redaction drills only",
+  "installed_sdk_or_live_authentication_qualified": false,
+  "prior_command38_unchanged": true,
+  "suites": [
+    "test_authenticated_startup",
+    "test_installed_startup_probe",
+    "test_installed_probe_launcher"
+  ]
+}
+Saved report: C:\Users\danla\Documents\github\mb_market_data\output\installed_client_probe_20261023_113947_111588\runs\offline\20261023T115019Z-7bbbb8dc\verification.json
+Command 39 PASS. Command 40 may now inspect the installed client and request one SPY quote.
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>call "C:\Users\danla\Documents\github\mb_market_data\output\installed_client_probe_20261023_113947_111588\40_check_installed_client.cmd" "C:\Users\danla\MBV\secure_schwabdev.ecfg"
+INSTALLED CLIENT: reviewed helper-source checks, one hidden password prompt, at most one SPY quote-client call.
+Startup <=8s; quote timeout 3s; parent deadline 20s plus bounded exact-child cleanup. No automatic retry.
+Normal SDK refresh may update the existing shared token database. This is transport/startup evidence, usable outside market hours.
+Encrypted config password:
+{
+  "contract": "installed-schwab-startup-probe-v1",
+  "result": "PASS",
+  "reason": "probe_pass",
+  "dependencies": {
+    "qualified": true,
+    "reason": "probe_pass",
+    "python": [
+      3,
+      12,
+      13
+    ],
+    "executable": "C:\\Users\\danla\\anaconda3\\envs\\sea-green\\python.exe",
+    "versions": {
+      "mb-tools": "0.6.0",
+      "schwabdev": "4.0.0",
+      "cryptography": "49.0.0"
+    },
+    "mb_tools_root": "C:\\Users\\danla\\Documents\\github\\mb_tools\\src\\mb_tools",
+    "source": {
+      "__init__.py": {
+        "sha256": "873508b463e1e5388ddf493836ce1dfeca089aef1eac22f851b41701423a2958",
+        "canonical_source_sha256": "a4f32c299d9eac0a0c0fda4f8fc3ea6779364f6830d28c04ca92bde99b618bf7",
+        "expected_sha256": "a4f32c299d9eac0a0c0fda4f8fc3ea6779364f6830d28c04ca92bde99b618bf7"
+      },
+      "schwab_secure/__init__.py": {
+        "sha256": "e9a71e88b415d8576a5879f008956fbf2b058605a202f4bff1408db523e59b70",
+        "canonical_source_sha256": "4598710eb0c749366a632a4f8282614f243dfcd9226afa31b032de161aaff712",
+        "expected_sha256": "4598710eb0c749366a632a4f8282614f243dfcd9226afa31b032de161aaff712"
+      },
+      "schwab_secure/client.py": {
+        "sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea",
+        "canonical_source_sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea",
+        "expected_sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea"
+      },
+      "schwab_secure/config.py": {
+        "sha256": "519842e37ed80cc39051fae2546ea11f813edd1a1cd73e5019189b86623f483b",
+        "canonical_source_sha256": "7da559d38a29ce3cf771e1524d160ca41d4671eb25221abaf11342347b00b2fa",
+        "expected_sha256": "7da559d38a29ce3cf771e1524d160ca41d4671eb25221abaf11342347b00b2fa"
+      },
+      "schwab_secure/status.py": {
+        "sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141",
+        "canonical_source_sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141",
+        "expected_sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141"
+      },
+      "schwab_secure/reauthorize.py": {
+        "sha256": "ed106cd5e2ca17c592a5bbd6029ec435c2aa9f84b5c9a14c4ba33e636b427601",
+        "canonical_source_sha256": "d1faaf0547730dbe7d9949dc90747e2f14e371e028dba00bf095376141dba1d6",
+        "expected_sha256": "d1faaf0547730dbe7d9949dc90747e2f14e371e028dba00bf095376141dba1d6"
+      },
+      "secure_config/__init__.py": {
+        "sha256": "250a90bc2b3b3dfe17a1b0718059ee2ab7e6a159491c822ee90ccf9cdcc90328",
+        "canonical_source_sha256": "b234604319b99e0fa98e486ec30e8f120419688a8587af13270b76c1d18d0581",
+        "expected_sha256": "b234604319b99e0fa98e486ec30e8f120419688a8587af13270b76c1d18d0581"
+      },
+      "secure_config/ecfg.py": {
+        "sha256": "02a1b77523911dea68fbfbe9961d8a1d3f6d0b9adfd0ed2dc4a495a0cabf7cb4",
+        "canonical_source_sha256": "0bd6c3d2160876cb5d428723694b9c38ba63f64780a1782690d74e33e4f4da6e",
+        "expected_sha256": "0bd6c3d2160876cb5d428723694b9c38ba63f64780a1782690d74e33e4f4da6e"
+      }
+    }
+  },
+  "symbol": "SPY",
+  "maximum_quote_dispatches": 1,
+  "reserved_quote_budget": 1,
+  "quote_dispatch_permits": 1,
+  "child_receipt": {
+    "client_close_invoked": true,
+    "contract": "installed-schwab-startup-probe-v1",
+    "dependency_sha256": "816e7ac345693337cbf8bf897ba4d316199fac672d933f358432cec05aa6f48b",
+    "http_status": 200,
+    "nonce": "a0874bae4cbf4d0eb42f8012b228d261",
+    "quote_dispatch_permits": 1,
+    "quote_response_returned": true,
+    "reason": "probe_pass",
+    "result": "PASS",
+    "returned_symbol_matches": true,
+    "symbol": "SPY"
+  },
+  "child_returncode": 0,
+  "owned_child_exit_observed": true,
+  "request_timeout_seconds": 3,
+  "startup_timeout_seconds": 8,
+  "hard_seconds": 20,
+  "network_scope": "installed_client_and_one_quote_only",
+  "native_polling_started": false,
+  "nasdaq_requests": 0,
+  "production_journal_or_process_access": false,
+  "shared_sdk_token_refresh_possible": true,
+  "market_freshness_or_capacity_qualified": false
+}
+Saved report: C:\Users\danla\Documents\github\mb_market_data\output\installed_client_probe_20261023_113947_111588\runs\installed_client\20261023T120609Z-73eee953\report.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
