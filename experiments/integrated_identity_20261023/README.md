@@ -3,7 +3,7 @@
 This is the next bounded controller implementation slice after accepted Windows
 command 41. It adds catalog acquisition and the identity/request boundary. It
 does not expose a live controller launcher. Local qualification is 211/211 PASS
-in 6.2588491409997005s, zero skips/errors/failures; Windows command 42 is pending.
+in 6.2588491409997005s, zero skips/errors/failures; Windows command 42 is accepted from the completed operator console below.
 Run only the offline verification:
 
 ```bat
@@ -74,5 +74,23 @@ Source-pinned extraction also passes all 211 checks in 6.813594320999982s from a
 path containing spaces, with zero skips/errors/failures. Changed source and an
 extra source file are refused before tests; the inventory is restored exactly.
 See `validation/delivery.json` for the original archive hash and source commit.
-Windows command 42 remains pending. The original archive is not rebuilt for
+Windows command 42 is accepted. The original archive is not rebuilt for
 these documentation/record updates.
+
+
+## Windows acceptance — October 23
+
+The complete MasterBot/sea-green console accepts command 42 at 211/211 PASS,
+zero skips/errors/failures, 13.80042899993714 seconds (runner 13.600 seconds),
+run `20261023T162931Z-fc6b086a`, with actual CMD prompt return. The saved report
+was not independently uploaded. Supplied JSON and a console transcription are
+retained in `validation/windows_command42_qualification.json` and
+`windows_command42_console.txt`. The separate
+`validation/windows_command42_acceptance.json` satisfies the fixed
+`OPERATOR_RESULT_REQUIRED` label without changing the original report.
+
+All 72 bundled repository files and the original archive remain unchanged;
+this acceptance changes documentation and records only. No unchanged command-42
+or earlier accepted verification needs repeating. This accepts the offline
+catalog/identity/native request boundary; coupled bootstrap/runtime, full manual
+resume, actual live acquisition/recovery and capacity remain pending.

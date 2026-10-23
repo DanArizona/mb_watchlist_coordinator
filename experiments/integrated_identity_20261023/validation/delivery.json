@@ -13,6 +13,11 @@
   "extracted_tests": 211,
   "extracted_seconds": 6.813594320999982,
   "source_guard_checks": "PASS",
-  "windows_acceptance": "PENDING",
-  "scope": "Exact catalog and cumulative identity gate with synthetic HTTP/provider responses and native integration; not coupled runtime or live recovery."
+  "windows_acceptance": "ACCEPTED_OFFLINE_WINDOWS",
+  "scope": "Exact catalog and cumulative identity gate with synthetic HTTP/provider responses and native integration; not coupled runtime or live recovery.",
+  "windows_operator_run": "20261023T162931Z-fc6b086a",
+  "windows_operator_tests": 211,
+  "windows_operator_seconds": 13.80042899993714,
+  "windows_operator_prompt_returned": true,
+  "windows_operator_evidence": "windows_command42_acceptance.json"
 }
