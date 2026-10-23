@@ -1,0 +1,18 @@
+{
+  "archive": "/workspace/scratch/78e6acba7246/deliverables/catalog_bootstrap_20261023_191459_210b73.zip",
+  "folder": "catalog_bootstrap_20261023_191459_210b73",
+  "bytes": 237574,
+  "sha256": "c517271807c6190827fdfd6485f5f191132e48b0d2e85aa3d4f286926aa135b7",
+  "files": 83,
+  "inventory_sha256": "066dfb150ac76148817459d762469ba7d9ed08cc76a20a25d49408baf2d40032",
+  "source_commit": "46e96d7951b881b1cc6f07c37de2941aecdd5ad1",
+  "source_tree": "06a11d44333e01e983a0898f443bd69227f04cf6",
+  "repository_files_matched": 79,
+  "local_tests": 288,
+  "local_seconds": 37.30795769899987,
+  "extracted_tests": 288,
+  "extracted_seconds": 37.77484418899985,
+  "source_guard_checks": "PASS",
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "scope": "Post-credential one-invocation/two-permit catalog reservation, retained source bytes, catalog/admission/identity/native bootstrap binding and private-pipe process interruption/deadline regressions. Pinned mb_tools with synthetic configuration, SDK and directory HTTP only; not installed authentication, running collector supervision, full manual controller resume, live acquisition/recovery, production adoption or capacity."
+}

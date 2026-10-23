@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "case": "changed_source",
+      "returncode": 70,
+      "blocked_before_tests": true
+    },
+    {
+      "case": "extra_source",
+      "returncode": 70,
+      "blocked_before_tests": true
+    }
+  ],
+  "restored_inventory_identical": true,
+  "repository_files_matched": 79,
+  "prior_command42_repository_files_checked": 72,
+  "intentional_changed_prior_source_paths": [
+    "src/mb_watchlist_coordinator/bootstrap_entry.py",
+    "src/mb_watchlist_coordinator/controller_bootstrap.py"
+  ],
+  "original_command42_archive_unchanged": true,
+  "network": "denied",
+  "production_access": false,
+  "original_command41_archive_unchanged": true
+}

@@ -79,3 +79,18 @@ startup/staleness and separate 8-second credential timing boundary, full manual
 controller resume, and separately invoked bounded live acquisition/recovery.
 The 60-second bootstrap and frozen T0/Tstop are not extended. Overlay follows
 backend qualification; production adoption and broader capacity remain pending.
+
+## Delivered qualification
+
+The immutable 237574-byte, 83-file archive is
+`catalog_bootstrap_20261023_191459_210b73.zip`, SHA-256
+`c517271807c6190827fdfd6485f5f191132e48b0d2e85aa3d4f286926aa135b7`.
+It pins [source 46e96d7](https://github.com/DanArizona/mb_watchlist_coordinator/commit/46e96d7951b881b1cc6f07c37de2941aecdd5ad1),
+tree `06a11d44333e01e983a0898f443bd69227f04cf6`. Source-pinned extraction in a
+path containing spaces passes all 288 checks in 37.77484418899985 seconds
+(runner 37.575 seconds), with no skips, errors or failures. All 79 mapped
+repository files match; altered/extra-source probes both return 70 before
+tests and restoration matches the complete inventory. Original command-41/42
+archives retain their hashes. Command 43 Windows operator acceptance remains
+pending. The reports and source-guard evidence are in `validation/`; this
+delivery update changes documentation/records only, not the delivered archive.
