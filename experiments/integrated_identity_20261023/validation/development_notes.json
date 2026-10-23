@@ -1,0 +1,11 @@
+{
+  "initial_result_retained": "development_initial.json",
+  "initial_tests": 45,
+  "initial_errors": 1,
+  "cause": "A new test fixture incorrectly requested max_group=none; the existing API supports only uni or focus.",
+  "correction": "Use the supported uni restriction and assert it does not release the experiment symbol fence.",
+  "runtime_correction_for_this_failure": false,
+  "subsequent_native_development": "native_development.json (52/52 PASS before final added checks)",
+  "final_qualification": "local_qualification.json (211/211 PASS)",
+  "scope": "Development records remain original; not Windows or live qualification."
+}

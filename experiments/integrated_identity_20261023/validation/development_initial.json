@@ -1,0 +1,17 @@
+{
+  "result": "FAILED",
+  "phase": "initial_local_development",
+  "tests": 45,
+  "failures": 0,
+  "errors": 1,
+  "skipped": 0,
+  "seconds": 3.2898803929992937,
+  "network": "denied",
+  "production_access": false,
+  "failures_detail": [
+    [
+      "test_definitive_request_rejection_does_not_substitute_a_different_symbol (test_integrated_identity.IdentityTests.test_definitive_request_rejection_does_not_substitute_a_different_symbol)",
+      "Traceback (most recent call last):\n  File \"/workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/tests/test_integrated_identity.py\", line 182, in test_definitive_request_rejection_does_not_substitute_a_different_symbol\n    self.gate.requests.restrict_symbol('cap', symbol='NVDA', max_group='none', actor_id='admin')\n  File \"/workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/src/mb_watchlist_coordinator/sampling_request_store.py\", line 259, in restrict_symbol\n    raise ValueError(\"max_group must be uni or focus\")\nValueError: max_group must be uni or focus\n"
+    ]
+  ]
+}
