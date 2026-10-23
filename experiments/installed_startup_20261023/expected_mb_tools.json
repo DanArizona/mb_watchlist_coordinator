@@ -1,0 +1,16 @@
+{
+  "repository": "DanArizona/mb_tools",
+  "commit": "abdceb1be988b7ee893b0bed725b90454ddf4f71",
+  "source_hash_semantics": "SHA-256 after CRLF-to-LF normalization only",
+  "supported_sdk": "stable schwabdev>=4.0.0,<5 per pinned mb_tools pyproject.toml",
+  "files": {
+    "__init__.py": "a4f32c299d9eac0a0c0fda4f8fc3ea6779364f6830d28c04ca92bde99b618bf7",
+    "schwab_secure/__init__.py": "4598710eb0c749366a632a4f8282614f243dfcd9226afa31b032de161aaff712",
+    "schwab_secure/client.py": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea",
+    "schwab_secure/config.py": "7da559d38a29ce3cf771e1524d160ca41d4671eb25221abaf11342347b00b2fa",
+    "schwab_secure/status.py": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141",
+    "schwab_secure/reauthorize.py": "d1faaf0547730dbe7d9949dc90747e2f14e371e028dba00bf095376141dba1d6",
+    "secure_config/__init__.py": "b234604319b99e0fa98e486ec30e8f120419688a8587af13270b76c1d18d0581",
+    "secure_config/ecfg.py": "0bd6c3d2160876cb5d428723694b9c38ba63f64780a1782690d74e33e4f4da6e"
+  }
+}

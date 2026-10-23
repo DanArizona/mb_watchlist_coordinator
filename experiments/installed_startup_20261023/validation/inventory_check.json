@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "source_files_checked": 58,
+  "path_contains_spaces": true,
+  "package_contains_no_qualification_receipt": true,
+  "missing_command39_success_blocks_command40": true,
+  "tampered_source_refused_before_tests_or_password": true,
+  "accepted_command38_repository_file_hashes_unchanged": 85,
+  "credentials_or_network_used": false
+}

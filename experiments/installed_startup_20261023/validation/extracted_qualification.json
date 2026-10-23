@@ -1,0 +1,19 @@
+{
+  "result": "PASS",
+  "tests": 51,
+  "passed": 51,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 21.65595559799999,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Changed installed-client probe/launcher plus accepted credential interface regressions; synthetic encrypted configuration/SDK and owned process deadline/redaction drills only",
+  "installed_sdk_or_live_authentication_qualified": false,
+  "prior_command38_unchanged": true,
+  "suites": [
+    "test_authenticated_startup",
+    "test_installed_startup_probe",
+    "test_installed_probe_launcher"
+  ]
+}
