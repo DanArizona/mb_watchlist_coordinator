@@ -8,9 +8,14 @@
   "source_tree": "584d834306e62c21cfbfd5140897097c65cf97b4",
   "repository_files_matched": 64,
   "inventory_sha256": "c63b8ac81676ded4e49cc9cefa5f499999b5c68abdd8c32fc801c56fcb16696d",
-  "windows_acceptance": "PENDING",
+  "windows_acceptance": "ACCEPTED_OFFLINE_WINDOWS",
   "extracted_tests": 53,
   "extracted_seconds": 15.918759968999893,
   "source_guard_checks": "PASS",
-  "scope": "Fresh bootstrap ordering and affected native/credential interfaces only; synthetic SDK/configuration. Windows acceptance and actual coupled live recovery remain pending."
+  "scope": "Fresh bootstrap ordering and affected native/credential interfaces accepted locally, from extraction and on Windows; synthetic SDK/configuration only. Actual coupled runtime/live recovery remains pending.",
+  "windows_operator_run": "20261023T155228Z-afc55817",
+  "windows_operator_tests": 53,
+  "windows_operator_seconds": 17.217276599956676,
+  "windows_operator_prompt_returned": true,
+  "windows_operator_evidence": "windows_command41_acceptance.json"
 }

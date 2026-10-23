@@ -1,0 +1,60 @@
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>title CONTROLLER-BOOTSTRAP-VERIFY-2026-10-23
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>cd /d "C:\Users\danla\Documents\github\mb_market_data"
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>powershell -NoProfile -Command "Expand-Archive -LiteralPath 'C:\Users\danla\Downloads\controller_bootstrap_20261023_153236_3cd56a.zip' -DestinationPath 'C:\Users\danla\Documents\github\mb_market_data\output' -ErrorAction Stop"
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>call "C:\Users\danla\Documents\github\mb_market_data\output\controller_bootstrap_20261023_153236_3cd56a\41_verify_controller_bootstrap.cmd"
+OFFLINE fresh-controller bootstrap qualification. No API, password or production journal.
+Credential acceptance precedes initial native journal/poll_run creation; synthetic SDK/config and owned process drills only.
+.....................................................
+----------------------------------------------------------------------
+Ran 53 tests in 17.047s
+
+OK
+{
+  "result": "PASS",
+  "tests": 53,
+  "passed": 53,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 17.217276599956676,
+  "network": "denied",
+  "production_access": false,
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "executable": "C:\\Users\\danla\\anaconda3\\envs\\sea-green\\python.exe",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "scope": "Fresh-session credential-before-initial-journal/poll_run creation, bound native request/publication/source initialization and owned private-pipe deadline/redaction drills. Pinned mb_tools with synthetic configuration/SDK only.",
+  "suites": [
+    "test_controller_bootstrap",
+    "test_controller_bootstrap_process",
+    "test_authenticated_startup"
+  ],
+  "quote_dispatches_started": 0,
+  "feed_attempts_started": 0,
+  "actual_vault_access": false,
+  "installed_sdk_or_live_authentication_qualified": false,
+  "runtime_loop_or_live_recovery_qualified": false,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "unattended_controller_bootstrap": false,
+  "prior_accepted_runtime_sources_changed": false,
+  "remaining": [
+    "coupled runtime supervision and worker startup timing",
+    "live directory/catalog and identity-resolution integration",
+    "durable cumulative identity budget and one-symbol admission fence",
+    "manual controller resume",
+    "bounded live feed and authenticated native Hot recovery",
+    "Overlay adapter",
+    "production adoption and broader capacity"
+  ]
+}
+Saved report: C:\Users\danla\Documents\github\mb_market_data\output\controller_bootstrap_20261023_153236_3cd56a\runs\20261023T155228Z-afc55817\verification.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>

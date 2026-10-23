@@ -47,3 +47,20 @@ Completion requires the final report and actual return to the CMD prompt.
 Paste both. The Windows result is recorded separately from local qualification;
 the report's installed/live-authentication flag remains false for this offline
 scope. Accepted commands 32/33/35/37/38/39/40 need no unchanged rerun.
+
+## Windows acceptance — October 23
+
+Command 41 is accepted from the complete MasterBot/sea-green Windows console:
+53/53 PASS, zero skips/errors/failures, 17.217276599956676 seconds (runner
+17.047 seconds), run `20261023T155228Z-afc55817`, followed by the actual CMD
+prompt. The reported saved file was not independently uploaded. The supplied
+JSON and console are retained in `validation/windows_command41_qualification.json`
+and `validation/windows_command41_console.txt`; the separate
+`validation/windows_command41_acceptance.json` satisfies the verifier's fixed
+`OPERATOR_RESULT_REQUIRED` label without changing that original report.
+
+All 64 bundled repository files and the original archive remain unchanged.
+Acceptance updates only documentation and records. No unchanged command-41 or
+earlier accepted qualification needs repeating. Runtime supervision, live
+catalog/resolution, cumulative identity budget/one-symbol fence, manual resume,
+bounded authenticated live recovery and the Overlay adapter remain pending.
