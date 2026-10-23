@@ -1,0 +1,141 @@
+{
+  "contract": "bounded-integrated-hot-recovery-experiment-v1",
+  "status": "DESIGN_ONLY_IMPLEMENTATION_AND_QUALIFICATION_PENDING",
+  "date": "2026-10-23",
+  "session_timezone": "America/New_York",
+  "accepted_coordinator_commit": "1a405393798c7311217316993d05d2c1552056d3",
+  "reviewed_mb_tools_commit": "abdceb1be988b7ee893b0bed725b90454ddf4f71",
+  "initial_hot_symbols": [],
+  "maximum_distinct_admitted_symbols": 1,
+  "experimental_uni_focus_collection": false,
+  "production_hot_enabled": false,
+  "timing": {
+    "bootstrap_after_password_seconds": 60,
+    "minimum_start_lead_after_password_seconds": 60,
+    "active_window_seconds": 720,
+    "regular_start_et": "09:30:00",
+    "regular_stop_et": "16:00:00",
+    "owned_cleanup_seconds": 10,
+    "final_reporting_seconds": 60,
+    "extend_on_resume": false,
+    "maximum_start_lead_exclusive_seconds": 61
+  },
+  "hot": {
+    "seconds": [
+      2,
+      4,
+      6,
+      8,
+      12,
+      14,
+      16,
+      18,
+      22,
+      24,
+      26,
+      28,
+      32,
+      34,
+      36,
+      38,
+      42,
+      44,
+      46,
+      48,
+      52,
+      54,
+      56,
+      58
+    ],
+    "maximum_quote_permits": 60,
+    "maximum_symbols": 1,
+    "request_timeout_seconds": 3,
+    "maximum_dispatch_lateness_seconds": 0.75,
+    "future_slots_only": true,
+    "unknown_dispatch_consumes_budget": true
+  },
+  "identity_resolution": {
+    "maximum_quote_permits": 3,
+    "request_timeout_seconds": 3,
+    "exact_returned_identity_required": true
+  },
+  "maximum_total_quote_permits": 63,
+  "startup_spy_quote": false,
+  "catalog": {
+    "maximum_source_file_retrievals": 2,
+    "maximum_seconds_each": 10,
+    "inside_bootstrap_budget": true
+  },
+  "feed": {
+    "minimum_seconds_after_completed_attempt": 60,
+    "maximum_attempts": 10,
+    "budget_seconds": 720,
+    "hard_timeout_seconds": 10,
+    "consecutive_unavailable_stop": 3,
+    "query_order": [
+      "CURRENT_BASELINE",
+      "TARGET_DAY_HALT_RESUME_UNION",
+      "CURRENT_CUTOVER"
+    ],
+    "automatic_previous_day_queries": false,
+    "carryover_history_verified_on_fresh_late_start": false
+  },
+  "admission": {
+    "reason_codes": [
+      "LUDP",
+      "M"
+    ],
+    "positive_original_reason_required": true,
+    "request_lifetime": "target_regular_session_close",
+    "normal_admission_required": true,
+    "same_source_covered_demand_reuse": true,
+    "retain_every_captured_changed_update": true,
+    "transition_origins": [
+      "LIVE_NEW",
+      "RECOVERED_SAME_DAY"
+    ]
+  },
+  "coordinator": {
+    "poll_seconds": 1,
+    "publication_lead_seconds": 0.5
+  },
+  "worker": {
+    "maximum_starts": 3,
+    "supervised_startup_seconds": 3,
+    "heartbeat_stale_seconds": 3,
+    "credential_entry_maximum_seconds": 8,
+    "earlier_deadline_wins": true,
+    "only_exact_owned_child_control": true,
+    "new_controller_requires_human_prompt": true
+  },
+  "profiles": {
+    "ordinary": {
+      "completed_hot_after_valid_cutover": 30
+    },
+    "owned_worker_recovery": {
+      "completed_hot_before_fault": 12,
+      "replacement_hold_seconds": 15,
+      "completed_hot_after_verified_restart": 24,
+      "maximum_injected_interruptions": 1,
+      "fault_after_committed_and_acknowledged_acquisition": true
+    }
+  },
+  "coverage": {
+    "audit_through": "explicit_acquisition_stop_request_time",
+    "preserve_raw_native_audit": true,
+    "intentional_outage_slots_remain_missing": true,
+    "unexplained_missing_or_duplicate_slots_allowed": 0,
+    "identical_fresh_replays_required": 2
+  },
+  "overlay": {
+    "phase": "READ_CONTRACT_REVIEW_FIRST_IMPLEMENTATION_AFTER_BACKEND_QUALIFICATION",
+    "read_only": true,
+    "first_adapter": "one_explicit_experimental_journal_and_bound_source_records",
+    "as_known_updates_required": true,
+    "preserve_legacy_historical_mode": true,
+    "implicit_production_experimental_journal_merge": false
+  },
+  "live_launch_implemented": false,
+  "live_recovery_qualified": false,
+  "full_day_or_provider_capacity_qualified": false
+}
