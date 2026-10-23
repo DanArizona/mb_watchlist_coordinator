@@ -1,0 +1,12 @@
+{
+  "phase": "uncommitted_initial_development",
+  "result": "FAILED",
+  "tests": 16,
+  "failures": 1,
+  "errors": 0,
+  "seconds": 0.400,
+  "failure": "test_window_cannot_cross_regular_close_or_target_session",
+  "cause": "Close-time construction retained the opening time's minute=30, allowing the preliminary plan validator to accept a window ending after 16:00 ET.",
+  "correction": "Set close minute explicitly to zero; add exact-16:00 and one-microsecond-later boundary checks.",
+  "scope": "Development-only failure; corrected before packaging. No provider, actual credentials or production access. This remains a failed record, not a validation of final source."
+}

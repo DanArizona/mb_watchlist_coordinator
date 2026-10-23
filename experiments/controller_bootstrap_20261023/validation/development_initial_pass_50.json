@@ -1,0 +1,12 @@
+{
+  "phase": "preliminary_development_before_final_clock_and_existing-target_checks",
+  "result": "PASS",
+  "tests": 50,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 11.022624882999935,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Earlier development source only; final source is qualified by the separate 53-test report."
+}

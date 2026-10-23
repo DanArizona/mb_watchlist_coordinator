@@ -1,6 +1,6 @@
 # Bounded Nasdaq, Coordinator and authenticated Hot recovery experiment
 
-Version 1 — October 23, 2026. **Definition complete; implementation and qualification pending.** This document defines the next isolated integration increment. It is not an executable procedure or a live-run result. The limits are also recorded in [contract.json](../../experiments/integrated_hot_recovery_20261023/contract.json).
+Version 1 — October 23, 2026. **Definition complete; first bootstrap slice locally qualified, Windows and combined runtime qualification pending.** This document defines the next isolated integration increment. It is not an executable procedure or a live-run result. The limits are also recorded in [contract.json](../../experiments/integrated_hot_recovery_20261023/contract.json).
 
 ## 1. Outcome and accepted starting point
 
@@ -115,3 +115,8 @@ Overlay implementation follows backend qualification. The first read adapter sho
 ## 10. Next implementation slice
 
 Implement authenticated controller bootstrap and credential-before-initial-journal/`poll_run` ordering first, with public immutable configuration and durable budget/identity bindings. Then wire the qualified feed/outbox/Coordinator/native-worker components under this contract. The current supervisor/heartbeat still carries provider-driver/live-qualification-pending labels; the combined report must distinguish accepted lower-level evidence from new demonstrated results, without relabeling old receipts. Update this version explicitly if implementation evidence requires a different experiment; no runtime or live qualification is claimed by this definition.
+
+
+## Implementation progress — first bootstrap slice
+
+The separate [command-41 increment](../../experiments/controller_bootstrap_20261023/README.md) now implements fresh-session authentication before initial native journal/poll_run creation, immutable input/dependency/window checks, bound native request/publication/source initialization, and a private-pipe owned-process proof entry. All 53 focused local checks pass in 14.990272796000227s, with network denied and synthetic configuration/SDK. The development close-time failure remains retained. Windows extraction/acceptance is pending. Existing command-32/33/35/37/38/39/40 source files remain unchanged. Runtime loop, actual catalog/resolution, cumulative identity budget/one-symbol fence, manual resume, coupled worker timing/live recovery and Overlay implementation remain separate work. The caller-supplied catalog is bound but is not a live source qualification.

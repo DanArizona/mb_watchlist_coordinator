@@ -1,0 +1,41 @@
+{
+  "result": "PASS",
+  "tests": 53,
+  "passed": 53,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 14.990272796000227,
+  "network": "denied",
+  "production_access": false,
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "scope": "Fresh-session credential-before-initial-journal/poll_run creation, bound native request/publication/source initialization and owned private-pipe deadline/redaction drills. Pinned mb_tools with synthetic configuration/SDK only.",
+  "suites": [
+    "test_controller_bootstrap",
+    "test_controller_bootstrap_process",
+    "test_authenticated_startup"
+  ],
+  "quote_dispatches_started": 0,
+  "feed_attempts_started": 0,
+  "actual_vault_access": false,
+  "installed_sdk_or_live_authentication_qualified": false,
+  "runtime_loop_or_live_recovery_qualified": false,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "unattended_controller_bootstrap": false,
+  "prior_accepted_runtime_sources_changed": false,
+  "remaining": [
+    "coupled runtime supervision and worker startup timing",
+    "live directory/catalog and identity-resolution integration",
+    "durable cumulative identity budget and one-symbol admission fence",
+    "manual controller resume",
+    "bounded live feed and authenticated native Hot recovery",
+    "Overlay adapter",
+    "production adoption and broader capacity"
+  ]
+}
