@@ -1,0 +1,6 @@
+{
+  "result": "PASS",
+  "altered_source_refused_before_tests": true,
+  "returncode": 1,
+  "message": "ValueError: Changed bundled source: coordinator/src/mb_watchlist_coordinator/nasdaq_feed_recovery.py"
+}

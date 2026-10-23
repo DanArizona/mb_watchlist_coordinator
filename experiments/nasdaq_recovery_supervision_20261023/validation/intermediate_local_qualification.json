@@ -1,0 +1,32 @@
+{
+  "result": "PASS",
+  "tests": 430,
+  "seconds": 18.290086310000333,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Paced feed transport and isolated recovery authority/owned-worker protocol; synthetic HTTP children, source/store/admission/publication/native integration. Not live HTTP, broker collector integration, production adoption or capacity.",
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_history_reconstruction",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost",
+    "test_sampling_payload_reader",
+    "test_nasdaq_request_reuse",
+    "test_nasdaq_reuse_workload",
+    "test_nasdaq_recovery_delivery",
+    "test_nasdaq_feed_recovery",
+    "test_nasdaq_recovery_supervisor"
+  ],
+  "execution_environment": "offline_current_host",
+  "windows_operator_acceptance_recorded_separately": true,
+  "qualification_note": "Intermediate checkout before final cleanup guards, actual pending-HTTP expiry test and cross-ledger HTTP diagnostic binding test. Superseded by final extracted qualification; not acceptance of final source."
+}

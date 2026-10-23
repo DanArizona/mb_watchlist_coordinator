@@ -202,13 +202,15 @@ class NasdaqRecoveryDelivery:
                 'commands': queued, 'deliveries': acks, 'pending': [k for k in queued if k not in acks],
                 'publication': 'EXTERNAL_NOT_VERIFIED', 'process_recovery': 'NOT_IMPLEMENTED'})
 
-    def reconcile(self):
+    def reconcile(self, *, include_recovery=True):
         """Durably queue new known events; recovery waits for all declared queries.
 
         Existing queue entries are immutable, so recovery/live overlap, changed
         feed versions and cancellation can never replace an original command.
         The normal CURRENT startup baseline and HISTORICAL meanings are intact.
         """
+        if type(include_recovery) is not bool:
+            raise ValueError('Recovery inclusion must be explicit boolean')
         added = []
         with closing(self._connect(write=True)) as c, c:
             c.execute('BEGIN IMMEDIATE')
@@ -222,6 +224,8 @@ class NasdaqRecoveryDelivery:
             cache = {}
             # Prefer live provenance when both sources are known in this read.
             for kind in ('live', 'recovery'):
+                if kind == 'recovery' and not include_recovery:
+                    continue
                 receipts = sources[kind]['receipts']
                 if not receipts:
                     continue

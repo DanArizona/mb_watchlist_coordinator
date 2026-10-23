@@ -1,0 +1,19 @@
+{
+  "result": "PASS_LOCAL_SELECTED_SCOPE_WINDOWS_PENDING",
+  "tests": 432,
+  "seconds": 19.322003510000286,
+  "network": "denied",
+  "production_access": false,
+  "real_child_processes": "Synthetic HTTP timeout/orphan and managed worker health/restart/stop fixtures only",
+  "readiness": "Scoped native reconciliation and registered experimental worker protocol; provider collector driver still pending",
+  "previous_command_33_windows": "Accepted, no unchanged rerun",
+  "earlier_stress_timing": "FAILED remains unchanged",
+  "earlier_cloud_publication_head_failure": "Unresolved, retained",
+  "remaining": [
+    "Windows command 34 for new bytes",
+    "Live HTTP qualification",
+    "Actual broker Hot collector job/heartbeat adapter and acquisition-evidence recovery",
+    "Market-hours recovery trial and production migration approval",
+    "Cumulative source-history/mixed-source/soak/provider capacity"
+  ]
+}
