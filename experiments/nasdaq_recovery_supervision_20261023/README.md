@@ -22,8 +22,10 @@ exit receipt, and includes that receipt in subsequent supervisor reports.
 Unhealthy-worker reports also expose heartbeat age/validation information.
 Healthy periodic status receipts do not acquire changing heartbeat timestamps.
 Tests retain these details in assertion failures instead of only raising an
-unhelpful NoneType exception. This addresses the reproduced failure mode;
-Windows qualification is still required to resolve the original three failures.
+unhelpful NoneType exception. This addresses the reproduced failure mode.
+The completed corrective Windows run passes all 438 checks, including the three
+previously failing checks and the native sharing test. The original child-exit
+cause is not retrospectively proven.
 
 Command 35 adds deterministic transient/persistent sharing-conflict cases,
 same-process survival and bounded exit-diagnostic checks. One additional check
@@ -136,13 +138,15 @@ readiness is not an unqualified production-ready or live-Hot claim.
 
 ## Offline Windows qualification
 
-Run new source-inventory-pinned `35_verify_nasdaq_recovery_worker.cmd`.
+The source-inventory-pinned `35_verify_nasdaq_recovery_worker.cmd` is accepted
+on MasterBot Windows: 438/438 PASS, no skips/errors/failures, in
+34.959442999912426s, with actual CMD prompt return. No unchanged rerun is needed.
 It runs the affected suites and isolated real child-process fault drills. No
 password, API, credentials or production journal is used. Temporary process
 fixtures start/stop without acquiring market data. Allow roughly a minute on
 Windows, then retain the completed summary and actual CMD prompt return.
 No unchanged command 33, command 32, prior capacity workload or live trial is
-requested. Windows acceptance for these new bytes is pending.
+requested. Windows acceptance for these pinned runtime/test bytes is complete.
 
 Checks cover shared pacing, both deadlines including an orphan HTTP worker,
 monotonic reopen cooldown, stop during HTTP, terminal/unavailable/empty bodies,
@@ -182,3 +186,22 @@ Windows command 34 subsequently FAILED as recorded above. Earlier command 33
 remains accepted for its source pin. The exact delivered README and inventory,
 final extracted report and superseded intermediate checkout report are retained
 under validation. No qualification gate is raised by this increment.
+
+
+## Completed Windows acceptance — command 35
+
+The operator supplied the completed MasterBot/sea-green run
+`20261023T052046Z-a0d65acb`: 438/438 PASS in 34.959442999912426s,
+zero skipped tests, errors or failures, network denied, production access false
+and actual CMD prompt return. This includes the native Windows sharing test and
+the three checks that failed in command 34. The supplied console, not an
+independently uploaded report file, supports this acceptance. The original
+command-34 FAILED verdict and unproven original child-exit cause remain retained.
+
+Acceptance changes documentation/records only; no runtime, tests, archive,
+source inventory, health gate or qualification limit changed. Commands 32/33
+and command 35 require no unchanged rerun. Next integrate the actual broker
+Hot collector and saved acquisition evidence with this worker protocol, qualify
+that changed path offline/on Windows, then perform separately bounded live
+HTTP and market-hours recovery checks. This is not complete production recovery
+or provider capacity.

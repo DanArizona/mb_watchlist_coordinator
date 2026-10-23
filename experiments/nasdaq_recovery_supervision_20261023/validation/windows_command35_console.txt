@@ -1,0 +1,46 @@
+Operator-supplied console excerpt; test-progress dots omitted.
+
+OFFLINE corrected recovery-worker qualification. No API, password or production journal.
+Command 34 failure retained. Bounded Windows sharing retries and owned-worker exit diagnostics; synthetic process drills.
+----------------------------------------------------------------------
+Ran 438 tests in 34.959s
+
+OK
+{
+  "result": "PASS",
+  "tests": 438,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "passed": 438,
+  "seconds": 34.959442999912426,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Paced feed transport and isolated recovery authority/owned-worker protocol; synthetic HTTP children, source/store/admission/publication/native integration. Not live HTTP, broker collector integration, production adoption or capacity.",
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_history_reconstruction",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost",
+    "test_sampling_payload_reader",
+    "test_nasdaq_request_reuse",
+    "test_nasdaq_reuse_workload",
+    "test_nasdaq_recovery_delivery",
+    "test_nasdaq_feed_recovery",
+    "test_nasdaq_recovery_supervisor"
+  ],
+  "execution_environment": "offline_current_host",
+  "windows_operator_acceptance_recorded_separately": true
+}
+Saved report: C:\Users\danla\Documents\github\mb_market_data\output\nasdaq_recovery_worker_fix_20261023_044926_3d57d2\runs\20261023T052046Z-a0d65acb\verification.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
