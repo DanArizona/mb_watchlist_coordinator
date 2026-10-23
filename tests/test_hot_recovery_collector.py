@@ -1,5 +1,6 @@
 from dataclasses import replace
 from dataclasses import asdict
+from contextlib import closing
 from datetime import datetime, timedelta, timezone
 import json
 import sqlite3
@@ -136,7 +137,8 @@ class HotRecoveryCollectorTests(unittest.TestCase):
 
     def test_changed_native_observation_is_detected_before_recovery_or_api(self):
         self.advance(2);self.worker.tick()
-        with sqlite3.connect(self.store.database_path) as c:c.execute("UPDATE quote_observation SET status='invalid'")
+        with closing(sqlite3.connect(self.store.database_path)) as c, c:
+            c.execute("UPDATE quote_observation SET status='invalid'")
         with self.assertRaises(ValueError):self.open().prepare()
         self.assertEqual(len(self.calls),1)
 

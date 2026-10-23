@@ -38,7 +38,7 @@ it does not add an incremental cache or establish long-history recovery speed.
 
 ## Offline qualification
 
-Run only new `36_verify_hot_collector_recovery.cmd` from the extracted package.
+Run only new `37_verify_hot_collector_cleanup.cmd` from the extracted package.
 It verifies the source inventory before running the affected suites. Main and
 fixture child processes deny network. No password, API or production journal
 is required; allow roughly one to two minutes on Windows and retain the final
@@ -65,3 +65,22 @@ capacity, original direct-producer migration and production adoption remain
 pending. Configured heartbeat/startup gates are not raised to hide slow cold
 reconstruction. Production main, Uni/Focus cadence and Hot-disabled policy stay
 unchanged. Windows acceptance for this new source is pending.
+
+## Windows command-36 cleanup failure
+
+The completed MasterBot run `20261023T084357Z-4fca6462` reports 491 tests in
+55.039469900075346s, 490 passed and one error. The sole error is Windows
+WinError 32 removing quotes.sqlite3 during temporary-directory cleanup in
+the native-observation corruption test. No assertion failure is reported.
+Command 36 remains FAILED and is not accepted.
+
+That test used the SQLite connection transaction context without explicit
+connection closure. Instrumenting all 49 connections during the isolated test,
+while retaining their Python references, reproduces exactly one unclosed
+connection in the original test. The correction wraps the transaction in
+contextlib.closing; all 49 connections then close explicitly. It does not rely
+on garbage collection, delayed deletion or ignored cleanup errors. Runtime,
+native dependency, corruption rejection and qualification gates are unchanged.
+
+Command 37 is a fresh source-pinned offline delivery with this test-only
+correction. Earlier packages and the command-36 failed result remain preserved.

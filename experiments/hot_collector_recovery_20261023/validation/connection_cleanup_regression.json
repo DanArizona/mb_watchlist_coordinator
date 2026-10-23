@@ -1,0 +1,11 @@
+{
+  "original_test_left_open_connections": 1,
+  "original_test_errors_on_posix": 0,
+  "method": "Instrument every sqlite3.Connection close in the failing test, retaining references to avoid garbage-collection cleanup masking leaks",
+  "network": "not_used_in_original_probe; denied_in_corrected_probe",
+  "production_access": false,
+  "corrected_connections": 49,
+  "corrected_unclosed_connections": 0,
+  "corrected_test_result": "PASS",
+  "runtime_changed": false
+}

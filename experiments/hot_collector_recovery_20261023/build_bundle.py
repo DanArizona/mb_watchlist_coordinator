@@ -28,14 +28,14 @@ def verify_inventory():
 if __name__=='__main__':
     verify_inventory()
     print('OFFLINE native Hot collector and acquisition-recovery qualification. No API, password or production journal.',flush=True)
-    print('Real native collector with synthetic provider responses; owned-process interruption and saved-response recovery drills. Commands 32/33/35 remain accepted.',flush=True)
+    print('Corrected test-owned SQLite cleanup. Collector runtime unchanged; synthetic provider/process drills only.',flush=True)
     args=[sys.executable,'-I','-B',str(ROOT/'coordinator/experiments/hot_collector_recovery_20261023/verify.py'),'--output-root',str(ROOT/'runs')]
     raise SystemExit(subprocess.call(args))
 '''
 
 def build(destination):
     destination=Path(destination);destination.mkdir(parents=True,exist_ok=True)
-    name='hot_collector_recovery_'+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')+'_'+uuid.uuid4().hex[:6]
+    name='hot_collector_cleanup_'+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')+'_'+uuid.uuid4().hex[:6]
     with tempfile.TemporaryDirectory(prefix='recovery delivery bundle ') as temporary:
         root=Path(temporary)/name;root.mkdir()
         for source in [ROOT/'src',ROOT/'experiments/sampling_promotion_20261016/market_data/src']:
@@ -51,7 +51,7 @@ def build(destination):
             shutil.copyfile(ROOT/'tests/fixtures'/fixture,root/'coordinator/tests/fixtures'/fixture)
         shutil.copyfile(HERE/'README.md',root/'README.md')
         (root/'verify_source.py').write_text(LAUNCHER)
-        (root/'36_verify_hot_collector_recovery.cmd').write_bytes(b'@echo off\r\nsetlocal\r\npython -I -B "%~dp0verify_source.py"\r\nexit /b %errorlevel%\r\n')
+        (root/'37_verify_hot_collector_cleanup.cmd').write_bytes(b'@echo off\r\nsetlocal\r\npython -I -B "%~dp0verify_source.py"\r\nexit /b %errorlevel%\r\n')
         files={p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(root.rglob('*')) if p.is_file()}
         (root/'SOURCE_INVENTORY.json').write_text(json.dumps({'contract':'nasdaq-recovery-supervision-handoff-v1','files':files},indent=2)+'\n')
         out=destination/(name+'.zip')
