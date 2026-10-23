@@ -62,9 +62,9 @@ non-secret worker/status diagnostics, not a new native polling-run registration.
 
 ## Offline verification and reference dependency
 
-Run `38_verify_authenticated_startup.cmd` from the extracted package. Allow
-roughly two minutes on Windows, then retain the final JSON and actual CMD prompt
-return. The launcher verifies every bundled source hash before running tests.
+Command `38_verify_authenticated_startup.cmd` is accepted on MasterBot Windows:
+529/529 PASS in 82.49765909998678s, zero skips/errors/failures and actual CMD
+prompt return. No unchanged repeat is needed. The launcher verifies every bundled source hash before running tests.
 The verifier and all fixture children deny network. Tests create and remove
 only temporary synthetic encrypted configurations and metadata-only SQLite
 token fixtures, with explicit connection closure.
@@ -94,10 +94,30 @@ tests scan all retained runtime artifacts for those values.
 | `provider_failed` / `provider_decode_failed` | Retain evidence and investigate the provider failure before another bounded run. |
 | `window_ended` | Choose a new explicit bounded window; never catch up past quote slots. |
 
-Windows acceptance of these new bytes is pending. After acceptance, check the
+Windows acceptance of the delivered command-38 bytes is complete. Next check the
 actual installed SDK and human-started bootstrap in a separate bounded isolated
 procedure, followed by paced live HTTP and market-hours interruption/recovery.
 No claim is made for live authentication, whole-machine recovery, complete
 historical quote restoration, long-history/mixed-source/provider capacity or
 production adoption. Production main, Uni/Focus cadence and Hot-disabled policy
 are unchanged. Earlier failed command-34/36 and stress/cloud records remain.
+
+
+## Completed Windows acceptance — command 38
+
+The completed MasterBot/sea-green operator console for run
+`20261023T104346Z-51ddb6c3` reports all 529 tests PASS in
+82.49765909998678s, zero skipped tests/errors/failures, network denied,
+production access false and an actual CMD prompt return. The saved JSON file
+was not independently uploaded; the supplied completed console supports this
+acceptance. Its fixed `offline_current_host` environment label describes the
+verifier's current host and does not negate the established Windows context.
+
+Qualified implementation remains Coordinator
+`5601d2dd8671e0bdbd3d5a0ab0ef62f8c5e34545`. All 85 bundled repository
+runtime/test/reference/verifier files match the delivered source inventory;
+the original ZIP, launcher and inventory are unchanged. This acceptance changes
+only documentation and validation records. Commands 32/33/35/37/38 need no
+unchanged rerun. Original command-34/36 and stress/cloud verdicts are retained.
+The credential contract, actual installed SDK authentication, fresh-controller
+manual prompt requirement and all live/production boundaries remain as above.

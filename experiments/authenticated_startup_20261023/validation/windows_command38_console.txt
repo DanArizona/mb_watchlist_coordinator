@@ -1,0 +1,62 @@
+Operator-supplied Windows console; progress-dot line omitted.
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>powershell -NoProfile -Command "Expand-Archive -LiteralPath 'C:\Users\danla\Downloads\authenticated_startup_20261023_094446_a7e91b.zip' -DestinationPath 'C:\Users\danla\Documents\github\mb_market_data\output' -ErrorAction Stop"
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>call "C:\Users\danla\Documents\github\mb_market_data\output\authenticated_startup_20261023_094446_a7e91b\38_verify_authenticated_startup.cmd"
+OFFLINE human-started credential handoff and authenticated-entry qualification. No API, password or production journal.
+Pinned mb_tools interfaces with synthetic credentials/SDK and owned child processes only. No installed SDK or live authentication claim.
+----------------------------------------------------------------------
+Ran 529 tests in 82.497s
+
+OK
+{
+  "result": "PASS",
+  "tests": 529,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "passed": 529,
+  "seconds": 82.49765909998678,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Human-started anonymous-pipe credential handoff, pinned mb_tools encrypted-config/status/client interfaces, noninteractive authenticated worker entry and affected native recovery paths. Synthetic credentials and SDK only; not installed SDK authentication, live HTTP, market-hours recovery, production adoption or capacity.",
+  "credential_interfaces": {
+    "repository": "DanArizona/mb_tools",
+    "commit": "abdceb1be988b7ee893b0bed725b90454ddf4f71",
+    "execution": "pinned_public_reference_source",
+    "sdk": "synthetic_replacement",
+    "actual_vault_access": false,
+    "installed_sdk_qualified": false
+  },
+  "unattended_controller_bootstrap": false,
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_history_reconstruction",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost",
+    "test_sampling_payload_reader",
+    "test_nasdaq_request_reuse",
+    "test_nasdaq_reuse_workload",
+    "test_nasdaq_recovery_delivery",
+    "test_nasdaq_feed_recovery",
+    "test_nasdaq_recovery_supervisor",
+    "test_hot_recovery_collector",
+    "test_sampling_acquisition",
+    "test_authenticated_startup",
+    "test_authenticated_worker"
+  ],
+  "execution_environment": "offline_current_host",
+  "windows_operator_acceptance_recorded_separately": true
+}
+Saved report: C:\Users\danla\Documents\github\mb_market_data\output\authenticated_startup_20261023_094446_a7e91b\runs\20261023T104346Z-51ddb6c3\verification.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>

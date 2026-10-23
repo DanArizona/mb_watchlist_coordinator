@@ -1,5 +1,5 @@
 {
-  "status": "LOCAL_OFFLINE_PASS_WINDOWS_PENDING",
+  "status": "OFFLINE_WINDOWS_ACCEPTED",
   "command": "38_verify_authenticated_startup.cmd",
   "date": "2026-10-23",
   "baseline_public_commit": "51f0d086230306e67f3a177fcbb02956423c17aa",
@@ -42,5 +42,17 @@
   ],
   "prior_acceptance": "Commands 32/33/35/37 remain accepted for their original pins; no unchanged rerun",
   "retained_failures": "Commands 34/36 and earlier history stress/cloud findings remain unchanged",
-  "next": "Windows command 38; then separate installed SDK/bootstrap and bounded isolated live HTTP/market-hours recovery qualification"
+  "next": "Actual installed SDK/interface and human-started bootstrap qualification, followed separately by bounded isolated live HTTP and market-hours interruption/recovery",
+  "windows_acceptance": {
+    "record": "windows_command38_qualification.json",
+    "run": "20261023T104346Z-51ddb6c3",
+    "tests": 529,
+    "passed": 529,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 82.49765909998678,
+    "actual_cmd_prompt_returned": true,
+    "saved_report_independently_uploaded": false
+  }
 }
