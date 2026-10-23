@@ -59,7 +59,7 @@ def validate_job(job_path, binding):
     job = json.loads(path.read_text(encoding='utf-8'))
     content = dict(job); sha = content.pop('content_sha256')
     if (digest(content) != sha or canonical(job['identity']['binding']) != canonical(binding)
-            or job['identity']['contract'] != 'experimental-recovery-worker-v1'
+            or job['identity']['contract'] not in ('experimental-recovery-worker-v1','experimental-recovery-worker-v2')
             or job['identity']['role'] != 'experimental_hot'
             or type(job['generation']) is not int or not 1 <= job['generation'] <= 3
             or job['identity']['experimental_hot_seconds'] != list(HOT_SECONDS)
@@ -74,6 +74,12 @@ def validate_job(job_path, binding):
             or Path(job['stop_path']) != path.parent/(job['token']+'.stop')
             or Path(job['registry_path']).read_text(encoding='utf-8') != canonical(job)):
         raise ValueError('Experimental collector job identity/fence differs')
+    if job['identity']['contract']=='experimental-recovery-worker-v2':
+        context=job['identity'].get('startup_context',{})
+        import re
+        if (set(context)!={'contract','configuration_sha256'} or context['contract']!='anonymous-stdin-secret-v1'
+                or not re.fullmatch('[0-9a-f]{64}',context['configuration_sha256'])):
+            raise ValueError('Experimental startup context differs')
     return job
 
 
@@ -141,6 +147,11 @@ class HotRecoveryCollector:
             raise ValueError('Collector call budget, roster, slot or window gate refused')
         if self.client is None:
             self.client = self.client_factory()
+        self._check()
+        if (self.clock() >= timestamp(self.settings.stop_at_utc)
+                or (self.clock()-timestamp(state['pending']['dispatch']['scheduled_at_utc'])).total_seconds() > .75):
+            self.refused_call=True
+            raise ValueError('Collector gate expired during client preparation')
         return self.client.quotes(symbols, fields=fields)
 
     def tick(self, *, fault_hook=None):
@@ -156,8 +167,8 @@ class HotRecoveryCollector:
             return {'status': 'idle'}
         slot = self.next
         result = self.poller.sample(slot, fault_hook=fault_hook)
-        if self.refused_call:
-            return dict(result, status='blocked', reason='provider_dispatch_gate_refused')
+        if self.refused_call or getattr(self.client,'halt_reason',None):
+            return dict(result, status='blocked', reason='provider_dispatch_gate_or_client_stopped')
         self.next = next_slot(self.poller.settings, after=max(slot.scheduled_at, self.clock()))
         return result
 
@@ -169,7 +180,7 @@ class HotRecoveryCollector:
 
 
 def run_worker(job_path, settings, *, client_factory, clock=None, stop_requested=lambda: False,
-               fault_hook=None, sleep=time.sleep, monotonic=time.monotonic):
+               fault_hook=None, sleep=time.sleep, monotonic=time.monotonic, startup_client=None):
     """Hold the fenced role lease throughout recovery and actual acquisition.
 
     No passwords, SDK imports, account discovery or implicit authorization. The
@@ -184,6 +195,14 @@ def run_worker(job_path, settings, *, client_factory, clock=None, stop_requested
             if stop_requested() or Path(job['stop_path']).exists():
                 return {'status': 'stopped'}
             collector._check()  # Missing evidence blocks before recovery or client creation.
+            if startup_client is not None:
+                collector.poller.snapshot()  # Verify saved work before credential access.
+                collector.client=startup_client()
+                if not callable(getattr(collector.client,'quotes',None)):
+                    raise ValueError('Startup did not return a quote client')
+                if stop_requested() or Path(job['stop_path']).exists():return {'status':'stopped'}
+                collector._check()
+                if collector.clock()>=timestamp(settings.stop_at_utc):return {'status':'window_ended'}
             recovery = collector.prepare()
             from mb_market_data.sampling_acquisition import next_slot
             collector.next = next_slot(collector.poller.settings,

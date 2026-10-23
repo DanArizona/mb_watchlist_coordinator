@@ -71,9 +71,22 @@ def _drain_stderr(stream, tail, lock):
         stream.close()
 
 
+def _write_handoff(stream, frame, outcome):
+    try:
+        if stream.write(frame) != len(frame):raise OSError()
+        stream.flush()
+        outcome['status']='delivered'
+    except Exception:
+        outcome['status']='not_delivered'
+    finally:
+        frame[:] = b'\0'*len(frame)
+        try:stream.close()
+        except Exception:pass
+
+
 class ManagedRecoveryWorker:
     def __init__(self, root, *, role, command, binding, max_starts=3, startup_seconds=3,
-                 stale_seconds=3, clock=None, monotonic=time.monotonic):
+                 stale_seconds=3, clock=None, monotonic=time.monotonic, startup_handoff=None):
         if role != 'experimental_hot' or not command or not all(isinstance(s, str) and s for s in command):
             raise ValueError('Only an explicit experimental Hot worker command is supported')
         if (type(max_starts) is not int or not 1 <= max_starts <= 3
@@ -89,6 +102,14 @@ class ManagedRecoveryWorker:
             'startup_seconds': startup_seconds, 'stale_seconds': stale_seconds,
             'experimental_hot_seconds': list(HOT_SECONDS),
             'qualification': 'process_protocol_only_provider_driver_pending'}
+        self.startup_handoff = startup_handoff
+        if startup_handoff is not None:
+            context = startup_handoff.identity
+            if (context.get('contract') != 'anonymous-stdin-secret-v1'
+                    or set(context) != {'contract','configuration_sha256'}
+                    or not re.fullmatch('[0-9a-f]{64}',context['configuration_sha256'])):
+                raise ValueError('Explicit non-secret startup context required')
+            self.identity.update(contract='experimental-recovery-worker-v2', startup_context=dict(context))
         self.registry = self.root/'worker.json'
         self.lease = self.root/'worker.lock'
         self.child, self.owned_token = None, None
@@ -96,16 +117,19 @@ class ManagedRecoveryWorker:
         self.last_exit = None
         self.last_heartbeat_check = None
         self._stderr_tail, self._stderr_lock, self._stderr_thread = None, None, None
+        self._handoff_thread, self._handoff_outcome = None, None
 
     def _reap_owned(self, reason):
         child = self.child
         code = child.wait()
         self._stderr_thread.join(timeout=.2)
+        if self._handoff_thread is not None:self._handoff_thread.join(timeout=.2)
         with self._stderr_lock:
             stderr = bytes(self._stderr_tail).decode('utf-8', errors='backslashreplace')
         self.last_exit = {'token': self.owned_token, 'pid': child.pid,
             'returncode': code, 'reason': reason, 'observed_at_utc': self.clock().isoformat(),
             'stderr_tail': stderr, 'stderr_limit_bytes': 8192}
+        if self._handoff_outcome is not None:self.last_exit['startup_handoff']=dict(self._handoff_outcome)
         self.child = None
         atomic_json(self.root/(self.owned_token+'.exit.json'), self.last_exit)
 
@@ -206,15 +230,25 @@ class ManagedRecoveryWorker:
             'heartbeat_path': str((self.root/(token+'.heartbeat.json')).resolve()),
             'stop_path': str((self.root/(token+'.stop')).resolve())}
         job['content_sha256'] = digest(job)
+        frame = None
+        if self.startup_handoff is not None:
+            try:frame=self.startup_handoff.frame(token)
+            except Exception:
+                return {'status':'BLOCKED','reason':'startup_credentials_unavailable'}
         atomic_json(Path(job['job_path']), job)
         atomic_json(self.registry, job)
         self.owned_token = token
         self._stderr_tail, self._stderr_lock = bytearray(), threading.Lock()
-        self.child = subprocess.Popen([*self.command, job['job_path']], stdin=subprocess.DEVNULL,
+        self.child = subprocess.Popen([*self.command, job['job_path']], stdin=subprocess.PIPE if frame is not None else subprocess.DEVNULL,
             stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
         self._stderr_thread = threading.Thread(target=_drain_stderr,
             args=(self.child.stderr, self._stderr_tail, self._stderr_lock), daemon=True)
         self._stderr_thread.start()
+        if frame is not None:
+            self._handoff_outcome={'status':'pending'}
+            self._handoff_thread=threading.Thread(target=_write_handoff,
+                args=(self.child.stdin,frame,self._handoff_outcome),daemon=True)
+            self._handoff_thread.start()
         self.last_start = self.monotonic()
         return {'status': 'STARTING', 'generation': job['generation'], 'pid': self.child.pid}
 
