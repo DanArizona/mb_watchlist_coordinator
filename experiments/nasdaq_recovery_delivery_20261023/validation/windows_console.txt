@@ -1,0 +1,42 @@
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>powershell -NoProfile -Command "Expand-Archive -LiteralPath 'C:\Users\danla\Downloads\nasdaq_recovery_delivery_20261023_033429_c9a081.zip' -DestinationPath 'C:\Users\danla\Documents\github\mb_market_data\output' -ErrorAction Stop"
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>call "C:\Users\danla\Documents\github\mb_market_data\output\nasdaq_recovery_delivery_20261023_033429_c9a081\33_verify_nasdaq_recovery_delivery.cmd"
+OFFLINE shared Nasdaq recovery delivery qualification. No API, password or production journal.
+Affected tests and native recovered-membership integration. No HTTP transport, restart or capacity claim.
+....................................................................................................................................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 372 tests in 15.829s
+
+OK
+{
+  "result": "PASS",
+  "tests": 372,
+  "seconds": 15.829235299956053,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Shared live/recovered identity and normal request delivery; affected source/store/admission/publication/native tests. Not HTTP transport, process recovery, live acquisition or capacity.",
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_history_reconstruction",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost",
+    "test_sampling_payload_reader",
+    "test_nasdaq_request_reuse",
+    "test_nasdaq_reuse_workload",
+    "test_nasdaq_recovery_delivery"
+  ],
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED"
+}
+Saved report: C:\Users\danla\Documents\github\mb_market_data\output\nasdaq_recovery_delivery_20261023_033429_c9a081\runs\20261023T034426Z-4b4672e3\verification.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>

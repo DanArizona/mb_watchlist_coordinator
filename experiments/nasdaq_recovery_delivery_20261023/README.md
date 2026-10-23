@@ -83,9 +83,12 @@ recovered outside-Uni request -> Coordinator publication -> effective Hot
 membership, native audit and matching replays, with effective time at/after
 recovery. It uses synthetic inputs and makes no live Hot acquisition claim.
 
-Windows qualification for these changed bytes remains pending until the
-operator supplies the completed new command-33 console. Earlier accepted
-commands, including 32, require no unchanged rerun.
+Windows qualification for these changed bytes is ACCEPTED from the complete
+MasterBot sea-green CMD console: 372 tests PASS in 15.829235299956053s, with
+actual CMD prompt return. The detailed saved report has not been independently
+uploaded. The fixed `OPERATOR_RESULT_REQUIRED` summary label is satisfied by
+this operator output; it is not a failed test. No unchanged command 33 or
+earlier accepted command, including 32, needs repeating.
 
 ## Remaining work
 
@@ -100,10 +103,22 @@ publication-head failures are retained. Production cadence and Hot stay unchange
 
 All 372 affected checks PASS locally in 7.626s and from the final extracted
 source-pinned package in a path containing spaces in 7.121s. A deliberately
-altered source is refused before tests. Windows command 33 remains pending.
+altered source is refused before tests. Windows command 33 is now ACCEPTED.
 The prior command-32 Windows acceptance remains attached to its earlier source
 pin; this new delivery mode requires its own Windows qualification.
 
 Delivery: `nasdaq_recovery_delivery_20261023_033429_c9a081.zip`, 174,121 bytes,
 61 files, SHA-256 `1cc8fd44f73527390811830d78124a61442c3b51d8d0d88a1b484d0b756abe8c`.
 The exact delivered README and source inventory are retained under validation.
+
+## Windows acceptance
+
+Run `20261023T034426Z-4b4672e3` completed on MasterBot Windows in sea-green CMD.
+The complete console and structured acceptance are saved in
+`validation/windows_console.txt` and `validation/windows_qualification.json`.
+All 372 affected checks PASS in 15.829235299956053s, network denied, production
+access false, with the actual command prompt returned. Qualified source remains
+`0beb31a0541a7724633fa6ad0667cd7fcad0f6f8`; acceptance changes no runtime bytes.
+The native recovered-membership test is synthetic, not a live acquisition.
+Next implement paced dated-query HTTP transport/failure evidence, then explicit
+recover/reconcile/ready supervision. All remaining scope limits above stand.
