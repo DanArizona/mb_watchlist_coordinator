@@ -1,0 +1,18 @@
+{
+  "archive": "/workspace/scratch/78e6acba7246/deliverables/integrated_identity_20261023_162302_1791ad.zip",
+  "folder": "integrated_identity_20261023_162302_1791ad",
+  "bytes": 215969,
+  "sha256": "fd207cb10646d38ad8f6792510e019e724720dcff7b16e9cae0bf352a196b5e5",
+  "files": 76,
+  "source_commit": "fd2ddfb58bdf88278e80698ac2d4f108579091e8",
+  "source_tree": "091a85d65bb5c685bc5b440f4e4f5a2df70bbcac",
+  "repository_files_matched": 72,
+  "inventory_sha256": "f239271e469e19b10b030f42eabfd15f105ae62a48711e913043766d7ecc8ebd",
+  "local_tests": 211,
+  "local_seconds": 6.2588491409997005,
+  "extracted_tests": 211,
+  "extracted_seconds": 6.813594320999982,
+  "source_guard_checks": "PASS",
+  "windows_acceptance": "PENDING",
+  "scope": "Exact catalog and cumulative identity gate with synthetic HTTP/provider responses and native integration; not coupled runtime or live recovery."
+}

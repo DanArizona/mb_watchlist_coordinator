@@ -1,0 +1,41 @@
+{
+  "result": "PASS",
+  "tests": 211,
+  "passed": 211,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 6.813594320999982,
+  "network": "denied",
+  "production_access": false,
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "suites": [
+    "test_integrated_catalog",
+    "test_integrated_identity",
+    "test_nasdaq_recovery_delivery",
+    "test_nasdaq_request_reuse",
+    "test_sampling_admission",
+    "test_sampling_requests",
+    "test_controller_bootstrap"
+  ],
+  "scope": "Owned synthetic directory retrieval/deadlines, immutable exact-symbol catalog, durable cumulative identity reservations and one-symbol authorization, ordinary shared request/reuse/admission and native Hot publication/acquisition. Synthetic provider/HTTP only; not installed SDK, coupled bootstrap/runtime, manual controller resume, live transport/recovery, production adoption or capacity.",
+  "actual_vault_access": false,
+  "real_feed_or_broker_requests": 0,
+  "prior_accepted_runtime_sources_changed": false,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "runtime_loop_or_live_recovery_qualified": false,
+  "remaining": [
+    "catalog acquisition after credential acceptance in the coupled bootstrap",
+    "prepared-client injection into runtime supervision and owned worker startup timing",
+    "manual controller resume with all original bindings and cumulative budgets",
+    "bounded live feed and authenticated native Hot recovery",
+    "Overlay adapter",
+    "production adoption and broader capacity"
+  ]
+}

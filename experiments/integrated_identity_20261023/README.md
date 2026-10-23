@@ -68,3 +68,11 @@ binds invocation ownership; no complete session recovery is claimed here.
 Native Hot's separate cumulative 60-permit ledger remains accepted independently;
 the complete 63-permit profile still needs coupled integration qualification.
 Production Hot remains disabled; Overlay implementation follows the backend.
+
+
+Source-pinned extraction also passes all 211 checks in 6.813594320999982s from a
+path containing spaces, with zero skips/errors/failures. Changed source and an
+extra source file are refused before tests; the inventory is restored exactly.
+See `validation/delivery.json` for the original archive hash and source commit.
+Windows command 42 remains pending. The original archive is not rebuilt for
+these documentation/record updates.
