@@ -13,6 +13,11 @@
   "extracted_tests": 288,
   "extracted_seconds": 37.77484418899985,
   "source_guard_checks": "PASS",
-  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
-  "scope": "Post-credential one-invocation/two-permit catalog reservation, retained source bytes, catalog/admission/identity/native bootstrap binding and private-pipe process interruption/deadline regressions. Pinned mb_tools with synthetic configuration, SDK and directory HTTP only; not installed authentication, running collector supervision, full manual controller resume, live acquisition/recovery, production adoption or capacity."
+  "windows_acceptance": "ACCEPTED_OFFLINE_WINDOWS",
+  "scope": "Post-credential one-invocation/two-permit catalog reservation, retained source bytes, catalog/admission/identity/native bootstrap binding and private-pipe process interruption/deadline regressions. Pinned mb_tools with synthetic configuration, SDK and directory HTTP only; not installed authentication, running collector supervision, full manual controller resume, live acquisition/recovery, production adoption or capacity.",
+  "windows_operator_run": "20261023T193036Z-851ae3c3",
+  "windows_operator_tests": 288,
+  "windows_operator_seconds": 51.14706789993215,
+  "windows_operator_prompt_returned": true,
+  "windows_operator_evidence": "windows_command43_acceptance.json"
 }

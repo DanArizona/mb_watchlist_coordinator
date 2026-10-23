@@ -1,0 +1,50 @@
+{
+  "result": "PASS",
+  "tests": 288,
+  "passed": 288,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 51.14706789993215,
+  "network": "denied",
+  "production_access": false,
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "executable": "C:\\Users\\danla\\anaconda3\\envs\\sea-green\\python.exe",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "suites": [
+    "test_catalog_bootstrap",
+    "test_catalog_bootstrap_process",
+    "test_controller_bootstrap",
+    "test_controller_bootstrap_process",
+    "test_authenticated_startup",
+    "test_integrated_catalog",
+    "test_integrated_identity",
+    "test_nasdaq_recovery_delivery",
+    "test_nasdaq_request_reuse",
+    "test_sampling_admission",
+    "test_sampling_requests"
+  ],
+  "scope": "Post-credential one-invocation/two-permit catalog reservation, retained source bytes, catalog/admission/identity/native bootstrap binding and private-pipe process interruption/deadline regressions. Pinned mb_tools with synthetic configuration, SDK and directory HTTP only; not installed authentication, running collector supervision, full manual controller resume, live acquisition/recovery, production adoption or capacity.",
+  "changed_accepted_source_paths": [
+    "src/mb_watchlist_coordinator/controller_bootstrap.py",
+    "src/mb_watchlist_coordinator/bootstrap_entry.py"
+  ],
+  "legacy_v1_public_identity_preserved": true,
+  "prior_pinned_acceptances_and_archives_retained": true,
+  "actual_vault_access": false,
+  "real_feed_directory_or_broker_requests": 0,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "runtime_loop_or_full_manual_resume_qualified": false,
+  "unattended_controller_bootstrap": false,
+  "remaining": [
+    "prepared-client runtime and owned-worker startup timing integration",
+    "full manual controller resume with original identities and budgets",
+    "separately invoked bounded live acquisition and worker recovery profiles",
+    "Overlay adapter",
+    "production adoption and broader capacity"
+  ]
+}

@@ -67,7 +67,7 @@ Current-host focused qualification passes 288/288 checks in
 errors. The earlier development run with one test-fixture import error is
 retained separately; its correction did not change runtime behavior.
 Source-pinned extraction and Windows operator acceptance are recorded
-separately. Windows acceptance is pending for this increment.
+separately. Command 43 Windows acceptance is complete; see the operator record below.
 
 The acquisition driver is an explicit trusted API/test seam; this package has
 no operator live-start command or implicit network authorization. The source
@@ -91,6 +91,25 @@ path containing spaces passes all 288 checks in 37.77484418899985 seconds
 (runner 37.575 seconds), with no skips, errors or failures. All 79 mapped
 repository files match; altered/extra-source probes both return 70 before
 tests and restoration matches the complete inventory. Original command-41/42
-archives retain their hashes. Command 43 Windows operator acceptance remains
-pending. The reports and source-guard evidence are in `validation/`; this
+archives retain their hashes. Command 43 Windows operator acceptance is now
+complete. The reports and source-guard evidence are in `validation/`; this
 delivery update changes documentation/records only, not the delivered archive.
+
+## MasterBot Windows acceptance — October 23
+
+Command 43 completes with 288/288 PASS in 51.14706789993215 seconds
+(runner 50.907 seconds), zero skips, failures or errors, run
+`20261023T193036Z-851ae3c3`, followed by the actual sea-green CMD prompt.
+The complete operator console and JSON supply acceptance; the saved report
+file was not independently uploaded. Its fixed `OPERATOR_RESULT_REQUIRED`
+label is retained verbatim and satisfied by the separate
+`validation/windows_command43_acceptance.json` record. The qualification JSON
+and console transcription are alongside it.
+
+The original ZIP and all 79 mapped repository files remain byte-identical.
+Acceptance changes documentation and validation records only; no unchanged
+command-43 or earlier accepted rerun is needed. Synthetic credentials/SDK/HTTP
+are qualified here. Installed startup retains the separate command-40 scope;
+running collector supervision, full manual controller resume, live recovery
+and broader capacity remain pending. Next is prepared-client runtime
+supervision with the original 3s/8s gates, then full manual controller resume.
