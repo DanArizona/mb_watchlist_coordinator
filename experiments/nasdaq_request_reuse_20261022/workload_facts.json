@@ -1,0 +1,1725 @@
+{
+  "contract": "nasdaq-halt-workload-facts-v1",
+  "source_url": "https://www.nasdaqtrader.com/Trader.aspx?id=TradingHaltSearch",
+  "raw_source_sha256": "912d00483a56aa7de8b9e949c145156e575e4b532a24a3c92624e7f8915923da",
+  "source_acquired_at_utc": "2026-10-23T00:00:10.668214+00:00",
+  "study": {
+    "period_start": "2026-08-23",
+    "period_end": "2026-10-22",
+    "trading_days": 43,
+    "metrics": {
+      "history_rows": {
+        "total": 4645,
+        "mean": 108.02325581395348,
+        "median": 98,
+        "p95_nearest_rank": 187,
+        "min": 48,
+        "max": 243
+      },
+      "distinct_halts": {
+        "total": 2300,
+        "mean": 53.48837209302326,
+        "median": 49,
+        "p95_nearest_rank": 93,
+        "min": 24,
+        "max": 119
+      },
+      "unique_symbols": {
+        "total": 1147,
+        "mean": 26.674418604651162,
+        "median": 26,
+        "p95_nearest_rank": 33,
+        "min": 16,
+        "max": 39
+      },
+      "ludp_m_halts": {
+        "total": 2046,
+        "mean": 47.58139534883721,
+        "median": 42,
+        "p95_nearest_rank": 91,
+        "min": 18,
+        "max": 107
+      },
+      "ludp_m_unique_symbols": {
+        "total": 905,
+        "mean": 21.046511627906977,
+        "median": 21,
+        "p95_nearest_rank": 29,
+        "min": 12,
+        "max": 30
+      },
+      "ludp_m_regular_hours": {
+        "total": 2046,
+        "mean": 47.58139534883721,
+        "median": 42,
+        "p95_nearest_rank": 91,
+        "min": 18,
+        "max": 107
+      },
+      "ludp_m_regular_hours_unique_symbols": {
+        "total": 905,
+        "mean": 21.046511627906977,
+        "median": 21,
+        "p95_nearest_rank": 29,
+        "min": 12,
+        "max": 30
+      }
+    }
+  },
+  "cases": {
+    "typical": {
+      "observed_date": "2026-09-10",
+      "event_count": 42,
+      "symbol_count": 21,
+      "events": [
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "09:30:15.416000",
+          "symbol": "WZRD",
+          "reason_codes_observed": [
+            "M"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "09:31:12.953000",
+          "symbol": "RFAIU",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "09:31:14.620000",
+          "symbol": "SWRD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "09:32:12.110000",
+          "symbol": "AHMA",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "09:39:54.670000",
+          "symbol": "GIXI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "09:40:11.123000",
+          "symbol": "HCAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "09:51:29.946000",
+          "symbol": "SWRD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "09:51:57.116000",
+          "symbol": "SVRN",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "09:53:43.773000",
+          "symbol": "HCAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "10:01:12.796000",
+          "symbol": "HCAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "10:08:31.713000",
+          "symbol": "SOCAU",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "10:11:38.286000",
+          "symbol": "SFWL",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "10:13:34.473000",
+          "symbol": "HCAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "10:21:12.036000",
+          "symbol": "HCAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "10:24:51.806000",
+          "symbol": "DBGI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "10:25:49.206000",
+          "symbol": "RFAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "11:10:52.986000",
+          "symbol": "BMHL",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "11:33:04.206000",
+          "symbol": "MKDW",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "11:44:12.440000",
+          "symbol": "SWRD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "11:49:38.830000",
+          "symbol": "SWRD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "11:55:18.533000",
+          "symbol": "SWRD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "12:01:26.763000",
+          "symbol": "SWRD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "12:11:58.913000",
+          "symbol": "SWRD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "12:18:10.126000",
+          "symbol": "SWRD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "12:22:29.256000",
+          "symbol": "ALP",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "12:24:52.736000",
+          "symbol": "SWRD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "12:32:04.006000",
+          "symbol": "SWRD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "12:36:10.363000",
+          "symbol": "NRAM",
+          "reason_codes_observed": [
+            "M"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "12:36:51.413000",
+          "symbol": "SOCAU",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "12:37:41.330000",
+          "symbol": "SWRD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "12:56:18.210000",
+          "symbol": "WZRD",
+          "reason_codes_observed": [
+            "M"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "13:23:26.173000",
+          "symbol": "KYNB",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "13:29:38.546000",
+          "symbol": "NOEMU",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "13:54:42.476000",
+          "symbol": "PFAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "14:25:13.176000",
+          "symbol": "MKDW",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "14:32:18.803000",
+          "symbol": "YI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "14:50:24.466000",
+          "symbol": "MKDW",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "15:02:22.670000",
+          "symbol": "MKDW",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "15:19:43.996000",
+          "symbol": "TRAD=",
+          "reason_codes_observed": [
+            "M"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "15:42:03.363000",
+          "symbol": "HCAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "15:47:21.570000",
+          "symbol": "HCAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-10",
+          "halt_time_et": "15:50:50.096000",
+          "symbol": "EHLD",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        }
+      ]
+    },
+    "busiest": {
+      "observed_date": "2026-09-16",
+      "event_count": 107,
+      "symbol_count": 27,
+      "events": [
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:31:47.840000",
+          "symbol": "MTAW",
+          "reason_codes_observed": [
+            "M"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:32:53.773000",
+          "symbol": "FTFT",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:36:34.066000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:36:47.576000",
+          "symbol": "RETO",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:43:26.966000",
+          "symbol": "MPU",
+          "reason_codes_observed": [
+            "M"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:44:33.696000",
+          "symbol": "EDHL",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:44:35.493000",
+          "symbol": "ZTG",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:46:22.083000",
+          "symbol": "COLAU",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:46:41.180000",
+          "symbol": "RIBBU",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:48:25.563000",
+          "symbol": "CIFC",
+          "reason_codes_observed": [
+            "M"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:48:30.193000",
+          "symbol": "BYAH",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "09:58:18.096000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:00:27.723000",
+          "symbol": "PRHI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:00:32.303000",
+          "symbol": "ZTG",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:04:07.256000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:15:50.610000",
+          "symbol": "RETO",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:18:41.226000",
+          "symbol": "VEEA",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:28:43.083000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:33:02.666000",
+          "symbol": "VEEA",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:35:40.003000",
+          "symbol": "MPU",
+          "reason_codes_observed": [
+            "M"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:38:25.376000",
+          "symbol": "VEEA",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:39:23.570000",
+          "symbol": "RETO",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:43:33.873000",
+          "symbol": "MEDS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:52:27.893000",
+          "symbol": "MEDS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:52:31.396000",
+          "symbol": "RETO",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:55:24.920000",
+          "symbol": "RFAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "10:57:17.256000",
+          "symbol": "ZTG",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:01:16.666000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:05:18.586000",
+          "symbol": "ZTG",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:07:25.160000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:10:52.563000",
+          "symbol": "ZTG",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:13:29.170000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:14:55.303000",
+          "symbol": "BMGL",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:16:45.686000",
+          "symbol": "ZTG",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:20:23.816000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:24:00.473000",
+          "symbol": "NVNO",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:25:46.116000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:27:46.623000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:27:58.570000",
+          "symbol": "ZTG",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:31:17.170000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:33:20.106000",
+          "symbol": "TGL",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:33:37.950000",
+          "symbol": "ZTG",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:38:37.403000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:39:07.176000",
+          "symbol": "ZTG",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:41:32.300000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:42:00.566000",
+          "symbol": "VEEA",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:43:44.940000",
+          "symbol": "RFAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:43:56.933000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:44:14.316000",
+          "symbol": "TGL",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:49:22.740000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "11:57:18.836000",
+          "symbol": "BENF",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:02:07.996000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:06:23.580000",
+          "symbol": "BENF",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:08:54.073000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:09:06.500000",
+          "symbol": "RETO",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:11:46.180000",
+          "symbol": "TGL",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:14:35.893000",
+          "symbol": "BENF",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:14:51.446000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:20:27.370000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:21:51.050000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:27:20.580000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:32:43.123000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:38:01.820000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:41:11.226000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:43:16.830000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:47:36.363000",
+          "symbol": "JDZG",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:53:51.733000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "12:54:48.046000",
+          "symbol": "BENF",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:01:29.320000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:05:10.343000",
+          "symbol": "SNYR",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:07:54.850000",
+          "symbol": "JDZG",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:11:33.416000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:21:28.223000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:22:24.370000",
+          "symbol": "GMEX",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:23:32.666000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:31:46.513000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:42:24.760000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:47:11.833000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:52:52.306000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:53:41.076000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:55:52.023000",
+          "symbol": "RFAI",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:57:32.033000",
+          "symbol": "DCX",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "13:59:24.223000",
+          "symbol": "QCLS",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:03:19.640000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:06:17.376000",
+          "symbol": "MKDW",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:08:44.970000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:14:11.276000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:20:26.163000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:20:47.746000",
+          "symbol": "MKDW",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:26:25.313000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:31:47.860000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:37:12.160000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:39:37.886000",
+          "symbol": "AEHL",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:42:02.020000",
+          "symbol": "RETO",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:47:28.556000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:52:50.776000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:54:14.490000",
+          "symbol": "RETO",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "14:58:59.243000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "15:05:01.116000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "15:08:18.363000",
+          "symbol": "KCHP",
+          "reason_codes_observed": [
+            "M"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "15:10:42.443000",
+          "symbol": "RETO",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "15:11:24.626000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "15:17:03.653000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "15:22:26.196000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "15:27:46.683000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "15:37:22.166000",
+          "symbol": "AEHL",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        },
+        {
+          "date": "2026-09-16",
+          "halt_time_et": "15:42:14.723000",
+          "symbol": "DLXY",
+          "reason_codes_observed": [
+            "LUDP"
+          ],
+          "history_rows": 2,
+          "ludp_m": true,
+          "regular_hours": true
+        }
+      ]
+    }
+  },
+  "limitations": "Historical event identities/times/codes only. Does not establish original discovery or update-availability times. The qualification remaps dates and fabricates receipt/update times explicitly."
+}

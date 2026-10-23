@@ -1,0 +1,11 @@
+{
+  "result": "REJECTED_FOR_ACTIVE_HOT_TIMING",
+  "first_run": "/workspace/scratch/78e6acba7246/nasdaq_reuse_qualification_local",
+  "reasons": [
+    "The initial harness set STOP with hour=16 while retaining minute=30 from START. Its final idle measurement occurred at 16:29:59 after producer requests expired at 16:00, so it does not measure active-Hot cost.",
+    "The margin-reuse construction also failed with the previously observed publication-head consistency guard. Original partial databases and failure are preserved."
+  ],
+  "correction": "Explicit 16:00 end, idle-only transition asserted before measurement, active Hot checked before/after, and test compares final native row count to report. Fresh native construction on memory filesystem; this is not a filesystem root-cause claim.",
+  "final_source_guard": "An additional read-only pending alias-origin check was added after the first construction process had imported its source. The exact earlier producer file is retained alongside this note.",
+  "unchanged_production": true
+}

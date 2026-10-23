@@ -1,0 +1,35 @@
+OFFLINE Nasdaq request reuse qualification. No API, password or production journal.
+Affected tests, then typical/busiest/margin native logical workloads. No full-day/provider claim.
+.....................................................................................................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 341 tests in 7.374s
+
+OK
+{
+  "result": "PASS",
+  "tests": 341,
+  "seconds": 7.373917533999702,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Changed Nasdaq reuse/store paths plus affected admission/replay/publication/native integration. Recovery transport and provider capacity are not qualified.",
+  "suites": [
+    "test_sampling_admission",
+    "test_sampling_policy",
+    "test_sampling_requests",
+    "test_sampling_scaling",
+    "test_sampling_service",
+    "test_nasdaq_recovery",
+    "test_nasdaq_sampling",
+    "test_coordinator_growth",
+    "test_history_cost",
+    "test_history_reconstruction",
+    "test_sampling_membership",
+    "test_quote_observation_store",
+    "test_sampling_metadata_cost",
+    "test_sampling_payload_reader",
+    "test_nasdaq_request_reuse",
+    "test_nasdaq_reuse_workload"
+  ],
+  "workloads": "NOT_REQUESTED"
+}
+Saved report: /workspace/scratch/78e6acba7246/nasdaq reuse final extracted with spaces/nasdaq_request_reuse_20261023_004809_6660ad/runs/20261023T004816Z-74943af2/verification.json

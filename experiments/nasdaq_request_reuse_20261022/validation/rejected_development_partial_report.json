@@ -1,0 +1,199 @@
+{
+  "result": "PASS",
+  "source": "historical_counts_with_synthetic_receipts",
+  "network": "denied",
+  "production_access": false,
+  "cases": {
+    "typical": {
+      "per_event": {
+        "reuse": false,
+        "halts": 42,
+        "symbols": 21,
+        "source_captures": 85,
+        "commands": 42,
+        "coordinator_receipts": 42,
+        "reuse_bindings": 0,
+        "membership_revisions_including_anchor": 22,
+        "construction_seconds": 10.44348335199993,
+        "observed_operation_seconds": {
+          "capture": {
+            "samples": 84,
+            "median": 0.015850864499725503,
+            "p95": 0.03091580000000249,
+            "maximum": 0.03965572800007067
+          },
+          "delivery": {
+            "samples": 84,
+            "median": 0.01314475450021746,
+            "p95": 0.03689160500016442,
+            "maximum": 0.06194575100016664
+          },
+          "service": {
+            "samples": 84,
+            "median": 0.07094354399987424,
+            "p95": 0.2717615299998215,
+            "maximum": 0.3429735649997383
+          }
+        },
+        "idle_cycle_seconds": {
+          "samples": 30,
+          "median": 0.11758512849974068,
+          "p95": 0.16823666499976753,
+          "maximum": 0.2138385630000812
+        },
+        "idle_timing_gate": "PASS",
+        "cold_reopen_including_source_seconds": 0.1856047020000915,
+        "native_audit": true,
+        "identical_native_replays": true,
+        "native_replay_sha256": "d6bee3239a134db6f3d5c5c82970ee2033a45945af0a50d25f687ed3409550f0",
+        "source_facts_sha256": "8f62d3f78490d2d721d647baf896602ff5ebfc1dc85d4b47cb9c09a5dd201035",
+        "membership_checkpoints_sha256": "3a211ee3237c0f5f892ab105d07e034d6964971d0e15c98a3c181b6c83015389",
+        "unchanged_database_bytes_during_idle_and_reopen": true,
+        "full_source_reopen_identical": true
+      },
+      "reuse": {
+        "reuse": true,
+        "halts": 42,
+        "symbols": 21,
+        "source_captures": 85,
+        "commands": 42,
+        "coordinator_receipts": 21,
+        "reuse_bindings": 21,
+        "membership_revisions_including_anchor": 22,
+        "construction_seconds": 9.19661628599988,
+        "observed_operation_seconds": {
+          "capture": {
+            "samples": 84,
+            "median": 0.014258853499995894,
+            "p95": 0.028616715999760345,
+            "maximum": 0.05333615800009284
+          },
+          "delivery": {
+            "samples": 84,
+            "median": 0.014502873000083127,
+            "p95": 0.04120550299967363,
+            "maximum": 0.08012076399973012
+          },
+          "service": {
+            "samples": 84,
+            "median": 0.05443851049994919,
+            "p95": 0.20272925099970962,
+            "maximum": 0.3959793620001619
+          }
+        },
+        "idle_cycle_seconds": {
+          "samples": 30,
+          "median": 0.09471636749981371,
+          "p95": 0.1254331079999247,
+          "maximum": 0.12634114599995883
+        },
+        "idle_timing_gate": "PASS",
+        "cold_reopen_including_source_seconds": 0.15850981699986733,
+        "native_audit": true,
+        "identical_native_replays": true,
+        "native_replay_sha256": "74bc233c7b661c1390c6fa81aaaf26bf9a56ab33ac5a54ee147f536bc43cb5c8",
+        "source_facts_sha256": "8f62d3f78490d2d721d647baf896602ff5ebfc1dc85d4b47cb9c09a5dd201035",
+        "membership_checkpoints_sha256": "3a211ee3237c0f5f892ab105d07e034d6964971d0e15c98a3c181b6c83015389",
+        "unchanged_database_bytes_during_idle_and_reopen": true,
+        "full_source_reopen_identical": true
+      },
+      "all_source_facts_and_membership_checkpoints_identical": true
+    },
+    "busiest": {
+      "per_event": {
+        "reuse": false,
+        "halts": 107,
+        "symbols": 27,
+        "source_captures": 215,
+        "commands": 107,
+        "coordinator_receipts": 107,
+        "reuse_bindings": 0,
+        "membership_revisions_including_anchor": 28,
+        "construction_seconds": 52.90787321700009,
+        "observed_operation_seconds": {
+          "capture": {
+            "samples": 214,
+            "median": 0.033073781000211966,
+            "p95": 0.06110726999986582,
+            "maximum": 0.08256868499984193
+          },
+          "delivery": {
+            "samples": 214,
+            "median": 0.029970436999747108,
+            "p95": 0.07885954800030959,
+            "maximum": 0.0977805340003215
+          },
+          "service": {
+            "samples": 214,
+            "median": 0.1366568255000402,
+            "p95": 0.31149861900030373,
+            "maximum": 0.753494110000247
+          }
+        },
+        "idle_cycle_seconds": {
+          "samples": 30,
+          "median": 0.26345012549973035,
+          "p95": 0.2988133869998819,
+          "maximum": 0.30189937499972075
+        },
+        "idle_timing_gate": "PASS",
+        "cold_reopen_including_source_seconds": 0.4287688809999963,
+        "native_audit": true,
+        "identical_native_replays": true,
+        "native_replay_sha256": "777f3708ef59f42ad1b967b3e2871a2f2752bf02a8473d6b7e57b51416af99dc",
+        "source_facts_sha256": "10a0344c4c361a08bea16bb4a297bcc91efd92b22399eed64db23851747468b4",
+        "membership_checkpoints_sha256": "1b695d5d10e02c1cd9da916b21c3697e0800c414bc73add48868c236c6a7e3cb",
+        "unchanged_database_bytes_during_idle_and_reopen": true,
+        "full_source_reopen_identical": true
+      },
+      "reuse": {
+        "reuse": true,
+        "halts": 107,
+        "symbols": 27,
+        "source_captures": 215,
+        "commands": 107,
+        "coordinator_receipts": 27,
+        "reuse_bindings": 80,
+        "membership_revisions_including_anchor": 28,
+        "construction_seconds": 35.701919680000174,
+        "observed_operation_seconds": {
+          "capture": {
+            "samples": 214,
+            "median": 0.03248694500007332,
+            "p95": 0.06432846400002745,
+            "maximum": 0.0904951410002468
+          },
+          "delivery": {
+            "samples": 214,
+            "median": 0.03035314349995133,
+            "p95": 0.07710222400010025,
+            "maximum": 0.12011494999978822
+          },
+          "service": {
+            "samples": 214,
+            "median": 0.08062841750006555,
+            "p95": 0.2085181070001454,
+            "maximum": 0.4174118860000817
+          }
+        },
+        "idle_cycle_seconds": {
+          "samples": 30,
+          "median": 0.12199248349998015,
+          "p95": 0.14430747899996277,
+          "maximum": 0.19074797099983698
+        },
+        "idle_timing_gate": "PASS",
+        "cold_reopen_including_source_seconds": 0.2627121719997376,
+        "native_audit": true,
+        "identical_native_replays": true,
+        "native_replay_sha256": "ee3c693f38583456b246942bd15ef752d201225f31622fbb0cbacea1d1408541",
+        "source_facts_sha256": "10a0344c4c361a08bea16bb4a297bcc91efd92b22399eed64db23851747468b4",
+        "membership_checkpoints_sha256": "1b695d5d10e02c1cd9da916b21c3697e0800c414bc73add48868c236c6a7e3cb",
+        "unchanged_database_bytes_during_idle_and_reopen": true,
+        "full_source_reopen_identical": true
+      },
+      "all_source_facts_and_membership_checkpoints_identical": true
+    }
+  },
+  "scope": "Native logical workload and bounded host timing. No full-day source capture, mixed-source, Windows performance or provider qualification."
+}

@@ -1,0 +1,37 @@
+{
+  "result": "FAILED",
+  "stage": "margin-reuse construction",
+  "error_type": "ValueError",
+  "error": "Publication head changed during cycle",
+  "automatic_resume": false,
+  "cause": "UNRESOLVED; the same guard also failed before this increment in the older cloud growth construction. No filesystem or reuse root cause is established.",
+  "partial_report_warning": "The old harness wrote report.json after completed pairs with a provisional PASS. It contains only typical and busiest; it is not the final run verdict. This record supersedes that provisional verdict.",
+  "databases": {
+    "requests.sqlite3": {
+      "rows": 36,
+      "integrity": "ok",
+      "sha256": "e072296c1ba9e573c6de5fbb244454db0ec4e4c93a3f9ed581d9818609fc15b5"
+    },
+    "publication.sqlite3": {
+      "rows": 69,
+      "integrity": "ok",
+      "sha256": "ffe423a3f446819ffab36155b6c27c95cd93c9bdeadfe2f071618f5b358be35c"
+    },
+    "nasdaq.sqlite3": {
+      "rows": 72,
+      "integrity": "ok",
+      "sha256": "9aa21e50ad17d037b7413b1cc8d8e14513e3573d99d1924508bb1a466d6c90b0"
+    },
+    "membership.sqlite3": {
+      "rows": 36,
+      "integrity": "ok",
+      "sha256": "156d5a44ddb887bc1f8f8fe9af16f1a13f0d6a3b385695c77a35f37a30410174"
+    }
+  },
+  "publication_tail": {
+    "sequence": 69,
+    "kind": "plan",
+    "request_sequence": 35,
+    "event_sha256": "5fc6c6aa895a177f803ffe29ca7a01b4d6af22a8f99280e6b942b08f9457dda3"
+  }
+}

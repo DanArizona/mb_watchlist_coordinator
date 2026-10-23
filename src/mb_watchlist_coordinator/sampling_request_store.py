@@ -14,14 +14,14 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Callable
 
-from .models import ProducerIntent
+from .models import IntentType, ProducerIntent
 from .sampling_projection import SamplingMembership, require_aware
 from .sampling_policy import SamplingPolicy
 from .sampling_admission import AdmissionPolicy
 from .session import session_expiration
 from .sampling_requests import (
     RequestEvent, RequestState, admission_reason, baseline_payload, canonical, digest,
-    identifier, replay_requests, request_payload, restriction_heads, timestamp, utc_text,
+    freeze, identifier, replay_requests, request_payload, restriction_heads, timestamp, utc_text,
 )
 
 
@@ -103,6 +103,136 @@ class SamplingRequestStore:
     def states(self):
         return self.validated_history()[1]
 
+    def _reuse_command(self, command):
+        """Validate the same public request wire shape, including nested metadata."""
+        p = command["payload"]
+        value = ProducerIntent(p["intent_id"], p["producer_id"], IntentType.ENSURE_PRESENT,
+            frozenset(p["symbols"]), timestamp(p["created_at_utc"]),
+            effective_from=timestamp(p["effective_from_utc"]) if p["effective_from_utc"] else None,
+            expires_at=timestamp(p["expires_at_utc"]) if p["expires_at_utc"] else None,
+            source_event_id=p["source_event_id"], reason=p["reason"], metadata=p["metadata"])
+        expected = {"command_id": value.intent_id, "kind": "request",
+                    "actor_id": command["actor_id"],
+                    "payload": request_payload(value, allow_uni=self.admission is not None)}
+        if canonical(command) != canonical(expected):
+            raise ValueError("Noncanonical request reuse command")
+        identifier(command["actor_id"], "actor_id")
+
+    def _can_reuse(self, events, states, command, target, at):
+        """A fresh verified prefix proves ownership and the entire demand window.
+
+        Membership alone is insufficient: a restriction can mask active demand,
+        and another producer's demand must never substitute for this producer's.
+        """
+        p, owner = command["payload"], command["actor_id"]
+        state = states[-1]
+        if (state.as_of is not None and at < state.as_of or
+                p["sampling_channel"] != "hot" or len(p["symbols"]) != 1):
+            return False
+        requests = {(e.payload["producer_id"], e.command_id): e.payload
+                    for e in events if e.kind == "request" and e.accepted}
+        cancelled = frozenset((e.payload["owner_id"], e.payload["request_id"])
+                             for e in events if e.kind == "cancel" and e.accepted)
+        if admission_reason("request", owner, p, at=at, session=self.session_date,
+                baseline=self.baseline, requests=requests, policy=self.policy,
+                restrictions=restriction_heads(events), admission=self.admission,
+                admitted_symbols=frozenset(r["symbol"] for r in state.session_additions),
+                cancelled_requests=cancelled) is not None:
+            return False
+        end = session_expiration(self.session_date)
+        required_end = min(timestamp(p["expires_at_utc"]) if p["expires_at_utc"] else end, end)
+        effective = timestamp(p["effective_from_utc"] or p["created_at_utc"])
+        q = target.payload
+        return (target.kind == "request" and target.accepted and target.actor_id == owner
+            and q["producer_id"] == owner and q["sampling_channel"] == "hot"
+            and canonical(q["symbols"]) == canonical(p["symbols"])
+            and (owner, target.command_id) not in cancelled
+            and timestamp(q["effective_from_utc"] or q["created_at_utc"]) <= at
+            and effective <= at < required_end
+            and min(timestamp(q["expires_at_utc"]) if q["expires_at_utc"] else end, end) >= required_end)
+
+    def _read_reuse(self, connection, events, states):
+        """Validate all durable aliases afresh against their original request prefix.
+
+        These receipts preserve interrupted decisions without adding commands to
+        the Coordinator's request replay. There is no cross-read verified cache.
+        """
+        if connection.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='request_reuse'").fetchone() is None:
+            return {}
+        previous = digest({"contract": "sampling-request-reuse-v1", "request_identity": self.identity})
+        result, last_at, last_head = {}, None, 0
+        for seq, actor, cid, raw in connection.execute("SELECT * FROM request_reuse ORDER BY sequence"):
+            r = json.loads(raw)
+            body = dict(r); sha = body.pop("receipt_sha256")
+            command = r["command"]
+            self._reuse_command(command)
+            n, target_n = r["request_head_sequence"], r["request_sequence"]
+            at = timestamp(r["recorded_at_utc"])
+            if (type(seq) is not int or type(r["sequence"]) is not int or seq != len(result)+1
+                    or r["sequence"] != seq or r["previous_sha256"] != previous or sha != digest(body)
+                    or actor != command["actor_id"] or cid != command["command_id"]
+                    or (actor, cid) in result or type(n) is not int or type(target_n) is not int
+                    or not 1 <= target_n <= n <= len(events)
+                    or n < last_head or (last_at is not None and at < last_at)
+                    or events[n-1].event_sha256 != r["request_head_sha256"]
+                    or events[target_n-1].event_sha256 != r["request_event_sha256"]
+                    or any(e.kind == "request" and e.actor_id == actor and e.command_id == cid for e in events)
+                    or not self._can_reuse(events[:n], states[:n+1], command, events[target_n-1], at)):
+                raise ValueError("Request reuse receipt or verified coverage differs")
+            result[(actor, cid)] = freeze(r)
+            previous = sha
+            last_at, last_head = at, n
+        return result
+
+    def validated_reuse_history(self):
+        with closing(sqlite3.connect(self.path.resolve().as_uri()+"?mode=ro", uri=True)) as connection:
+            connection.execute("BEGIN")  # One coherent prefix across events and aliases.
+            events, states = self._read_history(connection)
+            return events, states, self._read_reuse(connection, events, states)
+
+    def reuse_active_request(self, intent, *, actor_id, candidate_request_ids):
+        """Commit one source-owned coverage decision, or return None for normal admission.
+
+        The same write lock covers prefix validation, candidate selection and the
+        durable alias. A retry preserves the original decision after cancellation
+        or expiry; it cannot create fresh demand under that same command ID.
+        """
+        command = {"command_id": intent.intent_id, "kind": "request", "actor_id": actor_id,
+                   "payload": request_payload(intent, allow_uni=self.admission is not None)}
+        self._reuse_command(command)
+        candidates = frozenset(candidate_request_ids)
+        with closing(sqlite3.connect(self.path, timeout=5)) as connection, connection:
+            connection.execute("BEGIN IMMEDIATE")
+            events, states = self._read_history(connection)
+            aliases = self._read_reuse(connection, events, states)
+            old = aliases.get((actor_id, intent.intent_id))
+            if old is not None:
+                if canonical(old["command"]) != canonical(command):
+                    raise RequestConflictError("Reused command identity has different content")
+                return old
+            if any(e.kind == "request" and e.actor_id == actor_id and e.command_id == intent.intent_id for e in events):
+                return None  # Exact normal-submit retry retains its own original receipt.
+            now = self.clock(); require_aware(now, "reuse receipt clock")
+            if aliases and now < timestamp(next(reversed(aliases.values()))["recorded_at_utc"]):
+                raise ValueError("Request reuse clock moved backwards")
+            for event in events:
+                if event.command_id not in candidates or event.command_id == intent.intent_id:
+                    continue
+                if self._can_reuse(events, states, command, event, now):
+                    r = {"sequence": len(aliases)+1, "command": command,
+                         "recorded_at_utc": utc_text(now), "request_sequence": event.sequence,
+                         "request_event_sha256": event.event_sha256,
+                         "request_head_sequence": states[-1].sequence,
+                         "request_head_sha256": states[-1].event_sha256,
+                         "previous_sha256": (next(reversed(aliases.values()))["receipt_sha256"] if aliases else
+                             digest({"contract": "sampling-request-reuse-v1", "request_identity": self.identity}))}
+                    r["receipt_sha256"] = digest(r)
+                    connection.execute("CREATE TABLE IF NOT EXISTS request_reuse (sequence INTEGER PRIMARY KEY, actor_id TEXT NOT NULL, command_id TEXT NOT NULL, payload TEXT NOT NULL, UNIQUE(actor_id,command_id))")
+                    connection.execute("INSERT INTO request_reuse VALUES(?,?,?,?)",
+                                       (r["sequence"], actor_id, intent.intent_id, canonical(r)))
+                    return freeze(r)
+            return None
+
     def submit_request(self, intent: ProducerIntent, *, actor_id: str) -> RecordedCommand:
         return self._record(intent.intent_id, "request", actor_id, request_payload(intent, allow_uni=self.admission is not None))
 
@@ -153,6 +283,12 @@ class SamplingRequestStore:
             with connection:
                 connection.execute("BEGIN IMMEDIATE")
                 events, states = self._read_history(connection)
+                if kind == "request":
+                    reused = self._read_reuse(connection, events, states).get((actor_id, command_id))
+                    if reused is not None:
+                        if canonical(reused["command"]) != canonical(command):
+                            raise RequestConflictError("Reused command identity has different content")
+                        return RecordedCommand(events[reused["request_sequence"]-1], False)
                 for previous in events:
                     if (previous.actor_id, previous.kind, previous.command_id) == (actor_id, kind, command_id):
                         if canonical(previous.command_payload()) != canonical(command):

@@ -32,6 +32,7 @@ class HaltProducerSettings:
     reason_codes: tuple[str, ...]
     request_lifetime: str
     replay_mode: bool
+    reuse_active_symbol_requests: bool = False
 
     def __post_init__(self):
         identifier(self.producer_id, "producer_id")
@@ -47,11 +48,16 @@ class HaltProducerSettings:
             raise ValueError("Select request_lifetime='regular_close' explicitly")
         if type(self.replay_mode) is not bool:
             raise ValueError("replay_mode must be explicit boolean")
+        if type(self.reuse_active_symbol_requests) is not bool:
+            raise ValueError("reuse_active_symbol_requests must be boolean")
 
     def payload(self):
-        return {"producer_id": self.producer_id, "reason_codes": list(self.reason_codes),
+        value = {"producer_id": self.producer_id, "reason_codes": list(self.reason_codes),
                 "request_lifetime": self.request_lifetime, "replay_mode": self.replay_mode,
                 "first_current_snapshot": "baseline_only", "window_et": ["09:30:00", "16:00:00"]}
+        if self.reuse_active_symbol_requests:
+            value["reuse_active_symbol_requests"] = True
+        return value
 
 
 def event_time(record: Mapping) -> datetime:
@@ -207,12 +213,16 @@ class NasdaqSamplingProducer:
         self.request_store = request_store
         self.settings = settings
         self.clock = clock or (lambda: datetime.now(timezone.utc))
-        self.identity = json.loads(canonical({"contract": "nasdaq-source-requests-v1",
+        self.identity = json.loads(canonical({"contract": self.contract,
             "request_identity": request_store.identity, "settings": settings.payload()}))
+
+    @property
+    def contract(self):
+        return "nasdaq-source-requests-v2" if self.settings.reuse_active_symbol_requests else "nasdaq-source-requests-v1"
 
     def _check(self):
         self.request_store._check_configuration()
-        if self.identity != {"contract": "nasdaq-source-requests-v1",
+        if self.identity != {"contract": self.contract,
                 "request_identity": self.request_store.identity, "settings": self.settings.payload()}:
             raise ValueError("Nasdaq producer configuration changed")
 
@@ -248,11 +258,44 @@ class NasdaqSamplingProducer:
             receipts.append(r)
         commands, outcomes = _reduce(self.identity, receipts)
         deliveries = {k: json.loads(v) for k, v in conn.execute("SELECT * FROM halt_delivery")}
-        request_events = {(e.actor_id, e.command_id): e for e in self.request_store.events() if e.kind == "request"}
+        if self.settings.reuse_active_symbol_requests:
+            events, _, aliases = self.request_store.validated_reuse_history()
+        else:
+            events, aliases = self.request_store.events(), {}
+        request_events = {(e.actor_id, e.command_id): e for e in events if e.kind == "request"}
+        for (owner, cid), alias in aliases.items():
+            if owner != self.settings.producer_id or cid not in commands:
+                continue
+            target = events[alias["request_sequence"]-1]
+            original = commands.get(target.command_id)
+            expected = {"command_id": cid, "kind": "request", "actor_id": owner,
+                        "payload": request_payload(_intent(commands[cid]))}
+            if (original is None or canonical(alias["command"]) != canonical(expected)
+                    or target.command_payload()["payload"] != request_payload(_intent(original))):
+                raise ValueError("Nasdaq pending reuse origin differs")
         for cid, delivery in deliveries.items():
-            event = request_events.get((self.settings.producer_id, cid))
+            target_id = delivery.get("reused_request_id", cid)
+            event = request_events.get((self.settings.producer_id, target_id))
+            command = commands.get(cid)
+            alias = aliases.get((self.settings.producer_id, cid))
+            reused = target_id != cid
+            if reused:
+                original = commands.get(target_id)
+                target_delivery = deliveries.get(target_id)
+                expected_command = {"command_id": cid, "kind": "request", "actor_id": self.settings.producer_id,
+                                    "payload": request_payload(_intent(command))} if command else None
+                if (not self.settings.reuse_active_symbol_requests or alias is None
+                        or alias["receipt_sha256"] != delivery.get("reuse_receipt_sha256")
+                        or canonical(alias["command"]) != canonical(expected_command)
+                        or original is None or target_delivery is None or not target_delivery["accepted"]
+                        or "reused_request_id" in target_delivery or event is None
+                        or event.event_sha256 != alias["request_event_sha256"]
+                        or event.command_payload()["payload"] != request_payload(_intent(original))):
+                    raise ValueError("Nasdaq reused request coverage binding differs")
+            elif alias is not None or "reuse_receipt_sha256" in delivery:
+                raise ValueError("Nasdaq reuse acknowledgement missing its original request")
             if (cid not in commands or event is None or event.event_sha256 != delivery["request_event_sha256"]
-                    or event.command_payload()["payload"] != request_payload(_intent(commands[cid]))
+                    or (not reused and event.command_payload()["payload"] != request_payload(_intent(commands[cid])))
                     or delivery["command_sha256"] != digest(commands[cid])
                     or delivery["accepted"] != event.accepted
                     or delivery["request_sequence"] != event.sequence
@@ -283,6 +326,7 @@ class NasdaqSamplingProducer:
 
     def snapshot(self):
         with closing(sqlite3.connect(self.path.resolve().as_uri() + "?mode=ro", uri=True)) as conn:
+            conn.execute("BEGIN")
             receipts, commands, outcomes, deliveries = self._read(conn)
             return freeze({"receipts": receipts, "commands": commands, "outcomes": outcomes,
                            "deliveries": deliveries, "pending": [c for c in commands if c not in deliveries]})
@@ -301,12 +345,22 @@ class NasdaqSamplingProducer:
                 for cid, command in commands.items():
                     if cid in delivered:
                         continue
+                    alias = None
+                    if self.settings.reuse_active_symbol_requests:
+                        candidates = [key for key, value in delivered.items()
+                                      if value["accepted"] and "reused_request_id" not in value]
+                        alias = self.request_store.reuse_active_request(_intent(command),
+                            actor_id=self.settings.producer_id, candidate_request_ids=candidates)
                     result = self.request_store.submit_request(_intent(command), actor_id=self.settings.producer_id)
                     if after_submit is not None:
                         after_submit(result)
                     ack = {"command_sha256": digest(command), "request_event_sha256": result.event.event_sha256,
                            "request_sequence": result.event.sequence, "accepted": result.event.accepted,
                            "rejection_reason": result.event.rejection_reason}
+                    if alias is not None:
+                        ack.update(reused_request_id=result.event.command_id,
+                                   reuse_receipt_sha256=alias["receipt_sha256"])
                     conn.execute("INSERT INTO halt_delivery VALUES (?,?)", (cid, canonical(ack)))
+                    delivered[cid] = ack
                     results.append(result)
         return tuple(results)
