@@ -1,0 +1,35 @@
+{
+  "result": "FAILED",
+  "tests": 18,
+  "failures": 4,
+  "errors": 2,
+  "seconds": 3.7836909130001004,
+  "network": "denied",
+  "production_access": false,
+  "details": [
+    [
+      "test_close_does_not_backdate_cancellation_and_reports_a_stop_not_a_profile_pass (test_integrated_runtime.IntegratedRuntimeTests.test_close_does_not_backdate_cancellation_and_reports_a_stop_not_a_profile_pass)",
+      "Traceback (most recent call last):\n  File \"/workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/tests/test_integrated_runtime.py\", line 112, in test_close_does_not_backdate_cancellation_and_reports_a_stop_not_a_profile_pass\n    self.assertTrue(result['counts_verified']); self.assertEqual(result['identity_quote_permits'], 1)\n                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n"
+    ],
+    [
+      "test_explicit_prepared_client_delivers_recovered_outside_uni_and_native_publication (test_integrated_runtime.IntegratedRuntimeTests.test_explicit_prepared_client_delivers_recovered_outside_uni_and_native_publication)",
+      "Traceback (most recent call last):\n  File \"/workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/tests/test_integrated_runtime.py\", line 51, in test_explicit_prepared_client_delivers_recovered_outside_uni_and_native_publication\n    self.assertEqual(gate['selected_symbol'], 'NVDA'); self.assertEqual(gate['quote_permits'], 1)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'NVDA'\n"
+    ],
+    [
+      "test_feed_gap_keeps_saved_membership_and_does_not_close_healthy_worker (test_integrated_runtime.IntegratedRuntimeTests.test_feed_gap_keeps_saved_membership_and_does_not_close_healthy_worker)",
+      "Traceback (most recent call last):\n  File \"/workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/tests/test_integrated_runtime.py\", line 70, in test_feed_gap_keeps_saved_membership_and_does_not_close_healthy_worker\n    self.assertEqual(result['status'], 'INCOMPLETE'); self.assertFalse(self.r.closed)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'STOPPED' != 'INCOMPLETE'\n- STOPPED\n+ INCOMPLETE\n\n"
+    ],
+    [
+      "test_identity_authorization_failure_stops_controller_without_retries (test_integrated_runtime.IntegratedRuntimeTests.test_identity_authorization_failure_stops_controller_without_retries)",
+      "Traceback (most recent call last):\n  File \"/workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/tests/test_integrated_runtime.py\", line 89, in test_identity_authorization_failure_stops_controller_without_retries\n    self.assertEqual(self.r.last_report['identity_quote_permits'], 1)\nAssertionError: 0 != 1\n"
+    ],
+    [
+      "test_current_dated_current_cutover_retains_scope_and_full_updates (test_integrated_runtime.IntegratedRuntimeTests.test_current_dated_current_cutover_retains_scope_and_full_updates)",
+      "Traceback (most recent call last):\n  File \"/workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/tests/test_integrated_runtime.py\", line 62, in test_current_dated_current_cutover_retains_scope_and_full_updates\n    self.assertTrue(result['discovery_scope_reconciled'])\n                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 'discovery_scope_reconciled'\n"
+    ],
+    [
+      "test_three_feed_failures_stop_feed_without_cancelling_verified_hot_demand (test_integrated_runtime.IntegratedRuntimeTests.test_three_feed_failures_stop_feed_without_cancelling_verified_hot_demand)",
+      "Traceback (most recent call last):\n  File \"/workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/tests/test_integrated_runtime.py\", line 79, in test_three_feed_failures_stop_feed_without_cancelling_verified_hot_demand\n    self.assertTrue(result['feed_stop_required']); self.assertFalse(self.r.closed)\n                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 'feed_stop_required'\n"
+    ]
+  ]
+}

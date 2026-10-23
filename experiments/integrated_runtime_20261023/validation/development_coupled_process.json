@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "tests": 36,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 30.900433742999667,
+  "network": "denied",
+  "production_access": false,
+  "details": []
+}

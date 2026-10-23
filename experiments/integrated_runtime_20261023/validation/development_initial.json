@@ -1,0 +1,14 @@
+{
+  "result": "FAILED",
+  "tests": 18,
+  "failures": 0,
+  "errors": 18,
+  "runner_seconds": 3.673,
+  "seconds": null,
+  "network": "denied",
+  "production_access": false,
+  "cause": "All 18 setup errors came from passing datetime objects to the existing identity-gate timestamp string API. Runtime now passes utc_text strings.",
+  "report_writer_error": "The development report writer also attempted to JSON-serialize TestCase objects; the following runner uses string test IDs. Original detailed test output was returned by the execution tool.",
+  "changed_runtime": true,
+  "correction_is_not_a_live_or_capacity_qualification": true
+}

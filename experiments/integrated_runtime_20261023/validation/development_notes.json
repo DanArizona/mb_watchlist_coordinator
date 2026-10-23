@@ -1,0 +1,8 @@
+{
+  "initial": "development_initial.json retains 18 setup errors from a datetime/string API mismatch; its first report writer also failed and the record states the available rounded timing.",
+  "second": "development_second.json retains 4 failures and 2 errors caused by reusing runtime.owner.lock for both the lifetime controller and per-cycle authority. The lifetime lease now uses controller.owner.lock.",
+  "subsequent": "development_third.json (18 PASS), development_process_initial.json (13 PASS), development_coupled_process.json (36 PASS) retain their original staged outcomes.",
+  "scope": "Development only; no Windows, installed-client, market/provider, full manual resume or capacity claim.",
+  "prior_failed_verdicts_retained": true,
+  "first_affected_full_run": "development_full_import_failure.json retains FAILED: 264 tests, 262 passed, one Windows-only skip, one ModuleNotFoundError for native test_sampling_acquisition. The verifier now uses its existing pinned native_tests directory. Runtime unchanged for this verifier path correction."
+}
