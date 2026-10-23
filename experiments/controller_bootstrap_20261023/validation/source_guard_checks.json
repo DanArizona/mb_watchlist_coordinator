@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "case": "changed_source",
+      "returncode": 70,
+      "blocked_before_tests": true
+    },
+    {
+      "case": "extra_source_file",
+      "returncode": 70,
+      "blocked_before_tests": true
+    }
+  ],
+  "restored_inventory_identical": true,
+  "network": "denied",
+  "actual_credentials_or_production_access": false
+}

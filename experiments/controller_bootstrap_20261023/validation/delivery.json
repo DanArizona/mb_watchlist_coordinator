@@ -1,0 +1,16 @@
+{
+  "archive": "/workspace/scratch/78e6acba7246/deliverables/controller_bootstrap_20261023_153236_3cd56a.zip",
+  "folder": "controller_bootstrap_20261023_153236_3cd56a",
+  "bytes": 181239,
+  "sha256": "d37743e99165326231f99f74ce947b08bb25a5929ccd278b864fa40c83503eba",
+  "files": 68,
+  "source_commit": "84883ed51238aa08ff494623d6088f64df3260b5",
+  "source_tree": "584d834306e62c21cfbfd5140897097c65cf97b4",
+  "repository_files_matched": 64,
+  "inventory_sha256": "c63b8ac81676ded4e49cc9cefa5f499999b5c68abdd8c32fc801c56fcb16696d",
+  "windows_acceptance": "PENDING",
+  "extracted_tests": 53,
+  "extracted_seconds": 15.918759968999893,
+  "source_guard_checks": "PASS",
+  "scope": "Fresh bootstrap ordering and affected native/credential interfaces only; synthetic SDK/configuration. Windows acceptance and actual coupled live recovery remain pending."
+}
