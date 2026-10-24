@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "tests": 25,
+  "passed": 25,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "runner_seconds": 7.439,
+  "network": "denied",
+  "production_access": false,
+  "scope": "Early lifecycle/native-goal development before runtime reporter, fault-intent and Windows Job owner-death cases."
+}

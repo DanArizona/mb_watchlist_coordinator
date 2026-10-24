@@ -1,0 +1,9 @@
+{
+  "result": "FAILED",
+  "tests": 1,
+  "failures": 1,
+  "runner_seconds": 1.975,
+  "finding": "Reporter completed but fixture expected INCOMPLETE while raw startup coverage correctly required FAILED. The fixture now requires either strictly explained raw missing-slot findings or INCOMPLETE, and never PASS, with actual quote counts and complete replay event counts.",
+  "network": "denied",
+  "production_access": false
+}

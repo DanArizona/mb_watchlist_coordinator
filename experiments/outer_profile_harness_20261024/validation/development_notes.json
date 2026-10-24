@@ -1,0 +1,18 @@
+{
+  "result": "DEVELOPMENT_HISTORY_RETAINED",
+  "records": [
+    "development_first.json",
+    "development_second.json",
+    "development_third.json",
+    "development_native_binding.json",
+    "development_report_verdict.json",
+    "development_replay_count.json",
+    "development_fourth.json",
+    "development_fifth.json"
+  ],
+  "interpretation": "Earlier exact temporary-state causes remain unknown where not captured. Controlled binding, fixture and explicit-stop endpoint corrections are recorded separately. The final local qualification supersedes development status, never erases original failed results.",
+  "original_command44_windows_result_retained": "FAILED",
+  "original_command46_windows_result_retained": "FAILED",
+  "command47_windows_acceptance_retained": true,
+  "production_access": false
+}

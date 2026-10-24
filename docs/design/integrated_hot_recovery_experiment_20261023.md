@@ -1,5 +1,7 @@
 # Bounded Nasdaq, Coordinator and authenticated Hot recovery experiment
 
+> Current update, October 24: corrective command 47 is Windows-accepted at 18/18; original command 46 FAILED is retained. The new command-48 owned outer/profile layer passes 42 current-host checks (40 passed, two native Windows-only skips), with Windows and source-pinned extraction gates still separate. See experiments/outer_profile_harness_20261024/README.md. Credential-bound live entry/launchers and their affected qualification remain required before separately invoked live profiles. Earlier status paragraphs below are dated history, not instructions to rerun accepted work.
+
 Version 1 — October 23, 2026. **Commands 41/42/43 Windows-accepted; command 44 fresh runtime coupling locally qualified, Windows pending; full manual resume and owned outer/profile harness next.** This document defines the isolated integration increment. It is not an executable live procedure or a live-run result. The limits are also recorded in [contract.json](../../experiments/integrated_hot_recovery_20261023/contract.json).
 
 ## 1. Outcome and accepted starting point

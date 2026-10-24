@@ -1,0 +1,13 @@
+{
+  "result": "FAILED",
+  "tests": 1,
+  "failures": 1,
+  "runner_seconds": 1.445,
+  "findings": [
+    "Separate reporter rejected the worker registry at recovery_workers._job line146. Controlled reconstruction used shallow dict(binding) instead of the original plain(binding), preserving tuple/list differences.",
+    "This run also observed an early controller exit; its original fixed diagnostic was not recorded. A new profile observer retries only AcquisitionBusy on a later bounded turn, without repeating any provider call."
+  ],
+  "original_earlier_reporter_failure_cause": "UNKNOWN: earlier temporary state was not retained; the controlled binding defect is not retroactively assigned as its exact cause.",
+  "network": "denied",
+  "production_access": false
+}

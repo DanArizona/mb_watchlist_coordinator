@@ -1,0 +1,15 @@
+{
+  "result": "FAILED",
+  "tests": 25,
+  "failures": 4,
+  "errors": 8,
+  "runner_seconds": 3.138,
+  "network": "denied",
+  "production_access": false,
+  "findings": [
+    "Harness fixtures invoked a fresh bootstrap near the old active-window end; the original bootstrap deadline correctly won before status arrived. Manual-reopen preparation needs its separate new-human deadline while retaining the original active stop.",
+    "Seven native profile fixtures used an effective date before current publication time.",
+    "One fixture passed complete_after to the harness rather than its synthetic child scenario."
+  ],
+  "scope": "Development result only; retained before correction."
+}

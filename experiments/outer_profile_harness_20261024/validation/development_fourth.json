@@ -1,0 +1,14 @@
+{
+  "result": "FAILED",
+  "tests": 38,
+  "failures": 1,
+  "errors": 3,
+  "skipped": 1,
+  "runner_seconds": 13.335,
+  "findings": [
+    "Three recovery-profile fixtures kept a previous ordinary-profile observer installed after resetting synthetic fixture state; restoring its original ensure callback fixes that test construction.",
+    "Read-only reporter rejected a child stop observation later than the parent stop request. Reporting now uses the earlier explicit stop endpoint and retains both actual observations, excluding any cleanup-time commit from goal counts."
+  ],
+  "network": "denied",
+  "production_access": false
+}

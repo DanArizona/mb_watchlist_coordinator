@@ -1,0 +1,13 @@
+{
+  "result": "FAILED",
+  "tests": 34,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 1,
+  "runner_seconds": 12.008,
+  "network": "denied",
+  "production_access": false,
+  "failure": "Owned native controller stopped cleanly after its first synthetic quote, but the separate reporting child exited 1. Its original temporary state was deleted by the test context; exact reporter error was not captured.",
+  "additional_finding": "An expired reporter scope can be killed without observing its final exit before the fixed deadline; cleanup correctly stays incomplete, but its known Popen handle needs asynchronous reaping to avoid a ResourceWarning.",
+  "original_cause_status": "UNKNOWN_PENDING_CONTROLLED_REPRODUCTION"
+}

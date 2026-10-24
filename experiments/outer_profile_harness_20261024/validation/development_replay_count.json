@@ -1,0 +1,9 @@
+{
+  "result": "FAILED",
+  "tests": 1,
+  "failures": 1,
+  "runner_seconds": 1.753,
+  "finding": "The fixture invented a minimum of four replay events; actual small journal contained two. The corrected check requires the exact sum of stored membership revisions and actual acquisitions.",
+  "network": "denied",
+  "production_access": false
+}

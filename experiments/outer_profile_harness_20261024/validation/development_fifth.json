@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "tests": 39,
+  "passed": 38,
+  "skipped": 1,
+  "failures": 0,
+  "errors": 0,
+  "runner_seconds": 14.233,
+  "scope": "Development result before additional owner-death and fault-policy checks.",
+  "network": "denied",
+  "production_access": false
+}
