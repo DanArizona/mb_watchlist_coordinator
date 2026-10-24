@@ -1,0 +1,22 @@
+{
+  "result": "CONTROLLED_CAUSE_AND_CORRECTION_VERIFIED",
+  "before_native_exception_identity_preserved": false,
+  "after_native_exception_identity_preserved": true,
+  "original_extracted_result_retained": "FAILED",
+  "controlled_failure_reproduced": "AcquisitionBusy propagated from the live poller while the handler imported a second class from the nominal same module. The runtime fixture SDK patch restores sys.modules, removing modules first loaded inside the patch.",
+  "correction": "Preload native sampling_acquisition in the new outer fixture before the synthetic SDK context, and assert preserved module and poller type. Shared accepted runtime source and timing gates are unchanged.",
+  "targeted_corrected_elapsed_native_trials": 6,
+  "targeted_trials_passed": 6,
+  "trial_runner_seconds": [
+    1.931,
+    1.871,
+    1.89,
+    1.936,
+    1.911,
+    1.931
+  ],
+  "scope": "Synthetic fixture diagnosis, not six live trials or capacity evidence.",
+  "unacknowledged_quote_semantics": "The new report now separates unacknowledged committed acquisitions from actual non-quote provider outcomes; quote statuses are retained.",
+  "network": "denied",
+  "production_access": false
+}

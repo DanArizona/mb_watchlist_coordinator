@@ -59,7 +59,7 @@ Qualification distinguishes three kinds of evidence:
   this Linux development host; only the operator Windows run can qualify them.
 
 Current-host result: 42 checks, **40 passed, two Windows-only skips**, zero
-failures/errors, 15.564806919999683s (runner 15.409s). All 63 accepted command-46
+failures/errors, 15.313408967999749s (runner 15.134s). All 63 accepted command-46
 runtime/native/public-helper sources remain unchanged. The preceding small
 outer_deadline helper is extended; no accepted 3s/8s gates or source/native
 budgets are relaxed. Development failures remain in validation records.
@@ -85,3 +85,15 @@ Primary interface references:
 [job termination](https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-terminatejobobject),
 [Job Objects](https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects),
 [Python subprocess](https://docs.python.org/3.12/library/subprocess.html).
+
+The first extracted package FAILED and is retained, including its failure
+sidecar; its exact earlier controller-stop cause was not fully recorded. A
+subsequent controlled intermittent failure exposed two copies of the native
+AcquisitionBusy class: the synthetic SDK sys.modules patch removed modules
+first imported inside it. The new outer fixture now preloads the native module
+and asserts its identity. Six focused elapsed synthetic quote/report checks
+then pass, followed by the corrected 42-check current-host suite (40 passed,
+two Windows-only skips). This does not retroactively diagnose every earlier
+failure. The shared accepted runtime and timing gates remain unchanged.
+Unacknowledged committed quotes are reported separately from non-quote provider
+outcomes; neither can silently satisfy a completed goal.

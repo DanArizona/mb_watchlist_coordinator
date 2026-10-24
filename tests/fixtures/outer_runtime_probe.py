@@ -30,7 +30,14 @@ from runtime_process_evidence import subsequent_halt_snapshot
 from mb_watchlist_coordinator.integrated_runtime import IntegratedRuntime
 from mb_watchlist_coordinator.profile_runtime import BoundProfile
 from mb_watchlist_coordinator.sampling_requests import timestamp,utc_text
+# RuntimeFixture's synthetic SDK uses patch.dict(sys.modules). Modules first
+# imported inside that context are removed on exit. Preload the native backend
+# so the live poller and the observer keep the SAME AcquisitionBusy class.
+import mb_market_data.sampling_acquisition as native_api
 f=RuntimeFixture(root)
+if sys.modules.get(native_api.__name__) is not native_api or not isinstance(f.session.collector.poller,native_api.IsolatedSamplingPoller):
+    raise RuntimeError('Synthetic fixture changed the native module identity')
+atomic_json(root/'fixture-module-identity.json',{'native_module_preserved':True})
 simulation=root/'native-worker-simulation.json'
 command=(sys.executable,'-I','-B',str(Path(__file__).parent/'supervised_hot_worker_probe.py'),
     str(f.target/'authenticated-worker.json'),str(simulation))

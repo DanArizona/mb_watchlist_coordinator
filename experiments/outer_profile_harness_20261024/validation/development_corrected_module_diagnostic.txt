@@ -1,0 +1,36 @@
+Corrected module-identity diagnostic 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.931s
+
+OK
+Corrected module-identity diagnostic 2
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.871s
+
+OK
+Corrected module-identity diagnostic 3
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.890s
+
+OK
+Corrected module-identity diagnostic 4
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.936s
+
+OK
+Corrected module-identity diagnostic 5
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.911s
+
+OK
+Corrected module-identity diagnostic 6
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.931s
+
+OK

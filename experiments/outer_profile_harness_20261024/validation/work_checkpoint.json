@@ -1,7 +1,7 @@
 {
   "source_checkpoint": "1257db7b1886b95f07b33072f921472679e42dca",
   "source_tree": "dba2ee15bbefc7f08b379c289c3aa736a834dd04",
-  "status": "EXTRACTED_QUALIFICATION_FAILED_CORRECTION_IN_PROGRESS",
+  "status": "CORRECTED_LOCAL_PASS_EXTRACTION_PENDING",
   "local_tests": 42,
   "local_passed": 40,
   "local_windows_only_skips": 2,
@@ -9,5 +9,6 @@
   "diagnostic": "Controlled diagnostic reproduced AcquisitionBusy escaping a handler for the nominal same module class. Investigate the synthetic SDK sys.modules patch restoring module identities after bootstrap. No accepted runtime source has changed.",
   "archive_retained": "outer_profile_harness_20261024_055855_8542ec.zip",
   "user_delivery_qualified": false,
-  "production_access": false
+  "production_access": false,
+  "correction_record": "development_module_identity_correction.json"
 }
