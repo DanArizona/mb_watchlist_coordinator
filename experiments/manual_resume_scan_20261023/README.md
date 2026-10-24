@@ -37,9 +37,9 @@ worker generation count and 3s/8s timing gates are unchanged. No API, password,
 real vault, installed SDK, public HTTP/broker request or production access is
 used. There is no live controller command.
 
-Run `47_verify_manual_resume_scan.cmd` in sea-green and retain final JSON plus
-the actual CMD prompt return. Local, extracted-package and Windows results are
-separate gates. The independent outer/profile harness, separate live profiles,
+MasterBot sea-green Windows confirmation is now complete. The local,
+extracted-package and Windows results remain separate records. No unchanged
+command-47 or earlier accepted repeat is needed. The independent outer/profile harness, separate live profiles,
 Overlay, production adoption and broader capacity remain pending.
 
 Current-host qualification: 18 checks, **17 passed and one Windows-only check
@@ -53,5 +53,11 @@ public source 178c193fdebef3abdd0ba814c4e7e08eaf51f4a7, tree
 before tests; the complete inventory is restored. The immutable ZIP is
 manual_resume_scan_20261024_005233_7b9844.zip, 310821 bytes/106 files, SHA-256
 a35e11afa74c518998feb181d2da1b3a2f62c58d9ec91d42a2c6f7dcf938b5c0.
-Windows corrective confirmation and actual CMD prompt return remain required;
-the original command-46 FAILED verdict is never rewritten.
+MasterBot Windows passes all 18 checks in 4.1607059999369085s (runner 3.956s),
+zero skips/failures/errors, including the actual Windows lock/read check,
+run 20261024T010347Z-075a6f1e and actual CMD prompt return. The raw fixed
+OPERATOR_RESULT_REQUIRED label remains intact; the separate operator record
+accepts this supplied console, and the saved report was not independently
+uploaded. All 102 bundled files and the original ZIP are unchanged. The
+original command-46 FAILED verdict and unknown original unreadable filename
+remain retained. This acceptance updates documentation/records only.
