@@ -1,0 +1,35 @@
+Controlled intermittent-failure diagnostic 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.936s
+
+OK
+Controlled intermittent-failure diagnostic 2
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.931s
+
+OK
+Controlled intermittent-failure diagnostic 3
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.953s
+
+OK
+Controlled intermittent-failure diagnostic 4
+F
+======================================================================
+FAIL: test_gated_controller_native_acquisition_and_independent_read_only_report (test_profile_runtime.OuterNativeProcessTests.test_gated_controller_native_acquisition_and_independent_read_only_report)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/78e6acba7246/mb_watchlist_coordinator_shadow/tests/test_profile_runtime.py", line 176, in test_gated_controller_native_acquisition_and_independent_read_only_report
+    self.assertEqual(result['result'],evidence['result'],self.failure_evidence)
+AssertionError: 'FAILED' != 'INCOMPLETE'
+- FAILED
++ INCOMPLETE
+ : {'outer': {'contract': 'owned-outer-hot-profile-v1', 'nonce': 'dddddddddddddddddddddddddddddddd', 'stop_reason': 'controller_exited_before_goal', 'controller_phase': 'ACTIVE', 'acquisition_stop_requested_at_utc': '2026-10-25T14:01:02.370309+00:00', 'cleanup': {'status': 'EXIT_OBSERVED', 'backend': 'posix_process_group', 'scope_empty_observed': True, 'forced': False, 'controller_returncode': 70, 'reason': None}, 'reporter_cleanup': {'status': 'EXIT_OBSERVED', 'backend': 'posix_process_group', 'scope_empty_observed': True, 'forced': False, 'controller_returncode': 0, 'reason': None}, 'reporter_returncode': 0, 'reporting_complete': True, 'stop_receipt_saved': True, 'failure': None, 'result': 'FAILED', 'production_access': False}, 'entry_failure': None, 'controller_failure': {'exception_type': 'AcquisitionBusy', 'fixed_exceptions': [{'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 178}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 152}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 126}, {'exception_type': 'BlockingIOError', 'file': 'sampling_service.py', 'function': 'owner_lock', 'line': 76}, {'exception_type': 'ServiceBusy', 'file': 'sampling_service.py', 'function': 'owner_lock', 'line': 78}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 250}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 185}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 126}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 152}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 175}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 178}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 152}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 126}, {'exception_type': 'BlockingIOError', 'file': 'sampling_service.py', 'function': 'owner_lock', 'line': 76}, {'exception_type': 'ServiceBusy', 'file': 'sampling_service.py', 'function': 'owner_lock', 'line': 78}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 250}, {'exception_type': 'GeneratorExit', 'file': 'nasdaq_recovery_supervisor.py', 'function': '<genexpr>', 'line': 185}, {'exception_type': 'BlockingIOError', 'file': 'sampling_acquisition.py', 'function': 'owner_lock', 'line': 146}, {'exception_type': 'AcquisitionBusy', 'file': 'sampling_acquisition.py', 'function': 'owner_lock', 'line': 148}, {'exception_type': 'AcquisitionBusy', 'file': 'sampling_acquisition.py', 'function': 'snapshot', 'line': 365}], 'frames': [{'file': 'outer_runtime_probe.py', 'function': '<module>', 'line': 58}, {'file': 'profile_runtime.py', 'function': 'step', 'line': 121}, {'file': 'profile_runtime.py', 'function': 'facts', 'line': 99}, {'file': 'profile_evidence.py', 'function': 'native_facts', 'line': 30}, {'file': 'sampling_acquisition.py', 'function': 'snapshot', 'line': 365}, {'file': 'contextlib.py', 'function': '__enter__', 'line': 137}, {'file': 'sampling_acquisition.py', 'function': 'owner_lock', 'line': 148}], 'phase': 'runtime_profile_pump', 'runtime_reason': None}}
+
+----------------------------------------------------------------------
+Ran 1 test in 1.891s
+
+FAILED (failures=1)

@@ -67,6 +67,11 @@ class ProfileEvidenceTests(unittest.TestCase):
         facts,state=native_facts(self.session,generation_for=lambda a:1)
         self.assertEqual(len(facts),30);self.assertEqual(sum(f['quote'] for f in facts),29)
         self.assertFalse(goal_counts('ordinary',facts,cutover_at_utc=utc_text(self.start))['goal_complete'])
+        r=final_native_report(self.session,profile='ordinary',facts=facts,
+            stop_at_utc=utc_text(self.now+timedelta(microseconds=1)),cutover_at_utc=utc_text(self.start),source_reconciled=True)
+        self.assertEqual(r['non_quote_acquisition_ids'],[])
+        self.assertEqual(len(r['unacknowledged_acquisition_ids']),1)
+        self.assertEqual(r['result'],'INCOMPLETE')
 
     def test_partial_goals_and_feed_loss_are_incomplete(self):
         self.poll(2);self.assertEqual(self.report()['result'],'INCOMPLETE')

@@ -100,9 +100,10 @@ def final_native_report(session, *, profile, facts, stop_at_utc, cutover_at_utc,
         explained=[s for s in missing if s.startswith('hot:') and lo<=timestamp(s[4:])<hi]
     unexplained=sorted(set(missing)-set(explained))
     non_missing=[wire(f) for f in audit.findings if f.code!='missing_poll_slots']
-    bad_quotes=[f['id'] for f in facts if not f['quote']]
+    bad_quotes=[f['id'] for f in facts if f['statuses']!=['quote'] or len(f['symbols'])!=1]
+    unacknowledged=[f['id'] for f in facts if f['ack_at_utc'] is None]
     status=('FAILED' if non_missing or unexplained or bad_quotes or replays[0]!=replays[1]
-        else 'INCOMPLETE' if not source_reconciled
+        else 'INCOMPLETE' if unacknowledged or not source_reconciled
         else 'READINESS_ONLY' if not facts
         else 'INCOMPLETE' if not goals['goal_complete']
         else 'PASS_WITH_WARNINGS' if source_reasons or explained else 'PASS')
@@ -113,5 +114,6 @@ def final_native_report(session, *, profile, facts, stop_at_utc, cutover_at_utc,
         'raw_native_audit':wire(audit),
         'missing_slot_ids':missing,'intentional_outage_missing_slot_ids':explained,
         'unexplained_missing_slot_ids':unexplained,'non_quote_acquisition_ids':bad_quotes,
+        'unacknowledged_acquisition_ids':unacknowledged,
         'replays':list(replays),'identical_fresh_replays':replays[0]==replays[1],
         'facts_sha256':digest(facts),'production_access':False}

@@ -1,0 +1,46 @@
+{
+  "test": "test_profile_runtime.OuterNativeProcessTests.test_gated_controller_native_acquisition_and_independent_read_only_report",
+  "evidence": {
+    "outer": {
+      "contract": "owned-outer-hot-profile-v1",
+      "nonce": "dddddddddddddddddddddddddddddddd",
+      "stop_reason": "controller_exited_before_goal",
+      "controller_phase": "ACTIVE",
+      "acquisition_stop_requested_at_utc": "2026-10-25T14:01:01.652576+00:00",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 70,
+        "reason": null
+      },
+      "reporter_cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      },
+      "reporter_returncode": 0,
+      "reporting_complete": true,
+      "stop_receipt_saved": true,
+      "failure": null,
+      "result": "FAILED",
+      "production_access": false
+    },
+    "entry_failure": null,
+    "controller_failure": {
+      "exception_type": "RuntimeError",
+      "frames": [
+        {
+          "file": "outer_runtime_probe.py",
+          "function": "<module>",
+          "line": 60
+        }
+      ],
+      "phase": "runtime_profile_pump"
+    }
+  }
+}

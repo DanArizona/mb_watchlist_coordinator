@@ -155,7 +155,8 @@ class OuterNativeProcessTests(unittest.TestCase):
             nonce='d'*32;probe=Path(__file__).parent/'fixtures/outer_runtime_probe.py'
             configs=[]
             for mode in ('controller','report'):
-                path=Path(temp)/(mode+'.json');path.write_text(json.dumps({'mode':mode,'root':str(root),'nonce':nonce}));configs.append(path)
+                path=Path(temp)/(mode+'.json');path.write_text(json.dumps({'mode':mode,'root':str(root),'nonce':nonce,
+                    'trace_fixed_exceptions':True}));configs.append(path)
             h=OuterHarness(root,OuterSchedule(settings.password_submitted_at_utc,plan.public['start_at_utc'],plan.public['stop_at_utc']),
                 nonce,clock=clock,expected_preflight_sha256=plan.configuration_sha256)
             began=time.monotonic()
@@ -172,7 +173,7 @@ class OuterNativeProcessTests(unittest.TestCase):
             self.assertTrue(evidence['reporting_read_only']);self.assertFalse(evidence['credential_access'])
             self.assertEqual(evidence['result'],'FAILED' if evidence['missing_slot_ids'] else 'INCOMPLETE')
             self.assertFalse(evidence['goals']['goal_complete'])
-            self.assertEqual(result['result'],evidence['result'])
+            self.assertEqual(result['result'],evidence['result'],self.failure_evidence)
             self.assertEqual(evidence['non_quote_acquisition_ids'],[])
             self.assertLessEqual({f['code'] for f in evidence['raw_native_audit']['findings']},{'missing_poll_slots'})
             self.assertTrue(evidence['identical_fresh_replays'])

@@ -42,6 +42,17 @@ atomic_json(root/'logical-clock.json',{'real':f.real.isoformat(),'logical':f.log
 simulation.write_text(json.dumps({'mode':'normal','log':str(root/'native-worker-events.jsonl'),
     'real_anchor_utc':f.real.isoformat(),'logical_anchor_utc':f.logical.isoformat()}))
 emitted=False;deadline=time.monotonic()+10
+fixed_exceptions=[]
+def trace(frame,event,arg):
+    selected=frame.f_code.co_filename.endswith(('integrated_runtime.py','nasdaq_recovery_supervisor.py',
+        'sampling_service.py','sampling_acquisition.py'))
+    if not selected:return None
+    if event=='exception':
+        fixed_exceptions.append({'file':Path(frame.f_code.co_filename).name,'function':frame.f_code.co_name,
+            'line':frame.f_lineno,'exception_type':arg[0].__name__})
+        del fixed_exceptions[:-20]
+    return trace
+if config.get('trace_fixed_exceptions'):sys.settrace(trace)
 try:
     while time.monotonic()<deadline and not (root/'STOP.json').exists():
         result=p.step()
@@ -63,6 +74,7 @@ try:
 except Exception as error:
     import traceback
     atomic_json(root/'controller-entry-failure.json',{'phase':'runtime_profile_pump','exception_type':type(error).__name__,
+        'runtime_reason':(r.last_report or {}).get('reason'),'fixed_exceptions':fixed_exceptions,
         'frames':[{'file':Path(f.filename).name,'function':f.name,'line':f.lineno} for f in traceback.extract_tb(error.__traceback__)]})
     raise SystemExit(70)
 finally:
