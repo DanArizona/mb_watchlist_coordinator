@@ -1,0 +1,15 @@
+{
+  "result": "FAILED",
+  "tests": 14,
+  "passed": 13,
+  "skipped": 0,
+  "failures": 1,
+  "errors": 0,
+  "seconds": 31.89059006100001,
+  "failed_tests": [
+    "test_orphaned_native_generation_is_token_fenced_and_next_generation_uses_remaining_budget (test_controller_resume_process.ManualResumeProcessTests.test_orphaned_native_generation_is_token_fenced_and_next_generation_uses_remaining_budget)"
+  ],
+  "network": "denied",
+  "production_access": false,
+  "scope": "Initial new entry/owned process reopen drills; synthetic credentials/SDK only, not Windows/live or outer profile qualification."
+}

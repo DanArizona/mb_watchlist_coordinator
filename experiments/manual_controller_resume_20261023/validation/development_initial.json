@@ -1,0 +1,15 @@
+{
+  "result": "FAILED",
+  "tests": 1,
+  "passed": 0,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 1,
+  "seconds": 0.5225319140000693,
+  "failed_tests": [
+    "test_controller_resume (unittest.loader._FailedTest.test_controller_resume)"
+  ],
+  "network": "denied",
+  "production_access": false,
+  "scope": "First development manual-reopen unit/native integration checks; no Windows or live qualification."
+}

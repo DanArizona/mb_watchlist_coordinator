@@ -1,0 +1,9 @@
+{
+  "result": "CONTROLLED_TRANSIENT_READ_LOCK_REPRODUCED",
+  "resume_result": "state_invalid",
+  "authentication_started": false,
+  "network": "denied",
+  "production_access": false,
+  "interpretation": "The draft refused a transient native-snapshot owner lock instead of bounded waiting. This controlled case does not establish the original orphan-process failure cause.",
+  "native_busy_exception_type": "AcquisitionBusy"
+}

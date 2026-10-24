@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "tests": 21,
+  "passed": 21,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 31.920936168000026,
+  "failed_tests": [],
+  "network": "denied",
+  "production_access": false,
+  "scope": "Third development manual-reopen unit/native integration checks; no Windows or live qualification."
+}

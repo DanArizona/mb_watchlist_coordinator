@@ -1,0 +1,184 @@
+{
+  "result": "PASS",
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 8.17880392699999,
+  "safe_trace": [
+    {
+      "event": "stage",
+      "stage": "credentials_accepted"
+    },
+    {
+      "event": "stage",
+      "stage": "previous_roles_quiescent"
+    },
+    {
+      "event": "stage",
+      "stage": "saved_native_work_recovered"
+    },
+    {
+      "event": "stage",
+      "stage": "runtime_reopened"
+    },
+    {
+      "event": "controller_ready",
+      "counts": {
+        "directory_source_permits": 2,
+        "feed_attempts": 1,
+        "hot_quote_permits": 0,
+        "identity_quote_permits": 1,
+        "selected_symbol": "NVDA",
+        "worker_starts": 0
+      }
+    },
+    {
+      "event": "native_goal",
+      "acquisitions": 1,
+      "generation": 1,
+      "first_eligible_slot_utc": "2026-10-24T14:01:08+00:00"
+    },
+    {
+      "event": "stage",
+      "stage": "resume_reserved"
+    },
+    {
+      "event": "stage",
+      "stage": "credentials_accepted"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "fixed_exception",
+      "function": "acquire",
+      "line": 383,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "event": "stage",
+      "stage": "previous_roles_quiescent"
+    },
+    {
+      "event": "stage",
+      "stage": "saved_native_work_recovered"
+    },
+    {
+      "event": "stage",
+      "stage": "runtime_reopened"
+    },
+    {
+      "event": "controller_ready",
+      "counts": {
+        "directory_source_permits": 2,
+        "feed_attempts": 1,
+        "hot_quote_permits": 1,
+        "identity_quote_permits": 1,
+        "selected_symbol": "NVDA",
+        "worker_starts": 1
+      }
+    },
+    {
+      "event": "native_goal",
+      "acquisitions": 2,
+      "generation": 2,
+      "first_eligible_slot_utc": "2026-10-24T14:01:12+00:00"
+    }
+  ],
+  "network": "denied",
+  "production_access": false,
+  "scope": "Targeted diagnostic of the failed orphan-controller process boundary; no SDK exception messages retained."
+}

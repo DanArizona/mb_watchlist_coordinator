@@ -1,0 +1,22 @@
+{
+  "initial": "One import error: ExplicitPollSlot belongs to the pinned sampling_acquisition module, not watchlist_polling. Retained FAILED.",
+  "second": "21 checks, ten passed and eleven errors. A retained trace identifies ServiceBusy when the new reopen held a publication lease then called the accepted snapshot API which acquires that same non-reentrant lease. Remove the redundant outer publication lease while preserving controller and authority leases. One corruption fixture used a nonexistent last_price column; it now alters the existing status field. Retained FAILED.",
+  "source_scope": "New manual-reopen files only; earlier accepted runtime source files remain unchanged.",
+  "safe_diagnostic_trace": [
+    {
+      "function": "_restore",
+      "line": 212,
+      "exception_type": "ServiceBusy"
+    },
+    {
+      "function": "resume_manual",
+      "line": 402,
+      "exception_type": "ServiceBusy"
+    }
+  ],
+  "initial_process": "Fourteen new entry/process checks: thirteen passed, orphan-controller reopen failed with state_invalid. The original failure cause remains unconfirmed. A later traced targeted run passes in 8.17880392699999s, demonstrating generation-2 fencing but not diagnosing that original failure.",
+  "controlled_read_lock": "A separate controlled native-snapshot lock returns state_invalid before authentication in the draft. Read-only preflight now waits on ServiceBusy within the original preparation/Tstop bounds, with the private-entry credential deadline still independently earlier. No quote or feed call is repeated.",
+  "process_goal_fixture": "The native-goal observer now requires an acquisition at/after the currently owned generation's first eligible slot and an explicit minimum generation; an old orphan acquisition cannot satisfy the replacement-worker goal.",
+  "final_scope": "No older accepted runtime/reference source is modified. All failed development records and independent controlled findings are retained. Final local/extracted and Windows operator gates are separate.",
+  "first_affected_run": "59 tests: 58 passed, one error in controlled transient native-read-lock test. The native poller raises AcquisitionBusy, distinct from Coordinator ServiceBusy. The new bounded read-only retry now recognizes both explicit lease-busy types; data/integrity errors still fail closed. Original FAILED retained. No original gate is extended."
+}
