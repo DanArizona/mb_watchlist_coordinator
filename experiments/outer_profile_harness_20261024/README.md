@@ -1,5 +1,14 @@
 # Owned outer controller, profile goals and native reporting — command 48
 
+**Subsequent Windows gate FAILED:** 41/42 passed, no skips, one coupled native
+integration failure, actual prompt returned. Parent reason was
+worker_credentials_rejected; original worker auth code/exception are unknown
+from the supplied console. Both native Windows Job cases passed, but the whole
+command-48 verdict remains FAILED. See windows_command48_qualification.json and
+windows_command48_failure.json. The focused command-49 read-only observer
+correction follows a controlled acquisition-writer lease contention reproduction;
+it does not retroactively establish the exact original Windows cause.
+
 This is an offline handoff. No password, actual vault, installed/live SDK,
 public directory/feed/broker requests or production journal/process access is
 used. Commands 45/47 keep their Windows acceptance; original failed verdicts

@@ -1,0 +1,10 @@
+{
+  "result": "FAILED",
+  "tests": 21,
+  "failures": 1,
+  "errors": 0,
+  "runner_seconds": 7.407,
+  "finding": "The first observer draft used the nonempty PollRequest constructor to validate empty-membership dispatches. Corrected it to use the original ExplicitPollSlot, preserving empty membership as a skip. Added a specific empty-to-nonempty regression.",
+  "network": "denied",
+  "production_access": false
+}

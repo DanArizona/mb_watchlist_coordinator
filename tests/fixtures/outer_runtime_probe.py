@@ -39,7 +39,7 @@ if sys.modules.get(native_api.__name__) is not native_api or not isinstance(f.se
     raise RuntimeError('Synthetic fixture changed the native module identity')
 atomic_json(root/'fixture-module-identity.json',{'native_module_preserved':True})
 simulation=root/'native-worker-simulation.json'
-command=(sys.executable,'-I','-B',str(Path(__file__).parent/'supervised_hot_worker_probe.py'),
+command=(sys.executable,'-I','-B',str(Path(__file__).parent/'outer_hot_worker_probe.py'),
     str(f.target/'authenticated-worker.json'),str(simulation))
 r=IntegratedRuntime(f.session,feed_client=ScriptedFeed(f.session.feed),worker_command=command)
 r.initialize();p=BoundProfile(r,'ordinary')
@@ -60,6 +60,21 @@ def trace(frame,event,arg):
         del fixed_exceptions[:-20]
     return trace
 if config.get('trace_fixed_exceptions'):sys.settrace(trace)
+def worker_diagnostics():
+    value={}
+    try:
+        job=r.managed._job()
+        if job:
+            for suffix,keys in (('.auth.json',('status',)),('.startup.json',('status','observed_at_utc'))):
+                path=r.managed.root/(job['token']+suffix)
+                if path.exists():
+                    raw=json.loads(path.read_text());value[suffix]={k:raw.get(k) for k in keys}
+        path=root/'native-worker-events.jsonl'
+        if path.exists():
+            events=[json.loads(line) for line in path.read_text().splitlines()]
+            value['events']=[{k:e[k] for k in ('event','generation','contexts') if k in e} for e in events]
+    except Exception as error:value['read_error_type']=type(error).__name__
+    return value
 try:
     while time.monotonic()<deadline and not (root/'STOP.json').exists():
         result=p.step()
@@ -82,6 +97,7 @@ except Exception as error:
     import traceback
     atomic_json(root/'controller-entry-failure.json',{'phase':'runtime_profile_pump','exception_type':type(error).__name__,
         'runtime_reason':(r.last_report or {}).get('reason'),'fixed_exceptions':fixed_exceptions,
+        'worker_diagnostics':worker_diagnostics(),
         'frames':[{'file':Path(f.filename).name,'function':f.name,'line':f.lineno} for f in traceback.extract_tb(error.__traceback__)]})
     raise SystemExit(70)
 finally:

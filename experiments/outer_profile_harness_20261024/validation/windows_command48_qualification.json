@@ -1,0 +1,49 @@
+{
+  "result": "FAILED",
+  "tests": 42,
+  "passed": 41,
+  "skipped": 0,
+  "failures": 1,
+  "errors": 0,
+  "skipped_tests": [],
+  "failed_tests": [
+    "test_gated_controller_native_acquisition_and_independent_read_only_report (test_profile_runtime.OuterNativeProcessTests.test_gated_controller_native_acquisition_and_independent_read_only_report)"
+  ],
+  "seconds": 30.369659999967553,
+  "network": "denied",
+  "production_access": false,
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "executable": "C:\\Users\\danla\\anaconda3\\envs\\sea-green\\python.exe",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "suites": [
+    "test_outer_deadline",
+    "test_outer_harness",
+    "test_profile_evidence",
+    "test_profile_runtime"
+  ],
+  "accepted_runtime_reference_source_files_unchanged": 63,
+  "scope": "Owned gated controller/reporting process scopes, frozen original window and new-human resume preparation, independent active/cleanup/report deadlines, durable one-fault intent/hold policy, logical native 30 and 12+24 profile workloads with real raw audit/two replays, and one elapsed owned controller/authenticated synthetic native quote/read-only reporter integration. Windows-only Job Object orphan/owner-death tests are explicitly skipped on other hosts. No installed/live client, full-goal elapsed/live profile, public HTTP, production adoption or capacity claim.",
+  "failure_evidence_files": [
+    "001-f5440292d1db.json"
+  ],
+  "failure_evidence_write_errors": 0,
+  "actual_vault_access": false,
+  "real_feed_directory_or_broker_requests": 0,
+  "unchanged_accepted_suites_repeated": false,
+  "live_launcher_exposed": false,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "outer_profile_paths_current_host_qualified": false,
+  "windows_job_object_qualified": false,
+  "credential_bound_live_profile_entry_qualified": false,
+  "remaining": [
+    "Windows command48 final result and actual CMD prompt return",
+    "credential-bound live profile entry and separate operator launchers with affected offline qualification",
+    "separately invoked bounded live ordinary and owned-worker recovery profiles",
+    "read-only Overlay adapter",
+    "production adoption and broader capacity"
+  ]
+}

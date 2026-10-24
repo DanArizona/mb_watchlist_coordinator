@@ -1,0 +1,10 @@
+{
+  "result": "FAILED",
+  "tests": 29,
+  "failures": 1,
+  "errors": 0,
+  "runner_seconds": 10.47,
+  "finding": "An empty synthetic provider response is stored as missing, not invalid; corrected the fixture assertion to preserve the actual native status. Imported TestCase also caused eight unintended old tests to be collected; use the fixture module instead so only affected checks run.",
+  "network": "denied",
+  "production_access": false
+}

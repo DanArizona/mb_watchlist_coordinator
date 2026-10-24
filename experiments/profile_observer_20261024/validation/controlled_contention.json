@@ -1,0 +1,11 @@
+{
+  "result": "CONTROLLED_DEFECT_REPRODUCED",
+  "child_returncode": 70,
+  "auth_status": "startup_failed",
+  "runtime_reason": "worker_credentials_rejected",
+  "mechanism": "Holding the acquisition writer lease during synthetic worker startup prevents its required native snapshot before credential access. Command48 progress observation uses that same exclusive lease. The replacement observer reads an acknowledged prefix via read-only SQLite without taking the writer lease.",
+  "original_windows_cause": "NOT_ESTABLISHED_BY_THE_SUPPLIED_WORKER_DETAILS",
+  "accepted_runtime_or_timing_gates_changed": false,
+  "network": "denied",
+  "production_access": false
+}

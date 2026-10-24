@@ -78,13 +78,19 @@ class BoundProfile:
                 return {'status':'WAITING_FOR_PROFILE_HOLD'}
         return self.original_ensure(start_allowed=start_allowed,resume_after_utc=resume_after_utc)
 
-    def facts(self):
+    def facts(self, *, active=False):
         managed=self.runtime.managed
         if (digest(self.runtime.identity)!=self.binding['runtime_sha256']
                 or json.loads((self.runtime.root/'runtime-binding.json').read_text())!=plain(self.runtime.identity)):
             raise ValueError('Original profile runtime identity differs')
         _generation_history(managed)
-        counts=_counts(self.runtime.session,managed)
+        if active:
+            s=self.runtime.session;gate=s.gated_delivery.snapshot()['identity_gate'];feed=s.feed.snapshot();job=managed._job()
+            counts={'directory_source_permits':s.catalog_ledger.snapshot()['reserved_source_permits'],
+                'feed_attempts':len(feed['attempts'])+bool(feed['pending']),
+                'identity_quote_permits':gate['quote_permits'],'selected_symbol':gate['selected_symbol'],
+                'hot_quote_permits':0,'worker_starts':job['generation'] if job else 0}
+        else:counts=_counts(self.runtime.session,managed)
         if any(counts[k]>limit for k,limit in (('hot_quote_permits',60),('identity_quote_permits',3),
                 ('directory_source_permits',2),('feed_attempts',10),('worker_starts',3))):
             raise ValueError('Original cumulative profile budget exceeded')
@@ -96,7 +102,12 @@ class BoundProfile:
             if a.scheduled_at_utc<timestamp(j['first_eligible_slot_utc']):
                 raise ValueError('Acquisition precedes generation future-slot gate')
             return j['generation']
-        facts,state=native_facts(self.runtime.session,generation_for=generation)
+        if active:
+            from .profile_observation import observe_native_facts
+            facts,state=observe_native_facts(self.runtime.session,generation_for=generation)
+            if sum(e['kind']=='dispatch' and bool(e['symbols']) for e in state['events'])>60:
+                raise ValueError('Original native profile budget exceeded')
+        else:facts,state=native_facts(self.runtime.session,generation_for=generation)
         if any(f['symbols']!=[counts['selected_symbol']] for f in facts):
             raise ValueError('Native roster differs from the selected symbol')
         return facts,state
@@ -118,8 +129,9 @@ class BoundProfile:
                 'feed_head_sha256':feed['head_sha256']})
             events=self._events()
         from mb_market_data.sampling_acquisition import AcquisitionBusy
-        try:facts,state=self.facts()
-        except AcquisitionBusy:
+        from .profile_observation import ObservationPending
+        try:facts,state=self.facts(active=True)
+        except (AcquisitionBusy,ObservationPending):
             # An active writer owns the native snapshot. Observe on the next
             # bounded pump turn; do not repeat a provider call or renew a gate.
             return {'status':'OBSERVING','profile':self.profile,'native_snapshot_pending':True}
