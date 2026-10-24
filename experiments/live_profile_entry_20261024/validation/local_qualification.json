@@ -1,0 +1,44 @@
+{
+  "result": "PASS",
+  "tests": 34,
+  "passed": 34,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "failed_tests": [],
+  "seconds": 2.921568689999731,
+  "network": "denied",
+  "production_access": false,
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "suites": [
+    "test_live_profile",
+    "test_live_profile_launcher",
+    "test_live_profile_process"
+  ],
+  "accepted_runtime_source_files_unchanged": 70,
+  "scope": "New human credential-bound fresh live entry, pinned role/argv dispatch, installed-helper recheck per worker, source/host offline gate, sequential invocation lease, bound stop requests, native bootstrap/runtime ordering, independent pipe deadline, owned synthetic native quote and separate read-only final audit/two replays. Synthetic APIs only. Feed reconciliation in the quote proof is logical; native child/credential/progress/cleanup work is elapsed. One quote is a wiring proof, not a completed 30 or 12+24 profile.",
+  "actual_vault_access": false,
+  "real_feed_directory_or_broker_requests": 0,
+  "failure_evidence_files": [],
+  "success_evidence_files": [
+    "23a1e0b17ff1.json"
+  ],
+  "unchanged_accepted_suites_repeated": false,
+  "prior_failed_results_retained": true,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "credential_bound_entry_current_host_offline_qualified": true,
+  "installed_live_integration_or_capacity_qualified": false,
+  "manual_profile_controller_resume_exposed": false,
+  "remaining": [
+    "Windows command50 final result and actual CMD prompt return",
+    "separately invoked bounded live ordinary and owned-worker recovery profiles",
+    "read-only Overlay adapter",
+    "production adoption and broader capacity"
+  ]
+}
