@@ -46,4 +46,12 @@ Current-host qualification: 18 checks, **17 passed and one Windows-only check
 skipped**, zero failures/errors, 14.58621698099978s (runner 9.585s).
 The native Windows exclusive-read-lock check is not qualified from this host.
 All 63 original command-46 runtime/reference source files match. Source-pinned
-extraction and operator Windows confirmation are separate gates.
+extraction also passes: 18 checks, 17 passed and the same Windows-only check
+skipped, zero failures/errors, 7.720689573000072s. All 102 mapped files match
+public source 178c193fdebef3abdd0ba814c4e7e08eaf51f4a7, tree
+398e51dc4f4a3fef0b73d457db7a6b6df62a0de4. Altered/extra source returns 70
+before tests; the complete inventory is restored. The immutable ZIP is
+manual_resume_scan_20261024_005233_7b9844.zip, 310821 bytes/106 files, SHA-256
+a35e11afa74c518998feb181d2da1b3a2f62c58d9ec91d42a2c6f7dcf938b5c0.
+Windows corrective confirmation and actual CMD prompt return remain required;
+the original command-46 FAILED verdict is never rewritten.
