@@ -1,13 +1,13 @@
 {
   "result": "PASS",
-  "tests": 25,
-  "passed": 25,
+  "tests": 28,
+  "passed": 28,
   "skipped": 0,
   "failures": 0,
   "errors": 0,
   "skipped_tests": [],
   "failed_tests": [],
-  "seconds": 7.2422951329999705,
+  "seconds": 7.29836085199986,
   "network": "denied",
   "production_access": false,
   "python": [
@@ -19,7 +19,8 @@
   "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
   "suites": [
     "test_profile_observation",
-    "test_profile_runtime"
+    "test_profile_runtime",
+    "test_profile_observer_launcher"
   ],
   "command48_other_runtime_source_files_unchanged": 68,
   "original_accepted_runtime_reference_source_files_unchanged": 63,

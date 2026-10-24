@@ -41,8 +41,8 @@ code, exception type, numeric error codes and stack file/function/line. It does
 not copy messages, locals, SDK stdout/stderr, configuration or token contents.
 The original shared worker fixture and runtime sources remain unchanged.
 
-Current-host qualification: **25/25 PASS**, zero skips/errors/failures,
-7.2422951329999705s (runner 7.109s), network denied and synthetic credentials,
+Current-host qualification: **28/28 PASS**, zero skips/errors/failures,
+7.29836085199986s, network denied and synthetic credentials,
 SDK, native journals and owned children only. The focused packet covers active
 observation, controlled old contention, successful original-bound worker startup,
 affected profile policy and one native synthetic quote/read-only reporter path.
@@ -59,3 +59,9 @@ Windows exception, a completed elapsed/live profile, provider capacity or
 production adoption. Credential-bound live entry/launchers and their affected
 qualification, separate live profiles and the read-only Overlay adapter remain
 later gates.
+
+The launcher now prints the one fresh saved verification result itself and
+checks it against the verifier exit code. A muted verifier stdout, missing
+report or exit/report mismatch cannot conceal the final result. Three focused
+launcher checks are included; an earlier 25-check local/extracted PASS remains
+a development record. No further runtime code changed for this display path.

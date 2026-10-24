@@ -29,13 +29,13 @@ def build(destination):
             'runtime_fixtures', 'runtime_process_evidence', 'test_runtime_process_evidence',
             'resume_fixtures', 'resume_failure_evidence', 'test_controller_resume',
             'test_controller_resume_process', 'test_resume_entry', 'saved_artifact_scan', 'test_saved_artifact_scan',
-            'test_outer_deadline', 'test_outer_harness', 'test_profile_evidence', 'test_profile_runtime', 'test_profile_observation')
+            'test_outer_deadline', 'test_outer_harness', 'test_profile_evidence', 'test_profile_runtime', 'test_profile_observation', 'test_profile_observer_launcher')
         sources = [ROOT/'tests'/(n+'.py') for n in tests]
         sources += [ROOT/'tests/fixtures'/n for n in ('supervised_hot_worker_probe.py',
             'runtime_feed_worker.py', 'outer_scope_probe.py', 'outer_runtime_probe.py', 'outer_hot_worker_probe.py', 'controller_resume_probe.py', 'authenticated_worker_probe.py', 'recovery_collector_worker.py',
             'recovery_probe_worker.py', 'identity_gate_worker.py')]
         sources += [ROOT/'experiments/hot_collector_recovery_20261023/native_tests/test_sampling_acquisition.py',
-            ROOT/'experiments/installed_startup_20261023/expected_mb_tools.json', HERE/'verify.py', HERE/'command48_runtime_source_sha256.json']
+            ROOT/'experiments/installed_startup_20261023/expected_mb_tools.json', HERE/'verify.py', HERE/'launcher.py', HERE/'command48_runtime_source_sha256.json']
         for source in sources:
             target = root/'coordinator'/source.relative_to(ROOT)
             target.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(source, target)

@@ -26,9 +26,10 @@ def main(root):
     print('Command48 FAILED retained. Focused observer/startup/native reporting checks; prior passed Windows Job drills are not repeated.', flush=True)
     args = [sys.executable, '-I', '-B', str(root/'coordinator/experiments/profile_observer_20261024/verify.py'),
         '--output-root', str(root/'runs')]
-    child = subprocess.Popen(args)
+    before=set((root/'runs').glob('*/verification.json'))
+    child = subprocess.Popen(args, stdout=subprocess.DEVNULL)
     try:
-        return child.wait(timeout=300)
+        code=child.wait(timeout=300)
     except (subprocess.TimeoutExpired, KeyboardInterrupt):
         child.terminate()
         try:
@@ -37,6 +38,24 @@ def main(root):
             child.kill(); child.wait(timeout=2)
         print('Profile observer qualification stopped before completion; no PASS is recorded.', flush=True)
         return 124
+    try:
+        fresh=set((root/'runs').glob('*/verification.json'))-before
+        if len(fresh)!=1:raise ValueError()
+        path=fresh.pop()
+        if path.is_symlink() or path.stat().st_size>200_000:raise ValueError()
+        value=json.loads(path.read_text())
+        if (value.get('result') not in ('PASS','FAILED')
+                or (code==0)!=(value['result']=='PASS')
+                or code==0 and (value.get('failures')!=0 or value.get('errors')!=0)):
+            raise ValueError()
+    except Exception:
+        print('Profile observer report BLOCKED: saved result missing or inconsistent.',flush=True)
+        return 70
+    # The outer launcher owns this output, even if a synthetic child changed
+    # the verifier's own stdout/stderr. Never infer PASS from a silent exit.
+    print(json.dumps(value,indent=2),flush=True)
+    print('Saved report:',path,flush=True)
+    return code
 
 
 if __name__ == '__main__':

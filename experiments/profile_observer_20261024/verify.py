@@ -12,7 +12,7 @@ import unittest
 import uuid
 
 ROOT=Path(__file__).resolve().parents[2]
-SUITES=('test_profile_observation','test_profile_runtime')
+SUITES=('test_profile_observation','test_profile_runtime','test_profile_observer_launcher')
 
 
 class EvidenceResult(unittest.TextTestResult):

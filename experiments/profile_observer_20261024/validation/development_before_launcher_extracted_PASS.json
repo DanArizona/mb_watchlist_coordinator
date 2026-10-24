@@ -1,0 +1,45 @@
+{
+  "result": "PASS",
+  "tests": 25,
+  "passed": 25,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped_tests": [],
+  "failed_tests": [],
+  "seconds": 7.760139942000023,
+  "network": "denied",
+  "production_access": false,
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "suites": [
+    "test_profile_observation",
+    "test_profile_runtime"
+  ],
+  "command48_other_runtime_source_files_unchanged": 68,
+  "original_accepted_runtime_reference_source_files_unchanged": 63,
+  "scope": "Changed active observer reads acknowledged native progress without the acquisition writer lease; verified prefix/ACK/header/normalized-row matching, concurrent append, empty membership, corrupt evidence and bounded SQLite BUSY handling. Controlled writer-lock overlap reproduces the generic credential rejection; read-only observation allows original 3s/8s startup. Affected profile policy and one elapsed synthetic native quote/read-only report integration, with safe worker diagnostics. Original strict final native snapshot/audit/replay and all other command48 runtime sources unchanged. Not live authentication, original Windows root-cause attribution, full-profile elapsed/live recovery, production or capacity.",
+  "failure_evidence_files": [],
+  "failure_evidence_write_errors": 0,
+  "actual_vault_access": false,
+  "real_feed_directory_or_broker_requests": 0,
+  "unchanged_accepted_suites_repeated": false,
+  "live_launcher_exposed": false,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "observer_correction_current_host_qualified": true,
+  "command48_windows_result_retained": "FAILED",
+  "command48_named_windows_job_checks_repeated": false,
+  "credential_bound_live_profile_entry_qualified": false,
+  "remaining": [
+    "Windows command49 correction result and actual CMD prompt return",
+    "credential-bound live profile entry and separate operator launchers with affected offline qualification",
+    "separately invoked bounded live ordinary and owned-worker recovery profiles",
+    "read-only Overlay adapter",
+    "production adoption and broader capacity"
+  ]
+}

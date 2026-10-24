@@ -1,0 +1,12 @@
+{
+  "result": "REPORT_DISPLAY_OWNED_BY_LAUNCHER",
+  "observation": "The earlier source-pinned verifier wrote its complete 25-check PASS JSON but its redirected console log stopped after progress dots. The exact stdout redirection cause is not assigned. The launcher now prints and checks one fresh saved result after the verifier exits.",
+  "tests_added": [
+    "muted verifier stdout still prints result",
+    "missing saved result cannot pass",
+    "exit and saved verdict mismatch cannot pass"
+  ],
+  "runtime_source_changed_for_display": false,
+  "network": "denied",
+  "production_access": false
+}
