@@ -1,0 +1,23 @@
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "case": "changed_source",
+      "returncode": 70,
+      "blocked_before_tests": true
+    },
+    {
+      "case": "extra_source",
+      "returncode": 70,
+      "blocked_before_tests": true
+    }
+  ],
+  "restored_inventory_identical": true,
+  "repository_files_matched": 100,
+  "source_commit": "4489d27a80a7359888d6471929785bb6b8160fe6",
+  "source_tree": "2da67f6eacc14c9374d5f0df67134eec1de93eb7",
+  "inventory_sha256": "8ed0ee65c9e38007804b6a9ab4e0d09090be2fb4f609d9f115e65a24073dce1c",
+  "accepted_runtime_reference_files_unchanged": 61,
+  "network": "denied",
+  "production_access": false
+}

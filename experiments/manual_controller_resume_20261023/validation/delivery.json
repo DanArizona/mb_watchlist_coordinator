@@ -1,0 +1,21 @@
+{
+  "archive": "/workspace/scratch/78e6acba7246/deliverables/manual_controller_resume_20261024_003115_86e083.zip",
+  "folder": "manual_controller_resume_20261024_003115_86e083",
+  "bytes": 310666,
+  "files": 104,
+  "sha256": "84f43b6535094c860c02a79b78d1c865aa21d508ebd29ed4f467d52cbd2da2a5",
+  "inventory_sha256": "8ed0ee65c9e38007804b6a9ab4e0d09090be2fb4f609d9f115e65a24073dce1c",
+  "repository_files_matched": 100,
+  "source_commit": "4489d27a80a7359888d6471929785bb6b8160fe6",
+  "source_tree": "2da67f6eacc14c9374d5f0df67134eec1de93eb7",
+  "local_tests": 59,
+  "local_passed": 59,
+  "local_seconds": 88.99027961000002,
+  "extracted_tests": 59,
+  "extracted_passed": 59,
+  "extracted_seconds": 87.3174064470004,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "accepted_runtime_reference_files_unchanged": 61,
+  "production_access": false,
+  "scope": "Explicit new-human private-handoff reopen of an already initialized catalog-bound runtime, original proposal/dependency/session/window/source/native bindings, cumulative permits and generation history, request/publication/assembled-response recovery, unknown charged dispatches, lease-based orphan fencing and future-only native work. Synthetic credentials/SDK/HTTP and actual process exits/role leases only. Logical 59+1 native-budget workload is distinct from elapsed process drills. Not installed/live authentication, an independently preempting outer/profile harness, live acquisition/recovery, Overlay, production adoption or capacity."
+}

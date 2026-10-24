@@ -55,3 +55,7 @@ ownership and redaction. Keep logical-clock and actual elapsed evidence distinct
 An operator Windows result is separate from local/extracted qualification.
 Installed/live authentication, outer/profile goals/coverage, live recovery,
 Overlay, production adoption and broader capacity are later gates.
+
+## Current qualification
+
+Source 4489d27a80a7359888d6471929785bb6b8160fe6/tree 2da67f6eacc14c9374d5f0df67134eec1de93eb7 passes 59/59 affected current-host checks in 88.99027961000002s and 59/59 source-pinned extracted checks in 87.3174064470004s, zero skips/errors/failures. All 100 mapped files match; altered/extra source is refused before tests and the original inventory restored. All 61 older runtime/reference files and original archives remain unchanged. Windows operator validation and actual prompt return are pending. A separate new manual-ready record states the added scope; original raw bootstrap/runtime labels and failure verdicts are retained. The final operator package exposes offline verification only.

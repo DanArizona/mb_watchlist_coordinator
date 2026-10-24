@@ -79,3 +79,15 @@ Current-host affected qualification: **59/59 PASS**, zero skips/failures/errors,
 hashes match. Source-pinned extraction and Windows operator acceptance are
 separate gates. Earlier command-44 and development failures retain their
 original verdicts and scope.
+
+Source-pinned extraction in a path containing spaces also passes **59/59**, zero
+skips/failures/errors, 87.3174064470004 seconds (runner 86.940s). All 100
+mapped repository files match published source 4489d27a80a7359888d6471929785bb6b8160fe6,
+tree 2da67f6eacc14c9374d5f0df67134eec1de93eb7. Altered/extra source is
+refused before tests and the complete original inventory is restored. The
+immutable package is manual_controller_resume_20261024_003115_86e083.zip,
+310666 bytes/104 files, SHA-256
+84f43b6535094c860c02a79b78d1c865aa21d508ebd29ed4f467d52cbd2da2a5.
+Windows command-46 validation and actual prompt return remain pending. This
+delivery follow-up changes documentation and evidence only; it does not
+rebuild the archive or change its bundled source/test/reference/verifier bytes.
