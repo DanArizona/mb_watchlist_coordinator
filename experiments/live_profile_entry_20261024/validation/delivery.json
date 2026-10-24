@@ -1,0 +1,20 @@
+{
+  "archive": "/workspace/scratch/78e6acba7246/deliverables/live_profile_entry_20261024_193721_f53abb.zip",
+  "folder": "live_profile_entry_20261024_193721_f53abb",
+  "bytes": 437093,
+  "sha256": "4f9d623ea0e25cee224a520ee9e658502ae82a7da1c7b770c11bd74c79963ddf",
+  "files": 163,
+  "repository_files_matched": 156,
+  "inventory_sha256": "29064fedcaff91c414724c4825146ccd097aa64ed634fac59373fb4256bfa24e",
+  "source_commit": "1e40cde1daa005304e63f0802c8cbc28e1b18580",
+  "source_tree": "265ae96fad86b7c67b86f16cb0a1789af495c05a",
+  "local_tests": 34,
+  "local_seconds": 2.921568689999731,
+  "extracted_tests": 34,
+  "extracted_seconds": 3.2122359730001335,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "actual_vault_access": false,
+  "real_feed_directory_or_broker_requests": 0,
+  "production_access": false,
+  "live_profiles_run": false
+}

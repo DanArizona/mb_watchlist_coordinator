@@ -59,3 +59,5 @@ report deliberately has no full-profile PASS. Passing entry tests does not
 reclassify that native evidence or claim either complete live profile.
 
 Local affected qualification: 34/34 PASS, zero skips/errors/failures, 2.921568689999731s. All 70 earlier runtime/native/helper source files are hash checked unchanged. Windows command50 final JSON and actual CMD prompt return remain required; separately invoked live profiles have not run.
+
+Source-pinned extraction through the delivered launcher: 34/34 PASS, zero skips/errors/failures, 3.2122359730001335s in a path containing spaces. All 156 mapped repository files match source 1e40cde1daa005304e63f0802c8cbc28e1b18580/tree 265ae96fad86b7c67b86f16cb0a1789af495c05a. Changed/extra source and bytecode return 70 before import/tests, and the inventory is restored. Immutable archive live_profile_entry_20261024_193721_f53abb.zip: 437093 bytes/163 files, SHA-256 4f9d623ea0e25cee224a520ee9e658502ae82a7da1c7b770c11bd74c79963ddf. Windows command50 and actual prompt return are next. No live profile has run.
