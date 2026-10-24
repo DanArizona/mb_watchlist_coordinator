@@ -49,10 +49,13 @@ affected profile policy and one native synthetic quote/read-only reporter path.
 Previously passed Windows Job drills and unchanged full-profile workloads are
 not repeated. Local, extracted and operator Windows results are separate gates.
 
-Run only `49_verify_profile_observer.cmd` in sea-green and retain final JSON
-plus actual CMD prompt return. No password, actual vault, public feed/directory/
-broker request or production journal/process access is used. Windows correction
-acceptance is pending. Existing command-48 archives/results remain intact.
+MasterBot Windows correction acceptance is complete: **28/28 PASS**, zero
+skips/errors/failures, runner 14.971s/report 15.248894599964842s, with actual CMD
+prompt return. The basis is the operator-supplied complete console and final
+JSON; the saved report was not independently uploaded or read. No password,
+actual vault, public feed/directory/broker request or production journal/process
+access was used. Existing command-48 FAILED archives/results remain intact.
+No unchanged command-49 or earlier accepted rerun is required.
 
 This is not installed/live authentication, an attribution of the original
 Windows exception, a completed elapsed/live profile, provider capacity or
@@ -74,4 +77,16 @@ are blocked with exit 70 before tests and the inventory is restored.
 Immutable Windows handoff: profile_observer_20261024_063842_0ba902.zip,
 353584 bytes/123 files, SHA-256
 f81a0fd8c02516eb9db1fdcba11a19b2393ee70056e2e585890b98949c9e8219.
-Windows command49 and actual CMD prompt return remain required.
+Windows command49 acceptance and actual CMD prompt return are now recorded.
+
+Windows run `20261024T064503Z-2c2955e8` used sea-green Python 3.12.13 on
+Windows-11-10.0.26300-SP0. The supplied raw JSON is retained as
+`validation/windows_command49_qualification.json`, including its fixed
+OPERATOR_RESULT_REQUIRED label and emitted remaining list. The separate
+`validation/windows_command49_acceptance.json` records the completed operator
+gate without editing those raw fields. All 68 other command-48 runtime files
+and 63 original references remain unchanged. The immutable handoff was not
+rebuilt. The original Windows worker exception remains unknown; command 48
+remains FAILED. Next implement the credential-bound live entry and separate
+ordinary/recovery/stop launchers, then qualify the affected paths offline and
+on Windows before a live profile.
