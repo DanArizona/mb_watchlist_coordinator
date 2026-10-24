@@ -1,0 +1,72 @@
+{
+  "result": "FAILED",
+  "tests": 59,
+  "passed": 58,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 1,
+  "skipped_tests": [],
+  "failed_tests": [
+    "test_interruption_after_credentials_keeps_failed_attempt_and_new_nonce_can_reopen (test_controller_resume.ManualResumeTests.test_interruption_after_credentials_keeps_failed_attempt_and_new_nonce_can_reopen)"
+  ],
+  "seconds": 81.00486850005109,
+  "network": "denied",
+  "production_access": false,
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "executable": "C:\\Users\\danla\\anaconda3\\envs\\sea-green\\python.exe",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "suites": [
+    "test_controller_resume",
+    "test_resume_entry",
+    "test_controller_resume_process",
+    "test_supervised_hot_worker",
+    "test_integrated_runtime.IntegratedRuntimeTests.test_existing_partial_runtime_is_not_a_fresh_reopen",
+    "test_integrated_runtime.IntegratedRuntimeTests.test_an_uninitialized_second_instance_cannot_close_the_owners_client",
+    "test_integrated_runtime_process.RuntimeProcessTests.test_three_second_gate_wins_over_eight_second_credential_budget_independently",
+    "test_integrated_runtime_process.RuntimeProcessTests.test_credential_success_without_native_work_does_not_satisfy_three_second_gate"
+  ],
+  "scope": "Explicit new-human private-handoff reopen of an already initialized catalog-bound runtime, original proposal/dependency/session/window/source/native bindings, cumulative permits and generation history, request/publication/assembled-response recovery, unknown charged dispatches, lease-based orphan fencing and future-only native work. Synthetic credentials/SDK/HTTP and actual process exits/role leases only. Logical 59+1 native-budget workload is distinct from elapsed process drills. Not installed/live authentication, an independently preempting outer/profile harness, live acquisition/recovery, Overlay, production adoption or capacity.",
+  "accepted_runtime_reference_source_files_unchanged": 61,
+  "prior_accepted_runtime_sources_changed": false,
+  "new_runtime_source_paths": [
+    "src/mb_watchlist_coordinator/controller_resume.py",
+    "src/mb_watchlist_coordinator/resume_entry.py"
+  ],
+  "failure_evidence_files": [
+    "001-be6587426b90.json"
+  ],
+  "failure_evidence_write_errors": 0,
+  "actual_vault_access": false,
+  "real_feed_directory_or_broker_requests": 0,
+  "pinned_mb_tools_interfaces_exercised": true,
+  "installed_sdk_or_live_authentication_qualified": false,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "manual_controller_resume_offline_qualified": false,
+  "outer_controller_profile_harness_qualified": false,
+  "unattended_controller_bootstrap": false,
+  "limits": {
+    "worker_startup_seconds": 3,
+    "worker_stale_seconds": 3,
+    "credential_timeout_seconds": 8,
+    "manual_reopen_preparation_seconds": 60,
+    "original_active_window_seconds": 720,
+    "hot_quote_permits": 60,
+    "identity_quote_permits": 3,
+    "worker_starts": 3,
+    "directory_source_permits": 2,
+    "feed_attempts": 10,
+    "feed_completion_spacing_seconds": 60
+  },
+  "original_failed_verdicts_retained": true,
+  "remaining": [
+    "Windows operator validation and actual CMD prompt return",
+    "owned outer-controller hard deadlines/shutdown and live profile goals/coverage/audit harness",
+    "separately invoked live acquisition and worker recovery profiles",
+    "read-only Overlay adapter",
+    "production adoption and broader capacity"
+  ]
+}

@@ -1,5 +1,14 @@
 # Explicit manual controller resume — command 46
 
+**Windows command 46 FAILED:** 58/59 passed; one PermissionError during the
+whole-file secret scan after the reopen assertions, in 81.00486850005109s
+(runner 80.778s), run 20261024T004121Z-afff6828, actual prompt returned.
+The failed file is not named in the console. The test still holds its resumed
+controller lease when it scans; the separate correction closes that controller
+before scanning every artifact. Runtime code and original limits stay unchanged.
+The original archive/local/extracted/Windows FAILED records remain intact.
+
+
 This offline increment follows command-45 Windows acceptance. It adds
 `controller_resume.py` and `resume_entry.py`; all 61 earlier accepted Coordinator,
 native and public helper source files remain hash checked unchanged. No live

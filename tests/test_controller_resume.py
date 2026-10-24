@@ -11,6 +11,7 @@ import unittest
 from unittest.mock import patch
 
 from resume_fixtures import ResumeFixture, SECRET
+from saved_artifact_scan import scan_saved_artifacts
 from mb_market_data.sampling_membership import SamplingChannel
 from mb_market_data.sampling_acquisition import ExplicitPollSlot
 from mb_watchlist_coordinator.authenticated_startup import StartupError
@@ -33,8 +34,7 @@ class ManualResumeTests(unittest.TestCase):
         p=patch('mb_market_data.schwab_quotes.datetime',QuoteClock);p.start();self.addCleanup(p.stop)
 
     def no_secret(self):
-        for p in self.f.root.rglob('*'):
-            if p.is_file():self.assertNotIn(SECRET.encode(),p.read_bytes(),str(p))
+        return scan_saved_artifacts(self.f.root,(SECRET.encode(),))
 
     def interrupt(self,stage):
         def hook(at):
@@ -215,7 +215,14 @@ class ManualResumeTests(unittest.TestCase):
         r=self.f.reopen(nonce='c'*32)
         self.assertEqual(r.resume_ledger.snapshot()['states']['b'*32],'failed')
         self.assertEqual(r.resume_ledger.snapshot()['states']['c'*32],'ready')
-        self.assertEqual(self.f.runs(),1);self.no_secret()
+        self.assertEqual(self.f.runs(),1)
+        # The reopened controller owns an exclusive byte-range lease. Close it
+        # before a separate read handle scans every artifact on Windows.
+        r.close()
+        self.assertTrue(r.closed)
+        self.assertEqual(r.resume_ledger.snapshot()['states']['c'*32],'stopped')
+        scanned=self.no_secret()
+        self.assertIn('integrated_hot_fresh/controller.owner.lock',scanned)
 
     def test_transient_native_read_lease_is_waited_for_without_repeating_provider_work(self):
         self.f.stop_original();held=threading.Event()

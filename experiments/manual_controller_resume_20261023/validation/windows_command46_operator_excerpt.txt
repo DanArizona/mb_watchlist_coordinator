@@ -1,0 +1,20 @@
+Verbatim excerpt from the operator console; full raw report is transcribed separately.
+
+ERROR: test_interruption_after_credentials_keeps_failed_attempt_and_new_nonce_can_reopen (test_controller_resume.ManualResumeTests.test_interruption_after_credentials_keeps_failed_attempt_and_new_nonce_can_reopen)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danla\Documents\github\mb_market_data\output\manual_controller_resume_20261024_003115_86e083\coordinator\tests\test_controller_resume.py", line 218, in test_interruption_after_credentials_keeps_failed_attempt_and_new_nonce_can_reopen
+    self.assertEqual(self.f.runs(),1);self.no_secret()
+                                      ^^^^^^^^^^^^^^^^
+  File "C:\Users\danla\Documents\github\mb_market_data\output\manual_controller_resume_20261024_003115_86e083\coordinator\tests\test_controller_resume.py", line 37, in no_secret
+    if p.is_file():self.assertNotIn(SECRET.encode(),p.read_bytes(),str(p))
+                                                    ^^^^^^^^^^^^^^
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\pathlib.py", line 1020, in read_bytes
+    return f.read()
+           ^^^^^^^^
+PermissionError: [Errno 13] Permission denied
+
+----------------------------------------------------------------------
+Ran 59 tests in 80.778s
+
+FAILED (errors=1)
