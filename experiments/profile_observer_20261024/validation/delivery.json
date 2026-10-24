@@ -1,0 +1,23 @@
+{
+  "archive": "/workspace/scratch/78e6acba7246/deliverables/profile_observer_20261024_063842_0ba902.zip",
+  "folder": "profile_observer_20261024_063842_0ba902",
+  "bytes": 353584,
+  "sha256": "f81a0fd8c02516eb9db1fdcba11a19b2393ee70056e2e585890b98949c9e8219",
+  "files": 123,
+  "source_commit": "a61809d355cc6a9d883cd3768e2db4e2d97a35b6",
+  "source_tree": "5bbd54a2c484ba3c44db7c2e9850cf454653f711",
+  "inventory_sha256": "5de125567b0e57c51a5208f381c18e29e86f746209a2cdc7173954a816ab4ab5",
+  "repository_files_matched": 119,
+  "local_tests": 28,
+  "local_passed": 28,
+  "local_seconds": 7.29836085199986,
+  "extracted_tests": 28,
+  "extracted_passed": 28,
+  "extracted_seconds": 7.997871602000487,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "command48_other_runtime_source_files_unchanged": 68,
+  "original_runtime_reference_files_unchanged": 63,
+  "command48_windows_result_retained": "FAILED",
+  "production_access": false,
+  "live_launcher_exposed": false
+}

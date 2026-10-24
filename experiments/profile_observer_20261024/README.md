@@ -65,3 +65,13 @@ checks it against the verifier exit code. A muted verifier stdout, missing
 report or exit/report mismatch cannot conceal the final result. Three focused
 launcher checks are included; an earlier 25-check local/extracted PASS remains
 a development record. No further runtime code changed for this display path.
+
+Final source-pinned extraction passes 28/28, zero skips/errors/failures,
+7.997871602000487s (runner 7.768s). All 119 mapped files match public source
+a61809d355cc6a9d883cd3768e2db4e2d97a35b6 / tree
+5bbd54a2c484ba3c44db7c2e9850cf454653f711. Changed/extra source and bytecode
+are blocked with exit 70 before tests and the inventory is restored.
+Immutable Windows handoff: profile_observer_20261024_063842_0ba902.zip,
+353584 bytes/123 files, SHA-256
+f81a0fd8c02516eb9db1fdcba11a19b2393ee70056e2e585890b98949c9e8219.
+Windows command49 and actual CMD prompt return remain required.
