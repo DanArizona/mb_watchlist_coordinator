@@ -97,3 +97,14 @@ two Windows-only skips). This does not retroactively diagnose every earlier
 failure. The shared accepted runtime and timing gates remain unchanged.
 Unacknowledged committed quotes are reported separately from non-quote provider
 outcomes; neither can silently satisfy a completed goal.
+
+Corrected source-pinned extraction also passes: 42 checks, 40 passed and the
+same two native Windows-only skips, zero failures/errors, 15.885592336999707s
+(runner 15.695s). All 114 mapped repository files match public source
+503b2d5b0f57f95a9da23cf5b9f436e286cea892 / tree
+16a6fcd4174361382dffe6aa843ded31f77c32d1. Changed source, extra source and extra
+bytecode are blocked before tests; the original inventory is restored.
+The new immutable archive is outer_profile_harness_20261024_060918_e5fd3c.zip,
+344201 bytes/118 files, SHA-256
+a6a1f5370b6c31fdc3991e9ec048c224bd0c41e8d8ee174e4ebf5706ca2a673d.
+The first FAILED archive is retained; it is not the Windows handoff.

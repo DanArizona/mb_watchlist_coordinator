@@ -19,9 +19,9 @@
   ],
   "restored_inventory_identical": true,
   "repository_files_matched": 114,
-  "source_commit": "1257db7b1886b95f07b33072f921472679e42dca",
-  "source_tree": "dba2ee15bbefc7f08b379c289c3aa736a834dd04",
-  "inventory_sha256": "95a2b558db668279e46579bdc23e0f537dbc8c38c6bb8b808b7c46bb1114d5c9",
+  "source_commit": "503b2d5b0f57f95a9da23cf5b9f436e286cea892",
+  "source_tree": "16a6fcd4174361382dffe6aa843ded31f77c32d1",
+  "inventory_sha256": "241b9ca72bda09e7b00fd4527910368e7015cf96beae00e292616c367cda14b4",
   "accepted_runtime_reference_files_unchanged": 63,
   "network": "denied",
   "production_access": false
