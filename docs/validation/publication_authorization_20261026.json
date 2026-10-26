@@ -1,0 +1,54 @@
+{
+  "contract": "mb-package-standing-publication-authorization-v1",
+  "date": "2026-10-26",
+  "status": "AUTHORIZED_BY_DIRECT_USER_MESSAGE",
+  "basis": "Direct user message in the Week 2026-10-26 execution chat, following the two earlier automatic-review rejections of retrieved approval records.",
+  "repositories": [
+    "DanArizona/mb_market_data",
+    "DanArizona/mb_watchlist_coordinator",
+    "DanArizona/schwab_watchlists"
+  ],
+  "branches": [
+    "checkpoint/*",
+    "experiment/*"
+  ],
+  "authorized_content": [
+    "project source",
+    "tests",
+    "documentation",
+    "roadmaps",
+    "validation records"
+  ],
+  "authorized_operations": [
+    "ordinary commits",
+    "public publication"
+  ],
+  "included_operational_metadata": [
+    "hostnames",
+    "environment names",
+    "local paths",
+    "PIDs",
+    "symbols",
+    "dates",
+    "timings",
+    "diagnostic results"
+  ],
+  "specifically_included_branch": "experiment/live-hot-path-fix-20261026",
+  "specifically_included_work": "Prepared live Hot path correction and validation records",
+  "per_file_or_routine_commit_reconfirmation_required": false,
+  "duration": "Throughout this chat, including after context compaction or resource interruptions",
+  "excluded_content": [
+    "passwords",
+    "credentials",
+    "tokens",
+    "OAuth redirect URLs",
+    "authorization codes",
+    "private account information"
+  ],
+  "separate_explicit_approval_required": [
+    "main-branch merges",
+    "destructive Git operations",
+    "production changes"
+  ],
+  "mandatory_platform_controls_unchanged": true
+}

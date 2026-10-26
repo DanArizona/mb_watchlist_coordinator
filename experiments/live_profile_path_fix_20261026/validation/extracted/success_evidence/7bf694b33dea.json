@@ -1,0 +1,9 @@
+{
+  "test": "test_live_profile_path_fix.CompactAtomicPathTests.test_managed_worker_registers_progress_and_stops_at_the_recorded_parent_length",
+  "evidence": {
+    "parent_characters": 190,
+    "worker_generation": 1,
+    "owned_exit_observed": true,
+    "provider_requests": 0
+  }
+}
