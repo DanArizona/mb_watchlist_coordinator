@@ -1,0 +1,146 @@
+{
+  "milestone": "October27 opening r0 evening publication and verification",
+  "status": "EVENING_R0_PUBLISHED_AUDITED_REPLAYED",
+  "session_date": "2026-10-27",
+  "source_snapshot_date": "2026-10-26",
+  "basis": "Complete operator-supplied publication, native audit, full immediate replay and actual CMD prompt return. Original Windows saved proposal/database files have not been independently uploaded/read.",
+  "actual_cmd_prompt_return_observed": true,
+  "journal": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\quote_observation_journal_v2_api_opening_2026-10-27\\2026-10-27.sqlite3",
+  "proposal": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_universe_production\\2026-10-27-from-2026-10-26\\opening_hierarchy_r0.json",
+  "publication": {
+    "result": "inserted",
+    "session_date": "2026-10-27",
+    "revision": 0,
+    "published_at_utc": "2026-10-26T20:17:49.116203+00:00",
+    "effective_at_utc": "2026-10-27T13:30:00+00:00",
+    "effective_at_et": "2026-10-27T09:30:00-04:00",
+    "uni": 561,
+    "focus": 0,
+    "hot": 0,
+    "content_sha256": "ca7fc0f251fd47ae559ec0034e4ab65c5fd5bb406c170ec587e97648aabf5e24",
+    "matches_built_proposal": true
+  },
+  "audit": {
+    "result": "PASS",
+    "schema_version": 2,
+    "membership_contract": "nested-uni-focus-hot-v1",
+    "integrity_results": [
+      "ok"
+    ],
+    "table_counts": {
+      "poll_run": 0,
+      "sampling_membership_revision": 1,
+      "sampling_channel_revision": 3,
+      "sampling_channel_member": 561,
+      "poll_slot_skip": 0,
+      "quote_acquisition": 0,
+      "quote_observation": 0
+    },
+    "channels": [
+      {
+        "channel": "focus",
+        "revision_count": 1,
+        "member_rows": 0,
+        "acquisitions": 0,
+        "expected_acquisitions": 0,
+        "skipped": 0,
+        "missing": 0,
+        "observations": 0,
+        "requested_observations": 0,
+        "row_mismatches": 0,
+        "status_counts": {}
+      },
+      {
+        "channel": "hot",
+        "revision_count": 1,
+        "member_rows": 0,
+        "acquisitions": 0,
+        "expected_acquisitions": 0,
+        "skipped": 0,
+        "missing": 0,
+        "observations": 0,
+        "requested_observations": 0,
+        "row_mismatches": 0,
+        "status_counts": {}
+      },
+      {
+        "channel": "uni",
+        "revision_count": 1,
+        "member_rows": 561,
+        "acquisitions": 0,
+        "expected_acquisitions": 0,
+        "skipped": 0,
+        "missing": 0,
+        "observations": 0,
+        "requested_observations": 0,
+        "row_mismatches": 0,
+        "status_counts": {}
+      }
+    ],
+    "storage_display": {
+      "database": "144.0 KiB",
+      "wal": "0 B",
+      "shm": "32.0 KiB",
+      "sqlite_total": "176.0 KiB"
+    }
+  },
+  "replay": {
+    "result": "COMPLETED",
+    "mode": "immediate",
+    "event_limit": null,
+    "events": 1,
+    "revisions": 1,
+    "acquisitions": 0,
+    "observations": 0,
+    "status_counts": {},
+    "first_available_at_et": "2026-10-27T09:30:00-04:00",
+    "last_available_at_et": "2026-10-27T09:30:00-04:00",
+    "wall_seconds": 0.004,
+    "sequence_sha256": "aaae551c075d8c6bc2c0f986cc3932ada99a56543ed90fcefadba16118a22c2a",
+    "final_projection": {
+      "as_of_et": "2026-10-27T09:30:00-04:00",
+      "uni": {
+        "revision": 0,
+        "members": 561,
+        "latest": 0
+      },
+      "focus": {
+        "revision": 0,
+        "members": 0,
+        "latest": 0
+      },
+      "hot": {
+        "revision": 0,
+        "members": 0,
+        "latest": 0
+      },
+      "unique_members": 561,
+      "multi_channel": 0
+    }
+  },
+  "evening_preparation_complete": true,
+  "new_polling_started": false,
+  "new_morning_focus_membership_prepared": false,
+  "new_morning_ov_prepared": false,
+  "production_runtime_changed": false,
+  "production_hot_enabled": false,
+  "already_accepted": {
+    "october26_full_day_acquisitions": 2340,
+    "october26_observations": 493740,
+    "october26_invalid_observations": {
+      "symbol": "PAPL",
+      "count": 780
+    },
+    "october26_monitor_watchdog_shutdown": "COMPLETE",
+    "ordinary_live_profile": "PASS_WITH_WARNINGS",
+    "command56_windows_qualification": "55_OF_55"
+  },
+  "original_recovery_profile_result": "FAILED",
+  "corrected_recovery_profile": "PENDING_NEXT_OPEN_SESSION",
+  "next": [
+    "Normal October27 credential preflight and fresh complete-Uni API OV after09:00 ET, new Focus r1 publication/verification, production poller/monitor starts and opening health.",
+    "Separately invoke the command56-qualified corrected recovery profile from live_recovery_20261026_194232_9fa337 using October27's published r0 and fresh Focus proposal, during a session with the full original window available.",
+    "Review recovery native audit/two fresh replays/fault/15s hold/restart/stop/cleanup/prompt evidence before minimum operating/adoption work; manual membership and agreed read-only Overlay retain scope."
+  ],
+  "no_unchanged_evening_workflow_or_r0_rerun_needed": true
+}

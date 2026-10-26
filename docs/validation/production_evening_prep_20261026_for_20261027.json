@@ -1,6 +1,6 @@
 {
   "milestone": "October26 operational shutdown and fresh October27 opening preparation",
-  "status": "EVENING_BUILD_ACCEPTED_R0_PUBLICATION_PENDING",
+  "status": "EVENING_PREPARATION_COMPLETE_R0_PUBLISHED_AUDITED_REPLAYED",
   "session_date": "2026-10-26",
   "target_date": "2026-10-27",
   "basis": "Complete operator-supplied four-stage daily-universe console/final PASS and actual CMD prompt, read-only invalid-symbol query, dated monitor stop request and separate prod-health monitor/watchdog shutdown with actual CMD prompt. Original saved Windows artifacts were not independently uploaded/read.",
@@ -122,9 +122,23 @@
     "hot": 0,
     "content_sha256": "ca7fc0f251fd47ae559ec0034e4ab65c5fd5bb406c170ec587e97648aabf5e24",
     "proposal": "opening_hierarchy_r0.json",
-    "publication": "PENDING",
-    "native_audit": "PENDING",
-    "complete_replay": "PENDING"
+    "publication": "VERIFIED_INSERTED",
+    "native_audit": "PASS",
+    "complete_replay": "COMPLETED",
+    "publication_receipt": {
+      "result": "inserted",
+      "session_date": "2026-10-27",
+      "revision": 0,
+      "published_at_utc": "2026-10-26T20:17:49.116203+00:00",
+      "effective_at_utc": "2026-10-27T13:30:00+00:00",
+      "effective_at_et": "2026-10-27T09:30:00-04:00",
+      "uni": 561,
+      "focus": 0,
+      "hot": 0,
+      "content_sha256": "ca7fc0f251fd47ae559ec0034e4ab65c5fd5bb406c170ec587e97648aabf5e24",
+      "matches_built_proposal": true
+    },
+    "replay_sequence_sha256": "aaae551c075d8c6bc2c0f986cc3932ada99a56543ed90fcefadba16118a22c2a"
   },
   "workflow_result": "PASS",
   "workflow_manifest": "workflow_manifest.json",
@@ -160,8 +174,9 @@
   "production_runtime_changed": false,
   "production_hot_enabled": false,
   "next": [
-    "Publish the reviewed October27 r0 proposal into the new dated schema-v2 journal, then native audit and full immediate replay; verify the exact proposal content hash.",
-    "October27 normal credential preflight, complete-Uni post09:00 ET API OV, fresh Focus r1, production poller/monitor starts and opening health.",
-    "Separately invoke the command56-qualified corrected recovery profile with correctly dated opening/Focus inputs and original limits. Minimum adoption, manual membership and agreed read-only Overlay remain in scope."
-  ]
+    "Normal October27 credential preflight and fresh complete-Uni API OV after09:00 ET, new Focus r1 publication/verification, production poller/monitor starts and opening health.",
+    "Separately invoke the command56-qualified corrected recovery profile from live_recovery_20261026_194232_9fa337 using October27's published r0 and fresh Focus proposal, during a session with the full original window available.",
+    "Review recovery native audit/two fresh replays/fault/15s hold/restart/stop/cleanup/prompt evidence before minimum operating/adoption work; manual membership and agreed read-only Overlay retain scope."
+  ],
+  "evening_preparation_complete": true
 }

@@ -204,8 +204,9 @@
     "source_snapshot_date": "2026-10-26",
     "fresh_post_close_directory_and_snapshot": "ACCEPTED",
     "r0_build": "PASS_561_0_0",
-    "r0_publication_audit_replay": "PENDING",
-    "morning_api_ov_and_focus": "PENDING"
+    "r0_publication_audit_replay": "VERIFIED",
+    "morning_api_ov_and_focus": "PENDING",
+    "evening_preparation_complete": true
   },
   "experimental_hot": {
     "ordinary_profile_result": "PASS_WITH_WARNINGS",
@@ -215,8 +216,8 @@
     "production_hot_enabled": false
   },
   "next": [
-    "Publish the reviewed October27 r0 proposal into the new dated schema-v2 journal, then native audit and full immediate replay; verify the exact proposal content hash.",
-    "October27 normal credential preflight, complete-Uni post09:00 ET API OV, fresh Focus r1, production poller/monitor starts and opening health.",
-    "Separately invoke the command56-qualified corrected recovery profile with correctly dated opening/Focus inputs and original limits. Minimum adoption, manual membership and agreed read-only Overlay remain in scope."
+    "Normal October27 credential preflight and fresh complete-Uni API OV after09:00 ET, new Focus r1 publication/verification, production poller/monitor starts and opening health.",
+    "Separately invoke the command56-qualified corrected recovery profile from live_recovery_20261026_194232_9fa337 using October27's published r0 and fresh Focus proposal, during a session with the full original window available.",
+    "Review recovery native audit/two fresh replays/fault/15s hold/restart/stop/cleanup/prompt evidence before minimum operating/adoption work; manual membership and agreed read-only Overlay retain scope."
   ]
 }
