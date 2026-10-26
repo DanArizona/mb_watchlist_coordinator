@@ -1,0 +1,167 @@
+{
+  "milestone": "October26 operational shutdown and fresh October27 opening preparation",
+  "status": "EVENING_BUILD_ACCEPTED_R0_PUBLICATION_PENDING",
+  "session_date": "2026-10-26",
+  "target_date": "2026-10-27",
+  "basis": "Complete operator-supplied four-stage daily-universe console/final PASS and actual CMD prompt, read-only invalid-symbol query, dated monitor stop request and separate prod-health monitor/watchdog shutdown with actual CMD prompt. Original saved Windows artifacts were not independently uploaded/read.",
+  "actual_workflow_cmd_prompt_return_observed": true,
+  "workflow_root": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_universe_production\\2026-10-27-from-2026-10-26",
+  "command": {
+    "script": "probes/run_daily_universe_production.py",
+    "session_date": "2026-10-26",
+    "target_date": "2026-10-27",
+    "immediate_journal_publication_requested": false
+  },
+  "directory": {
+    "result": "COMPLETED",
+    "retrieved_at_et": "2026-10-26T16:09:59.168116-04:00",
+    "bytes": {
+      "nasdaq": 349192,
+      "other": 543170
+    },
+    "file_creation_time": {
+      "nasdaq": "1026202615:41",
+      "other": "1026202615:41"
+    },
+    "records": {
+      "nasdaq": 5625,
+      "other": 7673,
+      "total": 13298,
+      "test_issues": 37,
+      "etfs": 5784,
+      "preliminary_candidates": 7479
+    },
+    "listing_exchange_counts": {
+      "Cboe BZX": 1679,
+      "IEX": 3,
+      "NASDAQ": 5625,
+      "NYSE": 2899,
+      "NYSE American": 315,
+      "NYSE Arca": 2750,
+      "UNKNOWN": 27
+    },
+    "nasdaq_market_category_counts": {
+      "G": 2508,
+      "Q": 1443,
+      "S": 1674
+    },
+    "nasdaq_financial_status_counts": {
+      "D": 320,
+      "E": 17,
+      "H": 6,
+      "N": 5282
+    },
+    "evidence_files": [
+      "symbol_directory/nasdaqlisted.txt",
+      "symbol_directory/otherlisted.txt",
+      "symbol_directory/normalized_all.csv",
+      "symbol_directory/candidate_non_etf_non_test.csv",
+      "symbol_directory/manifest.json"
+    ]
+  },
+  "post_close_snapshot": {
+    "result": "PASS",
+    "gate": "same-et-date-post-close-v1",
+    "validated_at_et": "2026-10-26T16:10:01.614489-04:00",
+    "volume_semantics": "Current-session cumulative volume accepted as completed-session evidence only when acquired on session_date at or after 16:00 ET",
+    "encrypted_configuration_accepted": true,
+    "credential_values_retained": false,
+    "candidates": 7479,
+    "batch_size": 400,
+    "requests": 19,
+    "statuses": {
+      "invalid": 532,
+      "quote": 6947
+    },
+    "session_matches": {
+      "false": 587,
+      "missing": 532,
+      "true": 6360
+    },
+    "evidence_files": [
+      "market_snapshot/market_data_snapshot.csv",
+      "market_snapshot/quote_acquisition.json",
+      "market_snapshot/manifest.json"
+    ],
+    "qualification_limit": "Snapshot PASS does not mean every candidate returned a valid quote or same-session trade; exclusions and invalid outcomes remain in source evidence."
+  },
+  "universe": {
+    "result": "PASS",
+    "source_symbols": 13298,
+    "included": 561,
+    "rejected": 12737,
+    "reason_counts": {
+      "etf": 5784,
+      "market_cap_above_max": 5015,
+      "missing_shares_outstanding": 1487,
+      "volume_below_min": 1357,
+      "regular_trade_not_in_session": 587,
+      "included": 561,
+      "acquisition_invalid": 532,
+      "missing_regular_market_trade_time": 532,
+      "missing_volume": 532,
+      "missing_close": 532,
+      "market_cap_below_min": 252,
+      "close_below_min": 177,
+      "test_issue": 37
+    },
+    "reason_counts_are_independent": true,
+    "evidence_files": [
+      "universe/decision_ledger.csv",
+      "universe/uni_watchlist.csv",
+      "universe/manifest.json"
+    ]
+  },
+  "opening_r0": {
+    "result": "PASS",
+    "session_date": "2026-10-27",
+    "revision": 0,
+    "effective_at_et": "2026-10-27T09:30:00-04:00",
+    "uni": 561,
+    "focus": 0,
+    "hot": 0,
+    "content_sha256": "ca7fc0f251fd47ae559ec0034e4ab65c5fd5bb406c170ec587e97648aabf5e24",
+    "proposal": "opening_hierarchy_r0.json",
+    "publication": "PENDING",
+    "native_audit": "PENDING",
+    "complete_replay": "PENDING"
+  },
+  "workflow_result": "PASS",
+  "workflow_manifest": "workflow_manifest.json",
+  "production_invalid_followup": {
+    "symbol": "PAPL",
+    "status": "invalid",
+    "observations": 780,
+    "read_only_query": true,
+    "new_provider_requests": 0,
+    "provider_detail": "NOT_SUPPLIED"
+  },
+  "production_monitor_shutdown": {
+    "dated_stop_request_issued": true,
+    "monitor_exit_observed": true,
+    "watchdog_exit_observed": true,
+    "actual_prod_health_prompt_return_confirmed": true,
+    "status": "COMPLETE",
+    "receipt": "Monitor stop requested for 2026-10-26. Pollers and journal unchanged.",
+    "observed_console": [
+      "Monitor stopped by stop request. Pollers and journal unchanged.",
+      "Monitor watchdog stopped by stop request. Pollers and journal unchanged."
+    ],
+    "basis": "Operator supplied the separate prod-health shutdown lines and actual CMD prompt."
+  },
+  "target_journal": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\quote_observation_journal_v2_api_opening_2026-10-27\\2026-10-27.sqlite3",
+  "morning_focus_membership_prepared": false,
+  "morning_ov_prepared": false,
+  "target_session_ready": false,
+  "existing_ordinary_profile_acceptance": "PASS_WITH_WARNINGS",
+  "original_recovery_profile_result": "FAILED",
+  "command56_windows_acceptance": "55_OF_55",
+  "corrected_live_recovery": "PENDING_NEXT_OPEN_SESSION",
+  "production_runtime_changed": false,
+  "production_hot_enabled": false,
+  "next": [
+    "Publish the reviewed October27 r0 proposal into the new dated schema-v2 journal, then native audit and full immediate replay; verify the exact proposal content hash.",
+    "October27 normal credential preflight, complete-Uni post09:00 ET API OV, fresh Focus r1, production poller/monitor starts and opening health.",
+    "Separately invoke the command56-qualified corrected recovery profile with correctly dated opening/Focus inputs and original limits. Minimum adoption, manual membership and agreed read-only Overlay remain in scope."
+  ]
+}

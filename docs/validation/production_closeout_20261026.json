@@ -1,6 +1,6 @@
 {
   "milestone": "October 26 production acquisition closeout",
-  "status": "FULL_SESSION_ACQUISITION_ACCEPTED_WITH_RECORDED_INVALID_OBSERVATIONS",
+  "status": "FULL_SESSION_ACQUISITION_AND_OPERATIONAL_CLOSEOUT_ACCEPTED_WITH_RECORDED_INVALID_OBSERVATIONS",
   "session_date": "2026-10-26",
   "journal": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\quote_observation_journal_v2_api_opening_2026-10-26\\2026-10-26.sqlite3",
   "basis": "Complete operator-supplied final health, full native audit, complete immediate replay and actual CMD prompt return. Original Windows database/evidence files have not been independently uploaded/read.",
@@ -174,22 +174,36 @@
     "all_observations_quote": false,
     "invalid_observations_retained": 780,
     "latest_uni_invalid_members": 1,
-    "affected_symbols": "NOT_SUPPLIED; read-only grouping query is the next diagnostic. Matching 780/780 counts alone do not prove the same symbol was invalid all day.",
+    "affected_symbols": [
+      {
+        "symbol": "PAPL",
+        "status": "invalid",
+        "observations": 780
+      }
+    ],
     "acquisition_coverage_complete": true,
-    "invalid_outcomes_are_not_missing_poll_slots": true
+    "invalid_outcomes_are_not_missing_poll_slots": true,
+    "affected_symbols_initially_not_supplied": true,
+    "invalid_symbol_followup_basis": "Operator read-only SQLite query grouped every non-quote observation by symbol/status and returned only PAPL invalid 780; combined with zero invalid Focus outcomes and one observation per acquisition/symbol, this accounts for all 780 Uni acquisitions. Provider explanation was not supplied."
   },
   "monitor_shutdown": {
-    "dated_stop_request_issued": false,
-    "monitor_exit_observed": false,
-    "watchdog_exit_observed": false,
-    "actual_prod_health_prompt_return_confirmed": false,
-    "status": "PENDING"
+    "dated_stop_request_issued": true,
+    "monitor_exit_observed": true,
+    "watchdog_exit_observed": true,
+    "actual_prod_health_prompt_return_confirmed": true,
+    "status": "COMPLETE",
+    "receipt": "Monitor stop requested for 2026-10-26. Pollers and journal unchanged.",
+    "observed_console": [
+      "Monitor stopped by stop request. Pollers and journal unchanged.",
+      "Monitor watchdog stopped by stop request. Pollers and journal unchanged."
+    ],
+    "basis": "Operator supplied the separate prod-health shutdown lines and actual CMD prompt."
   },
   "next_session": {
     "session_date": "2026-10-27",
     "source_snapshot_date": "2026-10-26",
-    "fresh_post_close_directory_and_snapshot": "PENDING",
-    "r0_build": "PENDING",
+    "fresh_post_close_directory_and_snapshot": "ACCEPTED",
+    "r0_build": "PASS_561_0_0",
     "r0_publication_audit_replay": "PENDING",
     "morning_api_ov_and_focus": "PENDING"
   },
@@ -201,9 +215,8 @@
     "production_hot_enabled": false
   },
   "next": [
-    "Issue the existing dated stop-monitor request and confirm the separate prod-health monitor/watchdog output and actual CMD prompt return.",
-    "Read-only saved-journal invalid-symbol/status counts, without a new API request or journal mutation.",
-    "Run the existing immutable October26 post-close daily-universe workflow targeting October27; review its four-stage result and proposal before separate r0 publication/audit/replay.",
-    "Next session fresh credential/complete-Uni API OV/Focus/production health, then separately invoke the corrected bounded recovery profile using correctly dated proposals and original limits. Manual membership and agreed read-only Overlay remain in scope."
+    "Publish the reviewed October27 r0 proposal into the new dated schema-v2 journal, then native audit and full immediate replay; verify the exact proposal content hash.",
+    "October27 normal credential preflight, complete-Uni post09:00 ET API OV, fresh Focus r1, production poller/monitor starts and opening health.",
+    "Separately invoke the command56-qualified corrected recovery profile with correctly dated opening/Focus inputs and original limits. Minimum adoption, manual membership and agreed read-only Overlay remain in scope."
   ]
 }
