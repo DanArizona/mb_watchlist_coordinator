@@ -1,0 +1,11 @@
+{
+  "test": "test_live_recovery_boundaries.RecoveryDeliveryTests.test_real_pending_recovery_commands_wait_without_identity_or_hot_publication",
+  "evidence": {
+    "queued_commands": 1,
+    "pending_commands_retained": 1,
+    "identity_permits_before_cutover": 0,
+    "hot_members_before_cutover": [],
+    "quote_calls_before_cutover": 0,
+    "policy_scope": "owned_worker_recovery only; ordinary delivery unchanged"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "archive": "/workspace/scratch/6ce939acb4eb/deliverables/live_recovery_20261026_194232_9fa337.zip",
+  "folder": "live_recovery_20261026_194232_9fa337",
+  "bytes": 587566,
+  "sha256": "bba8c8f19debeb50016be5cb4d69bf6a3444030a79cb6b67c5b1e0864b6b7590",
+  "files": 182,
+  "inventory_sha256": "f09b4e4d7e907b40c251a4adac11bc4b05f6fb3689019e856fc35672ec5c28dc",
+  "local_build_commit": "70d9e3dd9eda11745085811d1289f38cf1bea145",
+  "source_commit": "37ef5cb8ed0b5b88a74400ede791e7dc37e4b22b",
+  "source_tree": "693d909cea8a138981b91d318a10c8efd1fd0716",
+  "source_tree_unchanged_on_publication": true,
+  "repository_files_matched": 176,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "live_profiles_run_with_correction": false,
+  "production_access": false,
+  "prior_failed_results_retained": true,
+  "ordinary_live_profile_result_retained": "PASS_WITH_WARNINGS",
+  "original_recovery_command52_result": "FAILED",
+  "embedded_elapsed_native_snapshot": {
+    "archive": "/workspace/scratch/6ce939acb4eb/deliverables/elapsed_recovery_native_snapshot_20261026.zip",
+    "bytes": 113613,
+    "files": 52,
+    "sha256": "b95c103f06c15fc818182198c79a23657c8f0914cf802daa65fab8fef67850c5",
+    "quiescent_source_files_verified": 51,
+    "immutable": true
+  },
+  "extracted_qualification": {
+    "result": "PASS",
+    "tests": 55,
+    "passed": 55,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 21.922193346999848
+  },
+  "source_guard_checks": [
+    {
+      "case": "changed_source",
+      "returncode": 70,
+      "blocked_before_import_and_tests": true
+    },
+    {
+      "case": "extra_source",
+      "returncode": 70,
+      "blocked_before_import_and_tests": true
+    },
+    {
+      "case": "extra_bytecode",
+      "returncode": 70,
+      "blocked_before_import_and_tests": true
+    }
+  ],
+  "restored_inventory_identical": true
+}
