@@ -1,0 +1,21 @@
+{
+  "archive": "/workspace/scratch/6ce939acb4eb/deliverables/elapsed_boundary_native_snapshot_20261026.zip",
+  "sha256": "4f27a5129cc8bc3c1f167d553372da396f840825fec54695d488f2aa7dab942c",
+  "files": 44,
+  "bytes": 99447,
+  "all_owned_work_stopped": true,
+  "result": "PASS",
+  "outer_result": "PASS_WITH_WARNINGS",
+  "elapsed_seconds": 255.22293342099965,
+  "native_quote_acquisitions": 54,
+  "native_empty_skips": 24,
+  "goals": {
+    "after_cutover": 30,
+    "goal_complete": true
+  },
+  "raw_native_audit_passed": true,
+  "missing_slot_ids": [],
+  "scope": "Elapsed original >=60s preparation and 720s window; synthetic credential/directory/feed/quote APIs, original >=60s completed-at feed pacing, owned authenticated native worker, actual 30-post-cutover goal, original raw audit and two fresh replays. Date/time offset is fixed; elapsed durations and slot cadence are not compressed. Not a live provider/production qualification.",
+  "actual_vault_access": false,
+  "production_access": false
+}

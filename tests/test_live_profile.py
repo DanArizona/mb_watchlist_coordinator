@@ -90,7 +90,10 @@ class ControllerTests(unittest.TestCase):
             secure_api=FakeAPI(self.value['settings']['experiment_root'],self.events,mode=mode),
             catalog_acquirer=lambda **kw:catalog(self.now),verify_source=lambda *a:None,on_stage=stage)
         args.update(kw)
-        return run_controller(self.value,self.path,self.sha,io.BytesIO(frame),**args)
+        # This unit suite checks controller/bootstrap ordering without launching
+        # a worker. The affected process suite exercises real preparation.
+        with patch('mb_watchlist_coordinator.integrated_runtime.IntegratedRuntime.prepare_worker'):
+            return run_controller(self.value,self.path,self.sha,io.BytesIO(frame),**args)
     def scan(self):
         from saved_artifact_scan import scan_saved_artifacts
         scan_saved_artifacts(self.root,(SECRET.encode(),))

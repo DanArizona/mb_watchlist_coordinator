@@ -1,0 +1,228 @@
+{
+  "contract": "operator-console-live-profile-failure-v1",
+  "session_date": "2026-10-26",
+  "command": "51_run_ordinary_live_profile.cmd",
+  "profile": "ordinary",
+  "result": "FAILED",
+  "run_root": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\live_path_fix_20261026_153645_e472cf\\runs\\profile_20261026T160816Z_15ec8eda",
+  "source_commit": "ed4853fef8efe53f58901e12ccd3a89a9d604d73",
+  "source_tree": "5ef125233aa10bafcc49a00f03540de1d9a395c0",
+  "windows_qualification_checkpoint": "52d29ffdf3e9fb7ff9cb76601fb71b96ec09886e",
+  "basis": "Complete supplied launcher summary, native-profile-report, runtime-stop, profile state and production-health console, plus actual CMD prompt return. Original Windows saved files have not been independently uploaded/read.",
+  "original_failed_verdict_retained": true,
+  "actual_cmd_prompt_return_observed": true,
+  "outer": {
+    "nonce": "15ec8eda862a4d63a5a2abf8bc890995",
+    "stop_reason": "operator_stop",
+    "controller_phase": "ACTIVE",
+    "acquisition_stop_requested_at_utc": "2026-10-26T16:13:18.216868+00:00",
+    "controller_cleanup": "EXIT_OBSERVED",
+    "controller_returncode": 0,
+    "controller_scope_empty_observed": true,
+    "controller_forced": false,
+    "reporter_cleanup": "EXIT_OBSERVED",
+    "reporter_returncode": 0,
+    "reporter_scope_empty_observed": true,
+    "reporter_forced": false,
+    "reporting_complete": true,
+    "stop_receipt_saved": true,
+    "failure": null,
+    "result": "FAILED",
+    "profile_evidence_result": "FAILED",
+    "production_access": false
+  },
+  "stop_request_origin": "native_budget_exhausted",
+  "runtime_stop": {
+    "acquisition_stop_requested_at_utc": "2026-10-26T16:13:18.073275+00:00",
+    "cleanup_findings": [],
+    "contract": "fresh-authenticated-nasdaq-hot-runtime-v1",
+    "counts_verified": true,
+    "full_manual_controller_resume": false,
+    "hot_quote_permits": 60,
+    "identity_quote_permits": 1,
+    "production_access": false,
+    "profile_verdict": "NOT_QUALIFIED_BY_RUNTIME_PUMP",
+    "reason": "native_budget_exhausted",
+    "selected_symbol": "RIBB",
+    "status": "STOPPED"
+  },
+  "native_report": {
+    "audited_at_utc": "2026-10-26T16:13:18.216868+00:00",
+    "contract": "bounded-hot-profile-native-evidence-v1",
+    "controller_stop_requested_at_utc": "2026-10-26T16:13:18.222890+00:00",
+    "credential_access": false,
+    "facts_sha256": "9ed2ba5393f631f222d63382bdaf01a35d03d845545ab9e5856fc3ace3c409e1",
+    "goals": {
+      "after_cutover": 31,
+      "goal_complete": true
+    },
+    "identical_fresh_replays": true,
+    "intentional_outage_missing_slot_ids": [],
+    "missing_slot_ids": [
+      "hot:2026-10-26T12:09:28-04:00",
+      "hot:2026-10-26T12:13:18-04:00"
+    ],
+    "non_quote_acquisition_ids": [],
+    "outer_nonce": "15ec8eda862a4d63a5a2abf8bc890995",
+    "outer_stop_requested_at_utc": "2026-10-26T16:13:18.216868+00:00",
+    "preflight_configuration_sha256": "c19352d219816a64ee73ca9c9df8b8e6559600f94de591683375a9240f22ca10",
+    "production_access": false,
+    "profile": "ordinary",
+    "raw_native_audit_passed": false,
+    "replays": [
+      {
+        "events": 62,
+        "sha256": "69256d9210a7a957be611502743ac3bb39b3db84cdf92e4db52266b75190a6a2"
+      },
+      {
+        "events": 62,
+        "sha256": "69256d9210a7a957be611502743ac3bb39b3db84cdf92e4db52266b75190a6a2"
+      }
+    ],
+    "reporting_read_only": true,
+    "result": "FAILED",
+    "runtime_sha256": "c8ba420d360d02dd7e6cd62887396c93c86fa31d99b411d0385329fbe7067e13",
+    "source_reasons": [
+      "intermediate_feed_mutations_not_reconstructible",
+      "older_unknown_carryovers_not_proven_complete",
+      "provider_collector_driver_qualification_pending"
+    ],
+    "source_reconciled": true,
+    "unacknowledged_acquisition_ids": [],
+    "unexplained_missing_slot_ids": [
+      "hot:2026-10-26T12:09:28-04:00",
+      "hot:2026-10-26T12:13:18-04:00"
+    ]
+  },
+  "raw_native_audit_summary": {
+    "integrity_results": [
+      "ok"
+    ],
+    "schema_version": 2,
+    "membership_contract": "nested-uni-focus-hot-v1",
+    "session_date": "2026-10-26",
+    "table_counts": {
+      "poll_run": 2,
+      "poll_slot_skip": 31,
+      "quote_acquisition": 60,
+      "quote_observation": 60,
+      "sampling_channel_member": 1189,
+      "sampling_channel_revision": 6,
+      "sampling_membership_revision": 2
+    },
+    "hot": {
+      "acquisition_count": 60,
+      "expected_slot_count": 93,
+      "member_rows": 1,
+      "missing_slot_ids": [
+        "hot:2026-10-26T12:09:28-04:00",
+        "hot:2026-10-26T12:13:18-04:00"
+      ],
+      "observation_count": 60,
+      "requested_symbol_count": 60,
+      "revision_count": 2,
+      "row_count_mismatch_ids": [],
+      "skipped_slot_count": 31,
+      "status_counts": {
+        "quote": 60
+      }
+    },
+    "uni_member_rows": 1107,
+    "focus_member_rows": 81,
+    "findings": [
+      {
+        "code": "missing_poll_slots",
+        "detail": "hot: 2 configured slots have neither an acquisition nor an empty-membership skip"
+      }
+    ],
+    "window_start_et": "2026-10-26T12:09:27-04:00",
+    "window_end_et": "2026-10-26T12:21:27-04:00",
+    "poll_run_started_at_utc": [
+      "2026-10-26T16:08:29.283128Z",
+      "2026-10-26T16:09:28.820600Z"
+    ],
+    "storage_bytes": {
+      "database": 520192,
+      "shm": 32768,
+      "wal": 0
+    }
+  },
+  "profile_state": {
+    "binding": {
+      "contract": "bounded-hot-profile-state-v1",
+      "profile": "ordinary",
+      "runtime_sha256": "c8ba420d360d02dd7e6cd62887396c93c86fa31d99b411d0385329fbe7067e13",
+      "start_at_utc": "2026-10-26T16:09:27+00:00",
+      "stop_at_utc": "2026-10-26T16:21:27+00:00"
+    },
+    "events": [
+      {
+        "at_utc": "2026-10-26T16:12:03.145113+00:00",
+        "data": {
+          "at_utc": "2026-10-26T16:11:58.031878+00:00",
+          "attempt_id": "8c011d35d4d442d38a8af42a7bd91b94",
+          "feed_head_sha256": "7bf95df80f2295a10c7c54b6849b007d32ae0aa67a02ce6d4ff5d3012a01b53e"
+        },
+        "kind": "cutover",
+        "previous_sha256": "4af6dad9cc49424e43e1b7fbfaad5366632817a65e2dc9c985020799096e3cce",
+        "sequence": 1,
+        "sha256": "6871e01f236e52679bcc46dd751a6784b3cabfc3499a00c34e768bcde57a530a"
+      },
+      {
+        "at_utc": "2026-10-26T16:13:18.222890+00:00",
+        "data": {
+          "reason": "operator_stop",
+          "requested_at_utc": "2026-10-26T16:13:18.222890+00:00"
+        },
+        "kind": "stop",
+        "previous_sha256": "6871e01f236e52679bcc46dd751a6784b3cabfc3499a00c34e768bcde57a530a",
+        "sequence": 2,
+        "sha256": "f6bff590f834971f71d9fe74f9ab2fe4c3ee6e7c6744d99ee28f2044bb3e9803"
+      }
+    ]
+  },
+  "production_health": {
+    "as_of_et": "2026-10-26T12:24:47-04:00",
+    "uni": {
+      "status": "RUNNING",
+      "pid": 24288,
+      "acquisitions": 350,
+      "members": 553,
+      "missing_after_grace": 0,
+      "empty_skips": 0,
+      "last_slot_et": "12:24:30"
+    },
+    "focus": {
+      "status": "RUNNING",
+      "pid": 28200,
+      "acquisitions": 699,
+      "members": 40,
+      "missing_after_grace": 0,
+      "empty_skips": 0,
+      "last_slot_et": "12:24:35"
+    }
+  },
+  "accepted_within_scope": {
+    "live_automatic_experiment_selected_symbol": "RIBB",
+    "valid_committed_acknowledged_hot_quotes": 60,
+    "valid_post_cutover_hot_quotes": 31,
+    "ordinary_quote_goal_demonstrated": true,
+    "complete_ordinary_profile_accepted": false
+  },
+  "diagnosis": {
+    "first_expected_slot_et": "12:09:28",
+    "worker_native_run_registered_et": "12:09:28.820600",
+    "startup_gap": "Worker preparation occurred after T0 and missed first eligible slot.",
+    "terminal_gap": "Quote cap stopped worker; outer audit endpoint crossed the next slot while controller completed its turn.",
+    "cutover_fact_to_profile_receipt_seconds": 5.113235,
+    "late_goal_detection": "Final evidence reaches 31 after cutover; active controller stopped on budget before emitting GOAL_COMPLETE. Timing contributions have not been independently measured on Windows."
+  },
+  "limits_relaxed": false,
+  "production_hot_enabled": false,
+  "recovery_profile_run": false,
+  "next": [
+    "Focused boundary correction and its Windows qualification.",
+    "Fresh health and separate corrected ordinary invocation; preserve both earlier FAILED runs.",
+    "Ordinary full evidence review before recovery command52."
+  ]
+}

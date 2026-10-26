@@ -175,6 +175,9 @@ def run_controller(value, launch_path, launch_sha256, stream, *, clock=None,
             worker_command=command_factory(value, launch_path, launch_sha256), clock=clock,
             stop_requested=lambda: (outer/'STOP.json').exists())
         runtime.initialize(); profile = BoundProfile(runtime, plan.settings.profile)
+        if on_stage: on_stage('runtime_initialized')
+        runtime.prepare_worker(sleep=sleep)
+        if on_stage: on_stage('worker_prepared')
         status('ACTIVE'); phase = 'profile'
         if on_stage: on_stage('runtime_ready')
         while not (outer/'STOP.json').exists():

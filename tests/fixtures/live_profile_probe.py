@@ -31,7 +31,9 @@ if role=='worker':
     import mb_watchlist_coordinator.supervised_hot_worker as supervised
     import mb_market_data.schwab_quotes as quotes
     import mb_watchlist_coordinator.hot_recovery_collector as native
-    raw=json.loads(clock_path.read_text());clock=Clock(raw['logical']);clock.real=timestamp(raw['real'])
+    def clock():
+        raw=json.loads(clock_path.read_text())
+        return timestamp(raw['logical'])+(datetime.now(timezone.utc)-timestamp(raw['real']))
     class QuoteClock(datetime):
         @classmethod
         def now(cls,tz=None):return clock().astimezone(tz or timezone.utc)
@@ -55,6 +57,7 @@ def factory(t):
     client=ScriptedFeed(t);feed.append(client);return client
 def stage(name):
     stages.append(name);atomic_json(parent/'stages.json',stages)
+    if name=='runtime_initialized':clock.save(clock_path)
     if name=='runtime_ready':
         t=feed[0].transport;plan=live.validate_configuration(value,sha,verify_source=lambda *a:None)
         start=timestamp(plan.public['start_at_utc'])

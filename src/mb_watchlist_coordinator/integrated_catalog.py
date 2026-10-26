@@ -82,6 +82,10 @@ class DirectoryCatalog:
         self.receipts = freeze(receipts)
         self.path = None
         self._build()
+        self._parsed_bodies = dict(self.bodies)
+        self._parsed_receipts, self._parsed_public = self.receipts, self.public
+        self._parsed_id, self._parsed_symbols = self.catalog_id, self.symbols
+        self._validated_path, self._artifact_bytes = None, None
 
     def _build(self):
         rows, sources = [], {}
@@ -134,7 +138,8 @@ class DirectoryCatalog:
         meta = folder/'catalog.json'
         if meta.stat().st_size > 2*MAX_BYTES:
             raise CatalogError('catalog_artifacts_invalid')
-        value = strict_json(meta.read_text(encoding='utf-8'))
+        metadata_bytes = meta.read_bytes()
+        value = strict_json(metadata_bytes.decode('utf-8'))
         if set(value) != {'catalog_id', 'receipts', 'public'}:
             raise CatalogError('catalog_artifacts_invalid')
         bodies = {}
@@ -147,13 +152,31 @@ class DirectoryCatalog:
         if result.catalog_id != value['catalog_id'] or canonical(result.public) != canonical(value['public']):
             raise CatalogError('catalog_artifacts_changed')
         result.path = folder.resolve()
+        result._validated_path = result.path
+        result._artifact_bytes = {'catalog.json': metadata_bytes,
+            **{label+'.txt': raw for label, raw in bodies.items()}}
         return result
 
     def validate(self):
-        fresh = self.load(self.path) if self.path else DirectoryCatalog(self.bodies, self.receipts)
-        if fresh.catalog_id != self.catalog_id or fresh.symbols != self.symbols:
+        # Parsed fields are immutable. Re-read ALL persisted bytes on every
+        # validation; equality with the already fully parsed bytes proves the
+        # same facts without rebuilding thousands of directory rows per pump.
+        # No mtime/size-only cache or relaxed identity/freshness check is used.
+        if (self.bodies != self._parsed_bodies or self.receipts is not self._parsed_receipts
+                or self.public is not self._parsed_public or self.catalog_id != self._parsed_id
+                or self.symbols != self._parsed_symbols or self.path != self._validated_path):
             raise CatalogError('catalog_changed')
-        return fresh
+        if self.path is not None:
+            folder = self.path
+            if (folder.is_symlink() or not folder.is_dir()
+                    or {p.name for p in folder.iterdir()} != set(self._artifact_bytes)
+                    or any(p.is_symlink() or not p.is_file() for p in folder.iterdir())):
+                raise CatalogError('catalog_artifacts_invalid')
+            for name, expected in self._artifact_bytes.items():
+                path = folder/name
+                if path.stat().st_size != len(expected) or path.read_bytes() != expected:
+                    raise CatalogError('catalog_artifacts_changed')
+        return self
 
 
 def _stop(child):

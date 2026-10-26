@@ -115,6 +115,23 @@ class BoundProfile:
     def step(self, *, synthetic=None):
         r=self.runtime;events=self._events()
         if 'stop' in events:return {'status':'STOPPED','profile':self.profile}
+        # Observe a previously established goal BEFORE starting another source
+        # /Coordinator turn. Only the existing committed/ACKed prefix counts;
+        # final reporting still verifies the original cutover and raw audit.
+        if not r.closed and 'cutover' in events:
+            from mb_market_data.sampling_acquisition import AcquisitionBusy
+            from .profile_observation import ObservationPending
+            try:
+                facts,state=self.facts(active=True)
+            except (AcquisitionBusy,ObservationPending):
+                return {'status':'OBSERVING','profile':self.profile,'native_snapshot_pending':True}
+            counts=goal_counts(self.profile,facts,
+                cutover_at_utc=events['cutover']['data']['at_utc'],
+                fault=events.get('fault',{}).get('data'),restart=events.get('restart',{}).get('data'))
+            if counts['goal_complete']:
+                return {'status':'GOAL_COMPLETE','profile':self.profile,'counts':counts,
+                    'source_reconciled':bool((r.last_report or {}).get('discovery_scope_reconciled')),
+                    'native_pending':state['pending'] is not None}
         report=r.step(synthetic=synthetic)
         if r.closed:return {'status':'RUNTIME_STOPPED','runtime_reason':report.get('reason')}
         events=self._events()

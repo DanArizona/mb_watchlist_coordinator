@@ -35,7 +35,14 @@ def main():
             expected = str(Path(value['settings']['experiment_root'])/'authenticated-worker.json')
             if sys.argv[4] != expected: return 70
             from mb_watchlist_coordinator.supervised_hot_worker import run_supervised
-            run_supervised(sys.argv[4], sys.argv[5]); return 0
+            result = run_supervised(sys.argv[4], sys.argv[5])
+            if isinstance(result, dict) and result.get('status') == 'budget_exhausted':
+                # The exact bound worker has stopped provider work. Notify the
+                # independent outer owner immediately rather than waiting for
+                # the next potentially expensive Coordinator cycle.
+                from mb_watchlist_coordinator.live_profile import request_stop
+                request_stop(value, sha, 'native_budget_exhausted')
+            return 0
         return 64
     except KeyboardInterrupt: return 130
     except Exception: return 70

@@ -251,6 +251,26 @@ class IntegratedRuntime:
         except Exception:
             return self.close(reason='runtime_integrity_or_driver_failure')
 
+    def prepare_worker(self, *, sleep=time.sleep):
+        """Fresh-profile preparation only; no feed or quote dispatch before T0.
+
+        Authenticate and observe completed native idle validation before the
+        original preparation endpoint. The future-slot fence includes T0 when
+        it is an allowed Hot second; it never permits a pre-window sample.
+        """
+        if not self.initialized or self.closed:
+            raise ValueError('Initialized fresh runtime required for worker preparation')
+        resume_after = utc_text(self.start-timedelta(microseconds=1))
+        while True:
+            if (self.stopped() or self.clock() >= self.session.plan.bootstrap_deadline):
+                raise ValueError('Worker preparation missed the original preparation bound')
+            result = self.worker.ensure(start_allowed=True, resume_after_utc=resume_after)
+            if result['status'] == 'RUNNING':
+                return result
+            if result['status'] not in ('STARTING',):
+                raise ValueError('Owned worker preparation did not establish completed work')
+            sleep(.01)
+
     def run(self, *, synthetic=None, max_seconds=720, sleep=time.sleep):
         if not 0 < max_seconds <= 720:
             raise ValueError('Explicit bounded active runtime required')
