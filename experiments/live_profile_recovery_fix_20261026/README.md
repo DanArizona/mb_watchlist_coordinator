@@ -1,5 +1,17 @@
 # October 26 bounded live recovery correction — command 56
 
+Windows command56 is ACCEPTED: complete operator console and actual CMD prompt
+return, 55/55 passed with zero skips/errors/failures, runner35.777s/report
+36.08040410000831s, run20261026T195358Z-1e320a5d, sea-green Python3.12.13 on
+Windows-11-10.0.26300-SP0. All three changed hashes match; raw emitted labels
+and remaining list are retained in validation/windows_acceptance_20261026.json.
+No source/archive/limits changed for acceptance. Corrected live recovery is
+still pending. Production is healthy through15:54:34 ET at Uni770/553 and
+Focus1538/40, zero overdue misses. Today's required full window no longer fits;
+next live recovery uses the next open session's correctly dated inputs and fresh
+health. Full production closeout/next-session prep remain alongside development.
+Do not repeat unchanged command56 or the accepted ordinary live profile.
+
 Ordinary command51 remains accepted as PASS_WITH_WARNINGS: 58 valid Hot quotes,
 32 after cutover, raw native audit PASS, zero missing slots and equal replays.
 The separate recovery run profile_20261026T185515Z_317903a6 remains FAILED:
