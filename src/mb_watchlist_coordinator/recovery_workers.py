@@ -42,7 +42,10 @@ def atomic_json(path, payload, *, monotonic=time.monotonic, sleep=time.sleep):
     is bounded by both elapsed time and attempts; unrelated errors still fail.
     """
     path = Path(path)
-    temporary = path.with_name(path.name+'.'+uuid.uuid4().hex+'.tmp')
+    # Keep the temporary component independent of the target name. Appending
+    # another UUID to a worker-job filename exceeds MAX_PATH in the delivered
+    # Windows run layout even though both its parent and final file fit.
+    temporary = path.with_name(uuid.uuid4().hex+'.tmp')
     try:
         with temporary.open('x', encoding='utf-8') as out:
             out.write(canonical(payload)); out.flush(); os.fsync(out.fileno())

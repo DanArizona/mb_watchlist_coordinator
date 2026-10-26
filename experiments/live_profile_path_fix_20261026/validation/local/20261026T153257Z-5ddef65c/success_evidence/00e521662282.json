@@ -1,0 +1,10 @@
+{
+  "test": "test_live_profile_path_fix.CompactAtomicPathTests.test_worker_job_and_heartbeat_publish_under_the_recorded_parent_length",
+  "evidence": {
+    "parent_characters": 190,
+    "recorded_legacy_job_temporary_characters": 269,
+    "compact_temporary_characters": 227,
+    "native_file_io": true,
+    "provider_requests": 0
+  }
+}

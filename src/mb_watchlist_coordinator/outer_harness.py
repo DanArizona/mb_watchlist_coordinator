@@ -99,11 +99,13 @@ class OuterHarness:
                     phase=status['phase'] if status else None
                     if stop_requested():reason='operator_stop';break
                     if now>=self.bounds.active_end or self.clock()>=self.stop:reason='active_deadline_ended';break
-                    if phase not in ('ACTIVE','GOAL_COMPLETE') and (now>=self.bootstrap_end or self.clock()>=self.preparation_end):
-                        reason='bootstrap_deadline_ended';break
                     if phase=='GOAL_COMPLETE':reason='profile_goal';break
                     if phase=='FAILED':reason='controller_failed';break
                     if scope.child.poll() is not None:reason='controller_exited_before_goal';break
+                    # A terminal controller state retains its actual cause even
+                    # when it is first observed after the preparation endpoint.
+                    if phase not in ('ACTIVE','GOAL_COMPLETE') and (now>=self.bootstrap_end or self.clock()>=self.preparation_end):
+                        reason='bootstrap_deadline_ended';break
                     self._pause(min(self.bounds.active_end,self.bootstrap_end if phase!='ACTIVE' else self.bounds.active_end))
         except KeyboardInterrupt:
             reason='operator_stop'

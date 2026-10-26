@@ -1,0 +1,156 @@
+{
+  "contract": "operator-console-live-profile-failure-v1",
+  "session_date": "2026-10-26",
+  "command": "51_run_ordinary_live_profile.cmd",
+  "profile": "ordinary",
+  "result": "FAILED",
+  "run_root": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\live_profile_entry_20261024_193721_f53abb\\runs\\profile_20261026T151602Z_401b615a",
+  "source_commit": "1e40cde1daa005304e63f0802c8cbc28e1b18580",
+  "source_tree": "265ae96fad86b7c67b86f16cb0a1789af495c05a",
+  "basis": "Complete supplied launcher summary, entry-failure, native-profile-report, runtime-stop and last supervisor event console, plus actual CMD prompt return. Original Windows files have not been independently uploaded/read.",
+  "original_failed_verdict_retained": true,
+  "outer": {
+    "stop_reason": "bootstrap_deadline_ended",
+    "controller_phase": "FAILED",
+    "acquisition_stop_requested_at_utc": "2026-10-26T15:17:13.584516+00:00",
+    "controller_returncode": 70,
+    "controller_cleanup": "EXIT_OBSERVED",
+    "controller_scope_empty_observed": true,
+    "controller_forced": false,
+    "reporter_cleanup": "EXIT_OBSERVED",
+    "reporter_scope_empty_observed": true,
+    "reporter_forced": false,
+    "reporter_returncode": 0,
+    "reporting_complete": true,
+    "stop_receipt_saved": true,
+    "result": "FAILED",
+    "production_access": false
+  },
+  "entry_failure": {
+    "code": "controller_failed",
+    "contract": "credential-bound-live-hot-profile-v1",
+    "exception_type": "ValueError",
+    "phase": "profile"
+  },
+  "runtime_stop": {
+    "acquisition_stop_requested_at_utc": "2026-10-26T15:17:13.483314+00:00",
+    "cleanup_findings": [],
+    "contract": "fresh-authenticated-nasdaq-hot-runtime-v1",
+    "counts_verified": true,
+    "full_manual_controller_resume": false,
+    "hot_quote_permits": 0,
+    "identity_quote_permits": 0,
+    "production_access": false,
+    "profile_verdict": "NOT_QUALIFIED_BY_RUNTIME_PUMP",
+    "reason": "runtime_blocked_or_stopped",
+    "selected_symbol": null,
+    "status": "STOPPED"
+  },
+  "last_supervisor_status": {
+    "at_utc": "2026-10-26T15:17:13.480242+00:00",
+    "detail": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\danla\\\\Documents\\\\github\\\\mb_market_data\\\\output\\\\live_profile_entry_20261024_193721_f53abb\\\\runs\\\\profile_20261026T151602Z_401b615a\\\\integrated_hot_401b615a7c6c4acbadda387dbde0ec62\\\\workers\\\\f33834ac5ceb4be4a261404f678070e5.job.json.bd26c84291e74ff4b63892736946dd2b.tmp'",
+    "event_sha256": "8d7fe8d783f1a68b397d2e2aad6884232e9aefd37faed50529d34d39ae524995",
+    "kind": "status",
+    "previous_sha256": "46e93976d1acfdf36b977cafc7fa88427eec1ca4f81d06f00ecc82b44e6d3b76",
+    "production_access": false,
+    "readiness_scope": "declared_feed_reconciliation_native_publication_and_registered_worker_protocol",
+    "reasons": [
+      "FileNotFoundError"
+    ],
+    "sequence": 1,
+    "status": "BLOCKED",
+    "unmanaged_channels_untouched": [
+      "uni",
+      "focus"
+    ]
+  },
+  "native_evidence": {
+    "result": "FAILED",
+    "goals": {
+      "after_cutover": 0,
+      "goal_complete": false
+    },
+    "integrity_results": [
+      "ok"
+    ],
+    "raw_native_audit_passed": false,
+    "raw_native_findings": [
+      {
+        "code": "missing_poll_slots",
+        "detail": "hot: 1 configured slots have neither an acquisition nor an empty-membership skip"
+      }
+    ],
+    "acquisitions": 0,
+    "observations": 0,
+    "empty_membership_skips": 0,
+    "missing_slot_ids": [
+      "hot:2026-10-26T11:17:12-04:00"
+    ],
+    "unexplained_missing_slot_ids": [
+      "hot:2026-10-26T11:17:12-04:00"
+    ],
+    "unacknowledged_acquisition_ids": [],
+    "non_quote_acquisition_ids": [],
+    "identical_fresh_replays": true,
+    "replays": [
+      {
+        "events": 1,
+        "sha256": "21c712c15689526abae67b1f50162001ebe57b34608aed986de67fbef3747bfd"
+      },
+      {
+        "events": 1,
+        "sha256": "21c712c15689526abae67b1f50162001ebe57b34608aed986de67fbef3747bfd"
+      }
+    ],
+    "reporting_read_only": true,
+    "credential_access": false,
+    "source_reasons": [
+      "FileNotFoundError"
+    ],
+    "source_reconciled": false,
+    "preflight_configuration_sha256": "2ced217a71d57191eb0fc34014d5fb7041003daefafdd2db604393b30e86103b",
+    "runtime_sha256": "a4cc1d8ce72fdd6050cbae0a72f8480301c1fca43a950b3cc49d0f5ad181d82b",
+    "original_frozen_window_et": {
+      "start": "2026-10-26T11:17:12-04:00",
+      "stop": "2026-10-26T11:29:12-04:00"
+    }
+  },
+  "production_health": {
+    "as_of_et": "2026-10-26T11:20:40-04:00",
+    "uni": {
+      "status": "RUNNING",
+      "pid": 24288,
+      "acquisitions": 222,
+      "members": 553,
+      "missing_after_grace": 0,
+      "empty_skips": 0,
+      "last_slot_et": "11:20:30"
+    },
+    "focus": {
+      "status": "RUNNING",
+      "pid": 28200,
+      "acquisitions": 443,
+      "members": 40,
+      "missing_after_grace": 0,
+      "empty_skips": 0,
+      "last_slot_et": "11:20:35"
+    }
+  },
+  "path_analysis": {
+    "temporary_path_characters": 269,
+    "parent_path_characters": 190,
+    "compact_temporary_path_characters_at_same_parent": 227,
+    "windows_max_path_reference": "https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation",
+    "conclusion": "Strongly consistent with legacy MAX_PATH. Host registry/manifest state and original parent directory have not been independently inspected. Source creates the worker parent during initialization; focused native Windows path qualification remains pending.",
+    "separate_reporting_defect": "Outer preparation timeout check precedes FAILED/observed-exit checks and masks the actual controller failure after preparation."
+  },
+  "actual_cmd_prompt_return_observed": true,
+  "production_hot_enabled": false,
+  "recovery_profile_run": false,
+  "limits_relaxed": false,
+  "next": [
+    "Affected Windows command54 qualification; do not repeat unchanged command50/full suites.",
+    "Fresh production health before corrected ordinary command51.",
+    "Review complete ordinary evidence/cleanup/prompt before separate recovery command52."
+  ]
+}
