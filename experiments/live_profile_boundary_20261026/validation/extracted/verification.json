@@ -1,0 +1,66 @@
+{
+  "contract": "live-hot-boundary-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 67,
+  "passed": 67,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "failed_tests": [],
+  "seconds": 20.137495058999775,
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "network": "denied",
+  "actual_vault_access": false,
+  "production_access": false,
+  "real_feed_directory_or_broker_requests": 0,
+  "suites": [
+    "test_live_profile_boundaries",
+    "test_integrated_catalog",
+    "test_profile_runtime.ProfileRuntimeTests",
+    "test_profile_evidence.ProfileEvidenceTests",
+    "test_live_profile.ControllerTests",
+    "test_live_profile_launcher.PinnedRoleDispatchTests",
+    "test_live_profile_process.NewEntryProcessTests.test_fresh_private_credentials_catalog_runtime_native_worker_and_bound_read_only_report",
+    "test_profile_observation.ProfileObservationTests.test_commit_without_ack_is_not_counted_but_its_permit_remains_charged",
+    "test_profile_observation.ProfileObservationTests.test_observer_does_not_take_the_acquisition_writer_lease",
+    "test_integrated_runtime.IntegratedRuntimeTests.test_no_new_authentication_or_network_before_original_T0",
+    "test_integrated_runtime.IntegratedRuntimeTests.test_changed_catalog_blocks_before_source_delivery",
+    "test_integrated_runtime.IntegratedRuntimeTests.test_all_stop_and_lifetime_limits_remain_original"
+  ],
+  "accepted_runtime_source_files_unchanged": 67,
+  "changed_runtime_source_sha256": {
+    "src/mb_watchlist_coordinator/integrated_catalog.py": "8d942e5c3a96ac10951676ae7ec431fb4ed1761f3918bd69655c7cc689cba42c",
+    "src/mb_watchlist_coordinator/integrated_runtime.py": "d52a1eb693c58c67f393cb0732297c4c19d6cac701c1e2256bf92056e9e9ceaa",
+    "src/mb_watchlist_coordinator/live_profile.py": "573984954f14cc91b4264038e87422c32d885228e98c4e1846b1c84d6e3e1b7b",
+    "src/mb_watchlist_coordinator/live_profile_entry.py": "b3e38a6bed7e482bf2e6e2aa9c408a81f6b7806400f51b8a8ab60596f97d207a",
+    "src/mb_watchlist_coordinator/profile_runtime.py": "af6bda7b1b74e831af38a8a5d65a971b20039f9d31521c0dfc478810acf8db1b"
+  },
+  "raw_audit_replay_goal_and_outer_verdict_rules_unchanged": true,
+  "scope": "Prepare exact owned authenticated worker before original T0 without early feed/quote dispatch; native first empty-slot coverage and 3s progress/8s credentials; exact full-byte catalog validation without repeated semantic parsing; goal observation before another Coordinator cycle; immediate nonce-bound worker budget-stop notification; unchanged native audit/replays, invalid/unacknowledged/late-goal rejection and recovery hold; affected synthetic native wiring. No live provider/production profile.",
+  "failure_evidence_files": [],
+  "success_evidence_files": [
+    "ebf9c05af496.json",
+    "d457757d062a.json",
+    "23a1e0b17ff1.json"
+  ],
+  "unrelated_accepted_suites_repeated": false,
+  "prior_failed_results_retained": true,
+  "original_command51_results": [
+    "FAILED",
+    "FAILED"
+  ],
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "live_profiles_run_with_correction": false,
+  "remaining": [
+    "Windows command55 complete result and actual CMD prompt return",
+    "fresh production health before separately invoked corrected ordinary command51",
+    "full ordinary evidence review before separate recovery command52",
+    "minimum operating/adoption work, manual membership and agreed read-only Overlay"
+  ]
+}

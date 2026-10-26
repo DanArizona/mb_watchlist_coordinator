@@ -1,0 +1,52 @@
+{
+  "archive": "/workspace/scratch/6ce939acb4eb/deliverables/live_boundary_20261026_165915_bdc352.zip",
+  "folder": "live_boundary_20261026_165915_bdc352",
+  "bytes": 554687,
+  "sha256": "ed55f47a6ebe75743db22a9998a1fe48f87f15740391b02b393ba382a36a676d",
+  "files": 175,
+  "inventory_sha256": "116b202f7d6df158f3cffc874c8226381bf2e2fcc358aac95ece7a30a71be7a2",
+  "local_build_commit": "8a67dfb9d6b582d87020c09cb9ff71fe14fff2d2",
+  "source_tree": "5f0cdbbe9582bd2782f1b0562d6f0e9af11ac1fc",
+  "extracted_root": "/workspace/scratch/6ce939acb4eb/boundary_bundle_review/live_boundary_20261026_165915_bdc352",
+  "source_commit": "508905e2757870a6fa5246c6c319e7e79b52cb72",
+  "source_tree_unchanged_on_publication": true,
+  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "live_profiles_run_with_correction": false,
+  "production_access": false,
+  "prior_failed_results_retained": true,
+  "repository_files_matched": 167,
+  "embedded_elapsed_native_snapshot": {
+    "sha256": "4f27a5129cc8bc3c1f167d553372da396f840825fec54695d488f2aa7dab942c",
+    "files_verified": 44,
+    "immutable": true
+  },
+  "source_guard_checks": {
+    "cases": [
+      {
+        "case": "changed_source",
+        "returncode": 70,
+        "blocked_before_import_and_tests": true
+      },
+      {
+        "case": "extra_source",
+        "returncode": 70,
+        "blocked_before_import_and_tests": true
+      },
+      {
+        "case": "extra_bytecode",
+        "returncode": 70,
+        "blocked_before_import_and_tests": true
+      }
+    ],
+    "restored_inventory_identical": true
+  },
+  "extracted_qualification": {
+    "result": "PASS",
+    "tests": 67,
+    "passed": 67,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 20.137495058999775
+  }
+}

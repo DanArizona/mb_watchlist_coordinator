@@ -1,0 +1,13 @@
+{
+  "test": "test_live_profile_boundaries.ExactCatalogValidationTests.test_large_catalog_reuses_semantics_while_still_verifying_full_file_bytes",
+  "evidence": {
+    "symbols": 10001,
+    "source_bytes": 429246,
+    "one_fresh_semantic_load_seconds": 0.03774474100100633,
+    "five_exact_byte_validations_seconds": 0.0009510370000498369,
+    "full_file_bytes_checked_each_time": true,
+    "mtime_only_cache": false,
+    "provider_requests": 0,
+    "scope": "Representative immutable-directory validation cost; not provider/full-session capacity."
+  }
+}
