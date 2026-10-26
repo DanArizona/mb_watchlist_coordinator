@@ -1,0 +1,209 @@
+{
+  "milestone": "October 26 production acquisition closeout",
+  "status": "FULL_SESSION_ACQUISITION_ACCEPTED_WITH_RECORDED_INVALID_OBSERVATIONS",
+  "session_date": "2026-10-26",
+  "journal": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\quote_observation_journal_v2_api_opening_2026-10-26\\2026-10-26.sqlite3",
+  "basis": "Complete operator-supplied final health, full native audit, complete immediate replay and actual CMD prompt return. Original Windows database/evidence files have not been independently uploaded/read.",
+  "actual_cmd_prompt_return_observed": true,
+  "production_market_data_commit": "a082f544112643b4e5f459d15c67f60d0a1ef83d",
+  "software_version": "0.1.0.dev0+git.a082f5441126",
+  "host": "MasterBot",
+  "health": {
+    "as_of_et": "2026-10-26T16:01:08-04:00",
+    "journal_read": "OK",
+    "journal_read_seconds": 0,
+    "slot_grace_seconds": 90,
+    "uni": {
+      "status": "WINDOW_ENDED",
+      "candidate_pids": [],
+      "last_slot_et": "15:59:30",
+      "acquisitions": 780,
+      "empty_membership_skips": 0,
+      "missing_after_grace": 0,
+      "members": 553
+    },
+    "focus": {
+      "status": "WINDOW_ENDED",
+      "candidate_pids": [],
+      "last_slot_et": "15:59:50",
+      "acquisitions": 1560,
+      "empty_membership_skips": 0,
+      "missing_after_grace": 0,
+      "members": 40
+    }
+  },
+  "audit": {
+    "result": "PASS",
+    "schema_version": 2,
+    "membership_contract": "nested-uni-focus-hot-v1",
+    "integrity_results": [
+      "ok"
+    ],
+    "table_counts": {
+      "poll_run": 2,
+      "sampling_membership_revision": 2,
+      "sampling_channel_revision": 6,
+      "sampling_channel_member": 1146,
+      "poll_slot_skip": 0,
+      "quote_acquisition": 2340,
+      "quote_observation": 493740
+    },
+    "poll_runs": [
+      {
+        "channel": "uni",
+        "started_at_utc": "2026-10-26T13:19:22.224403Z",
+        "software_version": "0.1.0.dev0+git.a082f5441126",
+        "host": "MasterBot"
+      },
+      {
+        "channel": "focus",
+        "started_at_utc": "2026-10-26T13:20:13.742635Z",
+        "software_version": "0.1.0.dev0+git.a082f5441126",
+        "host": "MasterBot"
+      }
+    ],
+    "channels": [
+      {
+        "channel": "focus",
+        "revision_count": 2,
+        "member_rows": 40,
+        "acquisitions": 1560,
+        "expected_acquisitions": 1560,
+        "skipped": 0,
+        "missing": 0,
+        "observations": 62400,
+        "requested_observations": 62400,
+        "row_mismatches": 0,
+        "status_counts": {
+          "quote": 62400
+        }
+      },
+      {
+        "channel": "hot",
+        "revision_count": 2,
+        "member_rows": 0,
+        "acquisitions": 0,
+        "expected_acquisitions": 0,
+        "skipped": 0,
+        "missing": 0,
+        "observations": 0,
+        "requested_observations": 0,
+        "row_mismatches": 0,
+        "status_counts": {}
+      },
+      {
+        "channel": "uni",
+        "revision_count": 2,
+        "member_rows": 1106,
+        "acquisitions": 780,
+        "expected_acquisitions": 780,
+        "skipped": 0,
+        "missing": 0,
+        "observations": 431340,
+        "requested_observations": 431340,
+        "row_mismatches": 0,
+        "status_counts": {
+          "invalid": 780,
+          "quote": 430560
+        }
+      }
+    ],
+    "storage_display": {
+      "database": "249.6 MiB",
+      "wal": "0 B",
+      "shm": "32.0 KiB",
+      "sqlite_total": "249.6 MiB",
+      "evidence": "1.1 GiB"
+    }
+  },
+  "replay": {
+    "result": "COMPLETED",
+    "mode": "immediate",
+    "event_limit": null,
+    "events": 2342,
+    "revisions": 2,
+    "acquisitions": 2340,
+    "observations": 493740,
+    "channel_acquisitions": {
+      "focus": 1560,
+      "uni": 780
+    },
+    "channel_observations": {
+      "focus": 62400,
+      "uni": 431340
+    },
+    "status_counts": {
+      "invalid": 780,
+      "quote": 492960
+    },
+    "first_available_at_et": "2026-10-26T09:30:00-04:00",
+    "last_available_at_et": "2026-10-26T15:59:50.284442-04:00",
+    "wall_seconds": 13.448,
+    "observations_per_second_display": 36715,
+    "sequence_sha256": "72edfcce81a8ef3458365bc52a70f7926da067befa621e8ae826555dd2580020",
+    "final_projection": {
+      "as_of_et": "2026-10-26T15:59:50.284442-04:00",
+      "uni": {
+        "revision": 1,
+        "members": 553,
+        "latest": 553,
+        "status_counts": {
+          "invalid": 1,
+          "quote": 552
+        }
+      },
+      "focus": {
+        "revision": 1,
+        "members": 40,
+        "latest": 40,
+        "status_counts": {
+          "quote": 40
+        }
+      },
+      "hot": {
+        "revision": 1,
+        "members": 0,
+        "latest": 0,
+        "status_counts": {}
+      },
+      "unique_members": 553,
+      "multi_channel": 40
+    }
+  },
+  "quality": {
+    "all_observations_quote": false,
+    "invalid_observations_retained": 780,
+    "latest_uni_invalid_members": 1,
+    "affected_symbols": "NOT_SUPPLIED; read-only grouping query is the next diagnostic. Matching 780/780 counts alone do not prove the same symbol was invalid all day.",
+    "acquisition_coverage_complete": true,
+    "invalid_outcomes_are_not_missing_poll_slots": true
+  },
+  "monitor_shutdown": {
+    "dated_stop_request_issued": false,
+    "monitor_exit_observed": false,
+    "watchdog_exit_observed": false,
+    "actual_prod_health_prompt_return_confirmed": false,
+    "status": "PENDING"
+  },
+  "next_session": {
+    "session_date": "2026-10-27",
+    "source_snapshot_date": "2026-10-26",
+    "fresh_post_close_directory_and_snapshot": "PENDING",
+    "r0_build": "PENDING",
+    "r0_publication_audit_replay": "PENDING",
+    "morning_api_ov_and_focus": "PENDING"
+  },
+  "experimental_hot": {
+    "ordinary_profile_result": "PASS_WITH_WARNINGS",
+    "original_recovery_profile_result": "FAILED",
+    "command56_windows": "ACCEPTED_55_OF_55",
+    "corrected_live_recovery": "PENDING_NEXT_OPEN_SESSION",
+    "production_hot_enabled": false
+  },
+  "next": [
+    "Issue the existing dated stop-monitor request and confirm the separate prod-health monitor/watchdog output and actual CMD prompt return.",
+    "Read-only saved-journal invalid-symbol/status counts, without a new API request or journal mutation.",
+    "Run the existing immutable October26 post-close daily-universe workflow targeting October27; review its four-stage result and proposal before separate r0 publication/audit/replay.",
+    "Next session fresh credential/complete-Uni API OV/Focus/production health, then separately invoke the corrected bounded recovery profile using correctly dated proposals and original limits. Manual membership and agreed read-only Overlay remain in scope."
+  ]
+}
