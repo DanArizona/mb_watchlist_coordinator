@@ -1,0 +1,365 @@
+{
+  "contract": "operator-console-live-profile-acceptance-v1",
+  "session_date": "2026-10-26",
+  "command": "51_run_ordinary_live_profile.cmd",
+  "profile": "ordinary",
+  "result": "PASS_WITH_WARNINGS",
+  "status": "ORDINARY_ACCEPTED_WITHIN_BOUNDED_EXPERIMENT",
+  "run_root": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\live_boundary_20261026_165915_bdc352\\runs\\profile_20261026T184243Z_150c38b7",
+  "source_commit": "508905e2757870a6fa5246c6c319e7e79b52cb72",
+  "source_tree": "5f0cdbbe9582bd2782f1b0562d6f0e9af11ac1fc",
+  "windows_qualification_checkpoint": "8a7f725405139e2df75a25da071dc11daae94895",
+  "archive": "live_boundary_20261026_165915_bdc352.zip",
+  "archive_sha256": "ed55f47a6ebe75743db22a9998a1fe48f87f15740391b02b393ba382a36a676d",
+  "basis": "Complete supplied launcher summary, native-profile-report, profile state, missing runtime-stop result, production-health console and actual CMD prompt return. Original Windows saved files have not been independently uploaded/read.",
+  "actual_cmd_prompt_return_observed": true,
+  "summary": {
+    "contract": "credential-bound-live-hot-profile-v1",
+    "profile": "ordinary",
+    "outer": {
+      "contract": "owned-outer-hot-profile-v1",
+      "nonce": "150c38b7371c4daa93e145764fff761c",
+      "stop_reason": "profile_goal",
+      "controller_phase": "GOAL_COMPLETE",
+      "acquisition_stop_requested_at_utc": "2026-10-26T18:47:32.784067+00:00",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "windows_job",
+        "scope_empty_observed": true,
+        "forced": true,
+        "controller_returncode": null,
+        "reason": null
+      },
+      "reporter_cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "windows_job",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      },
+      "reporter_returncode": 0,
+      "reporting_complete": true,
+      "stop_receipt_saved": true,
+      "failure": null,
+      "result": "PASS_WITH_WARNINGS",
+      "production_access": false,
+      "profile_evidence_result": "PASS_WITH_WARNINGS"
+    },
+    "stop_request_origin": null,
+    "production_access": false,
+    "maximum_quote_permits": 63,
+    "shared_sdk_token_refresh_possible": true
+  },
+  "native_report": {
+    "audited_at_utc": "2026-10-26T18:47:32.784067+00:00",
+    "contract": "bounded-hot-profile-native-evidence-v1",
+    "controller_stop_requested_at_utc": "2026-10-26T18:47:32.789090+00:00",
+    "credential_access": false,
+    "facts_sha256": "bdd60ccd8de081952ad0f22335ac81de1de03b003bb99266776237e0ffc9532b",
+    "goals": {
+      "after_cutover": 32,
+      "goal_complete": true
+    },
+    "identical_fresh_replays": true,
+    "intentional_outage_missing_slot_ids": [],
+    "missing_slot_ids": [],
+    "non_quote_acquisition_ids": [],
+    "outer_nonce": "150c38b7371c4daa93e145764fff761c",
+    "outer_stop_requested_at_utc": "2026-10-26T18:47:32.784067+00:00",
+    "preflight_configuration_sha256": "ab75feabcf5550a56c184a5d4664a51bc6fb9bc734a5a8395ccd27833b576f02",
+    "production_access": false,
+    "profile": "ordinary",
+    "raw_native_audit": {
+      "channels": [
+        {
+          "acquisition_count": 0,
+          "channel": "focus",
+          "expected_slot_count": 0,
+          "member_rows": 81,
+          "missing_slot_ids": [],
+          "observation_count": 0,
+          "requested_symbol_count": 0,
+          "revision_count": 2,
+          "row_count_mismatch_ids": [],
+          "skipped_slot_count": 0,
+          "status_counts": {}
+        },
+        {
+          "acquisition_count": 58,
+          "channel": "hot",
+          "expected_slot_count": 89,
+          "member_rows": 1,
+          "missing_slot_ids": [],
+          "observation_count": 58,
+          "requested_symbol_count": 58,
+          "revision_count": 2,
+          "row_count_mismatch_ids": [],
+          "skipped_slot_count": 31,
+          "status_counts": {
+            "quote": 58
+          }
+        },
+        {
+          "acquisition_count": 0,
+          "channel": "uni",
+          "expected_slot_count": 0,
+          "member_rows": 1107,
+          "missing_slot_ids": [],
+          "observation_count": 0,
+          "requested_symbol_count": 0,
+          "revision_count": 2,
+          "row_count_mismatch_ids": [],
+          "skipped_slot_count": 0,
+          "status_counts": {}
+        }
+      ],
+      "database_path": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\live_boundary_20261026_165915_bdc352\\runs\\profile_20261026T184243Z_150c38b7\\integrated_hot_150c38b7371c4daa93e145764fff761c\\quotes.sqlite3",
+      "evidence_bytes": {},
+      "findings": [],
+      "integrity_results": [
+        "ok"
+      ],
+      "membership_contract": "nested-uni-focus-hot-v1",
+      "runs": [
+        {
+          "channel": "hot",
+          "configuration": {
+            "batch_size": 400,
+            "experimental": true,
+            "fields": "all",
+            "isolated_hot_acquisition_v1": true,
+            "max_dispatch_lateness_seconds": 0.75,
+            "poll_seconds": [
+              2,
+              4,
+              6,
+              8,
+              12,
+              14,
+              16,
+              18,
+              22,
+              24,
+              26,
+              28,
+              32,
+              34,
+              36,
+              38,
+              42,
+              44,
+              46,
+              48,
+              52,
+              54,
+              56,
+              58
+            ],
+            "poll_window_end_et": "2026-10-26T14:55:51-04:00",
+            "poll_window_start_et": "2026-10-26T14:43:51-04:00",
+            "retry_seconds": 0.05,
+            "source_label": "experimental-native-hot-recovery-v1",
+            "watchlist_kind": "hot"
+          },
+          "host": null,
+          "run_id": "isolated-hot-da7341c0241049b7b218cdb1bc4b4998",
+          "software_version": "experimental-hot-acquisition-v1",
+          "started_at_utc": "2026-10-26T18:42:54.148461Z"
+        },
+        {
+          "channel": "hot",
+          "configuration": {
+            "batch_size": 400,
+            "experimental": true,
+            "fields": "all",
+            "isolated_hot_acquisition_v1": true,
+            "max_dispatch_lateness_seconds": 0.75,
+            "poll_seconds": [
+              2,
+              4,
+              6,
+              8,
+              12,
+              14,
+              16,
+              18,
+              22,
+              24,
+              26,
+              28,
+              32,
+              34,
+              36,
+              38,
+              42,
+              44,
+              46,
+              48,
+              52,
+              54,
+              56,
+              58
+            ],
+            "poll_window_end_et": "2026-10-26T14:55:51-04:00",
+            "poll_window_start_et": "2026-10-26T14:43:51-04:00",
+            "retry_seconds": 0.05,
+            "source_label": "experimental-native-hot-recovery-v1",
+            "watchlist_kind": "hot"
+          },
+          "host": null,
+          "run_id": "isolated-hot-879a1617011741a681ddaff14962bfbe",
+          "software_version": "experimental-hot-acquisition-v1",
+          "started_at_utc": "2026-10-26T18:42:54.949183Z"
+        }
+      ],
+      "schema_version": 2,
+      "session_date": "2026-10-26",
+      "storage_bytes": {
+        "database": 520192,
+        "shm": 32768,
+        "wal": 0
+      },
+      "table_counts": {
+        "poll_run": 2,
+        "poll_slot_skip": 31,
+        "quote_acquisition": 58,
+        "quote_observation": 58,
+        "sampling_channel_member": 1189,
+        "sampling_channel_revision": 6,
+        "sampling_membership_revision": 2
+      }
+    },
+    "raw_native_audit_passed": true,
+    "replays": [
+      {
+        "events": 60,
+        "sha256": "517969bc2133088014c41bc35e62929c3eff7e0ba0762117337d0e4e4759b038"
+      },
+      {
+        "events": 60,
+        "sha256": "517969bc2133088014c41bc35e62929c3eff7e0ba0762117337d0e4e4759b038"
+      }
+    ],
+    "reporting_read_only": true,
+    "result": "PASS_WITH_WARNINGS",
+    "runtime_sha256": "206fc4b745fe0b8e8deabaa1d81a76af6e5e46513c66971de8cb23015a317a6b",
+    "source_reasons": [
+      "intermediate_feed_mutations_not_reconstructible",
+      "older_unknown_carryovers_not_proven_complete",
+      "provider_collector_driver_qualification_pending"
+    ],
+    "source_reconciled": true,
+    "unacknowledged_acquisition_ids": [],
+    "unexplained_missing_slot_ids": []
+  },
+  "profile_state": {
+    "binding": {
+      "contract": "bounded-hot-profile-state-v1",
+      "profile": "ordinary",
+      "runtime_sha256": "206fc4b745fe0b8e8deabaa1d81a76af6e5e46513c66971de8cb23015a317a6b",
+      "start_at_utc": "2026-10-26T18:43:51+00:00",
+      "stop_at_utc": "2026-10-26T18:55:51+00:00"
+    },
+    "events": [
+      {
+        "at_utc": "2026-10-26T18:46:13.752937+00:00",
+        "data": {
+          "at_utc": "2026-10-26T18:46:10.214881+00:00",
+          "attempt_id": "945540bfe1b940a7839d6bc571d4b532",
+          "feed_head_sha256": "c129bc294b5bafdce71b1f7cda09285cf6ddb7a0ab704ede60aa4233ac8d0978"
+        },
+        "kind": "cutover",
+        "previous_sha256": "c8b4a3a8a297dffdbd89bbb19c5b179124c949fba1cd72ba6c8d4d61d3fc0e58",
+        "sequence": 1,
+        "sha256": "eec200b9158769fa064e521868d5b107e99fc9fa081b4df904b34f9715a3c9ba"
+      },
+      {
+        "at_utc": "2026-10-26T18:47:32.789090+00:00",
+        "data": {
+          "reason": "operator_stop",
+          "requested_at_utc": "2026-10-26T18:47:32.789090+00:00"
+        },
+        "kind": "stop",
+        "previous_sha256": "eec200b9158769fa064e521868d5b107e99fc9fa081b4df904b34f9715a3c9ba",
+        "sequence": 2,
+        "sha256": "1af2012ceddb671882589a0a78699792ac958a4d371248854d4bfd0079ebcb5e"
+      }
+    ]
+  },
+  "runtime_stop": {
+    "file_present": false,
+    "operator_message": "The system cannot find the file specified.",
+    "exact_runtime_close_reason_and_counts_verified_receipt": "NOT_AVAILABLE"
+  },
+  "cleanup_assessment": {
+    "controller_exit_forced": true,
+    "owned_controller_scope_empty_observed": true,
+    "owned_reporter_scope_empty_observed": true,
+    "cooperative_controller_returncode": "NOT_OBSERVED",
+    "runtime_stop_receipt_missing": true,
+    "acceptance_rule": "The unchanged outer requires confirmed empty owned scopes, completed bound read-only reporting and native/profile evidence. Forced cleanup does not by itself invalidate that rule.",
+    "qualification_limit": "No claim of cooperative runtime close or a saved counts_verified runtime-stop receipt. Reason for incomplete cooperative close is not established by the supplied console."
+  },
+  "production_health": {
+    "as_of_et": "2026-10-26T14:49:25-04:00",
+    "journal_read": "OK",
+    "journal_read_seconds": 0,
+    "grace_seconds": 90,
+    "uni": {
+      "status": "RUNNING",
+      "pid": 24288,
+      "acquisitions": 639,
+      "members": 553,
+      "missing_after_grace": 0,
+      "empty_skips": 0,
+      "last_slot_et": "14:49:00"
+    },
+    "focus": {
+      "status": "RUNNING",
+      "pid": 28200,
+      "acquisitions": 1278,
+      "members": 40,
+      "missing_after_grace": 0,
+      "empty_skips": 0,
+      "last_slot_et": "14:49:20"
+    }
+  },
+  "prelaunch_health": {
+    "as_of_et": "2026-10-26T14:41:32-04:00",
+    "uni_acquisitions": 624,
+    "focus_acquisitions": 1246,
+    "uni_members": 553,
+    "focus_members": 40,
+    "missing_after_grace": 0,
+    "empty_skips": 0,
+    "uni_pid": 24288,
+    "focus_pid": 28200
+  },
+  "accepted_within_scope": {
+    "complete_bounded_ordinary_profile": true,
+    "valid_committed_acknowledged_hot_quotes": 58,
+    "valid_post_cutover_hot_quotes": 32,
+    "raw_native_audit_passed": true,
+    "expected_hot_slots": 89,
+    "empty_membership_skips": 31,
+    "missing_slots": 0,
+    "identical_fresh_replays": true,
+    "selected_symbol": "NOT_SUPPLIED_IN_THIS_CONSOLE",
+    "cumulative_permit_receipt": "NOT_SUPPLIED; no saved runtime-stop receipt"
+  },
+  "prior_failed_results_retained": true,
+  "original_command51_results": [
+    "FAILED",
+    "FAILED"
+  ],
+  "limits_relaxed": false,
+  "production_hot_enabled": false,
+  "recovery_profile_run": false,
+  "production_adoption_approved": false,
+  "next": [
+    "Separate command52 recovery invocation after accepted ordinary evidence and fresh health, during an open market session with the original preparation and full window available.",
+    "Recovery retains 12 post-cutover valid quotes before exact owned fault, full 15-second replacement hold and 24 valid quotes after verified restart, all within the original cumulative limits.",
+    "Minimum operating/adoption work; manual membership promotion/demotion; agreed read-only Overlay. Preserve source and cleanup warnings."
+  ]
+}

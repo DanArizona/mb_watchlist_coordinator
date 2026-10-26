@@ -7,9 +7,14 @@ Windows-11-10.0.26300-SP0. All five changed runtime hashes match. The raw
 OPERATOR_RESULT_REQUIRED label and emitted remaining list remain preserved;
 separate acceptance is in validation/windows_acceptance_20261026.json. Saved
 Windows report/success sidecars have not been independently uploaded/read.
-No source/archive/limits changed and no corrected live profile is yet accepted.
-Next obtain fresh production health, then invoke this folder's ordinary command51
-separately during an open session; review its full native evidence before command52.
+No source/archive/limits changed for qualification. The corrected ordinary run is
+now accepted as PASS_WITH_WARNINGS: 58 valid Hot quotes, 32 after cutover, raw
+audit PASS, zero missing slots, 31 empty skips and identical 60-event replays.
+See validation/ordinary_20261026_command51_ACCEPTED.json. Owned Windows scopes
+are empty and reporting completed; controller cleanup was forced and runtime-stop.json
+is absent, so cooperative runtime-close/counts-receipt qualification is not claimed.
+Source warnings remain. Production is healthy through 14:49:25 ET. Next is this
+folder's separately invoked recovery command52 with the original limits.
 Do not repeat unchanged command55 or prior accepted qualifications.
 
 The second live ordinary attempt selected RIBB and recorded 60 valid quotes,
