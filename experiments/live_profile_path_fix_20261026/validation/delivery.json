@@ -38,11 +38,12 @@
     ],
     "restored_inventory_identical": true
   },
-  "windows_acceptance": "OPERATOR_RESULT_REQUIRED",
+  "windows_acceptance": "ACCEPTED_FROM_OPERATOR_CONSOLE",
   "production_access": false,
   "live_profiles_run_with_correction": false,
   "prior_failed_results_retained": true,
   "local_build_commit": "0a4084e91bea3c1ae0b9c672567ab488b3c70478",
   "source_tree_unchanged_on_publication": true,
-  "authorization_record": "docs/validation/publication_authorization_20261026.json"
+  "authorization_record": "docs/validation/publication_authorization_20261026.json",
+  "windows_acceptance_record": "experiments/live_profile_path_fix_20261026/validation/windows_acceptance_20261026.json"
 }
