@@ -1,5 +1,17 @@
 # October 26 live-profile boundary correction — command 55
 
+Windows command55 is ACCEPTED from the complete operator console and actual CMD
+prompt return: 67/67 passed, zero skips/errors/failures, runner 29.170s/report
+29.45349340001121s, run 20261026T181105Z-913b66c5, sea-green Python 3.12.13 on
+Windows-11-10.0.26300-SP0. All five changed runtime hashes match. The raw
+OPERATOR_RESULT_REQUIRED label and emitted remaining list remain preserved;
+separate acceptance is in validation/windows_acceptance_20261026.json. Saved
+Windows report/success sidecars have not been independently uploaded/read.
+No source/archive/limits changed and no corrected live profile is yet accepted.
+Next obtain fresh production health, then invoke this folder's ordinary command51
+separately during an open session; review its full native evidence before command52.
+Do not repeat unchanged command55 or prior accepted qualifications.
+
 The second live ordinary attempt selected RIBB and recorded 60 valid quotes,
 31 after valid source cutover. The quote goal is demonstrated. Its overall
 result remains FAILED: raw missing slots at 12:09:28 and 12:13:18 ET. The worker
