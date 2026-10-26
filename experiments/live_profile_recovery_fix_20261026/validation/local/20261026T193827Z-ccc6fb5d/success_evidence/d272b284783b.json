@@ -1,0 +1,11 @@
+{
+  "test": "test_live_recovery_boundaries.ReplacementPreparationTests.test_unchanged_native_worker_respects_preparation_fence_and_preserves_raw_outage",
+  "evidence": {
+    "first_eligible_slot_utc": "2026-10-27T14:00:06+00:00",
+    "preparation_fence_utc": "2026-10-27T14:00:04.600000+00:00",
+    "pre_fence_calls": 0,
+    "first_eligible_slot_acquired": true,
+    "raw_earlier_outage_slots_retained": 2,
+    "scope": "Synthetic quote API and unchanged native worker/ledger/audit; separate elapsed authenticated proof required"
+  }
+}

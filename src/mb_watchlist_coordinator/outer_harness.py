@@ -119,8 +119,12 @@ class OuterHarness:
             stop_saved=True
             try:atomic_json(self.stop_path,{'nonce':self.nonce,'reason':reason,'acquisition_stop_requested_at_utc':stop_utc})
             except OSError:stop_saved=False
-            # Cooperative close has only a small part of the SAME cleanup budget.
-            grace=min(bounds.cleanup_end,stopped+.5)
+            # A bound native controller must save its cooperative stop before
+            # read-only reporting. Share the SAME original cleanup budget,
+            # reserving one second (or half a shorter bound) for forced-scope
+            # confirmation. Lifecycle-only callers retain their earlier grace.
+            grace=(bounds.cleanup_end-min(1,bounds.cleanup_seconds/2)
+                if self.expected_preflight_sha256 is not None else min(bounds.cleanup_end,stopped+.5))
             try:
                 while scope.child is not None and scope.child.poll() is None and self.monotonic()<grace:self._pause(grace)
                 if not scope.closed:cleanup=scope.finish(bounds.cleanup_end,sleep=self.sleep)

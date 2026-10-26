@@ -1,0 +1,11 @@
+{
+  "test": "test_live_recovery_boundaries.CooperativeCloseTests.test_bound_native_controller_can_save_stop_after_half_second_without_force",
+  "evidence": {
+    "cooperative_close_seconds": 0.8,
+    "original_cleanup_limit_seconds": 10,
+    "controller_forced": false,
+    "controller_returncode": 0,
+    "separate_reporting_complete": true,
+    "scope": "Real owned synthetic child; no native profile goal is claimed by this lifecycle fixture"
+  }
+}

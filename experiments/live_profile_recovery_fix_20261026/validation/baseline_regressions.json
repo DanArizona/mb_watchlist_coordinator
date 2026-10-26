@@ -1,0 +1,14 @@
+{
+  "baseline": "8b87eda81959a1294e3d32686d54105e52b95d4f",
+  "tests": 3,
+  "assertion_failures": 3,
+  "errors": 0,
+  "skipped": 0,
+  "expected_assertion_failures": 3,
+  "cases": [
+    "test_live_recovery_boundaries.RecoveryDeliveryTests.test_real_pending_recovery_commands_wait_without_identity_or_hot_publication",
+    "test_live_recovery_boundaries.ReplacementPreparationTests.test_replacement_declares_future_slot_after_original_three_second_preparation",
+    "test_live_recovery_boundaries.CooperativeCloseTests.test_bound_native_controller_can_save_stop_after_half_second_without_force"
+  ],
+  "baseline_regressions_reproduced": true
+}

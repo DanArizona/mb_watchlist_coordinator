@@ -1,0 +1,10 @@
+{
+  "result": "FAILED",
+  "tests": 12,
+  "failures": 4,
+  "errors": 0,
+  "seconds": 6.232,
+  "cause": "Two fixture assertions expected NVDA while rss() defaults to MSFT. Two in-process slot fixtures first called stop_owned(), which correctly left a bound stop file and prevented native work. Correct test registration without a stop signal; do not bypass any production fence.",
+  "runtime_gate_relaxed": false,
+  "intermediate_tolerance_candidate": "12/12 passed after fixture corrections. Final design instead prepares the replacement before its declared future slot under the original 3s gate; native collector bytes are restored to the accepted baseline."
+}

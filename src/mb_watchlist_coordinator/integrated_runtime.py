@@ -34,6 +34,9 @@ class _PreparedDelivery:
         self.path, self.live, self.recovery, self.requests = gate.path, gate.live, gate.recovery, gate.requests
         self.identity = freeze({'contract': 'prepared-client-shared-delivery-v1',
             'gate': plain(gate.identity), 'configuration_sha256': runtime.session.plan.configuration_sha256})
+        if runtime.session.plan.settings.profile == 'owned_worker_recovery':
+            self.identity = freeze({**plain(self.identity),
+                'request_delivery_policy': 'after_valid_dated_and_strictly_later_current_cutover'})
 
     def snapshot(self):
         return self.gate.snapshot()
@@ -43,6 +46,25 @@ class _PreparedDelivery:
 
     def deliver_pending(self):
         self.runtime.validate()
+        if self.runtime.session.plan.settings.profile == 'owned_worker_recovery':
+            # Retain every source/outbox command while the recovery profile
+            # reserves its unchanged 60 Hot permits for the 12/24 proof. The
+            # native roster is genuinely empty until NORMAL request admission
+            # and publication after the same validated source cutover.
+            state = self.runtime.session.feed.snapshot()
+            valid = [a for a in state['attempts'] if a['outcome']['status'] == 'valid']
+            dated = [a for a in valid if a['query_id'] != 'CURRENT']
+            currents = [a for a in valid if a['query_id'] == 'CURRENT']
+            completed = {a['query_id'] for a in dated}
+            latest = state['attempts'][-1] if state['attempts'] else None
+            if (state['pending'] or state['stop_reason'] or not dated or not currents
+                    or any(q.query_id not in completed for q in self.runtime.session.feed.queries)
+                    or latest is None or latest['query_id'] != 'CURRENT'
+                    or latest['outcome']['status'] != 'valid'
+                    or timestamp(currents[-1]['completed_at_utc']) <= max(timestamp(a['completed_at_utc']) for a in dated)
+                    or not 0 <= (self.runtime.clock()-timestamp(currents[-1]['completed_at_utc'])).total_seconds()
+                        <= 2*self.runtime.session.feed.limits.interval_seconds+10):
+                return ()
         return self.gate.deliver_pending(client=self.runtime.session.client)
 
 

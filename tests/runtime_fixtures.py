@@ -19,10 +19,10 @@ from test_nasdaq_feed_recovery import EMPTY
 
 
 class RuntimeFixture:
-    def __init__(self, root):
+    def __init__(self, root, *, profile='ordinary'):
         self.root = Path(root)
         self.settings = replace(make_settings(self.root), catalog_mode='owned_directory',
-            catalog_id='', catalog_symbols=())
+            catalog_id='', catalog_symbols=(), profile=profile)
         self.plan = self.settings.plan()
         self.now = timestamp(self.settings.password_submitted_at_utc)
         self.real = self.logical = None

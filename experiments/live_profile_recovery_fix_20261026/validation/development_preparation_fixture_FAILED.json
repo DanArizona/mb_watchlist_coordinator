@@ -1,0 +1,8 @@
+{
+  "result": "FAILED",
+  "tests": 13,
+  "failures": 1,
+  "errors": 0,
+  "seconds": 3.908,
+  "cause": "The native fence fixture stopped/reopened exactly on the future slot. The unchanged worker correctly schedules strictly after that new-entry clock. Keep one worker alive from preparation through its future slot; no runtime source or deadline changes."
+}

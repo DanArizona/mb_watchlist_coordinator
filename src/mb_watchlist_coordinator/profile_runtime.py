@@ -4,6 +4,7 @@ This adapter neither authenticates nor chooses feed/worker commands. Its caller
 must supply the already bound runtime, inside an owned outer process scope.
 """
 import json
+from datetime import timedelta
 from pathlib import Path
 import time
 
@@ -76,6 +77,14 @@ class BoundProfile:
             if held:
                 if self.runtime.managed.child is not None:raise ValueError('Replacement appeared during fault hold')
                 return {'status':'WAITING_FOR_PROFILE_HOLD'}
+            if self.runtime.managed.child is None:
+                # The replacement must authenticate/complete native idle work
+                # within its ORIGINAL 3s gate before its declared future slot.
+                # Hold remains 15s; the job fixes this fence once at launch.
+                # Raw audit/outage rules are unchanged, and a slow/invalid
+                # startup still fails without historical quote catch-up.
+                resume_after_utc=utc_text(max(timestamp(resume_after_utc),
+                    self.runtime.clock()+timedelta(seconds=3)))
         return self.original_ensure(start_allowed=start_allowed,resume_after_utc=resume_after_utc)
 
     def facts(self, *, active=False):
