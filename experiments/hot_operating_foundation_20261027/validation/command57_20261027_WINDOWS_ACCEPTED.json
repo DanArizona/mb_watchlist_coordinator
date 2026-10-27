@@ -1,0 +1,76 @@
+{
+  "contract": "hot-operating-foundation-windows-acceptance-v1",
+  "session_date": "2026-10-27",
+  "acceptance": "ACCEPTED",
+  "result": "PASS",
+  "evidence_basis": "Complete supplied sea-green Windows command57 console, emitted JSON, saved report path and actual CMD prompt return. Original Windows report and acceptance-marker files were not independently uploaded/read.",
+  "packet": "hot_operating_fix_20261027_6b53ab",
+  "artifact_sha256": "edf8c6fe490ad964eaa9b7edef00697eb985a747c4c8e9ed73033f060c7d5628",
+  "source_bindings_matched": true,
+  "operator_report": {
+    "contract": "hot-operating-foundation-offline-qualification-v1",
+    "result": "PASS",
+    "tests": 233,
+    "passed": 233,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "failed_tests": [],
+    "skipped_tests": [],
+    "seconds": 12.311999999918044,
+    "network": "denied",
+    "actual_vault_access": false,
+    "production_changes": false,
+    "hot_enabled": false,
+    "market_data_source_commit": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+    "coordinator_source_commit": "5566cc8d52024d899955612c5bc15d1171cf7f24",
+    "release_sha256": "7b5ed46930a3a5c8471ea57bc22831933e738b94a656cbe766c72e7e04c72dcf",
+    "windows_accepted": true,
+    "python": [
+      3,
+      12,
+      13
+    ],
+    "platform": "win32",
+    "daily_hot_driver_included": false,
+    "source_runtime_and_accepted_live_profiles_repeated": false,
+    "remaining": [
+      "Windows result and actual CMD prompt return",
+      "Review candidate operating values",
+      "Separate approval before production source/cadence installation",
+      "Fresh-session Uni/Focus cadence validation with Hot disabled and native full-session audit/replay",
+      "Daily Hot driver and operating-release integration; manual membership and agreed read-only Overlay"
+    ]
+  },
+  "runner_seconds": 11.972,
+  "actual_cmd_prompt_returned": true,
+  "saved_report": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\hot_operating_fix_20261027_6b53ab\\runs\\qualification\\20261027T162811Z_6ad6bc7d\\verification.json",
+  "prior_failure": {
+    "record": "command57_20261027_WINDOWS_FAILED.json",
+    "result": "FAILED",
+    "tests": 233,
+    "passed": 232,
+    "errors": 1,
+    "failures": 0,
+    "skipped": 0,
+    "preserved": true
+  },
+  "correction_scope": "Only the test's SQLite read connection was explicitly closed. Runtime/probe/helper bytes and limits are unchanged from the prior candidate. All 233 corrected checks now passed on Windows, including native file-sharing coverage.",
+  "immutable_archive_and_sources_changed_for_acceptance": false,
+  "accepted_live_profiles_repeated": false,
+  "original_report_remaining_list_preserved": true,
+  "evaluated_remaining": [
+    "Read-only command59 deployment review on the Windows production checkout.",
+    "Review proposed operating values and obtain separate explicit approval before main/source/cadence production changes.",
+    "Fresh dated interleaved Uni/Focus session with Hot disabled; full-session native audit/replay before production Hot.",
+    "Implement daily automatic Nasdaq/Hot source/controller/collector ownership, health and stop/recovery integration. Manual membership can proceed alongside cadence observation; agreed read-only Overlay remains in scope."
+  ],
+  "production": {
+    "changed": false,
+    "cadence_changed": false,
+    "main_merged": false,
+    "hot_enabled": false,
+    "daily_hot_driver_included": false,
+    "last_health_report_not_automatically_fresh": true
+  }
+}

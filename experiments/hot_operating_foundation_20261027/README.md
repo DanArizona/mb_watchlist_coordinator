@@ -51,10 +51,11 @@ The daily source/identity/admission/collector/controller integration is the next
 implementation slice. This packet has no daily Hot launch command and its
 plan fixes `hot_enabled=false`; editing policy JSON cannot enable it. The
 original experiment's 12-minute/one-symbol/60-permit guards remain intact.
-After a qualified fresh Uni/Focus cadence session, production Hot still needs
-the concrete operating driver, health/recovery/deployment integration and
-explicit activation approval. Manual membership follows closely and can be
-built alongside the cadence observation; agreed read-only Overlay remains in scope.
+Daily Hot implementation can proceed alongside the fresh-session Uni/Focus
+cadence observation. Production Hot needs that qualified session, the concrete
+operating driver, health/recovery/deployment integration and explicit activation
+approval. Manual membership follows closely and can also be built alongside
+the observation; agreed read-only Overlay remains in scope.
 
 ## Commands in the delivered packet
 
@@ -74,50 +75,27 @@ source, processes or journals. Installation is a separate `run.py install`
 operation after Windows acceptance and explicit approval. The original normal
 opening/closing procedures remain the operator workflow for this increment.
 
-## Delivery qualification — October 27
+## Windows acceptance — October 27
 
-The frozen packet `hot_operating_20261027_14883e.zip` has local qualification
-at **233 tests: 232 passed, one native Windows sharing test skipped, zero
-failures/errors**. The extracted packet also passed planning from a path with
-spaces and refused extra/altered executable source before imports. The initial
-isolated-environment dependency failure is retained in the packet; final checks
-used the frozen source after fixing that verification environment.
+The corrected packet `hot_operating_fix_20261027_6b53ab` is **Windows accepted**:
+233/233 tests PASS, zero skips/errors/failures, runner11.972s/report12.311999999918044s,
+Python3.12.13/sea-green, and actual CMD prompt returned. The reported market-data
+commit `6b53ab1d12e4e1fdaf4deb1d70b717e13570358c`, Coordinator commit
+`5566cc8d52024d899955612c5bc15d1171cf7f24` and release SHA match the frozen packet.
+No unchanged qualification or accepted live-profile repeat is required.
 
-Windows command57 acceptance and actual CMD prompt return are still pending.
-Verification does not install source, change production cadence or start Hot.
-The daily Hot driver is not included. See
-[the delivery validation record](validation/operating_foundation_20261027_PREPARED.json)
-for exact source/archive hashes, remaining scope and limits. The archive is
-pinned to Coordinator source `a45ccaf0c4d20475115e664610a0cb73d6533755`
-and market-data source `96faa13e97f6f07d7f5019fb6dd02b858eb76c76`;
-this later documentation record does not change its frozen bytes.
+The original packet's command57 **FAILED** remains preserved:232 passed/one
+WinError32 during test-owned temporary SQLite cleanup. Only that test's connection
+scope was corrected; runtime, limits and immutable archives were unchanged for
+acceptance. Full retained records:
 
-## Command57 Windows result and test cleanup correction
+- [Original Windows failure](validation/command57_20261027_WINDOWS_FAILED.json)
+- [Correction, local qualification and extracted handle proof](validation/cleanup_fix_20261027_PREPARED.json)
+- [Complete Windows acceptance and evidence limits](validation/command57_20261027_WINDOWS_ACCEPTED.json)
 
-The original packet's Windows command57 is **FAILED**: 233 tests,232 passed,
-one error,zero skips/failures, with actual CMD prompt return. Its mixed-session
-refusal test left a test-only SQLite connection open, so Windows refused removal
-of the temporary journal. The transaction context manager did not close that
-connection. Production store/early-check connections already close explicitly.
-
-The corrected market-data candidate is `6b53ab1d12e4e1fdaf4deb1d70b717e13570358c`
-on `experiment/hot-operating-cleanup-fix-20261027`. Only the test connection
-scope differs from the previous candidate; runtime/probe bytes and limits are
-unchanged. The candidate remains one ordinary commit from the production
-baseline, preserving the prepared one-commit Git-revert deployment contract.
-A probe retaining every real connection observes one open handle in the
-original test and zero in the correction. Corrected native Windows qualification
-is still pending. The original archive/result is retained. See
-[the failed Windows record](validation/command57_20261027_WINDOWS_FAILED.json).
-
-## Corrected packet qualification
-
-The test-only correction packet is `hot_operating_fix_20261027_6b53ab.zip`.
-Its unchanged 233-test operating-foundation suite passes locally at232 passed,
-one native Windows-only skip,zero errors/failures (18.469804709999153s report).
-The extracted packet's formerly failing test passes with six real connections
-retained and all six closed after cleanup. All109 runtime/probe/helper source
-references match the original packet. The original command57 Windows FAILED
-result stays unchanged. Run this new folder's command57 for complete native
-Windows qualification; original accepted live profiles need no repeat. See
-[the correction delivery record](validation/cleanup_fix_20261027_PREPARED.json).
+The emitted report's raw `remaining` list is preserved. Its Windows-result/CMD
+item is now complete in this separate acceptance record. Source/production
+cadence installation has not happened. Next run command59 for read-only source
+and qualification-marker review while existing polling continues; review the
+result before separate production-change approval. Proposed operating values
+remain unadopted, and the daily Hot driver remains the next implementation slice.
