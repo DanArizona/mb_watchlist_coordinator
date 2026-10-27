@@ -1,0 +1,89 @@
+{
+  "contract": "operating-foundation-windows-failure-v1",
+  "session_date": "2026-10-27",
+  "result": "FAILED",
+  "evidence_basis": "Complete supplied command57 console, emitted JSON and actual CMD prompt return. Original Windows verification.json/temporary journal were not independently uploaded.",
+  "operator_report": {
+    "contract": "hot-operating-foundation-offline-qualification-v1",
+    "result": "FAILED",
+    "tests": 233,
+    "passed": 232,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "failed_tests": [
+      "test_polling_cadence.NativeCadenceTests.test_mixed_registration_is_refused_without_a_new_run"
+    ],
+    "skipped_tests": [],
+    "seconds": 12.406999999890104,
+    "network": "denied",
+    "actual_vault_access": false,
+    "production_changes": false,
+    "hot_enabled": false,
+    "market_data_source_commit": "96faa13e97f6f07d7f5019fb6dd02b858eb76c76",
+    "coordinator_source_commit": "a45ccaf0c4d20475115e664610a0cb73d6533755",
+    "release_sha256": "bedcabbfa813d52fb0b5e497c9ad10250bc475bb7daafa7d6bbd74ed63ed3c9b",
+    "windows_accepted": false,
+    "python": [
+      3,
+      12,
+      13
+    ],
+    "platform": "win32",
+    "daily_hot_driver_included": false,
+    "source_runtime_and_accepted_live_profiles_repeated": false,
+    "remaining": [
+      "Windows result and actual CMD prompt return",
+      "Review candidate operating values",
+      "Separate approval before production source/cadence installation",
+      "Fresh-session Uni/Focus cadence validation with Hot disabled and native full-session audit/replay",
+      "Daily Hot driver and operating-release integration; manual membership and agreed read-only Overlay"
+    ]
+  },
+  "saved_report": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\hot_operating_20261027_14883e\\runs\\qualification\\20261027T160853Z_23a8638d\\verification.json",
+  "failure_detail": {
+    "exception_type": "PermissionError",
+    "windows_error": 32,
+    "operation": "TemporaryDirectory cleanup / os.unlink",
+    "path": "C:\\Users\\danla\\AppData\\Local\\Temp\\tmpqpwkz8um\\2026-10-28.sqlite3"
+  },
+  "diagnosis": "The test used sqlite3.Connection as a transaction context manager without explicitly closing it. TemporaryDirectory cleanup encountered the still-open test connection on Windows. The production store's finally-close and the pre-credential read-only closing scopes were already explicit.",
+  "correction": {
+    "path": "tests/test_polling_cadence.py",
+    "change": "Import contextlib.closing and wrap the test-only SELECT connection with closing(sqlite3.connect(...)).",
+    "candidate_commit": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+    "candidate_branch": "experiment/hot-operating-cleanup-fix-20261027",
+    "runtime_bytes_changed": false,
+    "limits_changed": false,
+    "original_candidate_branch_unchanged": true,
+    "single_candidate_commit_from_original_baseline_preserves_existing_revert_contract": true
+  },
+  "handle_lifetime_probe": {
+    "contract": "operating-cadence-fixture-handle-lifetime-v1",
+    "result": "PASS",
+    "method": "Retain strong references to every real sqlite3.connect return; run the exact target test including cleanup; issue SELECT 1 against each retained connection before closing probe-owned references. No garbage-collection timing assumption.",
+    "original": {
+      "tests": 1,
+      "errors": 0,
+      "failures": 0,
+      "connections_opened": 6,
+      "connections_still_open_after_test_and_cleanup": 1
+    },
+    "corrected": {
+      "tests": 1,
+      "errors": 0,
+      "failures": 0,
+      "connections_opened": 6,
+      "connections_still_open_after_test_and_cleanup": 0
+    },
+    "platform": "linux",
+    "native_windows_result_required": true,
+    "production_changes": false
+  },
+  "acceptance": {
+    "original_command57_result_retained": "FAILED",
+    "corrected_windows_result": "PENDING",
+    "no_production_installation": true,
+    "no_accepted_live_profile_repeat": true
+  }
+}

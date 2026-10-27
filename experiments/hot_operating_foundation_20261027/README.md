@@ -91,3 +91,21 @@ for exact source/archive hashes, remaining scope and limits. The archive is
 pinned to Coordinator source `a45ccaf0c4d20475115e664610a0cb73d6533755`
 and market-data source `96faa13e97f6f07d7f5019fb6dd02b858eb76c76`;
 this later documentation record does not change its frozen bytes.
+
+## Command57 Windows result and test cleanup correction
+
+The original packet's Windows command57 is **FAILED**: 233 tests,232 passed,
+one error,zero skips/failures, with actual CMD prompt return. Its mixed-session
+refusal test left a test-only SQLite connection open, so Windows refused removal
+of the temporary journal. The transaction context manager did not close that
+connection. Production store/early-check connections already close explicitly.
+
+The corrected market-data candidate is `6b53ab1d12e4e1fdaf4deb1d70b717e13570358c`
+on `experiment/hot-operating-cleanup-fix-20261027`. Only the test connection
+scope differs from the previous candidate; runtime/probe bytes and limits are
+unchanged. The candidate remains one ordinary commit from the production
+baseline, preserving the prepared one-commit Git-revert deployment contract.
+A probe retaining every real connection observes one open handle in the
+original test and zero in the correction. Corrected native Windows qualification
+is still pending. The original archive/result is retained. See
+[the failed Windows record](validation/command57_20261027_WINDOWS_FAILED.json).
