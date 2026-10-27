@@ -1,0 +1,505 @@
+{
+  "milestone": "Corrected bounded owned-worker live recovery profile",
+  "status": "ACCEPTED_OPERATOR_EVIDENCE",
+  "result": "PASS_WITH_WARNINGS",
+  "session_date": "2026-10-27",
+  "run_id": "profile_20261027T140208Z_03799ec6",
+  "outer_nonce": "03799ec68936489e9fda31000cf7aa89",
+  "source_commit": "37ef5cb8ed0b5b88a74400ede791e7dc37e4b22b",
+  "source_tree": "693d909cea8a138981b91d318a10c8efd1fd0716",
+  "installed_bundle": "live_recovery_20261026_194232_9fa337",
+  "command": "52_run_recovery_live_profile.cmd",
+  "run_directory": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\live_recovery_20261026_194232_9fa337\\runs\\profile_20261027T140208Z_03799ec6",
+  "basis": "Complete operator launcher summary and actual CMD prompt return, plus uploaded unmodified text of native-profile-report.json, profile.json, runtime-stop.json and dated production STATUS. Original Windows SQLite/worker/source ledgers were not independently uploaded/read; no independent re-audit or replay from those files is claimed.",
+  "actual_cmd_prompt_return_observed": true,
+  "source_attachment": {
+    "name": "Pasted text(20261027-143039).txt",
+    "sha256": "87fb40266b0eb5277e169b162376a0fc125f14c8f5270c6a494b12e96273bc38",
+    "worker_ownership_tokens_omitted_from_public_record": true,
+    "credential_or_token_values_published": false
+  },
+  "outer_summary": {
+    "contract": "credential-bound-live-hot-profile-v1",
+    "profile": "owned_worker_recovery",
+    "outer": {
+      "contract": "owned-outer-hot-profile-v1",
+      "nonce": "03799ec68936489e9fda31000cf7aa89",
+      "stop_reason": "profile_goal",
+      "controller_phase": "GOAL_COMPLETE",
+      "acquisition_stop_requested_at_utc": "2026-10-27T14:07:12.930207+00:00",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "windows_job",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      },
+      "reporter_cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "windows_job",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      },
+      "reporter_returncode": 0,
+      "reporting_complete": true,
+      "stop_receipt_saved": true,
+      "failure": null,
+      "result": "PASS_WITH_WARNINGS",
+      "production_access": false,
+      "profile_evidence_result": "PASS_WITH_WARNINGS"
+    },
+    "stop_request_origin": null,
+    "production_access": false,
+    "maximum_quote_permits": 63,
+    "shared_sdk_token_refresh_possible": true
+  },
+  "native_profile_report": {
+    "audited_at_utc": "2026-10-27T14:07:12.930207+00:00",
+    "contract": "bounded-hot-profile-native-evidence-v1",
+    "controller_stop_requested_at_utc": "2026-10-27T14:07:12.937579+00:00",
+    "credential_access": false,
+    "facts_sha256": "10ffbebf9ab22b4f43e4b2ba86720aaa9723a6a7b0a752a1001497a072021926",
+    "goals": {
+      "after_restart": 24,
+      "before_fault": 12,
+      "goal_complete": true
+    },
+    "identical_fresh_replays": true,
+    "intentional_outage_missing_slot_ids": [
+      "hot:2026-10-27T10:05:56-04:00",
+      "hot:2026-10-27T10:05:58-04:00",
+      "hot:2026-10-27T10:06:02-04:00",
+      "hot:2026-10-27T10:06:04-04:00",
+      "hot:2026-10-27T10:06:06-04:00",
+      "hot:2026-10-27T10:06:08-04:00",
+      "hot:2026-10-27T10:06:12-04:00"
+    ],
+    "missing_slot_ids": [
+      "hot:2026-10-27T10:05:56-04:00",
+      "hot:2026-10-27T10:05:58-04:00",
+      "hot:2026-10-27T10:06:02-04:00",
+      "hot:2026-10-27T10:06:04-04:00",
+      "hot:2026-10-27T10:06:06-04:00",
+      "hot:2026-10-27T10:06:08-04:00",
+      "hot:2026-10-27T10:06:12-04:00"
+    ],
+    "non_quote_acquisition_ids": [],
+    "outer_nonce": "03799ec68936489e9fda31000cf7aa89",
+    "outer_stop_requested_at_utc": "2026-10-27T14:07:12.930207+00:00",
+    "preflight_configuration_sha256": "e5bcb32f1234ca471fc284c7594b43d899cf41f7cd895142c5065b8c9d9ac041",
+    "production_access": false,
+    "profile": "owned_worker_recovery",
+    "raw_native_audit": {
+      "channels": [
+        {
+          "acquisition_count": 0,
+          "channel": "focus",
+          "expected_slot_count": 0,
+          "member_rows": 81,
+          "missing_slot_ids": [],
+          "observation_count": 0,
+          "requested_symbol_count": 0,
+          "revision_count": 2,
+          "row_count_mismatch_ids": [],
+          "skipped_slot_count": 0,
+          "status_counts": {}
+        },
+        {
+          "acquisition_count": 36,
+          "channel": "hot",
+          "expected_slot_count": 94,
+          "member_rows": 1,
+          "missing_slot_ids": [
+            "hot:2026-10-27T10:05:56-04:00",
+            "hot:2026-10-27T10:05:58-04:00",
+            "hot:2026-10-27T10:06:02-04:00",
+            "hot:2026-10-27T10:06:04-04:00",
+            "hot:2026-10-27T10:06:06-04:00",
+            "hot:2026-10-27T10:06:08-04:00",
+            "hot:2026-10-27T10:06:12-04:00"
+          ],
+          "observation_count": 36,
+          "requested_symbol_count": 36,
+          "revision_count": 2,
+          "row_count_mismatch_ids": [],
+          "skipped_slot_count": 51,
+          "status_counts": {
+            "quote": 36
+          }
+        },
+        {
+          "acquisition_count": 0,
+          "channel": "uni",
+          "expected_slot_count": 0,
+          "member_rows": 1123,
+          "missing_slot_ids": [],
+          "observation_count": 0,
+          "requested_symbol_count": 0,
+          "revision_count": 2,
+          "row_count_mismatch_ids": [],
+          "skipped_slot_count": 0,
+          "status_counts": {}
+        }
+      ],
+      "database_path": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\live_recovery_20261026_194232_9fa337\\runs\\profile_20261027T140208Z_03799ec6\\integrated_hot_03799ec68936489e9fda31000cf7aa89\\quotes.sqlite3",
+      "evidence_bytes": {},
+      "findings": [
+        {
+          "code": "missing_poll_slots",
+          "detail": "hot: 7 configured slots have neither an acquisition nor an empty-membership skip"
+        }
+      ],
+      "integrity_results": [
+        "ok"
+      ],
+      "membership_contract": "nested-uni-focus-hot-v1",
+      "runs": [
+        {
+          "channel": "hot",
+          "configuration": {
+            "batch_size": 400,
+            "experimental": true,
+            "fields": "all",
+            "isolated_hot_acquisition_v1": true,
+            "max_dispatch_lateness_seconds": 0.75,
+            "poll_seconds": [
+              2,
+              4,
+              6,
+              8,
+              12,
+              14,
+              16,
+              18,
+              22,
+              24,
+              26,
+              28,
+              32,
+              34,
+              36,
+              38,
+              42,
+              44,
+              46,
+              48,
+              52,
+              54,
+              56,
+              58
+            ],
+            "poll_window_end_et": "2026-10-27T10:15:18-04:00",
+            "poll_window_start_et": "2026-10-27T10:03:18-04:00",
+            "retry_seconds": 0.05,
+            "source_label": "experimental-native-hot-recovery-v1",
+            "watchlist_kind": "hot"
+          },
+          "host": null,
+          "run_id": "isolated-hot-b86f41ae72f644c6906ebcc14bba23ef",
+          "software_version": "experimental-hot-acquisition-v1",
+          "started_at_utc": "2026-10-27T14:02:23.302544Z"
+        },
+        {
+          "channel": "hot",
+          "configuration": {
+            "batch_size": 400,
+            "experimental": true,
+            "fields": "all",
+            "isolated_hot_acquisition_v1": true,
+            "max_dispatch_lateness_seconds": 0.75,
+            "poll_seconds": [
+              2,
+              4,
+              6,
+              8,
+              12,
+              14,
+              16,
+              18,
+              22,
+              24,
+              26,
+              28,
+              32,
+              34,
+              36,
+              38,
+              42,
+              44,
+              46,
+              48,
+              52,
+              54,
+              56,
+              58
+            ],
+            "poll_window_end_et": "2026-10-27T10:15:18-04:00",
+            "poll_window_start_et": "2026-10-27T10:03:18-04:00",
+            "retry_seconds": 0.05,
+            "source_label": "experimental-native-hot-recovery-v1",
+            "watchlist_kind": "hot"
+          },
+          "host": null,
+          "run_id": "isolated-hot-3649b884f25b43e28928e02729ea3a10",
+          "software_version": "experimental-hot-acquisition-v1",
+          "started_at_utc": "2026-10-27T14:02:24.090378Z"
+        },
+        {
+          "channel": "hot",
+          "configuration": {
+            "batch_size": 400,
+            "experimental": true,
+            "fields": "all",
+            "isolated_hot_acquisition_v1": true,
+            "max_dispatch_lateness_seconds": 0.75,
+            "poll_seconds": [
+              2,
+              4,
+              6,
+              8,
+              12,
+              14,
+              16,
+              18,
+              22,
+              24,
+              26,
+              28,
+              32,
+              34,
+              36,
+              38,
+              42,
+              44,
+              46,
+              48,
+              52,
+              54,
+              56,
+              58
+            ],
+            "poll_window_end_et": "2026-10-27T10:15:18-04:00",
+            "poll_window_start_et": "2026-10-27T10:03:18-04:00",
+            "retry_seconds": 0.05,
+            "source_label": "experimental-native-hot-recovery-v1",
+            "watchlist_kind": "hot"
+          },
+          "host": null,
+          "run_id": "isolated-hot-e18bcfa43b244fdfb6e77acc1a96de75",
+          "software_version": "experimental-hot-acquisition-v1",
+          "started_at_utc": "2026-10-27T14:06:10.732299Z"
+        }
+      ],
+      "schema_version": 2,
+      "session_date": "2026-10-27",
+      "storage_bytes": {
+        "database": 507904,
+        "shm": 32768,
+        "wal": 0
+      },
+      "table_counts": {
+        "poll_run": 3,
+        "poll_slot_skip": 51,
+        "quote_acquisition": 36,
+        "quote_observation": 36,
+        "sampling_channel_member": 1205,
+        "sampling_channel_revision": 6,
+        "sampling_membership_revision": 2
+      }
+    },
+    "raw_native_audit_passed": false,
+    "replays": [
+      {
+        "events": 38,
+        "sha256": "47ddc2f8bb4812facc1dd5bd48e33eec1fb9493c7bed8791d442e042a2782516"
+      },
+      {
+        "events": 38,
+        "sha256": "47ddc2f8bb4812facc1dd5bd48e33eec1fb9493c7bed8791d442e042a2782516"
+      }
+    ],
+    "reporting_read_only": true,
+    "result": "PASS_WITH_WARNINGS",
+    "runtime_sha256": "4a9d7b4c04f885866d62b8da34d951ae7c1fcb69cb7d0f4311d8e8ec78acdc7b",
+    "source_reasons": [
+      "intermediate_feed_mutations_not_reconstructible",
+      "older_unknown_carryovers_not_proven_complete",
+      "provider_collector_driver_qualification_pending"
+    ],
+    "source_reconciled": true,
+    "unacknowledged_acquisition_ids": [],
+    "unexplained_missing_slot_ids": []
+  },
+  "profile_state_redacted": {
+    "binding": {
+      "contract": "bounded-hot-profile-state-v1",
+      "profile": "owned_worker_recovery",
+      "runtime_sha256": "4a9d7b4c04f885866d62b8da34d951ae7c1fcb69cb7d0f4311d8e8ec78acdc7b",
+      "start_at_utc": "2026-10-27T14:03:18+00:00",
+      "stop_at_utc": "2026-10-27T14:15:18+00:00"
+    },
+    "events": [
+      {
+        "at_utc": "2026-10-27T14:05:25.886834+00:00",
+        "data": {
+          "at_utc": "2026-10-27T14:05:22.257675+00:00",
+          "attempt_id": "16fdaaec9c8445f183d8e0028546d691",
+          "feed_head_sha256": "aee459fe40ec5399152909a63d79045f76fe19fe5bf77c9921c7ed62db2999ce"
+        },
+        "kind": "cutover",
+        "previous_sha256": "e1297bf9bc71c38b682afd81ad80386ba86a8fd2964e4112e7796bf418a9a4ef",
+        "sequence": 1,
+        "sha256": "1f674daf14cc819cc0d21833b2e39bd7763a9e769211a6fa561558a8cbcf99e9"
+      },
+      {
+        "at_utc": "2026-10-27T14:05:54.918577+00:00",
+        "data": {
+          "generation": 1,
+          "last_acknowledged_id": "hot:2026-10-27T10:05:54-04:00:r1",
+          "pid": 62016,
+          "requested_at_utc": "2026-10-27T14:05:54.918577+00:00"
+        },
+        "kind": "fault_intent",
+        "previous_sha256": "1f674daf14cc819cc0d21833b2e39bd7763a9e769211a6fa561558a8cbcf99e9",
+        "sequence": 2,
+        "sha256": "ed148db08aef2177e58c3f9f87129ce0bb84879bf860f234c7070e800a5dd60f"
+      },
+      {
+        "at_utc": "2026-10-27T14:05:54.934750+00:00",
+        "data": {
+          "exit_observed_at_utc": "2026-10-27T14:05:54.922856+00:00",
+          "generation": 1,
+          "last_acknowledged_id": "hot:2026-10-27T10:05:54-04:00:r1",
+          "pid": 62016,
+          "requested_at_utc": "2026-10-27T14:05:54.918577+00:00"
+        },
+        "kind": "fault",
+        "previous_sha256": "ed148db08aef2177e58c3f9f87129ce0bb84879bf860f234c7070e800a5dd60f",
+        "sequence": 3,
+        "sha256": "623946b25b81770f9fb839e79955a3bb7fb49c50c58662527913100a098ea1fc"
+      },
+      {
+        "at_utc": "2026-10-27T14:06:12.784680+00:00",
+        "data": {
+          "first_eligible_slot_utc": "2026-10-27T14:06:14+00:00",
+          "generation": 2,
+          "pid": 38220,
+          "ready_at_utc": "2026-10-27T14:06:11.142213+00:00",
+          "started_at_utc": "2026-10-27T14:06:10.466167+00:00"
+        },
+        "kind": "restart",
+        "previous_sha256": "623946b25b81770f9fb839e79955a3bb7fb49c50c58662527913100a098ea1fc",
+        "sequence": 4,
+        "sha256": "ccb9a3228b5a06d69a9e98b8f3adffd6e096f2ce9cbce4318f71c79faad48b87"
+      },
+      {
+        "at_utc": "2026-10-27T14:07:12.937579+00:00",
+        "data": {
+          "reason": "operator_stop",
+          "requested_at_utc": "2026-10-27T14:07:12.937579+00:00"
+        },
+        "kind": "stop",
+        "previous_sha256": "ccb9a3228b5a06d69a9e98b8f3adffd6e096f2ce9cbce4318f71c79faad48b87",
+        "sequence": 5,
+        "sha256": "f07d89051100a51ba5623e8d83668840e9398042a8e68b0cbb7d7ada801c7df4"
+      }
+    ]
+  },
+  "runtime_stop": {
+    "acquisition_stop_requested_at_utc": "2026-10-27T14:07:12.939083+00:00",
+    "cleanup_findings": [],
+    "contract": "fresh-authenticated-nasdaq-hot-runtime-v1",
+    "counts_verified": true,
+    "full_manual_controller_resume": false,
+    "hot_quote_permits": 36,
+    "identity_quote_permits": 1,
+    "production_access": false,
+    "profile_verdict": "NOT_QUALIFIED_BY_RUNTIME_PUMP",
+    "reason": "operator_stop",
+    "selected_symbol": "MACI",
+    "status": "STOPPED"
+  },
+  "local_review_of_supplied_evidence": {
+    "attachment_sha256": "87fb40266b0eb5277e169b162376a0fc125f14c8f5270c6a494b12e96273bc38",
+    "profile_event_chain_verified": true,
+    "original_fault_intent_matches_exit": true,
+    "replacement_generation_pid_and_ownership_identity_changed": true,
+    "hold_after_exit_seconds": 15.543311,
+    "replacement_ready_before_first_eligible_seconds": 2.857787,
+    "accounted_slots": 94,
+    "valid_quotes": 36,
+    "empty_skips": 51,
+    "intentional_missing": 7,
+    "unexplained_missing": 0,
+    "replay": {
+      "events": 38,
+      "sha256": "47ddc2f8bb4812facc1dd5bd48e33eec1fb9493c7bed8791d442e042a2782516"
+    },
+    "selected_symbol": "MACI"
+  },
+  "profile_event_hash_verification_basis": "Original attached JSON before ownership-value removal, using the accepted canonical digest; published redacted event payloads do not reproduce original event hashes.",
+  "raw_native_audit_failure_retained": true,
+  "raw_audit_failure_explanation": "Exactly seven deliberate-outage missing slots; no non-missing audit findings, no unexplained gaps, no invalid/nonquote or unacknowledged acquisitions. Profile-qualified PASS_WITH_WARNINGS does not replace the raw native audit verdict.",
+  "profile_stop_and_runtime_stop_receipts_saved": true,
+  "stop_reason_interpretation": "Outer profile_goal is the qualification endpoint. Inner operator_stop labels and NOT_QUALIFIED_BY_RUNTIME_PUMP accounting label are preserved; final qualification is the separate read-only native profile report.",
+  "original_bounds_relaxed": false,
+  "source_archive_or_runtime_changed_for_acceptance": false,
+  "prior_ordinary_result_retained": "PASS_WITH_WARNINGS",
+  "prior_recovery_run_20261026_retained": "FAILED",
+  "prior_recovery_record": "recovery_20261026_command52_FAILED.json",
+  "accepted_ordinary_record": "experiments/live_profile_boundary_20261026/validation/ordinary_20261026_command51_ACCEPTED.json",
+  "both_required_bounded_live_profiles_accepted": true,
+  "remaining_source_warning_codes": [
+    "intermediate_feed_mutations_not_reconstructible",
+    "older_unknown_carryovers_not_proven_complete",
+    "provider_collector_driver_qualification_pending"
+  ],
+  "production_health": {
+    "as_of_et": "2026-10-27T10:29:46-04:00",
+    "journal_read": "OK",
+    "journal_read_seconds": 0,
+    "grace_seconds": 90,
+    "uni": {
+      "status": "RUNNING",
+      "candidate_pids": [
+        26320
+      ],
+      "acquisitions": 120,
+      "members": 561,
+      "empty_skips": 0,
+      "missing_after_grace": 0,
+      "last_committed_slot_et": "10:29:30"
+    },
+    "focus": {
+      "status": "RUNNING",
+      "candidate_pids": [
+        62712
+      ],
+      "acquisitions": 239,
+      "members": 40,
+      "empty_skips": 0,
+      "missing_after_grace": 0,
+      "last_committed_slot_et": "10:29:35"
+    },
+    "scope": "Point-in-time health, not full-session audit/replay or all-quote acceptance."
+  },
+  "scope_boundaries": {
+    "production_hot_enabled": false,
+    "production_main_or_cadence_changed": false,
+    "continuous_daily_operating_release_adopted": false,
+    "full_manual_controller_resume": false,
+    "manual_membership_operator_interface_completed": false,
+    "live_provider_complete_intermediate_history_proven": false,
+    "unchanged_test_or_live_profiles_repeated": false
+  },
+  "next": [
+    "Prepare the minimum operating release: explicit operating values, daily launcher/process ownership, health and recovery, stop/restart and rollback.",
+    "Prepare and qualify the separate fresh-session cadence change with Hot disabled and full Uni/Focus audit/replay before production Hot adoption.",
+    "Advance manual membership controls closely behind, with the agreed read-only Overlay retained.",
+    "Retain source warnings and original failed evidence. No unchanged offline or already accepted live-profile repeat is required.",
+    "Production activation and main merges require separate explicit approval after a concrete reviewable result."
+  ]
+}

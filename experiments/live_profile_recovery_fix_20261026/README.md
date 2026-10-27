@@ -1,5 +1,36 @@
 # October 26 bounded live recovery correction — command 56
 
+## Current live status — October 27 accepted
+
+The corrected live owned-worker recovery run
+`profile_20261027T140208Z_03799ec6` is accepted as **PASS_WITH_WARNINGS**.
+MACI produced 12 qualifying committed/acknowledged quotes before the exact owned
+worker fault and 24 after verified replacement. The replacement started
+15.543311 seconds after confirmed exit and was ready 2.857787 seconds before
+its first eligible slot. The 36 Hot permits and one identity permit are within
+the original caps. All 94 configured slots are accounted for: 36 quotes,
+51 genuine empty-membership skips and seven intentional-outage missing slots.
+The raw audit remains failed for those seven deliberate gaps; there are zero
+unexplained gaps, nonquote acquisitions, unacknowledged acquisitions or row
+mismatches. Two fresh 38-event replays match. Profile/runtime-stop/counts
+receipts are saved; controller and reporter exit cooperatively with return
+code 0 and empty owned scopes. Production Uni/Focus remain healthy at
+10:29:46 ET (120/239 acquisitions, 561/40 members, no overdue gaps).
+
+The three existing source warning codes are retained. The result accepts this
+bounded recovery profile; minimum operating/adoption work remains. Together
+with the previously accepted ordinary profile, both required bounded live
+profiles are complete. No unchanged command56 or accepted live-profile repeat
+is required. Main merges and production activation remain separate decisions.
+
+Complete structured acceptance, scope and redacted profile state:
+[validation/recovery_20261027_command52_ACCEPTED.json](validation/recovery_20261027_command52_ACCEPTED.json).
+The original private attached event chain was verified before omitting worker
+ownership values from the public record. The raw native verdict, warning codes
+and all earlier FAILED runs remain unchanged.
+
+## October 26 offline acceptance and handoff — historical snapshot
+
 Windows command56 is ACCEPTED: complete operator console and actual CMD prompt
 return, 55/55 passed with zero skips/errors/failures, runner35.777s/report
 36.08040410000831s, run20261026T195358Z-1e320a5d, sea-green Python3.12.13 on
