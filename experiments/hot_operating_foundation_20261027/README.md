@@ -73,3 +73,21 @@ Using today's live legacy journal for review reports
 source, processes or journals. Installation is a separate `run.py install`
 operation after Windows acceptance and explicit approval. The original normal
 opening/closing procedures remain the operator workflow for this increment.
+
+## Delivery qualification — October 27
+
+The frozen packet `hot_operating_20261027_14883e.zip` has local qualification
+at **233 tests: 232 passed, one native Windows sharing test skipped, zero
+failures/errors**. The extracted packet also passed planning from a path with
+spaces and refused extra/altered executable source before imports. The initial
+isolated-environment dependency failure is retained in the packet; final checks
+used the frozen source after fixing that verification environment.
+
+Windows command57 acceptance and actual CMD prompt return are still pending.
+Verification does not install source, change production cadence or start Hot.
+The daily Hot driver is not included. See
+[the delivery validation record](validation/operating_foundation_20261027_PREPARED.json)
+for exact source/archive hashes, remaining scope and limits. The archive is
+pinned to Coordinator source `a45ccaf0c4d20475115e664610a0cb73d6533755`
+and market-data source `96faa13e97f6f07d7f5019fb6dd02b858eb76c76`;
+this later documentation record does not change its frozen bytes.

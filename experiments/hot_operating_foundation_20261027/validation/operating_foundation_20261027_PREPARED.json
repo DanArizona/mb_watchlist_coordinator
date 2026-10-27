@@ -1,0 +1,153 @@
+{
+  "contract": "hot-operating-foundation-delivery-v1",
+  "session_date": "2026-10-27",
+  "status": "PREPARED_WINDOWS_ACCEPTANCE_PENDING",
+  "scope": "First operating-release increment: cadence, read-only daily review planning, explicit proposed Hot operating values, deployment review and guarded install/revert tooling. Daily automatic Hot source/controller/collector integration is the next implementation slice.",
+  "source": {
+    "market_data": {
+      "repository": "DanArizona/mb_market_data",
+      "branch": "experiment/hot-operating-foundation-20261027",
+      "commit": "96faa13e97f6f07d7f5019fb6dd02b858eb76c76",
+      "tree": "1fa4c9b2a19204633f49c708c3423e402eb8aef3",
+      "production_baseline": "a082f544112643b4e5f459d15c67f60d0a1ef83d"
+    },
+    "coordinator": {
+      "repository": "DanArizona/mb_watchlist_coordinator",
+      "branch": "experiment/hot-operating-foundation-20261027",
+      "commit": "a45ccaf0c4d20475115e664610a0cb73d6533755",
+      "tree": "f0caa9d3c9d73a05a91f0908f0aed655e2f481b7",
+      "accepted_recovery_record_commit": "fd32c56497145afeb7af4d121a2953569c39d6c6"
+    }
+  },
+  "artifact": {
+    "filename": "hot_operating_20261027_14883e.zip",
+    "bytes": 487428,
+    "sha256": "8bc51addf5dc6ad9db91a79efe17f538b5abf05d0e21a3ec786628cd9ba8f885",
+    "files": 163,
+    "runtime_inventory_files": 160,
+    "release_sha256": "bedcabbfa813d52fb0b5e497c9ad10250bc475bb7daafa7d6bbd74ed63ed3c9b",
+    "accepted_marker_in_archive": false
+  },
+  "local_qualification": {
+    "actual_vault_access": false,
+    "contract": "hot-operating-foundation-offline-qualification-v1",
+    "coordinator_source_commit": "a45ccaf0c4d20475115e664610a0cb73d6533755",
+    "daily_hot_driver_included": false,
+    "errors": 0,
+    "failed_tests": [],
+    "failures": 0,
+    "hot_enabled": false,
+    "market_data_source_commit": "96faa13e97f6f07d7f5019fb6dd02b858eb76c76",
+    "network": "denied",
+    "passed": 232,
+    "platform": "linux",
+    "production_changes": false,
+    "python": [
+      3,
+      12,
+      14
+    ],
+    "release_sha256": "bedcabbfa813d52fb0b5e497c9ad10250bc475bb7daafa7d6bbd74ed63ed3c9b",
+    "remaining": [
+      "Windows result and actual CMD prompt return",
+      "Review candidate operating values",
+      "Separate approval before production source/cadence installation",
+      "Fresh-session Uni/Focus cadence validation with Hot disabled and native full-session audit/replay",
+      "Daily Hot driver and operating-release integration; manual membership and agreed read-only Overlay"
+    ],
+    "result": "PASS",
+    "seconds": 15.297416452000107,
+    "skipped": 1,
+    "skipped_tests": [
+      {
+        "reason": "native Windows sharing semantics",
+        "test": "test_monitor_status_recovery.StatusRecoveryTests.test_real_windows_reader_lock_releases_and_same_publication_succeeds"
+      }
+    ],
+    "source_runtime_and_accepted_live_profiles_repeated": false,
+    "tests": 233,
+    "windows_accepted": false
+  },
+  "extracted_smoke": {
+    "result": "PASS",
+    "extracted_path_contains_spaces": true,
+    "inventory_checked_before_candidate_imports": true,
+    "readonly_plan_cli": true,
+    "extra_source_refused": true,
+    "altered_source_refused": true,
+    "inventory_restored": true,
+    "actual_vault_access": false,
+    "api_requests": 0,
+    "production_changes": false
+  },
+  "development_failures": {
+    "retained_failed_packet_reports": 1,
+    "description": "The initial isolated runner could not import Plotly/Werkzeug installed in the host user site. Its FAILED report remains in offline_evidence. A dedicated isolated verification environment resolved the host dependency issue; final qualification and extracted smoke use the frozen source inventory."
+  },
+  "implemented": [
+    "Opt-in interleaved-v1: Uni :00/:30 and Focus :10/:20/:40/:50, with legacy-v1 remaining the default and other even seconds reserved for future Hot.",
+    "Pre-credential read-only and atomic transaction checks refuse mixed cadence runs in one journal.",
+    "Health/watchdog/restart expectations, historical audit/replay and Overlay request-error band endpoints follow recorded cadence. Legacy replay serialization is unchanged.",
+    "Read-only r0/r1-bound operating plans provide separate Uni/Focus/Health commands, status/restart/stop guidance and explicit source and proposal bindings.",
+    "Source inventory validation refuses altered or unlisted executable files before candidate imports.",
+    "Windows-qualified, after-close, idle-process deployment and Git revert are guarded by explicit production-change approval and preserve journals/evidence/unrelated untracked files. Temporary real-Git install/revert drills passed."
+  ],
+  "compatibility": {
+    "legacy_replay_sha256": "10d5c9cc73e6ac503e4006bf5d7aaa4539225f4881ec3f0d0cea32748793b232",
+    "legacy_fixture_events": 13,
+    "unchanged_production_source_used_as_reference": "a082f544112643b4e5f459d15c67f60d0a1ef83d",
+    "mixed_session_switch_allowed": false,
+    "cadence_schema_migration": false
+  },
+  "proposed_policy": {
+    "status": "PROPOSED_NOT_ADOPTED",
+    "hot_enabled": false,
+    "reason_codes": [
+      "LUDP",
+      "M"
+    ],
+    "active_hot_limit": 1,
+    "distinct_added_symbols_per_session": 1,
+    "request_lifetime": "regular_close",
+    "maximum_hot_quote_calls": 9360,
+    "maximum_identity_quote_calls": 3,
+    "maximum_directory_retrievals": 2,
+    "maximum_feed_attempts": 390,
+    "feed_seconds_after_completion": 60,
+    "maximum_worker_starts": 3,
+    "worker_progress_seconds": 3,
+    "credential_seconds": 8,
+    "replacement_hold_seconds": 15,
+    "cleanup_seconds": 10,
+    "reporting_seconds": 60,
+    "demotion_grace_seconds": 60,
+    "minimum_residence_seconds": 120,
+    "restriction_timing": "immediate_cap",
+    "full_day_provider_capacity_qualified": false
+  },
+  "exclusions_and_limits": {
+    "daily_hot_driver_included": false,
+    "hot_launch_command": null,
+    "automatic_unified_startup_included": false,
+    "manual_membership_cli_included": false,
+    "accepted_runtime_profiles_repeated": false,
+    "actual_vault_access": false,
+    "live_feed_directory_or_broker_requests": 0,
+    "production_source_changed": false,
+    "production_cadence_changed": false,
+    "main_merged": false,
+    "windows_acceptance": false,
+    "current_production_health_not_inferred_from_local_checks": true
+  },
+  "retained_source_warnings": [
+    "intermediate_feed_mutations_not_reconstructible",
+    "older_unknown_carryovers_not_proven_complete",
+    "provider_collector_driver_qualification_pending"
+  ],
+  "next": [
+    "Operator runs command57 in sea-green and supplies complete result plus actual CMD prompt return; Windows requires zero skips, failures and errors.",
+    "Review the concrete source/cadence deployment plan and proposed operating values. Main-branch or production installation still needs separate explicit approval.",
+    "After approval, use a fresh dated session for the interleaved Uni/Focus cadence with Hot disabled; perform full-session native audit/replay.",
+    "Implement the daily automatic Nasdaq/Hot driver, process ownership, health, stop/recovery and adoption integration. Manual membership may proceed alongside cadence observation; agreed read-only Overlay follows without unrelated polish."
+  ]
+}
