@@ -1,0 +1,129 @@
+{
+  "contract": "hot-operating-cleanup-correction-delivery-v1",
+  "session_date": "2026-10-27",
+  "status": "LOCAL_PASS_WINDOWS_PENDING",
+  "original_windows_command57": {
+    "result": "FAILED",
+    "tests": 233,
+    "passed": 232,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "actual_cmd_prompt_returned": true,
+    "record": "command57_20261027_WINDOWS_FAILED.json"
+  },
+  "correction": {
+    "path": "tests/test_polling_cadence.py",
+    "description": "Use contextlib.closing for the test-only read connection, so it closes before TemporaryDirectory removes the journal.",
+    "runtime_and_probes_unchanged": true,
+    "unchanged_runtime_reference_files": 109,
+    "limits_unchanged": true,
+    "qualification_runner_unchanged": true,
+    "production_changes": false
+  },
+  "source": {
+    "market_data_commit": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+    "market_data_branch": "experiment/hot-operating-cleanup-fix-20261027",
+    "market_data_tree": "f23ef525e82c589e0765daf0701cf91929cfa8a6",
+    "market_data_parent": "a082f544112643b4e5f459d15c67f60d0a1ef83d",
+    "coordinator_commit": "5566cc8d52024d899955612c5bc15d1171cf7f24",
+    "coordinator_branch": "experiment/hot-operating-foundation-20261027",
+    "single_candidate_commit_preserves_original_git_revert_contract": true,
+    "original_candidate_branch_and_archive_preserved": true
+  },
+  "artifact": {
+    "filename": "hot_operating_fix_20261027_6b53ab.zip",
+    "bytes": 495292,
+    "sha256": "edf8c6fe490ad964eaa9b7edef00697eb985a747c4c8e9ed73033f060c7d5628",
+    "files": 168,
+    "runtime_inventory_files": 162,
+    "release_sha256": "7b5ed46930a3a5c8471ea57bc22831933e738b94a656cbe766c72e7e04c72dcf",
+    "accepted_marker_and_runs_excluded": true
+  },
+  "local_qualification": {
+    "actual_vault_access": false,
+    "contract": "hot-operating-foundation-offline-qualification-v1",
+    "coordinator_source_commit": "5566cc8d52024d899955612c5bc15d1171cf7f24",
+    "daily_hot_driver_included": false,
+    "errors": 0,
+    "failed_tests": [],
+    "failures": 0,
+    "hot_enabled": false,
+    "market_data_source_commit": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+    "network": "denied",
+    "passed": 232,
+    "platform": "linux",
+    "production_changes": false,
+    "python": [
+      3,
+      12,
+      14
+    ],
+    "release_sha256": "7b5ed46930a3a5c8471ea57bc22831933e738b94a656cbe766c72e7e04c72dcf",
+    "remaining": [
+      "Windows result and actual CMD prompt return",
+      "Review candidate operating values",
+      "Separate approval before production source/cadence installation",
+      "Fresh-session Uni/Focus cadence validation with Hot disabled and native full-session audit/replay",
+      "Daily Hot driver and operating-release integration; manual membership and agreed read-only Overlay"
+    ],
+    "result": "PASS",
+    "seconds": 18.469804709999153,
+    "skipped": 1,
+    "skipped_tests": [
+      {
+        "reason": "native Windows sharing semantics",
+        "test": "test_monitor_status_recovery.StatusRecoveryTests.test_real_windows_reader_lock_releases_and_same_publication_succeeds"
+      }
+    ],
+    "source_runtime_and_accepted_live_profiles_repeated": false,
+    "tests": 233,
+    "windows_accepted": false
+  },
+  "extracted_smoke": {
+    "result": "PASS",
+    "tests": 1,
+    "connections_opened": 6,
+    "connections_left_open": 0,
+    "inventory_rechecked": true,
+    "path_contains_spaces": true,
+    "network": "denied",
+    "production_changes": false
+  },
+  "handle_lifetime_probe": {
+    "contract": "operating-cadence-fixture-handle-lifetime-v1",
+    "result": "PASS",
+    "method": "Retain strong references to every real sqlite3.connect return; run the exact target test including cleanup; issue SELECT 1 against each retained connection before closing probe-owned references. No garbage-collection timing assumption.",
+    "original": {
+      "tests": 1,
+      "errors": 0,
+      "failures": 0,
+      "connections_opened": 6,
+      "connections_still_open_after_test_and_cleanup": 1
+    },
+    "corrected": {
+      "tests": 1,
+      "errors": 0,
+      "failures": 0,
+      "connections_opened": 6,
+      "connections_still_open_after_test_and_cleanup": 0
+    },
+    "platform": "linux",
+    "native_windows_result_required": true,
+    "production_changes": false
+  },
+  "scope": {
+    "daily_hot_driver_included": false,
+    "hot_enabled": false,
+    "production_source_or_cadence_changed": false,
+    "actual_vault_access": false,
+    "provider_requests": 0,
+    "accepted_live_profiles_repeated": false
+  },
+  "remaining": [
+    "Corrected command57 in sea-green: complete Windows result, zero skips/errors/failures and actual CMD prompt return.",
+    "Read-only deployment review and review of proposed operating values before separate main/production approval.",
+    "Fresh dated interleaved Uni/Focus session with Hot disabled and native full-session audit/replay before production Hot.",
+    "Daily automatic Nasdaq/Hot controller integration, manual membership and the agreed read-only Overlay remain the development priority."
+  ]
+}

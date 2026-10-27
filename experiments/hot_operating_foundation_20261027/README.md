@@ -109,3 +109,15 @@ A probe retaining every real connection observes one open handle in the
 original test and zero in the correction. Corrected native Windows qualification
 is still pending. The original archive/result is retained. See
 [the failed Windows record](validation/command57_20261027_WINDOWS_FAILED.json).
+
+## Corrected packet qualification
+
+The test-only correction packet is `hot_operating_fix_20261027_6b53ab.zip`.
+Its unchanged 233-test operating-foundation suite passes locally at232 passed,
+one native Windows-only skip,zero errors/failures (18.469804709999153s report).
+The extracted packet's formerly failing test passes with six real connections
+retained and all six closed after cleanup. All109 runtime/probe/helper source
+references match the original packet. The original command57 Windows FAILED
+result stays unchanged. Run this new folder's command57 for complete native
+Windows qualification; original accepted live profiles need no repeat. See
+[the correction delivery record](validation/cleanup_fix_20261027_PREPARED.json).
