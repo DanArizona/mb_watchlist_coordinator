@@ -1,0 +1,206 @@
+{
+  "contract": "production-preopen-startup-operator-evidence-v1",
+  "session_date": "2026-10-27",
+  "status": "PREOPEN_READY_WAITING_FOR_FIRST_SLOTS",
+  "evidence_basis": "Complete operator-supplied CMD transcripts for source/credential preflight, API OV, Focus production, native r1 publication/audit/replay, and separate Uni/Focus/Health startup. Original Windows database/proposal/manifest files have not been independently uploaded/read.",
+  "observed_health_at_et": "2026-10-27T09:12:55-04:00",
+  "production_roots": {
+    "market_data": "C:\\Users\\danla\\Documents\\github\\mb_market_data",
+    "watchlists": "C:\\Users\\danla\\Documents\\github\\schwab_watchlists"
+  },
+  "source_preflight": {
+    "market_data_main": "a082f544112643b4e5f459d15c67f60d0a1ef83d",
+    "watchlists_main": "e2ef6f62856ba3226c41456b7779951aa8640cbf",
+    "tracked_changes_reported": false,
+    "untracked_files_preserved": true
+  },
+  "credential_horizon": {
+    "observed_at_utc": "2026-10-27T12:56:26.781570+00:00",
+    "refresh_valid_through_et": "2026-10-31T18:17:38.089549-04:00",
+    "both_pollers_required_through_et": "2026-10-27T17:15:30-04:00",
+    "both_poller_horizon_checks_passed": true,
+    "credential_values_recorded": false
+  },
+  "journal": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\quote_observation_journal_v2_api_opening_2026-10-27\\2026-10-27.sqlite3",
+  "opening_proposal": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_universe_production\\2026-10-27-from-2026-10-26\\opening_hierarchy_r0.json",
+  "opening_r0_evidence": "docs/validation/production_r0_20261027_evening_acceptance.json",
+  "api_ov": {
+    "result": "PASS",
+    "session_date": "2026-10-27",
+    "opening_uni": 561,
+    "requested_symbols": 561,
+    "successful_symbols": 561,
+    "failed_symbols": 0,
+    "complete_opening_uni": true,
+    "request_interval_seconds": 0.5,
+    "decision_window_et": "00:00 <= candle start < 09:00",
+    "completed_at_et": "2026-10-27T09:07:55.187881-04:00",
+    "manifest": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\api_overnight_volume\\2026-10-27-09-00-41-session-2026-10-27\\manifest.json"
+  },
+  "focus": {
+    "result": "PASS",
+    "source_rows": 561,
+    "eligible_symbols": 561,
+    "requested_limit": 40,
+    "selected": 40,
+    "ranked_symbols": [
+      "SNTI",
+      "SOAR",
+      "CLRO",
+      "GPUS",
+      "TDIC",
+      "MKDW",
+      "AIOK",
+      "XHLD",
+      "CODX",
+      "FNGR",
+      "ACTU",
+      "DDC",
+      "GNS",
+      "BAER",
+      "IMNN",
+      "REKR",
+      "HPAI",
+      "ARAI",
+      "MOBX",
+      "SURG",
+      "MEDS",
+      "EYPT",
+      "PRSO",
+      "YMAT",
+      "ATCH",
+      "NCPL",
+      "MYND",
+      "CLRB",
+      "AUID",
+      "AIFF",
+      "MMA",
+      "AMOD",
+      "FTFT",
+      "STAK",
+      "ZCMD",
+      "BIVI",
+      "GYGY",
+      "BEAT",
+      "PBK",
+      "AARD"
+    ],
+    "output_directory": "C:\\Users\\danla\\Documents\\github\\schwab_watchlists\\output\\ov_focus_production\\2026-10-27-09-09-05",
+    "proposal": "sampling_hierarchy_r1.json",
+    "decision_ledger": "focus_decision_ledger.csv"
+  },
+  "r1_publication": {
+    "result": "inserted",
+    "revision": 1,
+    "uni": 561,
+    "focus": 40,
+    "hot": 0,
+    "effective_at_utc": "2026-10-27T13:30:00+00:00",
+    "published_at_utc": "2026-10-27T13:09:56.691089+00:00",
+    "content_sha256": "00e3dad837a54808b32352d4caec94b55c3560180fe501391015f6fd480a6dc3",
+    "matches_focus_proposal": true
+  },
+  "native_preopen_audit": {
+    "result": "PASS",
+    "schema_version": 2,
+    "membership_contract": "nested-uni-focus-hot-v1",
+    "sqlite_integrity": "ok",
+    "table_counts": {
+      "poll_run": 0,
+      "sampling_membership_revision": 2,
+      "sampling_channel_revision": 6,
+      "sampling_channel_member": 1162,
+      "poll_slot_skip": 0,
+      "quote_acquisition": 0,
+      "quote_observation": 0
+    },
+    "member_rows": {
+      "uni": 1122,
+      "focus": 40,
+      "hot": 0
+    },
+    "missing_slots": 0,
+    "row_mismatches": 0
+  },
+  "complete_preopen_replay": {
+    "result": "COMPLETED",
+    "events": 2,
+    "revisions": 2,
+    "acquisitions": 0,
+    "observations": 0,
+    "final_membership": {
+      "uni": 561,
+      "focus": 40,
+      "hot": 0
+    },
+    "sequence_sha256": "78b27edca1e34be21471b0e13765c1c2263517d0930203da1a47c832d7019dcb",
+    "wall_seconds": 0.004
+  },
+  "runtime_startup": {
+    "window_start_et": "2026-10-27T09:30:00-04:00",
+    "window_stop_et": "2026-10-27T16:00:00-04:00",
+    "stop_excluded": true,
+    "schema_version": 2,
+    "batch_size": 400,
+    "fields": "all",
+    "maximum_samples": null,
+    "uni": {
+      "started_at_et": "2026-10-27T09:12:07-04:00",
+      "candidate_pids": [
+        26320
+      ],
+      "status": "WAITING",
+      "poll_seconds": [
+        0,
+        30
+      ],
+      "first_slot_et": "2026-10-27T09:30:00-04:00",
+      "acquisitions": 0,
+      "skips": 0,
+      "missing_after_grace": 0,
+      "reported_current_members": null,
+      "output": "output\\universe_quote_watch\\2026-10-27-09-12-07-uni"
+    },
+    "focus": {
+      "started_at_et": "2026-10-27T09:12:30-04:00",
+      "candidate_pids": [
+        62712
+      ],
+      "status": "WAITING",
+      "poll_seconds": [
+        5,
+        20,
+        35,
+        50
+      ],
+      "first_slot_et": "2026-10-27T09:30:05-04:00",
+      "acquisitions": 0,
+      "skips": 0,
+      "missing_after_grace": 0,
+      "reported_current_members": null,
+      "output": "output\\universe_quote_watch\\2026-10-27-09-12-30-focus"
+    },
+    "health": {
+      "watchdog": "RUNNING",
+      "monitor_completed_check": true,
+      "journal_read": "OK",
+      "journal_read_seconds": 0,
+      "slot_grace_seconds": 90,
+      "output": "output\\polling_health\\2026-10-27"
+    },
+    "interpretation": "WAITING and current membership null are expected before opening revisions become effective. Program startup is accepted; first committed opening slots have not yet been observed."
+  },
+  "boundaries": {
+    "production_hot_disabled": true,
+    "cadence_change_installed": false,
+    "production_source_changes": false,
+    "production_credentials_or_token_values_recorded": false,
+    "experiment_started_today": false,
+    "full_session_acceptance": false
+  },
+  "next": [
+    "Obtain fresh STATUS.txt after opening slots and verify committed Uni/Focus outcomes, membership 561/40 and no overdue missing slots.",
+    "Then separately invoke the command56-qualified corrected recovery profile using October27 r0 and the new Focus proposal, under original limits. No unchanged offline or accepted ordinary live repeat is needed.",
+    "Retain the full-session production closeout and next-day preparation as end-of-day work."
+  ]
+}
