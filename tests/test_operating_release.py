@@ -56,7 +56,7 @@ class InventoryTests(unittest.TestCase):
 
 class SourceStateTests(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.temp = tempfile.TemporaryDirectory(prefix="cadence git "); self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         def git(*args):
             return subprocess.check_output(["git", "-c", "user.name=Synthetic Test", "-c",
@@ -102,6 +102,33 @@ class SourceStateTests(unittest.TestCase):
         wrong = dict(self.manifest, baseline_commit="0"*40)
         with self.assertRaisesRegex(ValueError, "HEAD"):
             release.check_source(self.root, wrong)
+
+    def test_real_git_bundle_install_and_revert_preserve_saved_evidence(self):
+        self.git("config", "user.name", "Synthetic Test")
+        self.git("config", "user.email", "synthetic@example.invalid")
+        package = self.root/"synthetic package"; package.mkdir()
+        manifest = dict(self.manifest, source_branch="experiment/synthetic")
+        self.git("bundle", "create", str(package/"market-data-cadence.bundle"),
+                 "experiment/synthetic", "^"+manifest["baseline_commit"])
+        (package/"RELEASE.json").write_text(json.dumps(manifest))
+        marker = {"windows_accepted": True, "result": "PASS", "skipped": 0, "failures": 0,
+                  "errors": 0, "release_sha256": release.sha(package/"RELEASE.json"),
+                  "market_data_source_commit": manifest["source_commit"]}
+        (package/"ACCEPTED.json").write_text(json.dumps(marker))
+        evidence = self.root/"output/saved-session.sqlite3"; evidence.parent.mkdir()
+        evidence.write_bytes(b"SYNTHETIC saved evidence; never opened as SQLite\x00")
+        notes = self.root/"operator-notes.txt"; notes.write_text("retain unrelated notes\n")
+        before = evidence.read_bytes()
+        with patch.object(release, "PACKAGE", package), patch.object(release, "validate_idle"):
+            receipt = release.apply(self.root, manifest, approved=True)
+            self.assertEqual(json.loads(receipt.read_text())["state"], "INSTALLED")
+            self.assertEqual(self.git("rev-parse", "HEAD"), manifest["source_commit"])
+            rollback = release.apply(self.root, manifest, approved=True, rollback=True)
+            self.assertEqual(json.loads(rollback.read_text())["state"], "ROLLED_BACK")
+        self.assertEqual(evidence.read_bytes(), before)
+        self.assertEqual(notes.read_text(), "retain unrelated notes\n")
+        self.assertEqual((self.root/"a.py").read_text(), "# baseline\n")
+        self.assertFalse((self.root/"b.py").exists())
 
 
 if __name__ == "__main__": unittest.main()
