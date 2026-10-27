@@ -99,3 +99,14 @@ cadence installation has not happened. Next run command59 for read-only source
 and qualification-marker review while existing polling continues; review the
 result before separate production-change approval. Proposed operating values
 remain unadopted, and the daily Hot driver remains the next implementation slice.
+
+## Deployment review accepted — approval pending
+
+Command59 returned to CMD with the exact original production main baseline,
+no tracked edits, all12 source targets matching and Windows qualification true.
+It performed no production changes. The concrete proposal is an after-close
+local-main install followed by an October28 fresh Uni/Focus interleaved session
+with Hot disabled, including the documented rollback if needed. Approval is
+still pending under the user's explicit main/production exclusion. See the
+[full install/startup/rollback handoff](handoffs/cadence_deployment_20261027.md)
+and [accepted review record](validation/command59_20261027_REVIEW_ACCEPTED.json).

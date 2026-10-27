@@ -1,0 +1,88 @@
+{
+  "contract": "cadence-deployment-review-acceptance-v1",
+  "session_date": "2026-10-27",
+  "review_acceptance": "ACCEPTED",
+  "evidence_basis": "Complete supplied command59 JSON and actual CMD prompt return. Windows source bytes and ACCEPTED.json were checked by the source-pinned review command; they were not independently uploaded here.",
+  "operator_review": {
+    "contract": "cadence-deployment-review-v1",
+    "source": {
+      "head": "a082f544112643b4e5f459d15c67f60d0a1ef83d",
+      "tracked_edits": false,
+      "source_targets": 12,
+      "unrelated_untracked_files": "preserved; not a deployment blocker"
+    },
+    "windows_qualified": true,
+    "baseline_commit": "a082f544112643b4e5f459d15c67f60d0a1ef83d",
+    "candidate_commit": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+    "changes": [
+      "docs/runbooks/Interleaved_Cadence_Rollout.md",
+      "probes/dashboard_quote_observation_journal.py",
+      "probes/polling_health.py",
+      "probes/probe_universe_quote_watch.py",
+      "src/mb_market_data/acquisition_health.py",
+      "src/mb_market_data/observation_overlay.py",
+      "src/mb_market_data/observation_overlay_view.py",
+      "src/mb_market_data/polling_cadence.py",
+      "src/mb_market_data/quote_journal_replay.py",
+      "src/mb_market_data/quote_observation_store.py",
+      "src/mb_market_data/watchlist_polling.py",
+      "tests/test_polling_cadence.py"
+    ],
+    "production_changes_performed": false,
+    "cadence_profile": "interleaved-v1 (explicit opt-in; default remains legacy-v1)",
+    "hot_enabled": false,
+    "next": "After Windows PASS and explicit approval, install after closeout with all production pollers/Health stopped."
+  },
+  "actual_cmd_prompt_returned": true,
+  "source_installation_performed": false,
+  "production_cadence_changed": false,
+  "approval": {
+    "status": "REQUEST_NOT_YET_GRANTED",
+    "origin": "User standing authorization explicitly excludes main-branch merges and production changes without separate approval.",
+    "proposed_scope": "After October27 closeout and monitor/watchdog shutdown, fast-forward local production main a082f54 to qualified candidate6b53ab1; use a fresh October28 Uni/Focus interleaved-v1 session with Hot disabled; include the documented after-close Git-revert/next-fresh-session legacy fallback if needed.",
+    "public_origin_main_update_included": false,
+    "daily_hot_activation_included": false,
+    "proposed_hot_policy_adoption_included": false
+  },
+  "proposed": {
+    "source_branch": "experiment/hot-operating-cleanup-fix-20261027",
+    "source_commit": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+    "install_command": "python -I -B \"C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\hot_operating_fix_20261027_6b53ab\\run.py\" install --market-data-root \"C:\\Users\\danla\\Documents\\github\\mb_market_data\" --production-change-approved",
+    "rollback_command": "python -I -B \"C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\hot_operating_fix_20261027_6b53ab\\run.py\" rollback --market-data-root \"C:\\Users\\danla\\Documents\\github\\mb_market_data\" --production-change-approved",
+    "first_session_date": "2026-10-28",
+    "uni_seconds": [
+      0,
+      30
+    ],
+    "focus_seconds": [
+      10,
+      20,
+      40,
+      50
+    ],
+    "hot_enabled": false,
+    "expected_slots": {
+      "uni": 780,
+      "focus": 1560
+    },
+    "existing_journals_or_unrelated_untracked_files_modified": false
+  },
+  "windows_qualification": {
+    "result": "PASS",
+    "tests": 233,
+    "passed": 233,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "actual_cmd_prompt_returned": true,
+    "record": "command57_20261027_WINDOWS_ACCEPTED.json"
+  },
+  "original_windows_failure_preserved": true,
+  "remaining": [
+    "Separate explicit production/main approval for the concrete proposed scope.",
+    "October27 standard final health/native audit/replay, monitor/watchdog shutdown and actual prompt confirmation before installation.",
+    "Normal fresh October28 r0/complete-Uni API OV/Focus r1 publication/audit/replay and explicit profile on both pollers/current-source Health.",
+    "Full native Uni/Focus session audit/replay with Hot disabled before later production Hot.",
+    "Daily automatic Nasdaq/Hot driver and operating integration; manual membership and agreed read-only Overlay may proceed alongside cadence observation."
+  ]
+}
