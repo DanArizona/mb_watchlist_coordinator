@@ -1,0 +1,78 @@
+{
+  "contract": "production-opening-health-operator-evidence-v1",
+  "session_date": "2026-10-27",
+  "status": "OPENING_POLLING_ACCEPTED",
+  "as_of_et": "2026-10-27T09:33:07-04:00",
+  "basis": "Complete operator-supplied dated STATUS.txt and actual CMD prompt return. This is point-in-time opening health, not full-session native audit/replay or an all-quote outcome claim.",
+  "preopen_evidence": "docs/validation/production_startup_20261027_preopen.json",
+  "journal": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\quote_observation_journal_v2_api_opening_2026-10-27\\2026-10-27.sqlite3",
+  "journal_read": {
+    "status": "OK",
+    "seconds": 0
+  },
+  "slot_grace_seconds": 90,
+  "uni": {
+    "status": "RUNNING",
+    "candidate_pids": [
+      26320
+    ],
+    "recent_scheduled_outcomes_committed": true,
+    "last_slot_et": "2026-10-27T09:33:00-04:00",
+    "acquisitions": 7,
+    "empty_membership_skips": 0,
+    "missing_after_grace": 0,
+    "members": 561
+  },
+  "focus": {
+    "status": "RUNNING",
+    "candidate_pids": [
+      62712
+    ],
+    "recent_scheduled_outcomes_committed": true,
+    "last_slot_et": "2026-10-27T09:33:05-04:00",
+    "acquisitions": 13,
+    "empty_membership_skips": 0,
+    "missing_after_grace": 0,
+    "members": 40
+  },
+  "opening_counts_consistent_with_configured_slots_through_observed_time": true,
+  "production_hot_enabled": false,
+  "production_code_or_cadence_changed": false,
+  "full_session_result_pending": true,
+  "next_experiment": {
+    "profile": "owned_worker_recovery",
+    "corrected_bundle": "live_recovery_20261026_194232_9fa337",
+    "source_commit": "37ef5cb8ed0b5b88a74400ede791e7dc37e4b22b",
+    "windows_command56_qualification": "ACCEPTED_55_OF_55",
+    "original_ordinary_live_result_retained": "PASS_WITH_WARNINGS",
+    "original_recovery_live_result_retained": "FAILED",
+    "corrected_live_recovery_run_started": false,
+    "prepared_command": "call \"C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\live_recovery_20261026_194232_9fa337\\52_run_recovery_live_profile.cmd\" \"C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_universe_production\\2026-10-27-from-2026-10-26\\opening_hierarchy_r0.json\" \"C:\\Users\\danla\\Documents\\github\\schwab_watchlists\\output\\ov_focus_production\\2026-10-27-09-09-05\\sampling_hierarchy_r1.json\" \"C:\\Users\\danla\\MBV\\secure_schwabdev.ecfg\" --market-open-confirmed",
+    "run_in_separate_experiment_window": true,
+    "keep_all_production_windows_running": true,
+    "original_bounds": {
+      "preparation_lead_seconds": 60,
+      "frozen_window_seconds": 720,
+      "hot_quote_permits": 60,
+      "identity_quote_permits": 3,
+      "admitted_symbol_limit": 1,
+      "directory_permits": 2,
+      "feed_attempts": 10,
+      "feed_attempt_spacing_after_completion_seconds": 60,
+      "worker_starts": 3,
+      "worker_progress_seconds": 3,
+      "credential_seconds": 8,
+      "cleanup_seconds": 10,
+      "reporting_seconds": 60
+    },
+    "goal": {
+      "valid_acknowledged_after_cutover_before_fault": 12,
+      "owned_worker_faults": 1,
+      "replacement_hold_seconds": 15,
+      "valid_acknowledged_after_restart": 24
+    },
+    "sdk_normal_refresh_may_update_shared_token_database": true,
+    "no_unchanged_offline_or_accepted_ordinary_repeat": true,
+    "complete_evidence_review_required_before_acceptance": true
+  }
+}
