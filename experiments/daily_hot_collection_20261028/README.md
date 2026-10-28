@@ -46,6 +46,12 @@ capacity are not inferred from the 9,360-call review ceiling.
 
 ## Windows verification
 
+Windows-accepted October 28: **87/87 PASS**, zero skips/errors/failures,
+runner 49.006s, native audit PASS, matching fresh replays and actual CMD return.
+See [the acceptance record](validation/windows_acceptance.json). The immutable
+packet and original delivery results are retained. No unchanged rerun is needed.
+The instructions below document the verification procedure.
+
 Extract the new ZIP into the production repository's `output` directory and
 run `61_verify_daily_hot_collection.cmd` in sea-green. Supply its final JSON and
 actual returned CMD prompt. No password or API is used; all state is synthetic

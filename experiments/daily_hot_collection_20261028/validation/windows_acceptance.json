@@ -1,0 +1,75 @@
+{
+  "contract": "daily-hot-collection-windows-acceptance-v1",
+  "status": "WINDOWS_ACCEPTED",
+  "date": "2026-10-28",
+  "evidence_basis": "Complete operator-supplied sea-green CMD console, final verification JSON and actual returned CMD prompt. Original Windows files have not been independently uploaded/read.",
+  "artifact": {
+    "filename": "daily_hot_collection_20261028_8db94a8_3cc91eb.zip",
+    "sha256": "506e4be7714fd1c9e1b6a7a74683d369255a72d4d9ea42dd519b68fbd4ed1a64"
+  },
+  "source": {
+    "coordinator_commit": "8db94a8f04c91ab6a214263d2e8135802c356fe7",
+    "market_data_commit": "3cc91ebb7d2b7bd26d4c133bb839f2c63281ac0e",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "run_id": "20261028T230744Z_b9e5aa17",
+  "verification_contract": "daily-hot-collection-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 87,
+  "passed": 87,
+  "errors": 0,
+  "failures": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "runner_seconds": 49.006,
+  "report_seconds": 49.313000000081956,
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "windows_checks_passed": true,
+  "actual_cmd_prompt_returned": true,
+  "native_proof": {
+    "contract": "daily-source-native-collection-proof-v1",
+    "result": "PASS",
+    "synthetic_only": true,
+    "clock": "logical; actual owned HTTP/collector process drills elsewhere in suite",
+    "source_attempts": 3,
+    "source_reconciled": true,
+    "identity_quote_permits": 1,
+    "membership_revisions": 3,
+    "events": 11,
+    "acquisitions": {
+      "uni": 2,
+      "focus": 2,
+      "hot": 4
+    },
+    "observations": 13,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "sequence_sha256": "3fe531478e150528a5cfb8a0d8a9b85856254570139a1017c7e256393403af6a",
+    "matches_prepared_local_and_extracted_proof": true,
+    "live_or_full_session_qualification": false,
+    "authenticated_controller_qualified": false
+  },
+  "network": "denied",
+  "actual_vault_access": false,
+  "production_changes": false,
+  "daily_feed_and_collector_included": true,
+  "authenticated_controller_included": false,
+  "live_launch_available": false,
+  "proposed_values_adopted": false,
+  "full_day_capacity_qualified": false,
+  "production_hot_enabled": false,
+  "remaining": [
+    "Owned authenticated daily controller and read-only native worker validation",
+    "Original credential/progress gates, replacement hold, manual resume and cleanup/reporting",
+    "Hot status/alerts, full-day capacity, deployment/settings review and activation approval",
+    "Closely following manual membership controls and read-only Overlay"
+  ],
+  "supersedes": "The Windows-pending status in delivery.json and earlier publication/roadmap records; those original records remain intact.",
+  "publication_authorization": "../../../docs/validation/publication_authorization_20261028_coordinator.json",
+  "next": "Continue the authenticated daily controller and worker validation; do not repeat unchanged command 61, the accepted 138-check backend packet or accepted live profiles."
+}
