@@ -1,0 +1,56 @@
+{
+  "contract": "coordinator-publication-20261028-v1",
+  "date": "2026-10-28",
+  "status": "PUBLISHED_AND_REMOTE_TREE_VERIFIED",
+  "repository": "DanArizona/mb_watchlist_coordinator",
+  "authorization_record": "docs/validation/publication_authorization_20261028_coordinator.json",
+  "user_instruction": "Let's extend the standing Github publication approval to the new Coordinator material",
+  "snapshots": [
+    {
+      "branch": "experiment/daily-hot-driver-20261028",
+      "public_commit": "e82087a7180e7e6722bd959e04aafe3f0b1db5f0",
+      "public_tree": "7620ccc8cea4fe8f6bd3a2c7474375ac414be262",
+      "local_snapshot": "0e479f01bec18767a70911e39ebb6bc093614f6c",
+      "immutable_packet_source": "9e55fba9823c8441fcec6f57f3b67989921fcf2b",
+      "published_paths_relative_to_foundation": 12,
+      "validation": "138/138 Windows accepted; no unchanged rerun"
+    },
+    {
+      "branch": "experiment/daily-hot-runtime-20261028",
+      "public_commit": "39d405d0bf7461f4a06f70063a22383c52b8941c",
+      "public_tree": "41d37ab135bebbe9bcab5a819a2d25d68e3ed00f",
+      "local_snapshot": "ae99a6a5996a4418df86e1acfc52be3ab0f38a23",
+      "immutable_packet_source": "8db94a8f04c91ab6a214263d2e8135802c356fe7",
+      "additional_published_paths": 16,
+      "validation": "87/87 local and extracted-path checks; Windows command 61 pending"
+    }
+  ],
+  "verification": {
+    "complete_git_trees_equal_local_snapshots": true,
+    "public_refs_and_commits_read_back": true,
+    "main_before": "3e31fefd67bdac38ac805ed70dd49ad249e0f0dd",
+    "main_after": "3e31fefd67bdac38ac805ed70dd49ad249e0f0dd"
+  },
+  "commit_mapping": "GitHub publication creates new commits. Full snapshot trees are byte-identical to the recorded local snapshots, while immutable packets retain their original local source pins. Do not treat local and public commit IDs as interchangeable.",
+  "earlier_block": {
+    "record": "experiments/daily_hot_session_20261028/validation/publication_blocked.json",
+    "original_record_preserved": true,
+    "status": "RESOLVED_BY_DIRECT_USER_APPROVAL_AND_SUCCESSFUL_PUBLICATION",
+    "historical_private_or_pending_publication_fields_superseded": true
+  },
+  "unchanged_artifacts": [
+    {
+      "filename": "daily_hot_session_20261028_9e55fba.zip",
+      "sha256": "b2040d98d0bf305796d6d433b428f4c9368a074c6562f778f7ef0cd9e10d7007"
+    },
+    {
+      "filename": "daily_hot_collection_20261028_8db94a8_3cc91eb.zip",
+      "sha256": "506e4be7714fd1c9e1b6a7a74683d369255a72d4d9ea42dd519b68fbd4ed1a64"
+    }
+  ],
+  "scope": "Coordinator source, tests, documentation and validation records only. Companion native candidate 3cc91ebb7d2b7bd26d4c133bb839f2c63281ac0e was not published by this action.",
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "proposed_values_adopted": false,
+  "next": "Receive the Windows command-61 result; continue authenticated daily controller, worker validation and Hot status/alerts. Public publication of subsequent ordinary Coordinator work is covered by the extended standing approval."
+}
