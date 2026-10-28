@@ -30,7 +30,7 @@ from test_integrated_identity import Response
 
 class DailySessionTests(unittest.TestCase):
     def setUp(self):
-        proof = os.environ.get('MB_DAILY_SESSION_PROOF_DIR') if self._testMethodName == 'test_existing_uni_focus_acquisitions_continue_across_daily_publication' else None
+        proof = getattr(self,'proof_directory_override',None) or (os.environ.get('MB_DAILY_SESSION_PROOF_DIR') if self._testMethodName == 'test_existing_uni_focus_acquisitions_continue_across_daily_publication' else None)
         if proof:
             self.root = Path(proof).resolve(); self.root.mkdir(exist_ok=False)
         else:

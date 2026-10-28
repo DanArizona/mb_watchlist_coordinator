@@ -1,0 +1,154 @@
+{
+  "contract": "daily-feed-native-collection-delivery-v1",
+  "status": "PREPARED_WINDOWS_ACCEPTANCE_PENDING",
+  "source": {
+    "coordinator_commit": "8db94a8f04c91ab6a214263d2e8135802c356fe7",
+    "market_data_commit": "3cc91ebb7d2b7bd26d4c133bb839f2c63281ac0e",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "artifact": {
+    "filename": "daily_hot_collection_20261028_8db94a8_3cc91eb.zip",
+    "bytes": 739331,
+    "files": 241,
+    "sha256": "506e4be7714fd1c9e1b6a7a74683d369255a72d4d9ea42dd519b68fbd4ed1a64"
+  },
+  "local_qualification": {
+    "contract": "daily-hot-collection-offline-qualification-v1",
+    "result": "PASS",
+    "tests": 87,
+    "passed": 87,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "failed_tests": [],
+    "seconds": 36.88080998499936,
+    "source": {
+      "coordinator_commit": "8db94a8f04c91ab6a214263d2e8135802c356fe7",
+      "market_data_commit": "3cc91ebb7d2b7bd26d4c133bb839f2c63281ac0e",
+      "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+    },
+    "python": [
+      3,
+      12,
+      14
+    ],
+    "platform": "linux",
+    "windows_checks_passed": false,
+    "network": "denied",
+    "actual_vault_access": false,
+    "production_changes": false,
+    "daily_feed_and_collector_included": true,
+    "authenticated_controller_included": false,
+    "live_launch_available": false,
+    "proposed_values_adopted": false,
+    "full_day_capacity_qualified": false,
+    "native_proof": {
+      "contract": "daily-source-native-collection-proof-v1",
+      "result": "PASS",
+      "synthetic_only": true,
+      "clock": "logical; actual owned HTTP/collector process drills elsewhere in suite",
+      "journal": "/workspace/scratch/6ce939acb4eb/daily_collection_delivery_20261028/daily_hot_collection_20261028_8db94a8_3cc91eb/runs/20261028T222429Z_c6a4d7b9/native-proof/quote_observation_journal_v2_api_opening_2026-10-29/2026-10-29.sqlite3",
+      "source_attempts": 3,
+      "source_reconciled": true,
+      "identity_quote_permits": 1,
+      "membership_revisions": 3,
+      "events": 11,
+      "acquisitions": {
+        "uni": 2,
+        "focus": 2,
+        "hot": 4
+      },
+      "observations": 13,
+      "native_audit_passed": true,
+      "two_fresh_replays_equal": true,
+      "sequence_sha256": "3fe531478e150528a5cfb8a0d8a9b85856254570139a1017c7e256393403af6a",
+      "live_or_full_session_qualification": false,
+      "authenticated_controller_qualified": false
+    },
+    "remaining": [
+      "Owned authenticated daily controller and read-only native worker validation",
+      "Original credential/progress gates, replacement hold, manual resume and cleanup/reporting",
+      "Hot status/alerts, full-day capacity, deployment/settings review and activation approval",
+      "Closely following manual membership controls and read-only Overlay"
+    ]
+  },
+  "extracted_path_with_spaces_qualification": {
+    "contract": "daily-hot-collection-offline-qualification-v1",
+    "result": "PASS",
+    "tests": 87,
+    "passed": 87,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "failed_tests": [],
+    "seconds": 36.78473895800016,
+    "source": {
+      "coordinator_commit": "8db94a8f04c91ab6a214263d2e8135802c356fe7",
+      "market_data_commit": "3cc91ebb7d2b7bd26d4c133bb839f2c63281ac0e",
+      "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+    },
+    "python": [
+      3,
+      12,
+      14
+    ],
+    "platform": "linux",
+    "windows_checks_passed": false,
+    "network": "denied",
+    "actual_vault_access": false,
+    "production_changes": false,
+    "daily_feed_and_collector_included": true,
+    "authenticated_controller_included": false,
+    "live_launch_available": false,
+    "proposed_values_adopted": false,
+    "full_day_capacity_qualified": false,
+    "native_proof": {
+      "contract": "daily-source-native-collection-proof-v1",
+      "result": "PASS",
+      "synthetic_only": true,
+      "clock": "logical; actual owned HTTP/collector process drills elsewhere in suite",
+      "journal": "/workspace/scratch/6ce939acb4eb/daily_collection_extracted/path with spaces/daily_hot_collection_20261028_8db94a8_3cc91eb/runs/20261028T222558Z_d0a14394/native-proof/quote_observation_journal_v2_api_opening_2026-10-29/2026-10-29.sqlite3",
+      "source_attempts": 3,
+      "source_reconciled": true,
+      "identity_quote_permits": 1,
+      "membership_revisions": 3,
+      "events": 11,
+      "acquisitions": {
+        "uni": 2,
+        "focus": 2,
+        "hot": 4
+      },
+      "observations": 13,
+      "native_audit_passed": true,
+      "two_fresh_replays_equal": true,
+      "sequence_sha256": "3fe531478e150528a5cfb8a0d8a9b85856254570139a1017c7e256393403af6a",
+      "live_or_full_session_qualification": false,
+      "authenticated_controller_qualified": false
+    },
+    "remaining": [
+      "Owned authenticated daily controller and read-only native worker validation",
+      "Original credential/progress gates, replacement hold, manual resume and cleanup/reporting",
+      "Hot status/alerts, full-day capacity, deployment/settings review and activation approval",
+      "Closely following manual membership controls and read-only Overlay"
+    ]
+  },
+  "inventory_guards": {
+    "altered_source_refused_before_import": true,
+    "extra_source_refused_before_import": true,
+    "original_inventory_restored": true
+  },
+  "accepted_backend_windows_record": "../daily_hot_session_20261028/validation/windows_acceptance.json",
+  "scope": "Daily paced feed, source pump, native Hot collection and component recovery APIs; no authenticated live controller or launch.",
+  "windows_accepted": false,
+  "full_day_capacity_qualified": false,
+  "production_hot_enabled": false,
+  "proposed_values_adopted": false,
+  "production_changes": false,
+  "publication": "PRIVATE_ONLY; earlier backend public-publication request remains pending; no new publication attempt.",
+  "native_core_origin": {
+    "repository": "DanArizona/mb_watchlist_coordinator",
+    "commit": "697666030597d6394c0ca0254777c3ae468a2099",
+    "path": "experiments/sampling_promotion_20261016/market_data/src/mb_market_data/sampling_acquisition.py",
+    "adaptation": "Frozen explicit-slot initializer preserves the three-positional-argument API with the new base cadence field; isolated production-journal and marker guards remain."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "contract": "daily-collection-development-results-v1",
+  "retained_results": [
+    {"result":"FAILED","tests":53,"failures":2,"errors":0,"seconds":10.076,
+     "findings":["The new future-dated gap assertion used the audit's actual current clock instead of explicit logical audited_at.","An unknown dispatch correctly remained an abandoned gap; the assertion incorrectly expected a fabricated request_error observation."]},
+    {"result":"FAILED","tests":4,"errors":4,"seconds":0.364,
+     "findings":["The source fixture rewound the already-persisted publication status clock. The rollback guard rejected it. Preparation now precedes the collection window explicitly."]},
+    {"result":"FAILED","tests":4,"failures":4,"seconds":21.959,
+     "findings":["The source workload advanced logical wall time but not the parent's monotonic completion-based pacing clock. The parent correctly continued waiting. The synthetic fixture now advances both; HTTP child hard deadlines remain independently elapsed."]},
+    {"result":"PASS","tests":23,"errors":0,"failures":0,"skipped":0,"seconds":4.627},
+    {"result":"PASS","tests":31,"errors":0,"failures":0,"skipped":0,"seconds":11.293},
+    {"result":"PASS","tests":83,"errors":0,"failures":0,"skipped":0,"seconds":34.546},
+    {"result":"PASS","tests":86,"errors":0,"failures":0,"skipped":0,"seconds":34.778},
+    {"result":"PASS","tests":87,"errors":0,"failures":0,"skipped":0,"seconds":36.564}
+  ],
+  "synthetic_only":true,
+  "production_changes":false,
+  "actual_vault_access":false,
+  "windows_result":"PENDING",
+  "full_day_capacity_qualified":false
+}

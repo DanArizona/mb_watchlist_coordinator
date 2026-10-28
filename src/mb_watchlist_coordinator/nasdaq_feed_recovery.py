@@ -301,6 +301,10 @@ class BoundedFeedClient:
         self._active = None
         self._controller = None
 
+    def worker_entry(self):
+        """Trusted subclass seam; the bounded experiment retains its entry."""
+        return Path(__file__).with_name('nasdaq_feed_worker.py')
+
     @property
     def owns_attempt(self):
         return self._active is not None
@@ -388,7 +392,7 @@ class BoundedFeedClient:
             cutoff = self.monotonic()+min(t.limits.hard_timeout_seconds, max(0, remaining))
             job = {'path': str(t.path.resolve()), 'identity': plain(t.identity),
                    'reservation': reservation, 'synthetic': synthetic}
-            child = subprocess.Popen([sys.executable, '-I', '-B', str(Path(__file__).with_name('nasdaq_feed_worker.py'))],
+            child = subprocess.Popen([sys.executable, '-I', '-B', str(self.worker_entry())],
                 stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             self._active = (child, reservation, cutoff)
             try:
