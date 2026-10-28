@@ -1,0 +1,13 @@
+{
+  "contract": "daily-hot-backend-publication-block-v1",
+  "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
+  "repository": "DanArizona/mb_watchlist_coordinator",
+  "branch": "experiment/daily-hot-driver-20261028",
+  "operation": "create_tree",
+  "requested_files": 9,
+  "reason": "This uploads newly developed, previously unpublished Coordinator source and operational details to the public DanArizona/mb_watchlist_coordinator repository, while the user only approved publication of the earlier membership-report materials, not this backend.",
+  "tree_commit_or_branch_publication_completed": false,
+  "alternate_publication_route_attempted": false,
+  "unaffected_private_packet_prepared": true,
+  "next": "Direct approval for public publication of this backend source, tests, documentation and validation records on this experiment branch; no production activation is requested."
+}

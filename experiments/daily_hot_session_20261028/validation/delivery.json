@@ -1,0 +1,131 @@
+{
+  "contract": "daily-hot-publication-backend-delivery-v1",
+  "status": "PREPARED_WINDOWS_ACCEPTANCE_PENDING",
+  "scope": "Daily session binding, journal ownership, source identity admission and native membership publication. Daily feed/collector/controller integration remains next.",
+  "source": {
+    "coordinator_commit": "9e55fba9823c8441fcec6f57f3b67989921fcf2b",
+    "market_data_commit": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "branch": "experiment/daily-hot-driver-20261028",
+  "artifact": {
+    "filename": "daily_hot_session_20261028_9e55fba.zip",
+    "bytes": 547698,
+    "sha256": "b2040d98d0bf305796d6d433b428f4c9368a074c6562f778f7ef0cd9e10d7007",
+    "files": 189
+  },
+  "local_qualification": {
+    "contract": "daily-hot-session-offline-qualification-v1",
+    "result": "PASS",
+    "tests": 138,
+    "passed": 138,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "failed_tests": [],
+    "seconds": 9.387650565000058,
+    "source": {
+      "coordinator_commit": "9e55fba9823c8441fcec6f57f3b67989921fcf2b",
+      "market_data_commit": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+    },
+    "platform": "linux",
+    "python": [
+      3,
+      12,
+      14
+    ],
+    "windows_checks_passed": false,
+    "network": "denied",
+    "actual_vault_access": false,
+    "production_changes": false,
+    "live_launch_available": false,
+    "daily_collector_included": false,
+    "proposed_values_adopted": false,
+    "native_proof": {
+      "contract": "daily-publication-native-proof-v1",
+      "result": "PASS",
+      "synthetic_only": true,
+      "clock": "logical",
+      "journal": "/workspace/scratch/6ce939acb4eb/daily_session_delivery_20261028/daily_hot_session_20261028_9e55fba/runs/20261028T212003Z_58d0c63f/native-proof/quote_observation_journal_v2_api_opening_2026-10-29/2026-10-29.sqlite3",
+      "events": 7,
+      "membership_revisions": 3,
+      "uni_acquisitions": 2,
+      "focus_acquisitions": 2,
+      "hot_acquisitions": 0,
+      "observations": 9,
+      "native_audit_passed": true,
+      "two_fresh_replays_equal": true,
+      "sequence_sha256": "8a23eaccdc2bec372df6f1d501283816f90430de717aa565e810b170562cd73d",
+      "original_poll_runs_preserved": true,
+      "live_or_full_session_qualification": false
+    },
+    "remaining": [
+      "Windows result and actual CMD prompt return",
+      "Daily feed/collector/controller, bounded authentication and stop/recovery integration",
+      "Hot status/alerts, deployment review and explicit settings/activation approval",
+      "Closely following manual membership controls and read-only Overlay"
+    ]
+  },
+  "extracted_path_with_spaces_qualification": {
+    "contract": "daily-hot-session-offline-qualification-v1",
+    "result": "PASS",
+    "tests": 138,
+    "passed": 138,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "failed_tests": [],
+    "seconds": 8.549431896999977,
+    "source": {
+      "coordinator_commit": "9e55fba9823c8441fcec6f57f3b67989921fcf2b",
+      "market_data_commit": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+    },
+    "platform": "linux",
+    "python": [
+      3,
+      12,
+      14
+    ],
+    "windows_checks_passed": false,
+    "network": "denied",
+    "actual_vault_access": false,
+    "production_changes": false,
+    "live_launch_available": false,
+    "daily_collector_included": false,
+    "proposed_values_adopted": false,
+    "native_proof": {
+      "contract": "daily-publication-native-proof-v1",
+      "result": "PASS",
+      "synthetic_only": true,
+      "clock": "logical",
+      "journal": "/workspace/scratch/6ce939acb4eb/daily_session_extracted/path with spaces/daily_hot_session_20261028_9e55fba/runs/20261028T212059Z_11eb8779/native-proof/quote_observation_journal_v2_api_opening_2026-10-29/2026-10-29.sqlite3",
+      "events": 7,
+      "membership_revisions": 3,
+      "uni_acquisitions": 2,
+      "focus_acquisitions": 2,
+      "hot_acquisitions": 0,
+      "observations": 9,
+      "native_audit_passed": true,
+      "two_fresh_replays_equal": true,
+      "sequence_sha256": "8a23eaccdc2bec372df6f1d501283816f90430de717aa565e810b170562cd73d",
+      "original_poll_runs_preserved": true,
+      "live_or_full_session_qualification": false
+    },
+    "remaining": [
+      "Windows result and actual CMD prompt return",
+      "Daily feed/collector/controller, bounded authentication and stop/recovery integration",
+      "Hot status/alerts, deployment review and explicit settings/activation approval",
+      "Closely following manual membership controls and read-only Overlay"
+    ]
+  },
+  "inventory_guards": {
+    "altered_source_refused_before_import": true,
+    "extra_source_refused_before_import": true,
+    "original_inventory_restored": true
+  },
+  "retained_failed_development_results": "development_initial.json",
+  "windows_accepted": false,
+  "production_hot_enabled": false,
+  "operating_policy_adopted": false,
+  "runtime_changes_to_accepted_experiment": false,
+  "public_publication": "PENDING"
+}

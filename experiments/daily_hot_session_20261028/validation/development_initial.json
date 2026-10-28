@@ -1,0 +1,15 @@
+{
+  "contract": "daily-session-development-results-v1",
+  "retained_results": [
+    {"result": "FAILED", "tests": 30, "passed": 28, "failures": 1, "errors": 1, "seconds": 2.459,
+     "findings": ["The preview assertion excluded SQLite WAL/SHM coordination files created by a read.", "The foreign-publication fixture reused the native store-assigned published_at timestamp."]},
+    {"result": "FAILED", "tests": 130, "passed": 128, "errors": 2, "seconds": 7.262,
+     "findings": ["Suite selection included two unchanged experimental native-collector tests whose isolated module is absent from the installed production-native source. Selected identity API/process tests instead; no experimental runtime was changed."]},
+    {"result": "PASS", "tests": 134, "failures": 0, "errors": 0, "skipped": 0, "seconds": 9.899},
+    {"result": "PASS", "tests": 138, "failures": 0, "errors": 0, "skipped": 0, "seconds": 9.277}
+  ],
+  "synthetic_only": true,
+  "production_changes": false,
+  "actual_vault_access": false,
+  "windows_result": "PENDING"
+}

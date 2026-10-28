@@ -1,0 +1,32 @@
+{
+  "contract": "mb-package-coordinator-publication-authorization-extension-v1",
+  "date": "2026-10-28",
+  "status": "AUTHORIZED_BY_DIRECT_USER_MESSAGE",
+  "user_instruction": "Let's extend the standing Github publication approval to the new Coordinator material",
+  "extends": "docs/validation/publication_authorization_20261026.json",
+  "repository": "DanArizona/mb_watchlist_coordinator",
+  "branches": ["checkpoint/*", "experiment/*"],
+  "authorized_operations": ["ordinary commits", "public publication"],
+  "authorized_content": ["new Coordinator source", "tests", "documentation", "roadmaps", "validation records"],
+  "specifically_included_work": [
+    "Daily Hot publication backend on experiment/daily-hot-driver-20261028",
+    "Daily feed and native-collection Coordinator integration on experiment/daily-hot-runtime-20261028",
+    "Subsequent ordinary Coordinator work within the standing publication scope"
+  ],
+  "included_operational_metadata": ["hostnames", "environment names", "local paths", "PIDs", "symbols", "dates", "timings", "diagnostic results"],
+  "per_file_or_routine_commit_reconfirmation_required": false,
+  "duration": "Standing approval for this project work, including after context compaction or resource interruptions",
+  "excluded_content": ["passwords", "credentials", "tokens", "OAuth redirect URLs", "authorization codes", "private account information"],
+  "separate_explicit_approval_required": ["main-branch merges", "destructive Git operations", "production changes"],
+  "mandatory_platform_controls_unchanged": true,
+  "earlier_publication_block": {
+    "record": "experiments/daily_hot_session_20261028/validation/publication_blocked.json",
+    "original_record_preserved": true,
+    "new_authorization_supersedes_missing_approval": true
+  },
+  "validation_status_unchanged": {
+    "daily_publication_backend": "138/138 Windows accepted",
+    "daily_feed_and_native_collection_increment": "87/87 local and extracted-path checks; Windows result pending"
+  },
+  "production_activation_authorized_by_this_extension": false
+}
