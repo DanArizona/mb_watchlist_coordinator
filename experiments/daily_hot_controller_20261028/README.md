@@ -1,5 +1,10 @@
 # Daily authenticated controller — offline Windows qualification
 
+Windows qualification is accepted for source `6ebf8d1` / native `3cc91eb`: 67/67
+passed with zero skips/errors/failures and an actual CMD prompt return. See
+`validation/windows_acceptance.json`. No unchanged packet rerun is needed.
+The original failed Windows packets and their verdicts remain retained.
+
 This increment connects the Windows-accepted daily publication and collection
 APIs to separately owned identity and Hot processes. Credentials use the
 existing `.ecfg` convention and private stdin handoff. The tests supply a
@@ -96,8 +101,8 @@ synthetic checks do not claim a full session of three live poller processes.
 
 ## Remaining operating release work
 
-Windows acceptance of this new packet, representative full-day performance
-and provider capacity, independent outer operator/watchdog packaging,
+Representative full-day performance and provider capacity, independent outer
+operator/watchdog packaging,
 deployment/rollback review and explicit settings/activation approval remain.
 The proposed 390-feed/9,360-Hot ceilings are not adopted production settings.
 This packet has no live launch or installer, and production Hot stays disabled.
