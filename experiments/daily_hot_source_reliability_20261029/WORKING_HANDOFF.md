@@ -1,5 +1,26 @@
 # Source reliability development — resumed October 29
 
+Latest Windows command 67 result: FAILED 49/50, run 20261029T145255Z_87ab13e4,
+complete supplied console/final JSON and returned CMD prompt. The paced owner
+stopped at 63.063 seconds with controller_progress_stale, child return code 70,
+no observed source cutover and no failure receipt in the final report. Windows
+Job cleanup observed empty scope in .031 seconds without force. Native audit
+FAILED; equal two-event replays do not qualify collection. Parent observer max
+gap was .047 seconds. Earlier local PASS evidence remains within its scope.
+
+Code review: the outer classifies any non-RUNNING driver heartbeat as stale,
+including STOPPING. That label therefore does not prove a three-second stall;
+it can obscure an earlier controller failure. The synthetic wrapper maps all
+unhandled exceptions to exit 70, so that number does not identify the cause.
+The near-one-minute timing suggests inspecting the first historical-query
+transition, but does not establish that it failed. The idle-load explanation
+remains a hypothesis, not a proven fix. Read this saved run's controller status,
+driver-state/live/stop and thread stacks next; request no rerun or new packet
+until the first failure is identified. Original I/O and ledger-change causes
+remain unassigned. Production is unchanged and Hot stays disabled.
+
+Earlier chronology follows; its pending Windows references are historical.
+
 Production Uni/Focus opening is healthy at 09:32:07 ET (529/40/0); live Hot
 remains disabled. This development uses private synthetic roots and denied
 network. No broker SDK/vault/provider call, production install or main merge.

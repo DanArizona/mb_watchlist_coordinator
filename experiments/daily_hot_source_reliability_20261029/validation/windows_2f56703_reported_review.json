@@ -1,0 +1,65 @@
+{
+  "contract": "daily-hot-source-reliability-windows-reported-review-v1",
+  "basis": "Complete operator-supplied console, final JSON and actual returned sea-green CMD prompt; original saved Windows files not independently read",
+  "run": "20261029T145255Z_87ab13e4",
+  "result": "FAILED",
+  "tests": 50,
+  "passed": 49,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "runner_seconds": 83.595,
+  "report_seconds": 83.68800000008196,
+  "failed_test": "test_daily_source_reliability.DailyPacedSourceOwnerTests.test_three_real_paced_feed_children_reconcile_while_owned_hot_collection_continues",
+  "source": {
+    "coordinator_commit": "2f56703904db10cf6c47e410f350f60cfa03656f",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "windows_checks_passed": false,
+  "paced_elapsed_seconds": 63.063000000081956,
+  "source_cutover_observed": false,
+  "owner_stop_reason": "controller_progress_stale",
+  "controller_returncode": 70,
+  "acquisition_stop_requested_at_utc": "2026-10-30T14:01:02.842957+00:00",
+  "cleanup": {
+    "backend": "windows_job",
+    "status": "EXIT_OBSERVED",
+    "scope_empty_observed": true,
+    "forced": false,
+    "seconds": 0.030999999959021807
+  },
+  "reporting": {
+    "status": "COMPLETE",
+    "native_audit_passed": false,
+    "two_fresh_replays_equal": true,
+    "first_replay_events": 2,
+    "sequence_sha256": "55e8f5b09b67593f64a84a53ff22e32986ec4e8d62d2fe8f7402f90bf92084fd"
+  },
+  "source_failure_receipt_in_final_report": null,
+  "max_parent_observer_gap_seconds": 0.0470000000204891,
+  "code_review_findings": [
+    "Outer _driver_fresh returns false for non-RUNNING state as well as an old heartbeat; stop reason does not establish a three-second scheduling stall.",
+    "Synthetic operating process maps every unhandled BaseException to exit 70; original error must be read from retained controller status/driver state and stacks.",
+    "Failure timing is near eligibility for the first paced historical query; console does not establish which operation ran or failed."
+  ],
+  "root_cause": "UNASSIGNED",
+  "runtime_vs_fixture_cause": "NOT_ESTABLISHED",
+  "previous_idle_load_explanation": "Hypothesis; the later local pass did not establish reliability closure.",
+  "next": "Read this existing run closed-state controller-status, driver-state/live/stop and controller thread stacks before changing code or rerunning qualification.",
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "operating_release_qualified": false,
+  "original_windows_io_error_cause_resolved": false,
+  "original_local_ledger_rollback_actor_identified": false,
+  "unchanged_capacity_or_recovery_repeat_requested": false
+}
