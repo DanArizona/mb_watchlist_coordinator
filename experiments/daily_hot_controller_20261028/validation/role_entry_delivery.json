@@ -1,0 +1,129 @@
+{
+  "contract": "daily-role-entry-delivery-v1",
+  "result": "FROZEN_67_AND_EXTRACTED_TARGETED_4_PASS_WINDOWS_PENDING",
+  "archive": "daily_hot_controller_20261028_6ebf8d1_3cc91eb.zip",
+  "bytes": 777881,
+  "sha256": "0b90fa66df232dff1245ccd142d58d9a5d116d2ab7bd2f50e01fd55d488313d0",
+  "source": {
+    "coordinator_commit": "6ebf8d1ada2802e4adf2ccb21fd596e0a5d19558",
+    "market_data_commit": "3cc91ebb7d2b7bd26d4c133bb839f2c63281ac0e",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "public_equivalent_coordinator_source": "ac433721c9a5db03f555328f4b8874692950662b",
+  "source_tree": "3290398c6b3cad35522bac467cee2200a5232851",
+  "frozen_tests": 67,
+  "frozen_seconds": 88.25081779799996,
+  "frozen_failures": 0,
+  "frozen_errors": 0,
+  "frozen_skips": 0,
+  "extracted_changed_checks": {
+    "contract": "daily-role-entry-extracted-qualification-v1",
+    "result": "PASS",
+    "tests": 4,
+    "seconds": 2.321479828000065,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "source": {
+      "coordinator_commit": "6ebf8d1ada2802e4adf2ccb21fd596e0a5d19558",
+      "market_data_commit": "3cc91ebb7d2b7bd26d4c133bb839f2c63281ac0e",
+      "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+    },
+    "network": "denied",
+    "production_changes": false
+  },
+  "original_windows_failures_preserved": [
+    "windows_86355fe_FAILED.json",
+    "windows_53ec1fd_FAILED.json"
+  ],
+  "operator_clarification": "After the second failure the operator attempted re-extraction, not a test rerun; that later action does not explain the original failure.",
+  "cause_reproduced": "Health-probe OS lease briefly busy at actual collector role entry, before SDK construction; original child exits ServiceBusy/70 and controller blocks for missing initial progress.",
+  "correction": "Fixed 0.2-second retry of only identity/collector role-lease entry within original deadlines; body work never retried.",
+  "recovery_component_windows_result": "Prior 53ec1fd recovery proof PASS with 15.028762-second hold and zero unexplained gaps; original whole packet remains FAILED.",
+  "ordinary_native_proof": {
+    "actual_vault_access": false,
+    "cleanup_within_10_seconds": true,
+    "clock": "shifted wall clock; actual elapsed process/authentication and pacing gates",
+    "contract": "daily-authenticated-controller-native-proof-v1",
+    "first_replay": {
+      "events": 5,
+      "sequence_sha256": "42f3708394071e2bdaa3279cb4201db16528c50a63aba547c2a1ea708cc84eca"
+    },
+    "full_day_capacity_qualified": false,
+    "hot_provider_calls": 2,
+    "identity_quote_permits": 1,
+    "live_provider_qualification": false,
+    "native_audit_passed": true,
+    "network": "denied",
+    "result": "PASS",
+    "saved_historical_captures": 1,
+    "saved_history_submission": "verified daily publication API; full paced transport proof is separate",
+    "source_attempts": 1,
+    "source_reconciled": false,
+    "synthetic_sdk_only": true,
+    "two_fresh_replays_equal": true,
+    "worker_starts": 1
+  },
+  "recovery_proof": {
+    "audit_through_utc": "2026-10-29T14:00:24+00:00",
+    "contract": "daily-owned-recovery-proof-v1",
+    "fault_at_utc": "2026-10-29T10:00:06.291008-04:00",
+    "full_day_capacity_qualified": false,
+    "intentional_hold_slots_not_backfilled": true,
+    "intentional_missing_slot_ids": [
+      "hot:2026-10-29T10:00:08-04:00",
+      "hot:2026-10-29T10:00:12-04:00",
+      "hot:2026-10-29T10:00:14-04:00",
+      "hot:2026-10-29T10:00:16-04:00",
+      "hot:2026-10-29T10:00:18-04:00",
+      "hot:2026-10-29T10:00:22-04:00"
+    ],
+    "minimum_hold_seconds": 15,
+    "native_hot_acquisitions": 2,
+    "provider_calls": 2,
+    "raw_native_audit_passed": false,
+    "replacement_crossed_launch_slot": true,
+    "replacement_hold_seconds": 15.049263,
+    "replacement_schedule": {
+      "configuration_sha256": "4b99d5e19e82d095bbbaa1b2c4dc0eddf3fc93d930b635377c50adf3acd65ac9",
+      "contract": "daily-hot-worker-schedule-v1",
+      "first_scheduled_slot_utc": "2026-10-29T14:00:24+00:00",
+      "generation": 2,
+      "invocation": "8211f43105a44d49bd132147a6117a42",
+      "launch_first_eligible_slot_utc": "2026-10-29T14:00:22+00:00",
+      "resume_after_utc": "2026-10-29T14:00:21.347884+00:00",
+      "selected_at_utc": "2026-10-29T14:00:22.333910+00:00",
+      "token": "b69ff090bcc840cc891c68b617fb8d40"
+    },
+    "result": "PASS",
+    "saved_response_not_requested_again": true,
+    "starts": [
+      {
+        "exit_observed_at_utc": "2026-10-29T14:00:06.299425+00:00",
+        "generation": 1,
+        "invocation": "8211f43105a44d49bd132147a6117a42",
+        "reserved_at_utc": "2026-10-29T14:00:00.508778+00:00",
+        "token": "76bfe1c759e9445cb66f1835d503c3c6"
+      },
+      {
+        "exit_observed_at_utc": null,
+        "generation": 2,
+        "invocation": "8211f43105a44d49bd132147a6117a42",
+        "reserved_at_utc": "2026-10-29T14:00:21.348688+00:00",
+        "token": "b69ff090bcc840cc891c68b617fb8d40"
+      }
+    ],
+    "synthetic_sdk_only": true,
+    "two_fresh_replays_equal": true,
+    "unexplained_gaps": 0,
+    "worker_starts": 2
+  },
+  "native_source_changed": false,
+  "progress_credential_hold_limits_changed": false,
+  "no_catchup_policy_changed": false,
+  "windows_accepted": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "full_day_capacity_qualified": false,
+  "next": "Extract new immutable ZIP in its own directory, run command 62 and supply final JSON plus actual CMD prompt return. Keep failed packets; no unchanged rerun."
+}
