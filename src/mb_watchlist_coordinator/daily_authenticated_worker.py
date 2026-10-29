@@ -137,8 +137,20 @@ def run_collector(configuration_path, job_path, *, secret_stream=None, clock=Non
                 sys.stdin.buffer if secret_stream is None else secret_stream, secure_api)
             recovery = collector.prepare(create=not collector.manifest.exists())
             from mb_market_data.sampling_acquisition import next_slot
+            selected_at = clock()
             collector.next = next_slot(collector.poller.settings,
-                after=max(clock(), timestamp(job['resume_after_utc'])))
+                after=max(selected_at, timestamp(job['resume_after_utc'])))
+            # A launch job supplies a lower bound, not a promise that startup
+            # finishes before that slot. Preserve the actual post-auth/recovery
+            # selection so startup gaps cannot be confused with running gaps.
+            atomic_json(Path(job['job_path']).with_name(job['token']+'.schedule.json'), sealed({
+                'contract': 'daily-hot-worker-schedule-v1', 'token': job['token'],
+                'generation': job['generation'], 'invocation': start['invocation'],
+                'configuration_sha256': digest(config.payload()),
+                'selected_at_utc': utc_text(selected_at),
+                'resume_after_utc': job['resume_after_utc'],
+                'launch_first_eligible_slot_utc': job['first_eligible_slot_utc'],
+                'first_scheduled_slot_utc': utc_text(collector.next.scheduled_at) if collector.next else None}))
             while clock() < timestamp(config.collector.stop_at_utc):
                 lifetime.fence()
                 try:

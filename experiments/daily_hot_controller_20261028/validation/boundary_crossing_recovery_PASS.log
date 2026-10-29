@@ -1,0 +1,6 @@
+test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 24.342s
+
+OK

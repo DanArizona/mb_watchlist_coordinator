@@ -1,0 +1,83 @@
+{
+  "contract": "daily-controller-launch-boundary-correction-v1",
+  "original_windows_result": "FAILED 63/64, preserved in windows_86355fe_FAILED.json",
+  "original_windows_timing": "Read-only saved timing requested; exact native Windows gap list not yet supplied",
+  "reproduction": {
+    "result": "FAILED",
+    "tests": 1,
+    "seconds": 24.316,
+    "assertion": "Original gap assertion fails when generation-2 startup deliberately crosses launch-slot :22",
+    "launch_slot": "2026-10-29T14:00:22+00:00",
+    "replacement_quote_at": "2026-10-29T10:00:24.233047-04:00",
+    "evidence": "Retained synthetic journal and process events in daily_controller_windows_boundary_reproduced"
+  },
+  "development_error": {
+    "tests": 1,
+    "result": "ERROR",
+    "seconds": 24.349,
+    "reason": "New test mistakenly constructed AcquisitionSettings without mandatory fields; removed unnecessary construction and used explicit same-grid future-slot check",
+    "log": "boundary_development_constructor_ERROR.log"
+  },
+  "focused_corrected": {
+    "result": "PASS",
+    "tests": 1,
+    "seconds": 24.342,
+    "proof": {
+      "audit_through_utc": "2026-10-29T14:00:24+00:00",
+      "contract": "daily-owned-recovery-proof-v1",
+      "fault_at_utc": "2026-10-29T10:00:06.273472-04:00",
+      "full_day_capacity_qualified": false,
+      "intentional_hold_slots_not_backfilled": true,
+      "intentional_missing_slot_ids": [
+        "hot:2026-10-29T10:00:08-04:00",
+        "hot:2026-10-29T10:00:12-04:00",
+        "hot:2026-10-29T10:00:14-04:00",
+        "hot:2026-10-29T10:00:16-04:00",
+        "hot:2026-10-29T10:00:18-04:00",
+        "hot:2026-10-29T10:00:22-04:00"
+      ],
+      "minimum_hold_seconds": 15,
+      "native_hot_acquisitions": 2,
+      "provider_calls": 2,
+      "raw_native_audit_passed": false,
+      "replacement_crossed_launch_slot": true,
+      "replacement_hold_seconds": 15.049428,
+      "replacement_schedule": {
+        "configuration_sha256": "5e1c6171dff7af8903a7cbdc09b1af6f4255a3df27d588685c81d88740006411",
+        "contract": "daily-hot-worker-schedule-v1",
+        "first_scheduled_slot_utc": "2026-10-29T14:00:24+00:00",
+        "generation": 2,
+        "invocation": "de8d95fbb069436683b3d9ac8772f82d",
+        "launch_first_eligible_slot_utc": "2026-10-29T14:00:22+00:00",
+        "resume_after_utc": "2026-10-29T14:00:21.329974+00:00",
+        "selected_at_utc": "2026-10-29T14:00:22.245554+00:00",
+        "token": "b134c6420726448b88ee9dd959c06380"
+      },
+      "result": "PASS",
+      "saved_response_not_requested_again": true,
+      "starts": [
+        {
+          "exit_observed_at_utc": "2026-10-29T14:00:06.281205+00:00",
+          "generation": 1,
+          "invocation": "de8d95fbb069436683b3d9ac8772f82d",
+          "reserved_at_utc": "2026-10-29T14:00:00.267587+00:00",
+          "token": "49d13f042f934c9db2d08523e46e7f27"
+        },
+        {
+          "exit_observed_at_utc": null,
+          "generation": 2,
+          "invocation": "de8d95fbb069436683b3d9ac8772f82d",
+          "reserved_at_utc": "2026-10-29T14:00:21.330633+00:00",
+          "token": "b134c6420726448b88ee9dd959c06380"
+        }
+      ],
+      "synthetic_sdk_only": true,
+      "two_fresh_replays_equal": true,
+      "unexplained_gaps": 0,
+      "worker_starts": 2
+    }
+  },
+  "correction": "Add bound checksummed post-authentication/recovery scheduling receipt; deliberately cross launch slot in recovery qualification, require exact fault-to-actual-first-slot missing set, and require first actual replacement slot committed. Stop producers and audit explicit last acquisition cutoff. Save raw audit/diagnostics before gap assertion.",
+  "unchanged": "No scheduling dispatch policy, credentials/progress deadlines, replacement hold, provider limits or native source changed",
+  "remaining": "New immutable packet full qualification and Windows result; no production activation"
+}

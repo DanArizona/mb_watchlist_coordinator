@@ -182,6 +182,9 @@ class DailyControllerTests(unittest.TestCase):
             atomic_json(self.case.root/'proof.json', proof)
 
     def test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold(self):
+        # Always exercise the platform-sensitive case: launch chooses :22,
+        # while actual replacement startup completes just after that slot.
+        self.scenario['replacement_cross_launch_slot'] = True
         self.start(mode='crash_after_assembled'); self.wait(self.running)
         self.case.now = self.clock(); self.case.admit()
         self.wait(lambda: self.controller.state.read()['starts'][0]['exit_observed_at_utc'] is not None, seconds=10)
@@ -197,20 +200,63 @@ class DailyControllerTests(unittest.TestCase):
             with closing(sqlite3.connect(self.case.journal)) as c:
                 return c.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot"').fetchone()[0] == 2
         self.wait(committed)
+        stopped = self.controller.close(report=False)
+        self.assertTrue(stopped['cleanup_within_10_seconds'])
         with closing(sqlite3.connect(self.case.journal)) as c:
-            self.assertEqual(c.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot"').fetchone()[0], 2)
+            acquired_slots = [datetime.fromisoformat(row[0]) for row in c.execute(
+                'SELECT scheduled_at_utc FROM quote_acquisition WHERE channel="hot" ORDER BY scheduled_at_utc')]
+        self.assertEqual(len(acquired_slots), 2)
         self.assertEqual(len(self.provider_calls()), 2) # The first saved response was not requested again.
-        self.assertEqual(self.controller.worker._job()['generation'], 2)
+        job = self.controller.worker._job()
+        self.assertEqual(job['generation'], 2)
+        schedule = unseal(read_json(Path(job['job_path']).with_name(job['token']+'.schedule.json')))
+        self.assertEqual(schedule['contract'], 'daily-hot-worker-schedule-v1')
+        self.assertEqual(schedule['token'], starts[1]['token'])
+        self.assertEqual(schedule['generation'], 2)
+        self.assertEqual(schedule['invocation'], starts[1]['invocation'])
+        self.assertEqual(schedule['configuration_sha256'], digest(self.config.payload()))
+        self.assertEqual(schedule['resume_after_utc'], job['resume_after_utc'])
+        self.assertEqual(schedule['launch_first_eligible_slot_utc'], job['first_eligible_slot_utc'])
+        selected_at = datetime.fromisoformat(schedule['selected_at_utc'])
+        eligible = datetime.fromisoformat(schedule['first_scheduled_slot_utc'])
+        launch_slot = datetime.fromisoformat(job['first_eligible_slot_utc'])
+        from mb_watchlist_coordinator.recovery_workers import atomic_json, next_future_slot
+        self.assertGreaterEqual(selected_at, datetime.fromisoformat(self.config.collector.start_at_utc))
+        self.assertEqual(eligible, next_future_slot(max(selected_at,
+            datetime.fromisoformat(job['resume_after_utc']))))
+        self.assertLess(launch_slot, selected_at)
+        self.assertLess((selected_at-datetime.fromisoformat(job['started_at_utc'])).total_seconds(), 3)
+        self.assertEqual(acquired_slots[-1], eligible) # No missing slot once actually ready.
         from mb_market_data.quote_journal_audit import audit_quote_journal
-        audit = audit_quote_journal(self.case.journal, audited_at=self.clock())
+        # The proof ends with its first fresh committed replacement acquisition.
+        # Producers are stopped above; do not race an in-flight/future slot or
+        # pretend this short proof covers the configured five-minute window.
+        audit = audit_quote_journal(self.case.journal, audited_at=acquired_slots[-1])
         gaps = next(c.missing_slot_ids for c in audit.channels if c.channel == 'hot')
         exited = datetime.fromisoformat(starts[0]['exit_observed_at_utc'])
-        eligible = datetime.fromisoformat(self.controller.worker._job()['first_eligible_slot_utc'])
+        fault_at = datetime.fromisoformat(next(e['at'] for e in self.events()
+            if e['role'] == 'collector' and e['event'] == 'fault:after_assembled'))
+        self.assertLessEqual(fault_at, exited)
+        expected_gaps = []
+        cursor = next_future_slot(fault_at)
+        while cursor < eligible:
+            expected_gaps.append(cursor)
+            cursor = next_future_slot(cursor)
+        actual_gaps = [datetime.fromisoformat(slot.split(':', 1)[1]) for slot in gaps]
+        diagnostics = {'contract': 'daily-recovery-gap-diagnostics-v1',
+            'audit_through_utc': acquired_slots[-1].isoformat(),
+            'fault_at_utc': fault_at.isoformat(), 'exit_observed_at_utc': exited.isoformat(),
+            'replacement_schedule': schedule, 'starts': starts,
+            'acquired_slots': [slot.isoformat() for slot in acquired_slots],
+            'missing_slot_ids': list(gaps),
+            'expected_missing_slots': [slot.isoformat() for slot in expected_gaps]}
+        if os.environ.get('MB_DAILY_CONTROLLER_RECOVERY_PROOF_DIR'):
+            atomic_json(self.case.root/'recovery-diagnostics.json', diagnostics)
+            (self.case.root/'raw-recovery-audit.json').write_text(json.dumps(asdict(audit), default=str, indent=2)+'\n')
         self.assertTrue(gaps)
-        self.assertTrue(all(exited <= datetime.fromisoformat(slot.split(':', 1)[1]) < eligible for slot in gaps))
+        self.assertEqual(actual_gaps, expected_gaps, diagnostics)
         self.assertEqual({f.code for f in audit.findings}, {'missing_poll_slots'})
         if os.environ.get('MB_DAILY_CONTROLLER_RECOVERY_PROOF_DIR'):
-            from mb_watchlist_coordinator.recovery_workers import atomic_json
             from mb_market_data.quote_journal_replay import QuoteJournalReplayReader
             first = tuple(QuoteJournalReplayReader(self.case.journal).events())
             self.assertEqual(first, tuple(QuoteJournalReplayReader(self.case.journal).events()))
@@ -218,12 +264,13 @@ class DailyControllerTests(unittest.TestCase):
                 'result': 'PASS', 'synthetic_sdk_only': True, 'worker_starts': 2,
                 'replacement_hold_seconds': elapsed, 'minimum_hold_seconds': 15,
                 'starts': starts, 'provider_calls': 2, 'native_hot_acquisitions': 2,
+                'audit_through_utc': acquired_slots[-1].isoformat(),
+                'fault_at_utc': fault_at.isoformat(), 'replacement_schedule': schedule,
+                'replacement_crossed_launch_slot': True,
                 'saved_response_not_requested_again': True, 'two_fresh_replays_equal': True,
                 'raw_native_audit_passed': audit.passed, 'intentional_missing_slot_ids': list(gaps),
                 'unexplained_gaps': 0, 'intentional_hold_slots_not_backfilled': True,
                 'full_day_capacity_qualified': False})
-            from dataclasses import asdict
-            (self.case.root/'raw-recovery-audit.json').write_text(json.dumps(asdict(audit), default=str, indent=2)+'\n')
 
     def test_authentication_alone_does_not_satisfy_native_progress(self):
         self.start(mode='auth_hang')

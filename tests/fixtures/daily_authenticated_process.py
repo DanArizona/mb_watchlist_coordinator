@@ -70,8 +70,18 @@ class Clock(datetime):
 def fault(stage):
     if mode.startswith('crash_') and stage == mode.removeprefix('crash_'):
         job = json.loads(Path(job_path).read_text())
-        if job['generation'] == 1: os._exit(75)
+        if job['generation'] == 1:
+            record('fault:'+stage)
+            os._exit(75)
 try:
+    if role == 'collector' and scenario.get('replacement_cross_launch_slot'):
+        job = json.loads(Path(job_path).read_text())
+        if job['generation'] == 2:
+            until = datetime.fromisoformat(job['first_eligible_slot_utc'])+timedelta(milliseconds=50)
+            delay = (until-clock()).total_seconds()
+            if delay > 2: raise ValueError('Synthetic replacement delay exceeds fixture bound')
+            if delay > 0: time.sleep(delay)
+            record('replacement_crossed_launch_slot')
     with patch('mb_market_data.schwab_quotes.datetime', Clock):
         if role == 'collector': run_collector(configuration, job_path, clock=clock, secure_api=Secure, fault_hook=fault)
         elif role == 'identity': run_identity(configuration, job_path, clock=clock, secure_api=Secure)

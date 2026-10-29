@@ -63,10 +63,21 @@ deadline measurements use actual elapsed time.
 The separate recovery proof exits an actual owned worker after assembling a
 response, retains the charged dispatch, waits fifteen seconds after confirmed
 exit, and verifies one recovered acquisition plus a new future-slot acquisition.
-Its raw native audit remains FAILED for the deliberate hold's missing slots;
-all such gaps must lie within that owned outage, with zero unexplained gaps.
+Replacement startup deliberately crosses the launch job's first eligible slot.
+The worker saves a bound, checksummed scheduling receipt after authentication
+and response recovery. The launch slot is a lower bound; the first scheduled
+slot is selected from the then-current clock, with the three-second startup
+gate unchanged. Its raw native audit remains FAILED for the deliberate
+outage and startup slots. The exact missing-slot set must match the recorded
+fault through actual first scheduled slot, with zero unexplained gaps. The
+first scheduled replacement slot itself must have a committed acquisition.
+The short proof stops its owned producers and audits through that first fresh
+replacement acquisition; it does not claim the remaining five-minute window.
 The raw verdict and intentional slots are retained, without invented quotes
 or retrospective fills. Two fresh replays of the resulting journal must agree.
+Raw audit and gap diagnostics are saved before the gap assertion, including
+when qualification fails. The original 86355fe Windows failure stays FAILED;
+it is preserved with the original immutable packet and is not an acceptance.
 
 Replay hashes are compared within each retained journal. Actual elapsed
 acquisition times vary, so hashes from different runs/hosts need not agree.

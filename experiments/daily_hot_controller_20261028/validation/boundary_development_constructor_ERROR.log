@@ -1,0 +1,15 @@
+test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold) ... ERROR
+
+======================================================================
+ERROR: test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 227, in test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold
+    self.assertLess(launch_slot, selected_at)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AcquisitionSettings.__init__() missing 5 required positional arguments: 'batch_size', 'fields', 'source_label', 'max_dispatch_lateness_seconds', and 'retry_seconds'
+
+----------------------------------------------------------------------
+Ran 1 test in 24.349s
+
+FAILED (errors=1)
