@@ -7,6 +7,7 @@ driver. Uni/Focus are deliberately not accepted as managed roles.
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
+import errno
 import json
 import os
 import re
@@ -20,6 +21,33 @@ from .sampling_requests import canonical, digest, timestamp
 from .sampling_service import owner_lock, ServiceBusy
 
 HOT_SECONDS = tuple(s for s in range(2, 60, 2) if s % 10)
+_WINDOWS_PROCESS_READS = os.name == 'nt'
+
+
+def read_process_text(path, *, encoding='utf-8', monotonic=time.monotonic, sleep=time.sleep):
+    """Read a complete process record through a bounded Windows open conflict.
+
+    CRT reads can surface a rename/share window as bare EACCES, without a
+    winerror. Retry only that read for at most .25s/26 attempts. Persistent
+    access denial still raises; JSON, binding and age checks stay with callers.
+    No cached value, provider operation, state repair or deadline reset occurs.
+    """
+    path = Path(path)
+    if not _WINDOWS_PROCESS_READS:
+        return path.read_text(encoding=encoding)
+    deadline = monotonic()+.25
+    for attempt in range(26):
+        try:
+            return path.read_text(encoding=encoding)
+        except PermissionError as error:
+            code = getattr(error, 'winerror', None)
+            eligible = code in (5, 32, 33) or code is None and error.errno == errno.EACCES
+            remaining = deadline-monotonic()
+            if not eligible or attempt == 25 or remaining <= 0:
+                raise
+            sleep(min(.01, remaining))
+            if monotonic() >= deadline:
+                raise
 
 
 def next_future_slot(at, seconds=HOT_SECONDS):
@@ -141,7 +169,7 @@ class ManagedRecoveryWorker:
             if any(self.root.glob('*.job.json')) or any(self.root.glob('*.heartbeat.json')) or any(self.root.glob('*.stop')):
                 raise FileNotFoundError('Missing worker registry; restore instead of resetting ownership/budget')
             return None
-        job = json.loads(self.registry.read_text(encoding='utf-8'))
+        job = json.loads(read_process_text(self.registry))
         value = dict(job); sha = value.pop('content_sha256')
         if (digest(value) != sha or job['identity'] != self.identity
                 or type(job['generation']) is not int or not 1 <= job['generation'] <= self.max_starts
@@ -157,7 +185,7 @@ class ManagedRecoveryWorker:
                 or job['first_eligible_slot_utc'] != next_future_slot(timestamp(job['resume_after_utc'])).isoformat()
                 or job['no_past_slot_catchup'] is not True
                 or not Path(job['job_path']).is_file()
-                or Path(job['job_path']).read_text(encoding='utf-8') != canonical(job)):
+                or read_process_text(job['job_path']) != canonical(job)):
             raise ValueError('Worker durable job or future-slot gate differs')
         if Path(job['lease_path']) != self.lease.resolve():
             raise ValueError('Worker lease path differs')
@@ -175,7 +203,7 @@ class ManagedRecoveryWorker:
         if not path.is_file():
             self.last_heartbeat_check = {'status': 'missing', 'token': job['token']}
             return None
-        beat = json.loads(path.read_text(encoding='utf-8'))
+        beat = json.loads(read_process_text(path))
         age = (self.clock()-timestamp(beat['completed_at_utc'])).total_seconds()
         self.last_heartbeat_check = {'status': 'invalid', 'token': job['token'],
             'completed_at_utc': beat['completed_at_utc'], 'age_seconds': age,

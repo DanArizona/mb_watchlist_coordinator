@@ -1,0 +1,149 @@
+{
+  "contract": "daily-hot-windows-evidence-read-qualification-v1",
+  "result": "PASS",
+  "tests": 1,
+  "passed": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 126.57156503900023,
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "test_scope": "original paced proof only; component evidence recorded separately",
+  "source": {
+    "coordinator_commit": "4193c9b241710aba11acbc171971dd60f79cf86b",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "runtime_baseline": "2f56703904db10cf6c47e410f350f60cfa03656f",
+  "runtime_changes": [
+    "src/mb_watchlist_coordinator/daily_session.py",
+    "src/mb_watchlist_coordinator/daily_supervision.py",
+    "src/mb_watchlist_coordinator/daily_worker_view.py",
+    "src/mb_watchlist_coordinator/recovery_workers.py"
+  ],
+  "windows_checks_passed": false,
+  "windows_read_retry_active": false,
+  "windows_native_proof": [],
+  "windows_native_proof_qualified": false,
+  "read_retry_budget_seconds": 0.25,
+  "read_retry_attempt_ceiling": 26,
+  "old_heartbeat_not_reused": true,
+  "binding_and_age_checks_unchanged": true,
+  "original_progress_seconds": 3,
+  "original_credential_seconds": 8,
+  "original_replacement_hold_seconds": 15,
+  "original_cleanup_seconds": 10,
+  "feed_interval_seconds": 60,
+  "periodic_stack_dumps": false,
+  "original_test_source_sha256": "91c87dc7974a47e3a6e0b32ced6850b4b6862109891c22a5814d2b31cd70d706",
+  "changed_test_only_flags": [
+    {
+      "scenario": "scene",
+      "line": 126
+    },
+    {
+      "scenario": "auth_scene",
+      "line": 127
+    }
+  ],
+  "monitor_exception": null,
+  "operating_exception": null,
+  "paced_proof": {
+    "contract": "daily-paced-source-owned-collection-proof-v1",
+    "result": "PASS",
+    "network": "denied",
+    "synthetic_sdk_only": true,
+    "actual_vault_access": false,
+    "provider_capacity_qualified": false,
+    "full_day_capacity_qualified": false,
+    "owner": {
+      "contract": "daily-hot-operating-owner-v1",
+      "nonce": "3859e7c0c23e48249e7fbd89bc7895cf",
+      "configuration_sha256": "f902b224a5dd39bf6bdc5e9327437a9b87d4cc25c8715e2e78dc239b7e242c1f",
+      "stop_reason": "operator_stop",
+      "result": "STOPPED",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      },
+      "cleanup_seconds": 0.06084277300033136,
+      "acquisition_stop_requested_at_utc": "2026-10-30T14:02:06.191512+00:00",
+      "reporting": {
+        "status": "COMPLETE",
+        "report_path": "/tmp/tmpe54cjfbd/daily_hot_test/reports/6c01f646d810487296accb5658f77815.json",
+        "native_audit_passed": true,
+        "two_fresh_replays_equal": true,
+        "first_replay": {
+          "events": 29,
+          "sequence_sha256": "3729aa65008c192f82f836d5dc42352be6a2ff96d42200affe4b855bc55fe0be"
+        },
+        "cleanup": {
+          "status": "EXIT_OBSERVED",
+          "backend": "posix_process_group",
+          "scope_empty_observed": true,
+          "forced": false,
+          "controller_returncode": 0,
+          "reason": null
+        }
+      },
+      "failure_type": null,
+      "unmanaged_channels_untouched": [
+        "uni",
+        "focus",
+        "health"
+      ],
+      "full_day_capacity_qualified": false,
+      "production_activation_inferred": false
+    },
+    "elapsed_seconds": 126.48429527600001,
+    "cutover": {
+      "observed_at_utc": "2026-10-30T14:02:03.096680+00:00",
+      "source_status": "READY_WITH_GAPS",
+      "acquisitions": 24,
+      "elapsed_seconds": 123.06897555299929
+    },
+    "source_attempts": 3,
+    "source_query_ids": [
+      "CURRENT",
+      "nasdaq-query-4c3b5d041fbf05918cce026ddc259abd0c8ccd935b107d341ab92daa6d32f4e2",
+      "CURRENT"
+    ],
+    "completion_to_next_start_seconds": [
+      60.702353,
+      60.803616
+    ],
+    "identity_quote_permits": 1,
+    "native_hot_acquisitions": 26,
+    "acquisitions_after_reconciliation": 2,
+    "worker_starts": 1,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "source_reconciled": true,
+    "actual_elapsed_pacing": true,
+    "production_changes": false,
+    "max_observer_scheduling_gap_seconds": 0.03170545000011771
+  },
+  "prior_capacity_and_recovery_drills_repeated": false,
+  "original_windows_commands_67_68_69_70": "FAILED; preserved",
+  "original_io_ledger_change_and_native_crash_causes_resolved": false,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "live_launch_available": false,
+  "proposed_values_adopted": false,
+  "operating_release_qualified": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false
+}

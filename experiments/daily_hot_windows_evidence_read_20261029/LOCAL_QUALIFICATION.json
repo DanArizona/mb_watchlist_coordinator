@@ -1,0 +1,41 @@
+{
+  "contract": "daily-hot-windows-evidence-read-local-component-v1",
+  "result": "PASS",
+  "component_tests": 22,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 1.208,
+  "read_and_freshness_tests": 9,
+  "existing_ownership_and_fence_tests": 13,
+  "native_windows_proof_executed_locally": false,
+  "windows_result": "PENDING",
+  "read_retry_seconds": 0.25,
+  "read_attempt_ceiling": 26,
+  "original_deadlines_and_pacing_unchanged": true,
+  "production_changes": false,
+  "actual_provider_vault_sdk_access": false,
+  "paced_test_result": "PASS",
+  "paced_tests": 1,
+  "combined_unique_local_tests": 23,
+  "invocations": "22 components and 1 separately executed original paced proof",
+  "paced_seconds": 126.57156503900023,
+  "paced_source_commit": "4193c9b241710aba11acbc171971dd60f79cf86b",
+  "paced_source_tree": "f20f03b0380da1115d02c79da8b8d58079e8e15c",
+  "paced_native_acquisitions": 26,
+  "source_attempts": 3,
+  "completion_to_next_start_seconds": [
+    60.702353,
+    60.803616
+  ],
+  "identity_quote_permits": 1,
+  "worker_starts": 1,
+  "native_audit_passed": true,
+  "two_fresh_replays_equal": true,
+  "first_replay": {
+    "events": 29,
+    "sequence_sha256": "3729aa65008c192f82f836d5dc42352be6a2ff96d42200affe4b855bc55fe0be"
+  },
+  "cleanup_seconds": 0.06084277300033136,
+  "linux_paced_regression_does_not_qualify_native_windows_sharing": true
+}

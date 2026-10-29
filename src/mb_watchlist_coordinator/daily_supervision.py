@@ -12,7 +12,7 @@ from .authenticated_startup import AuthStartupSettings, SessionPassword, Startup
 from .controller_bootstrap import strict_json
 from .daily_collector import DailyCollectorSettings
 from .daily_session import DailySettings, regular_path
-from .recovery_workers import ManagedRecoveryWorker, atomic_json, next_future_slot, _write_handoff, HOT_SECONDS
+from .recovery_workers import ManagedRecoveryWorker, atomic_json, next_future_slot, _write_handoff, HOT_SECONDS, read_process_text
 from .sampling_requests import canonical, digest, plain, timestamp, utc_text
 from .sampling_service import ServiceBusy, owner_lock
 
@@ -23,7 +23,7 @@ def read_json(path):
     path = regular_path(path, exists=True)
     if path.stat().st_size > 2_000_000:
         raise ValueError('Oversized daily process evidence')
-    return strict_json(path.read_text(encoding='utf-8'))
+    return strict_json(read_process_text(path))
 
 
 def sealed(value):

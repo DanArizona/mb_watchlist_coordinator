@@ -1,5 +1,11 @@
 # Source reliability development — resumed October 29
 
+Latest command70 CAPTURED the initiating runtime heartbeat read PermissionError
+(errno13, winerror null), not a stale heartbeat or test callback. A targeted
+Windows-only bounded read correction and26-check Windows packet are now in
+experiments/daily_hot_windows_evidence_read_20261029/WORKING_HANDOFF.md.
+Use that newer handoff; all earlier results and frozen source remain below.
+
 Frozen command-70 helper hot_operating_observer_20261029_fe20e74.zip is 14470
 bytes, SHA-256 c7d1d53e09bfbc91dbfd8d1985731640048eb8e3540989ee3134fee84fcc8421.
 Public source 4589cf59f80d80273096b05273f1f3ccc153fdb2 equals frozen local

@@ -22,7 +22,7 @@ from .nasdaq_recovery import regular_window
 from .operating_plan import proposed_policy, validate_policy
 from .sampling_requests import digest, freeze, plain, timestamp, utc_text
 from .sampling_service import owner_lock
-from .recovery_workers import atomic_json
+from .recovery_workers import atomic_json, read_process_text
 
 CONTRACT = 'daily-hot-publication-session-v1'
 OWNER = 'nasdaq-shared-daily'
@@ -263,7 +263,7 @@ class DailySession:
         if self.catalog.catalog_id != self.claim['catalog_id'] or self.catalog.verified_public_sha256() != self.claim['catalog_sha256']:
             raise ValueError('Daily catalog changed')
         if (self.root/'status.json').exists():
-            previous = strict_json((self.root/'status.json').read_text())
+            previous = strict_json(read_process_text(self.root/'status.json'))
             content = dict(previous); sha = content.pop('content_sha256')
             if (sha != digest(content) or previous['binding_sha256'] != self.binding['binding_sha256']
                     or self.clock() < timestamp(previous['observed_at_utc'])):
