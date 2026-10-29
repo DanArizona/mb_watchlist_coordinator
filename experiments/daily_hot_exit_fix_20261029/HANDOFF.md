@@ -1,5 +1,12 @@
 # Command 64 next — owned exit / role-lease correction
 
+**Superseded:** supplied Windows command 64 is FAILED 14/15. The lease/exit
+recovery component passed (15.029873s hold). The owner smoke proof stopped on a
+recorded OperationalError: disk I/O error in the source pipeline before its
+first quote slot. See `../daily_hot_source_diagnostic_20261029/README.md` and
+its supplied-result review for read-only command 65. Historical results below
+are unchanged; no automatic qualification retry or I/O repair is authorized here.
+
 Original Windows command 63 remains FAILED: 133/134, zero errors/skips, actual
 CMD return, run 20261029T080211Z_72278a8f. Original Windows files were not
 independently read; the supplied console/final JSON is the basis of the review.

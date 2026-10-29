@@ -1,0 +1,8 @@
+{
+  "contract": "saved-source-diagnostic-local-check-v1",
+  "databases": 10,
+  "current_database_issues": [],
+  "all_database_bytes_unchanged": true,
+  "test_or_provider_rerun": false,
+  "source_extended_error_not_reconstructed": true
+}

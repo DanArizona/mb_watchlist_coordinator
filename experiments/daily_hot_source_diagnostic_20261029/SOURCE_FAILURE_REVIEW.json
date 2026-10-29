@@ -1,0 +1,63 @@
+{
+  "contract": "supplied-windows-source-failure-review-v1",
+  "basis": "Operator-supplied command-64 console/final JSON, driver-state.json and last three source status payloads",
+  "original_windows_files_independently_read": false,
+  "run": "20261029T082857Z_49b9595b",
+  "packet": "daily_hot_exit_fix_20261029_7cce5c0_5552c5d.zip",
+  "original_packet_result": "FAILED",
+  "tests": 15,
+  "passed": 14,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "runner_seconds": 32.925,
+  "report_seconds": 33.264999999897555,
+  "failed_test": "test_daily_operating.DailyOperatingTests.test_complete_collection_proof_preserves_native_journal_and_never_reports_in_the_active_scope",
+  "assertion": "0 Hot acquisitions instead of 2",
+  "source_failure": {
+    "at_utc": "2026-10-30T14:00:04.458440+00:00",
+    "status": "BLOCKED",
+    "reasons": ["OperationalError"],
+    "detail": "disk I/O error",
+    "sequence": 5,
+    "event_sha256": "67133c99a7b534cfb646a9b41d7303d7add4f0df04784092a17511a2d27cdd3e",
+    "database": null,
+    "operation": null,
+    "extended_sqlite_errorcode": null,
+    "traceback": null
+  },
+  "controller_stop": {
+    "at_utc": "2026-10-30T14:00:04.481773+00:00",
+    "reason": "controller_blocked_or_stopped",
+    "terminal": "source_integrity_blocked",
+    "starts": 1,
+    "hold_until_utc": null
+  },
+  "outer_stop": {
+    "at_utc": "2026-10-30T14:00:04.504387+00:00",
+    "reason": "controller_progress_stale",
+    "cleanup_seconds": 0.125,
+    "cleanup_backend": "windows_job",
+    "scope_empty_observed": true,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "replay_events": 3
+  },
+  "separate_recovery_component": {
+    "result": "PASS",
+    "actual_role_lease_exit_gap_forced": true,
+    "replacement_hold_seconds": 15.029873,
+    "worker_starts": 2,
+    "native_hot_acquisitions": 2,
+    "provider_calls": 2,
+    "saved_response_not_requested_again": true,
+    "unexplained_gaps": 0,
+    "two_fresh_replays_equal": true,
+    "raw_native_audit_passed": false,
+    "raw_audit_note": "Intentional hold/startup gaps remain unfilled"
+  },
+  "assessment": "The recorded SQLite error preceded controller and outer stop. The generic message does not identify a failing file/operation or establish hardware failure. Current diagnostic reads cannot reconstruct an unrecorded extended error from a past transient event.",
+  "next": "Read-only command 65 on the exact saved run; no qualification rerun or source database repair.",
+  "production_changes": false,
+  "production_hot_enabled": false
+}
