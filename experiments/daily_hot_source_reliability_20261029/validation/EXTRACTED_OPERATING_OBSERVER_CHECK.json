@@ -1,0 +1,26 @@
+{
+  "contract": "daily-hot-operating-observer-exact-extraction-check-v1",
+  "result": "PASS",
+  "tests": 2,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 2.658,
+  "source": {
+    "local_observer_commit": "fe20e749f42024812a7eb5ca9808ce0590ae5ddc",
+    "public_equivalent_source_commit": "4589cf59f80d80273096b05273f1f3ccc153fdb2",
+    "observer_tree": "bb66cf87eaefff6b1245019367a37be009fa6c6c"
+  },
+  "path_with_spaces": true,
+  "actual_owned_start_stop_and_callback_error_entries_qualified": true,
+  "original_frozen_inventory_verified_pre_and_post": true,
+  "pre_post_helper_hashes_match": true,
+  "cmd_crlf_quoted_path_passed": true,
+  "unchanged_monitor_helpers_preserved": true,
+  "full_paced_capacity_and_recovery_repeated": false,
+  "packet": "hot_operating_observer_20261029_fe20e74.zip",
+  "bytes": 14470,
+  "sha256": "c7d1d53e09bfbc91dbfd8d1985731640048eb8e3540989ee3134fee84fcc8421",
+  "windows_result": "PENDING",
+  "production_changes": false
+}

@@ -1,0 +1,7 @@
+test_outer_callback_permission_error_is_captured_before_original_owned_cleanup (test_operating_exception_observer.ActualObservedOwnerTests.test_outer_callback_permission_error_is_captured_before_original_owned_cleanup) ... ok
+test_real_owned_start_and_operator_stop_keep_original_cleanup (test_operating_exception_observer.ActualObservedOwnerTests.test_real_owned_start_and_operator_stop_keep_original_cleanup) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 2.658s
+
+OK

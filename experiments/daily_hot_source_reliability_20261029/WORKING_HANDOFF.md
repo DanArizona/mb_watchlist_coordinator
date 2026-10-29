@@ -1,5 +1,17 @@
 # Source reliability development — resumed October 29
 
+Frozen command-70 helper hot_operating_observer_20261029_fe20e74.zip is 14470
+bytes, SHA-256 c7d1d53e09bfbc91dbfd8d1985731640048eb8e3540989ee3134fee84fcc8421.
+Public source 4589cf59f80d80273096b05273f1f3ccc153fdb2 equals frozen local
+fe20e749f42024812a7eb5ca9808ce0590ae5ddc, tree bb66cf87eaefff6b1245019367a37be009fa6c6c.
+The same two actual owned-process cases from its exact ZIP in a path with
+spaces PASS in 2.658s; these are rechecks, not two new unique tests. Helper
+hashes and complete original command-67 inventory match before/after; CRLF
+quoted CMD entry checked. No unchanged long paced/capacity/recovery repeat.
+Next: obtain one Windows command-70 report; inspect operating_exception or
+monitor_exception before a runtime fix. A callback-origin failure must retain
+its testing scope. Original Windows 67/68/69 failures remain, Hot disabled.
+
 Latest: user explicitly resumed after resource refresh. Windows command 69
 FAILED 1/1, run 20261029T213500Z_788ec993; complete supplied console/final JSON
 and actual CMD prompt. Paced 18.234s/report 18.546s. Outer reason is
