@@ -60,9 +60,18 @@ the fifty distinct tests selected by command 67, in separate component runs;
 they are not represented as one fifty-test local invocation. No unchanged
 full-size or fifteen-second recovery drill was repeated.
 
-Next: freeze the source and build command 67; verify the exact ZIP extraction
-and source inventory, publish under standing approval, and request one Windows
-run with its actual returned CMD prompt. Original commands 63/64 remain FAILED,
+Frozen Coordinator source 2f56703904db10cf6c47e410f350f60cfa03656f was built
+into command 67, 845541 bytes, SHA-256
+7d667238bffafab036d004a5380b32c6d2e1f41d882eb0d189e6e2a4f9cf4b95.
+Nine selected checks from the exact ZIP extracted into a path containing spaces
+PASSED in 8.926 seconds; pre/post inventory matched and the runner selects
+exactly fifty tests. The unchanged 129-second proof was not repeated. Public
+equivalent source commit 421521396d5357dd7d3c2332d68597a7345f08a4 has the
+identical complete tree 370601b79ef5f075e23c375bea2c1c6b6e980466 on branch
+experiment/daily-hot-source-reliability-20261029.
+
+Next: request one Windows command-67 run with its final JSON and actual returned
+CMD prompt. Original commands 63/64 remain FAILED,
 the old I/O cause and ledger-change actor remain unassigned, and Windows 67,
 live provider performance, concrete operating/deployment/settings review and
 activation remain pending. Earlier accepted qualifications and failed results

@@ -1,0 +1,33 @@
+{
+  "contract": "daily-hot-source-reliability-delivery-v1",
+  "packet": "daily_hot_source_reliability_20261029_2f56703_5552c5d.zip",
+  "packet_bytes": 845541,
+  "packet_sha256": "7d667238bffafab036d004a5380b32c6d2e1f41d882eb0d189e6e2a4f9cf4b95",
+  "frozen_source": {
+    "coordinator_commit": "2f56703904db10cf6c47e410f350f60cfa03656f",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "coordinator_tree": "370601b79ef5f075e23c375bea2c1c6b6e980466",
+  "public_equivalent_source_commit": "421521396d5357dd7d3c2332d68597a7345f08a4",
+  "repository": "DanArizona/mb_watchlist_coordinator",
+  "branch": "experiment/daily-hot-source-reliability-20261029",
+  "windows_command": "67_verify_daily_hot_source_reliability.cmd",
+  "windows_checks": 50,
+  "estimated_minutes": 2.5,
+  "windows_result": "PENDING",
+  "local_components_passed": [
+    46,
+    3,
+    1
+  ],
+  "exact_zip_selected_checks_passed": 9,
+  "network": "denied",
+  "production_changes": false,
+  "live_launch_available": false,
+  "source_installation_approved": false,
+  "production_hot_enabled": false,
+  "original_windows_io_error_cause_resolved": false,
+  "original_ledger_change_actor_identified": false,
+  "next": "Run Windows command 67 once and retain the final JSON and returned CMD prompt. No unchanged capacity/recovery repeat."
+}

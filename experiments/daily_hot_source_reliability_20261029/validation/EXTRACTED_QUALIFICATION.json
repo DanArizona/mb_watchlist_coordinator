@@ -1,0 +1,31 @@
+{
+  "contract": "daily-hot-source-reliability-exact-zip-check-v1",
+  "result": "PASS",
+  "packet_sha256": "7d667238bffafab036d004a5380b32c6d2e1f41d882eb0d189e6e2a4f9cf4b95",
+  "packet_bytes": 845541,
+  "source": {
+    "coordinator_commit": "2f56703904db10cf6c47e410f350f60cfa03656f",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_tree": "370601b79ef5f075e23c375bea2c1c6b6e980466",
+  "files": 278,
+  "path_contains_spaces": true,
+  "pre_and_post_inventory_passed": true,
+  "runner_selected_test_count": 50,
+  "extracted_tests": 9,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 9.022087934999945,
+  "selected": [
+    "test_daily_source_reliability.DailySourceReliabilityTests",
+    "test_daily_operating.DailyOperatingTests.test_actual_owner_stops_only_its_scope_then_runs_a_fresh_native_report",
+    "test_daily_operating.DailyOperatingTests.test_actual_outer_loss_releases_only_its_known_owned_children",
+    "test_daily_operating.DailyOperatingTests.test_detected_stop_keeps_its_original_cleanup_deadline_if_parent_recovers"
+  ],
+  "unchanged_paced_proof_repeated": false,
+  "network": "denied",
+  "production_changes": false,
+  "windows_checks_passed": false
+}

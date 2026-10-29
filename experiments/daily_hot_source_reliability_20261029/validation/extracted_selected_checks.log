@@ -1,0 +1,14 @@
+test_failure_receipt_survives_unreadable_source_status_database (test_daily_source_reliability.DailySourceReliabilityTests.test_failure_receipt_survives_unreadable_source_status_database) ... ok
+test_fully_reconciled_source_is_ready_without_claiming_to_manage_a_collector (test_daily_source_reliability.DailySourceReliabilityTests.test_fully_reconciled_source_is_ready_without_claiming_to_manage_a_collector) ... ok
+test_prevalidation_io_failure_is_saved_and_does_not_dispatch_or_retry (test_daily_source_reliability.DailySourceReliabilityTests.test_prevalidation_io_failure_is_saved_and_does_not_dispatch_or_retry) ... ok
+test_receipt_write_failure_keeps_original_io_block_and_code (test_daily_source_reliability.DailySourceReliabilityTests.test_receipt_write_failure_keeps_original_io_block_and_code) ... ok
+test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence (test_daily_source_reliability.DailySourceReliabilityTests.test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence) ... ok
+test_unowned_closed_pump_still_refuses_before_writing_diagnostic_state (test_daily_source_reliability.DailySourceReliabilityTests.test_unowned_closed_pump_still_refuses_before_writing_diagnostic_state) ... ok
+test_actual_owner_stops_only_its_scope_then_runs_a_fresh_native_report (test_daily_operating.DailyOperatingTests.test_actual_owner_stops_only_its_scope_then_runs_a_fresh_native_report) ... ok
+test_actual_outer_loss_releases_only_its_known_owned_children (test_daily_operating.DailyOperatingTests.test_actual_outer_loss_releases_only_its_known_owned_children) ... ok
+test_detected_stop_keeps_its_original_cleanup_deadline_if_parent_recovers (test_daily_operating.DailyOperatingTests.test_detected_stop_keeps_its_original_cleanup_deadline_if_parent_recovers) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 8.926s
+
+OK
