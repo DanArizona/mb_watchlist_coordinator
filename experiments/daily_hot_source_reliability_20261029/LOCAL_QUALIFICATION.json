@@ -1,0 +1,211 @@
+{
+  "contract": "daily-hot-source-reliability-local-component-qualification-v1",
+  "result": "PASS",
+  "scope": "fifty distinct selected tests across three component invocations; not one fifty-test invocation",
+  "tests": 50,
+  "passed": 50,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "selected_tests": [
+    "test_daily_source_reliability.DailySourceReliabilityTests.test_failure_receipt_survives_unreadable_source_status_database",
+    "test_daily_source_reliability.DailySourceReliabilityTests.test_fully_reconciled_source_is_ready_without_claiming_to_manage_a_collector",
+    "test_daily_source_reliability.DailySourceReliabilityTests.test_prevalidation_io_failure_is_saved_and_does_not_dispatch_or_retry",
+    "test_daily_source_reliability.DailySourceReliabilityTests.test_receipt_write_failure_keeps_original_io_block_and_code",
+    "test_daily_source_reliability.DailySourceReliabilityTests.test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence",
+    "test_daily_source_reliability.DailySourceReliabilityTests.test_unowned_closed_pump_still_refuses_before_writing_diagnostic_state",
+    "test_daily_source.DailySourceTests.test_actual_feed_children_drive_identity_publication_then_native_hot_quotes",
+    "test_daily_source.DailySourceTests.test_close_stops_only_its_feed_child_and_preserves_the_publication_owner",
+    "test_daily_source.DailySourceTests.test_feed_failure_preserves_verified_hot_demand_and_native_collection",
+    "test_daily_source.DailySourceTests.test_missing_source_ledger_cannot_reset_attempt_budget",
+    "test_daily_source.DailySourceTests.test_parallel_source_owner_is_refused",
+    "test_daily_source.DailySourceTests.test_source_reopen_keeps_existing_feed_attempts_identity_permits_and_publication",
+    "test_source_diagnostics.SourceDiagnosticsTests.test_extended_io_code_is_retained_without_retrying_the_failed_cycle",
+    "test_source_diagnostics.SourceDiagnosticsTests.test_non_sqlite_integrity_failure_keeps_its_original_blocking_decision",
+    "test_source_diagnostics.SourceDiagnosticsTests.test_original_details_survive_when_the_status_database_also_cannot_be_read",
+    "test_source_diagnostics.SourceDiagnosticsTests.test_real_sqlite_failure_records_code_origin_and_database_without_local_values",
+    "test_sampling_service.ServiceTests.test_changed_outcome_is_detected",
+    "test_sampling_service.ServiceTests.test_changed_request_history_is_refused_before_any_new_publication",
+    "test_sampling_service.ServiceTests.test_clock_reversal_and_naive_clock_do_not_publish",
+    "test_sampling_service.ServiceTests.test_demotion_deadline_survives_service_restart",
+    "test_sampling_service.ServiceTests.test_expired_committed_plan_is_acked_then_current_demotion_published",
+    "test_sampling_service.ServiceTests.test_expired_uncommitted_request_is_not_promoted_on_restart",
+    "test_sampling_service.ServiceTests.test_expiry_gets_a_durable_tick_without_new_source_request",
+    "test_sampling_service.ServiceTests.test_foreign_journal_revision_is_preserved_and_refused",
+    "test_sampling_service.ServiceTests.test_future_activation_is_not_early_and_is_driven_by_tick",
+    "test_sampling_service.ServiceTests.test_identity_and_policy_changes_cannot_reopen_service",
+    "test_sampling_service.ServiceTests.test_invalid_settings_and_database_aliases_are_rejected",
+    "test_sampling_service.ServiceTests.test_known_boundary_inside_lead_defers_instead_of_scheduling_stale_promotion",
+    "test_sampling_service.ServiceTests.test_loop_reports_operational_retry_then_recovers_and_integrity_error_stops",
+    "test_sampling_service.ServiceTests.test_loop_stops_promptly_even_with_long_poll_interval",
+    "test_sampling_service.ServiceTests.test_missing_outcome_ledger_cannot_adopt_already_owned_journal",
+    "test_sampling_service.ServiceTests.test_new_inputs_before_commit_abandon_plan",
+    "test_sampling_service.ServiceTests.test_no_change_inputs_have_durable_outcomes_without_extra_revisions",
+    "test_sampling_service.ServiceTests.test_operational_failure_is_retained_then_recovered",
+    "test_sampling_service.ServiceTests.test_owner_lock_serializes_two_instances_and_is_released",
+    "test_sampling_service.ServiceTests.test_publication_window_ends_without_processing_into_next_session",
+    "test_sampling_service.ServiceTests.test_publishes_complete_hierarchy_and_acks_actual_receipt",
+    "test_sampling_service.ServiceTests.test_restart_after_ack_is_idle_and_preserves_receipt",
+    "test_sampling_service.ServiceTests.test_restart_after_commit_acks_same_revision_without_duplicate",
+    "test_sampling_service.ServiceTests.test_store_deadline_rejection_is_abandoned_then_rescheduled",
+    "test_sampling_service.ServiceTests.test_two_sources_and_restriction_expiry_recompute_current_demand",
+    "test_sampling_service.ServiceTests.test_unacknowledged_different_commit_is_refused",
+    "test_sampling_service.ServiceTests.test_uncommitted_plan_is_abandoned_and_rescheduled_after_missed_time",
+    "test_sampling_service.ServiceTests.test_write_failure_rolls_back_all_channels_and_input_survives",
+    "test_daily_controller.DailyControllerTests.test_source_integrity_block_stops_dependent_hot_without_demoting_saved_membership",
+    "test_daily_controller.DailyControllerTests.test_foreign_publication_or_changed_claim_blocks_before_new_provider_calls",
+    "test_daily_operating.DailyOperatingTests.test_actual_owner_stops_only_its_scope_then_runs_a_fresh_native_report",
+    "test_daily_operating.DailyOperatingTests.test_actual_outer_loss_releases_only_its_known_owned_children",
+    "test_daily_operating.DailyOperatingTests.test_detected_stop_keeps_its_original_cleanup_deadline_if_parent_recovers",
+    "test_daily_source_reliability.DailyPacedSourceOwnerTests.test_three_real_paced_feed_children_reconcile_while_owned_hot_collection_continues"
+  ],
+  "component_runs": [
+    {
+      "log": "affected_with_publication_and_controller.log",
+      "tests": 46,
+      "seconds": 16.621,
+      "result": "PASS",
+      "sha256": "ac6069e3902fb005e495822275800b375630381d63965d7081c8e19ab4a0d797"
+    },
+    {
+      "log": "entry_cleanup_after_pacing_change.log",
+      "tests": 3,
+      "seconds": 4.203,
+      "result": "PASS",
+      "sha256": "e2ff9ee3faa62d10f09d97670614cdb378a12c350d820f50031483e8c45be7a6"
+    },
+    {
+      "log": "paced_reduced_load.log",
+      "tests": 1,
+      "seconds": 129.127,
+      "result": "PASS",
+      "sha256": "91fae1504cc55409f7b636987d05c584ca53514a40f2c945d50de7dd3123524a"
+    }
+  ],
+  "tested_bytes_sha256": {
+    "src/mb_watchlist_coordinator/daily_operating_worker.py": "62295be417af5679b8cc0f5e47868bcdf935a6f49b0e5489fc1c76f943dedea2",
+    "src/mb_watchlist_coordinator/daily_source.py": "a8dedc5ffcc958d032dba48f3bdaf0d41f851d22b0c62dc1feb740e4ad5d679c",
+    "src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py": "c2f53c2de43a975205b8c63b27c4f94be142148e040b70000ecbbb088fbff5e6",
+    "src/mb_watchlist_coordinator/sampling_service.py": "b4a70c27f42a6100aca1fc7e02db2fe5df5b668bc0415fcbc28adb22d3243735",
+    "tests/test_daily_source_reliability.py": "91c87dc7974a47e3a6e0b32ced6850b4b6862109891c22a5814d2b31cd70d706",
+    "tests/fixtures/daily_operating_process.py": "ea4f8ee73b92d175ef87e657e042442e01223d282bd618bb005837375d6dfd3a",
+    "tests/fixtures/daily_authenticated_process.py": "6998d7009ecd213cbb22757b590399fb3bcd13ae11e3cff490012fb14d78fcd2"
+  },
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "windows_checks_passed": false,
+  "baseline_published_commit": "d4614f231a5e80aa887fdb0bbea88a4183d601dd",
+  "baseline_published_tree": "961fe24daf7e6ee5dc541d69369615d197532b5f",
+  "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+  "paced_proof": {
+    "contract": "daily-paced-source-owned-collection-proof-v1",
+    "result": "PASS",
+    "network": "denied",
+    "synthetic_sdk_only": true,
+    "actual_vault_access": false,
+    "provider_capacity_qualified": false,
+    "full_day_capacity_qualified": false,
+    "owner": {
+      "contract": "daily-hot-operating-owner-v1",
+      "nonce": "faa04598f066495bbc062b0acb0f4124",
+      "configuration_sha256": "7eb60e71ef98cb353d75dc78e59c55461cf9e2564ea7d2158ec6c2bf5fc45c78",
+      "stop_reason": "operator_stop",
+      "result": "STOPPED",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      },
+      "cleanup_seconds": 0.23428372899979877,
+      "acquisition_stop_requested_at_utc": "2026-10-30T14:02:08.324542+00:00",
+      "reporting": {
+        "status": "COMPLETE",
+        "report_path": "/tmp/tmp3q8oa80s/daily_hot_test/reports/7e01d9c966f74900824284ac54e39a44.json",
+        "native_audit_passed": true,
+        "two_fresh_replays_equal": true,
+        "first_replay": {
+          "events": 30,
+          "sequence_sha256": "49e753f1fdb8c170d8a3b395870632c37979e65254d925686138471d5651aa4b"
+        },
+        "cleanup": {
+          "status": "EXIT_OBSERVED",
+          "backend": "posix_process_group",
+          "scope_empty_observed": true,
+          "forced": false,
+          "controller_returncode": 0,
+          "reason": null
+        }
+      },
+      "failure_type": null,
+      "unmanaged_channels_untouched": [
+        "uni",
+        "focus",
+        "health"
+      ],
+      "full_day_capacity_qualified": false,
+      "production_activation_inferred": false
+    },
+    "elapsed_seconds": 128.9119465520007,
+    "cutover": {
+      "observed_at_utc": "2026-10-30T14:02:04.857272+00:00",
+      "source_status": "READY_WITH_GAPS",
+      "acquisitions": 25,
+      "elapsed_seconds": 124.78586087400072
+    },
+    "source_attempts": 3,
+    "source_query_ids": [
+      "CURRENT",
+      "nasdaq-query-4c3b5d041fbf05918cce026ddc259abd0c8ccd935b107d341ab92daa6d32f4e2",
+      "CURRENT"
+    ],
+    "completion_to_next_start_seconds": [
+      61.066665,
+      61.217264
+    ],
+    "identity_quote_permits": 1,
+    "native_hot_acquisitions": 27,
+    "acquisitions_after_reconciliation": 2,
+    "worker_starts": 1,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "source_reconciled": true,
+    "actual_elapsed_pacing": true,
+    "production_changes": false,
+    "max_observer_scheduling_gap_seconds": 0.45068816500042885
+  },
+  "failed_development_runs_retained": [
+    "before_fix.log",
+    "rollback_baseline_reproduction.log",
+    "paced_development.log",
+    "paced_diagnostic.log"
+  ],
+  "previous_runtime_restored_after_baseline_reproduction": true,
+  "final_loop_change": {
+    "previous_wait_seconds": 0.1,
+    "wait_seconds": 0.5,
+    "interruptible": true,
+    "original_progress_seconds": 3,
+    "original_credential_seconds": 8,
+    "original_hold_seconds": 15,
+    "original_cleanup_seconds": 10,
+    "feed_pacing_seconds": 60
+  },
+  "unchanged_capacity_and_recovery_drills_repeated": false,
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "network": "denied",
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "operating_release_qualified": false,
+  "original_windows_io_error_cause_resolved": false,
+  "original_ledger_change_actor_identified": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false
+}

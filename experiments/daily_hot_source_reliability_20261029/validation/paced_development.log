@@ -1,0 +1,18 @@
+test_three_real_paced_feed_children_reconcile_while_owned_hot_collection_continues (test_daily_source_reliability.DailyPacedSourceOwnerTests.test_three_real_paced_feed_children_reconcile_while_owned_hot_collection_continues) ... Paced source proof: actual 60-second intervals; CURRENT, history, fresh CURRENT.
+FAIL
+
+======================================================================
+FAIL: test_three_real_paced_feed_children_reconcile_while_owned_hot_collection_continues (test_daily_source_reliability.DailyPacedSourceOwnerTests.test_three_real_paced_feed_children_reconcile_while_owned_hot_collection_continues)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/co_hot_reliability/tests/test_daily_source_reliability.py", line 139, in test_three_real_paced_feed_children_reconcile_while_owned_hot_collection_continues
+    self.assertEqual(result['result'],'STOPPED',result)
+AssertionError: 'FAILED' != 'STOPPED'
+- FAILED
++ STOPPED
+ : {'contract': 'daily-hot-operating-owner-v1', 'nonce': '2e76ca2959624838a77b61e566d2bcdd', 'configuration_sha256': '50ba67f705e86c0c53ab4ac1a86ae992deab97149b1e30256718db036f15342d', 'stop_reason': 'controller_progress_stale', 'result': 'FAILED', 'cleanup': {'status': 'EXIT_OBSERVED', 'backend': 'posix_process_group', 'scope_empty_observed': True, 'forced': False, 'controller_returncode': 0, 'reason': None}, 'cleanup_seconds': 4.839669469, 'acquisition_stop_requested_at_utc': '2026-10-30T14:00:32.617059+00:00', 'reporting': {'status': 'COMPLETE', 'report_path': '/tmp/tmpvbxbzy9b/daily_hot_test/reports/489c68c11dae4f2881468f9f0139325f.json', 'native_audit_passed': False, 'two_fresh_replays_equal': True, 'first_replay': {'events': 2, 'sequence_sha256': '55e8f5b09b67593f64a84a53ff22e32986ec4e8d62d2fe8f7402f90bf92084fd'}, 'cleanup': {'status': 'EXIT_OBSERVED', 'backend': 'posix_process_group', 'scope_empty_observed': True, 'forced': False, 'controller_returncode': 0, 'reason': None}}, 'failure_type': None, 'unmanaged_channels_untouched': ['uni', 'focus', 'health'], 'full_day_capacity_qualified': False, 'production_activation_inferred': False}
+
+----------------------------------------------------------------------
+Ran 1 test in 38.141s
+
+FAILED (failures=1)

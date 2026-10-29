@@ -41,6 +41,13 @@ def _failure_details(error):
     if isinstance(error,sqlite3.Error):
         details['sqlite_failure']=dict(origin,errorcode=getattr(error,'sqlite_errorcode',None),
             errorname=getattr(error,'sqlite_errorname',None))
+    prefix=getattr(error,'publication_prefix',None)
+    if isinstance(prefix,dict) and prefix.get('contract')=='publication-prefix-diagnostic-v1':
+        names=('contract','publication_outcome_count','anchor_revision_count',
+            'acknowledged_revision_count','expected_revision_count','actual_revision_count',
+            'pending_plan','first_difference_index','expected_revision','actual_revision',
+            'expected_receipt_sha256','actual_receipt_sha256')
+        details['publication_prefix']={name:prefix.get(name) for name in names}
     return details
 
 

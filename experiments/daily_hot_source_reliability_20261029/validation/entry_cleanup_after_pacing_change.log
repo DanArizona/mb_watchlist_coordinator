@@ -1,0 +1,8 @@
+test_actual_owner_stops_only_its_scope_then_runs_a_fresh_native_report (test_daily_operating.DailyOperatingTests.test_actual_owner_stops_only_its_scope_then_runs_a_fresh_native_report) ... ok
+test_actual_outer_loss_releases_only_its_known_owned_children (test_daily_operating.DailyOperatingTests.test_actual_outer_loss_releases_only_its_known_owned_children) ... ok
+test_detected_stop_keeps_its_original_cleanup_deadline_if_parent_recovers (test_daily_operating.DailyOperatingTests.test_detected_stop_keeps_its_original_cleanup_deadline_if_parent_recovers) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 4.203s
+
+OK

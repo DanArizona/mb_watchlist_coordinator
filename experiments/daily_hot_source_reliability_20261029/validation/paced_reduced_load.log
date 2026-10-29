@@ -1,0 +1,7 @@
+test_three_real_paced_feed_children_reconcile_while_owned_hot_collection_continues (test_daily_source_reliability.DailyPacedSourceOwnerTests.test_three_real_paced_feed_children_reconcile_while_owned_hot_collection_continues) ... Paced source proof: actual 60-second intervals; CURRENT, history, fresh CURRENT.
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 129.127s
+
+OK

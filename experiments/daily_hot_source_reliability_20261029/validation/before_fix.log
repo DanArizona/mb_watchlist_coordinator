@@ -1,0 +1,77 @@
+test_failure_receipt_survives_unreadable_source_status_database (test_daily_source_reliability.DailySourceReliabilityTests.test_failure_receipt_survives_unreadable_source_status_database) ... ERROR
+test_fully_reconciled_source_is_ready_without_claiming_to_manage_a_collector (test_daily_source_reliability.DailySourceReliabilityTests.test_fully_reconciled_source_is_ready_without_claiming_to_manage_a_collector) ... FAIL
+test_prevalidation_io_failure_is_saved_and_does_not_dispatch_or_retry (test_daily_source_reliability.DailySourceReliabilityTests.test_prevalidation_io_failure_is_saved_and_does_not_dispatch_or_retry) ... ERROR
+test_receipt_write_failure_keeps_original_io_block_and_code (test_daily_source_reliability.DailySourceReliabilityTests.test_receipt_write_failure_keeps_original_io_block_and_code) ... ERROR
+test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence (test_daily_source_reliability.DailySourceReliabilityTests.test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence) ... FAIL
+test_unowned_closed_pump_still_refuses_before_writing_diagnostic_state (test_daily_source_reliability.DailySourceReliabilityTests.test_unowned_closed_pump_still_refuses_before_writing_diagnostic_state) ... ok
+
+======================================================================
+ERROR: test_failure_receipt_survives_unreadable_source_status_database (test_daily_source_reliability.DailySourceReliabilityTests.test_failure_receipt_survives_unreadable_source_status_database)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/co_hot_reliability/tests/test_daily_source_reliability.py", line 83, in test_failure_receipt_survives_unreadable_source_status_database
+    self.assertTrue(result['failure_receipt_saved'])
+                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'failure_receipt_saved'
+
+======================================================================
+ERROR: test_prevalidation_io_failure_is_saved_and_does_not_dispatch_or_retry (test_daily_source_reliability.DailySourceReliabilityTests.test_prevalidation_io_failure_is_saved_and_does_not_dispatch_or_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/co_hot_reliability/tests/test_daily_source_reliability.py", line 38, in test_prevalidation_io_failure_is_saved_and_does_not_dispatch_or_retry
+    result=self.pump.cycle(synthetic={'chunks':[]})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/daily_source.py", line 98, in cycle
+    self.session.validate()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+sqlite3.OperationalError: injected disk I/O error
+
+======================================================================
+ERROR: test_receipt_write_failure_keeps_original_io_block_and_code (test_daily_source_reliability.DailySourceReliabilityTests.test_receipt_write_failure_keeps_original_io_block_and_code)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/co_hot_reliability/tests/test_daily_source_reliability.py", line 89, in test_receipt_write_failure_keeps_original_io_block_and_code
+    result=self.pump.cycle(synthetic={'chunks':[]})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/daily_source.py", line 98, in cycle
+    self.session.validate()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+sqlite3.OperationalError: injected disk I/O error
+
+======================================================================
+FAIL: test_fully_reconciled_source_is_ready_without_claiming_to_manage_a_collector (test_daily_source_reliability.DailySourceReliabilityTests.test_fully_reconciled_source_is_ready_without_claiming_to_manage_a_collector)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/co_hot_reliability/tests/test_daily_source_reliability.py", line 32, in test_fully_reconciled_source_is_ready_without_claiming_to_manage_a_collector
+    self.assertEqual(result['status'],'READY_WITH_GAPS',result)
+AssertionError: 'RECOVERING' != 'READY_WITH_GAPS'
+- RECOVERING
++ READY_WITH_GAPS
+ : {'status': 'RECOVERING', 'reasons': ['intermediate_feed_mutations_not_reconstructible', 'older_unknown_carryovers_not_proven_complete'], 'readiness_scope': 'declared_daily_feed_reconciliation_and_native_publication_only', 'unmanaged_channels_untouched': ['uni', 'focus', 'health', 'collector'], 'production_access': True, 'local_membership_effective': True, 'discovery_scope_reconciled': True, 'feed_stop_required': False, 'worker': {'status': 'NOT_CONFIGURED'}, 'unresolved_candidates': [], 'rejected_requests': [], 'query_scope': 'COMPLETE_WITH_TRACE_GAPS', 'pending_window_query_ids': [], 'native_content_sha256': 'a9174ae47c935b0a2010630748ed48b17b270337b52af233fb3aac73c00e5a33', 'feed_head_sha256': 'd6527a794042c764404fd7332ec349ed2af71b65d813299f3c4129b5c4b6d950', 'observed_at_utc': '2026-10-30T19:59:50+00:00', 'status_persisted': True, 'source_only': True, 'collector_managed': False, 'live_launch_available': False}
+
+======================================================================
+FAIL: test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence (test_daily_source_reliability.DailySourceReliabilityTests.test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/co_hot_reliability/tests/test_daily_source_reliability.py", line 56, in test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence
+    self.assertEqual(c.execute('SELECT count(*) FROM publication_event').fetchone()[0],2)
+AssertionError: 3 != 2
+
+----------------------------------------------------------------------
+Ran 6 tests in 11.913s
+
+FAILED (failures=2, errors=3)

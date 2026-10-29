@@ -6,10 +6,11 @@ verified demand survives feed loss. No live launcher or authentication here.
 from pathlib import Path
 import json
 import os
+import sqlite3
 
 from .daily_feed import DailyFeedClient,DailyFeedLimits,DailyFeedTransport
-from .nasdaq_recovery_supervisor import NasdaqRecoverySupervisor
-from .sampling_requests import canonical,freeze,plain
+from .nasdaq_recovery_supervisor import NasdaqRecoverySupervisor,_failure_details
+from .sampling_requests import canonical,freeze,plain,digest,utc_text
 from .sampling_service import owner_lock
 from .recovery_workers import atomic_json
 
@@ -37,6 +38,12 @@ class _Authority(NasdaqRecoverySupervisor):
         return value
 
     def _report(self,status,reasons,**details):
+        if (status=='RECOVERING' and details.get('local_membership_effective')
+                and details.get('discovery_scope_reconciled')
+                and details.get('worker',{}).get('status')=='NOT_CONFIGURED'):
+            # This authority reports source/publication readiness. The separately
+            # owned collector is deliberately outside its readiness scope.
+            status='READY_WITH_GAPS' if reasons else 'READY'
         details.update(production_access=True,
             unmanaged_channels_untouched=['uni','focus','health','collector'])
         return super()._report(status,reasons,**details)
@@ -95,20 +102,46 @@ class DailySourcePump:
 
     def cycle(self,*,synthetic=None):
         if not self.initialized or self.closed:raise ValueError('Owned initialized daily source pump required')
+        try:
+            report=self._cycle(synthetic=synthetic)
+        except (ValueError,OSError,sqlite3.Error,KeyError,TypeError) as error:
+            details=_failure_details(error)
+            try:self.client.close_owned()
+            except (ValueError,OSError,sqlite3.Error,KeyError,TypeError) as cleanup:
+                details['feed_cleanup_error_type']=type(cleanup).__name__
+            try:report=self.authority._report('BLOCKED',[type(error).__name__],detail=str(error),**details)
+            except (ValueError,OSError,sqlite3.Error,KeyError,TypeError):
+                report={'status':'BLOCKED','reasons':[type(error).__name__],
+                    'detail':str(error),'status_persisted':False,**details}
+            error.source_failure_report=self._failure_receipt(report)
+            raise  # Preserve the pre-existing caller exception/cleanup contract.
+        if report['status']=='BLOCKED':
+            report=self._failure_receipt(report)
+        if report['status']=='WINDOW_ENDED':self.close()
+        return dict(report,source_only=True,collector_managed=False,live_launch_available=False)
+
+    def _failure_receipt(self,report):
+        try:
+            value={'contract':'daily-source-failure-v1',
+                'daily_binding_sha256':self.session.binding['binding_sha256'],
+                'observed_at_utc':utc_text(self.clock()),'report':plain(report)}
+            value['content_sha256']=digest(value)
+            atomic_json(self.session.root/'daily-source-failure.json',value)
+            return dict(report,failure_receipt_saved=True)
+        except (ValueError,OSError,sqlite3.Error,KeyError,TypeError) as error:
+            return dict(report,failure_receipt_saved=False,failure_receipt_error_type=type(error).__name__)
+
+    def _cycle(self,*,synthetic=None):
         self.session.validate()
         if (json.loads(self.claim_path.read_text())!=self.claim or
                 json.loads(self.ready_path.read_text())!={'claim':self.claim,'status':'INITIALIZED'}):
             raise ValueError('Daily source invocation binding changed')
         if self.clock()>=self.transport.stop:
-            report=self.authority._report('WINDOW_ENDED',['target_regular_close'])
-            self.close()
-            return dict(report,source_only=True,collector_managed=False,live_launch_available=False)
+            return self.authority._report('WINDOW_ENDED',['target_regular_close'])
         if self.clock()<self.transport.start:
-            report=self.authority._report('WAITING',['target_open_pending'])
-            return dict(report,source_only=True,collector_managed=False,live_launch_available=False)
-        report=self.authority.cycle(synthetic=synthetic,
+            return self.authority._report('WAITING',['target_open_pending'])
+        return self.authority.cycle(synthetic=synthetic,
             stop_requested=lambda:self.stop_requested() or self.clock()>=self.transport.stop)
-        return dict(report,source_only=True,collector_managed=False,live_launch_available=False)
 
     def close(self):
         if not self.closed:

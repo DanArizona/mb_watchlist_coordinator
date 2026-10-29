@@ -1,0 +1,12 @@
+{
+  "contract": "daily-source-reliability-restoration-v1",
+  "restored_public_base": "d4614f231a5e80aa887fdb0bbea88a4183d601dd",
+  "verified_complete_tree": "961fe24daf7e6ee5dc541d69369615d197532b5f",
+  "local_restored_commit": "9c3a3bc",
+  "native_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+  "native_source_changed": false,
+  "old_local_coordinator": "1389e95c89fe0b0b540f1086c904428fb84f0ab0",
+  "old_local_native": "1e2699a13abd83632ae334ddb99a3393a477bffa",
+  "source_zip_sha256": "b5730a470dd5f2466b01521ebceb1fc5a5352db28561578461f0d1d1237dab8b",
+  "note": "Observed stale local checkouts restored from durable copies. This does not prove the cause of a prior Windows I/O error or instantaneous local SQLite mismatch."
+}

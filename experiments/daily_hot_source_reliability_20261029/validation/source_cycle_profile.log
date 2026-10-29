@@ -1,0 +1,24 @@
+{'cycles': 40, 'wall_seconds': 8.65776412499963, 'cpu_seconds': 8.655545327, 'median': 0.20499683150001147, 'max': 0.37851402900014364}
+         5395923 function calls (4916043 primitive calls) in 8.575 seconds
+
+   Ordered by: cumulative time
+   List reduced from 406 to 15 due to restriction <15>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       40    0.000    0.000    8.657    0.216 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/daily_source.py:103(cycle)
+       40    0.004    0.000    8.657    0.216 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/daily_source.py:134(_cycle)
+       40    0.001    0.000    7.968    0.199 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py:313(cycle)
+       40    0.006    0.000    7.963    0.199 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py:226(_cycle)
+       80    0.007    0.000    5.502    0.069 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py:182(_local)
+      480    0.007    0.000    4.090    0.009 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/integrated_identity.py:194(snapshot)
+      480    0.016    0.000    3.946    0.008 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/integrated_identity.py:138(_read)
+      640    0.013    0.000    3.495    0.005 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/nasdaq_recovery_delivery.py:139(_read)
+      560    0.010    0.000    3.241    0.006 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/nasdaq_recovery_delivery.py:196(snapshot)
+       80    0.001    0.000    2.711    0.034 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/daily_source.py:27(deliver_pending)
+      640    0.014    0.000    2.644    0.004 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/nasdaq_recovery_delivery.py:56(_sources)
+      120    0.011    0.000    2.160    0.018 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/daily_session.py:254(validate)
+     2400    0.025    0.000    2.001    0.001 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/sampling_request_store.py:91(validated_history)
+    36320    0.050    0.000    1.882    0.000 /workspace/scratch/6ce939acb4eb/co_hot_reliability/src/mb_watchlist_coordinator/sampling_requests.py:65(canonical)
+    39200    0.138    0.000    1.882    0.000 /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py:183(dumps)
+
+

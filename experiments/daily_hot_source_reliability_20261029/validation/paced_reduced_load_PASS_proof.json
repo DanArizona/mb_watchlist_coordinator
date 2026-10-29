@@ -1,0 +1,79 @@
+{
+  "contract": "daily-paced-source-owned-collection-proof-v1",
+  "result": "PASS",
+  "network": "denied",
+  "synthetic_sdk_only": true,
+  "actual_vault_access": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false,
+  "owner": {
+    "contract": "daily-hot-operating-owner-v1",
+    "nonce": "faa04598f066495bbc062b0acb0f4124",
+    "configuration_sha256": "7eb60e71ef98cb353d75dc78e59c55461cf9e2564ea7d2158ec6c2bf5fc45c78",
+    "stop_reason": "operator_stop",
+    "result": "STOPPED",
+    "cleanup": {
+      "status": "EXIT_OBSERVED",
+      "backend": "posix_process_group",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0,
+      "reason": null
+    },
+    "cleanup_seconds": 0.23428372899979877,
+    "acquisition_stop_requested_at_utc": "2026-10-30T14:02:08.324542+00:00",
+    "reporting": {
+      "status": "COMPLETE",
+      "report_path": "/tmp/tmp3q8oa80s/daily_hot_test/reports/7e01d9c966f74900824284ac54e39a44.json",
+      "native_audit_passed": true,
+      "two_fresh_replays_equal": true,
+      "first_replay": {
+        "events": 30,
+        "sequence_sha256": "49e753f1fdb8c170d8a3b395870632c37979e65254d925686138471d5651aa4b"
+      },
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      }
+    },
+    "failure_type": null,
+    "unmanaged_channels_untouched": [
+      "uni",
+      "focus",
+      "health"
+    ],
+    "full_day_capacity_qualified": false,
+    "production_activation_inferred": false
+  },
+  "elapsed_seconds": 128.9119465520007,
+  "cutover": {
+    "observed_at_utc": "2026-10-30T14:02:04.857272+00:00",
+    "source_status": "READY_WITH_GAPS",
+    "acquisitions": 25,
+    "elapsed_seconds": 124.78586087400072
+  },
+  "source_attempts": 3,
+  "source_query_ids": [
+    "CURRENT",
+    "nasdaq-query-4c3b5d041fbf05918cce026ddc259abd0c8ccd935b107d341ab92daa6d32f4e2",
+    "CURRENT"
+  ],
+  "completion_to_next_start_seconds": [
+    61.066665,
+    61.217264
+  ],
+  "identity_quote_permits": 1,
+  "native_hot_acquisitions": 27,
+  "acquisitions_after_reconciliation": 2,
+  "worker_starts": 1,
+  "native_audit_passed": true,
+  "two_fresh_replays_equal": true,
+  "source_reconciled": true,
+  "actual_elapsed_pacing": true,
+  "production_changes": false,
+  "max_observer_scheduling_gap_seconds": 0.45068816500042885
+}

@@ -1,0 +1,25 @@
+test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence (test_daily_source_reliability.DailySourceReliabilityTests.test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence) ... ERROR
+
+======================================================================
+ERROR: test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence (test_daily_source_reliability.DailySourceReliabilityTests.test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/co_hot_reliability/tests/test_daily_source_reliability.py", line 66, in test_restoring_old_publication_snapshot_blocks_with_exact_prefix_evidence
+    result=self.pump.cycle(synthetic={'chunks':[]})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/hot_reliability_restore_20261029/packet/daily_hot_source_probe_20261029_f77e1c1_5552c5d/coordinator/src/mb_watchlist_coordinator/daily_source.py", line 98, in cycle
+    self.session.validate()
+  File "/workspace/scratch/6ce939acb4eb/hot_reliability_restore_20261029/packet/daily_hot_source_probe_20261029_f77e1c1_5552c5d/coordinator/src/mb_watchlist_coordinator/daily_session.py", line 271, in validate
+    gate, publication = self.gate.snapshot(), self.service.snapshot()
+                                              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/hot_reliability_restore_20261029/packet/daily_hot_source_probe_20261029_f77e1c1_5552c5d/coordinator/src/mb_watchlist_coordinator/sampling_service.py", line 277, in snapshot
+    value = self._read()
+            ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/hot_reliability_restore_20261029/packet/daily_hot_source_probe_20261029_f77e1c1_5552c5d/coordinator/src/mb_watchlist_coordinator/sampling_service.py", line 267, in _read
+    raise ValueError("Journal prefix differs from publication ledger")
+ValueError: Journal prefix differs from publication ledger
+
+----------------------------------------------------------------------
+Ran 1 test in 1.699s
+
+FAILED (errors=1)

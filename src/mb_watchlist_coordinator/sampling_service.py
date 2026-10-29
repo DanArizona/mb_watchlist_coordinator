@@ -264,7 +264,22 @@ class SamplingPublicationService:
             previous = sha
         expected = anchor + acknowledgements
         if actual[:len(expected)] != expected or len(actual) not in (len(expected), len(expected) + int(pending is not None)):
-            raise ValueError("Journal prefix differs from publication ledger")
+            index=next(i for i in range(max(len(actual),len(expected)))
+                if i>=len(actual) or i>=len(expected) or actual[i]!=expected[i])
+            left=expected[index] if index<len(expected) else None
+            right=actual[index] if index<len(actual) else None
+            error=ValueError("Journal prefix differs from publication ledger")
+            # Already-read, validated values only: no SQL, retry or raw payload dump.
+            error.publication_prefix={'contract':'publication-prefix-diagnostic-v1',
+                'publication_outcome_count':len(outcomes),'anchor_revision_count':len(anchor),
+                'acknowledged_revision_count':len(acknowledgements),
+                'expected_revision_count':len(expected),'actual_revision_count':len(actual),
+                'pending_plan':pending is not None,'first_difference_index':index,
+                'expected_revision':left['proposal']['revision'] if left else None,
+                'actual_revision':right['proposal']['revision'] if right else None,
+                'expected_receipt_sha256':digest(left) if left else None,
+                'actual_receipt_sha256':digest(right) if right else None}
+            raise error
         unacknowledged = actual[len(expected):]
         if unacknowledged and (unacknowledged[0]["proposal"] != pending["proposal"] or unacknowledged[0]["content_sha256"] != pending["content_sha256"]):
             raise ValueError("Unacknowledged journal revision differs from pending plan")

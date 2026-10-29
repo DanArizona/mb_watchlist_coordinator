@@ -1,0 +1,55 @@
+{
+  "contract": "daily-paced-source-owned-collection-proof-v1",
+  "result": "FAILED",
+  "network": "denied",
+  "synthetic_sdk_only": true,
+  "actual_vault_access": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false,
+  "owner": {
+    "contract": "daily-hot-operating-owner-v1",
+    "nonce": "463ff1412e55445189acf3c4252333ab",
+    "configuration_sha256": "bbc0c6715a975fdc67068c813a03cb9d8913f5334bae25482981c19dc6498490",
+    "stop_reason": "controller_progress_stale",
+    "result": "FAILED",
+    "cleanup": {
+      "status": "EXIT_OBSERVED",
+      "backend": "posix_process_group",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0,
+      "reason": null
+    },
+    "cleanup_seconds": 1.2612708799997563,
+    "acquisition_stop_requested_at_utc": "2026-10-30T14:00:48.532358+00:00",
+    "reporting": {
+      "status": "COMPLETE",
+      "report_path": "/tmp/tmpwx7d8w3e/daily_hot_test/reports/f9374c71c70046fcaee195115e6ff821.json",
+      "native_audit_passed": false,
+      "two_fresh_replays_equal": true,
+      "first_replay": {
+        "events": 2,
+        "sequence_sha256": "55e8f5b09b67593f64a84a53ff22e32986ec4e8d62d2fe8f7402f90bf92084fd"
+      },
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      }
+    },
+    "failure_type": null,
+    "unmanaged_channels_untouched": [
+      "uni",
+      "focus",
+      "health"
+    ],
+    "full_day_capacity_qualified": false,
+    "production_activation_inferred": false
+  },
+  "elapsed_seconds": 51.27765081800044,
+  "cutover": {},
+  "max_observer_scheduling_gap_seconds": 2.5945164699996894
+}

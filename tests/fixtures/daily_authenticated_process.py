@@ -7,9 +7,14 @@ from pathlib import Path
 import socket
 import sys
 import time
+import faulthandler
 
 scenario_path, role, configuration, job_path = sys.argv[1:]
 scenario = json.loads(Path(scenario_path).read_text())
+stack_file=None
+if scenario.get('trace_stacks'):
+    stack_file=Path(scenario['log']).with_name(role+'-thread-stacks.log').open('w')
+    faulthandler.dump_traceback_later(10,repeat=True,file=stack_file)
 sys.path[:0] = [str(Path(__file__).resolve().parents[2]/'src'), scenario['native_src']]
 
 def denied(*args, **kwargs):
@@ -134,3 +139,6 @@ except BaseException as error:
         record('lock_failure_sites:'+','.join(f.name for f in traceback.extract_tb(error.__traceback__)))
     record('failed:'+type(error).__name__+':'+getattr(error, 'code', 'no_code'))
     raise SystemExit(70)
+finally:
+    if stack_file is not None:
+        faulthandler.cancel_dump_traceback_later();stack_file.close()

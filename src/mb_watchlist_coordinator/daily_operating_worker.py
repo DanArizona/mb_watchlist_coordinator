@@ -104,7 +104,11 @@ def controller_entry(root,nonce,*,clock=None,stream=None,on_started=None,synthet
         if on_started is not None:on_started(controller)
         while not parent.stop.is_set() and not controller.stopped():
             controller.step(synthetic=synthetic_factory() if synthetic_factory else None)
-            time.sleep(.1)
+            # Source requests are paced at sixty seconds; rerunning the entire
+            # source/publication validation graph at 10 Hz consumes CPU without
+            # creating new evidence. Independent role/freshness watchdogs keep
+            # their original frequency and every dispatch still validates.
+            parent.stop.wait(.5)
         controller.close(reason='outer_stop_or_close')
         status('FAILED' if parent.failed or controller.state.read()['terminal'] else 'STOPPED')
     except BaseException as error:

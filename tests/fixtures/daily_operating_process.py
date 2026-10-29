@@ -6,6 +6,7 @@ from pathlib import Path
 import socket
 import sys
 import time
+import faulthandler
 
 scene_path,role,root,nonce,*extra=sys.argv[1:]
 scene=json.loads(Path(scene_path).read_text())
@@ -18,6 +19,10 @@ from mb_watchlist_coordinator.daily_operating_worker import controller_entry,rep
 from mb_watchlist_coordinator.nasdaq_sampling import HaltSnapshot
 from mb_watchlist_coordinator.sampling_requests import digest
 EMPTY=b'<?xml version="1.0"?><rss version="2.0"><channel><title>Nasdaq Trade Halts</title></channel></rss>'
+stack_file=None
+if scene.get('trace_stacks') and role=='controller':
+    stack_file=(Path(root)/'controller-thread-stacks.log').open('w')
+    faulthandler.dump_traceback_later(10,repeat=True,file=stack_file)
 def on_started(controller):
     (Path(root)/'test-owned-controller.json').write_text(json.dumps({'pid':os.getpid(),'nonce':nonce}))
     if scene.get('admit'):
@@ -32,7 +37,7 @@ try:
     if role=='controller':
         controller_entry(root,nonce,clock=clock,on_started=on_started,
             synthetic_factory=lambda:{'clock_at_utc':logical.isoformat(),
-                'clock_real_anchor_utc':real.isoformat(),'chunks':[EMPTY.decode()]})
+                'clock_real_anchor_utc':real.isoformat(),'chunks':[scene.get('feed_body',EMPTY.decode())]})
     elif role=='report':
         if scene.get('report_hang'):time.sleep(90)
         reporter_entry(root,nonce,extra[0])
@@ -40,4 +45,6 @@ try:
 except BaseException:
     raise SystemExit(70)
 finally:
+    if stack_file is not None:
+        faulthandler.cancel_dump_traceback_later();stack_file.close()
     if role=='controller':(Path(root)/'test-owned-controller-finally.json').write_text(json.dumps({'nonce':nonce}))
