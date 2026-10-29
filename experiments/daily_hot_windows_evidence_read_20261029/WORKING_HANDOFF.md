@@ -1,5 +1,19 @@
 # Windows evidence-read correction — October 29
 
+Frozen Windows packet daily_hot_evidence_read_20261029_1620b91_5552c5d.zip,
+856126 bytes, SHAfac90c520aaba76a19812afb3dce0bd0103c4aaebae08225d1cdbb5f67cefc55.
+Local1620b91b614971cf720d5599082baa7ce3c9987d equals public
+ac0e8800f98f2afdb15995738d34979d64b2c89e, tree1b6af209649c87b41b5d4a8b1478f652e22f1e40
+on experiment/daily-hot-source-reliability-20261029. Nine read cases rechecked
+from final ZIP in path with spaces PASS.008s, whole inventory matches pre/post;
+program/tests/diagnostic bytes equal the paced-tested development packet.
+These are rechecks, not new unique tests; no extra long proof. Initial manual
+preflight wrote bytecode because its inspection omitted -B and was correctly
+refused; final fresh extraction and supplied CMD use -B, original ZIP unchanged.
+Windows71 remains PENDING; obtain one report and returned CMD prompt next.
+Private evidence ZIP retains complete closed paced state without duplicating
+prior large native bundles; original path bindings are forensic, not resumable.
+
 User supplied command 70 complete console/final JSON and actual returned CMD
 prompt, run 20261029T220557Z_278c0ba5. FAILED 1/1, paced 36.937s/report 37.265s.
 CAPTURED PermissionError errno 13, winerror null on the owned heartbeat file

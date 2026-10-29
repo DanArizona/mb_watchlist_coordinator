@@ -1,0 +1,14 @@
+test_attempt_ceiling_holds_if_injected_clock_does_not_advance (test_process_evidence_reads.ProcessEvidenceReadTests.test_attempt_ceiling_holds_if_injected_clock_does_not_advance) ... ok
+test_bare_eacces_and_known_windows_codes_read_new_complete_value_after_conflict (test_process_evidence_reads.ProcessEvidenceReadTests.test_bare_eacces_and_known_windows_codes_read_new_complete_value_after_conflict) ... ok
+test_elapsed_budget_is_not_restarted_and_no_open_occurs_after_oversleep (test_process_evidence_reads.ProcessEvidenceReadTests.test_elapsed_budget_is_not_restarted_and_no_open_occurs_after_oversleep) ... ok
+test_fresh_heartbeat_remains_bound_and_wrong_token_is_rejected_after_retry (test_process_evidence_reads.ProcessEvidenceReadTests.test_fresh_heartbeat_remains_bound_and_wrong_token_is_rejected_after_retry) ... ok
+test_malformed_and_duplicate_json_are_not_retried_or_accepted (test_process_evidence_reads.ProcessEvidenceReadTests.test_malformed_and_duplicate_json_are_not_retried_or_accepted) ... ok
+test_non_windows_permission_failure_is_not_retried (test_process_evidence_reads.ProcessEvidenceReadTests.test_non_windows_permission_failure_is_not_retried) ... ok
+test_persistent_permission_error_is_bounded_and_raised_without_cached_success (test_process_evidence_reads.ProcessEvidenceReadTests.test_persistent_permission_error_is_bounded_and_raised_without_cached_success) ... ok
+test_retry_does_not_refresh_old_heartbeat_or_reset_original_three_second_limit (test_process_evidence_reads.ProcessEvidenceReadTests.test_retry_does_not_refresh_old_heartbeat_or_reset_original_three_second_limit) ... ok
+test_unrelated_and_missing_file_errors_are_not_retried (test_process_evidence_reads.ProcessEvidenceReadTests.test_unrelated_and_missing_file_errors_are_not_retried) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.008s
+
+OK

@@ -1,0 +1,23 @@
+{
+  "contract": "daily-hot-evidence-read-exact-extraction-v1",
+  "result": "PASS",
+  "tests": 9,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 0.008,
+  "same_read_cases_rechecked_not_new_unique_tests": true,
+  "path_with_spaces": true,
+  "source_inventory_pre_post_match": true,
+  "frozen_program_tests_diagnostics_equal_paced_candidate": true,
+  "crlf_quoted_cmd_entry_checked": true,
+  "long_paced_proof_repeated": false,
+  "initial_manual_preflight": {
+    "result": "REFUSED",
+    "reason": "Manual import without -B created __pycache__; inventory correctly rejected unexpected bytecode. Fresh extraction checked with -B, as supplied CMD already uses. ZIP/source unchanged."
+  },
+  "local_source_commit": "1620b91b614971cf720d5599082baa7ce3c9987d",
+  "public_equivalent_source_commit": "ac0e8800f98f2afdb15995738d34979d64b2c89e",
+  "source_tree": "1b6af209649c87b41b5d4a8b1478f652e22f1e40",
+  "windows_result": "PENDING"
+}

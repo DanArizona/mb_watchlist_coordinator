@@ -1,0 +1,24 @@
+{
+  "contract": "daily-hot-evidence-read-delivery-v1",
+  "packet": "daily_hot_evidence_read_20261029_1620b91_5552c5d.zip",
+  "bytes": 856126,
+  "sha256": "fac90c520aaba76a19812afb3dce0bd0103c4aaebae08225d1cdbb5f67cefc55",
+  "local_source_commit": "1620b91b614971cf720d5599082baa7ce3c9987d",
+  "public_equivalent_source_commit": "ac0e8800f98f2afdb15995738d34979d64b2c89e",
+  "source_tree": "1b6af209649c87b41b5d4a8b1478f652e22f1e40",
+  "windows_command": "71_verify_windows_evidence_read.cmd",
+  "windows_tests": 26,
+  "windows_result": "PENDING",
+  "local_component_tests": 22,
+  "local_paced_tests": 1,
+  "exact_extracted_read_rechecks": 9,
+  "original_assertions_and_deadlines_unchanged": true,
+  "prior_capacity_and_recovery_repeated": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "private_evidence": {
+    "filename": "daily_hot_evidence_read_private_evidence_20261029.zip",
+    "bytes": 104163,
+    "sha256": "4f8c7a481b4801bf7c82f43b1adeec397d94df924b3cdd353669b46a89b485d8"
+  }
+}
