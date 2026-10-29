@@ -1,0 +1,9 @@
+test_extended_io_code_is_retained_without_retrying_the_failed_cycle (test_source_diagnostics.SourceDiagnosticsTests.test_extended_io_code_is_retained_without_retrying_the_failed_cycle) ... ok
+test_non_sqlite_integrity_failure_keeps_its_original_blocking_decision (test_source_diagnostics.SourceDiagnosticsTests.test_non_sqlite_integrity_failure_keeps_its_original_blocking_decision) ... ok
+test_original_details_survive_when_the_status_database_also_cannot_be_read (test_source_diagnostics.SourceDiagnosticsTests.test_original_details_survive_when_the_status_database_also_cannot_be_read) ... ok
+test_real_sqlite_failure_records_code_origin_and_database_without_local_values (test_source_diagnostics.SourceDiagnosticsTests.test_real_sqlite_failure_records_code_origin_and_database_without_local_values) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.182s
+
+OK

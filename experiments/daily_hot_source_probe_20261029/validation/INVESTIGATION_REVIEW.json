@@ -1,0 +1,52 @@
+{
+  "contract": "source-clock-and-diagnostics-local-investigation-v1",
+  "source_of_frozen_runs": "9cdcb655b7e63b42dc8dd4429c4ec00dbf207943",
+  "frozen_first": {
+    "result": "FAILED",
+    "tests": 18,
+    "passed": 17,
+    "run": "20261029T091100Z_3a74cbc5",
+    "reason": "Journal prefix differs from publication ledger",
+    "native_hot_acquisitions": 0,
+    "valid_feed_attempts": 1,
+    "saved_publication_event_count": 0
+  },
+  "subsequent_traced_collection_runs": [
+    {
+      "path_scope": "temporary directory",
+      "result": "PASS",
+      "tests": 1
+    },
+    {
+      "path_scope": "persistent directory",
+      "result": "PASS",
+      "tests": 1
+    },
+    {
+      "path_scope": "persistent directory with spaces",
+      "result": "PASS",
+      "tests": 1
+    },
+    {
+      "path_scope": "feed/diagnostic checks followed by traced owner",
+      "result": "PASS",
+      "tests": 18
+    }
+  ],
+  "unmodified_frozen_repeat": {
+    "result": "PASS",
+    "tests": 18,
+    "passed": 18,
+    "run": "20261029T092009Z_bed249d9",
+    "seconds": 10.146070135000627,
+    "native_hot_acquisitions": 2,
+    "valid_feed_attempts": 1
+  },
+  "synthetic_clock_defect_confirmed_and_corrected": true,
+  "original_windows_io_error_cause_resolved": false,
+  "local_publication_prefix_block_cause_resolved": false,
+  "failed_verdicts_preserved": true,
+  "operating_release_qualified": false,
+  "production_changes": false,
+  "next": "Final diagnostic candidate adds origin frames for integrity failures as well as SQLite failures, plus compact saved publication-event evidence. Windows run required; no live activation."
+}

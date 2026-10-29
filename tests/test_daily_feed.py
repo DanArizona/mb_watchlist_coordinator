@@ -1,5 +1,5 @@
 from dataclasses import replace
-from datetime import datetime,timedelta
+from datetime import datetime,timedelta,timezone
 from pathlib import Path
 import tempfile
 import time
@@ -94,6 +94,20 @@ class DailyFeedTests(unittest.TestCase):
         self.assertEqual(result['attempt']['outcome']['status'],'valid')
         self.assertEqual(result['attempt']['raw'],EMPTY)
         self.assertTrue(result['attempt']['synthetic'])
+
+    def test_actual_child_shares_advancing_parent_clock_instead_of_an_older_sample(self):
+        real_anchor=datetime.now(timezone.utc)
+        logical_anchor=self.now
+        self.transport.clock=lambda:logical_anchor+(datetime.now(timezone.utc)-real_anchor)
+        client=DailyFeedClient(self.transport);self.addCleanup(client.close_owned)
+        result=client.attempt(synthetic={'clock_at_utc':logical_anchor.isoformat(),
+            'clock_real_anchor_utc':real_anchor.isoformat(),'chunks':[EMPTY.decode()]})
+        attempt=result['attempt']
+        self.assertEqual(attempt['outcome']['status'],'valid',attempt)
+        self.assertEqual(attempt['raw'],EMPTY)
+        self.assertGreater(datetime.fromisoformat(attempt['completed_at_utc']),
+            datetime.fromisoformat(attempt['started_at_utc']))
+        self.assertEqual(len(self.transport.snapshot()['attempts']),1)
 
     def test_network_is_refused_by_default_before_reservation(self):
         client=DailyFeedClient(self.transport)

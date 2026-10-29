@@ -31,7 +31,8 @@ def on_started(controller):
 try:
     if role=='controller':
         controller_entry(root,nonce,clock=clock,on_started=on_started,
-            synthetic_factory=lambda:{'clock_at_utc':clock().isoformat(),'chunks':[EMPTY.decode()]})
+            synthetic_factory=lambda:{'clock_at_utc':logical.isoformat(),
+                'clock_real_anchor_utc':real.isoformat(),'chunks':[EMPTY.decode()]})
     elif role=='report':
         if scene.get('report_hang'):time.sleep(90)
         reporter_entry(root,nonce,extra[0])

@@ -15,13 +15,26 @@ from mb_watchlist_coordinator.sampling_service import owner_lock
 from mb_watchlist_coordinator.sampling_requests import canonical, timestamp
 
 
+def attempt_clock(synthetic):
+    if synthetic is None:
+        return lambda:datetime.now(timezone.utc)
+    logical=synthetic.get('clock_at_utc')
+    real=synthetic.get('clock_real_anchor_utc')
+    if real:
+        # An advancing fixture shares the parent's two anchors across spawn.
+        # A per-step frozen sample can precede the subsequently reserved START.
+        if not logical:raise ValueError('Synthetic real anchor requires a logical anchor')
+        logical,real=timestamp(logical),timestamp(real)
+        return lambda:logical+(datetime.now(timezone.utc)-real)
+    return (lambda:timestamp(logical)) if logical else (lambda:datetime.now(timezone.utc))
+
+
 def main():
     job = json.load(sys.stdin)
     identity = job['identity']
     # This fixture seam is accepted only on explicitly synthetic attempts;
     # every network-enabled attempt uses the actual UTC clock.
-    synthetic_clock = (job['synthetic'] or {}).get('clock_at_utc')
-    clock = (lambda:timestamp(synthetic_clock)) if synthetic_clock else (lambda:datetime.now(timezone.utc))
+    clock = attempt_clock(job['synthetic'])
     queries = tuple(RecoveryQuery(date.fromisoformat(q['halt_date']) if q['halt_date'] else None,
         date.fromisoformat(q['resume_date']) if q['resume_date'] else None) for q in identity['queries'])
     transport = DailyFeedTransport(job['path'], session_date=date.fromisoformat(identity['session_date']),

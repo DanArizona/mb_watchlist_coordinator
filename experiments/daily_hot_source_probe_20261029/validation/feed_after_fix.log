@@ -1,0 +1,18 @@
+test_actual_child_shares_advancing_parent_clock_instead_of_an_older_sample (test_daily_feed.DailyFeedTests.test_actual_child_shares_advancing_parent_clock_instead_of_an_older_sample) ... ok
+test_actual_daily_child_hang_is_bounded_and_charges_unknown_attempt (test_daily_feed.DailyFeedTests.test_actual_daily_child_hang_is_bounded_and_charges_unknown_attempt) ... ok
+test_actual_synthetic_http_child_uses_daily_worker_and_retains_receipts (test_daily_feed.DailyFeedTests.test_actual_synthetic_http_child_uses_daily_worker_and_retains_receipts) ... ok
+test_attempts_after_the_old_ten_attempt_limit_are_explicit_daily_evidence (test_daily_feed.DailyFeedTests.test_attempts_after_the_old_ten_attempt_limit_are_explicit_daily_evidence) ... ok
+test_body_crossing_close_is_retained_as_unknown_not_normal_capture (test_daily_feed.DailyFeedTests.test_body_crossing_close_is_retained_as_unknown_not_normal_capture) ... ok
+test_daily_limits_are_separate_and_original_experiment_stays_bounded (test_daily_feed.DailyFeedTests.test_daily_limits_are_separate_and_original_experiment_stays_bounded) ... ok
+test_daily_orphan_worker_exits_at_its_own_deadline_without_parent (test_daily_feed.DailyFeedTests.test_daily_orphan_worker_exits_at_its_own_deadline_without_parent) ... ok
+test_explicit_daily_attempt_ceiling_persists (test_daily_feed.DailyFeedTests.test_explicit_daily_attempt_ceiling_persists) ... ok
+test_http_rate_limit_and_three_unavailable_outcomes_stop_without_reset (test_daily_feed.DailyFeedTests.test_http_rate_limit_and_three_unavailable_outcomes_stop_without_reset) ... ok
+test_modified_window_or_expanded_limits_are_refused (test_daily_feed.DailyFeedTests.test_modified_window_or_expanded_limits_are_refused) ... ok
+test_network_is_refused_by_default_before_reservation (test_daily_feed.DailyFeedTests.test_network_is_refused_by_default_before_reservation) ... ok
+test_pacing_is_at_least_sixty_seconds_after_completion_across_reopen (test_daily_feed.DailyFeedTests.test_pacing_is_at_least_sixty_seconds_after_completion_across_reopen) ... ok
+test_preopen_and_close_do_not_reserve_work (test_daily_feed.DailyFeedTests.test_preopen_and_close_do_not_reserve_work) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.232s
+
+OK

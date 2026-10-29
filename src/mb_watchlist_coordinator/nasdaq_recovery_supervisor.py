@@ -17,6 +17,33 @@ from .sampling_requests import canonical, digest, freeze, membership_payload, pl
 from .sampling_service import owner_lock, ServiceBusy
 
 
+def _failure_details(error):
+    """Retain origin metadata without opening a DB or dumping SQL/locals."""
+    frames=[];database=None;origin=None;trace=error.__traceback__
+    while trace is not None:
+        frame=trace.tb_frame
+        module=frame.f_globals.get('__name__','')
+        if module.startswith(('mb_watchlist_coordinator.','mb_market_data.')):
+            location={'module':module,'function':frame.f_code.co_name,'line':trace.tb_lineno}
+            frames.append(location)
+            owner=frame.f_locals.get('self')
+            if owner is not None and type(owner).__module__.startswith(
+                    ('mb_watchlist_coordinator.','mb_market_data.')):
+                attrs=getattr(owner,'__dict__',{})
+                path=attrs.get('database_path',attrs.get('path'))
+                if isinstance(path,(str,Path)):
+                    database=str(path);origin=location
+        trace=trace.tb_next
+    origin={'frames':frames[-16:],
+        'database_path':database,'database_path_frame':origin,
+        'database_path_basis':'innermost trusted frame owner attribute' if database else None}
+    details={'failure_origin':origin}
+    if isinstance(error,sqlite3.Error):
+        details['sqlite_failure']=dict(origin,errorcode=getattr(error,'sqlite_errorcode',None),
+            errorname=getattr(error,'sqlite_errorname',None))
+    return details
+
+
 class NasdaqRecoverySupervisor:
     def __init__(self, path, *, feed_client, delivery, service, worker=None, clock=None):
         self.path = Path(path)
@@ -285,15 +312,16 @@ class NasdaqRecoverySupervisor:
         except (ValueError, OSError, sqlite3.Error, KeyError, TypeError) as error:
             # Integrity failures must not start/restart a worker or publish more
             # membership. A blocked report is best effort when its own ledger is damaged.
+            details=_failure_details(error)
             try:
                 if hasattr(self.client, 'close_owned'):
                     self.client.close_owned()
             except (ValueError, OSError, sqlite3.Error, KeyError, TypeError):
                 pass
             try:
-                return self._report('BLOCKED', [type(error).__name__], detail=str(error))
+                return self._report('BLOCKED', [type(error).__name__], detail=str(error),**details)
             except (ValueError, OSError, sqlite3.Error, KeyError, TypeError):
-                return {'status': 'BLOCKED', 'detail': type(error).__name__, 'status_persisted': False}
+                return {'status': 'BLOCKED', 'detail': type(error).__name__, 'status_persisted': False,**details}
 
     def run(self, *, stop_requested, max_seconds=720, synthetic=None):
         if not 0 < max_seconds <= 720:
@@ -308,7 +336,7 @@ class NasdaqRecoverySupervisor:
                         report = self._cycle(synthetic=synthetic,
                             stop_requested=lambda: stop_requested() or time.monotonic() >= deadline)
                     except (ValueError, OSError, sqlite3.Error, KeyError, TypeError) as error:
-                        return self._report('BLOCKED', [type(error).__name__], detail=str(error))
+                        return self._report('BLOCKED', [type(error).__name__], detail=str(error),**_failure_details(error))
                     retryable_feed_gap = (report['status'] == 'INCOMPLETE'
                         and 'latest_feed_attempt_unavailable' in report['reasons']
                         and not report.get('feed_stop_required', True))

@@ -1,0 +1,17 @@
+test_actual_child_shares_advancing_parent_clock_instead_of_an_older_sample (test_daily_feed.DailyFeedTests.test_actual_child_shares_advancing_parent_clock_instead_of_an_older_sample) ... FAIL
+
+======================================================================
+FAIL: test_actual_child_shares_advancing_parent_clock_instead_of_an_older_sample (test_daily_feed.DailyFeedTests.test_actual_child_shares_advancing_parent_clock_instead_of_an_older_sample)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/tests/test_daily_feed.py", line 106, in test_actual_child_shares_advancing_parent_clock_instead_of_an_older_sample
+    self.assertEqual(attempt['outcome']['status'],'valid',attempt)
+AssertionError: 'unavailable' != 'valid'
+- unavailable
++ valid
+ : {'attempt_id': 'b1a2576330064694b8d47284072f07d0', 'query_id': 'CURRENT', 'url': 'https://www.nasdaqtrader.com/rss.aspx?feed=tradehalts', 'started_at_utc': '2026-10-30T14:00:00.000479+00:00', 'token': 'be6b8ba5769e430f8e57b7b14f85a299', 'raw': b'', 'metadata': {}, 'synthetic': True, 'completed_at_utc': '2026-10-30T14:00:00.124738+00:00', 'outcome': {'status': 'unavailable', 'kind': 'unknown_worker_exit', 'terminal': False, 'records': []}, 'completion_event_sha256': '3f19cfffcbef5305e6517e06a66394d2a57a81483238c9db3d073fc3eb9a9674'}
+
+----------------------------------------------------------------------
+Ran 1 test in 0.132s
+
+FAILED (failures=1)

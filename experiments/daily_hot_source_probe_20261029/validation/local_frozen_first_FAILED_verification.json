@@ -1,0 +1,323 @@
+{
+  "contract": "daily-hot-source-clock-and-diagnostics-probe-v1",
+  "result": "FAILED",
+  "scope": "focused offline correction and one owned synthetic collection run",
+  "tests": 18,
+  "passed": 17,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [
+    "test_daily_operating.DailyOperatingTests.test_complete_collection_proof_preserves_native_journal_and_never_reports_in_the_active_scope"
+  ],
+  "seconds": 4.766189612000744,
+  "source": {
+    "coordinator_commit": "9cdcb655b7e63b42dc8dd4429c4ec00dbf207943",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "sqlite_version": "3.53.1",
+  "windows_checks_passed": false,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "live_launch_available": false,
+  "proposed_values_adopted": false,
+  "full_day_capacity_qualified": false,
+  "provider_capacity_qualified": false,
+  "prior_windows_command_63_result": "FAILED",
+  "prior_windows_command_64_result": "FAILED",
+  "prior_windows_recovery_component": "PASS; forced lease/exit gap; 15.029873-second hold",
+  "prior_capacity_component_retained": true,
+  "prior_recovery_and_capacity_repeated": false,
+  "original_windows_io_error_cause_resolved": false,
+  "original_windows_io_error_note": "Original file/operation/extended code was not recorded. A passing probe does not identify that past cause.",
+  "owned_source_evidence": {
+    "read_errors": [],
+    "driver-state.json": {
+      "active_invocation": "aed6bb83ff53402db2bc863006d0ef47",
+      "contract": "daily-hot-controller-v1",
+      "hold_until_utc": null,
+      "identity_sha256": "e83ab4e17a662103ea4d16384e9ff4af035450d0eebc429db8c8d5c5f24802b8",
+      "initialized": true,
+      "invocations": [
+        {
+          "at_utc": "2026-10-30T14:00:00.320016+00:00",
+          "invocation": "aed6bb83ff53402db2bc863006d0ef47",
+          "manual_resume": false
+        }
+      ],
+      "starts": [
+        {
+          "exit_observed_at_utc": null,
+          "generation": 1,
+          "invocation": "aed6bb83ff53402db2bc863006d0ef47",
+          "reserved_at_utc": "2026-10-30T14:00:00.626386+00:00",
+          "token": "d07aff182b3547ef99741e5057af8bfa"
+        }
+      ],
+      "stop": {
+        "at_utc": "2026-10-30T14:00:02.668300+00:00",
+        "reason": "controller_blocked_or_stopped"
+      },
+      "terminal": "source_integrity_blocked"
+    },
+    "hot-status.json": {
+      "contract": "daily-hot-controller-v1",
+      "effective_revision": 2,
+      "full_day_capacity_qualified": false,
+      "hot_symbols": [
+        "NVDA"
+      ],
+      "identity_sha256": "e83ab4e17a662103ea4d16384e9ff4af035450d0eebc429db8c8d5c5f24802b8",
+      "invocation": "aed6bb83ff53402db2bc863006d0ef47",
+      "observed_at_utc": "2026-10-30T14:00:02.672185+00:00",
+      "production_activation_inferred": false,
+      "source_reconciled": false,
+      "source_status": "BLOCKED",
+      "state": "BLOCKED",
+      "terminal": "source_integrity_blocked",
+      "unmanaged_channels": [
+        "uni",
+        "focus",
+        "health"
+      ],
+      "worker": {
+        "reason": "source_integrity_blocked",
+        "status": "BLOCKED"
+      },
+      "worker_starts": 1
+    },
+    "owner": {
+      "acquisition_stop_requested_at_utc": "2026-10-30T14:00:02.685666+00:00",
+      "cleanup": {
+        "backend": "posix_process_group",
+        "controller_returncode": 0,
+        "forced": false,
+        "reason": null,
+        "scope_empty_observed": true,
+        "status": "EXIT_OBSERVED"
+      },
+      "cleanup_seconds": 0.12311864099865488,
+      "configuration_sha256": "99b9e31b6bb9f43ec0a1c1651c4c96ff064488e2aa9b5e8ed2fb2553aaf4b7b8",
+      "contract": "daily-hot-operating-owner-v1",
+      "failure_type": null,
+      "full_day_capacity_qualified": false,
+      "nonce": "622da61084c643c3b282781dc4b0b6f3",
+      "production_activation_inferred": false,
+      "reporting": {
+        "cleanup": {
+          "backend": "posix_process_group",
+          "controller_returncode": 0,
+          "forced": false,
+          "reason": null,
+          "scope_empty_observed": true,
+          "status": "EXIT_OBSERVED"
+        },
+        "first_replay": {
+          "events": 3,
+          "sequence_sha256": "b247b16e62fd55c83c67a55b1d515fee1cc8c719abc67bd4886245488b98fa03"
+        },
+        "native_audit_passed": true,
+        "report_path": "/workspace/scratch/6ce939acb4eb/source_probe_extracted/path with spaces/daily_hot_source_probe_20261029_9cdcb65_5552c5d/runs/20261029T091100Z_3a74cbc5/owner/daily_hot_test/reports/78fd2f5532324a28ad0ea2225d44746a.json",
+        "status": "COMPLETE",
+        "two_fresh_replays_equal": true
+      },
+      "result": "FAILED",
+      "stop_reason": "controller_progress_stale",
+      "unmanaged_channels_untouched": [
+        "uni",
+        "focus",
+        "health"
+      ]
+    },
+    "feed_events": [
+      {
+        "at_utc": "2026-10-30T14:00:00.784516+00:00",
+        "attempt_id": "84d5275581e6402ba1c469cf616e446c",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "event_sha256": "9a6ee231a988680241441bfbd975e17f171ef7d3377797d61b34c149da293f41",
+        "kind": "start",
+        "previous_sha256": "34c03993121dc9e427fb74830d35beeb7f48e3da2b8a0facb5bf4539d0f5c98a",
+        "query_id": "CURRENT",
+        "sequence": 1,
+        "synthetic": true,
+        "token": "0bfffe3505404bbea6298997bc81fac9",
+        "url": "https://www.nasdaqtrader.com/rss.aspx?feed=tradehalts"
+      },
+      {
+        "at_utc": "2026-10-30T14:00:00.902261+00:00",
+        "attempt_id": "84d5275581e6402ba1c469cf616e446c",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "event_sha256": "9e9caeecba1c0e67f4b9d844e470017355af4797f5c906b4944cfe1cbbd7d648",
+        "kind": "progress",
+        "metadata": {
+          "body_complete": false,
+          "final_url": "https://www.nasdaqtrader.com/rss.aspx?feed=tradehalts",
+          "headers": {},
+          "status_code": 200,
+          "transport_error_type": null
+        },
+        "previous_sha256": "9a6ee231a988680241441bfbd975e17f171ef7d3377797d61b34c149da293f41",
+        "sequence": 2
+      },
+      {
+        "at_utc": "2026-10-30T14:00:00.904188+00:00",
+        "attempt_id": "84d5275581e6402ba1c469cf616e446c",
+        "body_sha256": "1848ca75520de080619d24f0e34f3a61803ce7b3d2f9105a1d4e178f2881f121",
+        "event_sha256": "4b94b055f44ee985220b9bb2fdb8df7277b526bfda5c430b34550cd9dd230eef",
+        "kind": "progress",
+        "metadata": {
+          "body_complete": false,
+          "final_url": "https://www.nasdaqtrader.com/rss.aspx?feed=tradehalts",
+          "headers": {},
+          "status_code": 200,
+          "transport_error_type": null
+        },
+        "previous_sha256": "9e9caeecba1c0e67f4b9d844e470017355af4797f5c906b4944cfe1cbbd7d648",
+        "sequence": 3
+      },
+      {
+        "at_utc": "2026-10-30T14:00:00.906612+00:00",
+        "attempt_id": "84d5275581e6402ba1c469cf616e446c",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "event_sha256": "c0c5618428eaa058ddf46667a87d788207468057cd4c57c79769411ae0017280",
+        "kind": "progress",
+        "metadata": {
+          "body_complete": true,
+          "final_url": "https://www.nasdaqtrader.com/rss.aspx?feed=tradehalts",
+          "headers": {},
+          "status_code": 200,
+          "transport_error_type": null
+        },
+        "previous_sha256": "4b94b055f44ee985220b9bb2fdb8df7277b526bfda5c430b34550cd9dd230eef",
+        "sequence": 4
+      },
+      {
+        "at_utc": "2026-10-30T14:00:00.909103+00:00",
+        "attempt_id": "84d5275581e6402ba1c469cf616e446c",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "event_sha256": "ebc5bf825a25eaf0e923029ac135362abb69f82b70baf4c1448893004eeb6611",
+        "kind": "finish",
+        "outcome": {
+          "kind": "rss",
+          "records": [],
+          "status": "valid",
+          "terminal": false
+        },
+        "previous_sha256": "c0c5618428eaa058ddf46667a87d788207468057cd4c57c79769411ae0017280",
+        "sequence": 5,
+        "unknown": null
+      }
+    ],
+    "recent_source_events": [
+      {
+        "at_utc": "2026-10-30T14:00:02.640490+00:00",
+        "detail": "Journal prefix differs from publication ledger",
+        "event_sha256": "42d33545c4176941165064f887a0c584ec4ebf96391017fc92890b899566bebc",
+        "kind": "status",
+        "previous_sha256": "63f6dc6fb1e508f7e6fdb13e82fc0357b3bb0c9293a900ae967e7f4a5a4e0302",
+        "production_access": true,
+        "readiness_scope": "declared_daily_feed_reconciliation_and_native_publication_only",
+        "reasons": [
+          "ValueError"
+        ],
+        "sequence": 6,
+        "status": "BLOCKED",
+        "unmanaged_channels_untouched": [
+          "uni",
+          "focus",
+          "health",
+          "collector"
+        ]
+      },
+      {
+        "at_utc": "2026-10-30T14:00:02.483468+00:00",
+        "discovery_scope_reconciled": false,
+        "event_sha256": "63f6dc6fb1e508f7e6fdb13e82fc0357b3bb0c9293a900ae967e7f4a5a4e0302",
+        "feed_head_sha256": "ebc5bf825a25eaf0e923029ac135362abb69f82b70baf4c1448893004eeb6611",
+        "feed_stop_required": false,
+        "kind": "status",
+        "local_membership_effective": true,
+        "native_content_sha256": "65caf95724dbb0f19ba1ac9aeb9d7f99435ad22dc55861c921c845d88631ef75",
+        "pending_window_query_ids": [
+          "nasdaq-query-4c3b5d041fbf05918cce026ddc259abd0c8ccd935b107d341ab92daa6d32f4e2"
+        ],
+        "previous_sha256": "34ad3eedca928689a7aecd382cebbcbc6a860eb4eb65c933b00ebec87edbc656",
+        "production_access": true,
+        "query_scope": "COMPLETE_WITH_TRACE_GAPS",
+        "readiness_scope": "declared_daily_feed_reconciliation_and_native_publication_only",
+        "reasons": [
+          "intermediate_feed_mutations_not_reconstructible",
+          "older_unknown_carryovers_not_proven_complete",
+          "post_recovery_current_cutover_pending"
+        ],
+        "rejected_requests": [],
+        "sequence": 5,
+        "status": "RECOVERING",
+        "unmanaged_channels_untouched": [
+          "uni",
+          "focus",
+          "health",
+          "collector"
+        ],
+        "unresolved_candidates": [],
+        "worker": {
+          "status": "NOT_CONFIGURED"
+        }
+      },
+      {
+        "at_utc": "2026-10-30T14:00:01.320469+00:00",
+        "discovery_scope_reconciled": false,
+        "event_sha256": "34ad3eedca928689a7aecd382cebbcbc6a860eb4eb65c933b00ebec87edbc656",
+        "feed_head_sha256": "ebc5bf825a25eaf0e923029ac135362abb69f82b70baf4c1448893004eeb6611",
+        "feed_stop_required": false,
+        "kind": "status",
+        "local_membership_effective": true,
+        "native_content_sha256": "65caf95724dbb0f19ba1ac9aeb9d7f99435ad22dc55861c921c845d88631ef75",
+        "pending_window_query_ids": [
+          "nasdaq-query-4c3b5d041fbf05918cce026ddc259abd0c8ccd935b107d341ab92daa6d32f4e2"
+        ],
+        "previous_sha256": "1e9358d2eb99febc4695ec83359d30e30f21e3f454470f0dc0f5e274b3c376f5",
+        "production_access": true,
+        "query_scope": "COMPLETE_WITH_TRACE_GAPS",
+        "readiness_scope": "declared_daily_feed_reconciliation_and_native_publication_only",
+        "reasons": [
+          "intermediate_feed_mutations_not_reconstructible",
+          "older_unknown_carryovers_not_proven_complete",
+          "post_recovery_current_cutover_pending"
+        ],
+        "rejected_requests": [],
+        "sequence": 4,
+        "status": "RECOVERING",
+        "unmanaged_channels_untouched": [
+          "uni",
+          "focus",
+          "health",
+          "collector"
+        ],
+        "unresolved_candidates": [],
+        "worker": {
+          "status": "NOT_CONFIGURED"
+        }
+      }
+    ],
+    "valid_feed_attempts": 1,
+    "unavailable_feed_attempts": 0,
+    "native_hot_acquisitions": 0
+  },
+  "remaining": [
+    "Windows source probe result and actual CMD prompt return",
+    "Investigate any recurring SQLite failure using its retained code/origin; original transient I/O cause remains unassigned",
+    "Provider capacity and concrete deployment/rollback/settings/activation review",
+    "Controlled live automatic Hot, then manual membership and read-only Overlay"
+  ]
+}

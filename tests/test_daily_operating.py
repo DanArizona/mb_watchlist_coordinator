@@ -90,6 +90,12 @@ class DailyOperatingTests(unittest.TestCase):
             with closing(sqlite3.connect(self.case.journal)) as c:
                 return c.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot"').fetchone()[0]>=2
         result=owner.run(self.secret(),stop_requested_callback=stop)
+        primary={'owner':result}
+        for name in ('hot-status.json','driver-state.json'):
+            path=Path(self.fixture.config.publication.state_root)/name
+            if path.exists():primary[name]=unseal(read_json(path))
+        self.assertEqual(result['result'],'STOPPED',primary)
+        self.assertEqual(result['stop_reason'],'operator_stop',primary)
         self.assertEqual(result['reporting']['status'],'COMPLETE',result)
         self.assertTrue(result['reporting']['native_audit_passed'],result)
         self.assertTrue(result['reporting']['two_fresh_replays_equal'])

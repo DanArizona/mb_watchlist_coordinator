@@ -1,0 +1,6 @@
+test_complete_collection_proof_preserves_native_journal_and_never_reports_in_the_active_scope (__main__.Traced.test_complete_collection_proof_preserves_native_journal_and_never_reports_in_the_active_scope) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 8.635s
+
+OK

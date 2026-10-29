@@ -1,0 +1,187 @@
+{
+  "contract": "operator-supplied-windows-source-read-only-diagnostic-review-v1",
+  "basis": "Complete operator-supplied command-65 console attachment, including returned CMD prompt",
+  "attachment_sha256": "3d728608a7610e78b29dfcd7298b72908e72a033045b897be3244263b169ca3f",
+  "original_windows_database_files_independently_read": false,
+  "result": "DIAGNOSTIC_COMPLETE",
+  "qualification_result": null,
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "sqlite_version": "3.53.2",
+  "diagnostic_databases": [
+    {
+      "file": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_hot_exit_fix_20261029_7cce5c0_5552c5d\\runs\\20261029T082857Z_49b9595b\\owner\\daily_hot_test\\daily-feed.sqlite3",
+      "errors": [],
+      "quick_check": [
+        "ok"
+      ],
+      "journal_mode": [
+        "delete"
+      ],
+      "database_bytes_unchanged": true
+    },
+    {
+      "file": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_hot_exit_fix_20261029_7cce5c0_5552c5d\\runs\\20261029T082857Z_49b9595b\\owner\\daily_hot_test\\daily-source.sqlite3",
+      "errors": [],
+      "quick_check": [
+        "ok"
+      ],
+      "journal_mode": [
+        "delete"
+      ],
+      "database_bytes_unchanged": true
+    },
+    {
+      "file": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_hot_exit_fix_20261029_7cce5c0_5552c5d\\runs\\20261029T082857Z_49b9595b\\owner\\daily_hot_test\\delivery.sqlite3",
+      "errors": [],
+      "quick_check": [
+        "ok"
+      ],
+      "journal_mode": [
+        "delete"
+      ],
+      "database_bytes_unchanged": true
+    },
+    {
+      "file": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_hot_exit_fix_20261029_7cce5c0_5552c5d\\runs\\20261029T082857Z_49b9595b\\owner\\daily_hot_test\\identity.sqlite3",
+      "errors": [],
+      "quick_check": [
+        "ok"
+      ],
+      "journal_mode": [
+        "delete"
+      ],
+      "database_bytes_unchanged": true
+    },
+    {
+      "file": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_hot_exit_fix_20261029_7cce5c0_5552c5d\\runs\\20261029T082857Z_49b9595b\\owner\\daily_hot_test\\live.sqlite3",
+      "errors": [],
+      "quick_check": [
+        "ok"
+      ],
+      "journal_mode": [
+        "delete"
+      ],
+      "database_bytes_unchanged": true
+    },
+    {
+      "file": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_hot_exit_fix_20261029_7cce5c0_5552c5d\\runs\\20261029T082857Z_49b9595b\\owner\\daily_hot_test\\publication.sqlite3",
+      "errors": [],
+      "quick_check": [
+        "ok"
+      ],
+      "journal_mode": [
+        "delete"
+      ],
+      "database_bytes_unchanged": true
+    },
+    {
+      "file": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_hot_exit_fix_20261029_7cce5c0_5552c5d\\runs\\20261029T082857Z_49b9595b\\owner\\daily_hot_test\\recovery.sqlite3",
+      "errors": [],
+      "quick_check": [
+        "ok"
+      ],
+      "journal_mode": [
+        "delete"
+      ],
+      "database_bytes_unchanged": true
+    },
+    {
+      "file": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_hot_exit_fix_20261029_7cce5c0_5552c5d\\runs\\20261029T082857Z_49b9595b\\owner\\daily_hot_test\\requests.sqlite3",
+      "errors": [],
+      "quick_check": [
+        "ok"
+      ],
+      "journal_mode": [
+        "delete"
+      ],
+      "database_bytes_unchanged": true
+    },
+    {
+      "file": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_hot_exit_fix_20261029_7cce5c0_5552c5d\\runs\\20261029T082857Z_49b9595b\\owner\\quote_observation_journal_v2_api_opening_2026-10-30\\2026-10-30.hot.poller.sqlite3",
+      "errors": [],
+      "quick_check": [
+        "ok"
+      ],
+      "journal_mode": [
+        "delete"
+      ],
+      "database_bytes_unchanged": true
+    },
+    {
+      "file": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\daily_hot_exit_fix_20261029_7cce5c0_5552c5d\\runs\\20261029T082857Z_49b9595b\\owner\\quote_observation_journal_v2_api_opening_2026-10-30\\2026-10-30.sqlite3",
+      "errors": [],
+      "quick_check": [
+        "ok"
+      ],
+      "journal_mode": [
+        "wal"
+      ],
+      "database_bytes_unchanged": true
+    }
+  ],
+  "current_database_issues": [],
+  "saved_feed_events": [
+    {
+      "at_utc": "2026-10-30T14:00:01.565819+00:00",
+      "attempt_id": "c4f231444adb461db4e1dce990f393ef",
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "event_sha256": "4b29b3f70aee643b30ac4476141cdca4775f86fbd37a3c6c5c6a4bcdcdd6071f",
+      "kind": "finish",
+      "outcome": {
+        "kind": "unknown_worker_exit",
+        "records": [],
+        "status": "unavailable",
+        "terminal": false
+      },
+      "previous_sha256": "49a622c44bd5b54e6a7ba4d34e159e709dd8a736efd1ca7ae46d1fb171586915",
+      "sequence": 2,
+      "unknown": "worker_exit"
+    },
+    {
+      "at_utc": "2026-10-30T14:00:01.242779+00:00",
+      "attempt_id": "c4f231444adb461db4e1dce990f393ef",
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "event_sha256": "49a622c44bd5b54e6a7ba4d34e159e709dd8a736efd1ca7ae46d1fb171586915",
+      "kind": "start",
+      "previous_sha256": "34c03993121dc9e427fb74830d35beeb7f48e3da2b8a0facb5bf4539d0f5c98a",
+      "query_id": "CURRENT",
+      "sequence": 1,
+      "synthetic": true,
+      "token": "c9a1b0823bc34dabb15ac33fd08b4891",
+      "url": "https://www.nasdaqtrader.com/rss.aspx?feed=tradehalts"
+    }
+  ],
+  "saved_source_block": {
+    "at_utc": "2026-10-30T14:00:04.458440+00:00",
+    "detail": "disk I/O error",
+    "event_sha256": "67133c99a7b534cfb646a9b41d7303d7add4f0df04784092a17511a2d27cdd3e",
+    "kind": "status",
+    "previous_sha256": "9530a891805c21e03d29bc13de2370be4d5fc9e100e7d7f6984d68a41c07d2a9",
+    "production_access": true,
+    "readiness_scope": "declared_daily_feed_reconciliation_and_native_publication_only",
+    "reasons": [
+      "OperationalError"
+    ],
+    "sequence": 5,
+    "status": "BLOCKED",
+    "unmanaged_channels_untouched": [
+      "uni",
+      "focus",
+      "health",
+      "collector"
+    ]
+  },
+  "original_error_extended_code_available": false,
+  "original_io_error_cause_resolved": false,
+  "separate_fixture_defect": "Older frozen synthetic worker clock precedes advancing parent reservation; actual-child regression reproduces unknown_worker_exit with no response",
+  "causal_connection_between_fixture_clock_and_later_io_error_proven": false,
+  "prior_command_63_verdict": "FAILED",
+  "prior_command_64_verdict": "FAILED",
+  "prior_windows_lease_exit_component": "PASS; 15.029873-second full hold",
+  "production_changes": false,
+  "production_hot_enabled": false
+}
