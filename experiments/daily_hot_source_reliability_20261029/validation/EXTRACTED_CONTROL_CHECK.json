@@ -1,0 +1,25 @@
+{
+  "contract": "daily-hot-stack-control-extraction-check-v1",
+  "result": "PASS",
+  "packet": "hot_trace_control_20261029_9ecb2e8.zip",
+  "bytes": 7717,
+  "sha256": "dc68437a4f8dcfb01926ab4618ec8d7607b9e3d399a2b814e06f380ed8fd5a35",
+  "path_with_spaces": true,
+  "copied_helper_matches_tested_bytes": true,
+  "default_adjacent_packet_inventory_passed": true,
+  "exact_in_memory_flag_changes": [
+    {
+      "scenario": "scene",
+      "line": 126
+    },
+    {
+      "scenario": "auth_scene",
+      "line": 127
+    }
+  ],
+  "helper_pre_post_hashes_match": true,
+  "cmd_quoted_path_and_crlf_checked": true,
+  "long_proof_repeated_for_extraction": false,
+  "runtime_changes": false,
+  "windows_control_passed": false
+}

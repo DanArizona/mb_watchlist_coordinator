@@ -27,8 +27,14 @@ valid attempts, READY_WITH_GAPS, 26 Hot acquisitions/two after reconciliation,
 one identity permit/one worker start, native audit PASS and matching 29-event
 replays (3729aa65008c192f82f836d5dc42352be6a2ff96d42200affe4b855bc55fe0be),
 cleanup .062356 seconds; no thread-stack files. Windows control remains pending.
-Prepare the small command-68 helper, which uses the existing verified 2f56703
-packet and runs only this control. Original command 67 remains FAILED 49/50;
+The command-68 helper is frozen in hot_trace_control_20261029_9ecb2e8.zip,
+7717 bytes, SHA-256 dc68437a4f8dcfb01926ab4618ec8d7607b9e3d399a2b814e06f380ed8fd5a35.
+Its exact extraction in a path containing spaces matches the tested helper
+bytes, validates the adjacent original packet and changes exactly two flags.
+No long proof was repeated for extraction. Public d5fa88bf9f24c739ca490f75d6c285cf583ed24a
+matches local 9ecb2e87bc2cc461427134dd165daba5e4b12316, full tree
+a390bd0cd3334db4063de396bad804c75163f99d. It uses the existing verified
+2f56703 packet and runs only this control. Original command 67 remains FAILED 49/50;
 a control pass alone is not whole operating-release qualification or precise
 native crash causality. No runtime edit, timeout relaxation, production Python
 upgrade, full-size/recovery repeat, installation or activation is included.

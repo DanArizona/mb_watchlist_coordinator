@@ -1,0 +1,22 @@
+{
+  "contract": "daily-hot-periodic-stack-control-delivery-v1",
+  "packet": "hot_trace_control_20261029_9ecb2e8.zip",
+  "bytes": 7717,
+  "sha256": "dc68437a4f8dcfb01926ab4618ec8d7607b9e3d399a2b814e06f380ed8fd5a35",
+  "control_local_commit": "9ecb2e87bc2cc461427134dd165daba5e4b12316",
+  "public_equivalent_control_commit": "d5fa88bf9f24c739ca490f75d6c285cf583ed24a",
+  "tree": "a390bd0cd3334db4063de396bad804c75163f99d",
+  "branch": "experiment/daily-hot-source-reliability-20261029",
+  "windows_command": "68_control_periodic_stack_dumps.cmd",
+  "uses_existing_original_packet": "daily_hot_source_reliability_20261029_2f56703_5552c5d",
+  "tests": 1,
+  "local_result": "PASS",
+  "local_seconds": 126.538,
+  "windows_result": "PENDING",
+  "source_files_unchanged": true,
+  "runtime_changes": false,
+  "production_changes": false,
+  "root_cause_proven": false,
+  "original_windows_command67_result": "FAILED",
+  "estimated_minutes": 2.5
+}
