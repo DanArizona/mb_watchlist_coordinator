@@ -1,5 +1,32 @@
 # Windows evidence-read correction — October 29
 
+Windows command71 ACCEPTED:26/26 PASS,0 failures/errors/skips; complete
+operator-supplied console/final JSON and actual CMD prompt in attached
+libfile_39af44a31c208191af2e79ec29b3c06d. Run20261029T233339Z_f0c3048e,
+win32/Python3.12.13;131.380s test/131.469s report. Native DELETE-share fixture
+reproduced old PermissionError errno13 without winerror; corrected read
+recovered in .047s/four sleeps with payload intact. Persistent conflict still
+raised at .250s;64 atomic publications/four readers (42 reads each) preserved
+complete records. These are real Windows handle checks, not unit injection.
+
+Full original paced flow PASS126.516s,3 valid CURRENT/history/fresh-CURRENT
+attempts with60.513341/60.742229s intervals. Declared scope READY_WITH_GAPS;
+26 Hot acquisitions/two after cutover,1 identity permit/1 worker start. Native
+audit PASS and equal29-event replays SHA3729aa65008c192f82f836d5dc42352be6a2ff96d42200affe4b855bc55fe0be.
+No monitor/outer exception. Windows Job scope empty without force in .109s,
+controller0 and independent report complete. Original freshness/binding and
+3/8/15/10-second gates remain; prior capacity/recovery not repeated.
+
+Known read-conflict correction and paced synthetic daily integration are now
+accepted. No unchanged rerun is needed. Preserve original67/68/69/70 FAILED;
+precise original actor and older I/O/ledger/native-crash causes unproven.
+No provider/vault/SDK/production change, setting adoption or Hot activation.
+Next is concrete provider-performance and daily operating launch/resume,
+deployment/rollback/settings review using accepted component evidence.
+Production activation still requires approval. Manual controls/read-only
+Overlay follow. Full Oct29 production closeout has not been supplied.
+Earlier pending Windows states below are historical.
+
 Frozen Windows packet daily_hot_evidence_read_20261029_1620b91_5552c5d.zip,
 856126 bytes, SHAfac90c520aaba76a19812afb3dce0bd0103c4aaebae08225d1cdbb5f67cefc55.
 Local1620b91b614971cf720d5599082baa7ce3c9987d equals public

@@ -1,0 +1,179 @@
+{
+  "contract": "daily-hot-windows-evidence-read-qualification-v1",
+  "result": "PASS",
+  "tests": 26,
+  "passed": 26,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 131.46899999980815,
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "test_scope": "focused read/fence checks, native Windows sharing checks when Windows, original paced proof",
+  "source": {
+    "coordinator_commit": "1620b91b614971cf720d5599082baa7ce3c9987d",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "runtime_baseline": "2f56703904db10cf6c47e410f350f60cfa03656f",
+  "runtime_changes": [
+    "src/mb_watchlist_coordinator/daily_session.py",
+    "src/mb_watchlist_coordinator/daily_supervision.py",
+    "src/mb_watchlist_coordinator/daily_worker_view.py",
+    "src/mb_watchlist_coordinator/recovery_workers.py"
+  ],
+  "windows_checks_passed": true,
+  "windows_read_retry_active": true,
+  "windows_native_proof": [
+    {
+      "case": "native_atomic_writer_four_readers",
+      "result": "PASS",
+      "publications": 64,
+      "reads_per_thread": [
+        42,
+        42,
+        42,
+        42
+      ],
+      "elapsed_seconds": 0.6559999999590218
+    },
+    {
+      "case": "native_delete_share_window",
+      "result": "PASS",
+      "original_reader_error": "PermissionError",
+      "errno": 13,
+      "winerror": null,
+      "retry_sleeps": 4,
+      "elapsed_seconds": 0.0470000000204891,
+      "payload_preserved": true
+    },
+    {
+      "case": "persistent_native_conflict",
+      "result": "PASS",
+      "elapsed_seconds": 0.25,
+      "retry_sleeps": 24,
+      "error_propagated": true
+    }
+  ],
+  "windows_native_proof_qualified": true,
+  "read_retry_budget_seconds": 0.25,
+  "read_retry_attempt_ceiling": 26,
+  "old_heartbeat_not_reused": true,
+  "binding_and_age_checks_unchanged": true,
+  "original_progress_seconds": 3,
+  "original_credential_seconds": 8,
+  "original_replacement_hold_seconds": 15,
+  "original_cleanup_seconds": 10,
+  "feed_interval_seconds": 60,
+  "periodic_stack_dumps": false,
+  "original_test_source_sha256": "91c87dc7974a47e3a6e0b32ced6850b4b6862109891c22a5814d2b31cd70d706",
+  "changed_test_only_flags": [
+    {
+      "scenario": "scene",
+      "line": 126
+    },
+    {
+      "scenario": "auth_scene",
+      "line": 127
+    }
+  ],
+  "monitor_exception": null,
+  "operating_exception": null,
+  "paced_proof": {
+    "contract": "daily-paced-source-owned-collection-proof-v1",
+    "result": "PASS",
+    "network": "denied",
+    "synthetic_sdk_only": true,
+    "actual_vault_access": false,
+    "provider_capacity_qualified": false,
+    "full_day_capacity_qualified": false,
+    "owner": {
+      "contract": "daily-hot-operating-owner-v1",
+      "nonce": "50370b3e2693496b9039761ef49f6c3d",
+      "configuration_sha256": "8c1c7bd61515d5074db1bfcbe7292096d42cec424769fdd8c765eafd08f1a3cd",
+      "stop_reason": "operator_stop",
+      "result": "STOPPED",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "windows_job",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      },
+      "cleanup_seconds": 0.10899999993853271,
+      "acquisition_stop_requested_at_utc": "2026-10-30T14:02:06.203569+00:00",
+      "reporting": {
+        "status": "COMPLETE",
+        "report_path": "C:\\Users\\danla\\AppData\\Local\\Temp\\tmpwi_lvoeo\\daily_hot_test\\reports\\3dab92906d8144d6b0a6e0008bf83cda.json",
+        "native_audit_passed": true,
+        "two_fresh_replays_equal": true,
+        "first_replay": {
+          "events": 29,
+          "sequence_sha256": "3729aa65008c192f82f836d5dc42352be6a2ff96d42200affe4b855bc55fe0be"
+        },
+        "cleanup": {
+          "status": "EXIT_OBSERVED",
+          "backend": "windows_job",
+          "scope_empty_observed": true,
+          "forced": false,
+          "controller_returncode": 0,
+          "reason": null
+        }
+      },
+      "failure_type": null,
+      "unmanaged_channels_untouched": [
+        "uni",
+        "focus",
+        "health"
+      ],
+      "full_day_capacity_qualified": false,
+      "production_activation_inferred": false
+    },
+    "elapsed_seconds": 126.51600000006147,
+    "cutover": {
+      "observed_at_utc": "2026-10-30T14:02:03.520442+00:00",
+      "source_status": "READY_WITH_GAPS",
+      "acquisitions": 24,
+      "elapsed_seconds": 123.39100000006147
+    },
+    "source_attempts": 3,
+    "source_query_ids": [
+      "CURRENT",
+      "nasdaq-query-4c3b5d041fbf05918cce026ddc259abd0c8ccd935b107d341ab92daa6d32f4e2",
+      "CURRENT"
+    ],
+    "completion_to_next_start_seconds": [
+      60.513341,
+      60.742229
+    ],
+    "identity_quote_permits": 1,
+    "native_hot_acquisitions": 26,
+    "acquisitions_after_reconciliation": 2,
+    "worker_starts": 1,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "source_reconciled": true,
+    "actual_elapsed_pacing": true,
+    "production_changes": false,
+    "max_observer_scheduling_gap_seconds": 0.0470000000204891
+  },
+  "prior_capacity_and_recovery_drills_repeated": false,
+  "original_windows_commands_67_68_69_70": "FAILED; preserved",
+  "original_io_ledger_change_and_native_crash_causes_resolved": false,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "live_launch_available": false,
+  "proposed_values_adopted": false,
+  "operating_release_qualified": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false
+}
