@@ -1,0 +1,109 @@
+OFFLINE daily controller: synthetic SDK and journals; actual elapsed deadlines. No password, API or production changes.
+................................................................
+----------------------------------------------------------------------
+Ran 64 tests in 74.826s
+
+OK
+{
+  "contract": "daily-hot-controller-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 64,
+  "passed": 64,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 75.05174422400023,
+  "source": {
+    "coordinator_commit": "86355fed5fbd43a1a299e2d807f02b134c59abcb",
+    "market_data_commit": "3cc91ebb7d2b7bd26d4c133bb839f2c63281ac0e",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "windows_checks_passed": false,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "authenticated_controller_included": true,
+  "read_only_hot_status_included": true,
+  "live_launch_available": false,
+  "production_hot_enabled": false,
+  "proposed_values_adopted": false,
+  "full_day_capacity_qualified": false,
+  "native_proof": {
+    "actual_vault_access": false,
+    "cleanup_within_10_seconds": true,
+    "clock": "shifted wall clock; actual elapsed process/authentication and pacing gates",
+    "contract": "daily-authenticated-controller-native-proof-v1",
+    "first_replay": {
+      "events": 5,
+      "sequence_sha256": "42f3708394071e2bdaa3279cb4201db16528c50a63aba547c2a1ea708cc84eca"
+    },
+    "full_day_capacity_qualified": false,
+    "hot_provider_calls": 2,
+    "identity_quote_permits": 1,
+    "live_provider_qualification": false,
+    "native_audit_passed": true,
+    "network": "denied",
+    "result": "PASS",
+    "saved_historical_captures": 1,
+    "saved_history_submission": "verified daily publication API; full paced transport proof is separate",
+    "source_attempts": 1,
+    "source_reconciled": false,
+    "synthetic_sdk_only": true,
+    "two_fresh_replays_equal": true,
+    "worker_starts": 1
+  },
+  "recovery_proof": {
+    "contract": "daily-owned-recovery-proof-v1",
+    "full_day_capacity_qualified": false,
+    "intentional_hold_slots_not_backfilled": true,
+    "intentional_missing_slot_ids": [
+      "hot:2026-10-29T10:00:08-04:00",
+      "hot:2026-10-29T10:00:12-04:00",
+      "hot:2026-10-29T10:00:14-04:00",
+      "hot:2026-10-29T10:00:16-04:00",
+      "hot:2026-10-29T10:00:18-04:00"
+    ],
+    "minimum_hold_seconds": 15,
+    "native_hot_acquisitions": 2,
+    "provider_calls": 2,
+    "raw_native_audit_passed": false,
+    "replacement_hold_seconds": 15.038724,
+    "result": "PASS",
+    "saved_response_not_requested_again": true,
+    "starts": [
+      {
+        "exit_observed_at_utc": "2026-10-29T14:00:06.180938+00:00",
+        "generation": 1,
+        "invocation": "b57105b09c4f4f5f8b64fc04614fc68b",
+        "reserved_at_utc": "2026-10-29T14:00:00.328411+00:00",
+        "token": "c1dbc8ad424b4631bbb9ad4ed775756f"
+      },
+      {
+        "exit_observed_at_utc": null,
+        "generation": 2,
+        "invocation": "b57105b09c4f4f5f8b64fc04614fc68b",
+        "reserved_at_utc": "2026-10-29T14:00:21.219662+00:00",
+        "token": "e4db173a056349a6ad66bca2a407f068"
+      }
+    ],
+    "synthetic_sdk_only": true,
+    "two_fresh_replays_equal": true,
+    "unexplained_gaps": 0,
+    "worker_starts": 2
+  },
+  "remaining": [
+    "Windows result and actual CMD prompt return",
+    "Representative full-day performance/provider capacity and independent outer operating packaging",
+    "Deployment/rollback and explicit settings/activation review",
+    "Closely following manual membership controls and read-only Overlay"
+  ]
+}
+Saved report: /workspace/scratch/6ce939acb4eb/daily_controller_extracted/path with spaces/daily_hot_controller_20261028_86355fe_3cc91eb/runs/20261029T024800Z_53ef6586/verification.json
