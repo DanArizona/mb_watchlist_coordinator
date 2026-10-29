@@ -1,0 +1,9 @@
+test_actual_outer_loss_releases_only_its_known_owned_children (test_daily_operating.DailyOperatingTests.test_actual_outer_loss_releases_only_its_known_owned_children) ... ok
+test_replaced_ledger_file_cannot_hide_behind_an_open_read_handle (test_daily_history_reader.DailyHistoryReaderTests.test_replaced_ledger_file_cannot_hide_behind_an_open_read_handle) ... ok
+test_detected_stop_keeps_its_original_cleanup_deadline_if_parent_recovers (test_daily_operating.DailyOperatingTests.test_detected_stop_keeps_its_original_cleanup_deadline_if_parent_recovers) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.885s
+
+OK
+{"extracted_path_contains_spaces": true, "tests": 3, "passed": true, "skipped": 0, "pre_and_post_inventory_passed": true, "read_only_status_no_state_created": true, "extra_source_refused_before_imports": true, "changed_source_refused_before_imports": true}

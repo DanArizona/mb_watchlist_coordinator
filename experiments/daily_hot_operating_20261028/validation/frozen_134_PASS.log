@@ -1,0 +1,194 @@
+OFFLINE daily operating owner and full-size synthetic history. Actual elapsed gates; no password, API or production changes.
+Includes owned parent-loss/cleanup drills and a 542,099-observation fixture. Allow about two minutes.
+.............................................................................................{"phase": "seeded", "synthetic_slots": 9358, "seconds": 10.96389013299995}
+{"phase": "cold_prepare", "seconds": 2.0222917010000856, "original_progress_budget_seconds": 3}
+{"phase": "tail", "measurement": {"actual_native_tick_seconds": 0.6441407610000169, "state_prepare_seconds": 0.19223289299998214, "spool_and_check_seconds": 0.17200120999996216, "before_api_gate_seconds": 0.447504}}
+{"phase": "tail", "measurement": {"actual_native_tick_seconds": 0.6508925699999963, "state_prepare_seconds": 0.1903309750000517, "spool_and_check_seconds": 0.17753494799990222, "before_api_gate_seconds": 0.451098}}
+.........................................
+----------------------------------------------------------------------
+Ran 134 tests in 124.481s
+
+OK
+{
+  "contract": "daily-hot-operating-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 134,
+  "passed": 134,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 124.80452445200035,
+  "source": {
+    "coordinator_commit": "3c0f8cde268160277e2ad426dfe7f8cf655197ac",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "windows_checks_passed": false,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "proposed_values_adopted": false,
+  "live_launch_available": false,
+  "full_day_capacity_qualified": false,
+  "provider_capacity_qualified": false,
+  "representative_synthetic_history_qualified": true,
+  "independent_outer_owner_included": true,
+  "review_status_stop_cli_included": true,
+  "owner_proof": {
+    "acquisition_stop_requested_at_utc": "2026-10-30T14:00:08.104932+00:00",
+    "cleanup": {
+      "backend": "posix_process_group",
+      "controller_returncode": 0,
+      "forced": false,
+      "reason": null,
+      "scope_empty_observed": true,
+      "status": "EXIT_OBSERVED"
+    },
+    "cleanup_seconds": 0.14246837100017729,
+    "configuration_sha256": "6086e520966f705fd407d662f535e5ab1cb1f97551139d3c7a75538220c64609",
+    "contract": "daily-hot-operating-owner-v1",
+    "failure_type": null,
+    "full_day_capacity_qualified": false,
+    "nonce": "8ceec7e2fbcf4d14a0c26fa1c3cd98d5",
+    "production_activation_inferred": false,
+    "reporting": {
+      "cleanup": {
+        "backend": "posix_process_group",
+        "controller_returncode": 0,
+        "forced": false,
+        "reason": null,
+        "scope_empty_observed": true,
+        "status": "EXIT_OBSERVED"
+      },
+      "first_replay": {
+        "events": 5,
+        "sequence_sha256": "0eeba7be7b32a5380ae77f2d2cc1464b607077d775fc0b403a7ba0d3d7f69b9b"
+      },
+      "native_audit_passed": true,
+      "report_path": "/workspace/scratch/6ce939acb4eb/daily_operating_delivery_20261029/daily_hot_operating_20261028_3c0f8cd_5552c5d/runs/20261029T073818Z_6b581260/owner/daily_hot_test/reports/e4ff6c2ecbc240cfb5ca31d7348da781.json",
+      "status": "COMPLETE",
+      "two_fresh_replays_equal": true
+    },
+    "result": "STOPPED",
+    "stop_reason": "operator_stop",
+    "unmanaged_channels_untouched": [
+      "uni",
+      "focus",
+      "health"
+    ]
+  },
+  "capacity_proof": {
+    "qualification_result": "PASS",
+    "seeded_slots": 9358,
+    "actual_tail_native_acquisitions": 2,
+    "cold_prepare_seconds": 2.0222917010000856,
+    "tail": [
+      {
+        "actual_native_tick_seconds": 0.6441407610000169,
+        "state_prepare_seconds": 0.19223289299998214,
+        "spool_and_check_seconds": 0.17200120999996216,
+        "before_api_gate_seconds": 0.447504
+      },
+      {
+        "actual_native_tick_seconds": 0.6508925699999963,
+        "state_prepare_seconds": 0.1903309750000517,
+        "spool_and_check_seconds": 0.17753494799990222,
+        "before_api_gate_seconds": 0.451098
+      }
+    ],
+    "actual_elapsed_tick_clock": true,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "first_replay": {
+      "events": 11703,
+      "sequence_sha256": "0257371b7411de6621a43d7c8dd559b9335d77a78f2cdc9d61583237a7791af2"
+    },
+    "full_session_executed": false,
+    "provider_capacity_qualified": false,
+    "full_day_capacity_qualified": false,
+    "owned_cold_startup": {
+      "result": "PASS",
+      "original_progress_deadline_seconds": 3,
+      "job_to_first_native_work_seconds": 2.625021,
+      "synthetic_sdk_only": true
+    },
+    "table_counts": {
+      "poll_run": 5,
+      "sampling_membership_revision": 3,
+      "sampling_channel_revision": 9,
+      "sampling_channel_member": 1883,
+      "poll_slot_skip": 0,
+      "quote_acquisition": 11700,
+      "quote_observation": 542099
+    }
+  },
+  "recovery_proof": {
+    "audit_through_utc": "2026-10-30T14:00:24+00:00",
+    "contract": "daily-owned-recovery-proof-v1",
+    "fault_at_utc": "2026-10-30T10:00:06.184495-04:00",
+    "full_day_capacity_qualified": false,
+    "intentional_hold_slots_not_backfilled": true,
+    "intentional_missing_slot_ids": [
+      "hot:2026-10-30T10:00:08-04:00",
+      "hot:2026-10-30T10:00:12-04:00",
+      "hot:2026-10-30T10:00:14-04:00",
+      "hot:2026-10-30T10:00:16-04:00",
+      "hot:2026-10-30T10:00:18-04:00",
+      "hot:2026-10-30T10:00:22-04:00"
+    ],
+    "minimum_hold_seconds": 15,
+    "native_hot_acquisitions": 2,
+    "provider_calls": 2,
+    "raw_native_audit_passed": false,
+    "replacement_crossed_launch_slot": true,
+    "replacement_hold_seconds": 15.020337,
+    "replacement_schedule": {
+      "configuration_sha256": "5772b7017b1e3f0f0d32f3d905d5a96b5c459fc41c2decb48cf5946fdc87d61c",
+      "contract": "daily-hot-worker-schedule-v1",
+      "first_scheduled_slot_utc": "2026-10-30T14:00:24+00:00",
+      "generation": 2,
+      "invocation": "2cd8e52d96a946d090eb65d9be3b307e",
+      "launch_first_eligible_slot_utc": "2026-10-30T14:00:22+00:00",
+      "resume_after_utc": "2026-10-30T14:00:21.246628+00:00",
+      "selected_at_utc": "2026-10-30T14:00:22.183430+00:00",
+      "token": "553876bc118f4903ae3233b9ddbe633d"
+    },
+    "result": "PASS",
+    "saved_response_not_requested_again": true,
+    "starts": [
+      {
+        "exit_observed_at_utc": "2026-10-30T14:00:06.227238+00:00",
+        "generation": 1,
+        "invocation": "2cd8e52d96a946d090eb65d9be3b307e",
+        "reserved_at_utc": "2026-10-30T14:00:00.396729+00:00",
+        "token": "98af101165154b32aeadca89a43b4789"
+      },
+      {
+        "exit_observed_at_utc": null,
+        "generation": 2,
+        "invocation": "2cd8e52d96a946d090eb65d9be3b307e",
+        "reserved_at_utc": "2026-10-30T14:00:21.247575+00:00",
+        "token": "553876bc118f4903ae3233b9ddbe633d"
+      }
+    ],
+    "synthetic_sdk_only": true,
+    "two_fresh_replays_equal": true,
+    "unexplained_gaps": 0,
+    "worker_starts": 2
+  },
+  "remaining": [
+    "Windows result and actual CMD prompt return",
+    "Provider capacity and deployment/rollback review; explicit settings/activation approval",
+    "Controlled live automatic Hot observation, followed closely by manual membership and read-only Overlay"
+  ]
+}
+Saved report: /workspace/scratch/6ce939acb4eb/daily_operating_delivery_20261029/daily_hot_operating_20261028_3c0f8cd_5552c5d/runs/20261029T073818Z_6b581260/verification.json

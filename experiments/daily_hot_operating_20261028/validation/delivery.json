@@ -1,0 +1,43 @@
+{
+  "contract": "daily-hot-operating-delivery-v1",
+  "source": {
+    "coordinator_commit": "3c0f8cde268160277e2ad426dfe7f8cf655197ac",
+    "coordinator_public_equivalent": "ae7fafbc8071de1a8f2de348163f05c4f0180e3a",
+    "coordinator_tree": "d55d680b80216073e093b7002b2d050d3fb25ef5",
+    "native_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "native_tree": "2f4cf454bd151d2cd353e2b6b77c4a83db68c60f",
+    "native_publication": false
+  },
+  "artifact": {
+    "filename": "daily_hot_operating_20261028_3c0f8cd_5552c5d.zip",
+    "bytes": 836946,
+    "sha256": "5a5806e767f5911b0c9eb4b8fa0b81db37d17142c45e167bbc622bedd2477fc2"
+  },
+  "qualification": {
+    "result": "PASS",
+    "tests": 134,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 124.80452445200035,
+    "platform": "linux",
+    "windows_accepted": false,
+    "extracted_checks": 3,
+    "extracted_path_contains_spaces": true,
+    "source_inventory_pre_post_verified": true,
+    "extra_or_changed_source_refused_before_imports": true
+  },
+  "scope": {
+    "synthetic_only": true,
+    "network": "denied",
+    "actual_vault_access": false,
+    "actual_broker_sdk_used": false,
+    "full_day_capacity_qualified": false,
+    "provider_capacity_qualified": false,
+    "production_changes": false,
+    "production_hot_enabled": false,
+    "settings_adopted": false,
+    "live_launcher_or_installer_included": false
+  },
+  "next": "Windows command 63, final JSON and actual CMD prompt; provider/deployment/rollback/settings/activation review follows."
+}
