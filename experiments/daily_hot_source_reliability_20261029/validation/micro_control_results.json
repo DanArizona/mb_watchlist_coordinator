@@ -1,0 +1,42 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "records": [
+    {
+      "mode": "off",
+      "returncode": 0,
+      "elapsed_seconds": 2.038112047999988,
+      "stdout": "completed\n",
+      "stderr": "",
+      "dump_bytes": 0,
+      "dump_tail": ""
+    },
+    {
+      "mode": "on",
+      "returncode": 0,
+      "elapsed_seconds": 2.042115102999986,
+      "stdout": "completed\n",
+      "stderr": "",
+      "dump_bytes": 7931862,
+      "dump_tail": "dex-primary-runtime/dependencies/python/lib/python3.12/threading.py\", line 1012 in run\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/threading.py\", line 1075 in _bootstrap_inner\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/threading.py\", line 1032 in _bootstrap\n\nThread 0x00007f836caa1740 (most recent call first):\n  File \"/workspace/scratch/6ce939acb4eb/hot_windows67_87ab13e4_analysis/faulthandler_control.py\", line 16 in <module>\n"
+    },
+    {
+      "mode": "off",
+      "returncode": 0,
+      "elapsed_seconds": 2.037612629999984,
+      "stdout": "completed\n",
+      "stderr": "",
+      "dump_bytes": 0,
+      "dump_tail": ""
+    },
+    {
+      "mode": "on",
+      "returncode": 0,
+      "elapsed_seconds": 2.0445935340000005,
+      "stdout": "completed\n",
+      "stderr": "",
+      "dump_bytes": 7809371,
+      "dump_tail": "dex-primary-runtime/dependencies/python/lib/python3.12/threading.py\", line 1012 in run\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/threading.py\", line 1075 in _bootstrap_inner\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/threading.py\", line 1032 in _bootstrap\n\nThread 0x00007fb7aeab4740 (most recent call first):\n  File \"/workspace/scratch/6ce939acb4eb/hot_windows67_87ab13e4_analysis/faulthandler_control.py\", line 16 in <module>\n"
+    }
+  ],
+  "scope": "CPython upstream-style code-metadata churn reproducer, not the Hot workload or proof of the exact Windows crash origin"
+}

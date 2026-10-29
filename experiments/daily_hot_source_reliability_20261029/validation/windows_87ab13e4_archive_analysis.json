@@ -1,0 +1,252 @@
+{
+  "contract": "daily-hot-windows-native-exit-archive-analysis-v1",
+  "input_library_file_id": "libfile_e9aafe2ed7288191af024afae1d9d933",
+  "archive_sha256": "f29a36115fdbec479a6514555935c316868a04c894d67a9069ae7e1ee50f000f",
+  "archive_bytes": 68680,
+  "entries": 77,
+  "original_closed_state_path_bindings_preserved": true,
+  "rebound_or_adopted_as_runtime": false,
+  "read_only_checks": [
+    {
+      "path": "daily_hot_test/daily-feed.sqlite3",
+      "quick_check": [
+        "ok"
+      ],
+      "sha256": "1bf29fcef4bc860c7d8a01048fbc542364ecfefd75997df56193224c2c78c844",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/daily-source.sqlite3",
+      "quick_check": [
+        "ok"
+      ],
+      "sha256": "ecadf8582d29aa9b58f4356943ffb187d81e3bc911ca00d2da211cd36715ed2d",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/delivery.sqlite3",
+      "quick_check": [
+        "ok"
+      ],
+      "sha256": "a2ff97138c7b86abe0ea5cdcd926c5db3568731e39853f5b547e03b59c6b47cf",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/identity.sqlite3",
+      "quick_check": [
+        "ok"
+      ],
+      "sha256": "d30d38d0ed47eaa6b615ce5883d7c21ec424cb130b31b52a0ff2ebde9e8d198c",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/live.sqlite3",
+      "quick_check": [
+        "ok"
+      ],
+      "sha256": "7ff0f9f379cee412a652ade8937dbe54467317d3f021fa950671d8aaad6e2c87",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/publication.sqlite3",
+      "quick_check": [
+        "ok"
+      ],
+      "sha256": "9a9e1db39ea6b79922b7bd1b46e4cfdd509d4810fab71bc42f5cc87138622ca6",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/recovery.sqlite3",
+      "quick_check": [
+        "ok"
+      ],
+      "sha256": "4d61a37c366b008efb8d0195c5c8fffe5b11a902edfc92d1e9268ab91568ddea",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/requests.sqlite3",
+      "quick_check": [
+        "ok"
+      ],
+      "sha256": "1635c49f0445459b535873d6cfa2da6b493b551379fd9cea38b98e51538b9f70",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.hot.poller.sqlite3",
+      "quick_check": [
+        "ok"
+      ],
+      "sha256": "7cdb82ffa1f83312556c78b5bddf8eae3a87dbe4758d8d45505a56f7b731a197",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.sqlite3",
+      "quick_check": [
+        "ok"
+      ],
+      "sha256": "90d460e83c2550c73c2cd8d34a6c6e8b6b31bb0af3b02fcf689bd5f8ffbacdc7",
+      "bytes_unchanged": true
+    }
+  ],
+  "files_sha256": {
+    "catalog/catalog.json": "d6e7acba438c4d3e954943b581c3b782e56bc2aa0db0ed75edc002faa7edeb11",
+    "catalog/nasdaq.txt": "bf330ba02eddd0405654c23b48f94558b6e86d3f7143178af4d697950493afa2",
+    "catalog/other.txt": "5de59ac9e2d2dd3ee0c20b0d4b9c186fc2332b45c71ebfeea1ff904ba9db9098",
+    "collector-thread-stacks.log": "018b1e505acb87f1820af55b5653a9434eb9886d4b7ab0831f26e71ef09f0914",
+    "daily_hot_test/HOT_STATUS.txt": "0d184169c9edf71343afd77cb7474eb00fb42ae7ce4b2216233a8a132a2bf5ab",
+    "daily_hot_test/c8155a58daab40c58f906c035ed0a336.identity.json": "a9df84b85cc595cf752087cfe22a9ff3af6e81512030cd8253d50b3a3e88ebf7",
+    "daily_hot_test/c8155a58daab40c58f906c035ed0a336.ready.json": "c96f8a5701187706ae1bd5c786aeeebd359804e91682c90cf9674e0b866f5f5a",
+    "daily_hot_test/c8155a58daab40c58f906c035ed0a336.request.json": "3691ab4569023a810167bcff4cfab7863f4be8ebe50040def9b00bcab0fee4a6",
+    "daily_hot_test/c8155a58daab40c58f906c035ed0a336.stop": "268d7bbe81d236d6dcda201b7b27fbc204e99f908fbfa203b528d9818158f218",
+    "daily_hot_test/daily-feed.controller.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "daily_hot_test/daily-feed.network.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "daily_hot_test/daily-feed.sqlite3": "1bf29fcef4bc860c7d8a01048fbc542364ecfefd75997df56193224c2c78c844",
+    "daily_hot_test/daily-source-ready.json": "f90688e0152ebb6df2707dedeb59a83386ae43f4320438cfa94ab21b9b606ce0",
+    "daily_hot_test/daily-source.owner.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "daily_hot_test/daily-source.sqlite3": "ecadf8582d29aa9b58f4356943ffb187d81e3bc911ca00d2da211cd36715ed2d",
+    "daily_hot_test/daily-worker.json": "278f08f18e253a17b56cccce72a96f8efee1587f7f76f9f0d458aa921f58ebd4",
+    "daily_hot_test/delivery.sqlite3": "a2ff97138c7b86abe0ea5cdcd926c5db3568731e39853f5b547e03b59c6b47cf",
+    "daily_hot_test/driver-binding.json": "c28149b967e78b91178d7e915861aa499d32a270b4ada6ff775768549b9404d0",
+    "daily_hot_test/driver-live.json": "c9cf839a4f5cd38886f4a6c218f5eac1e9e3f06875637d5a7dfbc11eca81d485",
+    "daily_hot_test/driver-owner.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "daily_hot_test/driver-state.json": "a0e2165f7f3e763713bdcbae255e80a1b09fe2ce6ebaaef04603764ea3f03c63",
+    "daily_hot_test/driver-state.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "daily_hot_test/driver-stop.json": "b2553d5d1d6491c71e699ca3b5cb29d488d3b472e7503085128197b0db7e9bc5",
+    "daily_hot_test/hot-incidents.json": "86fa5a4e1dee01710bba319e202fc8ff66b40b82810a9ed50970709b8c7ae0fa",
+    "daily_hot_test/hot-status.json": "5d15c33020d7ff44ef9c1147131f277da9ae2b0c758963adce99772e16cf6c87",
+    "daily_hot_test/identity-owner.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "daily_hot_test/identity.identity-owner.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "daily_hot_test/identity.sqlite3": "d30d38d0ed47eaa6b615ce5883d7c21ec424cb130b31b52a0ff2ebde9e8d198c",
+    "daily_hot_test/live.sqlite3": "7ff0f9f379cee412a652ade8937dbe54467317d3f021fa950671d8aaad6e2c87",
+    "daily_hot_test/publication.sqlite3": "9a9e1db39ea6b79922b7bd1b46e4cfdd509d4810fab71bc42f5cc87138622ca6",
+    "daily_hot_test/publication.sqlite3.owner.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "daily_hot_test/recovery.sqlite3": "4d61a37c366b008efb8d0195c5c8fffe5b11a902edfc92d1e9268ab91568ddea",
+    "daily_hot_test/reports/1396d637db2c44dd86517f4e87de0c56.job.json": "08561575214d00f0dbcde639735ccf951a03c1d7e20d76b4a8a067b5835ab4e8",
+    "daily_hot_test/reports/1396d637db2c44dd86517f4e87de0c56.json": "82d0ddb6d7d2ab8c3d1919129a782cf13cc1bb5e1c337bb9a0cc0771d994cc5e",
+    "daily_hot_test/requests.sqlite3": "1635c49f0445459b535873d6cfa2da6b493b551379fd9cea38b98e51538b9f70",
+    "daily_hot_test/session.json": "8ff52ebc42dd1a13e46a2444e868c5d2b3639cf3b6047e1f95b76fbb682ada7f",
+    "daily_hot_test/status.json": "689170731703f0ada522c0fa702f8f4a4d8d27caeb3ec8eac2b2861e5ece5f3f",
+    "daily_hot_test/workers/10206ff8c52b4f9bbbf82b5ebef3415c.auth.json": "0970084ccc7bab29ecc12c7ab4e2f87e489cfd60b7eb0ab50018d48cb0647a71",
+    "daily_hot_test/workers/10206ff8c52b4f9bbbf82b5ebef3415c.exit.json": "d6448b975559092a34651eafef650dc031834635dc0db61f7a821826a99257d0",
+    "daily_hot_test/workers/10206ff8c52b4f9bbbf82b5ebef3415c.heartbeat.json": "e1c9cbbef196cddfe405508059a3f5ffb00f349a7b4e989e0c2c5701956936fb",
+    "daily_hot_test/workers/10206ff8c52b4f9bbbf82b5ebef3415c.job.json": "47dfc4feecfbd11acafaa6e63c5bb89e4bc887b6168adb9b5292b00abedfc047",
+    "daily_hot_test/workers/10206ff8c52b4f9bbbf82b5ebef3415c.schedule.json": "60e5e84ad6c2e58e6516678630bd00f9b09c42fde8c11b906cab6700e5b030b7",
+    "daily_hot_test/workers/10206ff8c52b4f9bbbf82b5ebef3415c.startup.json": "4d0a0e1be5171d4635479678eb6235ba51a0f14fc12dcd4edb2904f15dbcd6f3",
+    "daily_hot_test/workers/36b877ef35144067bdc2498878e9bf98.auth.json": "bae59945b584e2dcd95f9a1f2b2143a000ff68e2cbf5066ac2047cc5489ab157",
+    "daily_hot_test/workers/36b877ef35144067bdc2498878e9bf98.exit.json": "9bd9bf14fc82fcb3d13c6347c0fcb1180cc5085e2acb8ec59e1f1fd1d522007d",
+    "daily_hot_test/workers/36b877ef35144067bdc2498878e9bf98.heartbeat.json": "a2fdb21b2cb4ac76b944f63eee0b58a972b8cd417bdf3914d64eb3b1663c2d06",
+    "daily_hot_test/workers/36b877ef35144067bdc2498878e9bf98.job.json": "bcfa3d54b0f368576881a8a03bb59c640053ad254dcc4578a1ee09af3f2e0fbf",
+    "daily_hot_test/workers/36b877ef35144067bdc2498878e9bf98.schedule.json": "9016771930ceed6abc00fbc38679b842c75c2a6d72973bcb1fedec12ec3061f0",
+    "daily_hot_test/workers/36b877ef35144067bdc2498878e9bf98.startup.json": "ed3a2a38195d7648be68bc03c71770090a50aa1528e32ee3098f8722a9bb1eae",
+    "daily_hot_test/workers/36b877ef35144067bdc2498878e9bf98.stop": "5a15dba0aedbf78452099ae6908546c92ec3083a077665ab1aa72a183d96ba8a",
+    "daily_hot_test/workers/worker.json": "bcfa3d54b0f368576881a8a03bb59c640053ad254dcc4578a1ee09af3f2e0fbf",
+    "daily_hot_test/workers/worker.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "daily_outer_test/STOP.json": "47d9502b1f173348b1936f94dacf52887dc218ce6fa49666e23c038af3cdb174",
+    "daily_outer_test/configuration.json": "278f08f18e253a17b56cccce72a96f8efee1587f7f76f9f0d458aa921f58ebd4",
+    "daily_outer_test/controller-status.json": "79d8f0322f76d6cb6924b3e7c9c3803c467c3f50ea1c6fd921dccd412114f93b",
+    "daily_outer_test/controller-thread-stacks.log": "dbe8f26d68a5b36d944e2b82b9e726f293104531b4d599618c1173fdc7844500",
+    "daily_outer_test/operating-binding.json": "98d3cf36bdbdc0346b61af9e7e890401891ee902824b0936ae619e6e2a21eae1",
+    "daily_outer_test/operating-live.json": "89de91867b971444dfdd6f6d2bb9c8830b79674c6c8babafc09d05adeaf306e9",
+    "daily_outer_test/operating-owner.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "daily_outer_test/operating-result.json": "8ce54d74314687617ade8ed1998f1ec00502934709e88ba9339b03b634f11e87",
+    "daily_outer_test/test-owned-controller-finally.json": "25ee4dc4a9e54e8c0229eb7a06a06682070d5d0621d378faa46a3ab7cade627f",
+    "daily_outer_test/test-owned-controller.json": "f6d67d911072ae38e97ea18db85df9a875a5496380237488b0777cffd206dc3e",
+    "identity-thread-stacks.log": "57fec3c89efae81d3bb28870f01576f4a0ed81506cdd3846581927fffd8f3b6f",
+    "outer-scene.json": "46bcd3e15b132daf347ebea79cb37cbb677ca8eafc8e483a9757842b78c464f2",
+    "process-events.jsonl": "c79900a21232ed66e7083570ec633d5c565a4f735131d5f2969e3d4daf78032f",
+    "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.daily-feed-session.json": "2b74043bbeb8734ba76f1c672fcf3fd0c3421ddc4e8e05d6f61281b81179dcce",
+    "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.daily-hot-collector.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.daily-hot-owner.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.daily-hot-session.json": "bb3435007bff9f496a9d6ad1a9d82485a9019528701eee8c9c2653d6567e646f",
+    "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.daily-source-owner.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.hot.poller.daily-collector.json": "d88ddcb85caa2ec5a486d665c2a56ed0c6d0389325c12be2a55a99e28a757624",
+    "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.hot.poller.lock": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.hot.poller.sqlite3": "7cdb82ffa1f83312556c78b5bddf8eae3a87dbe4758d8d45505a56f7b731a197",
+    "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.sqlite3": "90d460e83c2550c73c2cd8d34a6c6e8b6b31bb0af3b02fcf689bd5f8ffbacdc7",
+    "r0.json": "1c3c998c157305043df225ef0c783b5965bce8cb6a21eeef73ee9cd37231d055",
+    "r1.json": "62359e89e6b9ee3d9ae877296b16de826c39d0d59b95689a8be3e42e1a148e64",
+    "scenario.json": "4657fb52653218250f3c5209c966f445d67ae1ca5dbfdc304e4fd90e8e46bc6d"
+  },
+  "first_collector": {
+    "returncode": 3221225477,
+    "returncode_hex": "0xc0000005",
+    "last_heartbeat_utc": "2026-10-30T14:00:10.985601+00:00",
+    "exit_observed_utc": "2026-10-30T14:00:12.680442+00:00",
+    "age_seconds_at_observation": 1.694841,
+    "normal_watchdog_exit": 124,
+    "native_crash_confirmed": true
+  },
+  "identity": {
+    "periodic_log_bytes": 118,
+    "log_ends_mid_frame": true,
+    "exact_exit_status_not_retained": true,
+    "request_reserved_at_utc": "2026-10-30T14:01:02.775485+00:00",
+    "decision_at_utc": "2026-10-30T14:01:02.790844+00:00",
+    "code": "provider_stop_required",
+    "transport": "authorization_required",
+    "response": null,
+    "elapsed_seconds": 0.0,
+    "synthetic_quote_calls_recorded": 0,
+    "worker_already_dead_is_inference": true
+  },
+  "feed": {
+    "attempts": 2,
+    "both_valid": true,
+    "unknown": false,
+    "current_finished_utc": "2026-10-30T14:00:01.162988+00:00",
+    "history_finished_utc": "2026-10-30T14:01:02.260291+00:00"
+  },
+  "native_journal": {
+    "poll_run": 4,
+    "membership_revisions": 2,
+    "acquisitions": 0,
+    "observations": 0,
+    "empty_skips": 15
+  },
+  "hypothesis": "Test-only asynchronous periodic native stack dumping may be crashing the interpreter; exact native fault origin remains unproven.",
+  "micro_control": "Two tracing-on and two tracing-off two-second metadata-churn processes all exited zero on local Python 3.12.14; not a reproduction or disproof.",
+  "local_paced_control": {
+    "result": "PASS",
+    "test_seconds": 126.538,
+    "report_seconds": 126.57487590299996,
+    "attempts": 3,
+    "native_acquisitions": 26,
+    "acquisitions_after_reconciliation": 2,
+    "worker_starts": 1,
+    "source_reconciled": true,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "replay_events": 29,
+    "replay_sha256": "3729aa65008c192f82f836d5dc42352be6a2ff96d42200affe4b855bc55fe0be",
+    "cleanup_seconds": 0.06235593200000267,
+    "runtime_unchanged": true,
+    "periodic_stack_dumps": false,
+    "windows_result": "PENDING",
+    "helper_sha256": "8f51e7886fd7f73f4853d959082c0af469eacbc6c1bef48432baa63809756b81"
+  },
+  "references": [
+    {
+      "url": "https://learn.microsoft.com/en-us/shows/inside/c0000005",
+      "supports": "0xC0000005 denotes access violation; does not identify this faulting module"
+    },
+    {
+      "url": "https://github.com/python/cpython/issues/140815",
+      "supports": "Upstream periodic faulthandler native crash report; not proof of this Windows/3.12.13 incident"
+    },
+    {
+      "url": "https://github.com/python/cpython/issues/116008",
+      "supports": "Related upstream native crash while writing File frame output; different reported version/OS"
+    },
+    {
+      "url": "https://docs.python.org/3.12/library/faulthandler.html",
+      "supports": "Periodic stack-dump timer behavior"
+    }
+  ],
+  "runtime_changes": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "original_windows_command67_result": "FAILED",
+  "old_io_cause_resolved": false,
+  "old_ledger_change_actor_identified": false,
+  "next": "One Windows control of the original paced proof with two test-only periodic stack flags disabled in memory; no unchanged 49-check/capacity/recovery repeat."
+}

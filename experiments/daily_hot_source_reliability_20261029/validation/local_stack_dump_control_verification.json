@@ -1,0 +1,130 @@
+{
+  "contract": "daily-hot-periodic-stack-dump-control-v1",
+  "result": "PASS",
+  "tests": 1,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 126.57487590299996,
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "windows_control_passed": false,
+  "source": {
+    "coordinator_commit": "2f56703904db10cf6c47e410f350f60cfa03656f",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "66fc48d4c4376a1ea0892835a21b393180acb2adb5120306b4bb5929b5979d62",
+  "original_test_source_sha256": "91c87dc7974a47e3a6e0b32ced6850b4b6862109891c22a5814d2b31cd70d706",
+  "changed_test_only_flags": [
+    {
+      "scenario": "scene",
+      "line": 126
+    },
+    {
+      "scenario": "auth_scene",
+      "line": 127
+    }
+  ],
+  "periodic_stack_dumps": false,
+  "unexpected_stack_files": [],
+  "original_source_files_unchanged": true,
+  "runtime_changes": false,
+  "original_windows_command67_result": "FAILED",
+  "original_windows_command67_passed": 49,
+  "original_windows_command67_tests": 50,
+  "root_cause_proven": false,
+  "control_scope": "test instrumentation isolation; one pass alone does not prove the precise native crash cause",
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "live_launch_available": false,
+  "operating_release_qualified": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false,
+  "paced_proof": {
+    "contract": "daily-paced-source-owned-collection-proof-v1",
+    "result": "PASS",
+    "network": "denied",
+    "synthetic_sdk_only": true,
+    "actual_vault_access": false,
+    "provider_capacity_qualified": false,
+    "full_day_capacity_qualified": false,
+    "owner": {
+      "contract": "daily-hot-operating-owner-v1",
+      "nonce": "afa4b5ae56d54dd7adb665b803b6c3fe",
+      "configuration_sha256": "0afe94f9a614ed23d4232ac25103bd71032eadb482d6296292c5895e1354cf57",
+      "stop_reason": "operator_stop",
+      "result": "STOPPED",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      },
+      "cleanup_seconds": 0.06235593200000267,
+      "acquisition_stop_requested_at_utc": "2026-10-30T14:02:06.194360+00:00",
+      "reporting": {
+        "status": "COMPLETE",
+        "report_path": "/tmp/tmpm3e1vg63/daily_hot_test/reports/09a530b22919430795bbe61636dcccfd.json",
+        "native_audit_passed": true,
+        "two_fresh_replays_equal": true,
+        "first_replay": {
+          "events": 29,
+          "sequence_sha256": "3729aa65008c192f82f836d5dc42352be6a2ff96d42200affe4b855bc55fe0be"
+        },
+        "cleanup": {
+          "status": "EXIT_OBSERVED",
+          "backend": "posix_process_group",
+          "scope_empty_observed": true,
+          "forced": false,
+          "controller_returncode": 0,
+          "reason": null
+        }
+      },
+      "failure_type": null,
+      "unmanaged_channels_untouched": [
+        "uni",
+        "focus",
+        "health"
+      ],
+      "full_day_capacity_qualified": false,
+      "production_activation_inferred": false
+    },
+    "elapsed_seconds": 126.44011705899999,
+    "cutover": {
+      "observed_at_utc": "2026-10-30T14:02:03.420006+00:00",
+      "source_status": "READY_WITH_GAPS",
+      "acquisitions": 24,
+      "elapsed_seconds": 123.370543097
+    },
+    "source_attempts": 3,
+    "source_query_ids": [
+      "CURRENT",
+      "nasdaq-query-4c3b5d041fbf05918cce026ddc259abd0c8ccd935b107d341ab92daa6d32f4e2",
+      "CURRENT"
+    ],
+    "completion_to_next_start_seconds": [
+      60.782815,
+      60.955067
+    ],
+    "identity_quote_permits": 1,
+    "native_hot_acquisitions": 26,
+    "acquisitions_after_reconciliation": 2,
+    "worker_starts": 1,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "source_reconciled": true,
+    "actual_elapsed_pacing": true,
+    "production_changes": false,
+    "max_observer_scheduling_gap_seconds": 0.034625994999998966
+  }
+}

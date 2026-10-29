@@ -1,5 +1,40 @@
 # Source reliability development — resumed October 29
 
+Complete Windows archive now read (libfile_e9aafe2ed7288191af024afae1d9d933;
+68680 bytes; SHA-256 f29a36115fdbec479a6514555935c316868a04c894d67a9069ae7e1ee50f000f).
+Ten copied SQLite databases pass read-only immutable quick_check with unchanged
+hashes; no path binding was adopted or repaired. First collector exit receipt
+is returncode 3221225477 = 0xC0000005, a native access violation, not watchdog
+124; its final heartbeat was only 1.694841 seconds old at observed exit. The
+identity diagnostic log stops after 118 bytes, mid-File frame at its first
+periodic dump. Both CURRENT and history responses are valid. Identity request
+at 14:01:02.775485Z immediately records authorization_required/provider_stop_required,
+no response and no logged quote; earlier identity-child death is a strong
+inference, but its exact exit code was discarded. This leads to the saved
+IdentityStopRequired, then the misleading downstream outer stale label.
+
+Test-only asynchronous periodic native stack dumping is now a strong suspect,
+not a proven exact native fault origin. Related CPython crash reports are
+linked in validation/windows_87ab13e4_archive_analysis.json; do not declare the
+same bug/version or a hardware/SQLite/provider cause. A separate local metadata
+churn micro-control did NOT reproduce a crash: two short tracing-on and two
+tracing-off runs all exited zero, retained as inconclusive evidence.
+
+One controlled original full paced test, changing only the two trace_stacks
+flags to false in memory, PASSED locally in 126.538 seconds. Original packet
+files/inventory and all runtime/assertions/deadlines remain unchanged. Three
+valid attempts, READY_WITH_GAPS, 26 Hot acquisitions/two after reconciliation,
+one identity permit/one worker start, native audit PASS and matching 29-event
+replays (3729aa65008c192f82f836d5dc42352be6a2ff96d42200affe4b855bc55fe0be),
+cleanup .062356 seconds; no thread-stack files. Windows control remains pending.
+Prepare the small command-68 helper, which uses the existing verified 2f56703
+packet and runs only this control. Original command 67 remains FAILED 49/50;
+a control pass alone is not whole operating-release qualification or precise
+native crash causality. No runtime edit, timeout relaxation, production Python
+upgrade, full-size/recovery repeat, installation or activation is included.
+
+Earlier chronology follows.
+
 New saved-state attachment identifies controller error IdentityStopRequired,
 terminal daily_inputs_or_source_failed and stop 14:01:02.829912Z. Driver-live
 then records STOPPING at 02.835425Z; outer stop at 02.842957Z is later. Thus

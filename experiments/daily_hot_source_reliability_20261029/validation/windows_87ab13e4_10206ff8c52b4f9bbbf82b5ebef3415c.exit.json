@@ -1,0 +1,1 @@
+{"observed_at_utc":"2026-10-30T10:00:12.680442-04:00","pid":31432,"reason":"exited_before_health_check","returncode":3221225477,"startup_handoff":{"status":"delivered"},"stderr_limit_bytes":8192,"stderr_tail":"","token":"10206ff8c52b4f9bbbf82b5ebef3415c"}

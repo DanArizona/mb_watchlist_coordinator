@@ -1,0 +1,5 @@
+{"role": "identity", "event": "constructed", "at": "2026-10-30T10:00:00.848905-04:00"}
+{"role": "collector", "event": "constructed", "at": "2026-10-30T10:00:01.232941-04:00"}
+{"role": "collector", "event": "constructed", "at": "2026-10-30T10:00:28.087875-04:00"}
+{"role": "collector", "event": "closed", "at": "2026-10-30T10:01:02.808346-04:00"}
+{"role": "collector", "event": "failed:ValueError:no_code", "at": "2026-10-30T10:01:02.810959-04:00"}
