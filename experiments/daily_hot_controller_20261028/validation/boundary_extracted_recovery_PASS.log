@@ -1,0 +1,60 @@
+test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 24.366s
+
+OK
+{
+  "audit_through_utc": "2026-10-29T14:00:24+00:00",
+  "contract": "daily-owned-recovery-proof-v1",
+  "fault_at_utc": "2026-10-29T10:00:06.180603-04:00",
+  "full_day_capacity_qualified": false,
+  "intentional_hold_slots_not_backfilled": true,
+  "intentional_missing_slot_ids": [
+    "hot:2026-10-29T10:00:08-04:00",
+    "hot:2026-10-29T10:00:12-04:00",
+    "hot:2026-10-29T10:00:14-04:00",
+    "hot:2026-10-29T10:00:16-04:00",
+    "hot:2026-10-29T10:00:18-04:00",
+    "hot:2026-10-29T10:00:22-04:00"
+  ],
+  "minimum_hold_seconds": 15,
+  "native_hot_acquisitions": 2,
+  "provider_calls": 2,
+  "raw_native_audit_passed": false,
+  "replacement_crossed_launch_slot": true,
+  "replacement_hold_seconds": 15.034637,
+  "replacement_schedule": {
+    "configuration_sha256": "7c39c96bf0fa134bf3decde9aec93c574299ddac1db929d532dc321c1acb49fa",
+    "contract": "daily-hot-worker-schedule-v1",
+    "first_scheduled_slot_utc": "2026-10-29T14:00:24+00:00",
+    "generation": 2,
+    "invocation": "0f3ed4cd2c3d4fd4ae222d16d05a22cc",
+    "launch_first_eligible_slot_utc": "2026-10-29T14:00:22+00:00",
+    "resume_after_utc": "2026-10-29T14:00:21.224830+00:00",
+    "selected_at_utc": "2026-10-29T14:00:22.287319+00:00",
+    "token": "e62055c4196a482b8f9274a03cb711a3"
+  },
+  "result": "PASS",
+  "saved_response_not_requested_again": true,
+  "starts": [
+    {
+      "exit_observed_at_utc": "2026-10-29T14:00:06.191111+00:00",
+      "generation": 1,
+      "invocation": "0f3ed4cd2c3d4fd4ae222d16d05a22cc",
+      "reserved_at_utc": "2026-10-29T14:00:00.330875+00:00",
+      "token": "1d51093bcd5f418bab510f929e93501c"
+    },
+    {
+      "exit_observed_at_utc": null,
+      "generation": 2,
+      "invocation": "0f3ed4cd2c3d4fd4ae222d16d05a22cc",
+      "reserved_at_utc": "2026-10-29T14:00:21.225748+00:00",
+      "token": "e62055c4196a482b8f9274a03cb711a3"
+    }
+  ],
+  "synthetic_sdk_only": true,
+  "two_fresh_replays_equal": true,
+  "unexplained_gaps": 0,
+  "worker_starts": 2
+}

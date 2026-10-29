@@ -1,0 +1,20 @@
+test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold) ... ERROR
+
+======================================================================
+ERROR: test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/daily_controller_boundary_extracted/path with spaces/daily_hot_controller_20261028_53ec1fd_3cc91eb/coordinator/tests/test_daily_controller.py", line 33, in setUp
+    self.fixture.setUp(); self.addCleanup(self.fixture.doCleanups)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/daily_controller_boundary_extracted/path with spaces/daily_hot_controller_20261028_53ec1fd_3cc91eb/coordinator/tests/test_daily_session.py", line 35, in setUp
+    self.root = Path(proof).resolve(); self.root.mkdir(exist_ok=False)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/6ce939acb4eb/daily_controller_boundary_extracted/path with spaces/daily_hot_controller_20261028_53ec1fd_3cc91eb/runs/targeted-extracted-recovery'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)
