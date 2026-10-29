@@ -1,0 +1,42 @@
+{
+  "contract": "daily-owned-exit-correction-delivery-v1",
+  "artifact": {
+    "filename": "daily_hot_exit_fix_20261029_7cce5c0_5552c5d.zip",
+    "bytes": 827507,
+    "sha256": "37d9f83afe0c78baa1bcba402317a49bcd19617959933473c490c24997fe437d"
+  },
+  "source": {
+    "coordinator_commit": "7cce5c014ecdf654546cd74784706343fa346a44",
+    "coordinator_public_equivalent": "d9da1c613a358eda61a08e1c7416dbda4f7956bd",
+    "coordinator_tree": "a7a0c3ee96518a60e13b7c8b139a76c6f1adbb68",
+    "native_unchanged": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d"
+  },
+  "qualification": {
+    "scope": "15 focused correction checks; prior Windows capacity/owner components retained",
+    "result": "PASS",
+    "tests": 15,
+    "seconds": 36.01564574199983,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "platform": "linux",
+    "windows_accepted": false,
+    "forced_real_lease_exit_gap": true,
+    "replacement_hold_seconds": 15.041575,
+    "unexplained_gaps": 0,
+    "saved_response_not_requested_again": true,
+    "two_fresh_replays_equal": true,
+    "raw_recovery_audit_passed": false,
+    "raw_recovery_audit_note": "Intentional hold/startup gaps remain FAILED in the raw audit",
+    "extracted_changed_checks": 2,
+    "extracted_seconds": 0.747,
+    "path_contains_spaces": true,
+    "pre_post_inventory_verified": true
+  },
+  "original_windows_packet_result": "FAILED 133/134; never relabeled",
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "live_launch_available": false,
+  "provider_capacity_qualified": false,
+  "next": "Windows command 64, final JSON and actual CMD prompt return; no unchanged command-63/capacity repeat."
+}

@@ -1,5 +1,10 @@
 # Daily operating packet ready for Windows — October 29
 
+**Superseded by the supplied command-63 Windows FAILED 133/134 result.**
+Capacity and ownership components passed; see
+`../daily_hot_exit_fix_20261029/HANDOFF.md` for the focused command-64 correction.
+The historical local results below remain unchanged.
+
 This entry supersedes the resource-pause next action. Command 63's immutable
 packet is `daily_hot_operating_20261028_3c0f8cd_5552c5d.zip`, 836,946 bytes,
 SHA-256 `5a5806e767f5911b0c9eb4b8fa0b81db37d17142c45e167bbc622bedd2477fc2`.

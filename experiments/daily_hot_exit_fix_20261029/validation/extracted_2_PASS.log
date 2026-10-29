@@ -1,0 +1,8 @@
+test_exit_between_outer_and_base_polls_cannot_launch_before_original_hold (test_daily_supervision.DailySupervisionTests.test_exit_between_outer_and_base_polls_cannot_launch_before_original_hold) ... ok
+test_alive_owned_child_without_lease_stays_blocked_and_is_not_replaced (test_daily_supervision.DailySupervisionTests.test_alive_owned_child_without_lease_stays_blocked_and_is_not_replaced) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.747s
+
+OK
+{"tests": 2, "passed": true, "skipped": 0, "extracted_path_contains_spaces": true, "pre_and_post_inventory_verified": true}
