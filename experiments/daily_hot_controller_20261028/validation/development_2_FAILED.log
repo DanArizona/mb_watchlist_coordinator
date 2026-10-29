@@ -1,0 +1,402 @@
+test_actual_source_identity_and_native_collection_with_owned_controller (test_daily_controller.DailyControllerTests.test_actual_source_identity_and_native_collection_with_owned_controller) ... ERROR
+test_authentication_alone_does_not_satisfy_native_progress (test_daily_controller.DailyControllerTests.test_authentication_alone_does_not_satisfy_native_progress) ... ERROR
+test_configuration_cannot_silently_adopt_settings_or_widen_worker_limits (test_daily_controller.DailyControllerTests.test_configuration_cannot_silently_adopt_settings_or_widen_worker_limits) ... ok
+test_deleted_worker_registry_stops_collection_without_resetting_starts (test_daily_controller.DailyControllerTests.test_deleted_worker_registry_stops_collection_without_resetting_starts) ... ERROR
+test_feed_unavailability_preserves_verified_membership_and_running_collector (test_daily_controller.DailyControllerTests.test_feed_unavailability_preserves_verified_membership_and_running_collector) ... ERROR
+test_foreign_publication_or_changed_claim_blocks_before_new_provider_calls (test_daily_controller.DailyControllerTests.test_foreign_publication_or_changed_claim_blocks_before_new_provider_calls) ... ERROR
+test_hung_sdk_close_is_bounded_by_owned_process_cleanup (test_daily_controller.DailyControllerTests.test_hung_sdk_close_is_bounded_by_owned_process_cleanup) ... ERROR
+test_identity_authentication_has_the_original_eight_second_bound (test_daily_controller.DailyControllerTests.test_identity_authentication_has_the_original_eight_second_bound) ... ok
+test_interactive_authorization_is_rejected_and_not_saved (test_daily_controller.DailyControllerTests.test_interactive_authorization_is_rejected_and_not_saved) ... ERROR
+test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold) ... ERROR
+test_manual_resume_keeps_original_budgets_and_requires_new_manual_secret (test_daily_controller.DailyControllerTests.test_manual_resume_keeps_original_budgets_and_requires_new_manual_secret) ... ERROR
+test_missing_original_state_cannot_be_automatically_recreated (test_daily_controller.DailyControllerTests.test_missing_original_state_cannot_be_automatically_recreated) ... ERROR
+test_read_only_view_requires_an_explicit_fence (test_daily_controller.DailyControllerTests.test_read_only_view_requires_an_explicit_fence) ... ok
+test_reader_validates_while_the_original_publication_owner_stays_attached (test_daily_controller.DailyControllerTests.test_reader_validates_while_the_original_publication_owner_stays_attached) ... ok
+test_rejected_worker_credentials_do_not_start_a_replacement (test_daily_controller.DailyControllerTests.test_rejected_worker_credentials_do_not_start_a_replacement) ... ERROR
+test_reporter_deadline_targets_only_the_owned_reporter (test_daily_controller.DailyControllerTests.test_reporter_deadline_targets_only_the_owned_reporter) ... ok
+test_saved_status_exposes_source_gaps_without_claiming_feed_readiness (test_daily_controller.DailyControllerTests.test_saved_status_exposes_source_gaps_without_claiming_feed_readiness) ... ERROR
+test_sdk_noise_and_secret_never_enter_saved_runtime_evidence (test_daily_controller.DailyControllerTests.test_sdk_noise_and_secret_never_enter_saved_runtime_evidence) ... ERROR
+test_source_integrity_block_stops_dependent_hot_without_demoting_saved_membership (test_daily_controller.DailyControllerTests.test_source_integrity_block_stops_dependent_hot_without_demoting_saved_membership) ... ERROR
+test_stop_cleans_only_owned_children_and_preserves_membership_and_uni_focus_runs (test_daily_controller.DailyControllerTests.test_stop_cleans_only_owned_children_and_preserves_membership_and_uni_focus_runs) ... ERROR
+test_two_authenticated_owned_roles_start_without_a_provider_quote (test_daily_controller.DailyControllerTests.test_two_authenticated_owned_roles_start_without_a_provider_quote) ... ERROR
+test_unapproved_resume_and_fresh_create_cannot_reset_the_original_budget (test_daily_controller.DailyControllerTests.test_unapproved_resume_and_fresh_create_cannot_reset_the_original_budget) ... ERROR
+test_wrong_credential_horizon_never_reaches_worker_sdk_constructor (test_daily_controller.DailyControllerTests.test_wrong_credential_horizon_never_reaches_worker_sdk_constructor) ... ERROR
+
+======================================================================
+ERROR: test_actual_source_identity_and_native_collection_with_owned_controller (test_daily_controller.DailyControllerTests.test_actual_source_identity_and_native_collection_with_owned_controller)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 148, in test_actual_source_identity_and_native_collection_with_owned_controller
+    self.start(); self.wait(self.running)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_authentication_alone_does_not_satisfy_native_progress (test_daily_controller.DailyControllerTests.test_authentication_alone_does_not_satisfy_native_progress)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 195, in test_authentication_alone_does_not_satisfy_native_progress
+    self.start(mode='auth_hang')
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_deleted_worker_registry_stops_collection_without_resetting_starts (test_daily_controller.DailyControllerTests.test_deleted_worker_registry_stops_collection_without_resetting_starts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 237, in test_deleted_worker_registry_stops_collection_without_resetting_starts
+    self.start(); self.wait(self.running)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_feed_unavailability_preserves_verified_membership_and_running_collector (test_daily_controller.DailyControllerTests.test_feed_unavailability_preserves_verified_membership_and_running_collector)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 254, in test_feed_unavailability_preserves_verified_membership_and_running_collector
+    self.start(); self.wait(self.running)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_foreign_publication_or_changed_claim_blocks_before_new_provider_calls (test_daily_controller.DailyControllerTests.test_foreign_publication_or_changed_claim_blocks_before_new_provider_calls)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 264, in test_foreign_publication_or_changed_claim_blocks_before_new_provider_calls
+    self.start(); self.wait(self.running)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_hung_sdk_close_is_bounded_by_owned_process_cleanup (test_daily_controller.DailyControllerTests.test_hung_sdk_close_is_bounded_by_owned_process_cleanup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 229, in test_hung_sdk_close_is_bounded_by_owned_process_cleanup
+    self.start(mode='close_hang'); self.wait(self.running)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_interactive_authorization_is_rejected_and_not_saved (test_daily_controller.DailyControllerTests.test_interactive_authorization_is_rejected_and_not_saved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 221, in test_interactive_authorization_is_rejected_and_not_saved
+    self.start(mode='authorization')
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 178, in test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold
+    self.start(mode='crash_after_assembled'); self.wait(self.running)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_manual_resume_keeps_original_budgets_and_requires_new_manual_secret (test_daily_controller.DailyControllerTests.test_manual_resume_keeps_original_budgets_and_requires_new_manual_secret)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 275, in test_manual_resume_keeps_original_budgets_and_requires_new_manual_secret
+    self.start(); self.wait(self.running)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_missing_original_state_cannot_be_automatically_recreated (test_daily_controller.DailyControllerTests.test_missing_original_state_cannot_be_automatically_recreated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 298, in test_missing_original_state_cannot_be_automatically_recreated
+    self.start(); self.wait(self.running); self.controller.close(report=False)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_rejected_worker_credentials_do_not_start_a_replacement (test_daily_controller.DailyControllerTests.test_rejected_worker_credentials_do_not_start_a_replacement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 202, in test_rejected_worker_credentials_do_not_start_a_replacement
+    self.start(mode='auth_error')
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_saved_status_exposes_source_gaps_without_claiming_feed_readiness (test_daily_controller.DailyControllerTests.test_saved_status_exposes_source_gaps_without_claiming_feed_readiness)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 103, in test_saved_status_exposes_source_gaps_without_claiming_feed_readiness
+    self.start(); self.wait(self.running)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_sdk_noise_and_secret_never_enter_saved_runtime_evidence (test_daily_controller.DailyControllerTests.test_sdk_noise_and_secret_never_enter_saved_runtime_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 124, in test_sdk_noise_and_secret_never_enter_saved_runtime_evidence
+    self.start(); self.wait(self.running); self.controller.close(report=False)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_source_integrity_block_stops_dependent_hot_without_demoting_saved_membership (test_daily_controller.DailyControllerTests.test_source_integrity_block_stops_dependent_hot_without_demoting_saved_membership)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 244, in test_source_integrity_block_stops_dependent_hot_without_demoting_saved_membership
+    self.start(); self.wait(self.running)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_stop_cleans_only_owned_children_and_preserves_membership_and_uni_focus_runs (test_daily_controller.DailyControllerTests.test_stop_cleans_only_owned_children_and_preserves_membership_and_uni_focus_runs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 112, in test_stop_cleans_only_owned_children_and_preserves_membership_and_uni_focus_runs
+    self.start(); self.wait(self.running)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_two_authenticated_owned_roles_start_without_a_provider_quote (test_daily_controller.DailyControllerTests.test_two_authenticated_owned_roles_start_without_a_provider_quote)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 94, in test_two_authenticated_owned_roles_start_without_a_provider_quote
+    self.start(); self.wait(self.running)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_unapproved_resume_and_fresh_create_cannot_reset_the_original_budget (test_daily_controller.DailyControllerTests.test_unapproved_resume_and_fresh_create_cannot_reset_the_original_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 289, in test_unapproved_resume_and_fresh_create_cannot_reset_the_original_budget
+    self.start(); self.wait(self.running); self.controller.close(report=False)
+    ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+======================================================================
+ERROR: test_wrong_credential_horizon_never_reaches_worker_sdk_constructor (test_daily_controller.DailyControllerTests.test_wrong_credential_horizon_never_reaches_worker_sdk_constructor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 216, in test_wrong_credential_horizon_never_reaches_worker_sdk_constructor
+    self.start(mode='credential_horizon')
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 188, in initialize
+    self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 63, in __init__
+    self.authority=_Authority(session.root/'daily-source.sqlite3',feed_client=self.client,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 27, in __init__
+    if (self.requests.path.resolve() != service.requests.path.resolve()
+                                        ^^^^^^^^^^^^^^^^
+AttributeError: '_ControllerPublication' object has no attribute 'requests'
+
+----------------------------------------------------------------------
+Ran 23 tests in 4.604s
+
+FAILED (errors=18)

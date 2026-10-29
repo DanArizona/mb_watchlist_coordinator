@@ -1,0 +1,108 @@
+test_actual_source_identity_and_native_collection_with_owned_controller (test_daily_controller.DailyControllerTests.test_actual_source_identity_and_native_collection_with_owned_controller) ... FAIL
+test_authentication_alone_does_not_satisfy_native_progress (test_daily_controller.DailyControllerTests.test_authentication_alone_does_not_satisfy_native_progress) ... ok
+test_configuration_cannot_silently_adopt_settings_or_widen_worker_limits (test_daily_controller.DailyControllerTests.test_configuration_cannot_silently_adopt_settings_or_widen_worker_limits) ... ok
+test_deleted_worker_registry_stops_collection_without_resetting_starts (test_daily_controller.DailyControllerTests.test_deleted_worker_registry_stops_collection_without_resetting_starts) ... ok
+test_feed_unavailability_preserves_verified_membership_and_running_collector (test_daily_controller.DailyControllerTests.test_feed_unavailability_preserves_verified_membership_and_running_collector) ... ok
+test_foreign_publication_or_changed_claim_blocks_before_new_provider_calls (test_daily_controller.DailyControllerTests.test_foreign_publication_or_changed_claim_blocks_before_new_provider_calls) ... ok
+test_hung_sdk_close_is_bounded_by_owned_process_cleanup (test_daily_controller.DailyControllerTests.test_hung_sdk_close_is_bounded_by_owned_process_cleanup) ... ok
+test_identity_authentication_has_the_original_eight_second_bound (test_daily_controller.DailyControllerTests.test_identity_authentication_has_the_original_eight_second_bound) ... ok
+test_interactive_authorization_is_rejected_and_not_saved (test_daily_controller.DailyControllerTests.test_interactive_authorization_is_rejected_and_not_saved) ... ok
+test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold) ... ERROR
+test_manual_resume_keeps_original_budgets_and_requires_new_manual_secret (test_daily_controller.DailyControllerTests.test_manual_resume_keeps_original_budgets_and_requires_new_manual_secret) ... ok
+test_missing_original_state_cannot_be_automatically_recreated (test_daily_controller.DailyControllerTests.test_missing_original_state_cannot_be_automatically_recreated) ... ERROR
+test_read_only_view_requires_an_explicit_fence (test_daily_controller.DailyControllerTests.test_read_only_view_requires_an_explicit_fence) ... ok
+test_reader_validates_while_the_original_publication_owner_stays_attached (test_daily_controller.DailyControllerTests.test_reader_validates_while_the_original_publication_owner_stays_attached) ... ok
+test_rejected_worker_credentials_do_not_start_a_replacement (test_daily_controller.DailyControllerTests.test_rejected_worker_credentials_do_not_start_a_replacement) ... ok
+test_reporter_deadline_targets_only_the_owned_reporter (test_daily_controller.DailyControllerTests.test_reporter_deadline_targets_only_the_owned_reporter) ... ok
+test_saved_status_exposes_source_gaps_without_claiming_feed_readiness (test_daily_controller.DailyControllerTests.test_saved_status_exposes_source_gaps_without_claiming_feed_readiness) ... ok
+test_sdk_noise_and_secret_never_enter_saved_runtime_evidence (test_daily_controller.DailyControllerTests.test_sdk_noise_and_secret_never_enter_saved_runtime_evidence) ... ok
+test_source_integrity_block_stops_dependent_hot_without_demoting_saved_membership (test_daily_controller.DailyControllerTests.test_source_integrity_block_stops_dependent_hot_without_demoting_saved_membership) ... ok
+test_stop_cleans_only_owned_children_and_preserves_membership_and_uni_focus_runs (test_daily_controller.DailyControllerTests.test_stop_cleans_only_owned_children_and_preserves_membership_and_uni_focus_runs) ... ok
+test_two_authenticated_owned_roles_start_without_a_provider_quote (test_daily_controller.DailyControllerTests.test_two_authenticated_owned_roles_start_without_a_provider_quote) ... ok
+test_unapproved_resume_and_fresh_create_cannot_reset_the_original_budget (test_daily_controller.DailyControllerTests.test_unapproved_resume_and_fresh_create_cannot_reset_the_original_budget) ... ERROR
+test_wrong_credential_horizon_never_reaches_worker_sdk_constructor (test_daily_controller.DailyControllerTests.test_wrong_credential_horizon_never_reaches_worker_sdk_constructor) ... ok
+
+======================================================================
+ERROR: test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/sampling_service.py", line 76, in owner_lock
+    fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 172, in test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold
+    self.start(mode='crash_after_assembled'); self.wait(self.running)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 66, in start
+    return self.controller.initialize(create=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 175, in initialize
+    self.source.initialize(create=create)
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_source.py", line 89, in initialize
+    self.authority.initialize(create=create)
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 52, in initialize
+    self._validate_dependencies()
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/nasdaq_recovery_supervisor.py", line 116, in _validate_dependencies
+    publication = plain(self.service.snapshot())
+                        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/sampling_service.py", line 276, in snapshot
+    with owner_lock(self.lock_path):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/sampling_service.py", line 78, in owner_lock
+    raise ServiceBusy("Publication authority is already running a cycle") from exc
+mb_watchlist_coordinator.sampling_service.ServiceBusy: Publication authority is already running a cycle
+
+======================================================================
+ERROR: test_missing_original_state_cannot_be_automatically_recreated (test_daily_controller.DailyControllerTests.test_missing_original_state_cannot_be_automatically_recreated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 294, in test_missing_original_state_cannot_be_automatically_recreated
+    with self.assertRaises(FileNotFoundError): self.controller.initialize(manual_resume_approved=True)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 141, in initialize
+    s = self.state.read()
+        ^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_supervision.py", line 79, in read
+    s = unseal(read_json(self.path))
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_supervision.py", line 23, in read_json
+    path = regular_path(path, exists=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_session.py", line 35, in regular_path
+    raise ValueError('Explicit canonical absolute path required')
+ValueError: Explicit canonical absolute path required
+
+======================================================================
+ERROR: test_unapproved_resume_and_fresh_create_cannot_reset_the_original_budget (test_daily_controller.DailyControllerTests.test_unapproved_resume_and_fresh_create_cannot_reset_the_original_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 287, in test_unapproved_resume_and_fresh_create_cannot_reset_the_original_budget
+    self.controller = self.make()
+                      ^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 61, in make
+    return DailyController(self.case.session, self.config, commands=self.commands,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_controller.py", line 79, in __init__
+    session.validate()
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/src/mb_watchlist_coordinator/daily_session.py", line 253, in validate
+    raise ValueError('Attached owned daily session required')
+ValueError: Attached owned daily session required
+
+======================================================================
+FAIL: test_actual_source_identity_and_native_collection_with_owned_controller (test_daily_controller.DailyControllerTests.test_actual_source_identity_and_native_collection_with_owned_controller)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 150, in test_actual_source_identity_and_native_collection_with_owned_controller
+    self.assertEqual(len(self.provider_calls('identity')), 1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 23 tests in 27.772s
+
+FAILED (failures=1, errors=3)
