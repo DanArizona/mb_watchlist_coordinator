@@ -1,0 +1,52 @@
+{
+  "contract": "daily-controller-resumed-development-v1",
+  "status": "DEVELOPMENT_CHECKS_COMPLETE_FORMAL_PACKET_PENDING",
+  "supersedes_pause": "PAUSED_HANDOFF.md is an unchanged historical checkpoint; user directly requested resumption.",
+  "changes": [
+    "Saved historical capture enters the verified publication API; full paced HTTP reconciliation remains the separate accepted proof.",
+    "Wait for a committed native observation rather than an SDK-call log.",
+    "Unique per-invocation native reports reject stale earlier output.",
+    "Refused duplicate cleanup leaves the active owner and its status untouched.",
+    "Damaged state or failed source finalization cannot prevent other owned cleanup and lease release.",
+    "Read-only Hot status detects stale/lost controllers, invalid evidence and normal stops."
+  ],
+  "results": [
+    {
+      "log": "resumed_coupled_FAILED.log",
+      "tests": 1,
+      "failures": 1,
+      "issue": "Fixture attempted an unauthorized HTTP step and expected historical admission before required transport reconciliation; source correctly blocked."
+    },
+    {
+      "log": "resumed_coupled_API_PASS.log",
+      "tests": 1,
+      "passed": 1,
+      "seconds": 8.54
+    },
+    {
+      "log": "resumed_controller_35_PASS.log",
+      "tests": 35,
+      "passed": 35,
+      "seconds": 69.012
+    },
+    {
+      "log": "resumed_shutdown_6_PASS.log",
+      "tests": 6,
+      "passed": 6,
+      "seconds": 2.367
+    },
+    {
+      "scope": "new read-only Hot status tests",
+      "tests": 6,
+      "passed": 6,
+      "seconds": 0.449
+    }
+  ],
+  "original_failed_and_interrupted_records_retained": true,
+  "production_changes": false,
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "live_launch_available": false,
+  "full_day_capacity_qualified": false,
+  "windows_acceptance_pending": true
+}

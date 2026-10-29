@@ -229,7 +229,11 @@ def run_report(configuration_path, job_path):
     from mb_market_data.quote_journal_replay import QuoteJournalReplayReader
     job = read_json(job_path)
     raw = read_json(configuration_path)
-    if job['configuration_sha256'] != digest(raw):
+    root = Path(raw['publication']['state_root'])
+    if (job['configuration_sha256'] != digest(raw)
+            or len(job['report_id']) != 32
+            or Path(job_path) != root/'reports'/(job['report_id']+'.job.json')
+            or Path(job['output']) != root/'reports'/(job['report_id']+'.json')):
         raise ValueError('Daily reporter configuration differs')
     path = Path(raw['collector']['journal_path'])
     audit = audit_quote_journal(path, audited_at=timestamp(job['audited_at_utc']))
@@ -242,6 +246,7 @@ def run_report(configuration_path, job_path):
     first, second = replay(), replay()
     value = {'contract': 'daily-hot-native-final-report-v1',
         'configuration_sha256': digest(raw), 'status': 'COMPLETE',
+        'report_id': job['report_id'], 'invocation': job['invocation'], 'audited_at_utc': job['audited_at_utc'],
         'native_audit_passed': audit.passed, 'native_audit': asdict(audit),
         'first_replay': first, 'second_replay': second, 'two_fresh_replays_equal': first == second,
         'full_day_capacity_qualified': False, 'production_activation_inferred': False}

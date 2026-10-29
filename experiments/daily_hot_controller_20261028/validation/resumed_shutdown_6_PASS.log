@@ -1,0 +1,11 @@
+test_hot_warning_resolution_and_recurrence_are_durable (test_daily_shutdown.DailyShutdownTests.test_hot_warning_resolution_and_recurrence_are_durable) ... ok
+test_missing_controller_state_does_not_prevent_owned_cleanup_or_reset_the_budget (test_daily_shutdown.DailyShutdownTests.test_missing_controller_state_does_not_prevent_owned_cleanup_or_reset_the_budget) ... ok
+test_prior_report_cannot_satisfy_a_fresh_reporting_invocation (test_daily_shutdown.DailyShutdownTests.test_prior_report_cannot_satisfy_a_fresh_reporting_invocation) ... ok
+test_refused_duplicate_close_cannot_stop_or_relabel_the_active_owner (test_daily_shutdown.DailyShutdownTests.test_refused_duplicate_close_cannot_stop_or_relabel_the_active_owner) ... ok
+test_source_finalization_failure_leaves_other_owned_roles_stopped_and_leases_free (test_daily_shutdown.DailyShutdownTests.test_source_finalization_failure_leaves_other_owned_roles_stopped_and_leases_free) ... ok
+test_wrong_report_nonce_cannot_be_treated_as_the_current_native_result (test_daily_shutdown.DailyShutdownTests.test_wrong_report_nonce_cannot_be_treated_as_the_current_native_result) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 2.367s
+
+OK

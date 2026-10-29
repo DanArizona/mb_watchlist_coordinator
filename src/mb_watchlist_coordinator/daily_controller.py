@@ -119,6 +119,7 @@ class DailyController:
         self.event, self.lock = threading.Event(), threading.RLock()
         self.worker = self.source = self.identity_client = self.lease = self.thread = None
         self.initialized = self.closed = False
+        self.has_ownership = False
         self.worker_allowed = False
         self.worker_report, self.source_report, self.last_report = {'status': 'STARTING'}, {}, None
 
@@ -140,8 +141,9 @@ class DailyController:
         manifest = Path(self.configuration.collector.journal_path).with_suffix('.hot.poller.daily-collector.json')
         if stop.exists() or manifest.exists() and read_json(manifest).get('provider_stop'):
             raise ValueError('Hot provider stop must be reviewed before startup')
-        self.lease = owner_lock(self.root/'driver-owner.lock')
-        self.lease.__enter__()
+        lease = owner_lock(self.root/'driver-owner.lock')
+        lease.__enter__()
+        self.lease, self.has_ownership = lease, True
         try:
             binding, config = self.root/'driver-binding.json', self.root/'daily-worker.json'
             if create:
@@ -254,7 +256,13 @@ class DailyController:
             try:
                 self._monitor_once()
             except BaseException:
-                with self.lock: self._terminal('worker_evidence_or_supervision_failed')
+                with self.lock:
+                    try: self._terminal('worker_evidence_or_supervision_failed')
+                    except BaseException:
+                        self.event.set()
+                        self.worker_report = {'status': 'BLOCKED', 'reason': 'original_state_unreadable'}
+                        try: self._live('STOPPING')
+                        except Exception: pass
                 return
 
     def status(self):
@@ -314,16 +322,26 @@ class DailyController:
 
     def close(self, *, reason='operator_stop', report=True):
         if self.closed: return self.last_report
+        if not self.has_ownership:
+            self.closed = True
+            self.event.set()
+            self.password.close()
+            self.last_report = {'contract': CONTRACT, 'status': 'NOT_OWNED',
+                'owned_processes_and_existing_status_unchanged': True}
+            return self.last_report
         began = self.monotonic()
         self.closed = True
         self.event.set()
         if self.thread is not None and threading.current_thread() is not self.thread:
             self.thread.join(timeout=4)
-        cleanup = {}
+        cleanup, errors = {}, []
         try:
             if self.initialized:
-                self.state.change(lambda s: s.update(stop={'reason': reason, 'at_utc': utc_text(self.clock())}))
-                self._live('STOPPING')
+                try:
+                    self.state.change(lambda s: s.update(stop={'reason': reason, 'at_utc': utc_text(self.clock())}))
+                except Exception as error: errors.append('stop_state:'+type(error).__name__)
+                try: self._live('STOPPING')
+                except Exception as error: errors.append('stop_fence:'+type(error).__name__)
             # Independent owned handles may close concurrently. SDK close never
             # runs in this process; the child close/terminate/kill bounds apply.
             with ThreadPoolExecutor(max_workers=3) as executor:
@@ -331,10 +349,13 @@ class DailyController:
                 if self.source is not None: closing['source'] = executor.submit(self.source.close)
                 if self.worker is not None: closing['hot'] = executor.submit(self.worker.stop_owned, reason=reason)
                 if self.identity_client is not None: closing['identity'] = executor.submit(self.identity_client.close)
-                for name, future in closing.items(): cleanup[name] = future.result(timeout=9)
-            self.session.close()
+                for name, future in closing.items():
+                    try: cleanup[name] = future.result(timeout=9)
+                    except Exception as error:
+                        cleanup[name] = {'status': 'EVIDENCE_INCOMPLETE', 'error_type': type(error).__name__}
         finally:
             self.password.close()
+            if self.has_ownership: self.session.close()
             if self.lease is not None:
                 lease, self.lease = self.lease, None
                 lease.__exit__(None, None, None)
@@ -342,16 +363,28 @@ class DailyController:
         self.last_report = {'contract': CONTRACT, 'status': 'STOPPED', 'reason': reason,
             'cleanup': cleanup, 'cleanup_seconds': cleanup_seconds,
             'cleanup_within_10_seconds': cleanup_seconds < 10,
+            'evidence_errors': errors,
             'unmanaged_channels_untouched': ['uni', 'focus', 'health'],
-            'reporting': self._final_report() if report and self.initialized else {'status': 'NOT_REQUESTED'}}
+            'reporting': {'status': 'PENDING' if report and self.initialized else 'NOT_REQUESTED'}}
+        # The producer-stop receipt must survive reporter loss or invalid output.
         atomic_json(self.root/'driver-stop.json', sealed(self.last_report))
-        if self.initialized: self.status()
+        if report and self.initialized:
+            try: self.last_report['reporting'] = self._final_report()
+            except Exception as error:
+                self.last_report['reporting'] = {'status': 'REPORT_INCOMPLETE', 'error_type': type(error).__name__}
+            atomic_json(self.root/'driver-stop.json', sealed(self.last_report))
+        if self.initialized:
+            try: self.status()
+            except Exception: pass  # Cleanup receipt survives damaged source/state evidence.
         return self.last_report
 
     def _final_report(self):
+        report_id = uuid.uuid4().hex
+        directory = self.root/'reports'; directory.mkdir(exist_ok=True)
         job = {'configuration_sha256': self.identity['configuration_sha256'],
-            'output': str(self.root/'native-final-report.json'), 'audited_at_utc': utc_text(self.clock())}
-        path = self.root/'report-job.json'
+            'report_id': report_id, 'invocation': getattr(self, 'invocation', None),
+            'output': str(directory/(report_id+'.json')), 'audited_at_utc': utc_text(self.clock())}
+        path = directory/(report_id+'.job.json')
         atomic_json(path, job)
         began = time.monotonic()
         child = subprocess.Popen([*self.commands['report'], str(path)], stdin=subprocess.DEVNULL,
@@ -366,8 +399,11 @@ class DailyController:
         if child.returncode != 0 or not output.is_file():
             return {'status': 'REPORT_INCOMPLETE', 'reason': 'reporter_failed'}
         result = unseal(read_json(output))
-        if result['configuration_sha256'] != self.identity['configuration_sha256']:
+        if (result['configuration_sha256'] != self.identity['configuration_sha256']
+                or result['report_id'] != report_id or result['invocation'] != job['invocation']
+                or result['audited_at_utc'] != job['audited_at_utc']):
             raise ValueError('Daily final report binding differs')
         return {'status': 'COMPLETE', 'native_audit_passed': result['native_audit_passed'],
             'two_fresh_replays_equal': result['two_fresh_replays_equal'],
-            'first_replay': result['first_replay'], 'seconds': time.monotonic()-began}
+            'first_replay': result['first_replay'], 'report_path': job['output'],
+            'seconds': time.monotonic()-began}

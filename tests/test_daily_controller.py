@@ -28,6 +28,8 @@ class DailyControllerTests(unittest.TestCase):
         self.fixture = daily.DailySessionTests('test_preview_reads_published_anchor_and_creates_no_application_state_or_client')
         if self._testMethodName == 'test_actual_source_identity_and_native_collection_with_owned_controller':
             self.fixture.proof_directory_override = os.environ.get('MB_DAILY_CONTROLLER_PROOF_DIR')
+        elif self._testMethodName == 'test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold':
+            self.fixture.proof_directory_override = os.environ.get('MB_DAILY_CONTROLLER_RECOVERY_PROOF_DIR')
         self.fixture.setUp(); self.addCleanup(self.fixture.doCleanups)
         self.case, self.real = self.fixture, datetime.now(timezone.utc)
         self.logical = self.case.at
@@ -150,14 +152,16 @@ class DailyControllerTests(unittest.TestCase):
         # Reconcile an already saved, same-date dated capture. The existing
         # Windows-qualified feed proof covers the full paced three-HTTP sequence.
         self.case.now = self.clock()
-        query = self.case.session.recovery.settings.queries[0]
-        self.case.session.recovery.record(query.query_id,
-            self.case.snapshot('HISTORICAL', [self.case.row()], 'saved-history'))
-        self.controller.step()
+        self.case.session.cycle(client=self.controller.identity_client,
+            historical_snapshot=self.case.snapshot('HISTORICAL', [self.case.row()], 'saved-history'))
         self.assertEqual(len(self.provider_calls('identity')), 1)
         self.wait(lambda: len(self.provider_calls()) >= 2, seconds=12)
+        def committed():
+            with closing(sqlite3.connect(self.case.journal)) as c:
+                return c.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot"').fetchone()[0] >= 2
+        self.wait(committed)
         stopped = self.controller.close()
-        final = unseal(read_json(self.controller.root/'native-final-report.json'))
+        final = unseal(read_json(Path(stopped['reporting']['report_path'])))
         self.assertTrue(final['native_audit_passed'], final['native_audit'])
         self.assertTrue(final['two_fresh_replays_equal'])
         self.assertEqual(self.case.store.membership_revisions_in_effective_order()[-1].hot_symbols, ('NVDA',))
@@ -169,6 +173,7 @@ class DailyControllerTests(unittest.TestCase):
                 'synthetic_sdk_only': True, 'network': 'denied', 'actual_vault_access': False,
                 'clock': 'shifted wall clock; actual elapsed process/authentication and pacing gates',
                 'source_attempts': 1, 'saved_historical_captures': 1,
+                'saved_history_submission': 'verified daily publication API; full paced transport proof is separate',
                 'source_reconciled': False, 'identity_quote_permits': 1,
                 'worker_starts': 1, 'hot_provider_calls': len(self.provider_calls()),
                 'native_audit_passed': True, 'two_fresh_replays_equal': True,
@@ -196,6 +201,29 @@ class DailyControllerTests(unittest.TestCase):
             self.assertEqual(c.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot"').fetchone()[0], 2)
         self.assertEqual(len(self.provider_calls()), 2) # The first saved response was not requested again.
         self.assertEqual(self.controller.worker._job()['generation'], 2)
+        from mb_market_data.quote_journal_audit import audit_quote_journal
+        audit = audit_quote_journal(self.case.journal, audited_at=self.clock())
+        gaps = next(c.missing_slot_ids for c in audit.channels if c.channel == 'hot')
+        exited = datetime.fromisoformat(starts[0]['exit_observed_at_utc'])
+        eligible = datetime.fromisoformat(self.controller.worker._job()['first_eligible_slot_utc'])
+        self.assertTrue(gaps)
+        self.assertTrue(all(exited <= datetime.fromisoformat(slot.split(':', 1)[1]) < eligible for slot in gaps))
+        self.assertEqual({f.code for f in audit.findings}, {'missing_poll_slots'})
+        if os.environ.get('MB_DAILY_CONTROLLER_RECOVERY_PROOF_DIR'):
+            from mb_watchlist_coordinator.recovery_workers import atomic_json
+            from mb_market_data.quote_journal_replay import QuoteJournalReplayReader
+            first = tuple(QuoteJournalReplayReader(self.case.journal).events())
+            self.assertEqual(first, tuple(QuoteJournalReplayReader(self.case.journal).events()))
+            atomic_json(self.case.root/'recovery-proof.json', {'contract': 'daily-owned-recovery-proof-v1',
+                'result': 'PASS', 'synthetic_sdk_only': True, 'worker_starts': 2,
+                'replacement_hold_seconds': elapsed, 'minimum_hold_seconds': 15,
+                'starts': starts, 'provider_calls': 2, 'native_hot_acquisitions': 2,
+                'saved_response_not_requested_again': True, 'two_fresh_replays_equal': True,
+                'raw_native_audit_passed': audit.passed, 'intentional_missing_slot_ids': list(gaps),
+                'unexplained_gaps': 0, 'intentional_hold_slots_not_backfilled': True,
+                'full_day_capacity_qualified': False})
+            from dataclasses import asdict
+            (self.case.root/'raw-recovery-audit.json').write_text(json.dumps(asdict(audit), default=str, indent=2)+'\n')
 
     def test_authentication_alone_does_not_satisfy_native_progress(self):
         self.start(mode='auth_hang')
