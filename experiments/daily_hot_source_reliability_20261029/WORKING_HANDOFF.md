@@ -27,7 +27,14 @@ cause code and private-text exclusion. Two actual-entry rechecks also PASS;
 these are the same two unique cases using the exact parent adapter, not two
 new tests. Original 126-second paced proof is reused without an unchanged
 repeat. Original commands 67/68 remain FAILED; command-69 Windows observation
-is pending. No runtime source edit, cadence/timeout change, production install,
+is pending. Frozen helper hot_monitor_observer_20261029_a0da726.zip is 10568
+bytes, SHA-256 2b5995181ac489b01285f2b55a78074f06d6b91430c9e102ee53ec914c8857d7.
+Two real child-entry checks from its exact ZIP in a path containing spaces
+PASS in 4.831s with unchanged hashes; a real _monitor_once frame probe also
+retains the originating module/function/line and original exception identity.
+Public source b9d5eecf058d89ff59f0e84936245dc3e7df5d7b equals frozen local
+a0da7267f640caf0be6a633f1b444aec8d4dc093, full tree d9a55c51cc5b0441a0287abb130436a02e0ada4a.
+No runtime source edit, cadence/timeout change, production install,
 provider/vault/SDK, Python upgrade or activation occurred.
 
 Earlier chronology follows.

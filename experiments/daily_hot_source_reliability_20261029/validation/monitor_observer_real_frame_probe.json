@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "original_error_identity_preserved": true,
+  "trusted_actual_project_frames": [
+    {
+      "module": "mb_watchlist_coordinator.daily_controller",
+      "function": "_monitor_once",
+      "line": 217
+    }
+  ],
+  "winerror": 32,
+  "private_error_text_excluded": true
+}

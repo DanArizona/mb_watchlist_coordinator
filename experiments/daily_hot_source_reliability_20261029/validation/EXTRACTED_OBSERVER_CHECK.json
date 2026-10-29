@@ -1,0 +1,22 @@
+{
+  "contract": "daily-hot-monitor-observer-exact-extraction-check-v1",
+  "result": "PASS",
+  "tests": 2,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "source": {
+    "local_observer_commit": "a0da7267f640caf0be6a633f1b444aec8d4dc093",
+    "observer_tree": "d9a55c51cc5b0441a0287abb130436a02e0ada4a"
+  },
+  "path_with_spaces": true,
+  "actual_child_entry_and_injected_exception_qualified": true,
+  "pre_post_file_hashes_match": true,
+  "cmd_crlf_quoted_path_passed": true,
+  "full_paced_proof_repeated": false,
+  "packet": "hot_monitor_observer_20261029_a0da726.zip",
+  "bytes": 10568,
+  "sha256": "2b5995181ac489b01285f2b55a78074f06d6b91430c9e102ee53ec914c8857d7",
+  "windows_result": "PENDING",
+  "production_changes": false
+}
