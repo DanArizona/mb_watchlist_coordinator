@@ -75,7 +75,7 @@ class DailyHotCollector(HotRecoveryCollector):
             daily_binding=settings.daily_binding, daily_claim=settings.daily_claim,
             publication_binding=settings.publication_binding,
             validate_publication=self.validate_publication, clock=self.clock,
-            activation_approved=activation_approved)
+            activation_approved=activation_approved,max_quote_calls=settings.max_quote_calls)
         self.manifest = self.poller.path.with_suffix('.daily-collector.json')
         self.next, self.refused_call = None, False
 
@@ -84,7 +84,19 @@ class DailyHotCollector(HotRecoveryCollector):
         self._provider_stop()
         lease=owner_lock(Path(self.settings.journal_path).with_suffix('.daily-hot-collector.lock'))
         lease.__enter__();self.collector_lease=lease
-        try:return super().prepare(create=create)
+        try:
+            from mb_market_data.sampling_acquisition import next_slot
+            content={'settings':self.identity,'poller_identity':plain(self.poller.identity)}
+            expected=dict(content,content_sha256=digest(content))
+            if self.manifest.exists():
+                if json.loads(self.manifest.read_text())!=expected or not self.poller.path.is_file():
+                    raise ValueError('Restore original collector manifest and acquisition evidence')
+            elif not create or self.poller.path.exists():
+                raise ValueError('Missing collector manifest; no automatic adoption/reset')
+            recovered=self.poller.initialize_and_recover()
+            if not self.manifest.exists():atomic_json(self.manifest,expected)
+            self.next=next_slot(self.poller.settings,after=self.clock())
+            return recovered
         except BaseException:
             self.close();raise
 
@@ -118,8 +130,24 @@ class DailyHotCollector(HotRecoveryCollector):
 
     def quotes(self, symbols, *, fields):
         # This executes after the native durable dispatch, inside its owner lock.
-        self.validate_publication(self.poller._read()['pending']['dispatch'])
-        response=super().quotes(symbols, fields=fields)
+        self._check()
+        state=self.poller.provider_dispatch_state()
+        dispatch=state['pending']['dispatch']
+        self.validate_publication(dispatch)
+        consumed=sum(e['kind']=='dispatch' and bool(e['symbols']) for e in state['events'])
+        if (consumed>self.settings.max_quote_calls or len(symbols)>self.settings.max_symbols
+                or tuple(symbols)!=tuple(dispatch['symbols']) or fields!='all'
+                or not timestamp(self.settings.start_at_utc)<=self.clock()<timestamp(self.settings.stop_at_utc)
+                or (self.clock()-timestamp(dispatch['scheduled_at_utc'])).total_seconds()>.75):
+            self.refused_call=True
+            raise ValueError('Collector call budget, roster, slot or window gate refused')
+        if self.client is None:self.client=self.client_factory()
+        self._check()
+        if (self.clock()>=timestamp(self.settings.stop_at_utc)
+                or (self.clock()-timestamp(dispatch['scheduled_at_utc'])).total_seconds()>.75):
+            self.refused_call=True
+            raise ValueError('Collector gate expired during client preparation')
+        response=self.client.quotes(symbols,fields=fields)
         if response.status_code in (401,403,429):
             self.refused_call=True
             content={'contract':'daily-hot-provider-stop-v1','collector_identity_sha256':digest(self.identity),
@@ -130,6 +158,22 @@ class DailyHotCollector(HotRecoveryCollector):
             manifest['provider_stop']=receipt
             atomic_json(self.manifest,manifest)
         return response
+
+    def tick(self,*,fault_hook=None):
+        from mb_market_data.sampling_acquisition import next_slot
+        self._check()
+        if self.clock()>=timestamp(self.settings.stop_at_utc):return {'status':'window_ended'}
+        if self.next is None or self.clock()<self.next.scheduled_at:
+            state=self.poller.snapshot()
+            if sum(e['kind']=='dispatch' and bool(e['symbols']) for e in state['events'])>=self.settings.max_quote_calls:
+                return {'status':'budget_exhausted'}
+            return {'status':'idle'}
+        slot=self.next
+        result=self.poller.sample(slot,fault_hook=fault_hook)
+        if self.refused_call or getattr(self.client,'halt_reason',None):
+            return dict(result,status='blocked',reason='provider_dispatch_gate_or_client_stopped')
+        self.next=next_slot(self.poller.settings,after=max(slot.scheduled_at,self.clock()))
+        return result
 
     def _provider_stop(self):
         value=None

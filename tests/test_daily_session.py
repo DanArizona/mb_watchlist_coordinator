@@ -44,18 +44,22 @@ class DailySessionTests(unittest.TestCase):
         self.store = QuoteObservationStore(self.journal, session_date=day, schema_version=2)
         self.store.initialize()
         common = {'session_date': str(day), 'effective_at': self.at.replace(hour=9, minute=30).isoformat(),
-            'uni_symbols': ['IBM', 'MSFT'], 'hot_symbols': [], 'source': 'synthetic daily opening'}
+            'uni_symbols': getattr(self,'universe_symbols_override',['IBM','MSFT']),
+            'hot_symbols': [], 'source': 'synthetic daily opening'}
         self.r0, self.r1 = self.root/'r0.json', self.root/'r1.json'
-        for path, rev, focus in ((self.r0, 0, []), (self.r1, 1, ['MSFT'])):
+        for path, rev, focus in ((self.r0, 0, []), (self.r1, 1, getattr(self,'focus_symbols_override',['MSFT']))):
             payload = dict(common, revision=rev, focus_symbols=focus)
             path.write_text(json.dumps(payload))
             self.store.record_membership_revision(SamplingHierarchyRevision(**dict(payload,
                 session_date=day, effective_at=datetime.fromisoformat(payload['effective_at']))))
         for channel, seconds in (('uni', [0, 30]), ('focus', [10, 20, 40, 50])):
-            self.store.record_run(PollRunProvenance('existing-'+channel, self.at.replace(hour=9, minute=20),
-                'synthetic-current-source', {'watchlist_kind': channel, 'poll_seconds': seconds,
-                    'cadence_profile': 'interleaved-v1'}))
-        self.catalog = catalog(self.at.replace(hour=9)).persist(self.root/'catalog')
+            configuration={'watchlist_kind':channel,'poll_seconds':seconds,'cadence_profile':'interleaved-v1'}
+            if getattr(self,'full_window_run_configs',False):
+                configuration.update(poll_window_start_et=self.at.replace(hour=9,minute=30).isoformat(),
+                    poll_window_end_et=self.at.replace(hour=16,minute=0).isoformat())
+            self.store.record_run(PollRunProvenance('existing-'+channel,self.at.replace(hour=9,minute=20),
+                'synthetic-current-source',configuration))
+        self.catalog = getattr(self,'catalog_factory_override',catalog)(self.at.replace(hour=9)).persist(self.root/'catalog')
         self.settings = DailySettings(str(self.root/'daily_hot_test'), str(self.journal),
             str(self.r0), str(self.r1), digest(proposed_policy()))
         self.calls = []

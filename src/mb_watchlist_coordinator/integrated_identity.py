@@ -132,9 +132,12 @@ class IdentityGatedDelivery:
             raise ValueError('Nonapproval cannot borrow identity')
         return expected
 
+    def _catalog_sha256(self,catalog):
+        return digest(catalog.public)
+
     def _read(self, c):
         fresh = self.catalog.validate()
-        if (fresh.catalog_id != self.identity['catalog_id'] or digest(fresh.public) != self.identity['catalog_sha256']
+        if (fresh.catalog_id != self.identity['catalog_id'] or self._catalog_sha256(fresh) != self.identity['catalog_sha256']
                 or canonical(self.delivery.identity) != canonical(self.identity['delivery'])
                 or utc_text(self.start) != self.identity['start_at_utc']
                 or utc_text(self.stop) != self.identity['stop_at_utc']

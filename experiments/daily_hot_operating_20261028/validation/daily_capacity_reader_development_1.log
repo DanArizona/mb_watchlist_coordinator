@@ -1,0 +1,111 @@
+test_activation_is_an_explicit_trusted_api_assertion (test_daily_collector.DailyCollectorTests.test_activation_is_an_explicit_trusted_api_assertion) ... ok
+test_actual_process_loss_after_assembled_response_recovers_without_sdk_call (test_daily_collector.DailyCollectorTests.test_actual_process_loss_after_assembled_response_recovers_without_sdk_call) ... ERROR
+test_actual_process_loss_after_dispatch_retains_unknown_and_consumes_permit (test_daily_collector.DailyCollectorTests.test_actual_process_loss_after_dispatch_retains_unknown_and_consumes_permit) ... ok
+test_actual_process_loss_after_journal_commit_reconciles_single_receipt (test_daily_collector.DailyCollectorTests.test_actual_process_loss_after_journal_commit_reconciles_single_receipt) ... ok
+test_changed_claim_or_foreign_publication_blocks_before_provider (test_daily_collector.DailyCollectorTests.test_changed_claim_or_foreign_publication_blocks_before_provider) ... ok
+test_closed_publication_owner_prevents_new_native_dispatch (test_daily_collector.DailyCollectorTests.test_closed_publication_owner_prevents_new_native_dispatch) ... ok
+test_collector_restart_uses_original_window_and_no_past_slot_catchup (test_daily_collector.DailyCollectorTests.test_collector_restart_uses_original_window_and_no_past_slot_catchup) ... FAIL
+test_daily_full_window_is_explicitly_accepted_without_claiming_provider_capacity (test_daily_collector.DailyCollectorTests.test_daily_full_window_is_explicitly_accepted_without_claiming_provider_capacity) ... ok
+test_daily_limits_cannot_be_widened_by_boolean_or_extra_symbols (test_daily_collector.DailyCollectorTests.test_daily_limits_cannot_be_widened_by_boolean_or_extra_symbols) ... ok
+test_duplicate_daily_collector_lifetime_owner_is_refused (test_daily_collector.DailyCollectorTests.test_duplicate_daily_collector_lifetime_owner_is_refused) ... ok
+test_hot_call_ceiling_persists_across_restarts (test_daily_collector.DailyCollectorTests.test_hot_call_ceiling_persists_across_restarts) ... FAIL
+test_identity_reservation_call_is_not_a_hot_collection_permit (test_daily_collector.DailyCollectorTests.test_identity_reservation_call_is_not_a_hot_collection_permit) ... ok
+test_isolated_constructor_still_refuses_the_daily_journal (test_daily_collector.DailyCollectorTests.test_isolated_constructor_still_refuses_the_daily_journal) ... ok
+test_native_callback_must_explicitly_confirm_the_publication_binding (test_daily_collector.DailyCollectorTests.test_native_callback_must_explicitly_confirm_the_publication_binding) ... ok
+test_no_provider_call_at_or_after_close (test_daily_collector.DailyCollectorTests.test_no_provider_call_at_or_after_close) ... ok
+test_rate_limit_is_durable_and_new_collector_cannot_resume_provider_work (test_daily_collector.DailyCollectorTests.test_rate_limit_is_durable_and_new_collector_cannot_resume_provider_work) ... FAIL
+test_saved_assembled_response_recovers_without_a_second_provider_call (test_daily_collector.DailyCollectorTests.test_saved_assembled_response_recovers_without_a_second_provider_call) ... FAIL
+test_tail_window_idle_then_three_hot_quotes_native_audit_and_replays (test_daily_collector.DailyCollectorTests.test_tail_window_idle_then_three_hot_quotes_native_audit_and_replays) ... FAIL
+test_unknown_dispatch_is_never_retried_or_filled_with_later_quotes (test_daily_collector.DailyCollectorTests.test_unknown_dispatch_is_never_retried_or_filled_with_later_quotes) ... FAIL
+
+======================================================================
+ERROR: test_actual_process_loss_after_assembled_response_recovers_without_sdk_call (test_daily_collector.DailyCollectorTests.test_actual_process_loss_after_assembled_response_recovers_without_sdk_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/tests/test_daily_collector.py", line 198, in test_actual_process_loss_after_assembled_response_recovers_without_sdk_call
+    self.assertEqual((self.case.root/'native-provider-calls.txt').read_text().splitlines(),['NVDA'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpswcty62f/native-provider-calls.txt'
+
+======================================================================
+FAIL: test_collector_restart_uses_original_window_and_no_past_slot_catchup (test_daily_collector.DailyCollectorTests.test_collector_restart_uses_original_window_and_no_past_slot_catchup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/tests/test_daily_collector.py", line 117, in test_collector_restart_uses_original_window_and_no_past_slot_catchup
+    self.assertEqual(len(self.calls),2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_hot_call_ceiling_persists_across_restarts (test_daily_collector.DailyCollectorTests.test_hot_call_ceiling_persists_across_restarts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/tests/test_daily_collector.py", line 155, in test_hot_call_ceiling_persists_across_restarts
+    self.assertEqual(len(self.calls),1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_rate_limit_is_durable_and_new_collector_cannot_resume_provider_work (test_daily_collector.DailyCollectorTests.test_rate_limit_is_durable_and_new_collector_cannot_resume_provider_work)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/tests/test_daily_collector.py", line 227, in test_rate_limit_is_durable_and_new_collector_cannot_resume_provider_work
+    self.assertEqual(self.tick(54)['status'],'blocked')
+AssertionError: 'acquired' != 'blocked'
+- acquired
++ blocked
+
+
+======================================================================
+FAIL: test_saved_assembled_response_recovers_without_a_second_provider_call (test_daily_collector.DailyCollectorTests.test_saved_assembled_response_recovers_without_a_second_provider_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/tests/test_daily_collector.py", line 128, in test_saved_assembled_response_recovers_without_a_second_provider_call
+    self.assertEqual(self.calls,[['NVDA']])
+AssertionError: Lists differ: [] != [['NVDA']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['NVDA']
+
+- []
++ [['NVDA']]
+
+======================================================================
+FAIL: test_tail_window_idle_then_three_hot_quotes_native_audit_and_replays (test_daily_collector.DailyCollectorTests.test_tail_window_idle_then_three_hot_quotes_native_audit_and_replays)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/tests/test_daily_collector.py", line 65, in test_tail_window_idle_then_three_hot_quotes_native_audit_and_replays
+    self.assertEqual(self.calls,[['NVDA']]*3)
+AssertionError: Lists differ: [] != [['NVDA'], ['NVDA'], ['NVDA']]
+
+Second list contains 3 additional elements.
+First extra element 0:
+['NVDA']
+
+- []
++ [['NVDA'], ['NVDA'], ['NVDA']]
+
+======================================================================
+FAIL: test_unknown_dispatch_is_never_retried_or_filled_with_later_quotes (test_daily_collector.DailyCollectorTests.test_unknown_dispatch_is_never_retried_or_filled_with_later_quotes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/tests/test_daily_collector.py", line 139, in test_unknown_dispatch_is_never_retried_or_filled_with_later_quotes
+    self.assertEqual(self.calls,[['NVDA']])
+AssertionError: Lists differ: [] != [['NVDA']]
+
+Second list contains 1 additional elements.
+First extra element 0:
+['NVDA']
+
+- []
++ [['NVDA']]
+
+----------------------------------------------------------------------
+Ran 19 tests in 12.594s
+
+FAILED (failures=6, errors=1)

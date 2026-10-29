@@ -123,6 +123,9 @@ class DailyIdentityGate(IdentityGatedDelivery):
             'request_timeout_seconds': 3, 'selection': 'first_exact_broker_confirmation',
             'normal_admission_required': True, 'production_access': True})
 
+    def _catalog_sha256(self,catalog):
+        return catalog.verified_public_sha256()
+
 
 class DailySession:
     """One explicit journal owner; missing ledgers are never initialized on reopen.
@@ -174,7 +177,7 @@ class DailySession:
             from .sampling_journal import SamplingJournal
             from .sampling_projection import SamplingMembership
             from .sampling_policy import SamplingPolicy
-            from .sampling_admission import AdmissionPolicy
+            from .daily_admission import DailyAdmissionPolicy as AdmissionPolicy
             from .sampling_request_store import SamplingRequestStore
             from .sampling_service import SamplingPublicationService, PublicationSettings
             from .nasdaq_sampling import NasdaqSamplingProducer, HaltProducerSettings
@@ -257,7 +260,7 @@ class DailySession:
                 {'claim': self.claim, 'binding': self.binding, 'status': 'ATTACHED'}):
             raise ValueError('Daily attachment binding changed')
         self.catalog.validate()
-        if self.catalog.catalog_id != self.claim['catalog_id'] or digest(self.catalog.public) != self.claim['catalog_sha256']:
+        if self.catalog.catalog_id != self.claim['catalog_id'] or self.catalog.verified_public_sha256() != self.claim['catalog_sha256']:
             raise ValueError('Daily catalog changed')
         if (self.root/'status.json').exists():
             previous = strict_json((self.root/'status.json').read_text())

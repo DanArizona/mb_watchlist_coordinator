@@ -1,0 +1,17 @@
+{"n": 1, "tick_seconds": 0.3626523770000176, "native_cycle_seconds": 0.31006669600003534, "state_prepare_seconds": 0.07323839100001805, "spool_and_check_seconds": 0.05514303799998288}
+{"n": 16, "tick_seconds": 0.3519869879999078, "native_cycle_seconds": 0.2886406429998942, "state_prepare_seconds": 0.06900848899999801, "spool_and_check_seconds": 0.04051896900000429}
+{"n": 32, "tick_seconds": 0.36784707100002834, "native_cycle_seconds": 0.3105855109999993, "state_prepare_seconds": 0.08642258399993352, "spool_and_check_seconds": 0.036742742999990696}
+{"n": 64, "tick_seconds": 0.4084437919999573, "native_cycle_seconds": 0.3416925590000801, "state_prepare_seconds": 0.08463042900007167, "spool_and_check_seconds": 0.040494343999966986}
+{"n": 128, "tick_seconds": 0.5705276680000679, "native_cycle_seconds": 0.4754499150000129, "state_prepare_seconds": 0.13061604100005297, "spool_and_check_seconds": 0.07054913100000704}
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/daily_capacity_baseline_probe.py", line 44, in <module>
+    began = time.perf_counter(); result = collector.tick(); elapsed = time.perf_counter()-began
+                                          ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/hot_recovery_collector.py", line 169, in tick
+    result = self.poller.sample(slot, fault_hook=fault_hook)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_market_data_daily/src/mb_market_data/sampling_acquisition.py", line 477, in sample
+    self._append(s, "assembled", slot_id=slot.slot_id, completed_at_utc=text(completed),
+  File "/workspace/scratch/6ce939acb4eb/mb_market_data_daily/src/mb_market_data/sampling_acquisition.py", line 388, in _append
+    raise ValueError("Acquisition head changed; expected=" + str((sequence - 1, previous) if sequence > 1 else None) + "; actual=" + str(row))
+ValueError: Acquisition head changed; expected=(553, 'b5da998553c86bd20c10413ba0cc1fb4c8954c15caf20959e9b23823b4956d1b'); actual=(549, '7b20383a20fccb4cd1cf8d523141f6411a59f6e435ce4e344fab085e44c3681e')

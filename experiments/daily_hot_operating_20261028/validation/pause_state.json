@@ -1,0 +1,154 @@
+{
+  "contract": "daily-operating-development-pause-v1",
+  "state": "PAUSED_AT_USER_REQUEST_NOT_QUALIFIED",
+  "accepted_controller_source": "6ebf8d1ada2802e4adf2ccb21fd596e0a5d19558",
+  "accepted_native_source": "3cc91ebb7d2b7bd26d4c133bb839f2c63281ac0e",
+  "native_wip_commit": "1e2699a13abd83632ae334ddb99a3393a477bffa",
+  "native_wip_branch": "experiment/daily-hot-capacity-20261028",
+  "coordinator_wip_branch": "experiment/daily-hot-operating-20261028",
+  "last_run": {
+    "file": "daily_operating_capacity_development_2.log",
+    "exit_code": 130,
+    "final_verdict": null,
+    "reason": "User requested resource pause; interrupted owned exec session",
+    "completed_ok_test_lines": 47
+  },
+  "development_results": [
+    {
+      "file": "daily_operating_development_1.log",
+      "final_test_summary": [
+        "Ran 6 tests in 23.761s",
+        "OK"
+      ]
+    },
+    {
+      "file": "daily_operating_review_development.log",
+      "final_test_summary": [
+        "Ran 3 tests in 0.654s",
+        "OK"
+      ]
+    },
+    {
+      "file": "daily_capacity_baseline_probe.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "daily_capacity_isolated_probe.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "capacity_full_prefix_baseline.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "capacity_full_prefix_tmp_isolated.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "capacity_full_prefix_cached_1.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "capacity_cached_profile.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "daily_capacity_reader_development_1.log",
+      "final_test_summary": [
+        "Ran 19 tests in 12.594s",
+        "FAILED (failures=6, errors=1)"
+      ]
+    },
+    {
+      "file": "daily_capacity_reader_development_2.log",
+      "final_test_summary": [
+        "Ran 19 tests in 13.872s",
+        "OK"
+      ]
+    },
+    {
+      "file": "daily_history_reader_integrity_1.log",
+      "final_test_summary": [
+        "Ran 8 tests in 10.755s",
+        "OK"
+      ]
+    },
+    {
+      "file": "daily_capacity_cycle_development_1.log",
+      "final_test_summary": [
+        "Ran 27 tests in 19.991s",
+        "OK"
+      ]
+    },
+    {
+      "file": "native_store_mapping_regression.log",
+      "final_test_summary": [
+        "Ran 36 tests in 1.650s",
+        "OK"
+      ]
+    },
+    {
+      "file": "capacity_full_prefix_cached_2.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "capacity_full_prefix_cached_3.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "capacity_full_prefix_cached_4.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "capacity_full_background_1.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "capacity_full_background_2.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "capacity_full_background_3.log",
+      "final_test_summary": []
+    },
+    {
+      "file": "daily_operating_capacity_development_2.log",
+      "final_test_summary": []
+    }
+  ],
+  "latest_full_size_probe": {
+    "file": "capacity_full_background_3.log",
+    "synthetic_seed_hot_slots": 9358,
+    "actual_native_tail_acquisitions": 2,
+    "opening_uni": 600,
+    "opening_focus": 40,
+    "directory_extra_symbols": 7000,
+    "observations": 542099,
+    "cold_prepare_seconds": 2.7663355669992598,
+    "tick_seconds": [
+      1.4246546490003311,
+      1.5272257110000282
+    ],
+    "state_plus_spool_seconds": [
+      0.778231845,
+      0.891923762
+    ],
+    "fits_original_point_75_second_dispatch_budget": false,
+    "actual_worker_three_second_startup_proof_completed": false,
+    "full_day_capacity_qualified": false,
+    "provider_capacity_qualified": false
+  },
+  "workspace_sqlite_note": "Two live workspace probes hit consistency failures. A 200-step isolated repeat and full seeded workload in executor temp storage completed without those failures. Cause is not established; original errors are retained. Use private temp storage while SQLite is active, then copy closed evidence.",
+  "packaging": {
+    "windows_packet_63_created": false,
+    "live_launcher_cli_created": false,
+    "trusted_outer_owner_api_present": true,
+    "read_only_review_api_present": true,
+    "windows_acceptance_for_new_work": false
+  },
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "proposed_values_adopted": false,
+  "accepted_67_check_packet_unchanged": true,
+  "next": "Finish the interrupted affected suite, profile remaining full-size pre-dispatch cost, qualify actual cold owned-worker startup without changing gates, then finish CLI/packet/deployment review. No accepted unchanged profile repeats."
+}

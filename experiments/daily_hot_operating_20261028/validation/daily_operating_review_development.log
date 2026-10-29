@@ -1,0 +1,8 @@
+test_catalog_is_bound_to_the_target_date_and_retained_bytes (test_daily_operating_review.DailyOperatingReviewTests.test_catalog_is_bound_to_the_target_date_and_retained_bytes) ... ok
+test_changed_published_inputs_are_refused_before_driver_or_credential_access (test_daily_operating_review.DailyOperatingReviewTests.test_changed_published_inputs_are_refused_before_driver_or_credential_access) ... ok
+test_public_review_matches_the_eventual_owned_attachment_without_creating_state (test_daily_operating_review.DailyOperatingReviewTests.test_public_review_matches_the_eventual_owned_attachment_without_creating_state) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.654s
+
+OK

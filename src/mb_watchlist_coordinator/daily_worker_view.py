@@ -31,7 +31,7 @@ class DailyPublicationReader:
         from .sampling_journal import SamplingJournal
         from .sampling_projection import SamplingMembership
         from .sampling_policy import SamplingPolicy
-        from .sampling_admission import AdmissionPolicy
+        from .daily_admission import DailyAdmissionPolicy as AdmissionPolicy
         from .sampling_request_store import SamplingRequestStore
         from .sampling_service import SamplingPublicationService, PublicationSettings
         from .nasdaq_sampling import NasdaqSamplingProducer, HaltProducerSettings
@@ -88,7 +88,7 @@ class DailyPublicationReader:
         self.catalog.validate()
         if (self.claim != {'contract': CONTRACT, 'binding_sha256': self.binding['binding_sha256'],
                 'state_root': str(self.root), 'catalog_id': self.catalog.catalog_id,
-                'catalog_sha256': digest(self.catalog.public)}):
+                'catalog_sha256': self.catalog.verified_public_sha256()}):
             raise ValueError('Worker catalog binding differs')
         for name in ('requests.sqlite3', 'publication.sqlite3', 'live.sqlite3',
                      'recovery.sqlite3', 'delivery.sqlite3', 'identity.sqlite3', 'status.json'):

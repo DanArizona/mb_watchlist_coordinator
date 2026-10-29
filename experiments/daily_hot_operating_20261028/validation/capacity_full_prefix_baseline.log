@@ -1,0 +1,28 @@
+{"phase": "seeded", "synthetic_slots": 9358, "seconds": 2.3469309409999823}
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/experiments/daily_hot_operating_20261028/capacity_probe.py", line 93, in run
+    began = time.perf_counter(); collector.prepare(); cold = time.perf_counter()-began
+                                 ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_collector.py", line 87, in prepare
+    try:return super().prepare(create=create)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/hot_recovery_collector.py", line 119, in prepare
+    self.poller.initialize()
+  File "/workspace/scratch/6ce939acb4eb/mb_market_data_daily/src/mb_market_data/daily_hot_acquisition.py", line 104, in initialize
+    return super().initialize()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_market_data_daily/src/mb_market_data/sampling_acquisition.py", line 231, in initialize
+    self.snapshot()
+  File "/workspace/scratch/6ce939acb4eb/mb_market_data_daily/src/mb_market_data/sampling_acquisition.py", line 375, in snapshot
+    return self._read()
+           ^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_market_data_daily/src/mb_market_data/sampling_acquisition.py", line 287, in _read
+    return self._read_checked(connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_market_data_daily/src/mb_market_data/daily_hot_acquisition.py", line 108, in _read_checked
+    return super()._read_checked(connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/6ce939acb4eb/mb_market_data_daily/src/mb_market_data/sampling_acquisition.py", line 370, in _read_checked
+    raise ValueError("Journal channel outcomes differ from acquisition ledger")
+ValueError: Journal channel outcomes differ from acquisition ledger

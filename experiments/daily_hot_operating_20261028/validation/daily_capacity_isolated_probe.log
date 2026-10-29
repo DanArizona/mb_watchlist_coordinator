@@ -1,0 +1,5 @@
+{"n": 1, "tick_seconds": 0.31652828400001454, "native_cycle_seconds": 0.26984220899998945, "state_prepare_seconds": 0.0488964759999817, "spool_and_check_seconds": 0.029178314000091632}
+{"n": 16, "tick_seconds": 0.32471378300010656, "native_cycle_seconds": 0.2754225349999615, "state_prepare_seconds": 0.0703261730000122, "spool_and_check_seconds": 0.032541825000180324}
+{"n": 32, "tick_seconds": 0.3391015629999856, "native_cycle_seconds": 0.28319958099996256, "state_prepare_seconds": 0.0641989339999327, "spool_and_check_seconds": 0.04150952899999538}
+{"n": 64, "tick_seconds": 0.41230507299997043, "native_cycle_seconds": 0.3458489360000385, "state_prepare_seconds": 0.08622543600017707, "spool_and_check_seconds": 0.044147594000151}
+{"n": 128, "tick_seconds": 0.6196292409999842, "native_cycle_seconds": 0.44298936099994535, "state_prepare_seconds": 0.12949407300015991, "spool_and_check_seconds": 0.0653739439999299}

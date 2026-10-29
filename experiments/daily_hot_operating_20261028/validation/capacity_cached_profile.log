@@ -1,0 +1,47 @@
+{"phase": "seeded", "synthetic_slots": 9358, "seconds": 7.164221471000019}
+{"phase": "cold_prepare", "seconds": 8.908766181999908, "original_progress_budget_seconds": 3}
+{"phase": "tail", "measurement": {"actual_native_tick_seconds": 2.3663467649998893, "state_prepare_seconds": 0.5549563300000955, "spool_and_check_seconds": 0.3602054319999297}}
+{"phase": "tail", "measurement": {"actual_native_tick_seconds": 2.3395664469999247, "state_prepare_seconds": 0.6391313100002662, "spool_and_check_seconds": 0.2731491280001137}}
+         28929968 function calls (23895046 primitive calls) in 21.439 seconds
+
+   Ordered by: cumulative time
+   List reduced from 1378 to 35 due to restriction <35>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.371    0.371   21.612   21.612 capacity_probe.py:17(run)
+       19    0.000    0.000   13.267    0.698 sampling_acquisition.py:283(_read)
+       19    0.037    0.002   13.254    0.698 daily_hot_acquisition.py:109(_read_checked)
+       19    1.149    0.060   12.422    0.654 daily_acquisition_reader.py:42(read_daily_history)
+       19    1.588    0.084    9.774    0.514 daily_acquisition_reader.py:85(read_verified_history)
+        5    0.000    0.000    9.245    1.849 sampling_acquisition.py:373(snapshot)
+        2    0.000    0.000    9.060    4.530 daily_collector.py:82(prepare)
+        2    0.000    0.000    9.059    4.530 hot_recovery_collector.py:108(prepare)
+    18721    0.072    0.000    5.412    0.000 quote_observation_store.py:1487(_observation_values)
+    18721    0.316    0.000    5.073    0.000 quote_observation_store.py:277(_normalized_quote_values)
+9508769/6481595    1.757    0.000    4.986    0.000 {built-in method builtins.isinstance}
+   748840    0.734    0.000    4.735    0.000 quote_observation_store.py:260(_nested)
+        2    0.000    0.000    4.705    2.353 hot_recovery_collector.py:157(tick)
+        2    0.003    0.001    3.995    1.997 sampling_acquisition.py:431(sample)
+9371/9369    0.047    0.000    3.622    0.000 daily_hot_acquisition.py:114(_receipt)
+     9367    0.117    0.000    3.557    0.000 daily_acquisition_reader.py:62(receipt_from_view)
+  1513587    0.640    0.000    3.244    0.000 typing.py:1221(__instancecheck__)
+    18718    0.013    0.000    2.624    0.000 daily_acquisition_reader.py:79(<genexpr>)
+  1513587    0.899    0.000    2.603    0.000 typing.py:1492(__subclasscheck__)
+   102366    0.249    0.000    1.883    0.000 __init__.py:183(dumps)
+    28127    0.057    0.000    1.780    0.000 sampling_acquisition.py:46(digest)
+    28160    0.051    0.000    1.656    0.000 sampling_acquisition.py:42(canonical)
+    28074    0.097    0.000    1.614    0.000 capacity_probe.py:55(event)
+   102366    0.189    0.000    1.581    0.000 encoder.py:183(encode)
+1207563/19    0.816    0.000    1.557    0.082 daily_acquisition_reader.py:27(immutable)
+        2    0.000    0.000    1.466    0.733 schwab_quotes.py:230(fetch_quotes_batched)
+        2    0.000    0.000    1.465    0.733 daily_collector.py:119(quotes)
+   102367    1.246    0.000    1.313    0.000 encoder.py:205(iterencode)
+632241/37520    0.600    0.000    1.311    0.000 sampling_acquisition.py:34(plain)
+  1513950    0.572    0.000    1.304    0.000 {built-in method builtins.issubclass}
+524130/477330    0.420    0.000    1.275    0.000 daily_acquisition_reader.py:31(<genexpr>)
+   159112    1.230    0.000    1.230    0.000 daily_acquisition_reader.py:47(<genexpr>)
+       31    0.001    0.000    1.173    0.038 daily_collector.py:98(validate_publication)
+    61812    0.049    0.000    1.147    0.000 sampling_requests.py:65(canonical)
+    51726    0.967    0.000    0.967    0.000 {method 'execute' of 'sqlite3.Connection' objects}
+
+

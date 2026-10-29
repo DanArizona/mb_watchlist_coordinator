@@ -178,6 +178,11 @@ class DirectoryCatalog:
                     raise CatalogError('catalog_artifacts_changed')
         return self
 
+    def verified_public_sha256(self):
+        """The original parsed digest after rechecking every retained byte."""
+        self.validate()
+        return self._parsed_id.removeprefix('nasdaq-exact-')
+
 
 def _stop(child):
     if child.poll() is None:
