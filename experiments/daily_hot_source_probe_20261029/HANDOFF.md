@@ -1,5 +1,25 @@
 # Source investigation handoff — 2026-10-29
 
+**Windows command 66 accepted within its focused offline diagnostic scope:**
+18/18 passed, no failures/errors/skips, returned CMD prompt, win32/Python
+3.12.13/SQLite 3.53.2, run 20261029T092741Z_6089bd4d. Runner 10.764 seconds;
+final report 11.093999999808148 seconds. One valid saved synthetic CURRENT
+response, zero unavailable feed attempts/read errors, r2 plan+ACK, two native
+Hot acquisitions, native audit PASS and two fresh equal five-event replays
+(hash 0eeba7be7b32a5380ae77f2d2cc1464b607077d775fc0b403a7ba0d3d7f69b9b).
+Windows Job Object cleanup observed empty scope in .2190000000409782 seconds,
+controller return code zero, no forced termination. The last worker RUNNING
+snapshot is superseded by that verified outer cleanup outcome.
+
+RECOVERING/source_reconciled=false is expected for this approximately eight-
+second fixture, before the paced historical queries; it is not full source
+reconciliation evidence. No original I/O or local publication-prefix failure
+recurred here; neither cause is resolved. Older failed verdicts are unchanged.
+No repeat of accepted recovery/capacity drills or production activity occurred.
+Windows result source files and exact supplied console are in validation/.
+
+Earlier investigation record (preserved):
+
 Command 65 completed on Windows: all ten saved synthetic databases read with
 quick_check=ok, no current issues and unchanged main-file bytes. The original
 command-64 disk I/O error's file/operation/extended code was not retained.

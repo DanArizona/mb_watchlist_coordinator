@@ -1,0 +1,91 @@
+{
+  "contract": "operator-supplied-windows-source-probe-review-v1",
+  "basis": "Complete operator-supplied command-66 console/final JSON including returned CMD prompt",
+  "original_windows_files_independently_read": false,
+  "attachment_sha256": "1d8f6d966f24ba104d9b30349e9200e26a028cfc27f30a5026f321b732fe83fe",
+  "run": "20261029T092741Z_6089bd4d",
+  "packet": "daily_hot_source_probe_20261029_f77e1c1_5552c5d.zip",
+  "source": {
+    "coordinator_commit": "f77e1c1e401d39b0865b188401f94d01a67a5c6a",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "sqlite_version": "3.53.2",
+  "result": "PASS",
+  "tests": 18,
+  "passed": 18,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "runner_seconds": 10.764,
+  "report_seconds": 11.093999999808148,
+  "feed": {
+    "valid_attempts": 1,
+    "unavailable_attempts": 0,
+    "body_complete": true,
+    "outcome": "valid rss; empty CURRENT fixture; no live provider request"
+  },
+  "collection": {
+    "native_hot_acquisitions": 2,
+    "membership_revision": 2,
+    "publication_events": [
+      {
+        "kind": "plan",
+        "plan_id": null,
+        "request_sequence": 1,
+        "revision": 2
+      },
+      {
+        "kind": "acknowledged",
+        "plan_id": 1,
+        "request_sequence": null,
+        "revision": 2
+      }
+    ],
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "first_replay": {
+      "events": 5,
+      "sequence_sha256": "0eeba7be7b32a5380ae77f2d2cc1464b607077d775fc0b403a7ba0d3d7f69b9b"
+    }
+  },
+  "cleanup": {
+    "result": "STOPPED",
+    "stop_reason": "operator_stop",
+    "seconds": 0.2190000000409782,
+    "backend": "windows_job",
+    "controller_returncode": 0,
+    "forced": false,
+    "reason": null,
+    "scope_empty_observed": true,
+    "status": "EXIT_OBSERVED"
+  },
+  "source_reconciliation": {
+    "source_status": "RECOVERING",
+    "source_reconciled": false,
+    "expected_in_short_fixture": true,
+    "basis": "One CURRENT response; dated history queries remain pending behind the preserved 60-second feed interval. Test stops after the second native acquisition at approximately logical +8 seconds.",
+    "complete_source_reconciliation_qualified": false
+  },
+  "stopped_status_worker_snapshot_note": "hot-status contains the last RUNNING worker observation; outer cleanup is authoritative for owned-scope exit and reports scope_empty_observed=true.",
+  "original_windows_io_error_cause_resolved": false,
+  "local_publication_prefix_block_cause_resolved": false,
+  "original_command_63_verdict": "FAILED",
+  "original_command_64_verdict": "FAILED",
+  "accepted_recovery_capacity_drills_repeated": false,
+  "operating_release_qualified": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "next": "Continue offline investigation of retained intermittent source/publication integrity evidence. Preserve accepted component passes; provider/deployment/settings/activation gates remain."
+}

@@ -14,12 +14,15 @@
   "actual_vault_access": false,
   "actual_broker_sdk_used": false,
   "production_changes": false,
-  "windows_result": "PENDING",
+  "windows_result": "PASS",
   "operating_release_qualified": false,
   "confirmed_fixture_clock_defect_corrected": true,
   "original_windows_io_error_cause_resolved": false,
   "additional_local_publication_prefix_block_cause_resolved": false,
   "failed_evidence_preserved": true,
   "prior_recovery_capacity_drills_repeated": false,
-  "production_hot_enabled": false
+  "production_hot_enabled": false,
+  "windows_review": "validation/windows_f77e1c1_review.json",
+  "windows_run": "20261029T092741Z_6089bd4d",
+  "windows_tests": 18
 }
