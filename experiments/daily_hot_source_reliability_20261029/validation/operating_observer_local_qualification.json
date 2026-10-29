@@ -1,0 +1,39 @@
+{
+  "contract": "daily-hot-operating-observer-local-qualification-v1",
+  "result": "PASS",
+  "tests": 8,
+  "passed": 8,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 2.917,
+  "synthetic_only": true,
+  "actual_owned_process_checks": 2,
+  "checks": [
+    "same primary exception object, one operation and original handler/cleanup",
+    "success does not call capture or create a record",
+    "diagnostic failure does not replace primary exception or cleanup",
+    "first failure record cannot be overwritten",
+    "underlying context OS codes and original runtime code location",
+    "final report retains FAILED and exposes first error",
+    "real owned startup and original operator-stop cleanup",
+    "real outer callback PermissionError retains callback/runtime frames before cleanup"
+  ],
+  "original_entire_owner_function_ast_preserved_except_one_guarded_capture": true,
+  "original_runtime_source_files_unchanged": true,
+  "original_handler_and_cleanup_unchanged": true,
+  "active_checks_added": false,
+  "failed_operation_retried": false,
+  "deadlines_changed": false,
+  "unchanged_long_paced_capacity_and_recovery_repeated": false,
+  "earlier_development_result": {
+    "passed": 7,
+    "tests": 8,
+    "failures": 1,
+    "seconds": 2.610,
+    "cause": "Synthetic injection observed the child's first ACTIVE report before the original outer loop had refreshed its local phase. Original callback precedes phase refresh. Test injection now waits one original loop; phase field explicitly says at_last_check. No runtime correction."
+  },
+  "windows_result": "PENDING",
+  "root_cause_fixed": false,
+  "production_changes": false
+}

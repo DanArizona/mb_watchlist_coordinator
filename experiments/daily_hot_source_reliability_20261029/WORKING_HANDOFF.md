@@ -1,5 +1,40 @@
 # Source reliability development — resumed October 29
 
+Latest: user explicitly resumed after resource refresh. Windows command 69
+FAILED 1/1, run 20261029T213500Z_788ec993; complete supplied console/final JSON
+and actual CMD prompt. Paced 18.234s/report 18.546s. Outer reason is
+operating_evidence_or_launch_failed, failure_type PermissionError. No monitor
+receipt was captured; do not claim the monitor exception was identified or fixed.
+Windows Job cleanup emptied scope in .094s, no force, controller return zero.
+Audit PASS/equal two-event opening-history replays do not qualify collection.
+The outer handler discarded original filename/OS code/frames. It also invokes
+a test-only status-reading stop callback; runtime versus test-callback origin
+is unproven. No link to CPU/cadence/Security software or earlier I/O proven.
+
+Prepared operating_exception_observer.py inserts one guarded capture into
+that existing original outer exception handler, only after failure. Removing
+the observation recovers the exact entire original AST. No active-loop trace
+or extra check, retry, deadline change or source-file edit. It records first
+type/codes/filename/filename2 and trusted runtime/test/pathlib frames, including
+the original callback, then preserves the original handler and cleanup. The
+existing controller-only observer is retained unchanged. Final JSON exposes
+operating_exception and monitor_exception; CAPTURED plus FAILED is useful
+diagnostic evidence, not a correction. Command 70 runs one unchanged original
+paced proof using the existing adjacent command-67 packet; Windows pending.
+
+Eight unique local checks PASS in 2.917s, including two actual owned-process
+cases (normal operator stop and callback PermissionError before cleanup).
+Earlier local 7/8 development result is retained: synthetic injection initially
+assumed phase refresh preceded callback; original order is reverse. Injection
+now waits one original loop and phase field says at_last_check. No runtime
+correction was made. Original source/runtime/assertions/pacing/limits unchanged;
+no capacity/recovery/full paced proof repeat. Command 67/68/69 stay FAILED.
+Public checkpoint restored exactly from 54cbd5e91a919c87382df1ad4636d154f4278190,
+tree 04785d22f3d4d0ec7d7ddeb506ae1e9f51ecd3a6 into this separate worktree;
+old abd20ca checkout preserved. Production Hot remains disabled. No API,
+installation, setting adoption or activation. Full Oct29 production closeout
+has not been supplied. Earlier chronology follows.
+
 Second complete archive read: libfile_07ce0eb186588191a3f22b71766c9c7d,
 55149 bytes, SHA-256 b5a997265157ac603d2eae25820f564b4d80048a565e51cfb48c31115af0a09a,
 67 files. Ten copied SQLite DBs pass immutable read-only quick_check with

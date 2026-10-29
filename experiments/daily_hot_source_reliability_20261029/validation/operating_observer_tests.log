@@ -1,0 +1,13 @@
+test_outer_callback_permission_error_is_captured_before_original_owned_cleanup (test_operating_exception_observer.ActualObservedOwnerTests.test_outer_callback_permission_error_is_captured_before_original_owned_cleanup) ... ok
+test_real_owned_start_and_operator_stop_keep_original_cleanup (test_operating_exception_observer.ActualObservedOwnerTests.test_real_owned_start_and_operator_stop_keep_original_cleanup) ... ok
+test_context_os_error_and_original_runtime_location_are_preserved (test_operating_exception_observer.OperatingExceptionObserverTests.test_context_os_error_and_original_runtime_location_are_preserved) ... ok
+test_diagnostic_failure_keeps_primary_error_and_cleanup (test_operating_exception_observer.OperatingExceptionObserverTests.test_diagnostic_failure_keeps_primary_error_and_cleanup) ... ok
+test_final_report_exposes_owner_error_and_keeps_failed_verdict (test_operating_exception_observer.OperatingExceptionObserverTests.test_final_report_exposes_owner_error_and_keeps_failed_verdict) ... ok
+test_first_record_is_not_overwritten_by_a_later_failure (test_operating_exception_observer.OperatingExceptionObserverTests.test_first_record_is_not_overwritten_by_a_later_failure) ... ok
+test_same_error_single_operation_and_original_cleanup_are_preserved (test_operating_exception_observer.OperatingExceptionObserverTests.test_same_error_single_operation_and_original_cleanup_are_preserved) ... ok
+test_success_does_not_call_capture_or_add_a_record (test_operating_exception_observer.OperatingExceptionObserverTests.test_success_does_not_call_capture_or_add_a_record) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.917s
+
+OK
