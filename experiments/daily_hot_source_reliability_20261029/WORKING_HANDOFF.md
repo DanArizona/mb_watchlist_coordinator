@@ -1,5 +1,18 @@
 # Source reliability development — resumed October 29
 
+New saved-state attachment identifies controller error IdentityStopRequired,
+terminal daily_inputs_or_source_failed and stop 14:01:02.829912Z. Driver-live
+then records STOPPING at 02.835425Z; outer stop at 02.842957Z is later. Thus
+controller_progress_stale is downstream of an already stopping controller.
+First collector exit was observed at 14:00:12.683226Z, hold until 27.683226Z,
+replacement reserved 27.700905Z. The earlier exit cause and underlying identity
+stop code remain unknown. IdentityStopRequired is RuntimeError outside the
+source receipt exception tuple; null receipt does not exclude this source
+failure. Repeated Timeout (0:00:10)! banners are deliberate faulthandler stack
+snapshots, not operating deadline failures. Obtain the complete existing closed
+state copy (process events, identity SQLite events, worker exit receipts and
+role stacks) before another test or code change. Original FAILED remains.
+
 Latest Windows command 67 result: FAILED 49/50, run 20261029T145255Z_87ab13e4,
 complete supplied console/final JSON and returned CMD prompt. The paced owner
 stopped at 63.063 seconds with controller_progress_stale, child return code 70,

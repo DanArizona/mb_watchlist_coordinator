@@ -1,0 +1,117 @@
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>python -c "from pathlib import Path; r=Path(r'C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\runs\20261029T145255Z_87ab13e4\paced\closed-state'); assert r.is_dir(),r; names={'controller-status.json','driver-state.json','driver-live.json','driver-stop.json','controller-thread-stacks.log'}; [(print('\n'+str(p)),print('\n'.join(p.read_text(encoding='utf-8',errors='replace').splitlines()[-100:]))) for p in sorted(r.rglob('*')) if p.is_file() and p.name in names]"
+
+C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\runs\20261029T145255Z_87ab13e4\paced\closed-state\daily_hot_test\driver-live.json
+{"content_sha256":"6dd8a48a322ecf04622997bafd8b50f354ba35f084a964896dec6b75d5a04a3d","contract":"daily-hot-controller-v1","identity_sha256":"c28149b967e78b91178d7e915861aa499d32a270b4ada6ff775768549b9404d0","invocation":"077055656b2c44329529929c4faaa348","observed_at_utc":"2026-10-30T14:01:02.835425+00:00","state":"STOPPING"}
+
+C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\runs\20261029T145255Z_87ab13e4\paced\closed-state\daily_hot_test\driver-state.json
+{"active_invocation":"077055656b2c44329529929c4faaa348","content_sha256":"05715cb1105d96d1416d0f5394149e77c9ae561300105e4e5d8279942cf996c6","contract":"daily-hot-controller-v1","hold_until_utc":"2026-10-30T14:00:27.683226+00:00","identity_sha256":"c28149b967e78b91178d7e915861aa499d32a270b4ada6ff775768549b9404d0","initialized":true,"invocations":[{"at_utc":"2026-10-30T14:00:00.510447+00:00","invocation":"077055656b2c44329529929c4faaa348","manual_resume":false}],"starts":[{"exit_observed_at_utc":"2026-10-30T14:00:12.683226+00:00","generation":1,"invocation":"077055656b2c44329529929c4faaa348","reserved_at_utc":"2026-10-30T14:00:00.884019+00:00","token":"10206ff8c52b4f9bbbf82b5ebef3415c"},{"exit_observed_at_utc":null,"generation":2,"invocation":"077055656b2c44329529929c4faaa348","reserved_at_utc":"2026-10-30T14:00:27.700905+00:00","token":"36b877ef35144067bdc2498878e9bf98"}],"stop":{"at_utc":"2026-10-30T14:01:02.829912+00:00","reason":"daily_inputs_or_source_failed"},"terminal":"daily_inputs_or_source_failed"}
+
+C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\runs\20261029T145255Z_87ab13e4\paced\closed-state\daily_hot_test\driver-stop.json
+{"cleanup":{"hot":{"status":"EXTERNAL_WORKER_UNCHANGED"},"identity":{"forced":false,"returncode":null},"source":null},"cleanup_seconds":0.0,"cleanup_within_10_seconds":true,"content_sha256":"501a46e30644f703ba01b95ce5c99ee81c950fa87e9d12368aec1425ab895e6d","contract":"daily-hot-controller-v1","evidence_errors":[],"reason":"daily_inputs_or_source_failed","reporting":{"status":"NOT_REQUESTED"},"status":"STOPPED","unmanaged_channels_untouched":["uni","focus","health"]}
+
+C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\runs\20261029T145255Z_87ab13e4\paced\closed-state\daily_outer_test\controller-status.json
+{"configuration_sha256":"278f08f18e253a17b56cccce72a96f8efee1587f7f76f9f0d458aa921f58ebd4","content_sha256":"d4d0540d1b29768124e6fed06d6d318c0102f97fc18c5168d5e13265773d629e","contract":"daily-hot-operating-owner-v1","error_type":"IdentityStopRequired","nonce":"478a8d547c014aaabd373b268edd906d","phase":"FAILED"}
+
+C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\runs\20261029T145255Z_87ab13e4\paced\closed-state\daily_outer_test\controller-thread-stacks.log
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1012 in run
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x0000c4e0 (most recent call first):
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 359 in wait
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 655 in wait
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating_worker.py", line 111 in controller_entry
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\tests\fixtures\daily_operating_process.py", line 38 in <module>
+Timeout (0:00:10)!
+Thread 0x0000f7bc (most recent call first):
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 359 in wait
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 655 in wait
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_controller.py", line 255 in _monitor
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1012 in run
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000103dc (most recent call first):
+  File "<frozen ntpath>", line 840 in realpath
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\pathlib.py", line 1250 in resolve
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_session.py", line 33 in regular_path
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating.py", line 27 in load_binding
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating_worker.py", line 35 in check
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating_worker.py", line 56 in watch
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1012 in run
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x0000c4e0 (most recent call first):
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 359 in wait
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 655 in wait
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating_worker.py", line 111 in controller_entry
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\tests\fixtures\daily_operating_process.py", line 38 in <module>
+Timeout (0:00:10)!
+Thread 0x0000f7bc (most recent call first):
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 359 in wait
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 655 in wait
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_controller.py", line 255 in _monitor
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1012 in run
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000103dc (most recent call first):
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\pathlib.py", line 840 in stat
+
+Thread 0x0000c4e0 (most recent call first):
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 359 in wait
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 655 in wait
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating_worker.py", line 111 in controller_entry
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\tests\fixtures\daily_operating_process.py", line 38 in <module>
+Timeout (0:00:10)!
+Thread 0x0000f7bc (most recent call first):
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 359 in wait
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 655 in wait
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_controller.py", line 255 in _monitor
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1012 in run
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000103dc (most recent call first):
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 359 in wait
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 655 in wait
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating_worker.py", line 53 in watch
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1012 in run
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x0000c4e0 (most recent call first):
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 359 in wait
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 655 in wait
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating_worker.py", line 111 in controller_entry
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\tests\fixtures\daily_operating_process.py", line 38 in <module>
+Timeout (0:00:10)!
+Thread 0x0000f7bc (most recent call first):
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\pathlib.py", line 840 in stat
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\pathlib.py", line 892 in is_file
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\recovery_workers.py", line 140 in _job
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_controller.py", line 219 in _monitor_once
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_controller.py", line 257 in _monitor
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1012 in run
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x000103dc (most recent call first):
+  File "<frozen ntpath>", line 695 in realpath
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\pathlib.py", line 1240 in resolve
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_session.py", line 33 in regular_path
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating.py", line 26 in load_binding
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating_worker.py", line 35 in check
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating_worker.py", line 56 in watch
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1012 in run
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1075 in _bootstrap_inner
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 1032 in _bootstrap
+
+Thread 0x0000c4e0 (most recent call first):
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 359 in wait
+  File "C:\Users\danla\anaconda3\envs\sea-green\Lib\threading.py", line 655 in wait
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\src\mb_watchlist_coordinator\daily_operating_worker.py", line 111 in controller_entry
+  File "C:\Users\danla\Documents\github\mb_market_data\output\daily_hot_source_reliability_20261029_2f56703_5552c5d\coordinator\tests\fixtures\daily_operating_process.py", line 38 in <module>
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
