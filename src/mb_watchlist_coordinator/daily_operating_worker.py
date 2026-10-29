@@ -51,12 +51,13 @@ class ParentFence:
     def watch(self):
         stopped=None
         while not self.finished.wait(.02):
-            try:
-                if self.check(): continue
-            except BaseException:
-                self.failed=True
-            self.stop.set()
-            if stopped is None: stopped=time.monotonic()
+            if stopped is None:
+                try:
+                    if self.check(): continue
+                except BaseException:
+                    self.failed=True
+                self.stop.set()
+                stopped=time.monotonic()
             if time.monotonic()-stopped>=10:
                 # This process is in the outer's owned scope. Native children
                 # additionally retain their accepted independent owner fences.

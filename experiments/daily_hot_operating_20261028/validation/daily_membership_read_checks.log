@@ -1,0 +1,25 @@
+test_deleted_channel_is_rejected_by_a_warm_latest_reader (test_daily_membership_read.DailyMembershipReadTests.test_deleted_channel_is_rejected_by_a_warm_latest_reader) ... ok
+test_mutating_a_channel_header_is_rejected_by_a_warm_reader (test_daily_membership_read.DailyMembershipReadTests.test_mutating_a_channel_header_is_rejected_by_a_warm_reader) ... ok
+test_mutating_a_hierarchy_header_is_rejected_by_a_warm_reader (test_daily_membership_read.DailyMembershipReadTests.test_mutating_a_hierarchy_header_is_rejected_by_a_warm_reader) ... ok
+test_mutating_old_members_is_rejected_by_a_warm_reader (test_daily_membership_read.DailyMembershipReadTests.test_mutating_old_members_is_rejected_by_a_warm_reader) ... ok
+test_warm_reader_matches_reference_and_adopts_a_new_published_revision (test_daily_membership_read.DailyMembershipReadTests.test_warm_reader_matches_reference_and_adopts_a_new_published_revision) ... FAIL
+
+======================================================================
+FAIL: test_warm_reader_matches_reference_and_adopts_a_new_published_revision (test_daily_membership_read.DailyMembershipReadTests.test_warm_reader_matches_reference_and_adopts_a_new_published_revision)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/tests/test_daily_membership_read.py", line 24, in test_warm_reader_matches_reference_and_adopts_a_new_published_revision
+    self.assertEqual(self.store.latest_membership_revision_effective_at(self.case.now).hot_symbols,('NVDA',))
+AssertionError: Tuples differ: () != ('NVDA',)
+
+Second tuple contains 1 additional elements.
+First extra element 0:
+'NVDA'
+
+- ()
++ ('NVDA',)
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.240s
+
+FAILED (failures=1)

@@ -1,0 +1,12 @@
+test_actual_owner_stops_only_its_scope_then_runs_a_fresh_native_report (test_daily_operating.DailyOperatingTests.test_actual_owner_stops_only_its_scope_then_runs_a_fresh_native_report) ... ok
+test_complete_collection_proof_preserves_native_journal_and_never_reports_in_the_active_scope (test_daily_operating.DailyOperatingTests.test_complete_collection_proof_preserves_native_journal_and_never_reports_in_the_active_scope) ... ok
+test_held_controller_is_forced_out_by_the_original_cleanup_budget (test_daily_operating.DailyOperatingTests.test_held_controller_is_forced_out_by_the_original_cleanup_budget) ... ok
+test_read_only_status_does_not_create_a_missing_outer (test_daily_operating.DailyOperatingTests.test_read_only_status_does_not_create_a_missing_outer) ... ok
+test_stop_request_cannot_be_applied_to_a_different_invocation (test_daily_operating.DailyOperatingTests.test_stop_request_cannot_be_applied_to_a_different_invocation) ... ok
+test_unapproved_launch_is_refused_before_creating_state (test_daily_operating.DailyOperatingTests.test_unapproved_launch_is_refused_before_creating_state) ... ok
+test_reader_validates_while_the_original_publication_owner_stays_attached (test_daily_controller.DailyControllerTests.test_reader_validates_while_the_original_publication_owner_stays_attached) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 22.529s
+
+OK

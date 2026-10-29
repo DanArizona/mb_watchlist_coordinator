@@ -103,16 +103,20 @@ class DailyHotCollector(HotRecoveryCollector):
     def close(self):
         try:super().close()
         finally:
+            self.poller.close_read_cache()
             if self.collector_lease is not None:
                 lease,self.collector_lease=self.collector_lease,None
                 lease.__exit__(None,None,None)
 
-    def validate_publication(self, dispatch):
-        self.session.validate()
-        publication = plain(self.session.service.snapshot())
-        gate = plain(self.session.gate.snapshot())['identity_gate']
+    def _publication(self):
+        publication, gate = map(plain, self.session.validate(with_state=True))
+        gate = gate['identity_gate']
         if gate['provider_stop_required']:
             raise ValueError('Identity provider stop prevents new collection')
+        return publication,gate
+
+    def validate_publication(self, dispatch, *, verified_state=None):
+        publication,gate = self._publication() if verified_state is None else verified_state
         if dispatch is not None:
             revision = next((r for r in publication['journal']
                 if r['proposal']['revision'] == dispatch['revision']), None)
@@ -126,14 +130,14 @@ class DailyHotCollector(HotRecoveryCollector):
         if self.collector_lease is None:raise ValueError('Owned prepared daily collector required')
         self._provider_stop()
         super()._check()
-        self.validate_publication(None)
+        return self._publication()
 
     def quotes(self, symbols, *, fields):
         # This executes after the native durable dispatch, inside its owner lock.
-        self._check()
+        verified=self._check()
         state=self.poller.provider_dispatch_state()
         dispatch=state['pending']['dispatch']
-        self.validate_publication(dispatch)
+        self.validate_publication(dispatch,verified_state=verified)
         consumed=sum(e['kind']=='dispatch' and bool(e['symbols']) for e in state['events'])
         if (consumed>self.settings.max_quote_calls or len(symbols)>self.settings.max_symbols
                 or tuple(symbols)!=tuple(dispatch['symbols']) or fields!='all'

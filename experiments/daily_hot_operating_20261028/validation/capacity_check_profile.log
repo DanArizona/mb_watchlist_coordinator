@@ -1,0 +1,79 @@
+{"phase": "seeded", "synthetic_slots": 9358, "seconds": 10.365843954999946}
+{"phase": "cold_prepare", "seconds": 1.5506504660002065, "original_progress_budget_seconds": 3}
+{"phase": "tail", "measurement": {"actual_native_tick_seconds": 1.395199219999995, "state_prepare_seconds": 0.3272176099999342, "spool_and_check_seconds": 0.5595735790002436, "before_api_gate_seconds": 0.05}}
+{"phase": "tail", "measurement": {"actual_native_tick_seconds": 1.1757989069997166, "state_prepare_seconds": 0.3090067269999963, "spool_and_check_seconds": 0.32659023499991235, "before_api_gate_seconds": 0.05}}
+GC events [(0, 6.346500003928668e-05), (0, 6.516699977510143e-05), (0, 0.00010295499987478252), (0, 0.004588803999922675), (1, 0.008943014000124094), (0, 0.00011386999995011138), (0, 6.347499993353267e-05), (0, 7.053599983919412e-05), (0, 0.0001025139999910607), (0, 7.624499994562939e-05), (0, 7.77870000092662e-05), (0, 4.899300029137521e-05), (0, 8.631900027467054e-05), (0, 8.107100029519643e-05), (0, 0.00015471200003958074), (0, 4.8443000196130015e-05), (1, 0.00017929899968294194), (0, 4.916399984722375e-05), (0, 0.00013328000022738706), (0, 0.003498866999962047)]
+PROFILE 0
+         1247692 function calls (947335 primitive calls) in 1.382 seconds
+
+   Ordered by: cumulative time
+   List reduced from 520 to 28 due to restriction <28>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    1.395    1.395 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_collector.py:165(tick)
+        1    0.000    0.000    1.329    1.329 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_hot_acquisition.py:129(sample)
+        1    0.002    0.002    1.328    1.328 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_acquisition_cycle.py:10(sample_daily)
+        3    0.000    0.000    1.141    0.380 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/sampling_acquisition.py:285(_read)
+        3    0.005    0.002    1.139    0.380 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_hot_acquisition.py:118(_read_checked)
+        3    0.517    0.172    0.946    0.315 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_acquisition_reader.py:57(read_daily_history)
+        6    0.000    0.000    0.342    0.057 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_collector.py:110(_publication)
+        3    0.236    0.079    0.336    0.112 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_acquisition_reader.py:110(read_verified_history)
+        6    0.003    0.001    0.326    0.054 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_session.py:254(validate)
+        3    0.001    0.000    0.188    0.063 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_hot_acquisition.py:65(_validate_daily)
+        3    0.000    0.000    0.180    0.060 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_collector.py:128(_check)
+        4    0.000    0.000    0.167    0.042 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_collector.py:117(validate_publication)
+       18    0.000    0.000    0.153    0.008 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_journal.py:31(membership_revisions_in_effective_order)
+        1    0.000    0.000    0.143    0.143 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/schwab_quotes.py:230(fetch_quotes_batched)
+        1    0.000    0.000    0.143    0.143 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_collector.py:134(quotes)
+       72    0.002    0.000    0.140    0.002 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_journal.py:37(<genexpr>)
+       55    0.018    0.000    0.139    0.003 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_journal.py:13(_membership_revision_from_row)
+       12    0.001    0.000    0.135    0.011 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/sampling_journal.py:59(revisions)
+        6    0.001    0.000    0.134    0.022 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_session.py:47(preview)
+        6    0.000    0.000    0.103    0.017 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/sampling_service.py:275(snapshot)
+        6    0.000    0.000    0.081    0.013 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/integrated_identity.py:194(snapshot)
+        6    0.001    0.000    0.079    0.013 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/integrated_identity.py:138(_read)
+ 112330/3    0.044    0.000    0.075    0.025 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_acquisition_reader.py:29(immutable)
+       18    0.004    0.000    0.069    0.004 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/quote_observation_store.py:1260(_membership_revision_from_row)
+       30    0.001    0.000    0.064    0.002 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/sampling_membership.py:152(__post_init__)
+        6    0.001    0.000    0.057    0.009 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/sampling_service.py:176(_read)
+        6    0.000    0.000    0.056    0.009 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/nasdaq_recovery_delivery.py:196(snapshot)
+        2    0.004    0.002    0.056    0.028 {built-in method builtins.sum}
+
+
+PROFILE 1
+         1247983 function calls (947593 primitive calls) in 1.163 seconds
+
+   Ordered by: cumulative time
+   List reduced from 448 to 28 due to restriction <28>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    1.176    1.176 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_collector.py:165(tick)
+        1    0.000    0.000    1.124    1.124 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_hot_acquisition.py:129(sample)
+        1    0.002    0.002    1.124    1.124 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_acquisition_cycle.py:10(sample_daily)
+        3    0.000    0.000    0.909    0.303 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/sampling_acquisition.py:285(_read)
+        3    0.005    0.002    0.907    0.302 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_hot_acquisition.py:118(_read_checked)
+        3    0.286    0.095    0.701    0.234 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_acquisition_reader.py:57(read_daily_history)
+        6    0.000    0.000    0.349    0.058 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_collector.py:110(_publication)
+        6    0.005    0.001    0.335    0.056 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_session.py:254(validate)
+        3    0.234    0.078    0.325    0.108 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_acquisition_reader.py:110(read_verified_history)
+        3    0.001    0.000    0.201    0.067 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_hot_acquisition.py:65(_validate_daily)
+        4    0.000    0.000    0.178    0.045 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_collector.py:117(validate_publication)
+        3    0.000    0.000    0.174    0.058 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_collector.py:128(_check)
+       18    0.000    0.000    0.168    0.009 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_journal.py:31(membership_revisions_in_effective_order)
+       72    0.002    0.000    0.157    0.002 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_journal.py:37(<genexpr>)
+       55    0.012    0.000    0.156    0.003 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_journal.py:13(_membership_revision_from_row)
+        1    0.000    0.000    0.154    0.154 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/schwab_quotes.py:230(fetch_quotes_batched)
+        1    0.000    0.000    0.154    0.154 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_collector.py:134(quotes)
+       12    0.001    0.000    0.151    0.013 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/sampling_journal.py:59(revisions)
+        6    0.001    0.000    0.147    0.024 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/daily_session.py:47(preview)
+        6    0.000    0.000    0.095    0.016 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/sampling_service.py:275(snapshot)
+       18    0.011    0.001    0.085    0.005 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/quote_observation_store.py:1260(_membership_revision_from_row)
+        6    0.000    0.000    0.083    0.014 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/integrated_identity.py:194(snapshot)
+        6    0.001    0.000    0.082    0.014 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/integrated_identity.py:138(_read)
+       30    0.001    0.000    0.073    0.002 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/sampling_membership.py:152(__post_init__)
+ 112342/3    0.036    0.000    0.066    0.022 /workspace/scratch/6ce939acb4eb/mb_market_data_daily_operating/src/mb_market_data/daily_acquisition_reader.py:29(immutable)
+        2    0.005    0.002    0.064    0.032 {built-in method builtins.sum}
+        6    0.000    0.000    0.057    0.009 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/nasdaq_recovery_delivery.py:196(snapshot)
+        6    0.000    0.000    0.055    0.009 /workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/src/mb_watchlist_coordinator/nasdaq_recovery_delivery.py:139(_read)
+
+

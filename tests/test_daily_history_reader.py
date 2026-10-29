@@ -2,6 +2,7 @@
 from contextlib import closing
 from dataclasses import replace
 import json
+import os
 import sqlite3
 import unittest
 from unittest.mock import patch
@@ -88,7 +89,7 @@ class DailyHistoryReaderTests(unittest.TestCase):
                     read_daily_history(self.poller,c)
 
     def test_cold_v2_reader_rejects_formatting_edits_without_a_new_byte_digest(self):
-        self.poller._verified_history=None
+        self.poller.close_read_cache()
         with closing(sqlite3.connect(self.poller.path)) as c,c:
             raw=c.execute('SELECT payload FROM acquisition_event WHERE sequence=1').fetchone()[0]
             c.execute('UPDATE acquisition_event SET payload=? WHERE sequence=1',(' '+raw,))
@@ -99,6 +100,24 @@ class DailyHistoryReaderTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'current verified native dispatch'):
             self.fixture.collector.quotes(['NVDA'],fields='all')
         self.assertEqual(len(self.fixture.calls),calls)
+
+    def test_replaced_ledger_file_cannot_hide_behind_an_open_read_handle(self):
+        backup=self.poller.path.with_suffix('.replacement.sqlite3')
+        with closing(sqlite3.connect(self.poller.path)) as source,closing(sqlite3.connect(backup)) as target:
+            source.backup(target)
+        original=self.poller.path.stat().st_ino
+        try:os.replace(backup,self.poller.path)
+        except OSError:
+            # Windows may itself deny replacement of SQLite's open handle.
+            self.assertEqual(self.poller.path.stat().st_ino,original)
+            self.assertEqual(plain(self.poller.snapshot()),plain(self.before))
+        else:
+            with self.assertRaisesRegex(ValueError,'file was replaced'):self.poller.snapshot()
+
+    def test_schema_change_cannot_be_hidden_by_an_unchanged_row_count(self):
+        with closing(sqlite3.connect(self.fixture.case.journal)) as c,c:
+            c.execute('ALTER TABLE quote_acquisition ADD COLUMN unreviewed TEXT')
+        with self.assertRaisesRegex(ValueError,'schema changed'):self.poller.snapshot()
 
 
 if __name__=='__main__':unittest.main()

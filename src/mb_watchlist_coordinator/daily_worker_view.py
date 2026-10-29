@@ -27,7 +27,7 @@ class _ReadPublication:
 class DailyPublicationReader:
     def __init__(self, settings, catalog_path, *, binding, claim, publication_binding,
                  fence, clock=None):
-        from mb_market_data.quote_observation_store import QuoteObservationStore
+        from mb_market_data.daily_journal import DailyQuoteObservationStore as QuoteObservationStore
         from .sampling_journal import SamplingJournal
         from .sampling_projection import SamplingMembership
         from .sampling_policy import SamplingPolicy
@@ -99,9 +99,8 @@ class DailyPublicationReader:
                 or self.clock() < timestamp(previous['observed_at_utc'])):
             raise ValueError('Worker status binding or clock differs')
 
-    def validate(self):
+    def validate(self, *, with_state=False):
         self._binding()
-        self.gate.snapshot()
-        self.service.snapshot()
+        gate, publication = self.gate.snapshot(), self.service.snapshot()
         self.fence()
-        return True
+        return (publication, gate) if with_state else True

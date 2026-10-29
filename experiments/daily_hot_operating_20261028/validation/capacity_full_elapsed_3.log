@@ -1,0 +1,8 @@
+{"phase": "seeded", "synthetic_slots": 9358, "seconds": 10.24334566000016}
+{"phase": "cold_prepare", "seconds": 1.4754225399997267, "original_progress_budget_seconds": 3}
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/experiments/daily_hot_operating_20261028/capacity_probe.py", line 167, in run
+    assert result['status']=='acquired',result
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'status': 'missed', 'slot_id': 'hot:2026-10-30T15:59:56-04:00', 'gate': 'before_api_deadline', 'gate_lateness_seconds': 0.819645, 'state_prepare_seconds': 0.2510093319997395, 'spool_and_check_seconds': 0.2770118180001191}

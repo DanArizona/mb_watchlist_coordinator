@@ -1,0 +1,8 @@
+{"phase": "seeded", "synthetic_slots": 9358, "seconds": 10.579450776000158}
+{"phase": "cold_prepare", "seconds": 1.1914991879998524, "original_progress_budget_seconds": 3}
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/experiments/daily_hot_operating_20261028/capacity_probe.py", line 167, in run
+    assert result['status']=='acquired',result
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'status': 'blocked', 'slot_id': 'hot:2026-10-30T15:59:56-04:00', 'revision': 2, 'symbols': ('NVDA',), 'recovered': False, 'journal_seconds': 0.00294084400002248, 'collector_seconds': 0.045104928000000655, 'cycle_seconds': 0.7319758670000738, 'verification_seconds': 0.6570527090002543, 'state_prepare_seconds': 0.23283538800023962, 'spool_and_check_seconds': 0.22528615600003832, 'before_dispatch_gate_seconds': 0.486734, 'before_api_gate_seconds': 0.71379, 'recovery_before_slot_seconds': 0.0, 'dispatch_lateness_seconds': 0.486734, 'reason': 'provider_dispatch_gate_or_client_stopped'}

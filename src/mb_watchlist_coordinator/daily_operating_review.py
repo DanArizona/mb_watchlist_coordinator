@@ -19,7 +19,7 @@ from .sampling_requests import digest, plain, timestamp
 
 
 def build_operating_review(opening,focus,*,journal,catalog,state_root,ecfg,clock=None):
-    from mb_market_data.quote_observation_store import QuoteObservationStore
+    from mb_market_data.daily_journal import DailyQuoteObservationStore as QuoteObservationStore
     settings=DailySettings(str(regular_path(state_root)),str(regular_path(journal,exists=True)),
         str(regular_path(opening,exists=True)),str(regular_path(focus,exists=True)),digest(proposed_policy()))
     directory=DirectoryCatalog.load(regular_path(catalog))

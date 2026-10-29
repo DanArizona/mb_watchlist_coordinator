@@ -50,7 +50,7 @@ class DailySettings:
         SQLite may create its normal WAL/SHM coordination files for a read.
         """
         from mb_market_data.polling_cadence import check_before_credentials
-        from mb_market_data.quote_observation_store import QuoteObservationStore
+        from mb_market_data.daily_journal import DailyQuoteObservationStore as QuoteObservationStore
         from .sampling_journal import SamplingJournal
         root = regular_path(self.state_root)
         journal = regular_path(self.journal_path, exists=True)
@@ -173,7 +173,7 @@ class DailySession:
             raise ValueError('Daily inputs changed')
         lease = owner_lock(self.lock_path); lease.__enter__(); self.lease = lease
         try:
-            from mb_market_data.quote_observation_store import QuoteObservationStore
+            from mb_market_data.daily_journal import DailyQuoteObservationStore as QuoteObservationStore
             from .sampling_journal import SamplingJournal
             from .sampling_projection import SamplingMembership
             from .sampling_policy import SamplingPolicy
@@ -251,7 +251,7 @@ class DailySession:
         except BaseException:
             self.close(); raise
 
-    def validate(self):
+    def validate(self, *, with_state=False):
         if not self.attached or self.closed or self.lease is None:
             raise ValueError('Attached owned daily session required')
         if (self.settings.preview() != self.binding or
@@ -268,8 +268,8 @@ class DailySession:
             if (sha != digest(content) or previous['binding_sha256'] != self.binding['binding_sha256']
                     or self.clock() < timestamp(previous['observed_at_utc'])):
                 raise ValueError('Daily status binding or clock differs')
-        self.gate.snapshot(); self.service.snapshot()
-        return True
+        gate, publication = self.gate.snapshot(), self.service.snapshot()
+        return (publication, gate) if with_state else True
 
     def status(self):
         self.validate()

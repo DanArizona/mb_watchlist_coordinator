@@ -26,6 +26,7 @@ import test_daily_session as daily
 class DailyControllerTests(unittest.TestCase):
     def setUp(self):
         self.fixture = daily.DailySessionTests('test_preview_reads_published_anchor_and_creates_no_application_state_or_client')
+        self.fixture.proof_directory_override=getattr(self,'proof_directory_override',None)
         if self._testMethodName == 'test_actual_source_identity_and_native_collection_with_owned_controller':
             self.fixture.proof_directory_override = os.environ.get('MB_DAILY_CONTROLLER_PROOF_DIR')
         elif self._testMethodName == 'test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold':
