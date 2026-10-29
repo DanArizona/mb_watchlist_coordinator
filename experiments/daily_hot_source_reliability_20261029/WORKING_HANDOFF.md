@@ -1,5 +1,37 @@
 # Source reliability development — resumed October 29
 
+Second complete archive read: libfile_07ce0eb186588191a3f22b71766c9c7d,
+55149 bytes, SHA-256 b5a997265157ac603d2eae25820f564b4d80048a565e51cfb48c31115af0a09a,
+67 files. Ten copied SQLite DBs pass immutable read-only quick_check with
+unchanged hashes; no state/path binding adopted. The correctly bound idle
+collector heartbeat at 14:00:19.053323Z is only .019747 seconds before observed
+exit 19.073070Z. Driver terminal worker_evidence_or_supervision_failed identifies
+the monitor's generic exception handler, which discards the original error.
+Its stop precedes driver STOPPING at 19.217893Z and outer stop at 19.229651Z.
+Worker exit 124 and identity ValueError occur during this failing supervision
+sequence. Exact initiating Python exception is not recoverable from these
+files. Cadence/CPU/stack dumping are not established initiating causes.
+
+A small controller-only Python observer now wraps original _monitor_once,
+records its first exception type, OS/SQLite code, trusted project frames and
+already held status, then re-raises the same error. It changes no original
+source file or handler, repeats no failed monitor operation and extends no
+deadline. No raw exception text/locals/provider body or native stack dumping.
+The final report includes monitor_exception, avoiding another archive round
+if the failure recurs. Diagnostic CAPTURED may accompany FAILED; no fix claimed.
+
+Seven local observer checks PASS in 5.456s, including actual owned normal and
+injected monitor-failure processes, original terminal cleanup, same exception
+identity/single call, diagnostic-write failure, first-record retention, OS
+cause code and private-text exclusion. Two actual-entry rechecks also PASS;
+these are the same two unique cases using the exact parent adapter, not two
+new tests. Original 126-second paced proof is reused without an unchanged
+repeat. Original commands 67/68 remain FAILED; command-69 Windows observation
+is pending. No runtime source edit, cadence/timeout change, production install,
+provider/vault/SDK, Python upgrade or activation occurred.
+
+Earlier chronology follows.
+
 Windows command 68 control FAILED 1/1, run 20261029T165950Z_5e1f86b9,
 complete supplied console/final JSON and returned CMD prompt. Periodic dumps
 are confirmed OFF; no stack files, original inventory/source unchanged. Test

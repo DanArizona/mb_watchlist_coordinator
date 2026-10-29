@@ -1,0 +1,43 @@
+{
+  "contract": "daily-hot-monitor-observer-local-qualification-v1",
+  "result": "PASS",
+  "tests": 7,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 5.456,
+  "actual_owned_controller_nominal_cleanup_passed": true,
+  "actual_injected_monitor_failure_and_cleanup_passed": true,
+  "original_exception_identity_preserved": true,
+  "monitor_operation_called_once": true,
+  "first_receipt_preserved": true,
+  "receipt_write_failure_preserves_original": true,
+  "underlying_os_code_preserved": true,
+  "raw_exception_text_excluded": true,
+  "scope": "Observer component checks; original paced proof is reused and not repeated for this increment",
+  "initial_test_launcher_note": "An initial invocation lacked source import paths and ran no checks; corrected source paths produced the recorded seven-test pass.",
+  "tested_source_sha256": {
+    "trace_control.py": "8f51e7886fd7f73f4853d959082c0af469eacbc6c1bef48432baa63809756b81",
+    "monitor_observer_child.py": "cea428607a74382e55cc8af15553003a17f3003021cdc1b41f63c2670d3f696d",
+    "observe_monitor.py": "fe01c913fae3114dea505bc2a6923d33dd1323917c6b1e1a68eccb25ddd3622b",
+    "tests/test_monitor_exception_observer.py": "49266bb63b0361781daf84d5893a4223497a62751f85a314019372d240f15535"
+  },
+  "report_only_fields_added_after_component_run": [
+    "runtime_changes",
+    "runtime_change_scope"
+  ],
+  "new_windows_result": "PENDING",
+  "production_changes": false,
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "network": "denied",
+  "runtime_source_files_unchanged": true,
+  "diagnostic_runtime_wrapper": true,
+  "root_cause_fixed": false,
+  "parent_entry_checks": {
+    "result": "PASS",
+    "tests": 2,
+    "scope": "Actual entry adapter used for nominal owned cleanup and injected monitor fault; targeted recheck, not two additional unique tests",
+    "log": "monitor_observer_parent_entry_tests.log"
+  }
+}

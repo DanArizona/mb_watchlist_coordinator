@@ -1,0 +1,99 @@
+{
+  "contract": "daily-hot-control-archive-monitor-analysis-v1",
+  "input_library_file_id": "libfile_07ce0eb186588191a3f22b71766c9c7d",
+  "archive_bytes": 55149,
+  "archive_sha256": "b5a997265157ac603d2eae25820f564b4d80048a565e51cfb48c31115af0a09a",
+  "entries": 67,
+  "read_only_sqlite_checks": [
+    {
+      "path": "daily_hot_test/daily-feed.sqlite3",
+      "quick_check": "ok",
+      "sha256": "6bf63f8bf1b4f868ba4f242d1a4e7c2765fc1e374826d399d8d52d2ec4e0e825",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/daily-source.sqlite3",
+      "quick_check": "ok",
+      "sha256": "89991266f31c466d4caf2daf0f99272b1931834e002eb750237681a77382e111",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/delivery.sqlite3",
+      "quick_check": "ok",
+      "sha256": "5d9a303886ce1dc782d132aa69eb5415b7f8b31a176c2af23d304500f610737b",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/identity.sqlite3",
+      "quick_check": "ok",
+      "sha256": "23fd6a1fd2937a655ae7fc96212cb8b9ef3a14aaf8e3254aa09ee83747d0226d",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/live.sqlite3",
+      "quick_check": "ok",
+      "sha256": "d63a692937176b35548adfa508d320fd420235f399ea46a21850506373b5ce97",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/publication.sqlite3",
+      "quick_check": "ok",
+      "sha256": "d0c69b99183d963951b730f3ad0f9146f7a99b6882f034c8eed76d5aa5cfc7cf",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/recovery.sqlite3",
+      "quick_check": "ok",
+      "sha256": "0d5e3a6d83474710f6268f9fbd7448d312927364118829c9bafc27023e4e3977",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "daily_hot_test/requests.sqlite3",
+      "quick_check": "ok",
+      "sha256": "28ac9e41c50e19328d6a1ae26725e485cd6a303e093a633b71362ad66ebcfd9f",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.hot.poller.sqlite3",
+      "quick_check": "ok",
+      "sha256": "5074ae33dc88eaf05f85da093a56a44ffbd4f6af47aa912acecb0986fc4706bc",
+      "bytes_unchanged": true
+    },
+    {
+      "path": "quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.sqlite3",
+      "quick_check": "ok",
+      "sha256": "7fc01063a6adeefac3e69d55f3a80763efdb351c36b7e881c338675e263ebf8a",
+      "bytes_unchanged": true
+    }
+  ],
+  "path_bindings_not_adopted": true,
+  "primary_recorded_terminal": "worker_evidence_or_supervision_failed",
+  "terminal_source": "DailyController._monitor exception handler; original exception not persisted",
+  "worker_heartbeat_completed_utc": "2026-10-30T14:00:19.053323+00:00",
+  "heartbeat_binding_valid": true,
+  "heartbeat_status": "idle",
+  "worker_exit_observed_utc": "2026-10-30T10:00:19.073070-04:00",
+  "heartbeat_age_at_observed_exit_seconds": 0.019747,
+  "worker_returncode": 124,
+  "exit_reason": "worker_evidence_or_supervision_failed",
+  "identity_closed_utc": "2026-10-30T10:00:19.066913-04:00",
+  "identity_error_type": "ValueError",
+  "identity_error_reason": "not persisted",
+  "driver_stop_utc": "2026-10-30T14:00:19.210854+00:00",
+  "driver_stop_reason": "outer_stop_or_close",
+  "driver_stopping_utc": "2026-10-30T14:00:19.217893+00:00",
+  "outer_stop_utc": "2026-10-30T14:00:19.229651+00:00",
+  "outer_reason": "controller_progress_stale",
+  "facts": [
+    "The original controller monitor encountered a Python exception; its generic handler records this terminal without the error type or frames.",
+    "Collector heartbeat is recent and correctly bound. Its exit and the later outer stale label are downstream of recorded supervision failure.",
+    "This evidence does not identify the swallowed exception type/site and does not demonstrate that quote polling is too fast.",
+    "No native access-violation exit is present in this control; earlier native crash remains a separate fact."
+  ],
+  "next": "Controller-only Python exception observer around original monitor method, record type/OS code/trusted frames then re-raise unchanged. Capture directly in final report.",
+  "monitor_root_cause": "UNASSIGNED",
+  "old_io_cause_resolved": false,
+  "old_ledger_change_actor_identified": false,
+  "production_changes": false,
+  "production_hot_enabled": false
+}

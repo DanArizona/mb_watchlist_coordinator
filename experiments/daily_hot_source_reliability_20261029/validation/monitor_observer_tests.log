@@ -1,0 +1,13 @@
+test_monitor_fault_is_captured_and_original_terminal_cleanup_still_occurs (test_monitor_exception_observer.ActualObservedControllerTests.test_monitor_fault_is_captured_and_original_terminal_cleanup_still_occurs) ... ok
+test_owned_controller_runs_and_cleans_up_without_an_injected_error (test_monitor_exception_observer.ActualObservedControllerTests.test_owned_controller_runs_and_cleans_up_without_an_injected_error) ... ok
+test_diagnostic_write_failure_does_not_replace_primary_error (test_monitor_exception_observer.MonitorExceptionObserverTests.test_diagnostic_write_failure_does_not_replace_primary_error) ... ok
+test_first_failure_receipt_cannot_be_overwritten (test_monitor_exception_observer.MonitorExceptionObserverTests.test_first_failure_receipt_cannot_be_overwritten) ... ok
+test_original_exception_object_and_single_call_are_preserved (test_monitor_exception_observer.MonitorExceptionObserverTests.test_original_exception_object_and_single_call_are_preserved) ... ok
+test_success_return_and_no_receipt_are_preserved (test_monitor_exception_observer.MonitorExceptionObserverTests.test_success_return_and_no_receipt_are_preserved) ... ok
+test_underlying_os_code_is_retained_without_exception_text (test_monitor_exception_observer.MonitorExceptionObserverTests.test_underlying_os_code_is_retained_without_exception_text) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 5.456s
+
+OK
+
