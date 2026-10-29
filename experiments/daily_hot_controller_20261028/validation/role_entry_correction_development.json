@@ -1,0 +1,31 @@
+{
+  "contract": "daily-role-lease-entry-correction-v1",
+  "original_windows_packet": "daily_hot_controller_20261028_53ec1fd_3cc91eb.zip",
+  "original_verdict": "FAILED 63/64; separate passing recovery proof is not packet acceptance",
+  "reproduced": {
+    "tests": 1,
+    "result": "FAILED",
+    "seconds": 6.744,
+    "method": "Actual synthetic collector forced to enter its real OS role lock during a held health-probe lease",
+    "collector_error": "ServiceBusy before credentials; exit 70; controller later worker_startup_deadline_ended",
+    "log": "role_probe_reproduced_FAILED.log"
+  },
+  "correction": "Retry only owned identity/collector OS role-lock entry for a fixed 0.2 seconds; preserve original job/startup deadlines. Never replay work inside acquired ownership. Persistent ownership and unrelated/integrity errors still fail.",
+  "focused": {
+    "tests": 4,
+    "result": "PASS",
+    "seconds": 1.927,
+    "log": "role_entry_focused_4_PASS.log",
+    "coverage": [
+      "Actual forced cross-process probe collision reaches RUNNING on the same first start without a provider call",
+      "Fixed contention budget; unrelated errors are not retried",
+      "ServiceBusy raised inside role work executes only once and ownership is released",
+      "Original source-finalization shutdown test reaches intended fault and stops other owned roles"
+    ]
+  },
+  "native_source_changed": false,
+  "progress_credential_hold_limits_changed": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "remaining": "New frozen packet and targeted extraction checks; Windows acceptance still pending"
+}

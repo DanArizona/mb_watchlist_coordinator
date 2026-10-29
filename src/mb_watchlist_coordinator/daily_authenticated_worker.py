@@ -1,5 +1,6 @@
 """Owned daily worker roles. A trusted controller supplies public config and a private pipe."""
 from dataclasses import asdict
+from contextlib import contextmanager, ExitStack
 from datetime import datetime, timezone
 import hashlib
 import os
@@ -18,6 +19,28 @@ from .recovery_workers import atomic_json
 from .sampling_requests import digest, timestamp, utc_text
 from .sampling_service import owner_lock, ServiceBusy
 from .supervised_hot_worker import RuntimeQuoteClient, CONTRACT as PROGRESS_CONTRACT, progress_path
+
+
+@contextmanager
+def owned_role_lease(path, *, monotonic=time.monotonic, sleep=time.sleep):
+    """Tolerate a short health-probe collision only while entering the OS lease.
+
+    The independent startup watchdog keeps its original job deadline. Work
+    inside an acquired lease is never replayed, including ServiceBusy failures.
+    """
+    deadline = monotonic()+.2
+    while True:
+        lease = ExitStack()
+        try:
+            lease.enter_context(owner_lock(path))
+        except ServiceBusy:
+            remaining = deadline-monotonic()
+            if remaining <= 0: raise
+            sleep(min(.005, remaining))
+        else:
+            break
+    with lease:
+        yield
 
 
 class _Lifetime:
@@ -121,7 +144,7 @@ def run_collector(configuration_path, job_path, *, secret_stream=None, clock=Non
     lifetime.start()
     collector = None
     try:
-        with owner_lock(Path(job['lease_path'])):
+        with owned_role_lease(Path(job['lease_path'])):
             validate_daily_job(configuration_path, job_path)
             view = DailyPublicationReader(config.publication, config.catalog_path,
                 binding=config.collector.daily_binding, claim=config.collector.daily_claim,
@@ -182,7 +205,7 @@ def run_collector(configuration_path, job_path, *, secret_stream=None, clock=Non
 
 def run_identity(configuration_path, job_path, *, secret_stream=None, clock=None, secure_api=None):
     config = DailyWorkerConfiguration.load(configuration_path)
-    with owner_lock(Path(config.publication.state_root)/'identity-owner.lock'):
+    with owned_role_lease(Path(config.publication.state_root)/'identity-owner.lock'):
         return _run_identity(configuration_path, job_path, secret_stream=secret_stream,
             clock=clock, secure_api=secure_api)
 

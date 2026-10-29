@@ -23,6 +23,13 @@ This does not repeat the accepted command-60/61 suites or live profiles.
   are suppressed. Native progress must complete within three seconds of the
   worker job start; credential startup remains bounded by eight seconds.
   Successful credentials alone are not native progress.
+- A health check can briefly own the worker's OS role lock while checking for
+  an existing owner. A starting role retries only that lock's entry for at
+  most 0.2 seconds, within its original overall startup deadline. Persistent
+  ownership still blocks. Credentials, provider work and errors raised inside
+  acquired ownership are never replayed by the entry helper. The regression
+  forces the collision using an actual cross-process lock, rather than relying
+  on the host to reproduce a rare race.
 - Every new provider dispatch checks the original binding and an active,
   fresh controller invocation with its actual OS lease. Actual controller loss
   fences both orphan roles. Missing state/registry cannot reset budgets.
@@ -78,6 +85,9 @@ or retrospective fills. Two fresh replays of the resulting journal must agree.
 Raw audit and gap diagnostics are saved before the gap assertion, including
 when qualification fails. The original 86355fe Windows failure stays FAILED;
 it is preserved with the original immutable packet and is not an acceptance.
+The 53ec1fd Windows run passed that recovery proof, but its packet remains
+FAILED: another test lost its collector to a startup role-lock collision before
+the intended source-finalization fault. That original verdict is also retained.
 
 Replay hashes are compared within each retained journal. Actual elapsed
 acquisition times vary, so hashes from different runs/hosts need not agree.

@@ -1,5 +1,6 @@
 """Durable reservations and owner fences; no SDK or network."""
 from datetime import timedelta
+from contextlib import contextmanager
 from pathlib import Path
 from unittest.mock import patch
 import unittest
@@ -12,6 +13,7 @@ from mb_watchlist_coordinator.daily_worker_view import _ReadPublication
 from mb_watchlist_coordinator.recovery_workers import atomic_json
 from mb_watchlist_coordinator.sampling_requests import utc_text
 from mb_watchlist_coordinator.sampling_service import ServiceBusy, owner_lock
+from mb_watchlist_coordinator.daily_authenticated_worker import owned_role_lease
 
 
 class DailySupervisionTests(unittest.TestCase):
@@ -106,6 +108,42 @@ class DailySupervisionTests(unittest.TestCase):
         self.assertEqual(service.calls, 2)
         with patch.object(service, 'snapshot', side_effect=ValueError('integrity')):
             with self.assertRaises(ValueError): _ReadPublication(service).snapshot()
+
+    def test_role_lease_contention_has_a_fixed_budget_and_other_errors_are_not_retried(self):
+        elapsed, sleeps = [0.], []
+        def sleep(seconds):
+            sleeps.append(seconds)
+            elapsed[0] += seconds
+        target = 'mb_watchlist_coordinator.daily_authenticated_worker.owner_lock'
+        with patch(target, side_effect=ServiceBusy('probe remains busy')) as entry:
+            with self.assertRaises(ServiceBusy):
+                with owned_role_lease(self.root/'role-test.lock',
+                        monotonic=lambda: elapsed[0], sleep=sleep):
+                    self.fail('Busy ownership must never enter role work')
+        self.assertAlmostEqual(elapsed[0], .2)
+        self.assertLessEqual(entry.call_count, 42)
+        self.assertTrue(sleeps)
+        for error in (ValueError('invalid ownership evidence'), OSError('unrelated failure')):
+            with self.subTest(error=type(error).__name__):
+                with patch(target, side_effect=error) as entry:
+                    with self.assertRaises(type(error)):
+                        with owned_role_lease(self.root/'role-test.lock', sleep=lambda _: self.fail('Unexpected retry')):
+                            self.fail('Failed entry must never enter role work')
+                self.assertEqual(entry.call_count, 1)
+
+    def test_role_work_raising_service_busy_is_not_replayed_and_releases_ownership(self):
+        calls = []
+        @contextmanager
+        def acquired(path):
+            calls.append('entered')
+            try: yield
+            finally: calls.append('released')
+        with patch('mb_watchlist_coordinator.daily_authenticated_worker.owner_lock', acquired):
+            with self.assertRaises(ServiceBusy):
+                with owned_role_lease(self.root/'role-test.lock'):
+                    calls.append('work')
+                    raise ServiceBusy('failure after ownership, do not repeat work')
+        self.assertEqual(calls, ['entered', 'work', 'released'])
 
 
 if __name__ == '__main__': unittest.main()

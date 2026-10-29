@@ -1,5 +1,6 @@
 """Owned synthetic SDK process; no network, vault or actual broker library."""
 from datetime import datetime, timedelta, timezone
+from contextlib import contextmanager
 import json
 import os
 from pathlib import Path
@@ -63,7 +64,29 @@ class Secure:
         return Client()
 
 from mb_watchlist_coordinator.daily_authenticated_worker import run_collector, run_identity, run_report
+import mb_watchlist_coordinator.daily_authenticated_worker as worker_api
+from mb_watchlist_coordinator.sampling_service import ServiceBusy
 from unittest.mock import patch
+original_owner_lock = worker_api.owner_lock
+@contextmanager
+def observed_role_lease(path):
+    probe = scenario.get('role_lease_probe') if role == 'collector' else None
+    job = json.loads(Path(job_path).read_text()) if probe else None
+    if probe and Path(path) == Path(job['lease_path']):
+        Path(probe['ready']).write_text('ready')
+        deadline = time.monotonic()+1
+        while not Path(probe['go']).exists():
+            if time.monotonic() >= deadline: raise ValueError('Synthetic role probe handshake ended')
+            time.sleep(.005)
+        lease = original_owner_lock(path)
+        try: lease.__enter__()
+        except ServiceBusy:
+            record('role_lease_probe_busy')
+            raise
+        try: yield
+        finally: lease.__exit__(None, None, None)
+    else:
+        with original_owner_lock(path): yield
 class Clock(datetime):
     @classmethod
     def now(cls, tz=None): return clock().astimezone(tz or timezone.utc)
@@ -82,7 +105,7 @@ try:
             if delay > 2: raise ValueError('Synthetic replacement delay exceeds fixture bound')
             if delay > 0: time.sleep(delay)
             record('replacement_crossed_launch_slot')
-    with patch('mb_market_data.schwab_quotes.datetime', Clock):
+    with patch('mb_market_data.schwab_quotes.datetime', Clock), patch.object(worker_api, 'owner_lock', observed_role_lease):
         if role == 'collector': run_collector(configuration, job_path, clock=clock, secure_api=Secure, fault_hook=fault)
         elif role == 'identity': run_identity(configuration, job_path, clock=clock, secure_api=Secure)
         elif role == 'report':
@@ -90,5 +113,8 @@ try:
             run_report(configuration, job_path)
         else: raise ValueError('Unknown fixture role')
 except BaseException as error:
+    if isinstance(error, ServiceBusy):
+        import traceback
+        record('lock_failure_sites:'+','.join(f.name for f in traceback.extract_tb(error.__traceback__)))
     record('failed:'+type(error).__name__+':'+getattr(error, 'code', 'no_code'))
     raise SystemExit(70)

@@ -101,6 +101,27 @@ class DailyControllerTests(unittest.TestCase):
         self.assertTrue(Path(job['heartbeat_path']).exists())
         self.assertTrue(Path(job['job_path']).with_name(job['token']+'.startup.json').exists())
 
+    def test_transient_health_probe_on_role_lease_does_not_abort_worker_startup(self):
+        from mb_watchlist_coordinator.sampling_service import owner_lock
+        ready, go = self.case.root/'role-probe-ready', self.case.root/'role-probe-go'
+        self.scenario['role_lease_probe'] = {'ready': str(ready), 'go': str(go)}
+        self.start()
+        self.wait(ready.exists, seconds=2)
+        job = self.controller.worker._job()
+        # The monitor's health check also briefly takes this same real OS lock.
+        # Force the new child to attempt entry while such a probe owns it.
+        with owner_lock(Path(job['lease_path'])):
+            go.write_text('probe-held')
+            deadline = time.monotonic()+.15
+            while time.monotonic() < deadline:
+                if any(e['event'] == 'role_lease_probe_busy' for e in self.events()): break
+                time.sleep(.002)
+            self.assertTrue(any(e['event'] == 'role_lease_probe_busy' for e in self.events()))
+        self.wait(self.running)
+        self.assertEqual(len(self.controller.state.read()['starts']), 1)
+        self.assertFalse(self.provider_calls())
+        self.assertFalse(self.controller.state.read()['terminal'])
+
     def test_saved_status_exposes_source_gaps_without_claiming_feed_readiness(self):
         self.start(); self.wait(self.running)
         status = self.controller.status()

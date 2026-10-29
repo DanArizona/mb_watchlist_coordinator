@@ -1,0 +1,16 @@
+test_transient_health_probe_on_role_lease_does_not_abort_worker_startup (test_daily_controller.DailyControllerTests.test_transient_health_probe_on_role_lease_does_not_abort_worker_startup) ... FAIL
+
+======================================================================
+FAIL: test_transient_health_probe_on_role_lease_does_not_abort_worker_startup (test_daily_controller.DailyControllerTests.test_transient_health_probe_on_role_lease_does_not_abort_worker_startup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 120, in test_transient_health_probe_on_role_lease_does_not_abort_worker_startup
+    self.wait(self.running)
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_controller/tests/test_daily_controller.py", line 77, in wait
+    self.fail('Expected daily controller condition was not observed: '+json.dumps(details, default=str))
+AssertionError: Expected daily controller condition was not observed: {"status": {"contract": "daily-hot-controller-v1", "identity_sha256": "b79d1cd1107abc12d0fd65394f5e3a76dd3ed064ad6e139c8301359830d0f8b1", "observed_at_utc": "2026-10-29T14:00:06.672902+00:00", "state": "BLOCKED", "worker": {"status": "BLOCKED", "reason": "worker_startup_deadline_ended"}, "worker_starts": 1, "source_reconciled": false, "source_status": "STARTING", "terminal": "worker_startup_deadline_ended", "invocation": "24ed6069c86a49b2ab27e52c579b379e", "unmanaged_channels": ["uni", "focus", "health"], "full_day_capacity_qualified": false, "production_activation_inferred": false, "effective_revision": 1, "hot_symbols": []}, "events": [{"role": "identity", "event": "constructed", "at": "2026-10-29T10:00:00.427633-04:00"}, {"role": "collector", "event": "role_lease_probe_busy", "at": "2026-10-29T10:00:00.669512-04:00"}, {"role": "collector", "event": "lock_failure_sites:<module>,run_collector,__enter__,observed_role_lease,__enter__,owner_lock", "at": "2026-10-29T10:00:00.670961-04:00"}, {"role": "collector", "event": "failed:ServiceBusy:no_code", "at": "2026-10-29T10:00:00.671923-04:00"}], "worker_exit": {"token": "6376d70e3d9b4956af59e4e33af8c9c4", "pid": 10, "returncode": 70, "reason": "exited_before_health_check", "observed_at_utc": "2026-10-29T10:00:00.728887-04:00", "stderr_tail": "", "stderr_limit_bytes": 8192, "startup_handoff": {"status": "delivered"}}}
+
+----------------------------------------------------------------------
+Ran 1 test in 6.744s
+
+FAILED (failures=1)
