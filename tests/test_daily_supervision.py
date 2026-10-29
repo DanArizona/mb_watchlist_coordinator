@@ -2,6 +2,9 @@
 from datetime import timedelta
 from contextlib import contextmanager
 from pathlib import Path
+import subprocess
+import sys
+import time
 from unittest.mock import patch
 import unittest
 
@@ -144,6 +147,49 @@ class DailySupervisionTests(unittest.TestCase):
                     calls.append('work')
                     raise ServiceBusy('failure after ownership, do not repeat work')
         self.assertEqual(calls, ['entered', 'work', 'released'])
+
+    def test_exit_between_outer_and_base_polls_cannot_launch_before_original_hold(self):
+        worker=self.worker(monotonic=time.monotonic)
+        real_popen=subprocess.Popen
+        def launch(*args,**kwargs):
+            return real_popen([sys.executable,'-I','-B','-c','raise SystemExit(75)'],**kwargs)
+        with patch('subprocess.Popen',side_effect=launch):
+            worker.ensure(start_allowed=True,resume_after_utc=utc_text(self.clock()))
+        self.addCleanup(worker.stop_owned)
+        child=worker.child;self.assertEqual(child.wait(timeout=3),75)
+        at=self.clock();worker.clock=lambda:at+timedelta(seconds=4)
+        # The first poll has the previous live observation, the base poll sees
+        # the actual exited handle. A second launch in this call is forbidden.
+        with patch.object(child,'poll',side_effect=(None,75)),patch('subprocess.Popen') as replacement:
+            result=worker.ensure(start_allowed=True,resume_after_utc=utc_text(worker.clock()))
+            replacement.assert_not_called()
+        state=self.owner.state.read()
+        self.assertEqual(result['status'],'REPLACEMENT_HOLD')
+        self.assertEqual(len(state['starts']),1)
+        self.assertIsNotNone(state['starts'][0]['exit_observed_at_utc'])
+        self.assertEqual(state['starts'][0]['token'],worker.last_exit['token'])
+        self.assertEqual((__import__('datetime').datetime.fromisoformat(state['hold_until_utc'])-
+            __import__('datetime').datetime.fromisoformat(state['starts'][0]['exit_observed_at_utc'])).total_seconds(),15)
+
+    def test_alive_owned_child_without_lease_stays_blocked_and_is_not_replaced(self):
+        worker=self.worker(monotonic=time.monotonic)
+        real_popen=subprocess.Popen
+        def launch(*args,**kwargs):
+            return real_popen([sys.executable,'-I','-B','-c','import time;time.sleep(60)'],**kwargs)
+        with patch('subprocess.Popen',side_effect=launch):
+            worker.ensure(start_allowed=True,resume_after_utc=utc_text(self.clock()))
+        self.addCleanup(worker.stop_owned)
+        at=self.clock();worker.clock=lambda:at+timedelta(seconds=4)
+        began=time.monotonic()
+        with patch('subprocess.Popen') as replacement:
+            result=worker.ensure(start_allowed=True,resume_after_utc=utc_text(worker.clock()))
+            replacement.assert_not_called()
+        self.assertLess(time.monotonic()-began,.3)
+        self.assertEqual(result['status'],'BLOCKED')
+        self.assertEqual(result['reason'],'owned_child_not_holding_required_lease')
+        self.assertIsNone(worker.child.poll())
+        self.assertIsNone(self.owner.state.read()['starts'][0]['exit_observed_at_utc'])
+        self.assertEqual(len(self.owner.state.read()['starts']),1)
 
 
 if __name__ == '__main__': unittest.main()

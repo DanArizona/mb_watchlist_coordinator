@@ -1,0 +1,123 @@
+{
+  "contract": "operator-supplied-windows-operating-review-v1",
+  "basis": "Complete operator-supplied console and final JSON, including actual returned CMD prompt",
+  "original_windows_files_independently_read": false,
+  "packet": "daily_hot_operating_20261028_3c0f8cd_5552c5d.zip",
+  "run": "20261029T080211Z_72278a8f",
+  "result": "FAILED",
+  "tests": 134,
+  "passed": 133,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "runner_seconds": 132.165,
+  "report_seconds": 132.51499999989755,
+  "platform": "win32",
+  "python": [3, 12, 13],
+  "windows_checks_passed": false,
+  "representative_synthetic_history_qualified": false,
+  "source": {
+    "coordinator_commit": "3c0f8cde268160277e2ad426dfe7f8cf655197ac",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "failed_tests": [
+    "test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold"
+  ],
+  "failure": {
+    "line": 212,
+    "condition": "starts[0].exit_observed_at_utc was not observed within ten seconds",
+    "state": "BLOCKED",
+    "terminal": "owned_child_not_holding_required_lease",
+    "worker_starts": 1,
+    "source_reconciled": false,
+    "effective_revision": 2,
+    "hot_symbols": ["NVDA"],
+    "collector_constructed_et": "2026-10-30T10:00:00.998195-04:00",
+    "quote_et": "2026-10-30T10:00:06.186149-04:00",
+    "fault_after_assembled_et": "2026-10-30T10:00:06.192177-04:00",
+    "worker_exit": {
+      "token": "d4b11788a32749ac9a6040b70fdffbca",
+      "pid": 59268,
+      "returncode": 75,
+      "reason": "owned_child_not_holding_required_lease",
+      "observed_at_utc": "2026-10-30T10:00:06.204713-04:00",
+      "stderr_tail": "",
+      "stderr_limit_bytes": 8192,
+      "startup_handoff": {"status": "delivered"}
+    },
+    "identity_closed_et": "2026-10-30T10:00:06.203715-04:00",
+    "identity_following_error": "ValueError:no_code"
+  },
+  "owner_component": {
+    "result": "STOPPED",
+    "stop_reason": "operator_stop",
+    "cleanup_seconds": 0.21800000010989606,
+    "backend": "windows_job",
+    "scope_empty_observed": true,
+    "controller_returncode": 0,
+    "forced": false,
+    "reporting_status": "COMPLETE",
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "first_replay": {
+      "events": 5,
+      "sequence_sha256": "0eeba7be7b32a5380ae77f2d2cc1464b607077d775fc0b403a7ba0d3d7f69b9b"
+    },
+    "unmanaged_channels_untouched": ["uni", "focus", "health"]
+  },
+  "capacity_component": {
+    "qualification_result": "PASS",
+    "seeded_slots": 9358,
+    "actual_tail_native_acquisitions": 2,
+    "cold_prepare_seconds": 1.2232246999628842,
+    "tail": [
+      {
+        "actual_native_tick_seconds": 0.5969419002067298,
+        "state_prepare_seconds": 0.1649286998435855,
+        "spool_and_check_seconds": 0.15948790009133518,
+        "before_api_gate_seconds": 0.408932
+      },
+      {
+        "actual_native_tick_seconds": 0.556673200102523,
+        "state_prepare_seconds": 0.15481530013494194,
+        "spool_and_check_seconds": 0.14738999982364476,
+        "before_api_gate_seconds": 0.381419
+      }
+    ],
+    "actual_elapsed_tick_clock": true,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "first_replay": {
+      "events": 11703,
+      "sequence_sha256": "0257371b7411de6621a43d7c8dd559b9335d77a78f2cdc9d61583237a7791af2"
+    },
+    "owned_cold_startup": {
+      "result": "PASS",
+      "original_progress_deadline_seconds": 3,
+      "job_to_first_native_work_seconds": 2.17647,
+      "synthetic_sdk_only": true
+    },
+    "table_counts": {
+      "poll_run": 5,
+      "sampling_membership_revision": 3,
+      "sampling_channel_revision": 9,
+      "sampling_channel_member": 1883,
+      "poll_slot_skip": 0,
+      "quote_acquisition": 11700,
+      "quote_observation": 542099
+    },
+    "full_session_executed": false,
+    "provider_capacity_qualified": false,
+    "full_day_capacity_qualified": false
+  },
+  "recovery_proof": null,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "proposed_values_adopted": false,
+  "live_launch_available": false,
+  "interpretation": "Owner and capacity component proofs passed; whole command-63 packet remains FAILED. Recovery correction and its Windows qualification remain necessary. No unchanged-capacity or whole-packet rerun is requested."
+}

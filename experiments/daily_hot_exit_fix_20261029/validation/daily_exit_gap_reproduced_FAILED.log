@@ -1,0 +1,16 @@
+test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold) ... FAIL
+
+======================================================================
+FAIL: test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold (test_daily_controller.DailyControllerTests.test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/tests/test_daily_controller.py", line 223, in test_lost_owned_worker_recovers_response_after_full_fifteen_second_hold
+    self.wait(lambda: self.controller.state.read()['starts'][0]['exit_observed_at_utc'] is not None, seconds=10)
+  File "/workspace/scratch/6ce939acb4eb/mb_watchlist_daily_operating/tests/test_daily_controller.py", line 78, in wait
+    self.fail('Expected daily controller condition was not observed: '+json.dumps(details, default=str))
+AssertionError: Expected daily controller condition was not observed: {"status": {"contract": "daily-hot-controller-v1", "identity_sha256": "48e80e046100506bce446e873f0c326d48d0c21933cd595603c4b1d36bb12e65", "observed_at_utc": "2026-10-30T14:00:10.807308+00:00", "state": "BLOCKED", "worker": {"status": "BLOCKED", "reason": "owned_child_not_holding_required_lease"}, "worker_starts": 1, "source_reconciled": false, "source_status": "STARTING", "terminal": "owned_child_not_holding_required_lease", "invocation": "9e245fe83ab247339dfab1c1bbb13b7e", "unmanaged_channels": ["uni", "focus", "health"], "full_day_capacity_qualified": false, "production_activation_inferred": false, "effective_revision": 2, "hot_symbols": ["NVDA"]}, "events": [{"role": "identity", "event": "constructed", "at": "2026-10-30T10:00:00.337996-04:00"}, {"role": "collector", "event": "constructed", "at": "2026-10-30T10:00:00.636901-04:00"}, {"role": "collector", "event": "quote:NVDA", "at": "2026-10-30T10:00:06.098343-04:00"}, {"role": "collector", "event": "fault:after_assembled", "at": "2026-10-30T10:00:06.100494-04:00"}, {"role": "collector", "event": "actual_role_lease_released_before_exit", "at": "2026-10-30T10:00:06.100785-04:00"}], "worker_exit": {"token": "82c6612d350044d083a4d97e445f6de9", "pid": 10, "returncode": 75, "reason": "owned_child_not_holding_required_lease", "observed_at_utc": "2026-10-30T10:00:06.132067-04:00", "stderr_tail": "", "stderr_limit_bytes": 8192, "startup_handoff": {"status": "delivered"}}}
+
+----------------------------------------------------------------------
+Ran 1 test in 10.843s
+
+FAILED (failures=1)

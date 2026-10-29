@@ -207,7 +207,18 @@ class DailyControllerTests(unittest.TestCase):
         # Always exercise the platform-sensitive case: launch chooses :22,
         # while actual replacement startup completes just after that slot.
         self.scenario['replacement_cross_launch_slot'] = True
+        released,observed=self.case.root/'fault-lease-released',self.case.root/'fault-lease-observed'
+        self.scenario['exit_lease_gap']={'released':str(released),'observed':str(observed)}
         self.start(mode='crash_after_assembled'); self.wait(self.running)
+        # Force the supervisor to see a real released OS lease while its exact
+        # owned process is still alive, before that process exits with code 75.
+        original_busy=self.controller.worker._lease_busy
+        def probe():
+            busy=original_busy()
+            if not busy and released.exists():observed.write_text('observed')
+            return busy
+        patched=patch.object(self.controller.worker,'_lease_busy',side_effect=probe)
+        patched.start();self.addCleanup(patched.stop)
         self.case.now = self.clock(); self.case.admit()
         self.wait(lambda: self.controller.state.read()['starts'][0]['exit_observed_at_utc'] is not None, seconds=10)
         original = self.controller.state.read()
@@ -229,6 +240,7 @@ class DailyControllerTests(unittest.TestCase):
                 'SELECT scheduled_at_utc FROM quote_acquisition WHERE channel="hot" ORDER BY scheduled_at_utc')]
         self.assertEqual(len(acquired_slots), 2)
         self.assertEqual(len(self.provider_calls()), 2) # The first saved response was not requested again.
+        self.assertTrue(released.exists() and observed.exists())
         job = self.controller.worker._job()
         self.assertEqual(job['generation'], 2)
         schedule = unseal(read_json(Path(job['job_path']).with_name(job['token']+'.schedule.json')))
@@ -290,6 +302,7 @@ class DailyControllerTests(unittest.TestCase):
                 'fault_at_utc': fault_at.isoformat(), 'replacement_schedule': schedule,
                 'replacement_crossed_launch_slot': True,
                 'saved_response_not_requested_again': True, 'two_fresh_replays_equal': True,
+                'actual_role_lease_exit_gap_forced':True,
                 'raw_native_audit_passed': audit.passed, 'intentional_missing_slot_ids': list(gaps),
                 'unexplained_gaps': 0, 'intentional_hold_slots_not_backfilled': True,
                 'full_day_capacity_qualified': False})

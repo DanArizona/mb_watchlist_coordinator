@@ -1,0 +1,27 @@
+{
+  "contract": "daily-owned-exit-race-correction-development-v1",
+  "basis": "Supplied Windows failure plus actual local role-lease/exit-order reproduction",
+  "original_windows_verdict": "FAILED 133/134",
+  "reproduction": {
+    "tests": 1,
+    "result": "FAILED",
+    "seconds": 10.843,
+    "reason": "owned_child_not_holding_required_lease",
+    "actual_role_lease_release_before_owned_exit_forced": true
+  },
+  "corrected": {
+    "tests": 15,
+    "result": "PASS",
+    "seconds": 34.64798943700043,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "logging_note": "The earlier streamed development log ended without a final summary; no pass is inferred from it. The direct-file log and explicit result JSON provide the completed 15-check verdict.",
+  "changed_runtime": [
+    "daily_supervision.py"
+  ],
+  "native_source_unchanged": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+  "production_changes": false,
+  "production_hot_enabled": false
+}

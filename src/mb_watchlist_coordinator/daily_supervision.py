@@ -183,6 +183,8 @@ class DailyManagedWorker(ManagedRecoveryWorker):
     def confirm_exit(self):
         at = self.clock()
         job = self._job()
+        if job is None or self.last_exit is None or self.last_exit['token']!=job['token']:
+            raise ValueError('Confirmed owned exit must match the original reserved job')
         def edit(s):
             if job:
                 e = s['starts'][job['generation']-1]
@@ -209,10 +211,26 @@ class DailyManagedWorker(ManagedRecoveryWorker):
         if s['terminal'] or s['stop']:
             return {'status': 'BLOCKED', 'reason': s['terminal'] or 'stopped'}
         old_exit = self.last_exit
-        result = super().ensure(start_allowed=start_allowed,
+        # If a child exists at entry, this call may only inspect/reap it. The
+        # base helper has its own poll; an exit between the two polls must not
+        # let it launch a replacement before we record the original exit/hold.
+        had_owned_child=self.child is not None
+        result = super().ensure(start_allowed=start_allowed and not had_owned_child,
             resume_after_utc=utc_text(max(timestamp(resume_after_utc), self.clock())))
+        if result.get('reason')=='owned_child_not_holding_required_lease' and self.child is not None:
+            # OS lease release can precede the process handle becoming signaled.
+            # Only this known handle may confirm exit. No signal, discovery,
+            # heartbeat adoption, deadline reset or replacement is allowed here.
+            try:self.child.wait(timeout=.05)
+            except subprocess.TimeoutExpired:return result
+            self._reap_owned('exit_confirmed_after_lease_release')
+            result={'status':'REPLACEMENT_HOLD'}
         if self.last_exit is not old_exit:
             self.confirm_exit()
+            if result['status'] not in ('BLOCKED','EXTERNAL_HEALTHY'):
+                current=self.state.read()
+                return {'status':'REPLACEMENT_HOLD','hold_until_utc':current['hold_until_utc'],
+                    'minimum_elapsed_seconds':15,'previous_worker_exit':dict(self.last_exit)}
         if result['status'] == 'EXTERNAL_HEALTHY':
             return {'status': 'BLOCKED', 'reason': 'unowned_worker_not_adopted'}
         return result

@@ -68,8 +68,10 @@ import mb_watchlist_coordinator.daily_authenticated_worker as worker_api
 from mb_watchlist_coordinator.sampling_service import ServiceBusy
 from unittest.mock import patch
 original_owner_lock = worker_api.owner_lock
+active_fault_lease = None
 @contextmanager
 def observed_role_lease(path):
+    global active_fault_lease
     probe = scenario.get('role_lease_probe') if role == 'collector' else None
     job = json.loads(Path(job_path).read_text()) if probe else None
     if probe and Path(path) == Path(job['lease_path']):
@@ -86,7 +88,11 @@ def observed_role_lease(path):
         try: yield
         finally: lease.__exit__(None, None, None)
     else:
-        with original_owner_lock(path): yield
+        lease=original_owner_lock(path)
+        with lease:
+            if role=='collector' and scenario.get('exit_lease_gap') and Path(path).name=='worker.lock':
+                active_fault_lease=lease
+            yield
 class Clock(datetime):
     @classmethod
     def now(cls, tz=None): return clock().astimezone(tz or timezone.utc)
@@ -95,6 +101,16 @@ def fault(stage):
         job = json.loads(Path(job_path).read_text())
         if job['generation'] == 1:
             record('fault:'+stage)
+            gap=scenario.get('exit_lease_gap')
+            if gap:
+                if active_fault_lease is None:raise ValueError('Missing actual fault role lease')
+                active_fault_lease.__exit__(None,None,None)
+                record('actual_role_lease_released_before_exit')
+                Path(gap['released']).write_text('released')
+                deadline=time.monotonic()+1
+                while not Path(gap['observed']).exists():
+                    if time.monotonic()>=deadline:raise ValueError('Lease-gap handshake expired')
+                    time.sleep(.001)
             os._exit(75)
 try:
     if role == 'collector' and scenario.get('replacement_cross_launch_slot'):
