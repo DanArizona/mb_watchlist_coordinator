@@ -1,5 +1,23 @@
 # Source reliability development — resumed October 29
 
+Windows command 68 control FAILED 1/1, run 20261029T165950Z_5e1f86b9,
+complete supplied console/final JSON and returned CMD prompt. Periodic dumps
+are confirmed OFF; no stack files, original inventory/source unchanged. Test
+19.650s/report 19.75s, paced owner 19.422s, before the first history query.
+Outer reason remains controller_progress_stale; controller exits zero, Windows
+Job scope empty without force in .015s. Native audit PASS and equal two-event
+replays cover opening history, not reconciled source or quote collection.
+Disabling periodic dumps did not make operation reliable; the instrumentation
+hypothesis is insufficient as a complete explanation. This does not disprove
+its contribution to the earlier native crash, which remains recorded. Exact
+initiating control-stop cause is unassigned. Obtain this existing control's
+complete paced/closed-state archive and inspect stop order/worker exits/logs
+before another test or speculative fix. Original commands 67 and 68 remain
+FAILED; local passes and unchanged prior component evidence retain their scope.
+No runtime edit, timeout change, provider/production call or activation occurred.
+
+Earlier chronology follows.
+
 Complete Windows archive now read (libfile_e9aafe2ed7288191af024afae1d9d933;
 68680 bytes; SHA-256 f29a36115fdbec479a6514555935c316868a04c894d67a9069ae7e1ee50f000f).
 Ten copied SQLite databases pass read-only immutable quick_check with unchanged

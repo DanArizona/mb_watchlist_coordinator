@@ -1,0 +1,68 @@
+{
+  "contract": "daily-hot-stack-control-windows-reported-review-v1",
+  "basis": "Complete operator-supplied console and final JSON with returned CMD prompt; original Windows control state not yet read",
+  "run": "20261029T165950Z_5e1f86b9",
+  "result": "FAILED",
+  "tests": 1,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "test_seconds": 19.65,
+  "report_seconds": 19.75,
+  "paced_elapsed_seconds": 19.42200000002049,
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "windows_control_passed": false,
+  "source": {
+    "coordinator_commit": "2f56703904db10cf6c47e410f350f60cfa03656f",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "66fc48d4c4376a1ea0892835a21b393180acb2adb5120306b4bb5929b5979d62",
+  "original_test_sha256": "91c87dc7974a47e3a6e0b32ced6850b4b6862109891c22a5814d2b31cd70d706",
+  "periodic_stack_dumps": false,
+  "unexpected_stack_files": [],
+  "original_source_files_unchanged": true,
+  "runtime_changes": false,
+  "owner_stop_reason": "controller_progress_stale",
+  "controller_returncode": 0,
+  "acquisition_stop_requested_at_utc": "2026-10-30T14:00:19.229651+00:00",
+  "cleanup": {
+    "status": "EXIT_OBSERVED",
+    "backend": "windows_job",
+    "scope_empty_observed": true,
+    "forced": false,
+    "seconds": 0.014999999897554517
+  },
+  "reporting": {
+    "status": "COMPLETE",
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "first_replay_events": 2,
+    "sequence_sha256": "55e8f5b09b67593f64a84a53ff22e32986ec4e8d62d2fe8f7402f90bf92084fd"
+  },
+  "cutover": {},
+  "max_parent_observer_gap_seconds": 0.0470000000204891,
+  "conclusions": [
+    "Disabling periodic stack dumping did not make the operating path reliable; instrumentation is not a sufficient explanation of all observed failures.",
+    "This control stops before the first paced history query. Initiating cause is not established by the repeated outer stale label.",
+    "Controller code zero establishes clean process exit, not successful source reconciliation or collection.",
+    "No native access-violation exit is exposed by this console; earlier confirmed collector native crash remains a separate preserved fact.",
+    "Original command 67 remains FAILED 49/50, command 68 FAILED 1/1; earlier local control PASS is not Windows qualification."
+  ],
+  "next": "Read this control existing paced/closed-state archive (driver/outer stop order, worker exit receipts, role process events and ledgers). No further test or speculative change before inspection.",
+  "root_cause_proven": false,
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "network": "denied",
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "operating_release_qualified": false,
+  "original_windows_command67_result": "FAILED",
+  "old_io_cause_resolved": false,
+  "old_ledger_change_actor_identified": false
+}
