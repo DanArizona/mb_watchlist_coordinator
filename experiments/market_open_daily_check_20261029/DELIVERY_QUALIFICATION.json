@@ -1,0 +1,63 @@
+{
+  "contract": "market-open-daily-check-delivery-v1",
+  "status": "LOCAL_QUALIFIED_WINDOWS_PENDING",
+  "source": {
+    "accepted_after_hours_closeout_baseline": "ea43b37a06eac06313b662505b79a109fea3625e",
+    "coordinator_commit": "5e4b571adc9995f3ebaaca4ba62c053e48247b7f",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "public_source_commit": "b3ae9b2b19d04ca1e934bdd4754ce1eb5cc4afbb",
+  "source_tree": "daafae737f4bec60f34c8b982115655f587e0539",
+  "artifact": {
+    "filename": "market_open_daily_check_20261029_5e4b571_5552c5d.zip",
+    "bytes": 728332,
+    "sha256": "d4d569518accb599f284de1066bf589e507bb4ea564e11f2a0dfd4ea8852dc0f"
+  },
+  "unique_synthetic_evidence": {
+    "filename": "market_open_daily_check_private_evidence_20261029.zip",
+    "bytes": 102584,
+    "sha256": "cc105a9287c5cc211b273548d24c64ac00266c1a4b46d06b48c9fd17c4b3b490"
+  },
+  "exact_packet_qualification": {
+    "result": "PASS",
+    "tests": 48,
+    "seconds": 57.79087125700062,
+    "run": "20261030T031735Z_41de4bdb",
+    "source_inventory_sha256": "8f6af02c93746adfb80b1b3e2ca80bf7543de96ac0039bd581a46859e743c5c1",
+    "native_hot_acquisitions": 2,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "replay": {
+      "events": 5,
+      "sequence_sha256": "0f585c4a290d9bdd15f1d41350f3454d7b7c1dd7a2daad9c6ceb3ec7254882f1"
+    },
+    "producer_scope": {
+      "status": "EXIT_OBSERVED",
+      "backend": "posix_process_group",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0,
+      "reason": null
+    },
+    "reporter_scope": {
+      "status": "EXIT_OBSERVED",
+      "backend": "posix_process_group",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0,
+      "reason": null
+    },
+    "clock_scope": "constant shifted wall clock in trusted offline wrappers; actual elapsed gates",
+    "synthetic_only": true,
+    "early_stop_full_source_result": "INCOMPLETE as required"
+  },
+  "prior_windows_71_72_after_hours_acceptance_retained": true,
+  "windows75_result": "PENDING",
+  "live_trial_approved": false,
+  "live_market_open_check_qualified": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "full_day_capacity_qualified": false,
+  "next": "Run only offline Windows75 once, return final JSON and actual CMD prompt; then approve the concrete bounded live trial before76/77."
+}

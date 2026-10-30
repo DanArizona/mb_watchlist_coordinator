@@ -1,3 +1,32 @@
+FINAL DELIVERABLE QUALIFIED LOCALLY:48/48PASS,57.790871s,0fail/errors/skips.
+Exact ZIP extraction in a path with spaces; run20261030T031735Z_41de4bdb.
+Frozen local5e4b571adc9995f3ebaaca4ba62c053e48247b7f equals public
+b3ae9b2b19d04ca1e934bdd4754ce1eb5cc4afbb, entire tree
+daafae737f4bec60f34c8b982115655f587e0539. Source inventory
+8f6af02c93746adfb80b1b3e2ca80bf7543de96ac0039bd581a46859e743c5c1.
+Final packet market_open_daily_check_20261029_5e4b571_5552c5d.zip,728332bytes,
+SHA d4d569518accb599f284de1066bf589e507bb4ea564e11f2a0dfd4ea8852dc0f.
+
+Short synthetic owned proof:2Hot acquisitions,1identity permit,1worker start,
+1source capture, native auditPASS, matching5-event replays
+0f585c4a290d9bdd15f1d41350f3454d7b7c1dd7a2daad9c6ceb3ec7254882f1.
+Both producer and independent reporter POSIX scopes empty/non-forced/exit0;
+producer cleanup.062224s. An internal identity role exited124 via its existing
+stop fence without an outer force; no claim that both SDK closes were graceful
+is made. The deliberate early-stop full-source report remains INCOMPLETE, as
+required; the offline test itself is PASS. No Windows or actual provider proof
+is inferred. Final-permit completion and earlier exhaustion checks both pass.
+No unchanged long pacing/capacity/recovery proof was repeated.
+
+Next user action: extract final ZIP and run75_verify_market_open_daily_check.cmd
+once in sea-green. No password, network, installation or production changes.
+Return final JSON and actual CMD prompt. Windows75 and explicit concrete live-
+trial approval remain pending. The real Focusr1/trial paths will be taken from
+Friday preparation; do not invent them. No additional after-hours provider
+action, production installation or activation is requested.
+
+Earlier source-freeze/pending statements below are historical.
+
 Completion correction before delivery: the first exact packet PASSED46/46 in
 57.291168s, source92fee37/run20261030T031330Z_a6748a20. Reviewing its normal
 full-window end exposed an existing final-permit classification issue: after

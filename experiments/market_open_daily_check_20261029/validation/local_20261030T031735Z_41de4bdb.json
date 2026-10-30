@@ -1,0 +1,203 @@
+{
+  "contract": "market-open-daily-path-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 48,
+  "passed": 48,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 57.79087125700062,
+  "source": {
+    "accepted_after_hours_closeout_baseline": "ea43b37a06eac06313b662505b79a109fea3625e",
+    "coordinator_commit": "5e4b571adc9995f3ebaaca4ba62c053e48247b7f",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "8f6af02c93746adfb80b1b3e2ca80bf7543de96ac0039bd581a46859e743c5c1",
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "windows_checks_passed": false,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "original_fixed_dispatcher_executed": true,
+  "offline_substitutions": "trusted process wrapper supplies synthetic SDK/feed, dependency evidence and constant shifted clock; no live CLI seam",
+  "native_proof": {
+    "owner": {
+      "contract": "daily-hot-operating-owner-v1",
+      "nonce": "8e31d458a3d14157943646f2b19d81fd",
+      "configuration_sha256": "82a2c156777e88b030d8b07defdbf69dec11546dda08ca49458ba797f4e4ba8b",
+      "stop_reason": "operator_stop",
+      "result": "STOPPED",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      },
+      "cleanup_seconds": 0.06222383099975559,
+      "acquisition_stop_requested_at_utc": "2026-10-30T14:00:54.171385+00:00",
+      "reporting": {
+        "status": "COMPLETE",
+        "report_path": "/workspace/scratch/6ce939acb4eb/market_open_check_20261029/final extraction with spaces/market_open_daily_check_20261029_5e4b571_5552c5d/runs/20261030T031735Z_41de4bdb/native-proof/packet with spaces/runs/market_open_daily_20261030_1234abcd/daily_hot_check/reports/e2e3e5f9c6c9470a93e5f01e07097a04.json",
+        "native_audit_passed": true,
+        "two_fresh_replays_equal": true,
+        "first_replay": {
+          "events": 5,
+          "sequence_sha256": "0f585c4a290d9bdd15f1d41350f3454d7b7c1dd7a2daad9c6ceb3ec7254882f1"
+        },
+        "cleanup": {
+          "status": "EXIT_OBSERVED",
+          "backend": "posix_process_group",
+          "scope_empty_observed": true,
+          "forced": false,
+          "controller_returncode": 0,
+          "reason": null
+        }
+      },
+      "failure_type": null,
+      "unmanaged_channels_untouched": [
+        "uni",
+        "focus",
+        "health"
+      ],
+      "full_day_capacity_qualified": false,
+      "production_activation_inferred": false
+    },
+    "report": {
+      "contract": "market-open-daily-path-check-v1",
+      "limits": {
+        "collection_window_seconds": 180,
+        "minimum_startup_lead_seconds": 45,
+        "maximum_startup_lead_seconds": 55,
+        "maximum_seconds_from_review_to_stop": 235,
+        "latest_launch_before_collection_seconds": 8,
+        "maximum_hot_quote_calls": 72,
+        "maximum_active_hot_symbols": 1,
+        "maximum_distinct_added_symbols": 1,
+        "maximum_identity_quote_calls": 3,
+        "maximum_feed_attempts": 4,
+        "feed_seconds_after_completion": 60,
+        "maximum_directory_downloads": 2,
+        "maximum_worker_starts": 3,
+        "maximum_outer_invocations": 1,
+        "request_timeout_seconds": 3,
+        "credential_seconds": 8,
+        "progress_seconds": 3,
+        "replacement_hold_seconds": 15,
+        "cleanup_seconds": 10,
+        "report_seconds": 60,
+        "maximum_dispatch_lateness_seconds": 0.75
+      },
+      "source": "real CURRENT, same-date history and fresh CURRENT; original admission rules",
+      "selection": "first eligible exact broker-confirmed symbol; no forced roster or fabricated halt",
+      "journal_scope": "new isolated daily-layout journal; copied r0/r1 baseline only",
+      "production_hot_enabled": false,
+      "production_settings_adopted": false,
+      "unmanaged_channels": [
+        "uni",
+        "focus",
+        "health"
+      ],
+      "shared_sdk_token_refresh_possible": true,
+      "clock": "actual UTC and elapsed monotonic time in the live entry",
+      "quiet_run": "daily-path/source/idle checks can pass without an eligible admission; collection remains unobserved",
+      "full_day_capacity_qualified": false,
+      "operating_release_qualified": false,
+      "root": "/workspace/scratch/6ce939acb4eb/market_open_check_20261029/final extraction with spaces/market_open_daily_check_20261029_5e4b571_5552c5d/runs/20261030T031735Z_41de4bdb/native-proof/packet with spaces/runs/market_open_daily_20261030_1234abcd",
+      "result": "INCOMPLETE",
+      "daily_path_check_passed": false,
+      "source_current_history_fresh_current_observed": false,
+      "source_attempts": 1,
+      "source_valid_attempts": 1,
+      "source_known_gaps": [
+        "intermediate_feed_mutations_not_reconstructible",
+        "older_unknown_carryovers_not_proven_complete"
+      ],
+      "authenticated_roles": [
+        "collector",
+        "identity"
+      ],
+      "identity_quote_permits": 1,
+      "selected_symbol": "NVDA",
+      "hot_acquisitions": 2,
+      "hot_statuses": {
+        "quote": 2
+      },
+      "worker_starts": 1,
+      "internal_owned_role_cleanup_complete": true,
+      "internal_owned_role_cleanup": {
+        "hot": {
+          "status": "OWNED_WORKER_STOPPED"
+        },
+        "identity": {
+          "forced": false,
+          "returncode": 124
+        },
+        "source": null
+      },
+      "collection_observed": true,
+      "owner": {
+        "acquisition_stop_requested_at_utc": "2026-10-30T14:00:54.171385+00:00",
+        "cleanup": {
+          "backend": "posix_process_group",
+          "controller_returncode": 0,
+          "forced": false,
+          "reason": null,
+          "scope_empty_observed": true,
+          "status": "EXIT_OBSERVED"
+        },
+        "cleanup_seconds": 0.06222383099975559,
+        "configuration_sha256": "82a2c156777e88b030d8b07defdbf69dec11546dda08ca49458ba797f4e4ba8b",
+        "contract": "daily-hot-operating-owner-v1",
+        "failure_type": null,
+        "full_day_capacity_qualified": false,
+        "nonce": "8e31d458a3d14157943646f2b19d81fd",
+        "production_activation_inferred": false,
+        "reporting": {
+          "cleanup": {
+            "backend": "posix_process_group",
+            "controller_returncode": 0,
+            "forced": false,
+            "reason": null,
+            "scope_empty_observed": true,
+            "status": "EXIT_OBSERVED"
+          },
+          "first_replay": {
+            "events": 5,
+            "sequence_sha256": "0f585c4a290d9bdd15f1d41350f3454d7b7c1dd7a2daad9c6ceb3ec7254882f1"
+          },
+          "native_audit_passed": true,
+          "report_path": "/workspace/scratch/6ce939acb4eb/market_open_check_20261029/final extraction with spaces/market_open_daily_check_20261029_5e4b571_5552c5d/runs/20261030T031735Z_41de4bdb/native-proof/packet with spaces/runs/market_open_daily_20261030_1234abcd/daily_hot_check/reports/e2e3e5f9c6c9470a93e5f01e07097a04.json",
+          "status": "COMPLETE",
+          "two_fresh_replays_equal": true
+        },
+        "result": "STOPPED",
+        "stop_reason": "operator_stop",
+        "unmanaged_channels_untouched": [
+          "uni",
+          "focus",
+          "health"
+        ]
+      },
+      "terminal": null,
+      "native_membership_revisions": 3,
+      "qualification_scope": "bounded market-open daily composition; only observed admissions/collection count",
+      "production_journal_access": false
+    }
+  },
+  "unchanged_paced_capacity_recovery_drills_repeated": false,
+  "live_market_open_check_qualified": false,
+  "operating_release_qualified": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false
+}
