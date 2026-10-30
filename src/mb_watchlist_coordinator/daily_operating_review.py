@@ -59,8 +59,9 @@ def build_operating_review(opening,focus,*,journal,catalog,state_root,ecfg,clock
         'regular_close_utc':session.binding['stop_at_utc'],
         'unmanaged_channels':['uni','focus','health'],
         'existing_driver_state':(Path(settings.state_root)/'driver-state.json').exists(),
-        'required_before_activation':['Windows operating qualification','Representative full-day/provider capacity',
-            'Deployment/rollback review and explicit settings/activation approval']}
+        'required_before_activation':['Qualification of changed operating/deployment paths',
+            'Concrete deployment/rollback review and explicit settings/activation approval'],
+        'unqualified_scopes':['Full-session operation','Representative full-day/provider capacity']}
     if collection_window is not None:
         from .daily_feed import collection_feed_limits
         content['collection_window'] = {

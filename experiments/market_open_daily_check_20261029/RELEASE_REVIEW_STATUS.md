@@ -1,5 +1,15 @@
 # Operating release review after the bounded live check
 
+The concrete side-by-side candidate is now implemented under
+experiments/hot_operating_release_20261030. Its proposed initial opening capacity
+is600Uni/40Focus, with one additional admitted symbol and one Hot member. Fresh
+startup is pre-open, targeting09:20ET with password complete by09:29; collection
+remains09:30-16:00. Retained-state manual resume keeps the original configuration
+and budgets. Windows83 packaging qualification and actual84 read-only deployment
+review remain pending, followed by approval of the concrete release/settings and
+first activation. Source installation and main merges are not part of delivery.
+The existing controller/collector/recovery/native code remains unchanged.
+
 The October30 bounded market-open daily composition is accepted and closed out.
 It selected ITOC by normal Nasdaq admission and collected60 Hot quotes, with
 CURRENT/history/fresh-CURRENT reconciliation, native audit, matching63-event

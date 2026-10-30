@@ -1,3 +1,18 @@
+**October30 operating release candidate implemented; Windows83/actual84 review pending.**
+Side-by-side p83 delivery reuses the accepted public launcher, controller,
+native5552c5d and Windows81 display. New daily_operator wrapper creates dated
+reviews and fixed start/status/membership/stop/rollback commands, keeps original
+state/catalog/budgets on manual resume and checks installed main baselines and
+dependency versions. Backend review text now separates remaining release
+approval from unqualified full-day capacity; ownership/collector/recovery code
+is unchanged. Focused30checks pass locally. New proposed operating boundary:
+opening Uni<=600 plus one admission, Focus40+1, Hot1; fresh startup before open,
+password complete by09:29ET (target09:20); original09:30-16:00 window. No fresh
+after-open catch-up; original retained-state/manual recovery remains. Values
+and activation are not adopted. See ../hot_operating_release_20261030/README.md
+and RELEASE_REVIEW.md. Next qualification83 is offline;84 is read-only baseline
+and dependency review. No unchanged live/provider/recovery/capacity/GUI repeat.
+
 **October30 Windows81 membership display ACCEPTED PASS; no repeat due.**
 All30checks passed in2.491s; total7.906s. Run20261030T202321Z_d012b6fd,
 Python3.12.13/Tk8.6.15. Actual Tk preview observed opening lists, one admission

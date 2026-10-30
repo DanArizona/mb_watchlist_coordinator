@@ -1,0 +1,38 @@
+{
+  "contract": "daily-hot-operator-local-delivery-v1",
+  "result": "PASS",
+  "basis": "Exact ZIP extracted and verified with isolated Python, Linux scope only",
+  "source": {
+    "accepted_operating_predecessor": "022f1e60847f1fff4533db24cd1efb05c9b3c247",
+    "coordinator_commit": "b3205e0127b0bb9c1d7b97117991a4985cf782bb",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "5fe8a86b2fa502a4ebb6e13b49d30e9063efd4b46b477299311be9d88944c43a",
+  "tests": 30,
+  "passed": 30,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 2.0495652299996436,
+  "artifact": "hot_operating_release_20261030_b3205e0.zip",
+  "artifact_bytes": 737333,
+  "artifact_sha256": "95e0ed4799d589b0fd641cb0d1e8c5edbf49977d0add0a5814aba57386c083f6",
+  "monday_est_window_qualified_offline": true,
+  "windows_qualification": "PENDING",
+  "native_cmd_proof": "PENDING actual Windows83; Linux checks do not qualify CMD execution",
+  "new_proposed_capacity": {
+    "opening_uni": 600,
+    "uni_after_admission": 601,
+    "opening_focus": 40,
+    "focus_after_admission": 41,
+    "hot": 1
+  },
+  "fresh_start_policy": "Pre-open, password complete before 09:29 ET, target 09:20",
+  "runtime_scope": "New operator wrapper plus backend review-text correction; existing controller/recovery/collector/native unchanged",
+  "production_changes": false,
+  "provider_access": false,
+  "actual_vault_access": false,
+  "prior_unchanged_qualifications_repeated": false,
+  "mapped_windows_path_max_characters": 95
+}
