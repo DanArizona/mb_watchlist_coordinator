@@ -71,8 +71,10 @@ validation/production_20261030_closeout.json. Monday universe/r0 preparation is
 also accepted,584/0/0, using Friday's qualifying same-ET-date post-close snapshot;
 publication, audit and replay passed. See validation/opening_r0_20261102_acceptance.json.
 Monday's morning OV build, r1 publication, opening audit and normal poller setup use actual dated
-inputs, within the capacity above. Credential validity must cover the session;
-the last reported refresh expiry is Saturday October31 at18:17ET, before Monday.
+inputs, within the capacity above. The operator has completed forced
+reauthorization: refresh expiry is now Friday November6 at18:16ET, covering
+Monday. See validation/credential_renewal_20261030.json. The normal startup
+credential-horizon checks remain; the old Saturday-expiry renewal is complete.
 
 Actual October30 bounded daily composition passed with real Nasdaq ITOC
 admission and60Hot quotes. Representative history/ownership, recovery, paced

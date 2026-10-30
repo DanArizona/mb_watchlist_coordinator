@@ -126,9 +126,11 @@ Monday's daily universe/r0 preparation are accepted in the repository records:
 needs actual OV/Focus r1 and ordinary poller startup. The frozen delivered
 artifact/source is unchanged; see WORKING_HANDOFF.md for current evidence.
 
-The last reported refresh token expires Saturday October31 at18:17ET, before
-Monday. Check/renew authorization before the Monday startup; the existing
-credential-horizon gate still applies. This status command prompts for the
+The operator has renewed authorization; the reported refresh expiry is now
+Friday November6 at18:16ET, covering Monday. The old Saturday-expiry renewal
+reminder is complete; the existing startup credential-horizon gate still
+applies. See validation/credential_renewal_20261030.json in the current
+repository evidence. This status command prompts for the
 encrypted-config password and must be pasted by itself:
 
 ```cmd

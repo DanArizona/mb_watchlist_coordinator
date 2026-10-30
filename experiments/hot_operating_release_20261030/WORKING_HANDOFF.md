@@ -62,6 +62,11 @@ SHA2564e0eb1974816b7df4b33e62b135dd8f1753c255c2b8a3e2d31aaa388875190d5.
 Actual CMD prompts returned. This does not start Monday pollers or prepare r1.
 Confirm health monitor/watchdog shutdown if it remains open. Monday morning
 still needs actual API overnight volume, Focus r1 and ordinary poller setup.
-Monday uses EST(-05:00),09:30ET=14:30UTC. The last reported refresh token expires
-Saturday October31 at18:17ET, so authorization needs checking/renewal before
-Monday. No additional live trial or configurable-data-root refactor is pending.
+Monday uses EST(-05:00),09:30ET=14:30UTC. The operator has now completed forced
+reauthorization successfully and returned to the actual CMD prompt. The new
+refresh expiry is Friday November6 at18:16:18.164031EST/23:16:18.164031UTC,
+covering Monday's session; see validation/credential_renewal_20261030.json.
+The old Saturday-expiry renewal reminder is complete. Preserve normal startup
+credential-horizon checks; no extra renewal is required solely for the old
+expiry. Only non-secret completion/expiry/backup-path metadata is retained.
+No additional live trial or configurable-data-root refactor is pending.
