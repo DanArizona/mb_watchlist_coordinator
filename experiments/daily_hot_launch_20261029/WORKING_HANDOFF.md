@@ -1,5 +1,19 @@
 # Daily Hot public launch composition — October 29
 
+DELIVERY CHECKPOINT: daily_hot_launch_20261029_3991e08_5552c5d.zip,
+857626bytes, SHAeec4abeab1ce4ca9e49adb419dece4cd6a3c7fa855878ca18b839f97882f9977.
+Source local3991e083a6ac3b61448b8ff063ce486457012c91 equals public
+e3e2f1b70c670845316f17aed335b65b5b4ab77d, tree60a34d2514ddeac67a03049149f8a719b398873d.
+Exact clean extraction in a path with spaces PASS30/30,3.516552s, run
+20261030T004543Z_1d83cfbb; inventory verified before/after. Reports and console
+are retained here. Windows72 remains PENDING; provide one offline result and
+actual returned CMD prompt. Original code/tests/runner in the packet are the
+qualified source; later checkpoint changes are documentation/evidence only.
+Next after Windows result: concrete bounded real-provider performance through
+the new public composition, then dated settings/deployment/rollback/activation
+review. No actual provider/vault/SDK, installation, setting adoption or Hot
+activation occurred. Earlier extraction-pending wording below is historical.
+
 New development resumes from local64c33c2/public7c8217e8 and accepted Windows71.
 Three added runtime modules: daily_launch.py, daily_launch_cli.py and
 daily_launch_entry.py. integrated_catalog.py has a documentation-only change;
