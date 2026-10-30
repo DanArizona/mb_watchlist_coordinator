@@ -1,3 +1,10 @@
+**SHORT-ROOT WINDOWS75 ACCEPTED48/48**, run20261030T040404Z_146d5b2c.
+Same frozen packet/source/tests, actual returned CMD prompt. Both owned Windows
+Job scopes empty/non-forced/exit0, audit/replays PASS. The commands below have
+already been completed; no repeat is due. Keep the qualified copy at
+C:\Users\danla\hot75\p75 for later76/77. The original long-layout FAILED47/48
+verdict remains unchanged. [Acceptance](WINDOWS_ACCEPTANCE.json).
+
 # Windows75 path-length correction
 
 The original Windows run20261030T035211Z_bc158aec remains FAILED:47passed/48,

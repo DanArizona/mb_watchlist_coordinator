@@ -1,0 +1,84 @@
+{
+  "contract": "market-open-daily-path-windows-acceptance-v1",
+  "result": "ACCEPTED_OFFLINE_SCOPE",
+  "run": "20261030T040404Z_146d5b2c",
+  "tests": 48,
+  "passed": 48,
+  "errors": 0,
+  "failures": 0,
+  "skipped": 0,
+  "test_runner_seconds": 75.14,
+  "report_seconds": 75.21900000004098,
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "source": {
+    "accepted_after_hours_closeout_baseline": "ea43b37a06eac06313b662505b79a109fea3625e",
+    "coordinator_commit": "5e4b571adc9995f3ebaaca4ba62c053e48247b7f",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "8f6af02c93746adfb80b1b3e2ca80bf7543de96ac0039bd581a46859e743c5c1",
+  "basis": "Complete operator-supplied console/final JSON and actual returned CMD prompt; original Windows files not independently accessed",
+  "confirmed_short_root": "C:/Users/danla/hot75/p75",
+  "short_root_windows_qualified": true,
+  "source_or_test_changes": false,
+  "original_long_layout_result": "FAILED47/48, WinError206; retained without reclassification",
+  "native_proof": {
+    "synthetic_sdk_only": true,
+    "authenticated_roles": [
+      "collector",
+      "identity"
+    ],
+    "hot_acquisitions": 2,
+    "hot_statuses": {
+      "quote": 2
+    },
+    "identity_quote_permits": 1,
+    "worker_starts": 1,
+    "source_attempts": 1,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "replay": {
+      "events": 5,
+      "sequence_sha256": "0f585c4a290d9bdd15f1d41350f3454d7b7c1dd7a2daad9c6ceb3ec7254882f1"
+    },
+    "producer_cleanup": {
+      "status": "EXIT_OBSERVED",
+      "backend": "windows_job",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0,
+      "reason": null
+    },
+    "producer_cleanup_seconds": 0.1410000000614673,
+    "reporter_cleanup": {
+      "status": "EXIT_OBSERVED",
+      "backend": "windows_job",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0,
+      "reason": null
+    },
+    "reporting_status": "COMPLETE",
+    "deliberate_early_stop_result": "INCOMPLETE as expected; full paced live source not attempted",
+    "internal_identity_fence_exit": {
+      "returncode": 124,
+      "forced": false,
+      "both_sdk_closes_graceful_not_claimed": true
+    }
+  },
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "live_market_open_check_qualified": false,
+  "live_trial_approved": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false,
+  "next": "Explicit approval of the concrete isolated market-open trial, then current-day production preparation and76/77 at the qualified short root. Do not rerun75 or move the qualified copy."
+}

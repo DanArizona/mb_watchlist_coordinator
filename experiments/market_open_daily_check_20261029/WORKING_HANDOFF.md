@@ -1,3 +1,32 @@
+WINDOWS75 ACCEPTED48/48 at C:\Users\danla\hot75\p75.
+Run20261030T040404Z_146d5b2c;75.140s tests/75.219s report,0fail/errors/skips,
+win32/Python3.12.13. Complete operator console/final JSON and actual returned
+CMD prompt supplied in Pasted text(20261030-040829).txt. Original Windows files
+not independently read. Frozen source5e4b571/native5552c5d/inventory8f6af02 unchanged.
+Both producer and independent reporter Windows Job scopes EXIT_OBSERVED,
+empty/non-forced/exit0. Producer cleanup.141s; reporting COMPLETE; native audit
+PASS/equal5-event replays SHA0f585c4a290d9bdd15f1d41350f3454d7b7c1dd7a2daad9c6ceb3ec7254882f1.
+Synthetic2Hot quote acquisitions,1identity permit/1worker/1source capture.
+Internal identity return124 is the existing stop fence; no claim of both SDK
+closes being graceful. Full-source report INCOMPLETE is the deliberate early
+stop expectation and is not a new failure. No actual broker/vault/provider use.
+
+This resolves the demonstrated long-layout block for the qualified short copy;
+original long-root FAILED47/48 remains recorded. No source/test/cadence/deadline
+change or new packet was required. Keep and use this same short-root copy.
+No further75, after-hours provider trial, or unchanged long proof repeat is due.
+
+Next: explicit approval of the prepared isolated regular-session trial:180s
+collection,72Hot+3identity calls,1admitted symbol,feed4/directory2,original
+watchdogs and replacement hold. Then Friday's actual r0/Focusr1 and ordinary
+polling opening check supply the real dated inputs for76/77. Friday r0 remains
+ready543Uni; actual Friday Focusr1 path is not yet known. New provider trial
+approval, production source installation/settings adoption/Hot activation are
+not inferred from this offline Windows result. Standing source/docs publication
+remains authorized; manual controls/read-only Overlay follow.
+
+Earlier pending/failed-only wording below is historical.
+
 WINDOWS75 FAILED47/48 with1error,20.532s; actual CMD prompt returned.
 Run20261030T035211Z_bc158aec, source5e4b571/inventory8f6af02 unchanged.
 WinError206 while creating the deeply nested synthetic journal directory,

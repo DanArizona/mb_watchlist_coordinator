@@ -1,6 +1,6 @@
 {
   "contract": "market-open-daily-check-delivery-v1",
-  "status": "LOCAL_QUALIFIED_WINDOWS_PENDING",
+  "status": "WINDOWS_QUALIFIED_SHORT_ROOT_LIVE_PENDING",
   "source": {
     "accepted_after_hours_closeout_baseline": "ea43b37a06eac06313b662505b79a109fea3625e",
     "coordinator_commit": "5e4b571adc9995f3ebaaca4ba62c053e48247b7f",
@@ -53,11 +53,14 @@
     "early_stop_full_source_result": "INCOMPLETE as required"
   },
   "prior_windows_71_72_after_hours_acceptance_retained": true,
-  "windows75_result": "PENDING",
+  "windows75_result": "ACCEPTED48/48_SHORT_ROOT",
   "live_trial_approved": false,
   "live_market_open_check_qualified": false,
   "production_changes": false,
   "production_hot_enabled": false,
   "full_day_capacity_qualified": false,
-  "next": "Run only offline Windows75 once, return final JSON and actual CMD prompt; then approve the concrete bounded live trial before76/77."
+  "next": "No further75/after-hours rerun. Review and explicitly approve the already prepared bounded real-provider trial before76/77 at the short root.",
+  "windows75_run": "20261030T040404Z_146d5b2c",
+  "qualified_windows_root": "C:\\Users\\danla\\hot75\\p75",
+  "original_long_layout_verdict": "FAILED47/48 retained; short-layout Windows retry passed unchanged source/tests"
 }
