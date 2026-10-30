@@ -1,0 +1,111 @@
+{
+  "contract": "after-hours-provider-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 19,
+  "passed": 19,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 77.19731077399956,
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "source": {
+    "accepted_daily_launch_baseline": "cc8a4b3cd9c292a8a6daf4bcf16324cfa178d9f3",
+    "coordinator_commit": "09ac828f040b41b5da6fca4c39159157a9af11b7",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "87bdc304c4f2331f9621490045611a24215dfd7100707e344e1bf33d34f14508",
+  "windows_checks_passed": false,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "daily_launcher_changed": false,
+  "native_proof": {
+    "actual_provider_used": false,
+    "before_api_gate_seconds": {
+      "count": 24,
+      "max": 0.130008,
+      "median": 0.0850365,
+      "min": 0.031418,
+      "p95_nearest_rank": 0.123291
+    },
+    "cleanup": {
+      "backend": "posix_process_group",
+      "controller_returncode": 0,
+      "forced": false,
+      "reason": null,
+      "scope_empty_observed": true,
+      "status": "EXIT_OBSERVED"
+    },
+    "configuration_sha256": "2c5c6d3d6f7b15038f5f997a354481f52457aaa5eb055a924a42b3a61843e46c",
+    "contract": "after-hours-provider-performance-v1",
+    "daily_live_launch_qualified": false,
+    "first_replay": {
+      "events": 25,
+      "sequence_sha256": "51b11379471fd251360a4bee283c1812168aba1233a12e637aa5dc71f76c1986"
+    },
+    "full_day_capacity_qualified": false,
+    "market_open_performance_qualified": false,
+    "native_audit_passed": true,
+    "native_cycle_seconds": {
+      "count": 24,
+      "max": 0.062287245000334224,
+      "median": 0.02737234449978132,
+      "min": 0.015025426000647712,
+      "p95_nearest_rank": 0.04891090199998871
+    },
+    "nonce": "f85fd087538f4634ad39a4173b5fd82b",
+    "owner_stop_reason": "goal_complete",
+    "production_hot_enabled": false,
+    "production_journal_or_process_access": false,
+    "provider_capacity_qualified": false,
+    "provider_outcomes_recorded": 24,
+    "qualification_scope": "off-hours provider and shared native acquisition timing; not daily-controller or market-open qualification",
+    "quote_dispatch_permits": 24,
+    "request_seconds": {
+      "count": 24,
+      "max": 0.0017415250003978144,
+      "median": 7.589750111947069e-05,
+      "min": 6.683800165774301e-05,
+      "p95_nearest_rank": 0.00036937600089004263
+    },
+    "result": "PASS",
+    "second_replay": {
+      "events": 25,
+      "sequence_sha256": "51b11379471fd251360a4bee283c1812168aba1233a12e637aa5dc71f76c1986"
+    },
+    "two_fresh_replays_equal": true,
+    "unknown_provider_outcomes": 0,
+    "worker": {
+      "client_close_completed": true,
+      "completed_slots": 24,
+      "configuration_sha256": "2c5c6d3d6f7b15038f5f997a354481f52457aaa5eb055a924a42b3a61843e46c",
+      "contract": "after-hours-provider-performance-v1",
+      "error": null,
+      "nonce": "f85fd087538f4634ad39a4173b5fd82b",
+      "observed_at_utc": "2026-10-30T01:01:02.077685+00:00",
+      "phase": "COMPLETE",
+      "reason": "goal_complete",
+      "synthetic_only": true,
+      "timings": {
+        "authentication_seconds": 0.00025939199986169115,
+        "launch_to_first_completed_native_work_seconds": 0.458906,
+        "native_prepare_seconds": 0.011219169000469265
+      }
+    }
+  },
+  "clock_scope": "constant shifted wall clock in trusted offline fixture only; real elapsed pacing and deadlines; live entry has actual UTC clock",
+  "unchanged_daily_paced_capacity_recovery_drills_repeated": false,
+  "after_hours_live_provider_performance_qualified": false,
+  "daily_live_launch_qualified": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false
+}

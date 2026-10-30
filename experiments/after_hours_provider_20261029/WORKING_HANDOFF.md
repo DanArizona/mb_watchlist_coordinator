@@ -1,5 +1,24 @@
 # Isolated after-hours provider profile — October 29
 
+CORRECTED EXACT-PACKET QUALIFICATION PASS19/19,77.197311s,0fail/errors/skips,
+run20261030T012711Z_0c43991e, extracted in a path with spaces. Full source inventory verified
+before/after. One actual-paced synthetic native profile produced24acquisitions,
+audit PASS and matching25-event replays SHA51b11379471fd251360a4bee283c1812168aba1233a12e637aa5dc71f76c1986.
+Native cold first work.458906s, preparation.011219s. Owned POSIX scope exited0,
+empty/non-forced. These timings use a synthetic SDK and are not provider timings.
+Local09ac828 equals public91c4b7d19f44ac1855cfa5d81dc7e4bb2e2ef6f6,
+tree1a114a545b0e1d6b513d497f3deb8fbc28e7257c. Final packetafter_hours_provider_20261029_09ac828_5552c5d.zip,
+411507bytes,SHA8db5bcb5290ef3a463975d5fb4afe93a7a761286db548598065ad8af6709de15.
+Windows73 and actual live provider run remain PENDING. Next operator steps:
+extract, run73 once; if PASS on Windows, run74 with explicit ecfg/closed-hours/
+provider-trial flags. The user authorized the isolated after-hours work; no
+additional production activation is implied. Live command prints concrete
+fixed review before the password prompt, requires the matching offline record,
+and uses real UTC/elapsed clocks. Return both reports and actual CMD prompts.
+Earlier source-freeze/full-proof-pending wording below is historical. Failed
+initial development verdicts retained; native guard/cadence qualifications stay
+accepted and no unchanged prior long proof was repeated.
+
 User asked whether the provider-performance work can proceed with the market
 closed, then explicitly said to proceed with the described bounded isolated
 profile. This authorizes preparing that trial; it does not activate production

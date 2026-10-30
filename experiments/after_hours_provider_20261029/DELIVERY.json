@@ -1,0 +1,46 @@
+{
+  "contract": "after-hours-provider-delivery-v1",
+  "result": "READY_FOR_WINDOWS_73",
+  "local_qualification_result": "PASS",
+  "tests": 19,
+  "seconds": 77.19731077399956,
+  "run": "20261030T012711Z_0c43991e",
+  "local_source_commit": "09ac828f040b41b5da6fca4c39159157a9af11b7",
+  "public_equivalent_source_commit": "91c4b7d19f44ac1855cfa5d81dc7e4bb2e2ef6f6",
+  "source_tree": "1a114a545b0e1d6b513d497f3deb8fbc28e7257c",
+  "packet_filename": "after_hours_provider_20261029_09ac828_5552c5d.zip",
+  "packet_bytes": 411507,
+  "packet_sha256": "8db5bcb5290ef3a463975d5fb4afe93a7a761286db548598065ad8af6709de15",
+  "windows73": "PENDING",
+  "actual_live_provider_run": "PENDING",
+  "native_proof": {
+    "result": "PASS",
+    "quote_dispatch_permits": 24,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "first_replay": {
+      "events": 25,
+      "sequence_sha256": "51b11379471fd251360a4bee283c1812168aba1233a12e637aa5dc71f76c1986"
+    },
+    "cleanup": {
+      "backend": "posix_process_group",
+      "controller_returncode": 0,
+      "forced": false,
+      "reason": null,
+      "scope_empty_observed": true,
+      "status": "EXIT_OBSERVED"
+    },
+    "timings": {
+      "authentication_seconds": 0.00025939199986169115,
+      "launch_to_first_completed_native_work_seconds": 0.458906,
+      "native_prepare_seconds": 0.011219169000469265
+    }
+  },
+  "extraction_path_contains_spaces": true,
+  "source_inventory_pre_post_verified": true,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "daily_launcher_changed": false,
+  "market_open_daily_check": "Still required",
+  "prior_windows71_and72": "ACCEPTED; unchanged drills not repeated"
+}

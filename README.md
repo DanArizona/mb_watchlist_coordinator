@@ -6,8 +6,8 @@ daily launcher's regular-session guards. It does not activate production Hot.
 
 The [daily Hot public launch candidate](experiments/daily_hot_launch_20261029/README.md)
 adds reviewed fixed process entries and explicit launch/resume approval around
-the accepted backend. Its next step is the offline Windows command 72; it does
-not install or activate production Hot.
+the accepted backend. Its offline boundaries passed Windows command 72; actual daily live
+qualification remains. It does not install or activate production Hot.
 
 Authoritative Watchlist coordination and adapter-reconciliation logic for the MasterBot project.
 
