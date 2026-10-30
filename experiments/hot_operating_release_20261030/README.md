@@ -12,7 +12,15 @@ journal, state, catalog, configuration and charged budgets. The small backend
 review-text change identifies remaining packaging/approval work accurately and
 keeps full-session/provider capacity explicitly unqualified.
 
-## First action: Windows qualification
+## Current acceptance and next action
+
+Windows83 is accepted: all30 checks passed on Windows/Python3.12.13, including
+actual synthetic CMD execution, and the CMD prompt returned. See
+WINDOWS_ACCEPTANCE.json and WORKING_HANDOFF.md. The delivered ZIP/source and
+original local result remain unchanged. Next run84 for the actual read-only
+deployment review; no unchanged qualification needs repeating.
+
+## Delivered Windows qualification instructions
 
 ```cmd
 powershell -NoProfile -Command "Expand-Archive -LiteralPath 'C:\Users\danla\Downloads\@@ZIP@@' -DestinationPath 'C:\Users\danla\hot83'"

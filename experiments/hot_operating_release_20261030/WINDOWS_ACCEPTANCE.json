@@ -1,0 +1,52 @@
+{
+  "contract": "daily-hot-operator-windows-acceptance-v1",
+  "result": "ACCEPTED_PASS",
+  "qualification_contract": "daily-hot-operator-offline-qualification-v1",
+  "basis": "Complete operator-supplied Windows console, final JSON and actual returned CMD prompt; Windows files not independently read",
+  "run": "20261030T220652Z_904bc10c",
+  "report_path": "C:\\Users\\danla\\hot83\\p83\\runs\\20261030T220652Z_904bc10c\\verification.json",
+  "artifact": "hot_operating_release_20261030_b3205e0.zip",
+  "artifact_sha256": "95e0ed4799d589b0fd641cb0d1e8c5edbf49977d0add0a5814aba57386c083f6",
+  "source": {
+    "accepted_operating_predecessor": "022f1e60847f1fff4533db24cd1efb05c9b3c247",
+    "coordinator_commit": "b3205e0127b0bb9c1d7b97117991a4985cf782bb",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "5fe8a86b2fa502a4ebb6e13b49d30e9063efd4b46b477299311be9d88944c43a",
+  "tests": 30,
+  "passed": 30,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "unit_test_seconds": 12.844,
+  "total_seconds": 12.985000000000582,
+  "platform": "win32",
+  "python": [3, 12, 13],
+  "actual_cmd_prompt_returned": true,
+  "windows_checks_passed": true,
+  "native_cmd_proof": {
+    "result": "PASS",
+    "actual_cmd_exe": true,
+    "returncode": 0,
+    "space_and_parenthesis_paths_preserved": true,
+    "synthetic_entry_only": true,
+    "provider_requests": 0
+  },
+  "monday_est_window_qualified_offline": true,
+  "scope": "Deployment review, dated review/command generation, pre-open startup boundary, retained-state resume preflight and cooperative rollback routing",
+  "runtime_or_delivered_source_changed": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "settings_adopted": false,
+  "actual_provider_used": false,
+  "actual_vault_access": false,
+  "unchanged_qualifications_repeated": false,
+  "full_day_capacity_qualified": false,
+  "frozen_report_checklist": "The first remaining item in the delivered verifier is now satisfied by this operator result; its printed JSON and the delivered ZIP are preserved unchanged",
+  "remaining": [
+    "Read-only command84 deployment review on the production computer",
+    "Approval of the concrete release, settings and first production activation",
+    "Friday production closeout and preparation of Monday November2 opening universe/r0; no Friday full-session result is yet supplied"
+  ]
+}
