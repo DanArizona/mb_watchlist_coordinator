@@ -196,8 +196,10 @@ def _stop(child):
 def acquire_catalog(*, deadline, clock=None, allow_network=False, synthetic=None, hard_seconds=10):
     """Two fixed-source children, each with independent parent/child deadlines.
 
-    Caller must invoke this after credential acceptance and within its frozen
-    bootstrap window. No journal or filesystem artifact is created by this API.
+    The isolated experiment calls this after credential acceptance within its
+    frozen bootstrap window. Daily public preparation can acquire these public
+    files separately before review, without broker authentication. No journal
+    or filesystem artifact is created by this API.
     A synthetic scenario denies network in each child. No retry/fallback exists.
     """
     clock = clock or (lambda: datetime.now(timezone.utc))
