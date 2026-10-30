@@ -1,0 +1,108 @@
+{
+  "contract": "after-hours-provider-windows-live-acceptance-v1",
+  "basis": "Operator supplied complete Windows73 and live74 console/final JSON and actual returned CMD prompts; original Windows files not independently read",
+  "windows73": {
+    "result": "ACCEPTED",
+    "run": "20261030T013932Z_ef1c1a5a",
+    "tests": 19,
+    "passed": 19,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "test_seconds": 76.098,
+    "report_seconds": 76.14100000006147,
+    "actual_cmd_prompt_returned": true
+  },
+  "live74": {
+    "result": "PASS",
+    "acceptance": "SCOPED_AFTER_HOURS_PERFORMANCE_ACCEPTED",
+    "nonce": "7ceca31d70af41c4a98aab82e2f899e2",
+    "review_sha256": "0ae0a08151e73b4398c0c132ae762b5f80226390d0ad37d347317d56f9708baf",
+    "configuration_sha256": "a4394033f1fed8c692e46f2f4c15ba15a21a6afe466ccc6e569f7195b29a0377",
+    "actual_cmd_prompt_returned": true,
+    "actual_provider_used": true,
+    "synthetic_only": false,
+    "quote_dispatch_permits": 24,
+    "provider_outcomes_recorded": 24,
+    "unknown_provider_outcomes": 0,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "first_replay": {
+      "events": 25,
+      "sequence_sha256": "7ecaed83a29a0e61798dcbdd34b460d4431cff1ffc4d379a30677624c4dadd38"
+    },
+    "acquisition_scope_cleanup": {
+      "backend": "windows_job",
+      "controller_returncode": 0,
+      "forced": false,
+      "reason": null,
+      "scope_empty_observed": true,
+      "status": "EXIT_OBSERVED"
+    },
+    "sdk_close_completed": true,
+    "timings": {
+      "authentication_seconds": 0.9760143999010324,
+      "launch_to_first_completed_native_work_seconds": 1.301162,
+      "native_prepare_seconds": 0.04706460004672408
+    },
+    "request_seconds": {
+      "count": 24,
+      "max": 0.4182599000632763,
+      "median": 0.23833480011671782,
+      "min": 0.19665780011564493,
+      "p95_nearest_rank": 0.33889060001820326
+    },
+    "native_cycle_seconds": {
+      "count": 24,
+      "max": 0.47045270004309714,
+      "median": 0.3071115999482572,
+      "min": 0.2630287997890264,
+      "p95_nearest_rank": 0.41250570002011955
+    },
+    "before_api_gate_seconds": {
+      "count": 24,
+      "max": 0.136078,
+      "median": 0.086423,
+      "min": 0.039388,
+      "p95_nearest_rank": 0.135842
+    }
+  },
+  "source": {
+    "accepted_daily_launch_baseline": "cc8a4b3cd9c292a8a6daf4bcf16324cfa178d9f3",
+    "coordinator_commit": "09ac828f040b41b5da6fca4c39159157a9af11b7",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "public_equivalent_source_commit": "91c4b7d19f44ac1855cfa5d81dc7e4bb2e2ef6f6",
+  "source_tree": "1a114a545b0e1d6b513d497f3deb8fbc28e7257c",
+  "source_inventory_sha256": "87bdc304c4f2331f9621490045611a24215dfd7100707e344e1bf33d34f14508",
+  "dependencies": {
+    "qualified": true,
+    "receipt_sha256": "816e7ac345693337cbf8bf897ba4d316199fac672d933f358432cec05aa6f48b",
+    "mb-tools": "0.6.0",
+    "schwabdev": "4.0.0",
+    "cryptography": "49.0.0",
+    "python": [
+      3,
+      12,
+      13
+    ]
+  },
+  "independent_reporter_owner_receipt": "PENDING_READ: owner-result.json path supplied, contents not yet shown; do not infer reporter-scope cleanup from acquisition-scope cleanup",
+  "earlier_preflight_attempt": {
+    "nonce": "ef962ac289434f8eb7b8fbf2fc067a73",
+    "result": "BLOCKED_BEFORE_PASSWORD_AND_PROVIDER_ACCESS",
+    "reason": "No matching Windows73 PASS record; generic ValueError hid the prerequisite message"
+  },
+  "source_or_tests_changed_for_acceptance": false,
+  "additional_provider_trial_requested": false,
+  "shared_sdk_token_refresh_possible": true,
+  "production_journal_or_process_access": false,
+  "production_hot_enabled": false,
+  "daily_launcher_changed": false,
+  "daily_live_launch_qualified": false,
+  "market_open_performance_qualified": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false,
+  "next": "Read the supplied owner-result.json to finish independent reporter closeout; no rerun. Then prepare the short market-open public daily-path check and concrete release/settings/activation review."
+}

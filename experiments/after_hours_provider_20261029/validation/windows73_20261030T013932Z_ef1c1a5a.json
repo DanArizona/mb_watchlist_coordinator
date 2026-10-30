@@ -1,0 +1,111 @@
+{
+  "contract": "after-hours-provider-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 19,
+  "passed": 19,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 76.14100000006147,
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "source": {
+    "accepted_daily_launch_baseline": "cc8a4b3cd9c292a8a6daf4bcf16324cfa178d9f3",
+    "coordinator_commit": "09ac828f040b41b5da6fca4c39159157a9af11b7",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "87bdc304c4f2331f9621490045611a24215dfd7100707e344e1bf33d34f14508",
+  "windows_checks_passed": true,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "daily_launcher_changed": false,
+  "native_proof": {
+    "actual_provider_used": false,
+    "before_api_gate_seconds": {
+      "count": 24,
+      "max": 0.144546,
+      "median": 0.1003655,
+      "min": 0.036248,
+      "p95_nearest_rank": 0.143722
+    },
+    "cleanup": {
+      "backend": "windows_job",
+      "controller_returncode": 0,
+      "forced": false,
+      "reason": null,
+      "scope_empty_observed": true,
+      "status": "EXIT_OBSERVED"
+    },
+    "configuration_sha256": "929fcac8491fe8bdcf401886210d91586df4e143e4249568c3fc1b9411c04623",
+    "contract": "after-hours-provider-performance-v1",
+    "daily_live_launch_qualified": false,
+    "first_replay": {
+      "events": 25,
+      "sequence_sha256": "51b11379471fd251360a4bee283c1812168aba1233a12e637aa5dc71f76c1986"
+    },
+    "full_day_capacity_qualified": false,
+    "market_open_performance_qualified": false,
+    "native_audit_passed": true,
+    "native_cycle_seconds": {
+      "count": 24,
+      "max": 0.07593999989330769,
+      "median": 0.06793060002382845,
+      "min": 0.05198670015670359,
+      "p95_nearest_rank": 0.07510300003923476
+    },
+    "nonce": "90b1406955254918a9abac8a6f501cd4",
+    "owner_stop_reason": "goal_complete",
+    "production_hot_enabled": false,
+    "production_journal_or_process_access": false,
+    "provider_capacity_qualified": false,
+    "provider_outcomes_recorded": 24,
+    "qualification_scope": "off-hours provider and shared native acquisition timing; not daily-controller or market-open qualification",
+    "quote_dispatch_permits": 24,
+    "request_seconds": {
+      "count": 24,
+      "max": 0.0025029999669641256,
+      "median": 0.0018723000539466739,
+      "min": 0.0018352000042796135,
+      "p95_nearest_rank": 0.0021736999042332172
+    },
+    "result": "PASS",
+    "second_replay": {
+      "events": 25,
+      "sequence_sha256": "51b11379471fd251360a4bee283c1812168aba1233a12e637aa5dc71f76c1986"
+    },
+    "two_fresh_replays_equal": true,
+    "unknown_provider_outcomes": 0,
+    "worker": {
+      "client_close_completed": true,
+      "completed_slots": 24,
+      "configuration_sha256": "929fcac8491fe8bdcf401886210d91586df4e143e4249568c3fc1b9411c04623",
+      "contract": "after-hours-provider-performance-v1",
+      "error": null,
+      "nonce": "90b1406955254918a9abac8a6f501cd4",
+      "observed_at_utc": "2026-10-30T01:01:02.153961+00:00",
+      "phase": "COMPLETE",
+      "reason": "goal_complete",
+      "synthetic_only": true,
+      "timings": {
+        "authentication_seconds": 0.004674199968576431,
+        "launch_to_first_completed_native_work_seconds": 0.347821,
+        "native_prepare_seconds": 0.04738180013373494
+      }
+    }
+  },
+  "clock_scope": "constant shifted wall clock in trusted offline fixture only; real elapsed pacing and deadlines; live entry has actual UTC clock",
+  "unchanged_daily_paced_capacity_recovery_drills_repeated": false,
+  "after_hours_live_provider_performance_qualified": false,
+  "daily_live_launch_qualified": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false
+}

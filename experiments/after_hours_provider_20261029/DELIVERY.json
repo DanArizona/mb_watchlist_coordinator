@@ -1,6 +1,6 @@
 {
   "contract": "after-hours-provider-delivery-v1",
-  "result": "READY_FOR_WINDOWS_73",
+  "result": "OFF_HOURS_PERFORMANCE_ACCEPTED_OWNER_RECEIPT_PENDING",
   "local_qualification_result": "PASS",
   "tests": 19,
   "seconds": 77.19731077399956,
@@ -11,8 +11,8 @@
   "packet_filename": "after_hours_provider_20261029_09ac828_5552c5d.zip",
   "packet_bytes": 411507,
   "packet_sha256": "8db5bcb5290ef3a463975d5fb4afe93a7a761286db548598065ad8af6709de15",
-  "windows73": "PENDING",
-  "actual_live_provider_run": "PENDING",
+  "windows73": "ACCEPTED19/19",
+  "actual_live_provider_run": "PASS; scoped after-hours provider/native performance accepted",
   "native_proof": {
     "result": "PASS",
     "quote_dispatch_permits": 24,
@@ -42,5 +42,8 @@
   "production_hot_enabled": false,
   "daily_launcher_changed": false,
   "market_open_daily_check": "Still required",
-  "prior_windows71_and72": "ACCEPTED; unchanged drills not repeated"
+  "prior_windows71_and72": "ACCEPTED; unchanged drills not repeated",
+  "live_nonce": "7ceca31d70af41c4a98aab82e2f899e2",
+  "independent_reporter_owner_receipt": "PENDING_READ",
+  "additional_provider_trial_requested": false
 }

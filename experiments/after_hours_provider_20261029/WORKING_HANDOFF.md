@@ -1,5 +1,35 @@
 # Isolated after-hours provider profile — October 29
 
+WINDOWS73 ACCEPTED19/19,76.098s tests/76.141s report; run
+20261030T013932Z_ef1c1a5a, actual CMD prompt returned. Same source inventory
+87bdc304c4f2331f9621490045611a24215dfd7100707e344e1bf33d34f14508.
+Synthetic24-slot native proof/audit/equal25-event replays PASS, Windows Job
+scope empty/non-forced/exit0. Windows71/72 remain accepted; no unchanged rerun.
+
+LIVE74 reported PASS with actual provider, nonce7ceca31d70af41c4a98aab82e2f899e2;
+real UTC observed2026-10-30T01:42:58.338272Z =October29 21:42:58ET.
+24permits/24recorded outcomes/0unknown,24completed slots, SDK close completed,
+audit PASS, equal25-event replays SHA7ecaed83a29a0e61798dcbdd34b460d4431cff1ffc4d379a30677624c4dadd38.
+Provider median.238334800s/p95.338890600s/max.418259900s; native cycle
+median.307111600s/p95.412505700s/max.470452700s. Cold first native work1.301162s,
+authentication.976014400s, native prepare.047064600s; max pre-API gate.136078s
+within original.75s. Acquisition Job scope empty/non-forced/exit0.
+Complete operator console/JSON and actual prompt supplied; original Windows
+files not independently read. No source/tests changed for acceptance.
+
+ACCEPTED SCOPE: one-symbol after-hours provider/shared native timing sample.
+No production Hot activation, daily-clock change, full daily-controller/market
+open/provider/all-day capacity qualification. Shared SDK token refresh possible.
+The separate owner-result.json was named but NOT pasted; its reporter-scope
+cleanup/reporting status remains PENDING_READ. Request that ONE short read-only
+receipt to finish closeout, NOT a rerun or new profile. Stored performance JSON
+proves acquisition cleanup; do not infer reporter exit solely from that field.
+Next engineering work is the short market-open public daily-path check and
+concrete deployment/settings/activation review, then manual/Overlay priorities.
+Earlier Windows73/live74-pending wording below is historical. Initial74 before73
+was BLOCKED before password/provider because no matching offline PASS existed;
+that expected preflight guard is separate from provider outcomes.
+
 CORRECTED EXACT-PACKET QUALIFICATION PASS19/19,77.197311s,0fail/errors/skips,
 run20261030T012711Z_0c43991e, extracted in a path with spaces. Full source inventory verified
 before/after. One actual-paced synthetic native profile produced24acquisitions,

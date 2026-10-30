@@ -1,5 +1,13 @@
 # Isolated after-hours provider measurements
 
+**Windows73 accepted19/19; live74 after-hours performance PASS.** The actual
+SPY trial completed24 requests/outcomes, passed audit and matching replays and
+confirmed acquisition-scope cleanup. Provider median238ms/max418ms; full native
+cycle median307ms/max470ms. [Results](WINDOWS_LIVE_ACCEPTANCE.json). The separate
+owner/report receipt is pending inspection; no rerun is requested. Market-open
+public daily-path qualification and production activation remain separate.
+The original delivery instructions below are retained for reference.
+
 This measures actual Schwab authentication/quote timing and the shared native
 dispatch, response, normalization, journal and ACK engine while the regular
 session is closed. It is a separate profile. The accepted daily launcher's
