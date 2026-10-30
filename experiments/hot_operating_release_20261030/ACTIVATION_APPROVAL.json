@@ -1,0 +1,19 @@
+{
+  "contract": "daily-hot-production-activation-approval-v1",
+  "state": "PENDING_OPERATOR_APPROVAL",
+  "session_date": "2026-11-02",
+  "release_artifact": "hot_operating_release_20261030_b3205e0.zip",
+  "source_inventory_sha256": "5fe8a86b2fa502a4ebb6e13b49d30e9063efd4b46b477299311be9d88944c43a",
+  "proposal_policy_sha256": "df436169ad6674deb906c41706eaa8323b63dee8c7fb5232364e38d5770751db",
+  "review": "ACTIVATION_REVIEW.md",
+  "qualification_evidence": ["WINDOWS_ACCEPTANCE.json", "WINDOWS_DEPLOYMENT_ACCEPTANCE.json"],
+  "scope": "Concrete Monday production release/settings and shared production journal, including retained-state manual resume under original session/window and budgets",
+  "production_activation_approved": false,
+  "production_hot_enabled": false,
+  "settings_adopted": false,
+  "live_execution_performed": false,
+  "earlier_friday_isolated_trial": "EXECUTED_PASS_CONSUMED; not production activation approval",
+  "standing_github_authorization": "Retained; production changes explicitly excluded",
+  "actual_monday_input_handling": "Valid actual Monday r0/r1 path and hash will be bound during dated preparation; approval of this release/date/settings need not be requested again merely for those values",
+  "remaining": ["Explicit operator approval of ACTIVATION_REVIEW.md scope", "Ordinary Friday closeout and Monday universe/r0 and morning r1/credential preparation"]
+}

@@ -1,4 +1,4 @@
-# Windows83 accepted; actual deployment review is next
+# Windows83 and actual deployment review accepted; activation approval is next
 
 The operator supplied the complete Windows83 console, final JSON and actual
 returned CMD prompt for run20261030T220652Z_904bc10c. All30 focused checks passed
@@ -16,18 +16,23 @@ The supplied Windows JSON is preserved under validation; its static first
 remaining item is complete. There is no reason to rerun83 or accepted earlier
 provider, recovery, capacity, paced-source or GUI qualifications unchanged.
 
-Next, in sea-green on MasterBot:
+The operator subsequently supplied complete command84 REVIEW_READY JSON and
+the actual returned CMD prompt. Both repositories are clean main at the exact
+required commits, and Python3.12.13/dependency versions/helper sources match.
+See WINDOWS_DEPLOYMENT_ACCEPTANCE.json and its saved observation. No password,
+provider, installation or production change occurred. Neither83 nor84 needs
+an unchanged repeat solely to advance the review.
 
-```cmd
-call "C:\Users\danla\hot83\p83\84_review_operating_release.cmd"
-```
-
-This reads installed clean main baselines and exact dependency versions/source;
-it does not prompt for a password or activate Hot. Review the actual output
-before asking for approval of the concrete release/settings, production-journal
-use and first Monday November2 session. The proposed one-symbol Hot limit,
-opening Uni<=600, pre-open startup and retained-state resume/rollback remain
-proposals. Publication and qualification do not adopt or activate them.
+Next ask for explicit approval of ACTIVATION_REVIEW.md: this frozen release,
+Monday November2 settings, shared production-journal use, pre-open startup,
+retained-state manual resume and stop/rollback procedure. The proposed
+one-symbol Hot limit and opening Uni<=600 remain proposals until approval.
+ACTIVATION_APPROVAL.json records PENDING_OPERATOR_APPROVAL. The existing
+GitHub-publication authorization excludes production changes; the completed
+Friday isolated trial approval does not authorize this activation. The actual
+valid Monday r1 can fill in its path/hash without a new permission round under
+approval of these exact release/date/settings/conditions. The backend still
+requires the generated exact review digest. Do not start Hot before approval.
 
 Friday October30 polling still needs its supplied full-session status/incidents,
 audit and replay. Monday November2 universe/r0 preparation also remains due;

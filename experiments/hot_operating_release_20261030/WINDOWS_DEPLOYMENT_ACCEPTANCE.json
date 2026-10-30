@@ -1,0 +1,105 @@
+{
+  "contract": "daily-hot-operator-deployment-windows-acceptance-v1",
+  "result": "ACCEPTED_REVIEW_READY",
+  "basis": "Complete operator-supplied command84 console/JSON and actual returned CMD prompt; Windows files not independently read",
+  "command": "C:\\Users\\danla\\hot83\\p83\\84_review_operating_release.cmd",
+  "source_root": "C:\\Users\\danla\\hot83\\p83",
+  "artifact": "hot_operating_release_20261030_b3205e0.zip",
+  "artifact_sha256": "95e0ed4799d589b0fd641cb0d1e8c5edbf49977d0add0a5814aba57386c083f6",
+  "source": {
+    "accepted_operating_predecessor": "022f1e60847f1fff4533db24cd1efb05c9b3c247",
+    "coordinator_commit": "b3205e0127b0bb9c1d7b97117991a4985cf782bb",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "5fe8a86b2fa502a4ebb6e13b49d30e9063efd4b46b477299311be9d88944c43a",
+  "policy_sha256": "df436169ad6674deb906c41706eaa8323b63dee8c7fb5232364e38d5770751db",
+  "observed_repositories": {
+    "market_data": {
+      "root": "C:\\Users\\danla\\Documents\\github\\mb_market_data",
+      "branch": "main",
+      "head": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+      "tracked_clean": true
+    },
+    "watchlists": {
+      "root": "C:\\Users\\danla\\Documents\\github\\schwab_watchlists",
+      "branch": "main",
+      "head": "e2ef6f62856ba3226c41456b7779951aa8640cbf",
+      "tracked_clean": true
+    }
+  },
+  "observed_dependencies": {
+    "qualified": true,
+    "reason": "probe_pass",
+    "python": [
+      3,
+      12,
+      13
+    ],
+    "executable": "C:\\Users\\danla\\anaconda3\\envs\\sea-green\\python.exe",
+    "versions": {
+      "mb-tools": "0.6.0",
+      "schwabdev": "4.0.0",
+      "cryptography": "49.0.0"
+    },
+    "mb_tools_root": "C:\\Users\\danla\\Documents\\github\\mb_tools\\src\\mb_tools",
+    "source": {
+      "__init__.py": {
+        "sha256": "873508b463e1e5388ddf493836ce1dfeca089aef1eac22f851b41701423a2958",
+        "canonical_source_sha256": "a4f32c299d9eac0a0c0fda4f8fc3ea6779364f6830d28c04ca92bde99b618bf7",
+        "expected_sha256": "a4f32c299d9eac0a0c0fda4f8fc3ea6779364f6830d28c04ca92bde99b618bf7"
+      },
+      "schwab_secure/__init__.py": {
+        "sha256": "e9a71e88b415d8576a5879f008956fbf2b058605a202f4bff1408db523e59b70",
+        "canonical_source_sha256": "4598710eb0c749366a632a4f8282614f243dfcd9226afa31b032de161aaff712",
+        "expected_sha256": "4598710eb0c749366a632a4f8282614f243dfcd9226afa31b032de161aaff712"
+      },
+      "schwab_secure/client.py": {
+        "sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea",
+        "canonical_source_sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea",
+        "expected_sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea"
+      },
+      "schwab_secure/config.py": {
+        "sha256": "519842e37ed80cc39051fae2546ea11f813edd1a1cd73e5019189b86623f483b",
+        "canonical_source_sha256": "7da559d38a29ce3cf771e1524d160ca41d4671eb25221abaf11342347b00b2fa",
+        "expected_sha256": "7da559d38a29ce3cf771e1524d160ca41d4671eb25221abaf11342347b00b2fa"
+      },
+      "schwab_secure/status.py": {
+        "sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141",
+        "canonical_source_sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141",
+        "expected_sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141"
+      },
+      "schwab_secure/reauthorize.py": {
+        "sha256": "ed106cd5e2ca17c592a5bbd6029ec435c2aa9f84b5c9a14c4ba33e636b427601",
+        "canonical_source_sha256": "d1faaf0547730dbe7d9949dc90747e2f14e371e028dba00bf095376141dba1d6",
+        "expected_sha256": "d1faaf0547730dbe7d9949dc90747e2f14e371e028dba00bf095376141dba1d6"
+      },
+      "secure_config/__init__.py": {
+        "sha256": "250a90bc2b3b3dfe17a1b0718059ee2ab7e6a159491c822ee90ccf9cdcc90328",
+        "canonical_source_sha256": "b234604319b99e0fa98e486ec30e8f120419688a8587af13270b76c1d18d0581",
+        "expected_sha256": "b234604319b99e0fa98e486ec30e8f120419688a8587af13270b76c1d18d0581"
+      },
+      "secure_config/ecfg.py": {
+        "sha256": "02a1b77523911dea68fbfbe9961d8a1d3f6d0b9adfd0ed2dc4a495a0cabf7cb4",
+        "canonical_source_sha256": "0bd6c3d2160876cb5d428723694b9c38ba63f64780a1782690d74e33e4f4da6e",
+        "expected_sha256": "0bd6c3d2160876cb5d428723694b9c38ba63f64780a1782690d74e33e4f4da6e"
+      }
+    }
+  },
+  "actual_cmd_prompt_returned": true,
+  "source_installation_required": false,
+  "production_changes": false,
+  "provider_access": false,
+  "actual_vault_access": false,
+  "production_activation_approved": false,
+  "settings_adopted": false,
+  "delivered_source_changed": false,
+  "prior_qualifications_repeated": false,
+  "full_day_capacity_qualified": false,
+  "saved_operator_review": "validation/windows84_review_ready.json",
+  "interpretation": {
+    "candidate_labels": "CANDIDATE_NOT_ACTIVATED and PROPOSED_NOT_ADOPTED describe the unapproved frozen proposal; approval is recorded per invocation without editing policy source",
+    "legacy_warning": "provider_collector_driver_qualification_pending is retained in frozen proposal; actual bounded daily-composition acceptance is separate and full-day/provider capacity remains unqualified"
+  },
+  "next": "Request explicit approval of ACTIVATION_REVIEW.md; ordinary Friday closeout and Monday preparation remain due"
+}
