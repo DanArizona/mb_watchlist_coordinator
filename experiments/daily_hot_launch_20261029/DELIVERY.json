@@ -19,17 +19,19 @@
   "extraction_path_contains_spaces": true,
   "source_inventory_pre_post_verified": true,
   "network": "denied",
-  "windows_qualification": "PENDING",
+  "windows_qualification": "ACCEPTED public-composition offline scope",
   "production_changes": false,
   "production_hot_enabled": false,
   "proposed_values_adopted": false,
   "live_launch_qualified": false,
   "provider_capacity_qualified": false,
   "full_day_capacity_qualified": false,
-  "delivery": "READY_FOR_WINDOWS_72",
+  "delivery": "WINDOWS_72_ACCEPTED",
   "windows_command": "72_verify_daily_hot_launch.cmd",
-  "windows_result": "PENDING",
+  "windows_result": "PASS",
   "public_branch": "experiment/daily-hot-source-reliability-20261029",
   "publication_approval": "standing ordinary Coordinator source/tests/docs/validation approval",
-  "activation_approval": false
+  "activation_approval": false,
+  "windows_run": "20261030T005515Z_3aa57f99",
+  "actual_cmd_prompt_returned": true
 }

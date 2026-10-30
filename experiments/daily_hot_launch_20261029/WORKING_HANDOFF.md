@@ -1,5 +1,23 @@
 # Daily Hot public launch composition — October 29
 
+WINDOWS72 ACCEPTED: complete operator console/final JSON and actual returned
+CMD prompt. Run20261030T005515Z_3aa57f99, win32/Python3.12.13;30/30PASS,
+zero failures/errors/skips,11.670s tests/11.734s report. No source or test changes
+for acceptance. Original report is retained, including its now-satisfied first
+remaining item. Original Windows files were not independently read.
+
+Public approval-before-password boundaries, fixed dispatch and read-only manual
+resume preflight are accepted within this offline scope. Windows71 remains
+accepted; no unchanged paced/capacity/recovery proof was repeated. Actual public
+launch authentication/provider execution is still unqualified; Hot disabled,
+settings not adopted, installed production unchanged. Do not request a repeat
+of command72. Next is a concrete bounded real-provider performance trial through
+the public daily composition, then exact settings/deployment/rollback/activation
+review. Manual membership/read-only Overlay follow. No new trial design or code
+has been implemented as part of recording this acceptance. Earlier Windows72
+pending statements below are historical. Production preparation remains as
+recorded: Oct29 closed out and Friday r0 ready; Friday morning work unconfirmed.
+
 DELIVERY CHECKPOINT: daily_hot_launch_20261029_3991e08_5552c5d.zip,
 857626bytes, SHAeec4abeab1ce4ca9e49adb419dece4cd6a3c7fa855878ca18b839f97882f9977.
 Source local3991e083a6ac3b61448b8ff063ce486457012c91 equals public

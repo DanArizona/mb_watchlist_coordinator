@@ -1,5 +1,12 @@
 # Daily Hot public launch candidate — October 29
 
+**Windows command72 accepted:30/30PASS**, zero failures/errors/skips, actual
+CMD prompt returned. Run20261030T005515Z_3aa57f99, Python3.12.13;11.670s tests,
+11.734s report. [Acceptance record](WINDOWS_ACCEPTANCE.json). No repeat is
+needed. This accepts the public composition's offline boundaries; actual
+provider execution and production activation remain pending. The original
+qualification instructions below describe the delivered packet and are retained.
+
 This adds the public daily launch composition around the accepted controller.
 The next operator action is **72_verify_daily_hot_launch.cmd**, an offline check.
 It requests no password, contacts no service, and changes no production state.
