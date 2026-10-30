@@ -1,0 +1,34 @@
+{
+  "contract": "membership-status-local-delivery-v1",
+  "result": "PASS",
+  "basis": "Exact ZIP extracted and run with isolated Python; headless Linux scope only",
+  "tests": 30,
+  "passed": 30,
+  "failed": 0,
+  "skipped": 0,
+  "seconds": 0.21734887299999173,
+  "source": {
+    "accepted_daily_composition_baseline": "6665a953c8cb4ffadaeab7b5717df68cf9c69965",
+    "coordinator_commit": "71dfb49232c5337355b22f16feaf22e36dd7db3c",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d"
+  },
+  "source_inventory_sha256": "32b5a69f23ec13a9030119abf536e367e8369a97e2d50de37ebc87e39b319de8",
+  "artifact": "membership_status_20261030_71dfb49.zip",
+  "artifact_bytes": 412462,
+  "artifact_sha256": "d223d14bf398b1c2bc6cd0066c06260d47d816af7367c673413ca37627d7e754",
+  "native_baseline_uni_symbols": 551,
+  "native_baseline_r1_preserved": true,
+  "native_effective_revision": 2,
+  "display_counts": {
+    "hot": 1,
+    "focus": 1,
+    "uni": 1
+  },
+  "windows_qualification": "PENDING",
+  "gui_qualification": "Actual Tk window and five observed phases pending Windows81",
+  "existing_controller_runtime_changed": false,
+  "native_source_changed": false,
+  "production_access": false,
+  "provider_access": false,
+  "actual_vault_access": false
+}

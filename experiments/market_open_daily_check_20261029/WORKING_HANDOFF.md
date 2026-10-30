@@ -39,6 +39,14 @@ See RELEASE_REVIEW_STATUS.md. This replaces the proposed full Focus/Uni roster
 or a scrolling-only admission indication. Implementation/qualification remains
 part of the operating package.
 
+Persistent display implementation now exists as two independent read-only
+modules. The focused 30-check suite passes locally. Package81 adds a short
+synthetic actual-Tk preview on Windows; its acceptance is pending. Existing
+controller/source/provider/native code is unchanged. See
+../membership_status_20261030/README.md. Remaining operating delivery/settings,
+deployment/rollback and activation review continue after this scoped display
+qualification; no unchanged live trial or provider proof is due.
+
 ---
 
 **October30 morning: opening polling check PASSED; isolated preparation BLOCKED and narrow companion locally qualified.**

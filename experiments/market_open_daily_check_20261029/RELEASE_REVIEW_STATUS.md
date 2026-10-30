@@ -55,5 +55,8 @@ The operator described the current phase as retaining additions without
 removals. This summary is designed for that phase; removal controls will need
 explicit display/history treatment when introduced. Keep this requirement with
 the existing collection-health, source-warning and recovery-status work. The
-operator display remains to be implemented and qualified in the operating
-package; the backend saved status already exists.
+operator display is implemented in the independent daily_membership_status and
+daily_membership_window modules. Its focused 30-check suite passes locally;
+the packaged-copy and actual Windows Tk preview results are recorded separately
+under experiments/membership_status_20261030. Existing controller and native
+runtime sources remain unchanged. Windows qualification is pending.

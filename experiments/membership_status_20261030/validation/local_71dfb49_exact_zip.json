@@ -1,0 +1,60 @@
+{
+  "contract": "membership-status-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 30,
+  "passed": 30,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 0.21734887299999173,
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "source": {
+    "accepted_daily_composition_baseline": "6665a953c8cb4ffadaeab7b5717df68cf9c69965",
+    "coordinator_commit": "71dfb49232c5337355b22f16feaf22e36dd7db3c",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d"
+  },
+  "windows_checks_passed": false,
+  "clock_scope": "Logical future session in synthetic fixtures only; the normal display uses actual UTC",
+  "source_inventory_sha256": "32b5a69f23ec13a9030119abf536e367e8369a97e2d50de37ebc87e39b319de8",
+  "display_summary": {
+    "hot": "complete current list",
+    "focus": "current additions beyond opening r1",
+    "uni": "current additions beyond opening r1"
+  },
+  "native_membership_proof": {
+    "effective_revision": 2,
+    "counts": {
+      "hot": 1,
+      "focus": 1,
+      "uni": 1
+    },
+    "last_hot_acquisition": {
+      "scheduled_at_utc": "2026-11-01T15:00:00.000000Z",
+      "completed_at_utc": "2026-11-01T15:00:00.000000Z",
+      "requested_symbol_count": 1
+    },
+    "original_r1_preserved": true
+  },
+  "gui_proof": {
+    "result": "NOT_EXERCISED",
+    "reason": "No local desktop; actual Windows preview remains due"
+  },
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_provider_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "controller_runtime_changed": false,
+  "native_source_changed": false,
+  "unchanged_provider_recovery_and_capacity_proofs_repeated": false,
+  "remaining": [
+    "Actual Windows qualification and returned CMD prompt",
+    "Remaining daily operating delivery, settings and deployment/rollback review"
+  ]
+}
