@@ -19,5 +19,6 @@
   "scope_revision_plan": "MULTISYMBOL_QUALIFICATION_PLAN.md",
   "new_capacity_selected": false,
   "friday_production_closeout": "ACCEPTED_PASS; validation/production_20261030_closeout.json",
-  "remaining": ["Select and qualify one practical multi-symbol operating envelope, including identity/admission limits and composed load/recovery behavior", "Prepare revised concrete release/settings for activation approval", "Monday universe/r0 and morning r1/credential preparation; confirm Friday monitor/watchdog shutdown"]
+  "monday_opening_r0": "ACCEPTED_PASS;584/0/0,09:30EST=14:30UTC; validation/opening_r0_20261102_acceptance.json",
+  "remaining": ["Select and qualify one practical multi-symbol operating envelope, including identity/admission limits and composed load/recovery behavior", "Prepare revised concrete release/settings for activation approval", "Monday morning OV/r1/credential preparation and ordinary poller startup; confirm Friday monitor/watchdog shutdown"]
 }

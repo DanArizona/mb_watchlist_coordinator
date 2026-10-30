@@ -80,6 +80,8 @@ load occurred. Capacity increases should follow measured envelope results or
 actual findings, not an automatic one-day-per-increase rule.
 
 Friday production closeout is accepted in validation/production_20261030_closeout.json;
-Monday preparation and monitor/watchdog shutdown remain separate ordinary work.
+Monday universe/r0 preparation is also accepted,584/0/0; see
+validation/opening_r0_20261102_acceptance.json. Monday morning OV/r1/startup and
+Friday monitor/watchdog shutdown confirmation remain separate ordinary work.
 Monday is a target contingent on focused revision/qualification and activation
 approval; no additional sequence of market-day gates is introduced by this plan.

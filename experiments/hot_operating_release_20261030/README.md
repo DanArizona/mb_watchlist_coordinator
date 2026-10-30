@@ -121,7 +121,10 @@ operation; this packet does not claim it from offline tests or the bounded trial
 Monday November2 uses EST(-05:00):09:30ET=14:30UTC and16:00ET=21:00UTC. The
 offline check exercises those exact date/window conversions. Use the actual
 Monday r0/r1, not Friday's trial copies. Friday's production closeout and
-Monday's daily universe/r0 preparation remain separate operational work.
+Monday's daily universe/r0 preparation are accepted in the repository records:
+584/0/0 is published, audited and replayed at09:30EST. Monday morning still
+needs actual OV/Focus r1 and ordinary poller startup. The frozen delivered
+artifact/source is unchanged; see WORKING_HANDOFF.md for current evidence.
 
 The last reported refresh token expires Saturday October31 at18:17ET, before
 Monday. Check/renew authorization before the Monday startup; the existing

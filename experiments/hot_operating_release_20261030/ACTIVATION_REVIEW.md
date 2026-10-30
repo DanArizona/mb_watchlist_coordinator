@@ -68,8 +68,9 @@ Friday production closeout is accepted:780Uni/1560Focus acquisitions,
 485940quote observations, native audit and completed replay, zero missing slots
 or row mismatches and no recorded health incidents. See
 validation/production_20261030_closeout.json. Monday universe/r0 preparation is
-still due; Friday's post-close snapshot must meet its same-ET-date gate. Monday's morning
-OV build, r1 publication, opening audit and normal poller setup use actual dated
+also accepted,584/0/0, using Friday's qualifying same-ET-date post-close snapshot;
+publication, audit and replay passed. See validation/opening_r0_20261102_acceptance.json.
+Monday's morning OV build, r1 publication, opening audit and normal poller setup use actual dated
 inputs, within the capacity above. Credential validity must cover the session;
 the last reported refresh expiry is Saturday October31 at18:17ET, before Monday.
 

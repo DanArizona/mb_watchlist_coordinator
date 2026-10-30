@@ -7,8 +7,10 @@ ACTIVATION_APPROVAL.json is NEEDS_MULTISYMBOL_SCOPE_REVISION. Do not ask for
 approval of the retained one-symbol proposal as the next action. See
 MULTISYMBOL_QUALIFICATION_PLAN.md for one combined offline qualification envelope.
 No larger number has been selected, implemented, qualified or activated yet.
-Development is temporarily deferred at the operator's request to finish Friday
-production closeout and Monday universe/r0 preparation first.
+The operator prioritized Friday closeout and Monday universe/r0 preparation;
+both data workflows are now accepted. Monitor/watchdog shutdown confirmation
+has not been supplied. The next development scope remains the combined
+multi-symbol qualification plan, with no selected larger cap or activation.
 
 The operator supplied the complete Windows83 console, final JSON and actual
 returned CMD prompt for run20261030T220652Z_904bc10c. All30 focused checks passed
@@ -49,9 +51,17 @@ SHA2568f67aa6c80d6290d89f43fd72ef1744cddbfd2302ace4424f5dfc96c4a0c9315.
 The actual CMD prompt returned. This production session has no Hot acquisitions;
 the accepted isolated ITOC trial remains separate evidence.
 
-Next build Monday November2 universe/r0 from Friday's same-ET-date post-close
-snapshot, publish/audit/replay it, then confirm health monitor/watchdog shutdown.
-Those steps are pending actual operator output; do not infer their completion.
+Monday November2 universe/r0 is now ACCEPTED_PASS; see
+validation/opening_r0_20261102_acceptance.json. Friday's same-date post-close
+snapshot passed:7473candidates/19requests,6944quotes/529invalid responses,
+584included/12702rejected from13286source symbols. Monday r0 is published at
+2026-10-30T23:14:24.657706Z, effective09:30EST/14:30UTC,584/0/0,
+content SHA256e19ce104dc58501310ea456abdfd9f72d0a5e21dd5b9c5c730775c207960dd47.
+Opening audit passed and replay completed one revision event, no polling runs,
+SHA2564e0eb1974816b7df4b33e62b135dd8f1753c255c2b8a3e2d31aaa388875190d5.
+Actual CMD prompts returned. This does not start Monday pollers or prepare r1.
+Confirm health monitor/watchdog shutdown if it remains open. Monday morning
+still needs actual API overnight volume, Focus r1 and ordinary poller setup.
 Monday uses EST(-05:00),09:30ET=14:30UTC. The last reported refresh token expires
 Saturday October31 at18:17ET, so authorization needs checking/renewal before
 Monday. No additional live trial or configurable-data-root refactor is pending.
