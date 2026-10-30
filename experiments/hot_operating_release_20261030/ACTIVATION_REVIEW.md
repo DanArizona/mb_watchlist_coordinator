@@ -1,6 +1,12 @@
 # Monday November 2 production Hot activation review
 
-Status: **READY FOR OPERATOR APPROVAL; NOT ACTIVATED.**
+Status: **NEEDS MULTI-SYMBOL SCOPE REVISION; NOT ACTIVATED.**
+
+The operator questioned the one-symbol limit and the risk of consuming a market
+day per expansion while natural halt traffic remains sparse. The proposal below
+is retained as the reviewed one-symbol candidate, not the next approval request.
+See MULTISYMBOL_QUALIFICATION_PLAN.md. Qualification of the existing artifact
+remains accepted within its scope; no wider capacity or activation is inferred.
 
 Windows83 passed all 30 checks, including actual CMD execution. Command84
 returned REVIEW_READY on MasterBot, with clean production repositories and

@@ -20,8 +20,9 @@ WINDOWS_ACCEPTANCE.json. Command84 has also returned REVIEW_READY on the actual
 production computer, with exact clean baselines and matching dependencies; see
 WINDOWS_DEPLOYMENT_ACCEPTANCE.json and WORKING_HANDOFF.md. The delivered
 ZIP/source and original local result remain unchanged. The concrete Monday
-scope is ready for explicit activation approval in ACTIVATION_REVIEW.md;
-ACTIVATION_APPROVAL.json remains PENDING_OPERATOR_APPROVAL. No unchanged
+one-symbol scope in ACTIVATION_REVIEW.md now needs a multi-symbol revision;
+ACTIVATION_APPROVAL.json records NEEDS_MULTISYMBOL_SCOPE_REVISION. See
+MULTISYMBOL_QUALIFICATION_PLAN.md. No unchanged
 qualification or read-only review needs repeating solely for this acceptance.
 
 ## Delivered Windows qualification instructions

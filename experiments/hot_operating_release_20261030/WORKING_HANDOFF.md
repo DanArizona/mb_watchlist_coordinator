@@ -1,4 +1,13 @@
-# Windows83 and actual deployment review accepted; activation approval is next
+# Windows83/84 accepted; revise the one-symbol scope before activation approval
+
+Latest operator steering: the one-symbol proposal is too restrictive as an
+unexamined rollout assumption, and a market day per expansion would delay useful
+operation without reliably exposing overload/races in sparse halt traffic.
+ACTIVATION_APPROVAL.json is NEEDS_MULTISYMBOL_SCOPE_REVISION. Do not ask for
+approval of the retained one-symbol proposal as the next action. See
+MULTISYMBOL_QUALIFICATION_PLAN.md for one combined offline qualification envelope.
+No larger number has been selected, implemented, qualified or activated yet.
+The historical next-step paragraph below is superseded by this steering.
 
 The operator supplied the complete Windows83 console, final JSON and actual
 returned CMD prompt for run20261030T220652Z_904bc10c. All30 focused checks passed
