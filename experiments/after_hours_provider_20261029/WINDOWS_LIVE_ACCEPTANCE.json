@@ -15,7 +15,7 @@
   },
   "live74": {
     "result": "PASS",
-    "acceptance": "SCOPED_AFTER_HOURS_PERFORMANCE_ACCEPTED",
+    "acceptance": "ACCEPTED_SCOPED_AFTER_HOURS_WITH_COMPLETE_CLOSEOUT",
     "nonce": "7ceca31d70af41c4a98aab82e2f899e2",
     "review_sha256": "0ae0a08151e73b4398c0c132ae762b5f80226390d0ad37d347317d56f9708baf",
     "configuration_sha256": "a4394033f1fed8c692e46f2f4c15ba15a21a6afe466ccc6e569f7195b29a0377",
@@ -88,7 +88,36 @@
       13
     ]
   },
-  "independent_reporter_owner_receipt": "PENDING_READ: owner-result.json path supplied, contents not yet shown; do not infer reporter-scope cleanup from acquisition-scope cleanup",
+  "independent_reporter_owner_receipt": {
+    "status": "VERIFIED_COMPLETE",
+    "basis": "Operator supplied exact owner-result.json and returned CMD prompt; checksum recomputed and nonce/configuration matched to accepted live report; original Windows file not independently read",
+    "content_sha256": "a874400a672660cf0912a00be83dbe567b2c599b0e32218dbdff66c44f8ef38d",
+    "nonce": "7ceca31d70af41c4a98aab82e2f899e2",
+    "configuration_sha256": "a4394033f1fed8c692e46f2f4c15ba15a21a6afe466ccc6e569f7195b29a0377",
+    "cleanup_seconds": 0.01600000006146729,
+    "acquisition_cleanup": {
+      "backend": "windows_job",
+      "controller_returncode": 0,
+      "forced": false,
+      "reason": null,
+      "scope_empty_observed": true,
+      "status": "EXIT_OBSERVED"
+    },
+    "reporting": {
+      "cleanup": {
+        "backend": "windows_job",
+        "controller_returncode": 0,
+        "forced": false,
+        "reason": null,
+        "scope_empty_observed": true,
+        "status": "EXIT_OBSERVED"
+      },
+      "status": "COMPLETE"
+    },
+    "stop_reason": "goal_complete",
+    "stopped_at_utc": "2026-10-30T01:42:58.369227+00:00",
+    "actual_cmd_prompt_returned": true
+  },
   "earlier_preflight_attempt": {
     "nonce": "ef962ac289434f8eb7b8fbf2fc067a73",
     "result": "BLOCKED_BEFORE_PASSWORD_AND_PROVIDER_ACCESS",
@@ -104,5 +133,5 @@
   "market_open_performance_qualified": false,
   "provider_capacity_qualified": false,
   "full_day_capacity_qualified": false,
-  "next": "Read the supplied owner-result.json to finish independent reporter closeout; no rerun. Then prepare the short market-open public daily-path check and concrete release/settings/activation review."
+  "next": "Prepare the short market-open public daily-path check and concrete release/settings/activation review. No further after-hours receipt or rerun is required."
 }

@@ -1,5 +1,22 @@
 # Isolated after-hours provider profile — October 29
 
+**LIVE74 CLOSEOUT COMPLETE.** Operator supplied owner-result.json and the
+actual returned CMD prompt. Checksum a874400a672660cf0912a00be83dbe567b2c599b0e32218dbdff66c44f8ef38d
+recomputed successfully; nonce/configuration match the accepted live report.
+Acquisition and independent reporter Windows Job scopes are both EXIT_OBSERVED,
+empty/non-forced, returncode0. Acquisition cleanup .016000s; final reporting
+COMPLETE, error null, stop reason goal_complete. Report stopped at
+2026-10-30T01:42:58.369227Z. Original Windows file not independently read.
+
+Windows73 remains ACCEPTED19/19. Actual24-SPY off-hours provider/shared-native
+performance and complete owned closeout are now accepted within their stated
+scope. No further receipt, API run or repeated offline check is needed for
+this profile. Code/tests/limits unchanged; production Hot still disabled.
+Next is preparing the short market-open public daily-path check and exact
+settings/deployment/rollback/activation review. Manual membership and read-only
+Overlay remain the next product priorities. Earlier receipt-pending wording
+below is historical; whole daily/market-open/all-day capacity is not implied.
+
 WINDOWS73 ACCEPTED19/19,76.098s tests/76.141s report; run
 20261030T013932Z_ef1c1a5a, actual CMD prompt returned. Same source inventory
 87bdc304c4f2331f9621490045611a24215dfd7100707e344e1bf33d34f14508.

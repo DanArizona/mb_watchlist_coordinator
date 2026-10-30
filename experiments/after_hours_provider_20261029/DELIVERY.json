@@ -1,6 +1,6 @@
 {
   "contract": "after-hours-provider-delivery-v1",
-  "result": "OFF_HOURS_PERFORMANCE_ACCEPTED_OWNER_RECEIPT_PENDING",
+  "result": "ACCEPTED_AFTER_HOURS_WITH_COMPLETE_CLOSEOUT",
   "local_qualification_result": "PASS",
   "tests": 19,
   "seconds": 77.19731077399956,
@@ -44,6 +44,7 @@
   "market_open_daily_check": "Still required",
   "prior_windows71_and72": "ACCEPTED; unchanged drills not repeated",
   "live_nonce": "7ceca31d70af41c4a98aab82e2f899e2",
-  "independent_reporter_owner_receipt": "PENDING_READ",
-  "additional_provider_trial_requested": false
+  "independent_reporter_owner_receipt": "VERIFIED_COMPLETE",
+  "additional_provider_trial_requested": false,
+  "live74_closeout_complete": true
 }
