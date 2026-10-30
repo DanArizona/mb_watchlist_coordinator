@@ -31,3 +31,29 @@ by the bounded trial. Prepare a concrete release for that separate approval;
 do not ask for approval of an unspecified future deployment. Preserve the
 known history gaps and honest unqualified full-session/provider-capacity flags.
 Manual membership controls and read-only Overlay are the next product work.
+
+## Operator membership summary agreed October 30
+
+The operating status window must refresh in place and retain a compact
+membership summary that remains readable between updates:
+
+| Channel | Symbols to display |
+| --- | --- |
+| Hot | Complete current effective Hot membership. |
+| Focus | Current effective Focus members absent from that session's published r1 Focus membership. |
+| Uni | Current effective Uni members absent from that session's published r1 Uni membership. |
+
+Use the actual published r1 for the same session as a fixed baseline; later
+revisions and a status-window or controller restart must not reset it. Show
+counts and an explicit empty state for each list, plus the effective revision
+and status observation time in ET. Populate the summary from effective native
+membership, so a proposed or rejected admission is not displayed as membership.
+A symbol may appear in multiple lists: a newly introduced Hot symbol can also
+be an addition to Focus and Uni. The long opening Uni roster is omitted.
+
+The operator described the current phase as retaining additions without
+removals. This summary is designed for that phase; removal controls will need
+explicit display/history treatment when introduced. Keep this requirement with
+the existing collection-health, source-warning and recovery-status work. The
+operator display remains to be implemented and qualified in the operating
+package; the backend saved status already exists.

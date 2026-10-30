@@ -30,6 +30,15 @@ separate production activation approval. Reuse all accepted scopes. Manual
 membership controls follow closely, then read-only Overlay. Do not add a data-
 root migration or reopen the cadence/Windows read-conflict investigation.
 
+October30 operator display requirement: refresh in place with complete current
+Hot membership, Focus additions relative to that session's published r1 Focus,
+and Uni additions relative to that same r1 Uni. Keep the baseline fixed across
+revisions/restarts, use effective membership, retain counts/empty states and ET
+freshness/revision context, and allow symbols to appear in all applicable lists.
+See RELEASE_REVIEW_STATUS.md. This replaces the proposed full Focus/Uni roster
+or a scrolling-only admission indication. Implementation/qualification remains
+part of the operating package.
+
 ---
 
 **October30 morning: opening polling check PASSED; isolated preparation BLOCKED and narrow companion locally qualified.**
