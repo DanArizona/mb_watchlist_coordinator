@@ -1,0 +1,55 @@
+{
+  "contract": "production-opening-operator-evidence-v1",
+  "session_date": "2026-10-30",
+  "basis": "Complete operator console reports; Windows files not independently accessed",
+  "market_data_commit": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+  "watchlists_commit": "e2ef6f62856ba3226c41456b7779951aa8640cbf",
+  "tracked_worktrees_clean": true,
+  "overnight": {
+    "result": "PASS",
+    "requested": 543,
+    "successful": 543,
+    "failed": 0,
+    "completed_at_et": "2026-10-30T09:15:16.280841-04:00",
+    "manifest": "output\\api_overnight_volume\\2026-10-30-09-07-59-session-2026-10-30\\manifest.json"
+  },
+  "focus": {
+    "result": "PASS",
+    "symbols": 40,
+    "eligible": 543,
+    "content_sha256": "ad05e8d7bd77b5efa0b767196c1ebca05760d0ca47d27cf63e92282c6c15dbe6",
+    "published_at_utc": "2026-10-30T13:16:44.054433+00:00",
+    "proposal": "C:\\Users\\danla\\Documents\\github\\schwab_watchlists\\output\\ov_focus_production\\2026-10-30-09-15-55\\sampling_hierarchy_r1.json"
+  },
+  "preparation_audit": "PASS",
+  "sqlite_integrity": "ok",
+  "schema": 2,
+  "membership_revisions": 2,
+  "preparation_member_rows": 1126,
+  "preparation_replay_sha256": "55e8f5b09b67593f64a84a53ff22e32986ec4e8d62d2fe8f7402f90bf92084fd",
+  "uni_startup_et": "2026-10-30T09:18:02-04:00",
+  "focus_startup_et": "2026-10-30T09:19:00-04:00",
+  "watchdog": "RUNNING at09:19:54ET",
+  "opening_health": {
+    "as_of_et": "2026-10-30T09:36:51-04:00",
+    "uni": {
+      "state": "RUNNING",
+      "pid": 42676,
+      "members": 543,
+      "acquisitions": 14,
+      "last_slot": "09:36:30",
+      "missing": 0
+    },
+    "focus": {
+      "state": "RUNNING",
+      "pid": 36624,
+      "members": 40,
+      "acquisitions": 28,
+      "last_slot": "09:36:50",
+      "missing": 0
+    }
+  },
+  "cadence": "interleaved-v1",
+  "production_hot_members": 0,
+  "full_session_qualified_by_opening_check": false
+}

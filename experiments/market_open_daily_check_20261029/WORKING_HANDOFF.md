@@ -1,3 +1,29 @@
+**October30 morning: opening polling check PASSED; isolated preparation BLOCKED and narrow companion locally qualified.**
+Production main6b53ab1/watchlists e2ef6f6 unchanged;543/40/0. OV543/543; Focusr1
+2026-10-30-09-15-55 published SHAad05e8d7..., audit/replay PASS. As of09:36:51ET,
+UNI14/FOCUS28 acquisitions, both RUNNING, zero missing. Full session not closed.
+
+Command76 refused MembershipRevisionError. The after-opening publication-clock
+failure was reproduced offline (09:30-effective proposed membership cannot be
+newly published at09:37). Original tests missed actual publication time because
+their session was in the future. Native backdating guard stays unchanged.
+Retained Windows partial root: C:\Users\danla\hot75\p75\runs\market_open_daily_20261030_f3beaf98.
+The raw original Windows stack/counts have not been independently read.
+
+Preparation companion source449a1ec leaves all p75/production/native source intact.
+Exact ZIP12/12PASS2.891508s, inventorycc4c9936..., source files have not changed.
+Next Windows7812 checks; then separate read-only production membership export79;
+then80 prepares a fresh isolated history copy from that closed export and the
+cached directory. It preserves original publication times, records current import
+time, makes zero new directory calls and retains original failed state. Original
+77 remains the live entry; give it only after the returned fresh Prepared trial
+path is known. Existing Friday approval persists; no repeated permission needed.
+No new Hot/provider run or production activation has occurred. No repeat of75
+or unchanged source/recovery/capacity/provider qualification. See companion
+LOCAL_QUALIFICATION and README. Original76 must not be rerun as a remedy.
+
+---
+
 OPERATOR APPROVED the bounded FridayOctober30 trial after the normal polling
 opening check. Exact statement and fixed limits are in LIVE_TRIAL_APPROVAL.json.
 Approval covers the isolated real-provider daily composition and its two public

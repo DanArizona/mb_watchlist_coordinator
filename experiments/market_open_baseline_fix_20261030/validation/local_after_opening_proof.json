@@ -1,0 +1,13 @@
+{
+  "synthetic_only": true,
+  "preparation_et": "2026-10-30T10:00:00-04:00",
+  "original_publication_et": "2026-10-30T09:20:00-04:00",
+  "original_publication_times_preserved": true,
+  "native_audit_passed": true,
+  "new_membership_publication_calls": 0,
+  "hot_acquisitions": 0,
+  "unchanged_original_loader_accepted": true,
+  "new_directory_downloads": 0,
+  "production_or_provider_access": false,
+  "prepared_root": "/workspace/scratch/6ce939acb4eb/baseline_fix_20261030/final_extraction/p78/runs/20261030T135746Z_5bea7693/proof/p/runs/market_open_daily_20261030_dfd933f7"
+}
