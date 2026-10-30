@@ -1,6 +1,6 @@
 {
   "contract": "market-open-daily-check-delivery-v1",
-  "status": "WINDOWS_QUALIFIED_SHORT_ROOT_LIVE_PENDING",
+  "status": "WINDOWS_QUALIFIED_LIVE_APPROVED_AWAITING_FRIDAY_OPENING_CHECK",
   "source": {
     "accepted_after_hours_closeout_baseline": "ea43b37a06eac06313b662505b79a109fea3625e",
     "coordinator_commit": "5e4b571adc9995f3ebaaca4ba62c053e48247b7f",
@@ -54,13 +54,15 @@
   },
   "prior_windows_71_72_after_hours_acceptance_retained": true,
   "windows75_result": "ACCEPTED48/48_SHORT_ROOT",
-  "live_trial_approved": false,
+  "live_trial_approved": true,
   "live_market_open_check_qualified": false,
   "production_changes": false,
   "production_hot_enabled": false,
   "full_day_capacity_qualified": false,
-  "next": "No further75/after-hours rerun. Review and explicitly approve the already prepared bounded real-provider trial before76/77 at the short root.",
+  "next": "Friday normal production polling preparation/opening check, then76/77 at the qualified p75 short root. Use actual morning r1; approval already recorded, no further permission for agreed bounded trial.",
   "windows75_run": "20261030T040404Z_146d5b2c",
   "qualified_windows_root": "C:\\Users\\danla\\hot75\\p75",
-  "original_long_layout_verdict": "FAILED47/48 retained; short-layout Windows retry passed unchanged source/tests"
+  "original_long_layout_verdict": "FAILED47/48 retained; short-layout Windows retry passed unchanged source/tests",
+  "approval_record": "LIVE_TRIAL_APPROVAL.json",
+  "approved_session_date": "2026-10-30"
 }

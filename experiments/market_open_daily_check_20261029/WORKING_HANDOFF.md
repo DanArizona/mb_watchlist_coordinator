@@ -1,3 +1,24 @@
+OPERATOR APPROVED the bounded FridayOctober30 trial after the normal polling
+opening check. Exact statement and fixed limits are in LIVE_TRIAL_APPROVAL.json.
+Approval covers the isolated real-provider daily composition and its two public
+directory downloads at qualified C:\Users\danla\hot75\p75. Source5e4b571,
+native5552c5d and inventory8f6af02 unchanged; Windows75 accepted48/48.
+No repeated permission is due within the agreed scope. The standing GitHub
+publication approval remains unchanged; a production-change restriction was
+not itself a reason to seek permission for this isolated trial.
+
+The current user turn grants approval only; it is not a request to execute
+provider calls tonight or create an automation/reminder. Live trial not yet
+executed. Do not infer production source installation, full-day policy adoption
+or production Hot activation. No new tests/source changes are needed.
+
+Next: Friday normal credential/OV/Focusr1/publication/poller opening check, then
+76prepare and77run using actual morning proposal/prepared-trial paths. R0ready
+543Uni; Focusr1 path unknown until produced. All static trial limits, dated
+window checks, original watchdogs and private manual password prompt remain.
+
+Earlier approval-pending wording below is historical.
+
 WINDOWS75 ACCEPTED48/48 at C:\Users\danla\hot75\p75.
 Run20261030T040404Z_146d5b2c;75.140s tests/75.219s report,0fail/errors/skips,
 win32/Python3.12.13. Complete operator console/final JSON and actual returned
