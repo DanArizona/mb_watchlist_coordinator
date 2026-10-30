@@ -1,3 +1,15 @@
+**October30 Windows81 membership display ACCEPTED PASS; no repeat due.**
+All30checks passed in2.491s; total7.906s. Run20261030T202321Z_d012b6fd,
+Python3.12.13/Tk8.6.15. Actual Tk preview observed opening lists, one admission
+in all three lists, retained last-verified lists during a failed read, recovery
+without resetting r1, and stopped-controller membership.30refreshes, auto-close,
+reader executor stopped, actual CMD prompt returned. Complete operator output
+accepted; Windows files not independently read. Source71dfb49/native5552c5d and
+inventory32b5a69 unchanged. Read-only82 can display the closed ITOC trial; that is
+an optional existing-evidence view, not a new qualification or live invocation.
+Next: finish concrete daily operating delivery/settings and deployment/rollback
+review. Existing production baseline and separate activation boundary remain.
+
 **October30: bounded MARKET-OPEN DAILY PATH ACCEPTED PASS; this trial is CLOSED OUT.**
 Original p75 source5e4b571/native5552c5d/inventory8f6af02 unchanged. Windows78
 12/12PASS4.281s, run20261030T140631Z_0cca2829, prompt returned; no repeat due.
@@ -39,9 +51,9 @@ See RELEASE_REVIEW_STATUS.md. This replaces the proposed full Focus/Uni roster
 or a scrolling-only admission indication. Implementation/qualification remains
 part of the operating package.
 
-Persistent display implementation now exists as two independent read-only
-modules. The focused 30-check suite passes locally. Package81 adds a short
-synthetic actual-Tk preview on Windows; its acceptance is pending. Existing
+Persistent display implementation is qualified as two independent read-only
+modules. The focused30checks and actual five-phase Tk preview passed Windows81;
+the returned CMD prompt is confirmed and no repeat is due. Existing
 controller/source/provider/native code is unchanged. See
 ../membership_status_20261030/README.md. Remaining operating delivery/settings,
 deployment/rollback and activation review continue after this scoped display

@@ -59,4 +59,8 @@ operator display is implemented in the independent daily_membership_status and
 daily_membership_window modules. Its focused 30-check suite passes locally;
 the packaged-copy and actual Windows Tk preview results are recorded separately
 under experiments/membership_status_20261030. Existing controller and native
-runtime sources remain unchanged. Windows qualification is pending.
+runtime sources remain unchanged. Windows81 is accepted: 30/30 checks, actual
+Tk8.6.15 preview with all five phases, automatic window closure, reader executor
+stopped and actual CMD prompt returned. Run20261030T202321Z_d012b6fd took7.906s
+including2.491s for the checks. The operator supplied the complete console and
+JSON; original Windows files were not independently read. No repeat is due.

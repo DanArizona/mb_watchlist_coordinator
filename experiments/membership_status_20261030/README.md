@@ -1,3 +1,10 @@
+**Windows81 ACCEPTED: 30/30 checks and the actual five-phase Tk preview passed.**
+Run20261030T202321Z_d012b6fd used Python3.12.13/Tk8.6.15. The preview completed
+30refreshes, closed itself and stopped its reader executor; the actual CMD
+prompt returned. See WINDOWS_ACCEPTANCE.json. No repeat is due. The delivered
+ZIP and its source inventory remain unchanged; the qualification instructions
+below are retained for reference. The read-only viewing command is ready.
+
 # Persistent membership status
 
 An independent window keeps three lists visible between updates:

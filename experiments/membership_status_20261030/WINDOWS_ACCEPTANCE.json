@@ -1,0 +1,81 @@
+{
+  "contract": "membership-status-windows-acceptance-v1",
+  "result": "ACCEPTED_PASS",
+  "qualification_contract": "membership-status-offline-qualification-v1",
+  "basis": "Complete operator-supplied Windows console, final JSON and actual returned CMD prompt; Windows files not independently read",
+  "run": "20261030T202321Z_d012b6fd",
+  "report_path": "C:\\Users\\danla\\hot81\\p81\\runs\\20261030T202321Z_d012b6fd\\verification.json",
+  "artifact": "membership_status_20261030_71dfb49.zip",
+  "source": {
+    "accepted_daily_composition_baseline": "6665a953c8cb4ffadaeab7b5717df68cf9c69965",
+    "coordinator_commit": "71dfb49232c5337355b22f16feaf22e36dd7db3c",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d"
+  },
+  "source_inventory_sha256": "32b5a69f23ec13a9030119abf536e367e8369a97e2d50de37ebc87e39b319de8",
+  "tests": 30,
+  "passed": 30,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "unit_test_seconds": 2.491,
+  "total_seconds": 7.9060000000026776,
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "actual_cmd_prompt_returned": true,
+  "windows_checks_passed": true,
+  "native_membership_proof": {
+    "effective_revision": 2,
+    "counts": {
+      "hot": 1,
+      "focus": 1,
+      "uni": 1
+    },
+    "last_hot_acquisition": {
+      "scheduled_at_utc": "2026-11-01T15:00:00.000000Z",
+      "completed_at_utc": "2026-11-01T15:00:00.000000Z",
+      "requested_symbol_count": 1
+    },
+    "original_r1_preserved": true
+  },
+  "gui_proof": {
+    "result": "PASS",
+    "actual_tk_window": true,
+    "tk_version": "8.6.15",
+    "observed_phases": [
+      "opening_empty_lists",
+      "new_symbol_visible_in_all_three_lists",
+      "failed_read_retains_lists_with_error_banner",
+      "read_recovered_without_baseline_reset",
+      "stopped_controller_and_membership_retained"
+    ],
+    "errors": [],
+    "display_refreshes": 30,
+    "auto_closed": true,
+    "read_executor_stopped": true,
+    "synthetic_only": true,
+    "provider_requests": 0,
+    "controller_or_poller_started": false
+  },
+  "display_summary": {
+    "hot": "complete current list",
+    "focus": "current additions beyond opening r1",
+    "uni": "current additions beyond opening r1"
+  },
+  "scope": "Independent read-only membership display with opening-r1 deltas, saved controller/source/collection status and actual synthetic Tk preview",
+  "runtime_or_delivered_source_changed": false,
+  "production_changes": false,
+  "provider_access": false,
+  "actual_vault_access": false,
+  "unchanged_qualifications_repeated": false,
+  "window_close_scope": "Display only",
+  "frozen_report_checklist": "The first remaining item in the delivered verifier is now satisfied by this operator result; its printed JSON is preserved unchanged",
+  "remaining": [
+    "Daily operating delivery, settings and deployment/rollback review",
+    "Explicit approval of the concrete production release/settings before production Hot activation"
+  ]
+}
+
