@@ -1,0 +1,62 @@
+{
+  "contract": "production-interleaved-session-closeout-v1",
+  "result": "ACCEPTED_PASS",
+  "session_date": "2026-10-30",
+  "basis": "Complete operator-supplied production STATUS/incidents, native audit, replay console and actual returned CMD prompt; Windows journal/evidence files not independently read",
+  "journal": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\quote_observation_journal_v2_api_opening_2026-10-30\\2026-10-30.sqlite3",
+  "source_commit": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+  "host": "MasterBot",
+  "cadence_profile": "interleaved-v1",
+  "schema_version": 2,
+  "membership_contract": "nested-uni-focus-hot-v1",
+  "health": {
+    "observed_at_et": "2026-10-30T19:02:39-04:00",
+    "journal_read": "OK",
+    "journal_read_seconds": 0.0,
+    "slot_grace_seconds": 90,
+    "uni": {"state": "WINDOW_ENDED", "candidate_pids": [], "last_committed_slot_et": "15:59:30", "acquisitions": 780, "empty_membership_skips": 0, "missing_slots_after_grace": 0, "members": 543},
+    "focus": {"state": "WINDOW_ENDED", "candidate_pids": [], "last_committed_slot_et": "15:59:50", "acquisitions": 1560, "empty_membership_skips": 0, "missing_slots_after_grace": 0, "members": 40},
+    "incidents": [],
+    "monitor_incidents_command_output": "",
+    "monitor_incident_entries_reported": 0
+  },
+  "audit": {
+    "result": "PASS",
+    "sqlite_integrity": "ok",
+    "table_counts": {"poll_run": 2, "sampling_membership_revision": 2, "sampling_channel_revision": 6, "sampling_channel_member": 1126, "poll_slot_skip": 0, "quote_acquisition": 2340, "quote_observation": 485940},
+    "runs": [
+      {"channel": "uni", "started_at_utc": "2026-10-30T13:18:02.993490Z", "software_version": "0.1.0.dev0+git.6b53ab1d12e4", "host": "MasterBot"},
+      {"channel": "focus", "started_at_utc": "2026-10-30T13:19:00.046195Z", "software_version": "0.1.0.dev0+git.6b53ab1d12e4", "host": "MasterBot"}
+    ],
+    "channels": {
+      "uni": {"revisions": 2, "member_rows": 1086, "acquisitions": 780, "expected_acquisitions": 780, "skipped": 0, "missing": 0, "observations": 423540, "requested_observations": 423540, "row_mismatches": 0, "statuses": {"quote": 423540}},
+      "focus": {"revisions": 2, "member_rows": 40, "acquisitions": 1560, "expected_acquisitions": 1560, "skipped": 0, "missing": 0, "observations": 62400, "requested_observations": 62400, "row_mismatches": 0, "statuses": {"quote": 62400}},
+      "hot": {"revisions": 2, "member_rows": 0, "acquisitions": 0, "expected_acquisitions": 0, "skipped": 0, "missing": 0, "observations": 0, "requested_observations": 0, "row_mismatches": 0, "statuses": {}}
+    },
+    "storage": {"database_mib": 245.9, "wal_bytes": 0, "shm_kib": 32, "sqlite_total_mib": 245.9, "evidence_gib": 1.1}
+  },
+  "replay": {
+    "result": "COMPLETED",
+    "runs_supplied": 1,
+    "events": 2342,
+    "revisions": 2,
+    "acquisitions": 2340,
+    "observations": 485940,
+    "statuses": {"quote": 485940},
+    "event_window_start_et": "2026-10-30T09:30:00-04:00",
+    "event_window_end_et": "2026-10-30T15:59:50.644214-04:00",
+    "wall_seconds": 12.821,
+    "observations_per_second": 37903,
+    "sequence_sha256": "8f67aa6c80d6290d89f43fd72ef1744cddbfd2302ace4424f5dfc96c4a0c9315",
+    "projected_members": {"uni": 543, "focus": 40, "hot": 0},
+    "latest_quote_symbols": {"uni": 543, "focus": 40, "hot": 0},
+    "unique_members": 543,
+    "multi_channel_members": 40
+  },
+  "actual_cmd_prompt_returned": true,
+  "production_hot_enabled": false,
+  "bounded_isolated_itoc_trial_included_in_this_production_journal": false,
+  "monitor_shutdown_confirmed": false,
+  "monday_20261102_universe_or_r0_prepared_by_this_record": false,
+  "remaining": ["Build Monday November2 universe/r0 using Friday October30 same-ET-date post-close snapshot", "Publish Monday r0, audit/replay opening journal", "Stop independent health monitor/watchdog and confirm actual returned prompt"]
+}

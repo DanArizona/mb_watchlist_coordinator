@@ -7,7 +7,8 @@ ACTIVATION_APPROVAL.json is NEEDS_MULTISYMBOL_SCOPE_REVISION. Do not ask for
 approval of the retained one-symbol proposal as the next action. See
 MULTISYMBOL_QUALIFICATION_PLAN.md for one combined offline qualification envelope.
 No larger number has been selected, implemented, qualified or activated yet.
-The historical next-step paragraph below is superseded by this steering.
+Development is temporarily deferred at the operator's request to finish Friday
+production closeout and Monday universe/r0 preparation first.
 
 The operator supplied the complete Windows83 console, final JSON and actual
 returned CMD prompt for run20261030T220652Z_904bc10c. All30 focused checks passed
@@ -32,21 +33,25 @@ See WINDOWS_DEPLOYMENT_ACCEPTANCE.json and its saved observation. No password,
 provider, installation or production change occurred. Neither83 nor84 needs
 an unchanged repeat solely to advance the review.
 
-Next ask for explicit approval of ACTIVATION_REVIEW.md: this frozen release,
-Monday November2 settings, shared production-journal use, pre-open startup,
-retained-state manual resume and stop/rollback procedure. The proposed
-one-symbol Hot limit and opening Uni<=600 remain proposals until approval.
-ACTIVATION_APPROVAL.json records PENDING_OPERATOR_APPROVAL. The existing
-GitHub-publication authorization excludes production changes; the completed
-Friday isolated trial approval does not authorize this activation. The actual
-valid Monday r1 can fill in its path/hash without a new permission round under
-approval of these exact release/date/settings/conditions. The backend still
-requires the generated exact review digest. Do not start Hot before approval.
+After closeout/preparation, revise and qualify a practical multi-symbol envelope
+before requesting activation approval. Existing qualification stays accepted
+within its scope. The existing GitHub-publication authorization excludes
+production changes; the completed Friday isolated trial approval does not
+authorize production activation. The backend still requires the generated exact
+review digest. Do not start production Hot before the revised scope is approved.
 
-Friday October30 polling still needs its supplied full-session status/incidents,
-audit and replay. Monday November2 universe/r0 preparation also remains due;
-the same-date post-close snapshot must be acquired on Friday ET. The latest
-supplied Friday production health is09:36:51ET, not a full-day result.
+Friday October30 production closeout is now ACCEPTED_PASS; see
+validation/production_20261030_closeout.json. The supplied19:02:39ET health has
+both channels WINDOW_ENDED, no candidate PIDs, zero missing slots and no recorded
+incidents. Native audit passed with780Uni/1560Focus acquisitions,485940quote
+observations and no mismatches. Replay completed2342events, final543/40/0,
+SHA2568f67aa6c80d6290d89f43fd72ef1744cddbfd2302ace4424f5dfc96c4a0c9315.
+The actual CMD prompt returned. This production session has no Hot acquisitions;
+the accepted isolated ITOC trial remains separate evidence.
+
+Next build Monday November2 universe/r0 from Friday's same-ET-date post-close
+snapshot, publish/audit/replay it, then confirm health monitor/watchdog shutdown.
+Those steps are pending actual operator output; do not infer their completion.
 Monday uses EST(-05:00),09:30ET=14:30UTC. The last reported refresh token expires
 Saturday October31 at18:17ET, so authorization needs checking/renewal before
 Monday. No additional live trial or configurable-data-root refactor is pending.

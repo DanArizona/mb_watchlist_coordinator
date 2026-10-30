@@ -18,5 +18,6 @@
   "operator_steering": "The one-symbol limit is questioned; do not use one market day per incremental expansion or sparse natural halt traffic as the primary overload/race test",
   "scope_revision_plan": "MULTISYMBOL_QUALIFICATION_PLAN.md",
   "new_capacity_selected": false,
-  "remaining": ["Select and qualify one practical multi-symbol operating envelope, including identity/admission limits and composed load/recovery behavior", "Prepare revised concrete release/settings for activation approval", "Ordinary Friday closeout and Monday universe/r0 and morning r1/credential preparation"]
+  "friday_production_closeout": "ACCEPTED_PASS; validation/production_20261030_closeout.json",
+  "remaining": ["Select and qualify one practical multi-symbol operating envelope, including identity/admission limits and composed load/recovery behavior", "Prepare revised concrete release/settings for activation approval", "Monday universe/r0 and morning r1/credential preparation; confirm Friday monitor/watchdog shutdown"]
 }
