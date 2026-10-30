@@ -1,6 +1,6 @@
 {
   "contract": "market-open-daily-path-operator-approval-v1",
-  "state": "APPROVED_OPENING_CHECK_PASSED_PREPARATION_CORRECTION_PENDING",
+  "state": "EXECUTED_PASS_CONSUMED",
   "operator_statement": "I do approve the bounded trial for Friday, October 30, after the normal polling opening check",
   "session_date": "2026-10-30",
   "prerequisite": "Normal production polling opening check completed",
@@ -34,17 +34,23 @@
   },
   "actual_friday_focus_proposal": "C:\\Users\\danla\\Documents\\github\\schwab_watchlists\\output\\ov_focus_production\\2026-10-30-09-15-55\\sampling_hierarchy_r1.json",
   "opening_uni_symbols": 543,
-  "live_trial_executed": false,
+  "live_trial_executed": true,
   "no_repeat_permission_needed_within_this_scope": true,
   "standing_github_publication_authorization": "Unchanged and retained",
   "scope_clarification": "The assistant distinguished existing commit/publication approval from the preparation request and live provider execution. The production-change exclusion alone was not a reason to ask for the isolated trial.",
   "production_installation_approved_by_this_record": false,
   "production_hot_activation_approved_by_this_record": false,
   "full_day_capacity_qualified": false,
-  "next": "Windows78 focused preparation check, separate read-only membership export79, cached directory/historical baseline preparation80, then original77 with its printed fresh trial path. Friday bounded trial approval and all limits retained.",
+  "next": "This approved invocation is complete; no repeat is requested. Concrete operating release/settings/deployment review remains before separate production activation.",
   "prerequisite_satisfied_at_et": "2026-10-30T09:36:51-04:00",
   "preparation_refusal": {
     "error_type": "MembershipRevisionError",
     "retained_root": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_f3beaf98"
-  }
+  },
+  "trial_root": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198",
+  "actual_outer_invocations": 1,
+  "actual_review_sha256": "214769c07fe490b2fe70c8de9ffb956c9c9928bbf7d6afb09eddbddd71f3ec66",
+  "completed_at_utc": "2026-10-30T14:13:50.014761+00:00",
+  "result": "PASS",
+  "acceptance_record": "WINDOWS_LIVE_ACCEPTANCE.json"
 }

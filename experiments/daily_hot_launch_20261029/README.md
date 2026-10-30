@@ -1,3 +1,11 @@
+**October30: the bounded market-open public daily composition is now accepted PASS.**
+Actual ITOC admission,60Hot quote acquisitions,3paced valid source captures, native
+audit/equal replays and both empty Windows Job scopes were observed. See the
+[scoped live acceptance](../market_open_daily_check_20261029/WINDOWS_LIVE_ACCEPTANCE.json).
+This supersedes provider-execution-pending wording for that bounded scope.
+Full-session settings/deployment and production activation remain unadopted.
+The original procedure and historical qualification text follow.
+
 # Daily Hot public launch candidate — October 29
 
 **Windows command72 accepted:30/30PASS**, zero failures/errors/skips, actual

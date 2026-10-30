@@ -1,0 +1,67 @@
+{
+  "contract": "market-open-daily-path-check-v1",
+  "source_root": "C:\\Users\\danla\\hot75\\p75",
+  "root": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198",
+  "source_inventory_sha256": "8f6af02c93746adfb80b1b3e2ca80bf7543de96ac0039bd581a46859e743c5c1",
+  "session_date": "2026-10-30",
+  "prepared_at_utc": "2026-10-30T14:08:30.640430+00:00",
+  "original_inputs": {
+    "opening": {
+      "path": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_f3beaf98\\inputs\\opening-r0.json",
+      "file_sha256": "0d949d3fd7e804c83c026f1334f8b7267a9fb0049f068c1f1edeff53a9a7d5f7"
+    },
+    "focus": {
+      "path": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_f3beaf98\\inputs\\focus-r1.json",
+      "file_sha256": "ca4a3464f267397fefd9b2fdb82740e312f181f8bc7d012f99f99021e3b2d741"
+    }
+  },
+  "copied_inputs": {
+    "opening": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198\\inputs\\opening-r0.json",
+    "focus": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198\\inputs\\focus-r1.json"
+  },
+  "published_anchor": [
+    "047bb0843e5972edf0ecd2198435811ab129ce24757a681c0a30f0b56e8dca2d",
+    "ad05e8d7bd77b5efa0b767196c1ebca05760d0ca47d27cf63e92282c6c15dbe6"
+  ],
+  "catalog_path": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198\\daily_catalog",
+  "catalog_sha256": "f8919ade3c1dde3c9128c9d955d51f72d8979fbdf03ad0d9de5cfe14da2ad7e7",
+  "journal_path": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198\\quote_observation_journal_v2_api_opening_2026-10-30\\2026-10-30.sqlite3",
+  "limits": {
+    "collection_window_seconds": 180,
+    "minimum_startup_lead_seconds": 45,
+    "maximum_startup_lead_seconds": 55,
+    "maximum_seconds_from_review_to_stop": 235,
+    "latest_launch_before_collection_seconds": 8,
+    "maximum_hot_quote_calls": 72,
+    "maximum_active_hot_symbols": 1,
+    "maximum_distinct_added_symbols": 1,
+    "maximum_identity_quote_calls": 3,
+    "maximum_feed_attempts": 4,
+    "feed_seconds_after_completion": 60,
+    "maximum_directory_downloads": 2,
+    "maximum_worker_starts": 3,
+    "maximum_outer_invocations": 1,
+    "request_timeout_seconds": 3,
+    "credential_seconds": 8,
+    "progress_seconds": 3,
+    "replacement_hold_seconds": 15,
+    "cleanup_seconds": 10,
+    "report_seconds": 60,
+    "maximum_dispatch_lateness_seconds": 0.75
+  },
+  "production_journal_access": false,
+  "baseline_import": {
+    "contract": "closed-opening-membership-export-v1",
+    "closed_export_path": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198\\opening-baseline-export.json",
+    "closed_export_file_sha256": "06259845fcde2b3362bf65ba3390d1efba509105fb5bf5ff36ef2e8c42ad3fca",
+    "exported_at_utc": "2026-10-30T14:07:43.120306+00:00",
+    "imported_at_utc": "2026-10-30T14:08:30.640430+00:00",
+    "original_published_at_utc": [
+      "2026-10-30T00:14:00.362383+00:00",
+      "2026-10-30T13:16:44.054433+00:00"
+    ],
+    "retained_failed_root": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_f3beaf98",
+    "new_directory_downloads": 0,
+    "source_read_scope": "separate operator export; trial preparation and roles consume isolated files"
+  }
+}

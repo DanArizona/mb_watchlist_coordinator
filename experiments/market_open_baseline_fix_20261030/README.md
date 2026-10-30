@@ -1,3 +1,9 @@
+**Windows78 ACCEPTED12/12;79/80 completed; subsequent bounded77 live trial PASSED.**
+All actual CMD prompts returned. This preparation correction and its existing
+qualification are complete. No repeat is due. See [Windows acceptance](WINDOWS_ACCEPTANCE.json)
+and the [live closeout](../market_open_daily_check_20261029/WINDOWS_LIVE_ACCEPTANCE.json).
+The instructions below are retained historical procedure.
+
 # After-opening isolated baseline preparation
 
 This preparation-only companion corrects command76's attempt to republish the

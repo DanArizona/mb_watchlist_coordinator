@@ -1,0 +1,52 @@
+{
+  "contract": "opening-baseline-copy-windows-acceptance-v1",
+  "result": "ACCEPTED_OFFLINE_SCOPE",
+  "basis": "Complete operator console/final JSON and actual returned CMD prompt; Windows files not independently read",
+  "run": "20261030T140631Z_0cca2829",
+  "test_runner_seconds": 4.277,
+  "qualification": {
+    "contract": "opening-baseline-copy-offline-qualification-v1",
+    "result": "PASS",
+    "tests": 12,
+    "passed": 12,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "failed_tests": [],
+    "seconds": 4.2810000000026776,
+    "source_inventory_sha256": "cc4c993675b04ebdd59f634f51f11fbf5098d890e64c0e103c6311406fc5f5a4",
+    "original_packet_inventory_sha256": "8f6af02c93746adfb80b1b3e2ca80bf7543de96ac0039bd581a46859e743c5c1",
+    "platform": "win32",
+    "python": [
+      3,
+      12,
+      13
+    ],
+    "windows_checks_passed": true,
+    "network": "denied",
+    "production_access": false,
+    "actual_vault_access": false,
+    "actual_provider_used": false,
+    "original_packet_source_changed": false,
+    "no_live_clock_override": true,
+    "new_directory_downloads": 0,
+    "production_hot_enabled": false,
+    "prior_windows75_repeated": false,
+    "live_trial_executed": false,
+    "native_baseline_proof": {
+      "synthetic_only": true,
+      "preparation_et": "2026-10-30T10:00:00-04:00",
+      "original_publication_et": "2026-10-30T09:20:00-04:00",
+      "original_publication_times_preserved": true,
+      "native_audit_passed": true,
+      "new_membership_publication_calls": 0,
+      "hot_acquisitions": 0,
+      "unchanged_original_loader_accepted": true,
+      "new_directory_downloads": 0,
+      "production_or_provider_access": false,
+      "prepared_root": "C:\\Users\\danla\\hot78\\p78\\runs\\20261030T140631Z_0cca2829\\proof\\p\\runs\\market_open_daily_20261030_ad4f2e9b"
+    }
+  },
+  "original75_acceptance_unchanged": true,
+  "no_repeat_due": true
+}

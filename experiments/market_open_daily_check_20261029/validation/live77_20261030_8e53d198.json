@@ -1,0 +1,215 @@
+{
+  "basis": "Complete operator-supplied review/owner/final report JSON and actual returned CMD prompt; original Windows files not independently read",
+  "printed_review": {
+    "profile": {
+      "contract": "market-open-daily-path-check-v1",
+      "limits": {
+        "collection_window_seconds": 180,
+        "minimum_startup_lead_seconds": 45,
+        "maximum_startup_lead_seconds": 55,
+        "maximum_seconds_from_review_to_stop": 235,
+        "latest_launch_before_collection_seconds": 8,
+        "maximum_hot_quote_calls": 72,
+        "maximum_active_hot_symbols": 1,
+        "maximum_distinct_added_symbols": 1,
+        "maximum_identity_quote_calls": 3,
+        "maximum_feed_attempts": 4,
+        "feed_seconds_after_completion": 60,
+        "maximum_directory_downloads": 2,
+        "maximum_worker_starts": 3,
+        "maximum_outer_invocations": 1,
+        "request_timeout_seconds": 3,
+        "credential_seconds": 8,
+        "progress_seconds": 3,
+        "replacement_hold_seconds": 15,
+        "cleanup_seconds": 10,
+        "report_seconds": 60,
+        "maximum_dispatch_lateness_seconds": 0.75
+      },
+      "source": "real CURRENT, same-date history and fresh CURRENT; original admission rules",
+      "selection": "first eligible exact broker-confirmed symbol; no forced roster or fabricated halt",
+      "journal_scope": "new isolated daily-layout journal; copied r0/r1 baseline only",
+      "production_hot_enabled": false,
+      "production_settings_adopted": false,
+      "unmanaged_channels": [
+        "uni",
+        "focus",
+        "health"
+      ],
+      "shared_sdk_token_refresh_possible": true,
+      "clock": "actual UTC and elapsed monotonic time in the live entry",
+      "quiet_run": "daily-path/source/idle checks can pass without an eligible admission; collection remains unobserved",
+      "full_day_capacity_qualified": false,
+      "operating_release_qualified": false
+    },
+    "review_sha256": "214769c07fe490b2fe70c8de9ffb956c9c9928bbf7d6afb09eddbddd71f3ec66",
+    "collection_start_et": "2026-10-30T10:10:50-04:00",
+    "collection_stop_et": "2026-10-30T10:13:50-04:00",
+    "trial_root": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198",
+    "exact_review": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198\\candidate-review.json"
+  },
+  "printed_owner_result": {
+    "contract": "daily-hot-operating-owner-v1",
+    "nonce": "c06c99c5e9164bc5afbdf886e8c5510b",
+    "configuration_sha256": "6ea799a250bbfb5d5d7ac3f586e4e21681b898052eb35ccf9488c3bdf4edaf3a",
+    "stop_reason": "window_ended",
+    "result": "STOPPED",
+    "cleanup": {
+      "status": "EXIT_OBSERVED",
+      "backend": "windows_job",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0,
+      "reason": null
+    },
+    "cleanup_seconds": 0.06300000000192085,
+    "acquisition_stop_requested_at_utc": "2026-10-30T14:13:50.014761+00:00",
+    "reporting": {
+      "status": "COMPLETE",
+      "report_path": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198\\daily_hot_check\\reports\\de4ba676b275421fb88c331edb999eb3.json",
+      "native_audit_passed": true,
+      "two_fresh_replays_equal": true,
+      "first_replay": {
+        "events": 63,
+        "sequence_sha256": "c26de431edb1e289f6ad09aa8e91afb705bfba1c11b9f97a7357eedd35c115a9"
+      },
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "windows_job",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      }
+    },
+    "failure_type": null,
+    "unmanaged_channels_untouched": [
+      "uni",
+      "focus",
+      "health"
+    ],
+    "full_day_capacity_qualified": false,
+    "production_activation_inferred": false
+  },
+  "printed_daily_path_report": {
+    "contract": "market-open-daily-path-check-v1",
+    "limits": {
+      "collection_window_seconds": 180,
+      "minimum_startup_lead_seconds": 45,
+      "maximum_startup_lead_seconds": 55,
+      "maximum_seconds_from_review_to_stop": 235,
+      "latest_launch_before_collection_seconds": 8,
+      "maximum_hot_quote_calls": 72,
+      "maximum_active_hot_symbols": 1,
+      "maximum_distinct_added_symbols": 1,
+      "maximum_identity_quote_calls": 3,
+      "maximum_feed_attempts": 4,
+      "feed_seconds_after_completion": 60,
+      "maximum_directory_downloads": 2,
+      "maximum_worker_starts": 3,
+      "maximum_outer_invocations": 1,
+      "request_timeout_seconds": 3,
+      "credential_seconds": 8,
+      "progress_seconds": 3,
+      "replacement_hold_seconds": 15,
+      "cleanup_seconds": 10,
+      "report_seconds": 60,
+      "maximum_dispatch_lateness_seconds": 0.75
+    },
+    "source": "real CURRENT, same-date history and fresh CURRENT; original admission rules",
+    "selection": "first eligible exact broker-confirmed symbol; no forced roster or fabricated halt",
+    "journal_scope": "new isolated daily-layout journal; copied r0/r1 baseline only",
+    "production_hot_enabled": false,
+    "production_settings_adopted": false,
+    "unmanaged_channels": [
+      "uni",
+      "focus",
+      "health"
+    ],
+    "shared_sdk_token_refresh_possible": true,
+    "clock": "actual UTC and elapsed monotonic time in the live entry",
+    "quiet_run": "daily-path/source/idle checks can pass without an eligible admission; collection remains unobserved",
+    "full_day_capacity_qualified": false,
+    "operating_release_qualified": false,
+    "root": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198",
+    "result": "PASS",
+    "daily_path_check_passed": true,
+    "source_current_history_fresh_current_observed": true,
+    "source_attempts": 3,
+    "source_valid_attempts": 3,
+    "source_known_gaps": [
+      "intermediate_feed_mutations_not_reconstructible",
+      "older_unknown_carryovers_not_proven_complete"
+    ],
+    "authenticated_roles": [
+      "collector",
+      "identity"
+    ],
+    "identity_quote_permits": 1,
+    "selected_symbol": "ITOC",
+    "hot_acquisitions": 60,
+    "hot_statuses": {
+      "quote": 60
+    },
+    "worker_starts": 1,
+    "internal_owned_role_cleanup_complete": true,
+    "internal_owned_role_cleanup": {
+      "hot": {
+        "status": "OWNED_WORKER_STOPPED"
+      },
+      "identity": {
+        "forced": false,
+        "returncode": 0
+      },
+      "source": null
+    },
+    "collection_observed": true,
+    "owner": {
+      "contract": "daily-hot-operating-owner-v1",
+      "nonce": "c06c99c5e9164bc5afbdf886e8c5510b",
+      "configuration_sha256": "6ea799a250bbfb5d5d7ac3f586e4e21681b898052eb35ccf9488c3bdf4edaf3a",
+      "stop_reason": "window_ended",
+      "result": "STOPPED",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "windows_job",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      },
+      "cleanup_seconds": 0.06300000000192085,
+      "acquisition_stop_requested_at_utc": "2026-10-30T14:13:50.014761+00:00",
+      "reporting": {
+        "status": "COMPLETE",
+        "report_path": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198\\daily_hot_check\\reports\\de4ba676b275421fb88c331edb999eb3.json",
+        "native_audit_passed": true,
+        "two_fresh_replays_equal": true,
+        "first_replay": {
+          "events": 63,
+          "sequence_sha256": "c26de431edb1e289f6ad09aa8e91afb705bfba1c11b9f97a7357eedd35c115a9"
+        },
+        "cleanup": {
+          "status": "EXIT_OBSERVED",
+          "backend": "windows_job",
+          "scope_empty_observed": true,
+          "forced": false,
+          "controller_returncode": 0,
+          "reason": null
+        }
+      },
+      "failure_type": null,
+      "unmanaged_channels_untouched": [
+        "uni",
+        "focus",
+        "health"
+      ],
+      "full_day_capacity_qualified": false,
+      "production_activation_inferred": false
+    },
+    "terminal": null,
+    "native_membership_revisions": 3,
+    "qualification_scope": "bounded market-open daily composition; only observed admissions/collection count",
+    "production_journal_access": false
+  }
+}

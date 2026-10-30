@@ -1,0 +1,12 @@
+{
+  "contract": "closed-opening-membership-export-v1",
+  "exported_at_utc": "2026-10-30T14:07:43.120306+00:00",
+  "published_anchor": [
+    "047bb0843e5972edf0ecd2198435811ab129ce24757a681c0a30f0b56e8dca2d",
+    "ad05e8d7bd77b5efa0b767196c1ebca05760d0ca47d27cf63e92282c6c15dbe6"
+  ],
+  "source_access": "read-only SQLite transaction; identity and membership tables only",
+  "quote_or_acquisition_content_read": false,
+  "source_database_written": false,
+  "saved_opening_baseline": "C:\\Users\\danla\\hot78\\p78\\runs\\opening_20261030.json"
+}

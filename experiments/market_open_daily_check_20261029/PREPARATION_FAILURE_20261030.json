@@ -25,7 +25,7 @@
   "trial_approval_retained": true,
   "provider_execution_started": false,
   "production_pollers_untouched": true,
-  "next": "Qualify the companion offline on Windows. Then a separate read-only membership export and cached-input preparation create a fresh isolated root for unchanged77. Original failure and directory captures are retained.",
+  "next": "Original failed preparation is retained. Subsequent trial closed out successfully; do not rerun76 or77.",
   "offline_reproduction": {
     "scope": "offline preparation reproducer only",
     "network": "denied",
@@ -44,5 +44,9 @@
     "partial_quote_acquisitions": 0
   },
   "operator_reported_retained_root": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_f3beaf98",
-  "correction_scope": "Separate opening-membership export and historical-copy preparation companion; original p75 source/native source/launcher/limits unchanged. Windows companion qualification pending."
+  "correction_scope": "Separate opening-membership export and historical-copy preparation companion; original p75 source/native source/launcher/limits unchanged. Windows companion qualification pending.",
+  "resolved_by": "Separate read-only opening export79 and historical-copy preparation80, after accepted Windows78. Original p75 source/backdating guard unchanged.",
+  "windows_companion_qualified": true,
+  "successful_fresh_root": "C:\\Users\\danla\\hot75\\p75\\runs\\market_open_daily_20261030_8e53d198",
+  "subsequent_bounded_trial_result": "PASS"
 }
