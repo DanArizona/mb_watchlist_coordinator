@@ -1,0 +1,97 @@
+{
+  "actual_provider_used": false,
+  "before_api_gate_seconds": null,
+  "cleanup": {
+    "backend": "posix_process_group",
+    "controller_returncode": 70,
+    "forced": false,
+    "reason": null,
+    "scope_empty_observed": true,
+    "status": "EXIT_OBSERVED"
+  },
+  "configuration_sha256": "566394af1380beb9ec5287855dd9b24a0f980208f2f156834f3e6d166d5f43bb",
+  "contract": "after-hours-provider-performance-v1",
+  "daily_live_launch_qualified": false,
+  "first_replay": {
+    "events": 0,
+    "sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "full_day_capacity_qualified": false,
+  "market_open_performance_qualified": false,
+  "native_audit_passed": false,
+  "native_cycle_seconds": null,
+  "nonce": "e3687c1cf8a64832910e3ad876935038",
+  "owner_stop_reason": "worker_evidence_or_processing_failed",
+  "production_hot_enabled": false,
+  "production_journal_or_process_access": false,
+  "provider_capacity_qualified": false,
+  "provider_outcomes_recorded": 0,
+  "qualification_scope": "off-hours provider and shared native acquisition timing; not daily-controller or market-open qualification",
+  "quote_dispatch_permits": 0,
+  "request_seconds": null,
+  "result": "FAILED",
+  "second_replay": {
+    "events": 0,
+    "sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "two_fresh_replays_equal": true,
+  "unknown_provider_outcomes": 0,
+  "worker": {
+    "client_close_completed": true,
+    "completed_slots": 0,
+    "configuration_sha256": "566394af1380beb9ec5287855dd9b24a0f980208f2f156834f3e6d166d5f43bb",
+    "contract": "after-hours-provider-performance-v1",
+    "error": {
+      "errno": null,
+      "error_type": "MembershipRevisionError",
+      "frames": [
+        {
+          "file": "after_hours_profile.py",
+          "function": "run_worker",
+          "line": 268
+        },
+        {
+          "file": "quote_observation_store.py",
+          "function": "record_membership_revision",
+          "line": 802
+        },
+        {
+          "file": "quote_observation_store.py",
+          "function": "_write",
+          "line": 408
+        },
+        {
+          "file": "sqlite_write_recovery.py",
+          "function": "write_with_recovery",
+          "line": 92
+        },
+        {
+          "file": "quote_observation_store.py",
+          "function": "attempt",
+          "line": 404
+        },
+        {
+          "file": "quote_observation_store.py",
+          "function": "write",
+          "line": 706
+        },
+        {
+          "file": "sampling_membership.py",
+          "function": "__post_init__",
+          "line": 169
+        }
+      ],
+      "sqlite_errorcode": null,
+      "sqlite_errorname": null,
+      "winerror": null
+    },
+    "nonce": "e3687c1cf8a64832910e3ad876935038",
+    "observed_at_utc": "2026-10-30T01:00:00.364497+00:00",
+    "phase": "FAILED",
+    "reason": "worker_evidence_or_processing_failed",
+    "synthetic_only": true,
+    "timings": {
+      "authentication_seconds": 0.0008380439994652988
+    }
+  }
+}

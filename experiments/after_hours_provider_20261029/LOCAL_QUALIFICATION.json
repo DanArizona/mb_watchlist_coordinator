@@ -1,0 +1,17 @@
+{
+  "contract": "after-hours-provider-development-components-v1",
+  "result": "COMPONENTS_PASS",
+  "tests": 15,
+  "passed": 15,
+  "seconds": 4.620,
+  "scope": "14 unit boundaries and one actual owned 429/no-retry case; corrected paced qualification is produced by the delivered verifier",
+  "original_full_development_run": {"result": "FAILED", "tests": 19, "failures": 1, "seconds": 86.131},
+  "correction": "Final slot window includes the existing .75s dispatch allowance; no production/native guard changed",
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "live_provider_performance_qualified": false,
+  "daily_live_launch_qualified": false
+}

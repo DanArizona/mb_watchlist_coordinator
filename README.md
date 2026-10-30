@@ -1,5 +1,9 @@
 # mb_watchlist_coordinator
 
+The [isolated after-hours provider profile](experiments/after_hours_provider_20261029/README.md)
+measures a bounded SPY/provider/shared native-engine sample while preserving the
+daily launcher's regular-session guards. It does not activate production Hot.
+
 The [daily Hot public launch candidate](experiments/daily_hot_launch_20261029/README.md)
 adds reviewed fixed process entries and explicit launch/resume approval around
 the accepted backend. Its next step is the offline Windows command 72; it does

@@ -1,0 +1,35 @@
+test_429_stops_before_a_second_provider_dispatch (test_after_hours_profile.DispatchTests.test_429_stops_before_a_second_provider_dispatch) ... ok
+test_one_symbol_and_fields_are_enforced_before_permit_or_provider (test_after_hours_profile.DispatchTests.test_one_symbol_and_fields_are_enforced_before_permit_or_provider) ... ok
+test_rewritten_permit_count_cannot_reset_the_budget (test_after_hours_profile.DispatchTests.test_rewritten_permit_count_cannot_reset_the_budget) ... ok
+test_transport_failure_is_redacted_charged_and_latched_without_retry (test_after_hours_profile.DispatchTests.test_transport_failure_is_redacted_charged_and_latched_without_retry) ... ok
+test_twenty_fourth_dispatch_is_allowed_and_twenty_fifth_is_refused (test_after_hours_profile.DispatchTests.test_twenty_fourth_dispatch_is_allowed_and_twenty_fifth_is_refused) ... ok
+test_authorization_callback_prevents_all_quotes (test_after_hours_profile.OwnedProcessTests.test_authorization_callback_prevents_all_quotes) ... ok
+test_complete_actual_paced_native_profile_uses_twenty_four_synthetic_quotes (test_after_hours_profile.OwnedProcessTests.test_complete_actual_paced_native_profile_uses_twenty_four_synthetic_quotes) ... FAIL
+test_hung_request_preserves_one_unknown_charged_outcome_and_cleans_up (test_after_hours_profile.OwnedProcessTests.test_hung_request_preserves_one_unknown_charged_outcome_and_cleans_up) ... ok
+test_operator_stop_before_first_quote_cleans_only_this_owned_scope (test_after_hours_profile.OwnedProcessTests.test_operator_stop_before_first_quote_cleans_only_this_owned_scope) ... ok
+test_rate_limit_is_one_recorded_request_and_no_retry (test_after_hours_profile.OwnedProcessTests.test_rate_limit_is_one_recorded_request_and_no_retry) ... ok
+test_changed_source_and_dependencies_block_before_credentials (test_after_hours_profile.ReviewTests.test_changed_source_and_dependencies_block_before_credentials) ... ok
+test_clock_gate_is_rechecked_after_typing_and_secret_is_cleared (test_after_hours_profile.ReviewTests.test_clock_gate_is_rechecked_after_typing_and_secret_is_cleared) ... ok
+test_existing_root_is_never_reused_or_reset (test_after_hours_profile.ReviewTests.test_existing_root_is_never_reused_or_reset) ... ok
+test_limits_cannot_be_extended_even_with_recomputed_digest (test_after_hours_profile.ReviewTests.test_limits_cannot_be_extended_even_with_recomputed_digest) ... ok
+test_review_has_fixed_limits_no_production_paths_and_creates_no_runtime_state (test_after_hours_profile.ReviewTests.test_review_has_fixed_limits_no_production_paths_and_creates_no_runtime_state) ... ok
+test_unapproved_trial_does_not_prompt_or_create_state (test_after_hours_profile.ReviewTests.test_unapproved_trial_does_not_prompt_or_create_state) ... ok
+test_statistics_report_sample_count_and_nearest_rank (test_after_hours_profile.WindowTests.test_statistics_report_sample_count_and_nearest_rank) ... ok
+test_weekday_regular_interval_and_crossing_open_are_excluded (test_after_hours_profile.WindowTests.test_weekday_regular_interval_and_crossing_open_are_excluded) ... ok
+test_weekends_are_allowed_but_cross_date_and_extended_windows_are_refused (test_after_hours_profile.WindowTests.test_weekends_are_allowed_but_cross_date_and_extended_windows_are_refused) ... ok
+
+======================================================================
+FAIL: test_complete_actual_paced_native_profile_uses_twenty_four_synthetic_quotes (test_after_hours_profile.OwnedProcessTests.test_complete_actual_paced_native_profile_uses_twenty_four_synthetic_quotes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/6ce939acb4eb/co_hot_evidence_read/tests/test_after_hours_profile.py", line 190, in test_complete_actual_paced_native_profile_uses_twenty_four_synthetic_quotes
+    self.assertEqual(report['result'], 'PASS', report)
+AssertionError: 'FAILED' != 'PASS'
+- FAILED
++ PASS
+ : {'actual_provider_used': False, 'before_api_gate_seconds': {'count': 23, 'max': 0.142615, 'median': 0.070952, 'min': 0.018394, 'p95_nearest_rank': 0.138902}, 'cleanup': {'backend': 'posix_process_group', 'controller_returncode': 70, 'forced': False, 'reason': None, 'scope_empty_observed': True, 'status': 'EXIT_OBSERVED'}, 'configuration_sha256': '81f468b1608699720d7cbcce75aad541310624c1b8b7dc8e75a17bb8d16e417c', 'contract': 'after-hours-provider-performance-v1', 'daily_live_launch_qualified': False, 'first_replay': {'events': 24, 'sequence_sha256': 'ee0f3bef82b779066b4970d12c3c767533faaf6cd83437c19bfc232e60fd53bf'}, 'full_day_capacity_qualified': False, 'market_open_performance_qualified': False, 'native_audit_passed': False, 'native_cycle_seconds': {'count': 23, 'max': 0.11300573699918459, 'median': 0.03286506999938865, 'min': 0.014430495000851806, 'p95_nearest_rank': 0.09236641799907375}, 'nonce': '96c862cc7d0d49cd8a325ebd1c7b3ecc', 'owner_stop_reason': 'native_slot_not_acquired', 'production_hot_enabled': False, 'production_journal_or_process_access': False, 'provider_capacity_qualified': False, 'provider_outcomes_recorded': 23, 'qualification_scope': 'off-hours provider and shared native acquisition timing; not daily-controller or market-open qualification', 'quote_dispatch_permits': 23, 'request_seconds': {'count': 23, 'max': 0.0004710399989562575, 'median': 8.533999971405137e-05, 'min': 6.935700002941303e-05, 'p95_nearest_rank': 0.00030128199978207704}, 'result': 'FAILED', 'second_replay': {'events': 24, 'sequence_sha256': 'ee0f3bef82b779066b4970d12c3c767533faaf6cd83437c19bfc232e60fd53bf'}, 'two_fresh_replays_equal': True, 'unknown_provider_outcomes': 0, 'worker': {'client_close_completed': True, 'completed_slots': 24, 'configuration_sha256': '81f468b1608699720d7cbcce75aad541310624c1b8b7dc8e75a17bb8d16e417c', 'contract': 'after-hours-provider-performance-v1', 'error': None, 'nonce': '96c862cc7d0d49cd8a325ebd1c7b3ecc', 'observed_at_utc': '2026-10-30T01:01:02.050970+00:00', 'phase': 'FAILED', 'reason': 'native_slot_not_acquired', 'synthetic_only': True, 'timings': {'authentication_seconds': 0.0005518629986909218, 'launch_to_first_completed_native_work_seconds': 0.393457, 'native_prepare_seconds': 0.012790328999471967}}}
+
+----------------------------------------------------------------------
+Ran 19 tests in 86.131s
+
+FAILED (failures=1)
