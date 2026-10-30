@@ -1,0 +1,40 @@
+{
+  "contract": "market-open-daily-path-offline-qualification-v1",
+  "result": "FAILED",
+  "tests": 48,
+  "passed": 47,
+  "failures": 0,
+  "errors": 1,
+  "skipped": 0,
+  "failed_tests": [
+    "test_market_open_check.MarketOpenCheckTests.test_owned_public_dispatch_collects_then_reports_after_producer_exit"
+  ],
+  "seconds": 20.531999999890104,
+  "source": {
+    "accepted_after_hours_closeout_baseline": "ea43b37a06eac06313b662505b79a109fea3625e",
+    "coordinator_commit": "5e4b571adc9995f3ebaaca4ba62c053e48247b7f",
+    "market_data_commit": "5552c5db43351d1a9ae8d376196cc99ba9c7f05d",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "8f6af02c93746adfb80b1b3e2ca80bf7543de96ac0039bd581a46859e743c5c1",
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "windows_checks_passed": false,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "original_fixed_dispatcher_executed": true,
+  "offline_substitutions": "trusted process wrapper supplies synthetic SDK/feed, dependency evidence and constant shifted clock; no live CLI seam",
+  "native_proof": null,
+  "unchanged_paced_capacity_recovery_drills_repeated": false,
+  "live_market_open_check_qualified": false,
+  "operating_release_qualified": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false
+}

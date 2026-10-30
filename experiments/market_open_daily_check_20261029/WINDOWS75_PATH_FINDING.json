@@ -1,0 +1,30 @@
+{
+  "contract": "market-open-daily-path-windows-layout-finding-v1",
+  "result": "FAILED",
+  "run": "20261030T035211Z_bc158aec",
+  "tests": 48,
+  "passed": 47,
+  "failures": 0,
+  "errors": 1,
+  "seconds": 20.531999999890104,
+  "error": "FileNotFoundError / WinError206: filename or extension too long",
+  "phase": "synthetic journal directory creation in proof preparation; before fixed role dispatcher/owner launch",
+  "native_proof": null,
+  "reported_original_fixed_dispatcher_executed_flag": true,
+  "flag_interpretation": "Verifier describes intended check; traceback proves dispatcher not reached in this failing run",
+  "artifact_source_commit": "5e4b571adc9995f3ebaaca4ba62c053e48247b7f",
+  "source_inventory_sha256": "8f6af02c93746adfb80b1b3e2ca80bf7543de96ac0039bd581a46859e743c5c1",
+  "source_test_runtime_changes_for_retry": false,
+  "retry": "Extract the same original ZIP to a fresh short location, rename its top folder to p75, run the unchanged75 verifier there once",
+  "short_root": "C:\\Users\\danla\\hot75\\p75",
+  "longest_existing_final_proof_path_at_short_root": {
+    "characters": 223,
+    "relative_path": "runs/20261030T031735Z_41de4bdb/native-proof/packet with spaces/runs/market_open_daily_20261030_1234abcd/quote_observation_journal_v2_api_opening_2026-10-30/2026-10-30.hot.poller.daily-collector.json"
+  },
+  "windows_short_layout_qualification": "PENDING",
+  "network": "denied",
+  "actual_vault_access": false,
+  "production_changes": false,
+  "earlier_linux_48_pass_result_retained": true,
+  "watchdog_or_cadence_change": false
+}

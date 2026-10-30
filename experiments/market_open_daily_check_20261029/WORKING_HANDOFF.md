@@ -1,3 +1,21 @@
+WINDOWS75 FAILED47/48 with1error,20.532s; actual CMD prompt returned.
+Run20261030T035211Z_bc158aec, source5e4b571/inventory8f6af02 unchanged.
+WinError206 while creating the deeply nested synthetic journal directory,
+before the owned role dispatcher starts. No native proof/provider/poller-timing
+conclusion is possible from this run. The static original_fixed_dispatcher_executed
+flag describes intended test coverage, not observed execution after this error.
+Raw console and JSON retained in validation; verdict remains FAILED.
+
+Smallest correction: same immutable ZIP, fresh extraction under
+C:\Users\danla\hot75, rename top folder to p75, run unchanged75 once.
+All existing paths from the exact Linux proof were mapped to that proposed
+Windows root; the maximum calculated length is recorded in WINDOWS75_PATH_FINDING.json.
+No source/test/deadline/cadence change or repeated provider run is needed.
+Short-layout Windows result remains PENDING. Keep original failed output folder.
+Preparation/live76/77 still require matching Windows PASS and explicit approval.
+The same short packet root must be used for subsequent trial commands.
+Earlier local-qualified/Windows-pending wording below remains historical.
+
 FINAL DELIVERABLE QUALIFIED LOCALLY:48/48PASS,57.790871s,0fail/errors/skips.
 Exact ZIP extraction in a path with spaces; run20261030T031735Z_41de4bdb.
 Frozen local5e4b571adc9995f3ebaaca4ba62c053e48247b7f equals public
