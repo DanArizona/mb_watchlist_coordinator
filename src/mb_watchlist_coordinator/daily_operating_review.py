@@ -18,7 +18,8 @@ from .sampling_journal import SamplingJournal
 from .sampling_requests import digest, plain, timestamp
 
 
-def build_operating_review(opening,focus,*,journal,catalog,state_root,ecfg,clock=None):
+def build_operating_review(opening,focus,*,journal,catalog,state_root,ecfg,clock=None,
+                           collection_window=None):
     from mb_market_data.daily_journal import DailyQuoteObservationStore as QuoteObservationStore
     settings=DailySettings(str(regular_path(state_root)),str(regular_path(journal,exists=True)),
         str(regular_path(opening,exists=True)),str(regular_path(focus,exists=True)),digest(proposed_policy()))
@@ -39,10 +40,16 @@ def build_operating_review(opening,focus,*,journal,catalog,state_root,ecfg,clock
     service=SamplingPublicationService(Path(settings.state_root)/'publication.sqlite3',
         request_store=requests,journal=SamplingJournal(store),settings=PublicationSettings('daily-hot-publication',1,.5,
             timestamp(session.binding['stop_at_utc'])))
+    # A qualification invocation can narrow collection without changing the
+    # dated publication/admission session or the full-day default.
+    window = collection_window or {'start_at_utc':session.binding['start_at_utc'],
+        'stop_at_utc':session.binding['stop_at_utc'], 'max_quote_calls':9360}
+    if set(window) != {'start_at_utc','stop_at_utc','max_quote_calls'}:
+        raise ValueError('Explicit collection start, stop and quote ceiling required')
     configuration=DailyWorkerConfiguration(settings,str(directory.path),
         DailyCollectorSettings(settings.journal_path,plain(service.identity),plain(session.binding),plain(session.claim),
-            session.binding['start_at_utc'],session.binding['stop_at_utc'],9360,1),
-        AuthStartupSettings(str(regular_path(ecfg)),session.binding['stop_at_utc']))
+            window['start_at_utc'],window['stop_at_utc'],window['max_quote_calls'],1),
+        AuthStartupSettings(str(regular_path(ecfg)),window['stop_at_utc']))
     raw=configuration.payload()
     content={'contract':'daily-hot-operating-review-v1','session_date':session.binding['session_date'],
         'configuration':raw,'configuration_sha256':digest(raw),'policy_sha256':digest(policy),
@@ -54,4 +61,11 @@ def build_operating_review(opening,focus,*,journal,catalog,state_root,ecfg,clock
         'existing_driver_state':(Path(settings.state_root)/'driver-state.json').exists(),
         'required_before_activation':['Windows operating qualification','Representative full-day/provider capacity',
             'Deployment/rollback review and explicit settings/activation approval']}
+    if collection_window is not None:
+        from .daily_feed import collection_feed_limits
+        content['collection_window'] = {
+            'start_at_utc':timestamp(window['start_at_utc']).isoformat(),
+            'stop_at_utc':timestamp(window['stop_at_utc']).isoformat(),
+            'max_quote_calls':window['max_quote_calls']}
+        content['collection_feed_limits'] = asdict(collection_feed_limits(configuration.collector))
     return dict(content,review_sha256=digest(content))

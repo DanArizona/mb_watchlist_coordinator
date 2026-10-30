@@ -120,7 +120,8 @@ def _invocation_preflight(config, commands, mode, previous_outer, clock):
 
 def build_launch_review(source_root, opening, focus, *, journal, catalog, state_root,
                         ecfg, outer_root, mode='fresh', previous_outer=None,
-                        clock=None, dependency_reader=inspect_dependencies):
+                        clock=None, dependency_reader=inspect_dependencies,
+                        collection_window=None):
     clock = clock or (lambda: datetime.now(timezone.utc))
     source = regular_path(source_root)
     inventory = source_guard(source)
@@ -128,7 +129,7 @@ def build_launch_review(source_root, opening, focus, *, journal, catalog, state_
     if observed.get('qualified') is not True:
         raise ValueError('Installed dependencies are not qualified: '+str(observed.get('reason')))
     backend = build_operating_review(opening, focus, journal=journal, catalog=catalog,
-        state_root=state_root, ecfg=ecfg, clock=clock)
+        state_root=state_root, ecfg=ecfg, clock=clock, collection_window=collection_window)
     config = configuration(backend['configuration'])
     commands, controller, reporter = fixed_entries(source, inventory, digest(observed), state_root)
     resume = _invocation_preflight(config, commands, mode, previous_outer, clock)
@@ -162,7 +163,8 @@ def recheck_review(review, *, clock=None, dependency_reader=inspect_dependencies
         journal=pub['journal_path'], catalog=raw['catalog_path'], state_root=pub['state_root'],
         ecfg=raw['authentication']['ecfg_path'], outer_root=content['outer_root'],
         mode=content['mode'], previous_outer=(content['resume'] or {}).get('previous_outer'),
-        clock=clock, dependency_reader=dependency_reader)
+        clock=clock, dependency_reader=dependency_reader,
+        collection_window=content['backend_review'].get('collection_window'))
     if rebuilt != review:
         raise ValueError('Reviewed source, dependencies, inputs or invocation state changed')
     return configuration(raw)

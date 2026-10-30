@@ -29,6 +29,20 @@ class DailyFeedLimits:
             raise ValueError('Explicit bounded daily feed limits required')
 
 
+def collection_feed_limits(collector):
+    """Derive durable source ceilings from the immutable collection window.
+
+    Retain the original full-day defaults. A short invocation allows one spare
+    attempt so the final fresh CURRENT can establish readiness before the
+    attempt ceiling is exhausted. Pacing and HTTP timeout are unchanged.
+    """
+    from .sampling_requests import timestamp
+    raw = collector.payload()
+    seconds = math.ceil((timestamp(raw['stop_at_utc'])-timestamp(raw['start_at_utc'])).total_seconds())
+    return DailyFeedLimits(max_attempts=min(390, math.ceil(seconds/60)+1),
+        budget_seconds=min(23400, seconds))
+
+
 class DailyFeedTransport(FeedRecoveryTransport):
     def __init__(self, *args, limits=None, **kwargs):
         if limits is not None and type(limits) is not DailyFeedLimits:

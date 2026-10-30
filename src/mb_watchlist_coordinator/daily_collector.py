@@ -169,6 +169,11 @@ class DailyHotCollector(HotRecoveryCollector):
         if self.clock()>=timestamp(self.settings.stop_at_utc):return {'status':'window_ended'}
         if self.next is None or self.clock()<self.next.scheduled_at:
             state=self.poller.snapshot()
+            if self.next is None:
+                # No future slot remains. Keep verified idle progress until the
+                # dated stop; the final permitted call is normal completion,
+                # not exhaustion while another dispatch is still scheduled.
+                return {'status':'schedule_complete'}
             if sum(e['kind']=='dispatch' and bool(e['symbols']) for e in state['events'])>=self.settings.max_quote_calls:
                 return {'status':'budget_exhausted'}
             return {'status':'idle'}

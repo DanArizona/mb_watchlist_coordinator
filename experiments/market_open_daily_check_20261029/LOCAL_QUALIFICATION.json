@@ -1,0 +1,55 @@
+{
+  "contract": "market-open-daily-path-development-v1",
+  "status": "COMPLETION_CORRECTION_SOURCE_FREEZE",
+  "new_boundary_tests_passed": 14,
+  "additional_feed_pacing_budget_reopen_test": "PASS",
+  "first_owned_public_dispatch_proof": {
+    "result": "PASS",
+    "seconds": 54.65,
+    "synthetic_sdk_only": true,
+    "hot_acquisitions": 2,
+    "native_audit_passed": true,
+    "two_fresh_replays_equal": true,
+    "scope": "fixed dispatcher executed through trusted offline subprocess wrappers; early stop does not qualify complete trial"
+  },
+  "development_findings": [
+    {
+      "scope": "test harness",
+      "finding": "Test helper named run shadowed unittest.TestCase.run; renamed invoke"
+    },
+    {
+      "scope": "new profile clock normalization",
+      "finding": "timestamp accepts text; aware datetimes now normalized with utc_text before parsing"
+    },
+    {
+      "scope": "new profile close boundary",
+      "finding": "Collection is planned 45-55 seconds ahead on a non-Hot ten-second boundary, preserving startup and final-slot room"
+    },
+    {
+      "scope": "existing daily collector normal completion",
+      "finding": "A full set of allowed final-slot calls could be reported as budget_exhausted before stop. No-future-slot now reports verified schedule_complete; earlier exhaustion still blocks. Both native cases pass."
+    }
+  ],
+  "prior_windows_71_72_and_after_hours_acceptance_retained": true,
+  "windows_checks_passed": false,
+  "actual_provider_used": false,
+  "production_changes": false,
+  "remaining": [
+    "Exact committed packet qualification",
+    "Windows75 offline result",
+    "Explicit approval and market-open execution of the bounded check"
+  ],
+  "focused_completion_checks_passed": 2,
+  "intermediate_exact_packet": {
+    "source_commit": "92fee3702f6241a8e683fb52103afa9caeba4a9f",
+    "result": "PASS",
+    "tests": 46,
+    "seconds": 57.29116814400004,
+    "run": "20261030T031330Z_a6748a20",
+    "inventory_sha256": "ff95e21f6aadec95054445b6459738424d5f0b0c6a79c12a493238e01279cbc9",
+    "native_acquisitions": 2,
+    "native_audit_passed": true,
+    "equal_replays": true,
+    "replay_sha256": "0f585c4a290d9bdd15f1d41350f3454d7b7c1dd7a2daad9c6ceb3ec7254882f1"
+  }
+}

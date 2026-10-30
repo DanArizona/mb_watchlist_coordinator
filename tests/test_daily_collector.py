@@ -97,6 +97,18 @@ class DailyCollectorTests(unittest.TestCase):
         self.assertFalse(self.calls)
         self.assertFalse(collector.poller.path.exists())
 
+    def test_final_permitted_slot_is_schedule_completion_without_another_provider_call(self):
+        self.admit()
+        self.collector.close()
+        self.collector=self.make(start_at_utc=self.case.now.replace(second=57).isoformat(),max_quote_calls=1)
+        self.collector.prepare(create=True)
+        self.tick(58)
+        self.assertEqual(self.tick(59)['status'],'schedule_complete')
+        self.assertEqual(self.tick(59)['status'],'schedule_complete')
+        self.assertEqual(self.calls,[['NVDA']])
+        self.assertTrue(audit_quote_journal(self.case.journal,
+            audited_at=self.case.now.replace(hour=16,minute=0,second=0)).passed)
+
     def test_daily_limits_cannot_be_widened_by_boolean_or_extra_symbols(self):
         for changes in ({'max_quote_calls':9361},{'max_quote_calls':True},{'max_symbols':2}):
             with self.assertRaises(ValueError):self.make(**changes)

@@ -11,6 +11,7 @@ from concurrent.futures import ThreadPoolExecutor
 from .authenticated_startup import SessionPassword
 from .integrated_catalog import DirectoryCatalog
 from .daily_source import DailySourcePump
+from .daily_feed import collection_feed_limits
 from .daily_supervision import (CONTRACT, DailyIdentityClient, DailyManagedWorker,
     DailyProcessState, read_json, sealed, unseal, stop_process)
 from .recovery_workers import atomic_json
@@ -189,6 +190,7 @@ class DailyController:
                 configuration_sha256=self.identity['configuration_sha256'], clock=self.clock,
                 stop_requested=self.stopped)
             self.source = DailySourcePump(self.session, identity_client=self.identity_client,
+                limits=collection_feed_limits(self.configuration.collector),
                 clock=self.clock, feed_client_factory=self.feed_factory,
                 allow_network=self.allow_network, stop_requested=self.stopped)
             self.source.initialize(create=create)
