@@ -9,10 +9,11 @@
   "github_publication": {
     "repository": "DanArizona/mb_watchlist_coordinator",
     "branch": "experiment/manual-membership-20261031",
-    "status": "APPROVED_PENDING_PUBLICATION",
+    "status": "PUBLISHED_AND_VERIFIED",
     "approval_record": "PUBLICATION_APPROVAL_20261031.json",
     "prior_automatic_rejections": 2,
-    "prior_rejection_reason": "Automatic approval review requires direct user-authored approval for this candidate and destination; the standing authorization record was not accepted."
+    "prior_rejection_reason": "Automatic approval review requires direct user-authored approval for this candidate and destination; the standing authorization record was not accepted.",
+    "publication_record": "PUBLICATION.json"
   },
   "windows_qualification": "ACCEPTED_54_OF_54_AND_ALL_9_GUI_PHASES",
   "p85_unchanged": true,

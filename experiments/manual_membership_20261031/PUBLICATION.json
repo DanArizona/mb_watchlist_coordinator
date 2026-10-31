@@ -1,0 +1,17 @@
+{
+  "contract": "manual-membership-publication-record-v1",
+  "status": "PUBLISHED_AND_VERIFIED",
+  "repository": "DanArizona/mb_watchlist_coordinator",
+  "branch": "experiment/manual-membership-20261031",
+  "public_source_commit": "5a6fe87d8255daef592e81d5ca60fa1f800bb658",
+  "local_source_commit": "af265c8dc7e7365db8975b365034489ef87138d4",
+  "source_tree": "109e17b13d96385524e9b1d7db207006a599f057",
+  "tree_equality_verified": true,
+  "files_published": 17,
+  "approval_record": "PUBLICATION_APPROVAL_20261031.json",
+  "qualification_scope": "Original p89 Windows 54/54 and all nine actual GUI phases; later 15-second preview timing checked locally and steady-button change passed 18 local UI checks. Later visual/controller integration qualification is not inferred.",
+  "main_merge_performed": false,
+  "p85_source_settings_or_approval_changed": false,
+  "production_activation_performed": false
+}
+
