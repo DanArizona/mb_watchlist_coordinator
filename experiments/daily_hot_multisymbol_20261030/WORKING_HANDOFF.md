@@ -1,7 +1,30 @@
 # Multi-symbol development handoff
 
 
-## Current: corrected p88 completion, Windows pending
+## Current: Windows88 offline multi-40 acceptance PASS
+
+
+Windows88 run20261031T031744Z_4890752a PASS155.469s, actual returned CMD prompt.
+31focused checks PASS2.776s;109earlier focused passes reused. Original paced
+run reassessment PASS:40Hot/40identitycalls (minimum2.065301s), four valid paced
+feed attempts (minimum61.304162s),16complete40-symbol acquisitions (8before and
+8after rollover),7Uni/13Focus concurrent acquisitions;1worker,0.156s cleanup,
+native coverage/Hot values/native event-order checks PASS. Durable file changes[];
+explicit identity Stop classified, original85and87FAILEDverdicts retained.
+
+New Windows full-size proof PASS:996300observations/11652acquisitions,
+9312Hot acquisitions/372480Hot observations; cold0.9537755s<3s,
+tails0.5018414/0.4973194s, beforeAPI0.378474/0.380435s<0.75s,
+77rollovers max1.1287936s<3s; final verification11.9733531s<60s.
+Full native audit, Hot value integrity and two native event-order digests PASS,
+11694events SHA25634b91e092f22f7e58fd081447d0399d461a83942a37c6c942866ad885ede5583.
+Synthetic retained history is not an elapsed full day or real40-symbol provider
+qualification. No production activation/settings adoption is inferred.
+
+Next: original C:/Users/danla/hot85/p85/86_review_multisymbol.cmd (read-only
+installed-baseline/dependency review), then present concrete40-symbol limits,
+period-integrity scope and activation proposal. No new ZIP, install or unchanged
+qualification repeat is needed. See WINDOWS_ACCEPTANCE_P88.json.
 
 The operator's retained diagnostic confirms identity client close at14:05:19.101924Z
 and ValueError in the exact inline fence stop branch at14:05:19.103434Z:74.320ms
@@ -30,7 +53,7 @@ Inventory58767a4e32363a6e8a86f094e91cb2c855dc5fb86ac5a14bfebe14aef0045ee6.
 Exact extracted archive31checks PASS2.051s; source inventories unchanged.
 Source68e895c publishedf7b5f958d3ec135d2208dba2f17d13f320c7f257 with tree
 0005cf1e28b7b31a636dbeec93a5d6a0e632ae2e. Extract to C:/Users/danla/hot88 and
-call p88/88_complete_multisymbol_qualification.cmd. Windows88 remains pending.
+call p88/88_complete_multisymbol_qualification.cmd. Historical delivery note: Windows88 has now passed as recorded above.
 
 ## Windows87 follow-up — FAILED, retained diagnostics pending
 

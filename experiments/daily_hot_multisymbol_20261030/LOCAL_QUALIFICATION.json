@@ -1,6 +1,6 @@
 {
   "contract": "daily-hot-multisymbol-local-development-v1",
-  "result": "WINDOWS87_HARNESS_CORRECTIONS_LOCAL_PASS_WINDOWS88_PENDING",
+  "result": "WINDOWS_OFFLINE_MULTI40_ACCEPTED_DEPLOYMENT_REVIEW_PENDING",
   "accepted_paced_run": "development_owned_07_PASS.json",
   "synthetic_only": true,
   "native_local_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
@@ -19,8 +19,8 @@
   "activation_approved": false,
   "prior_failed_verdicts_preserved": true,
   "remaining": [
-    "Windows88 reassessment and full-size history result",
-    "Exact-candidate deployment/settings/activation review"
+    "Read-only deployment review of original p85 release on production computer",
+    "Concrete 40-symbol settings/integrity-scope review and first production activation approval"
   ],
   "focused_regressions": {
     "tests": 107,
@@ -74,6 +74,9 @@
   "windows85_original_result": "FAILED",
   "windows85_stop_boundary_confirmed": true,
   "runtime_changed_since_windows85": false,
-  "next": "Corrected p88: 31 focused checks, retained-run reassessment, independent missing full-size history proof; reuse original109focused passes and paced elapsed run",
-  "windows87_original_result": "FAILED"
+  "next": "Call original p85/86_review_multisymbol.cmd; then concrete release/settings/activation review. No unchanged qualification repeat.",
+  "windows87_original_result": "FAILED",
+  "windows88_result": "PASS",
+  "windows88_run": "20261031T031744Z_4890752a",
+  "windows88_seconds": 155.46899999999732
 }
