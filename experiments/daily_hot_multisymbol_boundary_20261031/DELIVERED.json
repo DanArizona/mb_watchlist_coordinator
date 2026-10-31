@@ -1,0 +1,38 @@
+{
+  "contract": "multisymbol-completion-delivery-v1",
+  "result": "DELIVERED_WINDOWS_PENDING",
+  "file_name": "hot_multisymbol_completion_20261031_128edf4.zip",
+  "library_file_id": "libfile_9f076f36e12c81919441278c5b6e8f1f",
+  "bytes": 14632,
+  "sha256": "2eec824785fa2066762007be92a4becea4c9be28d71236a424fc1bdb27b4440f",
+  "completion_inventory_sha256": "2b943fbc1dcf6c9216cb8a471597a949be12e12779d48d776aea9b6ec2d407af",
+  "source_commit": "128edf48a53c17f54238233a2650a48b83aa5605",
+  "source_public_commit": "63323af81e2892192e30a112c9cd42dc9cc5242d",
+  "source_tree": "f3b84fc044b111f81670f4a210976eff9200d5f0",
+  "frozen_runtime_commit": "e7cb9b6fa786170455dbfe7c3226d8b18227487e",
+  "frozen_source_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe",
+  "exact_archive_validation": {
+    "contract": "multisymbol-completion-exact-archive-smoke-v1",
+    "result": "PASS",
+    "tests": 17,
+    "seconds": 3.4799979079998593,
+    "closed_reassessment": "PASS",
+    "persistent_files_unchanged": true,
+    "source_unchanged": true,
+    "network": "denied",
+    "runtime_changed": false,
+    "windows_qualification": false
+  },
+  "original_windows85_result": "FAILED",
+  "original_closed_run": "20261031T021243Z_46ab7a08",
+  "windows87_pending": true,
+  "runtime_changed": false,
+  "production_changes": false,
+  "production_activation_approved": false,
+  "next": "Operator extracts to C:/Users/danla/hot87 and calls p87/87_complete_multisymbol_qualification.cmd; after PASS the original p85 command86 is the next read-only deployment review.",
+  "planned_windows_reuse": {
+    "focused_checks": 109,
+    "paced_elapsed_run_repeated": false
+  },
+  "missing_full_size_windows_history_pending": true
+}
