@@ -1,0 +1,17 @@
+{
+  "contract": "p94-explicit-publication-authorization-v1",
+  "recorded_at_utc": "2026-10-31T23:15:57.485659+00:00",
+  "user_authorization": "Please publish p94’s source, tests, documentation, proposed settings and acceptance records to `DanArizona/mb_watchlist_coordinator`, branch `experiment/manual-membership-20261031`",
+  "repository": "DanArizona/mb_watchlist_coordinator",
+  "branch": "experiment/manual-membership-20261031",
+  "scope": [
+    "p94 source",
+    "tests",
+    "documentation",
+    "proposed settings",
+    "acceptance records"
+  ],
+  "prior_automatic_approval_block": "Explicit p94 publication approval now supplied; no prior block bypass attempted.",
+  "production_activation_authorized": false,
+  "monday_p85_approval_changed": false
+}

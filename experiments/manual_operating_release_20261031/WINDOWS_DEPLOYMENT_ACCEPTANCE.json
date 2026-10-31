@@ -1,0 +1,210 @@
+{
+  "contract": "manual-operating-release-deployment-acceptance-v1",
+  "result": "ACCEPTED_REVIEW_READY",
+  "basis": "Complete operator-supplied read-only command95 JSON and actual returned CMD prompt",
+  "console_sha256": "68bb18a0b0d27d7a3d5dfc05495e146bbfc9a0bb042b260a1337bbe873b26622",
+  "original_files_independently_read": false,
+  "returned_cmd_prompt_observed": true,
+  "source_inventory_sha256": "70d4a22bfd375044060cb3461cf752dd77e46d6eb28ac6bcaeba55a8cd97b0ae",
+  "policy_sha256": "735d6e5c45979381ca8e652ca1122ea10178b0270a7f796cd864d72f95943638",
+  "source_installation_required": false,
+  "production_changes": false,
+  "provider_access": false,
+  "actual_vault_access": false,
+  "production_activation_approved": false,
+  "settings_adopted": false,
+  "approved_monday_p85_changed": false,
+  "saved_operator_review": {
+    "contract": "daily-hot-operator-delivery-v1",
+    "result": "REVIEW_READY",
+    "source_root": "C:\\Users\\danla\\manual94\\p94",
+    "source_inventory_sha256": "70d4a22bfd375044060cb3461cf752dd77e46d6eb28ac6bcaeba55a8cd97b0ae",
+    "release": {
+      "contract": "daily-hot-operator-delivery-v1",
+      "status": "CANDIDATE_NOT_ACTIVATED",
+      "proposed_first_session": "2026-11-03",
+      "planning_date_is_activation_approval": false,
+      "approved_monday_p85_changed": false,
+      "deployment": "Side-by-side extracted release; existing production repositories stay installed",
+      "production_baselines": {
+        "market_data": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+        "watchlists": "e2ef6f62856ba3226c41456b7779951aa8640cbf"
+      },
+      "dependency_versions": {
+        "mb-tools": "0.6.0",
+        "schwabdev": "4.0.0",
+        "cryptography": "49.0.0"
+      },
+      "policy_profile": "manual-identity-40-v1",
+      "policy_sha256": "735d6e5c45979381ca8e652ca1122ea10178b0270a7f796cd864d72f95943638",
+      "policy": {
+        "contract": "hot-nasdaq-manual-identity-operating-policy-proposal-v1",
+        "status": "PROPOSED_NOT_ADOPTED",
+        "cadence_profile": "interleaved-v1",
+        "hot_enabled": false,
+        "reason_codes": [
+          "LUDP",
+          "M"
+        ],
+        "request_lifetime": "regular_close",
+        "operator_actor_id": "operator:masterbot",
+        "limits": {
+          "maximum_active_hot_symbols": 40,
+          "maximum_distinct_added_symbols_per_session": 40,
+          "maximum_hot_quote_calls": 9360,
+          "maximum_identity_quote_calls": 120,
+          "maximum_directory_retrievals": 2,
+          "maximum_feed_attempts": 390,
+          "feed_seconds_after_completion": 60,
+          "maximum_worker_starts": 3,
+          "identity_seconds_between_calls": 2,
+          "maximum_identity_calls_per_symbol": 3,
+          "maximum_distinct_hot_symbols_per_session": 40,
+          "maximum_distinct_focus_additions_per_session": 40
+        },
+        "stabilization": {
+          "demotion_grace_seconds": 60,
+          "minimum_residence_seconds": 120,
+          "restriction_timing": "immediate_cap"
+        },
+        "deadlines": {
+          "worker_progress_seconds": 3,
+          "credential_seconds": 8,
+          "worker_replacement_hold_seconds": 15,
+          "cleanup_seconds": 10,
+          "reporting_seconds": 60
+        },
+        "source_warnings": [
+          "intermediate_feed_mutations_not_reconstructible",
+          "older_unknown_carryovers_not_proven_complete",
+          "provider_collector_driver_qualification_pending"
+        ],
+        "publication": {
+          "minimum_interval_seconds": 10,
+          "pending_membership_visible": true
+        },
+        "collection_history": {
+          "active_period_seconds": 300,
+          "full_schedule_registered": true,
+          "closed_payload_validation": "independent_full_journal_audit_and_replay"
+        },
+        "manual_controls": {
+          "actor_id": "operator:masterbot",
+          "allow_restrictions": true,
+          "promotion_scope": "catalog_after_shared_broker_identity",
+          "controller_required": true,
+          "sources_share_capacity": true,
+          "pending_withdrawal": true,
+          "identity_execution": "existing_controller_only"
+        }
+      },
+      "operator_qualification_contract": "daily-manual-operator-offline-qualification-v1",
+      "initial_capacity": {
+        "opening_uni_maximum": 600,
+        "uni_with_additions_maximum": 640,
+        "opening_focus_maximum": 40,
+        "focus_with_additions_maximum": 80,
+        "hot_maximum": 40
+      },
+      "manual_controls": "Original live reviewed controller only; fixed actor operator:masterbot; close window does not stop collection",
+      "saved_manual_feedback": "Read-only after stop; no edit grant, process start or provider access",
+      "fresh_start": "Pre-open; password accepted before 09:29 ET; no fresh after-open start or backfill",
+      "manual_resume": "Original complete state/config/catalog/budgets; observed exit; new exact review; original 15-second hold",
+      "rollback": "Stop/verify only this owned Hot scope; preserve requests/membership/receipts/journals; keep Uni/Focus/Health running",
+      "evidence": {
+        "WINDOWS_MANUAL_IDENTITY.json": "manual_broker_identity_20261031/WINDOWS_ACCEPTANCE.json",
+        "WINDOWS_SHARED_MANUAL.json": "manual_daily_controller_20261031/WINDOWS_ACCEPTANCE.json",
+        "WINDOWS_MANUAL_INTERFACE.json": "manual_membership_20261031/WINDOWS_ACCEPTANCE.json",
+        "WINDOWS_OPERATOR_PREDECESSOR.json": "hot_operating_release_20261030/WINDOWS_ACCEPTANCE.json",
+        "WINDOWS_DEPLOYMENT_PREDECESSOR.json": "hot_operating_release_20261030/WINDOWS_DEPLOYMENT_ACCEPTANCE.json",
+        "LIVE_DAILY_PATH.json": "market_open_daily_check_20261029/WINDOWS_LIVE_ACCEPTANCE.json",
+        "WINDOWS_MEMBERSHIP.json": "membership_status_20261030/WINDOWS_ACCEPTANCE.json",
+        "WINDOWS_LAUNCH.json": "daily_hot_launch_20261029/WINDOWS_ACCEPTANCE.json",
+        "WINDOWS_READ_SHARING.json": "daily_hot_windows_evidence_read_20261029/WINDOWS_ACCEPTANCE.json",
+        "AFTER_HOURS_PROVIDER.json": "after_hours_provider_20261029/WINDOWS_LIVE_ACCEPTANCE.json",
+        "CAPACITY_COMPONENT_ORIGINAL_FAILED_PACKET.json": "daily_hot_operating_20261028/validation/windows_3c0f8cd_review.json"
+      },
+      "evidence_scope": "Accepted component/bounded-live scopes retained; new qualification is operator composition only",
+      "provider_capacity_qualified": false,
+      "full_day_capacity_qualified": false,
+      "production_activation_approved": false
+    },
+    "repositories": {
+      "market_data": {
+        "root": "C:\\Users\\danla\\Documents\\github\\mb_market_data",
+        "branch": "main",
+        "head": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+        "tracked_clean": true
+      },
+      "watchlists": {
+        "root": "C:\\Users\\danla\\Documents\\github\\schwab_watchlists",
+        "branch": "main",
+        "head": "e2ef6f62856ba3226c41456b7779951aa8640cbf",
+        "tracked_clean": true
+      }
+    },
+    "dependencies": {
+      "qualified": true,
+      "reason": "probe_pass",
+      "python": [
+        3,
+        12,
+        13
+      ],
+      "executable": "C:\\Users\\danla\\anaconda3\\envs\\sea-green\\python.exe",
+      "versions": {
+        "mb-tools": "0.6.0",
+        "schwabdev": "4.0.0",
+        "cryptography": "49.0.0"
+      },
+      "mb_tools_root": "C:\\Users\\danla\\Documents\\github\\mb_tools\\src\\mb_tools",
+      "source": {
+        "__init__.py": {
+          "sha256": "873508b463e1e5388ddf493836ce1dfeca089aef1eac22f851b41701423a2958",
+          "canonical_source_sha256": "a4f32c299d9eac0a0c0fda4f8fc3ea6779364f6830d28c04ca92bde99b618bf7",
+          "expected_sha256": "a4f32c299d9eac0a0c0fda4f8fc3ea6779364f6830d28c04ca92bde99b618bf7"
+        },
+        "schwab_secure/__init__.py": {
+          "sha256": "e9a71e88b415d8576a5879f008956fbf2b058605a202f4bff1408db523e59b70",
+          "canonical_source_sha256": "4598710eb0c749366a632a4f8282614f243dfcd9226afa31b032de161aaff712",
+          "expected_sha256": "4598710eb0c749366a632a4f8282614f243dfcd9226afa31b032de161aaff712"
+        },
+        "schwab_secure/client.py": {
+          "sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea",
+          "canonical_source_sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea",
+          "expected_sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea"
+        },
+        "schwab_secure/config.py": {
+          "sha256": "519842e37ed80cc39051fae2546ea11f813edd1a1cd73e5019189b86623f483b",
+          "canonical_source_sha256": "7da559d38a29ce3cf771e1524d160ca41d4671eb25221abaf11342347b00b2fa",
+          "expected_sha256": "7da559d38a29ce3cf771e1524d160ca41d4671eb25221abaf11342347b00b2fa"
+        },
+        "schwab_secure/status.py": {
+          "sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141",
+          "canonical_source_sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141",
+          "expected_sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141"
+        },
+        "schwab_secure/reauthorize.py": {
+          "sha256": "ed106cd5e2ca17c592a5bbd6029ec435c2aa9f84b5c9a14c4ba33e636b427601",
+          "canonical_source_sha256": "d1faaf0547730dbe7d9949dc90747e2f14e371e028dba00bf095376141dba1d6",
+          "expected_sha256": "d1faaf0547730dbe7d9949dc90747e2f14e371e028dba00bf095376141dba1d6"
+        },
+        "secure_config/__init__.py": {
+          "sha256": "250a90bc2b3b3dfe17a1b0718059ee2ab7e6a159491c822ee90ccf9cdcc90328",
+          "canonical_source_sha256": "b234604319b99e0fa98e486ec30e8f120419688a8587af13270b76c1d18d0581",
+          "expected_sha256": "b234604319b99e0fa98e486ec30e8f120419688a8587af13270b76c1d18d0581"
+        },
+        "secure_config/ecfg.py": {
+          "sha256": "02a1b77523911dea68fbfbe9961d8a1d3f6d0b9adfd0ed2dc4a495a0cabf7cb4",
+          "canonical_source_sha256": "0bd6c3d2160876cb5d428723694b9c38ba63f64780a1782690d74e33e4f4da6e",
+          "expected_sha256": "0bd6c3d2160876cb5d428723694b9c38ba63f64780a1782690d74e33e4f4da6e"
+        }
+      }
+    },
+    "source_installation_required": false,
+    "production_changes": false,
+    "provider_access": false,
+    "actual_vault_access": false
+  },
+  "interpretation": "Exact p94 source, matching Windows qualification, clean installed baselines and dependency versions/helper bytes passed the actual-computer read-only preflight. This is not a live manual session or production activation approval."
+}

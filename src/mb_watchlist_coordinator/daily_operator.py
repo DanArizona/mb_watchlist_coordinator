@@ -7,6 +7,7 @@ from datetime import date, datetime, timedelta, timezone
 import json
 from pathlib import Path
 import re
+import sqlite3
 import subprocess
 import sys
 from zoneinfo import ZoneInfo
@@ -18,8 +19,9 @@ from .daily_session import regular_path
 from .daily_supervision import read_json, sealed
 from .installed_startup_probe import inspect_dependencies
 from .live_profile import source_guard
-from .operating_plan import proposed_policy, SINGLE_PROFILE
+from .operating_plan import proposed_policy, SINGLE_PROFILE, BROKER_MANUAL_PROFILE
 from .sampling_requests import digest, timestamp, utc_text
+from .sampling_service import ServiceBusy
 
 CONTRACT = 'daily-hot-operator-delivery-v1'
 MARKET_BASE = '6b53ab1d12e4e1fdaf4deb1d70b717e13570358c'
@@ -27,6 +29,8 @@ WATCHLIST_BASE = 'e2ef6f62856ba3226c41456b7779951aa8640cbf'
 DEPENDENCIES = {'mb-tools': '0.6.0', 'schwabdev': '4.0.0', 'cryptography': '49.0.0'}
 MAX_OPENING_UNI = 600
 FRESH_START_LEAD_SECONDS = 60
+MANUAL_QUALIFICATION = 'daily-manual-operator-offline-qualification-v1'
+MANUAL_BASE_INVENTORY = '9cadfd501cb684b7c6203c31233acb1df36bb303e45e49a6fb190f4d49fbeda9'
 ET = ZoneInfo('America/New_York')
 UNSAFE_CMD = re.compile(r'[\r\n\x00&|<>^%!\"]')
 
@@ -69,19 +73,34 @@ def release_info(source):
             or release['dependency_versions'] != DEPENDENCIES
             or release['production_baselines'] != {'market_data': MARKET_BASE, 'watchlists': WATCHLIST_BASE}):
         raise OperatorError('Original operating release and policy required')
+    if release.get('policy_profile') == BROKER_MANUAL_PROFILE:
+        accepted=read_json(source/'evidence/WINDOWS_MANUAL_IDENTITY.json')
+        checked=accepted['windows_checks']
+        if (release.get('policy')!=policy
+                or accepted.get('result')!='ACCEPTED'
+                or checked.get('contract')!='manual-shared-broker-identity-offline-qualification-v1'
+                or checked.get('result')!='PASS' or checked.get('windows_checks_passed')is not True
+                or checked.get('source_inventory_sha256')!=MANUAL_BASE_INVENTORY
+                or checked.get('tests')!=71 or checked.get('passed')!=71
+                or checked.get('failures')or checked.get('errors')or checked.get('skipped')):
+            raise OperatorError('Original accepted manual identity evidence and exact policy required')
     return source, sha, release
 
 
 def windows_qualification(source, inventory):
     report = read_json(source/'runs/windows-qualification.json')
     release=read_json(source/'RELEASE.json')
-    expected=('daily-hot-multisymbol-offline-qualification-v1' if release.get('policy_profile')=='multi-40-v1'
+    expected=(MANUAL_QUALIFICATION if release.get('policy_profile')==BROKER_MANUAL_PROFILE else
+        'daily-hot-multisymbol-offline-qualification-v1' if release.get('policy_profile')=='multi-40-v1'
         else 'daily-hot-operator-offline-qualification-v1')
     if (report.get('contract') != expected
             or report.get('result') != 'PASS' or report.get('windows_checks_passed') is not True
             or report.get('source_inventory_sha256') != inventory
             or report.get('failures') or report.get('errors') or report.get('skipped')):
         raise OperatorError('Matching Windows operating-package qualification required')
+    if expected==MANUAL_QUALIFICATION and (type(report.get('tests'))is not int or report['tests']<=0
+            or report.get('passed')!=report['tests']or report.get('native_cmd_proof',{}).get('result')!='PASS'):
+        raise OperatorError('Complete manual operator and native CMD qualification required')
     return report
 
 
@@ -173,6 +192,11 @@ def _write_review(source, review, number):
                           ('ROLLBACK_HOT.cmd', 'stop')):
         _batch(folder/name, source, command, arguments=common, approval_arguments=command == 'start')
     raw = review['backend_review']['configuration']
+    manual=raw['publication'].get('policy_profile')==BROKER_MANUAL_PROFILE
+    if manual:
+        for name,command in (('MANUAL_CONTROLS.cmd','controls'),('MANUAL_STATUS.cmd','manual-status'),
+                             ('PREPARE_RESUME.cmd','resume')):
+            _batch(folder/name,source,command,arguments=common)
     start, stop = timestamp(raw['collector']['start_at_utc']), timestamp(raw['collector']['stop_at_utc'])
     summary = {
         'contract': CONTRACT, 'result': 'PREPARED_NOT_ACTIVATED', 'review_path': str(path),
@@ -189,6 +213,13 @@ def _write_review(source, review, number):
                                               review['review_sha256'], '--activation-approved']),
         'production_changes': False, 'provider_access': False, 'actual_vault_access': False,
         'rollback': 'STOP_HOT/ROLLBACK_HOT, then STATUS until owned cleanup is EXIT_OBSERVED with scope_empty_observed=true; keep Uni/Focus/Health running and preserve membership/state.'}
+    if manual:
+        summary['manual_controls']={'actor_id':raw['collector']['daily_binding']['policy']['operator_actor_id'],
+            'controls_command':str(folder/'MANUAL_CONTROLS.cmd'),
+            'readonly_feedback_command':str(folder/'MANUAL_STATUS.cmd'),
+            'resume_preparation_command':str(folder/'PREPARE_RESUME.cmd'),
+            'writes_require_active_controller':True,'close_controls_stops_controller':False,
+            'after_resume':'Open MANUAL_CONTROLS from the new review folder; the old window stays fenced.'}
     (folder/'operating-summary.json').write_text(json.dumps(summary, indent=2)+'\n', encoding='utf-8')
     return summary
 
@@ -305,3 +336,57 @@ def day_status(source, path):
 def stop_day(source, path):
     value, _ = load_review(source, path)
     return request_stop(value['outer_root'])
+
+
+def _manual_review(source,path):
+    value,_=load_review(source,path)
+    if value['backend_review']['configuration']['publication'].get('policy_profile')!=BROKER_MANUAL_PROFILE:
+        raise OperatorError('Manual controls require the reviewed manual identity profile')
+    return value
+
+
+def open_day_controls(source,path,*,clock=None,qualification_reader=windows_qualification):
+    """Attach the existing GUI backend; never construct an owner or prompt."""
+    from .daily_launch import validate_owned_launch
+    from .daily_manual_controls import open_daily_controls
+    source,inventory,_=release_info(source)
+    value=_manual_review(source,path)
+    qualification_reader(source,inventory)
+    root=Path(value['outer_root'])
+    if not root.is_dir():
+        raise OperatorError('Start the approved dated controller before opening manual controls')
+    if (root/'operating-result.json').exists():
+        raise OperatorError('Selected outer already ended; use the current resumed review')
+    binding=validate_owned_launch(root,inventory,value['dependency_sha256'])
+    status=inspect_operating_status(root,clock=clock)
+    age=status.get('check_age_seconds',-1)
+    if (binding['public_launch']['review']!=value or status.get('error_type')
+            or status.get('state')in('UNKNOWN','OWNER_LOST','STALE_WATCHDOG','FAILED','STOPPED')
+            or not 0<=age<3 or status.get('stop_requested')):
+        raise OperatorError('The selected reviewed outer is not actively owned')
+    config=value['backend_review']['configuration']
+    return open_daily_controls(config['publication']['state_root'],
+        expected_configuration_sha256=value['configuration_sha256'],clock=clock)
+
+
+def manual_day_status(source,path,*,clock=None):
+    """Read durable manual feedback after stop, without granting edit access."""
+    from .daily_launch import configuration
+    from .daily_session import manual_controls
+    from .daily_worker_view import DailyPublicationReader
+    from .daily_hot_status import inspect_hot_status
+    value=_manual_review(source,path)
+    config=configuration(value['backend_review']['configuration'])
+    root=Path(config.publication.state_root)
+    result={'provider_access':False,'process_control':False,'writes_permitted':False,
+        'review_path':str(path),'state_root':str(root),'fresh':False,
+        'controller_status':inspect_hot_status(root,clock=clock)}
+    if not root.exists():return dict(result,state='WAITING_FOR_CONTROLLER',feedback=None)
+    try:
+        reader=DailyPublicationReader(config.publication,config.catalog_path,
+            binding=config.collector.daily_binding,claim=config.collector.daily_claim,
+            publication_binding=config.collector.publication_binding,fence=lambda:None,clock=clock)
+        controls=manual_controls(reader.service._service,root,reader.binding['policy'],clock=reader.clock)
+        return dict(result,state='READ_ONLY_FEEDBACK',fresh=True,feedback=controls.snapshot())
+    except (OSError,ValueError,KeyError,TypeError,sqlite3.Error,ServiceBusy)as error:
+        return dict(result,state='UNAVAILABLE',feedback=None,error_type=type(error).__name__)

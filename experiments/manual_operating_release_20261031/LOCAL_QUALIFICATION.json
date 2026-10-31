@@ -1,0 +1,57 @@
+{
+  "contract": "manual-operating-delivery-local-qualification-v1",
+  "exact_archive_sha256": "5e42ab4a2cf821177d91ddb080d7731667a35a52cd3bda034e5246fcfe7a429d",
+  "exact_packet_result": {
+    "actual_provider_used": false,
+    "actual_vault_access": false,
+    "approved_p85_or_accepted_p93_changed": false,
+    "contract": "daily-manual-operator-offline-qualification-v1",
+    "controller_recovery_and_collector_changed": false,
+    "errors": 0,
+    "failed_tests": [],
+    "failures": 0,
+    "full_day_capacity_qualified": false,
+    "manual_identity_or_gui_changed": false,
+    "monday_est_window_qualified_offline": true,
+    "native_cmd_proof": {
+      "reason": "Actual CMD behavior is qualified on Windows",
+      "result": "NOT_EXERCISED"
+    },
+    "native_source_changed": false,
+    "network": "denied",
+    "passed": 48,
+    "platform": "linux",
+    "prior_live_provider_recovery_capacity_and_gui_qualifications_repeated": false,
+    "production_changes": false,
+    "production_hot_enabled": false,
+    "python": [
+      3,
+      12,
+      14
+    ],
+    "qualified_scope": "Manual operating delivery: dated commands, active-reviewed-owner edit attachment, read-only feedback after stop, exact approval-before-password boundary, retained resume and rollback routing",
+    "remaining": [
+      "Actual Windows94 result and returned CMD prompt",
+      "Read-only deployment review on the production computer",
+      "Approval of the concrete manual release/settings and a dated activation; Monday p85 approval is unchanged"
+    ],
+    "result": "PASS",
+    "seconds": 4.434059473998786,
+    "skipped": 0,
+    "source": {
+      "accepted_manual_predecessor": "44a7e4a4951fbf3c63c741134dcb23fd950642cd",
+      "coordinator_commit": "255111b3663a884f0db00444e18d528e1b1e111a",
+      "coordinator_tree": "d93e6f8b28e2fe68cd605cb5af0ec7de19b28908",
+      "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+      "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+    },
+    "source_inventory_sha256": "70d4a22bfd375044060cb3461cf752dd77e46d6eb28ac6bcaeba55a8cd97b0ae",
+    "tests": 48,
+    "windows_checks_passed": false
+  },
+  "windows_cmd_routing_result": "PENDING; Linux cannot execute cmd.exe",
+  "prior_backend_windows71": "ACCEPTED; unchanged and not repeated",
+  "runtime_change_scope": [
+    "daily_operator.py"
+  ]
+}
