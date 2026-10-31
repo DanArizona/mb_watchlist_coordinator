@@ -1,7 +1,24 @@
 # Multi-symbol development handoff
 
 
-## Current: Windows88 offline multi-40 acceptance PASS
+## Current: Monday multi-40 production operation APPROVED; not started
+
+
+Explicit user approval is now recorded in ACTIVATION_APPROVAL_20261102.json:
+“I approve this p85 release and these settings for Monday’s first controlled
+production Hot session, including manual resume within the documented limits”.
+Scope: fixed p85 inventory0c5f9d7a..., multi-40 policy e3e7d244..., November2 only,
+09:30–16:00EST, pre-open target09:20/passwordbefore09:29. Actual valid Monday
+r1/catalog binding and retained-state manual resume within the original budgets
+need no further chat permission. Resume includes a fresh minimum15-second Hot
+collector hold and the shared cumulative3-start limit. Preserve provider stops.
+No wider scope, later dates, installs or main merges were authorized. The actual
+operation has not started, and the frozen runtime/proposal bytes are unchanged.
+
+MONDAY_20261102_CHECKLIST.md is saved: ordinary preflight around08:50ET; API OV
+at/after09:00; actual Focusr1 publication/audit; independent Uni/Focus/Health
+startup readiness; Monday Hot catalog and bound review; target09:20 Hot start,
+passwordbefore09:29; opening checks after09:30 and full closeout at stop.
 
 
 Command86 now REVIEW_READY on MasterBot with the returned CMD prompt: exact p85
@@ -13,9 +30,9 @@ ACTIVATION_REVIEW_20261102.md:40distinct Hot authorizations/active Hot,40outside
 additions, Monday584Uni→624 maximum, Focus40→80; pre-open target09:20, password
 before09:29,09:30–16:00EST (14:30–21:00UTC), same runtime/gates, ten-second
 addition batching and five-minute active payload periods plus full closeout.
-Explicit first production activation/settings approval remains pending. Normal
-Monday r1/catalog binding within the approved fixed scope will not require a
-second permission round. Do not launch today or edit the sealed policy labels.
+Explicit first Monday production activation/settings approval has been granted
+as recorded above. Actual dated r1/catalog binding is ordinary preparation
+inside that approval. Do not launch before Monday or edit sealed policy bytes.
 
 
 Windows88 run20261031T031744Z_4890752a PASS155.469s, actual returned CMD prompt.
@@ -33,11 +50,12 @@ tails0.5018414/0.4973194s, beforeAPI0.378474/0.380435s<0.75s,
 Full native audit, Hot value integrity and two native event-order digests PASS,
 11694events SHA25634b91e092f22f7e58fd081447d0399d461a83942a37c6c942866ad885ede5583.
 Synthetic retained history is not an elapsed full day or real40-symbol provider
-qualification. No production activation/settings adoption is inferred.
+qualification. That evidence alone did not infer activation approval; the separate explicit
+Monday user approval is now recorded above.
 
 The command86 deployment review has now passed as recorded above. Next is the
-concrete activation proposal; no new ZIP, install or unchanged qualification
-repeat is needed. See WINDOWS_ACCEPTANCE_P88.json for qualification scope.
+approved Monday input preparation/startup; no new ZIP, install or unchanged
+qualification repeat is needed. See WINDOWS_ACCEPTANCE_P88.json for qualification scope.
 
 The operator's retained diagnostic confirms identity client close at14:05:19.101924Z
 and ValueError in the exact inline fence stop branch at14:05:19.103434Z:74.320ms

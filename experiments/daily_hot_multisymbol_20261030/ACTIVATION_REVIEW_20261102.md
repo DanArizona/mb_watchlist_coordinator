@@ -1,6 +1,10 @@
 # Monday November 2: 40-symbol Hot activation proposal
 
-Status: **READY FOR EXPLICIT APPROVAL; NOT ACTIVATED.**
+Status: **APPROVED FOR MONDAY NOVEMBER 2; OPERATION NOT STARTED.**
+
+The user explicitly approved this release/settings scope and retained-state manual
+resume in this chat. [ACTIVATION_APPROVAL_20261102.json](ACTIVATION_APPROVAL_20261102.json)
+records the exact approval, source/policy pins and original proposal digest.
 
 Command86 returned REVIEW_READY on MasterBot with the actual CMD prompt. Its
 source inventory, clean installed repositories, dependency versions and helper
@@ -122,15 +126,16 @@ provider_collector_driver_qualification_pending warning remains in the sealed
 bytes; accepted bounded daily-path evidence and the remaining full-session
 limits are stated separately.
 
-## Approval requested
+## Approval granted
 
-Approve this frozen p85 release, the multi-40 settings and the first controlled
-production operation on Monday November 2, including manual retained-state
-resume within the same session and limits. Later dates or wider/changed scope
-are not included.
+The user approved this frozen p85 release, the multi-40 settings and Monday's
+first controlled production Hot session, including manual resume within the
+same documented limits. The exact approval is recorded separately, along with
+the SHA-256 of this proposal before its approval annotation.
 
-The user's standing GitHub authorization covers publication and excludes
-production changes. This request covers starting Hot and writing membership and
-Hot evidence to the shared production journal. The earlier isolated Friday
-trial approval covered that completed trial. This review itself does not record
-activation approval.
+This specific production authorization supplements the standing GitHub
+publication authorization. Actual valid Monday r1/catalog preparation and bound
+resume reviews within this fixed scope do not require another chat approval.
+Normal source/dependency/input/ownership/budget/time checks remain mandatory.
+The approved operation has not started. Later dates or wider/changed scope are
+outside this approval.

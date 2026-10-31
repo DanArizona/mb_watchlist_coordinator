@@ -1,0 +1,126 @@
+{
+  "contract": "daily-hot-production-activation-approval-v1",
+  "result": "APPROVED_FOR_2026_11_02_NOT_STARTED",
+  "authorization_basis": "Explicit user approval in this chat; recorded time is the recording time, not an inferred user-message timestamp",
+  "user_approval_verbatim": "I approve this p85 release and these settings for Monday\u2019s first controlled production Hot session, including manual resume within the documented limits",
+  "recorded_at_utc": "2026-10-31T04:30:11.460005+00:00",
+  "recorded_at_client": "2026-10-30T23:30:11.460005-05:00",
+  "client_date_context": "2026-10-30",
+  "target_session_date": "2026-11-02",
+  "approved_proposal": {
+    "path": "experiments/daily_hot_multisymbol_20261030/ACTIVATION_REVIEW_20261102.md",
+    "sha256_before_approval_annotation": "8388d722d49947a6686fac6b9de0e01da8ed895cbce1848bb571574dbcff1297",
+    "local_commit": "118d7e6399a15bb48103e58392e7211c66ec130b",
+    "public_commit": "705534540a1f8121e213d272d998d363c193bd8f"
+  },
+  "release": {
+    "root": "C:\\Users\\danla\\hot85\\p85",
+    "artifact": "hot_multisymbol_20261031_e7cb9b6.zip",
+    "artifact_sha256": "e8008e90b6ec61671b4ea029ed3168ad4b4cd55830aa7d10b075a76808076fe6",
+    "source_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe",
+    "coordinator_commit": "e7cb9b6fa786170455dbfe7c3226d8b18227487e",
+    "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "policy_profile": "multi-40-v1",
+    "policy_sha256": "e3e7d2449214928e7094735ba1f5cbed641dba37c61b0ea085b86e827f5944b6"
+  },
+  "approved_policy": {
+    "contract": "hot-multisymbol-operating-policy-proposal-v1",
+    "status": "PROPOSED_NOT_ADOPTED",
+    "cadence_profile": "interleaved-v1",
+    "hot_enabled": false,
+    "reason_codes": [
+      "LUDP",
+      "M"
+    ],
+    "request_lifetime": "regular_close",
+    "operator_actor_id": "operator:masterbot",
+    "limits": {
+      "maximum_active_hot_symbols": 40,
+      "maximum_distinct_added_symbols_per_session": 40,
+      "maximum_hot_quote_calls": 9360,
+      "maximum_identity_quote_calls": 120,
+      "maximum_directory_retrievals": 2,
+      "maximum_feed_attempts": 390,
+      "feed_seconds_after_completion": 60,
+      "maximum_worker_starts": 3,
+      "identity_seconds_between_calls": 2,
+      "maximum_identity_calls_per_symbol": 3
+    },
+    "stabilization": {
+      "demotion_grace_seconds": 60,
+      "minimum_residence_seconds": 120,
+      "restriction_timing": "immediate_cap"
+    },
+    "deadlines": {
+      "worker_progress_seconds": 3,
+      "credential_seconds": 8,
+      "worker_replacement_hold_seconds": 15,
+      "cleanup_seconds": 10,
+      "reporting_seconds": 60
+    },
+    "source_warnings": [
+      "intermediate_feed_mutations_not_reconstructible",
+      "older_unknown_carryovers_not_proven_complete",
+      "provider_collector_driver_qualification_pending"
+    ],
+    "publication": {
+      "minimum_interval_seconds": 10,
+      "pending_membership_visible": true
+    },
+    "collection_history": {
+      "active_period_seconds": 300,
+      "full_schedule_registered": true,
+      "closed_payload_validation": "independent_full_journal_audit_and_replay"
+    }
+  },
+  "session_window": {
+    "start_et": "2026-11-02T09:30:00-05:00",
+    "stop_et": "2026-11-02T16:00:00-05:00",
+    "start_utc": "2026-11-02T14:30:00+00:00",
+    "stop_utc": "2026-11-02T21:00:00+00:00",
+    "stop_excluded": true,
+    "target_startup_et": "2026-11-02T09:20:00-05:00",
+    "fresh_password_must_finish_before_et": "2026-11-02T09:29:00-05:00"
+  },
+  "opening": {
+    "uni": 584,
+    "focus_maximum": 40,
+    "hot": 0,
+    "r0_content_sha256": "e19ce104dc58501310ea456abdfd9f72d0a5e21dd5b9c5c730775c207960dd47",
+    "maximum_resulting_membership": {
+      "uni": 624,
+      "focus": 80,
+      "hot": 40
+    }
+  },
+  "authorized_production_journal": "C:\\Users\\danla\\Documents\\github\\mb_market_data\\output\\quote_observation_journal_v2_api_opening_2026-11-02\\2026-11-02.sqlite3",
+  "ordinary_preparation_authorized": {
+    "actual_valid_monday_focus_r1_binding": true,
+    "same_date_catalog_within_two_retrieval_limit": true,
+    "exact_generated_review_digest_binding": true,
+    "normal_existing_encrypted_configuration_use": true,
+    "normal_shared_sdk_token_refresh_possible": true,
+    "additional_chat_permission_required_within_approved_scope": false
+  },
+  "manual_resume_approved": {
+    "same_monday_session_only": true,
+    "original_configuration_catalog_state_and_budgets": true,
+    "previous_scope_observed_empty_and_owners_released": true,
+    "fresh_minimum_hold_seconds": 15,
+    "maximum_cumulative_charged_worker_starts": 3,
+    "no_budget_reset": true,
+    "provider_stop_remains_latched": true,
+    "additional_chat_permission_required_within_approved_scope": false
+  },
+  "source_installation_or_main_merge_approved": false,
+  "later_dates_or_wider_changed_scope_approved": false,
+  "production_activation_approved": true,
+  "settings_approved_for_target_session": true,
+  "operation_started": false,
+  "production_hot_enabled_observed": false,
+  "credential_or_provider_access_performed_by_recording": false,
+  "credential_secret_values_recorded": false,
+  "runtime_source_or_inventory_changed": false,
+  "full_day_capacity_qualified": false,
+  "next": "Monday ordinary OV/r1 preparation, independent Uni/Focus/Health startup readiness, dated Hot catalog/review binding, approved pre-open Hot startup and observation."
+}
