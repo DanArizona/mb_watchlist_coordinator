@@ -1,0 +1,542 @@
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>powershell -NoProfile -Command "Expand-Archive -LiteralPath 'C:\Users\danla\Downloads\manual_broker_identity_20261031_e88ed04.zip' -DestinationPath 'C:\Users\danla\manual93'"
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>call "C:\Users\danla\manual93\p93\93_verify_manual_broker_identity.cmd"
+OFFLINE manual outside-Uni broker integration. Synthetic credentials, SDK and journals; real owned processes.
+71 focused checks, a forced 20-manual/20-Nasdaq burst and a 15-second readable GUI preview. Allow about 90 seconds.
+No password, API or production changes. Approved p85 and accepted p92 packets are unchanged.
+test_both_sources_share_original_two_second_spacing (test_daily_manual_identity.DailyManualIdentityTests.test_both_sources_share_original_two_second_spacing) ... ok
+test_cached_broker_approval_is_immutable (test_daily_manual_identity.DailyManualIdentityTests.test_cached_broker_approval_is_immutable) ... ok
+test_common_backend_refuses_manual_catalog_presence_without_confirmation (test_daily_manual_identity.DailyManualIdentityTests.test_common_backend_refuses_manual_catalog_presence_without_confirmation) ... ok
+test_exact_identity_then_normal_request_publishes_nested_membership (test_daily_manual_identity.DailyManualIdentityTests.test_exact_identity_then_normal_request_publishes_nested_membership) ... ok
+test_forty_mixed_outside_admissions_share_capacity_and_overflow_without_extra_call (test_daily_manual_identity.DailyManualIdentityTests.test_forty_mixed_outside_admissions_share_capacity_and_overflow_without_extra_call) ... ok
+test_full_shared_hot_capacity_blocks_queue_without_extra_lookup (test_daily_manual_identity.DailyManualIdentityTests.test_full_shared_hot_capacity_blocks_queue_without_extra_lookup) ... ok
+test_later_confirmation_does_not_rewrite_an_earlier_rejection (test_daily_manual_identity.DailyManualIdentityTests.test_later_confirmation_does_not_rewrite_an_earlier_rejection) ... ok
+test_lost_manual_receipt_reuses_exact_original_approval_reference (test_daily_manual_identity.DailyManualIdentityTests.test_lost_manual_receipt_reuses_exact_original_approval_reference) ... ok
+test_missing_or_changed_identity_evidence_fails_closed (test_daily_manual_identity.DailyManualIdentityTests.test_missing_or_changed_identity_evidence_fails_closed) ... ok
+test_nasdaq_and_manual_reuse_one_exact_symbol_confirmation (test_daily_manual_identity.DailyManualIdentityTests.test_nasdaq_and_manual_reuse_one_exact_symbol_confirmation) ... ok
+test_nasdaq_confirmation_is_reused_by_later_manual_command (test_daily_manual_identity.DailyManualIdentityTests.test_nasdaq_confirmation_is_reused_by_later_manual_command) ... ok
+test_new_profile_cannot_rebind_sealed_identity_limits_or_p92_scope (test_daily_manual_identity.DailyManualIdentityTests.test_new_profile_cannot_rebind_sealed_identity_limits_or_p92_scope) ... ok
+test_opening_uni_promotion_still_needs_no_identity_call (test_daily_manual_identity.DailyManualIdentityTests.test_opening_uni_promotion_still_needs_no_identity_call) ... ok
+test_outside_catalog_is_durably_blocked_before_provider (test_daily_manual_identity.DailyManualIdentityTests.test_outside_catalog_is_durably_blocked_before_provider) ... ok
+test_outside_own_demotion_and_restriction_reuse_original_identity (test_daily_manual_identity.DailyManualIdentityTests.test_outside_own_demotion_and_restriction_reuse_original_identity) ... ok
+test_pending_outside_request_makes_no_gui_provider_call_or_membership (test_daily_manual_identity.DailyManualIdentityTests.test_pending_outside_request_makes_no_gui_provider_call_or_membership) ... ok
+test_pending_withdrawal_prevents_broker_dispatch_and_admission (test_daily_manual_identity.DailyManualIdentityTests.test_pending_withdrawal_prevents_broker_dispatch_and_admission) ... ok
+test_per_symbol_budget_is_shared_across_manual_and_nasdaq (test_daily_manual_identity.DailyManualIdentityTests.test_per_symbol_budget_is_shared_across_manual_and_nasdaq) ... ok
+test_provider_rate_limit_latches_both_sources_without_second_call (test_daily_manual_identity.DailyManualIdentityTests.test_provider_rate_limit_latches_both_sources_without_second_call) ... ok
+test_public_review_matches_the_shared_broker_publication_identity (test_daily_manual_identity.DailyManualIdentityTests.test_public_review_matches_the_shared_broker_publication_identity) ... ok
+test_restart_retains_manual_queue_charged_lookup_and_response (test_daily_manual_identity.DailyManualIdentityTests.test_restart_retains_manual_queue_charged_lookup_and_response) ... ok
+test_unconfirmed_alias_is_blocked_without_substitution (test_daily_manual_identity.DailyManualIdentityTests.test_unconfirmed_alias_is_blocked_without_substitution) ... ok
+test_unknown_charged_lookup_is_blocked_and_never_retried (test_daily_manual_identity.DailyManualIdentityTests.test_unknown_charged_lookup_is_blocked_and_never_retried) ... ok
+test_withdrawal_during_lookup_retains_charge_but_never_admits (test_daily_manual_identity.DailyManualIdentityTests.test_withdrawal_during_lookup_retains_charge_but_never_admits) ... ok
+test_worker_reader_reconstructs_exact_shared_broker_gate (test_daily_manual_identity.DailyManualIdentityTests.test_worker_reader_reconstructs_exact_shared_broker_gate) ... ok
+test_manual_resume_retains_budgets_and_fences_the_old_window (test_daily_manual_identity_owned.ManualIdentityOwnedTests.test_manual_resume_retains_budgets_and_fences_the_old_window) ... ok
+test_owned_controller_collects_manual_and_nasdaq_roster_and_fences_ui_after_stop (test_daily_manual_identity_owned.ManualIdentityOwnedTests.test_owned_controller_collects_manual_and_nasdaq_roster_and_fences_ui_after_stop) ... ok
+test_pending_withdrawal_through_bound_controls_leaves_no_identity_dispatch (test_daily_manual_identity_owned.ManualIdentityOwnedTests.test_pending_withdrawal_through_bound_controls_leaves_no_identity_dispatch) ... ok
+test_stale_owner_and_changed_invocation_disable_bound_controls_without_appending (test_daily_manual_identity_owned.ManualIdentityOwnedTests.test_stale_owner_and_changed_invocation_disable_bound_controls_without_appending) ... ok
+test_wrong_configuration_cannot_attach_or_initialize_controls (test_daily_manual_identity_owned.ManualIdentityOwnedTests.test_wrong_configuration_cannot_attach_or_initialize_controls) ... ok
+test_cleared_limit_reveals_existing_source_demand_without_new_identity_quote (test_daily_manual.DailyManualTests.test_cleared_limit_reveals_existing_source_demand_without_new_identity_quote) ... ok
+test_concurrent_sources_cannot_both_take_fortieth_slot (test_daily_manual.DailyManualTests.test_concurrent_sources_cannot_both_take_fortieth_slot) ... ok
+test_duplicate_symbol_across_sources_consumes_one_capacity_slot (test_daily_manual.DailyManualTests.test_duplicate_symbol_across_sources_consumes_one_capacity_slot) ... ok
+test_focus_capacity_is_shared_even_for_symbols_already_in_uni (test_daily_manual.DailyManualTests.test_focus_capacity_is_shared_even_for_symbols_already_in_uni) ... ok
+test_foreign_source_and_foreign_withdrawal_are_rejected (test_daily_manual.DailyManualTests.test_foreign_source_and_foreign_withdrawal_are_rejected) ... ok
+test_forty_manual_hot_requests_leave_no_separate_nasdaq_allowance (test_daily_manual.DailyManualTests.test_forty_manual_hot_requests_leave_no_separate_nasdaq_allowance) ... ok
+test_manual_demotion_feedback_shows_a_restriction_on_its_replacement (test_daily_manual.DailyManualTests.test_manual_demotion_feedback_shows_a_restriction_on_its_replacement) ... ok
+test_manual_outside_uni_is_blocked_at_common_backend_even_without_gui (test_daily_manual.DailyManualTests.test_manual_outside_uni_is_blocked_at_common_backend_even_without_gui) ... ok
+test_manual_policy_flags_cannot_be_silently_rebound (test_daily_manual.DailyManualTests.test_manual_policy_flags_cannot_be_silently_rebound) ... ok
+test_missing_manual_ledger_is_not_recreated_on_resume (test_daily_manual.DailyManualTests.test_missing_manual_ledger_is_not_recreated_on_resume) ... ok
+test_nasdaq_admission_and_manual_admission_share_last_capacity_slot (test_daily_manual.DailyManualTests.test_nasdaq_admission_and_manual_admission_share_last_capacity_slot) ... ok
+test_new_profile_is_sealed_and_original_profile_hashes_unchanged (test_daily_manual.DailyManualTests.test_new_profile_is_sealed_and_original_profile_hashes_unchanged) ... ok
+test_original_ledger_resume_retains_manual_receipts_and_shared_budget (test_daily_manual.DailyManualTests.test_original_ledger_resume_retains_manual_receipts_and_shared_budget) ... ok
+test_own_withdrawal_preserves_nasdaq_demand_for_same_symbol (test_daily_manual.DailyManualTests.test_own_withdrawal_preserves_nasdaq_demand_for_same_symbol) ... ok
+test_review_and_attachment_compute_identical_shared_publication_identity (test_daily_manual.DailyManualTests.test_review_and_attachment_compute_identical_shared_publication_identity) ... ok
+test_same_session_accepts_nasdaq_and_manual_with_one_native_publisher (test_daily_manual.DailyManualTests.test_same_session_accepts_nasdaq_and_manual_with_one_native_publisher) ... ok
+test_shared_capacity_descriptor_is_immutable (test_daily_manual.DailyManualTests.test_shared_capacity_descriptor_is_immutable) ... ok
+test_withdrawal_or_restriction_does_not_reset_distinct_session_budget (test_daily_manual.DailyManualTests.test_withdrawal_or_restriction_does_not_reset_distinct_session_budget) ... ok
+test_worker_reader_reconstructs_exact_shared_admission_identity (test_daily_manual.DailyManualTests.test_worker_reader_reconstructs_exact_shared_admission_identity) ... ok
+test_close_only_stops_window_executor_and_leaves_backend_unchanged (test_manual_membership_window.ManualWindowTests.test_close_only_stops_window_executor_and_leaves_backend_unchanged) ... ok
+test_delayed_refresh_disables_edits_and_close_cancels_unsent_click (test_manual_membership_window.ManualWindowTests.test_delayed_refresh_disables_edits_and_close_cancels_unsent_click) ... ok
+test_demotion_uses_selected_request_and_keeps_actor_fixed (test_manual_membership_window.ManualWindowTests.test_demotion_uses_selected_request_and_keeps_actor_fixed) ... ok
+test_details_explain_other_source_retention (test_manual_membership_window.ManualWindowTests.test_details_explain_other_source_retention) ... ok
+test_failed_refresh_keeps_rows_and_disables_all_edits (test_manual_membership_window.ManualWindowTests.test_failed_refresh_keeps_rows_and_disables_all_edits) ... ok
+test_initial_error_does_not_show_verified_empty_membership (test_manual_membership_window.ManualWindowTests.test_initial_error_does_not_show_verified_empty_membership) ... ok
+test_one_click_during_refresh_waits_for_verified_read_then_dispatches_once (test_manual_membership_window.ManualWindowTests.test_one_click_during_refresh_waits_for_verified_read_then_dispatches_once) ... ok
+test_queued_click_is_cancelled_when_refresh_fails (test_manual_membership_window.ManualWindowTests.test_queued_click_is_cancelled_when_refresh_fails) ... ok
+test_refresh_preserves_selection_and_scroll (test_manual_membership_window.ManualWindowTests.test_refresh_preserves_selection_and_scroll) ... ok
+test_refresh_shows_requested_and_effective_in_separate_columns (test_manual_membership_window.ManualWindowTests.test_refresh_shows_requested_and_effective_in_separate_columns) ... ok
+test_retry_recovers_saved_command_instead_of_creating_another (test_manual_membership_window.ManualWindowTests.test_retry_recovers_saved_command_instead_of_creating_another) ... ok
+test_routine_refresh_keeps_button_states_steady_without_repainting (test_manual_membership_window.ManualWindowTests.test_routine_refresh_keeps_button_states_steady_without_repainting) ... ok
+test_slow_refresh_keeps_one_pending_click_without_queueing_duplicate_reads (test_manual_membership_window.ManualWindowTests.test_slow_refresh_keeps_one_pending_click_without_queueing_duplicate_reads) ... ok
+test_submit_captures_symbol_reason_and_one_command_before_worker_dispatch (test_manual_membership_window.ManualWindowTests.test_submit_captures_symbol_reason_and_one_command_before_worker_dispatch) ... ok
+test_unchanged_refresh_does_not_rewrite_rows (test_manual_membership_window.ManualWindowTests.test_unchanged_refresh_does_not_rewrite_rows) ... ok
+test_unexpected_background_error_is_visible_and_refresh_can_continue (test_manual_membership_window.ManualWindowTests.test_unexpected_background_error_is_visible_and_refresh_can_continue) ... ok
+test_unprivileged_limit_buttons_are_disabled (test_manual_membership_window.ManualWindowTests.test_unprivileged_limit_buttons_are_disabled) ... ok
+test_withdraw_selects_only_bound_own_request (test_manual_membership_window.ManualWindowTests.test_withdraw_selects_only_bound_own_request) ... ok
+test_catalog_digest_reuse_still_reads_same_length_same_mtime_source_bytes (test_daily_admission.DailyAdmissionTests.test_catalog_digest_reuse_still_reads_same_length_same_mtime_source_bytes) ... ok
+test_changed_set_source_or_boolean_limit_is_rejected_before_serialization (test_daily_admission.DailyAdmissionTests.test_changed_set_source_or_boolean_limit_is_rejected_before_serialization) ... ok
+test_compact_descriptor_binds_every_symbol_and_does_not_expose_mutable_cached_values (test_daily_admission.DailyAdmissionTests.test_compact_descriptor_binds_every_symbol_and_does_not_expose_mutable_cached_values) ... ok
+test_outside_catalog_is_not_quoted_and_normal_catalog_admission_still_succeeds (test_daily_admission.DailyAdmissionTests.test_outside_catalog_is_not_quoted_and_normal_catalog_admission_still_succeeds) ... ok
+
+----------------------------------------------------------------------
+Ran 71 tests in 52.854s
+
+OK
+{
+  "contract": "manual-shared-broker-identity-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 71,
+  "passed": 71,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 70.06299999999464,
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "windows_checks_passed": true,
+  "source": {
+    "accepted_p92_predecessor": "408386c6509a52c367048f326d42ee82e590a245",
+    "coordinator_commit": "e88ed0486791e400c6929adab84a2ac755286f2c",
+    "coordinator_tree": "56fe631704e830b8f2d0edfeca4c5294e47fc696",
+    "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "9cadfd501cb684b7c6203c31233acb1df36bb303e45e49a6fb190f4d49fbeda9",
+  "profile": "manual-identity-40-v1",
+  "shared_identity_limits": {
+    "quote_calls": 120,
+    "calls_per_symbol": 3,
+    "minimum_spacing_seconds": 2,
+    "distinct_authorized_symbols": 40
+  },
+  "clock_scope": "Logical future/advanced fixture session only; owned/native checks include actual elapsed time. No live clock override added.",
+  "shared_membership_limits": {
+    "hot_symbols": 40,
+    "focus_additions": 40,
+    "outside_uni_additions": 40,
+    "capacity_nonrecycling": true
+  },
+  "manual_promotion_scope": "Opening Uni without a lookup; other exact catalog symbols after retained shared broker confirmation",
+  "pending_withdrawal_supported": true,
+  "unknown_lookup_retried": false,
+  "owned_proof": {
+    "contract": "manual-outside-uni-owned-collection-proof-v1",
+    "result": "PASS",
+    "manual_symbol": "X000",
+    "nasdaq_symbol": "X001",
+    "both_symbols_outside_opening_uni": true,
+    "identity_quote_permits": 2,
+    "worker_starts": 1,
+    "both_children_live_before_stop": true,
+    "manual_pending_then_effective": true,
+    "old_window_fenced_after_stop": true,
+    "cleanup": {
+      "contract": "daily-hot-controller-v1",
+      "status": "STOPPED",
+      "reason": "operator_stop",
+      "cleanup": {
+        "source": null,
+        "hot": {
+          "status": "OWNED_WORKER_STOPPED"
+        },
+        "identity": {
+          "returncode": 70,
+          "forced": false
+        }
+      },
+      "cleanup_seconds": 0.0470000000204891,
+      "cleanup_within_10_seconds": true,
+      "evidence_errors": [],
+      "unmanaged_channels_untouched": [
+        "uni",
+        "focus",
+        "health"
+      ],
+      "reporting": {
+        "status": "COMPLETE",
+        "native_audit_passed": true,
+        "two_fresh_replays_equal": true,
+        "first_replay": {
+          "events": 8,
+          "sequence_sha256": "b1cdd246de327d8fff67da99e2a29563377760ce5f87a7462c742208cadf55b2"
+        },
+        "report_path": "C:\\Users\\danla\\manual93\\p93\\runs\\20261031T221637Z_cdb1ca08\\owned\\daily_hot_test\\reports\\eace7a92398a42a09d9c12a8b2ebe886.json",
+        "seconds": 0.4529999999795109
+      }
+    },
+    "native_final_report": {
+      "audited_at_utc": "2026-11-01T15:00:14.159234+00:00",
+      "configuration_sha256": "ebdb9c131a8022dfd34221ebd442ee88fd17e5336760539e599011db045a8270",
+      "contract": "daily-hot-native-final-report-v1",
+      "first_replay": {
+        "events": 8,
+        "sequence_sha256": "b1cdd246de327d8fff67da99e2a29563377760ce5f87a7462c742208cadf55b2"
+      },
+      "full_day_capacity_qualified": false,
+      "hot_content_integrity": {
+        "acquisitions": 4,
+        "contract": "full-hot-journal-content-check-v1",
+        "error_count": 0,
+        "errors": [],
+        "observations": 6,
+        "passed": true,
+        "scope": "All Hot stored values against native-verified period receipts; other channels covered by native audit",
+        "skips": 0
+      },
+      "invocation": "a78351375ded4d9a84813284dc564862",
+      "native_audit": {
+        "channels": [
+          {
+            "acquisition_count": 0,
+            "channel": "focus",
+            "expected_slot_count": 0,
+            "member_rows": 9,
+            "missing_slot_ids": [],
+            "observation_count": 0,
+            "requested_symbol_count": 0,
+            "revision_count": 4,
+            "row_count_mismatch_ids": [],
+            "skipped_slot_count": 0,
+            "status_counts": {}
+          },
+          {
+            "acquisition_count": 4,
+            "channel": "hot",
+            "expected_slot_count": 4,
+            "member_rows": 3,
+            "missing_slot_ids": [],
+            "observation_count": 6,
+            "requested_symbol_count": 6,
+            "revision_count": 4,
+            "row_count_mismatch_ids": [],
+            "skipped_slot_count": 0,
+            "status_counts": {
+              "quote": 6
+            }
+          },
+          {
+            "acquisition_count": 0,
+            "channel": "uni",
+            "expected_slot_count": 0,
+            "member_rows": 19,
+            "missing_slot_ids": [],
+            "observation_count": 0,
+            "requested_symbol_count": 0,
+            "revision_count": 4,
+            "row_count_mismatch_ids": [],
+            "skipped_slot_count": 0,
+            "status_counts": {}
+          }
+        ],
+        "database_path": "C:\\Users\\danla\\manual93\\p93\\runs\\20261031T221637Z_cdb1ca08\\owned\\quote_observation_journal_v2_api_opening_2026-11-01\\2026-11-01.sqlite3",
+        "evidence_bytes": {},
+        "findings": [],
+        "integrity_results": [
+          "ok"
+        ],
+        "membership_contract": "nested-uni-focus-hot-v1",
+        "runs": [
+          {
+            "channel": "focus",
+            "configuration": {
+              "cadence_profile": "interleaved-v1",
+              "poll_seconds": [
+                10,
+                20,
+                40,
+                50
+              ],
+              "watchlist_kind": "focus"
+            },
+            "host": null,
+            "run_id": "existing-focus",
+            "software_version": "synthetic-current-source",
+            "started_at_utc": "2026-11-01T14:20:00.000000Z"
+          },
+          {
+            "channel": "uni",
+            "configuration": {
+              "cadence_profile": "interleaved-v1",
+              "poll_seconds": [
+                0,
+                30
+              ],
+              "watchlist_kind": "uni"
+            },
+            "host": null,
+            "run_id": "existing-uni",
+            "software_version": "synthetic-current-source",
+            "started_at_utc": "2026-11-01T14:20:00.000000Z"
+          },
+          {
+            "channel": "hot",
+            "configuration": {
+              "batch_size": 400,
+              "daily_binding_sha256": "ea38e7c60458ba659677f22363d705c06296aefee114a08c8937a6e66f392abd",
+              "daily_hot_contract": "daily-native-hot-acquisition-v2",
+              "fields": "all",
+              "max_dispatch_lateness_seconds": 0.75,
+              "parent_cadence_profile": "interleaved-v1",
+              "poll_seconds": [
+                2,
+                4,
+                6,
+                8,
+                12,
+                14,
+                16,
+                18,
+                22,
+                24,
+                26,
+                28,
+                32,
+                34,
+                36,
+                38,
+                42,
+                44,
+                46,
+                48,
+                52,
+                54,
+                56,
+                58
+              ],
+              "poll_window_end_et": "2026-11-01T10:00:45-05:00",
+              "poll_window_start_et": "2026-11-01T10:00:06-05:00",
+              "retry_seconds": 0.05,
+              "source_label": "daily-native-hot-v1",
+              "watchlist_kind": "hot"
+            },
+            "host": null,
+            "run_id": "daily-hot-19f5dd65493c4dbc9baa4476fc151623",
+            "software_version": "daily-native-hot-acquisition-v2",
+            "started_at_utc": "2026-11-01T15:00:00.911569Z"
+          },
+          {
+            "channel": "hot",
+            "configuration": {
+              "batch_size": 400,
+              "daily_hot_contract": "daily-hot-collection-periods-v1",
+              "fields": "all",
+              "history_scope": "active five-minute period; closed payloads audited independently",
+              "max_dispatch_lateness_seconds": 0.75,
+              "parent_cadence_profile": "interleaved-v1",
+              "poll_seconds": [
+                2,
+                4,
+                6,
+                8,
+                12,
+                14,
+                16,
+                18,
+                22,
+                24,
+                26,
+                28,
+                32,
+                34,
+                36,
+                38,
+                42,
+                44,
+                46,
+                48,
+                52,
+                54,
+                56,
+                58
+              ],
+              "poll_window_end_et": "2026-11-01T10:00:45-05:00",
+              "poll_window_start_et": "2026-11-01T10:00:06-05:00",
+              "retry_seconds": 0.05,
+              "source_label": "daily-native-hot-v1",
+              "watchlist_kind": "hot"
+            },
+            "host": null,
+            "run_id": "daily-hot-schedule-fa6652d34dd947e5a95b1c1ecb3c5a49",
+            "software_version": "daily-hot-collection-periods-v1",
+            "started_at_utc": "2026-11-01T15:00:00.944361Z"
+          }
+        ],
+        "schema_version": 2,
+        "session_date": "2026-11-01",
+        "storage_bytes": {
+          "database": 106496,
+          "shm": 32768,
+          "wal": 189552
+        },
+        "table_counts": {
+          "poll_run": 4,
+          "poll_slot_skip": 0,
+          "quote_acquisition": 4,
+          "quote_observation": 6,
+          "sampling_channel_member": 31,
+          "sampling_channel_revision": 12,
+          "sampling_membership_revision": 4
+        }
+      },
+      "native_audit_passed": true,
+      "production_activation_inferred": false,
+      "replay_method": "native ordered event IDs; Hot payloads checked separately",
+      "report_id": "eace7a92398a42a09d9c12a8b2ebe886",
+      "second_replay": {
+        "events": 8,
+        "sequence_sha256": "b1cdd246de327d8fff67da99e2a29563377760ce5f87a7462c742208cadf55b2"
+      },
+      "status": "COMPLETE",
+      "two_fresh_replays_equal": true,
+      "validation_passed": true
+    },
+    "hot_status_counts": {
+      "quote": 6
+    },
+    "identity_events": [
+      {
+        "at_utc": "2026-11-01T15:00:00.667228+00:00",
+        "command_id": "manual:manual-960eadbc3283494197244da4b34122d7",
+        "command_sha256": "75f62d28f9d15260339dfdd2d6d6884eff4f19ab76d4c29f567a88f22efe9931",
+        "event_sha256": "34cea983fd972d96960c2f33bcddd2531cdaf765ae0a39878cac0f9a0f2592f4",
+        "kind": "reservation",
+        "previous_sha256": "12e7399749a53d3834222cabc08d320167bd585f25ae3fdee8993a07c8ef56e5",
+        "sequence": 1,
+        "symbol": "X000"
+      },
+      {
+        "at_utc": "2026-11-01T15:00:00.717513+00:00",
+        "code": "approved",
+        "command_id": "manual:manual-960eadbc3283494197244da4b34122d7",
+        "command_sha256": "75f62d28f9d15260339dfdd2d6d6884eff4f19ab76d4c29f567a88f22efe9931",
+        "event_sha256": "67305b449a5a76a08e0bfe9b5e49aca55e04b0320516a62000d34a371221fdc9",
+        "kind": "decision",
+        "outcome": {
+          "elapsed_seconds": 0.031000000017229468,
+          "response": {
+            "X000": {
+              "assetMainType": "EQUITY",
+              "assetSubType": "COE",
+              "quote": {
+                "lastPrice": 12.0
+              },
+              "symbol": "X000"
+            }
+          },
+          "reuse_of": null,
+          "status": 200,
+          "stopped": false,
+          "transport": "returned"
+        },
+        "previous_sha256": "34cea983fd972d96960c2f33bcddd2531cdaf765ae0a39878cac0f9a0f2592f4",
+        "sequence": 2,
+        "symbol": "X000"
+      },
+      {
+        "at_utc": "2026-11-01T15:00:02.771249+00:00",
+        "command_id": "nasdaq-halt-293d41934a22971e34c2579526bc7e42a2f95ae76ca4bb822ef97dff93000ce6",
+        "command_sha256": "8e2903f85e77490adbb884a55dda7428b96f62b15be69eeb3e821cc13d27cc3e",
+        "event_sha256": "b75823583c2bec42afdee6c1c3151aa30c4ecb901c602e7e584b12d027e04ef1",
+        "kind": "reservation",
+        "previous_sha256": "67305b449a5a76a08e0bfe9b5e49aca55e04b0320516a62000d34a371221fdc9",
+        "sequence": 3,
+        "symbol": "X001"
+      },
+      {
+        "at_utc": "2026-11-01T15:00:02.819505+00:00",
+        "code": "approved",
+        "command_id": "nasdaq-halt-293d41934a22971e34c2579526bc7e42a2f95ae76ca4bb822ef97dff93000ce6",
+        "command_sha256": "8e2903f85e77490adbb884a55dda7428b96f62b15be69eeb3e821cc13d27cc3e",
+        "event_sha256": "ca04bbddbcf3d0d6050e006be5fb5ca4cd4f3dcae914070596f036d844a8b8df",
+        "kind": "decision",
+        "outcome": {
+          "elapsed_seconds": 0.030999999988125637,
+          "response": {
+            "X001": {
+              "assetMainType": "EQUITY",
+              "assetSubType": "COE",
+              "quote": {
+                "lastPrice": 12.0
+              },
+              "symbol": "X001"
+            }
+          },
+          "reuse_of": null,
+          "status": 200,
+          "stopped": false,
+          "transport": "returned"
+        },
+        "previous_sha256": "b75823583c2bec42afdee6c1c3151aa30c4ecb901c602e7e584b12d027e04ef1",
+        "sequence": 4,
+        "symbol": "X001"
+      }
+    ],
+    "synthetic_sdk_only": true,
+    "production_access": false,
+    "actual_vault_access": false,
+    "full_day_capacity_qualified": false,
+    "p85_changed": false
+  },
+  "mixed_burst_proof": {
+    "result": "PASS",
+    "manual_admissions": 20,
+    "nasdaq_admissions": 20,
+    "hot_symbols": 40,
+    "identity_quote_permits": 40,
+    "overflow_extra_provider_calls": 0,
+    "maximum_logical_pump_elapsed_seconds": 0.3279999999795109,
+    "forty_symbol_native_hot_acquisitions": 2,
+    "native_quote_observations": 80,
+    "maximum_native_cycle_elapsed_seconds": 0.09299999999348074,
+    "native_audit_passed": true,
+    "native_dispatch_clock": "logical due slot plus actual elapsed UTC; original 0.75-second limit",
+    "clock": "logical advance only; real SQLite and measured pump elapsed time",
+    "provider_capacity_qualified": false,
+    "full_day_capacity_qualified": false
+  },
+  "gui_proof": {
+    "result": "PASS",
+    "actual_tk_window": true,
+    "tk_version": "8.6.15",
+    "observed_phases": [
+      "verified_empty",
+      "outside_request_pending_no_provider_in_gui",
+      "pending_withdrawal_no_broker_dispatch",
+      "second_outside_request_pending",
+      "broker_confirmed_native_effective_hot",
+      "own_withdrawal_retains_nasdaq_hot_without_another_lookup",
+      "read_failure_retains_feedback_and_disables_edits",
+      "read_recovered_without_queue_or_budget_reset"
+    ],
+    "errors": [],
+    "auto_closed": true,
+    "executor_stopped": true,
+    "synthetic_only": true,
+    "preview_hold_seconds": 15,
+    "completed_display_visible_seconds": 15.01600000000326,
+    "synthetic_identity_calls": 1,
+    "actual_provider_requests": 0,
+    "production_access": false
+  },
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "actual_provider_used": false,
+  "production_changes": false,
+  "production_start_command_generated": false,
+  "p85_source_settings_or_approval_changed": false,
+  "prior_p92_windows_acceptance": "ACCEPTED 45/45 retained; affected regressions included",
+  "unchanged_long_history_feed_recovery_or_provider_drills_repeated": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false,
+  "remaining": [
+    "Windows result and actual returned CMD prompt",
+    "Concrete manual-enabled operating delivery/review and activation before live use"
+  ]
+}
+Saved report: C:\Users\danla\manual93\p93\runs\20261031T221637Z_cdb1ca08\verification.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>

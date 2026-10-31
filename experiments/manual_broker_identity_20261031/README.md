@@ -67,8 +67,25 @@ Nasdaq/manual interaction, read failure/recovery and a 15-second completed hold.
 
 All credentials, SDK responses, source captures and journals are synthetic.
 Network is denied in the verifier and owned fixture children. No vault or
-actual provider/production access occurs. Paste the final JSON and actual
-returned CMD prompt. Accepted long history/feed/recovery/provider drills are
+actual provider/production access occurs. The operator supplied the complete
+Windows result and actual returned CMD prompt on October 31: **ACCEPTED 71/71**,
+zero failures/errors/skips, 52.854-second tests and 70.063 seconds overall.
+The mixed 20-manual/20-Nasdaq proof admitted 40 Hot symbols, used 40 identity
+permits and blocked overflow without another call. Two native 40-symbol
+acquisitions retained 80 quote observations; native audit passed. Maximum
+measured pump was 0.328 seconds; native cycle 0.093 seconds, in this bounded
+synthetic journal. These are not full-history or real-provider measurements.
+
+The separate owned proof used two identity permits and one Hot worker; it
+recorded four acquisitions/six quote observations, passed audit/Hot-content
+validation and matching eight-event digests, and completed bounded cleanup in
+0.047 seconds. Both children were alive before stop. Identity exit 70 is
+retained rather than described as zero; no forced termination or evidence
+errors were reported. The actual Tk 8.6.15 preview passed all eight phases and
+held the completed display for 15.016 seconds. See WINDOWS_ACCEPTANCE.json and
+WINDOWS_CONSOLE.txt. No unchanged command93 repeat is due.
+
+Accepted long history/feed/recovery/provider drills are
 not repeated. Real-provider/full-day capacity is not newly qualified.
 
 ## Next

@@ -1,6 +1,6 @@
 {
   "contract": "manual-broker-identity-delivery-v1",
-  "status": "OFFLINE_WINDOWS_CANDIDATE",
+  "status": "OFFLINE_WINDOWS_ACCEPTED",
   "archive_name": "manual_broker_identity_20261031_e88ed04.zip",
   "bytes": 818545,
   "sha256": "7790ba5501202a0444c34a712a65cb2f7e74f3e8337f074c50ea20e748b8d608",
@@ -17,10 +17,13 @@
   "checks": 71,
   "preview_hold_seconds": 15,
   "exact_extracted_local_result": "PASS",
-  "windows_checks_passed": false,
+  "windows_checks_passed": true,
   "publication_destination": "DanArizona/mb_watchlist_coordinator:experiment/manual-membership-20261031",
   "p85_changed": false,
   "accepted_p92_packet_changed": false,
   "production_activation": false,
-  "actual_provider_used": false
+  "actual_provider_used": false,
+  "windows_acceptance": "WINDOWS_ACCEPTANCE.json",
+  "windows_run": "20261031T221637Z_cdb1ca08",
+  "actual_preview_visible_seconds": 15.01600000000326
 }

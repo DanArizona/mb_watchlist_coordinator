@@ -62,3 +62,19 @@ synthetic journal, not full-history/provider qualification. Actual owned proof
 also passed final native audit/content/replay checks. Windows/Tk remains due;
 do not describe the Linux result as Windows acceptance. LOCAL_QUALIFICATION.json
 and DELIVERY.json retain exact source, artifact hashes and complete proof scope.
+
+Windows93 is now ACCEPTED from the complete operator console/final JSON and
+actual returned CMD prompt. Run20261031T221637Z_cdb1ca08, win32/Python3.12.13:
+71/71, zero failures/errors/skips, 52.854s tests/70.063s overall. Mixed burst:
+20 manual+20 Nasdaq, 40 Hot, 40 identity permits, no overflow lookup, two native
+40-symbol acquisitions/80 quote observations, audit PASS. Maximum measured
+pump0.328s/native cycle0.093s in a small synthetic journal. Owned proof: manual
+X000/NasdaqX001, two identity permits/one worker, four acquisitions/six quotes,
+both children live before stop; audit, stored Hot values and matching eight-event
+digests passed. Cleanup0.047s, identity70/non-forced retained, no evidence errors.
+Actual Tk8.6.15 passed eight phases and held the completed view15.016s, then
+closed the executor/window. No runtime/test change or unchanged rerun is due.
+
+Next: concrete manual-enabled operating delivery, commands/review and affected
+packaging qualification. Live activation is not implied. Approved Monday p85,
+prior p92 and the initial failed archive verdict remain unchanged/preserved.
