@@ -68,7 +68,7 @@
       "stop_requested"
     ],
     "after_stop_controller_boolean": false,
-    "scope": "Deterministic source API reproduction; not proof of this Windows run cause",
+    "scope": "Deterministic source API reproduction; Windows operator query now confirms the same normal-stop boundary",
     "regression_tests": {
       "tests": 2,
       "result": "PASS",
@@ -83,9 +83,37 @@
   "actual_vault_access": false,
   "actual_provider_used": false,
   "remaining": [
-    "Read retained Windows source statuses to confirm active readiness and exact final reason",
-    "Correct active/stop qualification boundary without accepting source failures",
-    "Missing Windows capacity proof",
+    "Read-only reassessment of all original paced assertions with latest-active-source predicate",
+    "Missing Windows full-size capacity proof",
     "Exact-candidate deployment/settings/activation review"
-  ]
+  ],
+  "source_stop_reason_confirmed_from_operator_query": true,
+  "source_files_independently_read": false,
+  "operator_source_status_query": {
+    "basis": "Operator-supplied read-only SQLite query and actual returned CMD prompt",
+    "last_active_at_utc": "2026-10-31T14:05:18.167986+00:00",
+    "last_active_status": "READY_WITH_GAPS",
+    "discovery_scope_reconciled": true,
+    "local_membership_effective": true,
+    "active_reasons": [
+      "intermediate_feed_mutations_not_reconstructible",
+      "older_unknown_carryovers_not_proven_complete"
+    ],
+    "owner_stop_requested_at_utc": "2026-10-31T14:05:19.029114+00:00",
+    "active_ready_age_at_stop_seconds": 0.861128,
+    "normal_stop_report_at_utc": "2026-10-31T14:05:19.077722+00:00",
+    "normal_stop_report_delay_seconds": 0.048608,
+    "normal_stop_status": "INCOMPLETE",
+    "normal_stop_reasons": [
+      "stop_requested"
+    ],
+    "normal_stop_discovery_field": null,
+    "normal_stop_local_membership_field": null,
+    "earlier_ready_at_utc": [
+      "2026-10-31T14:05:16.919669+00:00",
+      "2026-10-31T14:05:15.714200+00:00",
+      "2026-10-31T14:05:14.476248+00:00"
+    ]
+  },
+  "finding": "Confirmed qualification shutdown-boundary defect; runtime truthfully reports normal Stop. Original failed verdict remains; remaining paced assertions and missing capacity need completion."
 }

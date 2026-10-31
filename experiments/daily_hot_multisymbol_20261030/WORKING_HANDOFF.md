@@ -10,15 +10,24 @@ All40Hot symbols were present, no terminal driver error; WindowsJob cleanup
 and native-order digests PASS,7Uni/13Focus acquisitions, no writer errors. The
 full-size capacity step was not executed. This is not overall Windows acceptance.
 
-Code review and deterministic source reproduction prove that a normal stop can
-replace a reconciled source report with INCOMPLETE/reasons=[stop_requested], then
-DailyController.status maps the absent discovery field to false. The new paced
-multi test reads that flag only after owner.run/cleanup, unlike the older paced
-source proof which retained pre-stop cutover evidence. This is a test-boundary
-flaw; the actual Windows final reason still needs a read-only source-ledger read.
-Do not label this Windows failure fixed or reassessed PASS before that evidence.
-No runtime/gate/deadline/cadence changes have been made. Preserve the run and use
-its109passing checks. A diagnostic read is requested; do not rerun85unchanged.
+The operator's read-only source query now confirms the normal-stop race:
+READY_WITH_GAPS at14:05:18.167986Z, discovery and membership true, only the two
+known history warnings. Owner Stop was14:05:19.029114Z. At14:05:19.077722Z the
+source truthfully recorded INCOMPLETE/reasons=[stop_requested] with no readiness
+fields. Thus the post-stop controller boolean was false. This is a qualification
+boundary defect, not evidence of a new runtime source failure.
+
+The corrected paced test uses the latest source status immediately before this
+owner's Stop cutoff. It refuses a later active regression, stale/missing readiness,
+unresolved work or an unexpected post-stop error. The qualification-only p87
+follow-up reuses p85's exact original source inventory and109focused passes,
+checks every remaining paced assertion from retained files, and runs only the
+missing full-size capacity proof. Original runtime/deadlines/cadence unchanged.
+Original verification remains FAILED. Only a wholly successful Windows
+completion updates the mutable p85 acceptance pointer, preserving its old bytes.
+The existing86 review then becomes available; concrete settings/activation
+approval is still required. No production or provider action is authorized by
+this correction. See experiments/daily_hot_multisymbol_boundary_20261031.
 
 
 ## Delivery freeze and next operator step
@@ -44,9 +53,8 @@ verification. New short rollover telemetry PASSes two transitions,max1.480s<3s.
 These remain separate explicit synthetic/bounded scopes, not an elapsed market
 day, representative real40symbol provider performance or production activation.
 
-Windows next: extract to C:\Users\danla\hot85, then call p85\85_verify_multisymbol.cmd
-in sea-green CMD. About10minutes/up to12; about1.1GB synthetic evidence. Save final
-JSON and actual returned prompt. After acceptance,86_review_multisymbol.cmd is
+Historical Windows85 instructions are superseded by the p87 completion above.
+Do not repeat85 unchanged. After completion acceptance,86_review_multisymbol.cmd is
 read-only exact-candidate deployment review. Do not activate or install based on
 local results. The current source/ZIP are frozen; further records are docs only.
 Previously accepted Windows/live/GUI/old15second recovery scopes need no unchanged

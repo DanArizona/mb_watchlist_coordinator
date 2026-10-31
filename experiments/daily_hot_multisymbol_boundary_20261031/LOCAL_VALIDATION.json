@@ -1,0 +1,51 @@
+{
+  "contract": "multisymbol-boundary-completion-local-validation-v1",
+  "result": "PASS",
+  "runtime_changed": false,
+  "boundary_and_reuse_tests": {
+    "tests": 17,
+    "result": "PASS",
+    "seconds": 2.115
+  },
+  "retained_development_run_reassessment": {
+    "result": "PASS",
+    "local_seconds": 1.2813241879994166,
+    "persistent_files_unchanged": true,
+    "source_attempts": 4,
+    "identity_calls": 40,
+    "full_roster_acquisitions_before_rollover": 8,
+    "full_roster_acquisitions_after_rollover": 8,
+    "first_replay": {
+      "events": 87,
+      "sequence_sha256": "a23b9e9d19db88e41b90a49c399ebd541cdf5cfaef78d4971aa7cad9aaefae2f"
+    }
+  },
+  "frozen_packet_short_capacity_loader_smoke": {
+    "result": "PASS",
+    "cold_prepare_seconds": 0.4770728990006319,
+    "native_audit_passed": true,
+    "hot_content_integrity": {
+      "contract": "full-hot-journal-content-check-v1",
+      "passed": true,
+      "acquisitions": 240,
+      "observations": 9600,
+      "skips": 0,
+      "error_count": 0,
+      "errors": [],
+      "scope": "All Hot stored values against native-verified period receipts; other channels covered by native audit"
+    },
+    "two_fresh_sequence_digests_equal": true,
+    "period_rollover_wall_seconds": {
+      "count": 2,
+      "max": 1.3680460499999754
+    },
+    "full_size_history": false
+  },
+  "windows_qualification_completed": false,
+  "original_windows85_result": "FAILED",
+  "prior_full_size_local_history_repeated": false,
+  "full_size_windows_history_pending": true,
+  "network": "denied",
+  "actual_provider_used": false,
+  "production_changes": false
+}

@@ -91,45 +91,16 @@ class MultiOwnedTests(unittest.TestCase):
             self.assertEqual(result['result'],'STOPPED',proof)
             self.assertEqual(result['cleanup']['status'],'EXIT_OBSERVED',proof)
             self.assertTrue(result['reporting']['validation_passed'],proof)
-            state=Path(config.publication.state_root)
-            status=unseal(read_json(state/'hot-status.json'));driver=unseal(read_json(state/'driver-state.json'))
-            self.assertTrue(status['source_reconciled'],status)
-            self.assertEqual(len(driver['starts']),1,driver);self.assertIsNone(driver['terminal'],driver)
-            with closing(sqlite3.connect(c.journal.as_uri()+'?mode=ro',uri=True))as db:
-                maximum=db.execute('SELECT max(requested_symbol_count) FROM quote_acquisition WHERE channel="hot"').fetchone()[0]
-                full=db.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot" AND requested_symbol_count=40').fetchone()[0]
-            self.assertEqual(maximum,40,proof);self.assertGreaterEqual(full,2,proof)
-            with closing(sqlite3.connect(c.journal.as_uri()+'?mode=ro',uri=True))as db:
-                errors=db.execute('SELECT count(*) FROM quote_observation o JOIN quote_acquisition h ON h.acquisition_id=o.acquisition_id '
-                    'WHERE h.channel="hot" AND o.status!="quote"').fetchone()[0]
-            self.assertEqual(errors,0,proof)
-            events=[json.loads(line)for line in Path(scene['log']).read_text().splitlines()]
-            identity=[e for e in events if e['role']=='identity'and e['event']=='quote']
-            intervals=[(datetime.fromisoformat(b['at'])-datetime.fromisoformat(a['at'])).total_seconds()for a,b in zip(identity,identity[1:])]
-            self.assertEqual(len(identity),40,identity);self.assertTrue(all(x>=2 for x in intervals),intervals)
-            self.assertTrue(all(e['event']!='failed'for e in events),events)
-            with closing(sqlite3.connect((state/'daily-feed.sqlite3').as_uri()+'?mode=ro',uri=True))as db:
-                feed=[json.loads(r[0])for r in db.execute('SELECT payload FROM feed_event ORDER BY sequence')]
-            starts=[e for e in feed if e['kind']=='start'];finishes=[e for e in feed if e['kind']=='finish']
-            self.assertIn(len(starts),(3,4),feed);self.assertEqual(len(finishes),len(starts),feed)
-            gaps=[(datetime.fromisoformat(starts[n+1]['at_utc'])-datetime.fromisoformat(finishes[n]['at_utc'])).total_seconds()for n in range(len(starts)-1)]
-            self.assertTrue(all(x>=60 for x in gaps),gaps)
-            self.assertGreaterEqual(len(list(c.journal.parent.glob('*.hot.e*.poller.sqlite3'))),2)
-            boundary=logical.replace(minute=5,second=0)
-            with closing(sqlite3.connect(c.journal.as_uri()+'?mode=ro',uri=True))as db:
-                from mb_market_data.quote_observation_store import _utc_text
-                before=db.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot" AND requested_symbol_count=40 '
-                    'AND scheduled_at_utc<?',(_utc_text(boundary,'fixture'),)).fetchone()[0]
-                after=db.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot" AND requested_symbol_count=40 '
-                    'AND scheduled_at_utc>=?',(_utc_text(boundary,'fixture'),)).fetchone()[0]
-            self.assertGreaterEqual(before,2,proof);self.assertGreaterEqual(after,2,proof)
-            self.assertTrue(all(written[x]>0 for x in ('uni','focus')))
-            proof.update(result='PASS',source_attempts=len(starts),source_reconciled=True,identity_calls=40,
-                minimum_identity_interval_seconds=min(intervals),source_intervals_seconds=gaps,
-                full_roster_hot_acquisitions=full,native_membership_revisions=c.store.membership_revisions_in_effective_order()[-1].revision+1,
-                full_roster_acquisitions_before_rollover=before,full_roster_acquisitions_after_rollover=after,
-                publication_batch_seconds=10,worker_starts=1,network='denied',synthetic_only=True,
+            # The latest status after owner.run is a stopped-state report. Check
+            # the last verified active source event against this owner's Stop
+            # cutoff, then check the same retained native/identity/feed evidence.
+            from multisymbol_closed_checks import assess_closed_owned
+            assessed=assess_closed_owned(c.root)
+            self.assertEqual(assessed['background_acquisitions'],written)
+            proof.update(assessed,result='PASS',elapsed_seconds=time.monotonic()-began,
+                source_reconciled=True,publication_batch_seconds=10,network='denied',synthetic_only=True,
                 provider_capacity_qualified=False,full_session_executed=False,production_changes=False)
+
         finally:
             done.set();thread.join(timeout=2)
             (c.root/'multi-owned-proof.json').write_text(json.dumps(proof,indent=2)+'\n')
