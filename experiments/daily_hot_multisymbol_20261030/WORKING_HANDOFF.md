@@ -24,6 +24,14 @@ See WINDOWS_DIAGNOSTIC.json and
 LOCAL_VALIDATION_P88.json in experiments/daily_hot_multisymbol_boundary_20261031.
 No new live-provider or production activation qualification is implied.
 
+P88 delivered: hot_multisymbol_recheck_20261031_68e895c.zip,18791bytes,
+SHA256a0a934df976558289f53ac22ac8ffaeabdbd5fac120d118cf072367a31c1c3be.
+Inventory58767a4e32363a6e8a86f094e91cb2c855dc5fb86ac5a14bfebe14aef0045ee6.
+Exact extracted archive31checks PASS2.051s; source inventories unchanged.
+Source68e895c publishedf7b5f958d3ec135d2208dba2f17d13f320c7f257 with tree
+0005cf1e28b7b31a636dbeec93a5d6a0e632ae2e. Extract to C:/Users/danla/hot88 and
+call p88/88_complete_multisymbol_qualification.cmd. Windows88 remains pending.
+
 ## Windows87 follow-up — FAILED, retained diagnostics pending
 
 Run20261031T025118Z_b78fe20e:17focused tests PASS2.870s, completionFAILED3.578s.

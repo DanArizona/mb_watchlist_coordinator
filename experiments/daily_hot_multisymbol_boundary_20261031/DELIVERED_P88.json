@@ -1,0 +1,36 @@
+{
+  "contract": "multisymbol-stop-and-sidecar-delivery-v2",
+  "result": "DELIVERED_WINDOWS88_PENDING",
+  "file_name": "hot_multisymbol_recheck_20261031_68e895c.zip",
+  "library_file_id": "libfile_51d09a595ae48191930bcc74a3d329a5",
+  "bytes": 18791,
+  "sha256": "a0a934df976558289f53ac22ac8ffaeabdbd5fac120d118cf072367a31c1c3be",
+  "completion_inventory_sha256": "58767a4e32363a6e8a86f094e91cb2c855dc5fb86ac5a14bfebe14aef0045ee6",
+  "source_commit": "68e895c47b3b49842393ccbed3cf277172ba7cc5",
+  "source_public_commit": "f7b5f958d3ec135d2208dba2f17d13f320c7f257",
+  "source_tree": "0005cf1e28b7b31a636dbeec93a5d6a0e632ae2e",
+  "frozen_runtime_commit": "e7cb9b6fa786170455dbfe7c3226d8b18227487e",
+  "original_p85_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe",
+  "exact_archive_validation": {
+    "contract": "multisymbol-stop-and-sidecar-exact-archive-check-v2",
+    "result": "PASS",
+    "tests": 31,
+    "seconds": 2.3826316069989844,
+    "source_inventories_unchanged": true,
+    "network": "denied",
+    "windows_qualified": false
+  },
+  "runtime_changed": false,
+  "original_windows85_result": "FAILED",
+  "original_windows87_result": "FAILED",
+  "windows88_pending": true,
+  "full_size_windows_history_pending": true,
+  "planned_reuse": {
+    "focused_tests": 109,
+    "paced_elapsed_run_repeated": false
+  },
+  "capacity_runs_independently_after_focused_tests_pass": true,
+  "production_changes": false,
+  "production_activation_approved": false,
+  "next": "Extract to C:/Users/danla/hot88; call p88/88_complete_multisymbol_qualification.cmd. After overall PASS, original p85 command86 is the read-only deployment review."
+}
