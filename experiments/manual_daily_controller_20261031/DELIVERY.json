@@ -1,6 +1,6 @@
 {
   "contract": "combined-daily-controller-delivery-v1",
-  "status": "OFFLINE_WINDOWS_CANDIDATE",
+  "status": "OFFLINE_WINDOWS_ACCEPTED",
   "archive_name": "nasdaq_manual_controller_20261031_509ffa1.zip",
   "bytes": 801641,
   "sha256": "cd819fe7cb9d7b79552bc24ee776f0cfa525a45897efa562464a08e0bc145842",
@@ -17,10 +17,13 @@
   "checks": 45,
   "preview_hold_seconds": 15,
   "exact_extracted_local_result": "PASS",
-  "windows_checks_passed": false,
+  "windows_checks_passed": true,
   "publication_destination": "DanArizona/mb_watchlist_coordinator:experiment/manual-membership-20261031",
   "scope": "Combined Nasdaq/manual daily controller; manual promotions within verified opening Uni",
   "p85_changed": false,
   "production_activation": false,
-  "actual_provider_used": false
+  "actual_provider_used": false,
+  "windows_acceptance": "WINDOWS_ACCEPTANCE.json",
+  "windows_run": "20261031T213235Z_145e35b7",
+  "actual_preview_visible_seconds": 15.03100000001723
 }

@@ -46,8 +46,21 @@ digests. The packet is 801,641 bytes; DELIVERY.json records its SHA-256 and
 LOCAL_QUALIFICATION.json retains the exact Linux report. No desktop was available
 locally, so the actual Tk preview is pending on Windows.
 
-Windows qualification remains pending
-until the operator runs command92 and supplies the report and returned prompt.
+Windows qualification is now ACCEPTED from the complete supplied command92
+console, final JSON and actual returned CMD prompt. Run
+20261031T213235Z_145e35b7: 45/45, zero failures/errors/skips, 26.685s tests,
+43.532s overall, win32/Python 3.12.13. Actual Tk 8.6.15 completed all nine phases,
+held the finished display for 15.031s and stopped its executor/window. The owned
+manual IBM + Nasdaq MSFT roster produced two acquisitions/four quote observations;
+native audit/Hot content and matching five-event digests passed. Cleanup was
+0.032s, no evidence errors, no forced identity termination. Identity exit 70 is
+retained explicitly: the fixture maps caught exceptions (including stop fences)
+to 70; the supplied report does not identify that exact exception. No claim of
+all-zero child returncodes is made. Do not repeat unchanged command92.
+
+Next development is step 2, outside-Uni manual broker-identity integration,
+followed by a concrete manual-enabled production delivery/review. This does not
+change the approved Monday p85 source, settings or activation scope.
 No new production approval, live provider evidence or full-day qualification is
 claimed. Later public publication uses the existing explicitly approved
 experiment/manual-membership-20261031 destination and standing ordinary source/

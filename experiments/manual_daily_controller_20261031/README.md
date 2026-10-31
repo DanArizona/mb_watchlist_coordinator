@@ -56,8 +56,22 @@ preview exercises the display and holds its completed view for 15 seconds.
 Network is denied in the verifier and owned test children. No actual vault,
 broker library, production journal or production process is accessed.
 
-Paste the final JSON and actual returned CMD prompt. The long accepted capacity,
-120-second paced-source and recovery drills are not repeated.
+The operator supplied the complete Windows result and actual returned CMD prompt
+on October 31. **Windows qualification is accepted: 45/45**, zero failures,
+errors or skips; 26.685 seconds of checks and 43.532 seconds overall. The actual
+Tk 8.6.15 preview completed all nine phases and held the finished display for
+15.031 seconds. No unchanged rerun is due. The long accepted capacity,
+120-second paced-source and recovery drills were not repeated.
+
+The owned proof collected manual IBM and Nasdaq MSFT together in two native
+acquisitions/four quote observations, using one identity permit and one Hot
+worker. Native audit, all stored Hot values and both five-event replay digests
+passed. Stop completed in 0.032 seconds without forced identity termination.
+The identity child returned 70; the synthetic fixture uses 70 for caught
+exceptions, including stop-fence exceptions. Its precise exception is not in
+the supplied report, so an all-zero child returncode or exact cause is not
+claimed. Observed exits, original cleanup bounds and evidence checks passed.
+See WINDOWS_ACCEPTANCE.json and WINDOWS_CONSOLE.txt for the original evidence.
 
 ## Scope and next work
 

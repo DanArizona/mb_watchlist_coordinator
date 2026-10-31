@@ -1,0 +1,411 @@
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>powershell -NoProfile -Command "Expand-Archive -LiteralPath 'C:\Users\danla\Downloads\nasdaq_manual_controller_20261031_509ffa1.zip' -DestinationPath 'C:\Users\danla\manual92'"
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>call "C:\Users\danla\manual92\p92\92_verify_shared_manual_controller.cmd"
+OFFLINE Nasdaq/manual daily composition. Synthetic credentials, SDK, files and real owned processes only.
+45 focused checks and a 15-second readable GUI preview. No password, API or production access. Allow about 90 seconds.
+test_cleared_limit_reveals_existing_source_demand_without_new_identity_quote (test_daily_manual.DailyManualTests.test_cleared_limit_reveals_existing_source_demand_without_new_identity_quote) ... ok
+test_concurrent_sources_cannot_both_take_fortieth_slot (test_daily_manual.DailyManualTests.test_concurrent_sources_cannot_both_take_fortieth_slot) ... ok
+test_duplicate_symbol_across_sources_consumes_one_capacity_slot (test_daily_manual.DailyManualTests.test_duplicate_symbol_across_sources_consumes_one_capacity_slot) ... ok
+test_focus_capacity_is_shared_even_for_symbols_already_in_uni (test_daily_manual.DailyManualTests.test_focus_capacity_is_shared_even_for_symbols_already_in_uni) ... ok
+test_foreign_source_and_foreign_withdrawal_are_rejected (test_daily_manual.DailyManualTests.test_foreign_source_and_foreign_withdrawal_are_rejected) ... ok
+test_forty_manual_hot_requests_leave_no_separate_nasdaq_allowance (test_daily_manual.DailyManualTests.test_forty_manual_hot_requests_leave_no_separate_nasdaq_allowance) ... ok
+test_manual_demotion_feedback_shows_a_restriction_on_its_replacement (test_daily_manual.DailyManualTests.test_manual_demotion_feedback_shows_a_restriction_on_its_replacement) ... ok
+test_manual_outside_uni_is_blocked_at_common_backend_even_without_gui (test_daily_manual.DailyManualTests.test_manual_outside_uni_is_blocked_at_common_backend_even_without_gui) ... ok
+test_manual_policy_flags_cannot_be_silently_rebound (test_daily_manual.DailyManualTests.test_manual_policy_flags_cannot_be_silently_rebound) ... ok
+test_missing_manual_ledger_is_not_recreated_on_resume (test_daily_manual.DailyManualTests.test_missing_manual_ledger_is_not_recreated_on_resume) ... ok
+test_nasdaq_admission_and_manual_admission_share_last_capacity_slot (test_daily_manual.DailyManualTests.test_nasdaq_admission_and_manual_admission_share_last_capacity_slot) ... ok
+test_new_profile_is_sealed_and_original_profile_hashes_unchanged (test_daily_manual.DailyManualTests.test_new_profile_is_sealed_and_original_profile_hashes_unchanged) ... ok
+test_original_ledger_resume_retains_manual_receipts_and_shared_budget (test_daily_manual.DailyManualTests.test_original_ledger_resume_retains_manual_receipts_and_shared_budget) ... ok
+test_own_withdrawal_preserves_nasdaq_demand_for_same_symbol (test_daily_manual.DailyManualTests.test_own_withdrawal_preserves_nasdaq_demand_for_same_symbol) ... ok
+test_review_and_attachment_compute_identical_shared_publication_identity (test_daily_manual.DailyManualTests.test_review_and_attachment_compute_identical_shared_publication_identity) ... ok
+test_same_session_accepts_nasdaq_and_manual_with_one_native_publisher (test_daily_manual.DailyManualTests.test_same_session_accepts_nasdaq_and_manual_with_one_native_publisher) ... ok
+test_shared_capacity_descriptor_is_immutable (test_daily_manual.DailyManualTests.test_shared_capacity_descriptor_is_immutable) ... ok
+test_withdrawal_or_restriction_does_not_reset_distinct_session_budget (test_daily_manual.DailyManualTests.test_withdrawal_or_restriction_does_not_reset_distinct_session_budget) ... ok
+test_worker_reader_reconstructs_exact_shared_admission_identity (test_daily_manual.DailyManualTests.test_worker_reader_reconstructs_exact_shared_admission_identity) ... ok
+test_manual_resume_retains_budgets_and_fences_the_old_window (test_daily_manual_owned.DailyManualOwnedTests.test_manual_resume_retains_budgets_and_fences_the_old_window) ... ok
+test_owned_controller_collects_manual_and_nasdaq_roster_and_fences_ui_after_stop (test_daily_manual_owned.DailyManualOwnedTests.test_owned_controller_collects_manual_and_nasdaq_roster_and_fences_ui_after_stop) ... ok
+test_stale_owner_and_changed_invocation_disable_bound_controls_without_appending (test_daily_manual_owned.DailyManualOwnedTests.test_stale_owner_and_changed_invocation_disable_bound_controls_without_appending) ... ok
+test_wrong_configuration_cannot_attach_or_initialize_controls (test_daily_manual_owned.DailyManualOwnedTests.test_wrong_configuration_cannot_attach_or_initialize_controls) ... ok
+test_close_only_stops_window_executor_and_leaves_backend_unchanged (test_manual_membership_window.ManualWindowTests.test_close_only_stops_window_executor_and_leaves_backend_unchanged) ... ok
+test_delayed_refresh_disables_edits_and_close_cancels_unsent_click (test_manual_membership_window.ManualWindowTests.test_delayed_refresh_disables_edits_and_close_cancels_unsent_click) ... ok
+test_demotion_uses_selected_request_and_keeps_actor_fixed (test_manual_membership_window.ManualWindowTests.test_demotion_uses_selected_request_and_keeps_actor_fixed) ... ok
+test_details_explain_other_source_retention (test_manual_membership_window.ManualWindowTests.test_details_explain_other_source_retention) ... ok
+test_failed_refresh_keeps_rows_and_disables_all_edits (test_manual_membership_window.ManualWindowTests.test_failed_refresh_keeps_rows_and_disables_all_edits) ... ok
+test_initial_error_does_not_show_verified_empty_membership (test_manual_membership_window.ManualWindowTests.test_initial_error_does_not_show_verified_empty_membership) ... ok
+test_one_click_during_refresh_waits_for_verified_read_then_dispatches_once (test_manual_membership_window.ManualWindowTests.test_one_click_during_refresh_waits_for_verified_read_then_dispatches_once) ... ok
+test_queued_click_is_cancelled_when_refresh_fails (test_manual_membership_window.ManualWindowTests.test_queued_click_is_cancelled_when_refresh_fails) ... ok
+test_refresh_preserves_selection_and_scroll (test_manual_membership_window.ManualWindowTests.test_refresh_preserves_selection_and_scroll) ... ok
+test_refresh_shows_requested_and_effective_in_separate_columns (test_manual_membership_window.ManualWindowTests.test_refresh_shows_requested_and_effective_in_separate_columns) ... ok
+test_retry_recovers_saved_command_instead_of_creating_another (test_manual_membership_window.ManualWindowTests.test_retry_recovers_saved_command_instead_of_creating_another) ... ok
+test_routine_refresh_keeps_button_states_steady_without_repainting (test_manual_membership_window.ManualWindowTests.test_routine_refresh_keeps_button_states_steady_without_repainting) ... ok
+test_slow_refresh_keeps_one_pending_click_without_queueing_duplicate_reads (test_manual_membership_window.ManualWindowTests.test_slow_refresh_keeps_one_pending_click_without_queueing_duplicate_reads) ... ok
+test_submit_captures_symbol_reason_and_one_command_before_worker_dispatch (test_manual_membership_window.ManualWindowTests.test_submit_captures_symbol_reason_and_one_command_before_worker_dispatch) ... ok
+test_unchanged_refresh_does_not_rewrite_rows (test_manual_membership_window.ManualWindowTests.test_unchanged_refresh_does_not_rewrite_rows) ... ok
+test_unexpected_background_error_is_visible_and_refresh_can_continue (test_manual_membership_window.ManualWindowTests.test_unexpected_background_error_is_visible_and_refresh_can_continue) ... ok
+test_unprivileged_limit_buttons_are_disabled (test_manual_membership_window.ManualWindowTests.test_unprivileged_limit_buttons_are_disabled) ... ok
+test_withdraw_selects_only_bound_own_request (test_manual_membership_window.ManualWindowTests.test_withdraw_selects_only_bound_own_request) ... ok
+test_catalog_digest_reuse_still_reads_same_length_same_mtime_source_bytes (test_daily_admission.DailyAdmissionTests.test_catalog_digest_reuse_still_reads_same_length_same_mtime_source_bytes) ... ok
+test_changed_set_source_or_boolean_limit_is_rejected_before_serialization (test_daily_admission.DailyAdmissionTests.test_changed_set_source_or_boolean_limit_is_rejected_before_serialization) ... ok
+test_compact_descriptor_binds_every_symbol_and_does_not_expose_mutable_cached_values (test_daily_admission.DailyAdmissionTests.test_compact_descriptor_binds_every_symbol_and_does_not_expose_mutable_cached_values) ... ok
+test_outside_catalog_is_not_quoted_and_normal_catalog_admission_still_succeeds (test_daily_admission.DailyAdmissionTests.test_outside_catalog_is_not_quoted_and_normal_catalog_admission_still_succeeds) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 26.685s
+
+OK
+{
+  "contract": "nasdaq-manual-daily-controller-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 45,
+  "passed": 45,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 43.53200000000652,
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "windows_checks_passed": true,
+  "source": {
+    "coordinator_commit": "509ffa1f264f4a3d7b51e089e96c150cfbde1ca6",
+    "coordinator_tree": "593fc19e2ff32c4bd080ddd5599da1fc2d03ebd2",
+    "manual_predecessor": "aa6deb13d2f3d34cf651b4ef96c4d41fc44d8a7a",
+    "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "0fe97051239481b85bec071ec699bddb4c8fd749a2c45814f6d6a85440c45cb5",
+  "profile": "manual-40-v1",
+  "sources": [
+    "nasdaq-shared-daily",
+    "operator:masterbot"
+  ],
+  "shared_hot_session_limit": 40,
+  "shared_focus_additions_session_limit": 40,
+  "capacity_nonrecycling": true,
+  "manual_promotion_scope": "verified opening Uni only; outside-Uni manual broker integration remains next",
+  "owned_proof": {
+    "contract": "owned-nasdaq-manual-controller-proof-v1",
+    "result": "PASS",
+    "manual_symbol": "IBM",
+    "nasdaq_symbol": "MSFT",
+    "combined_roster_native_acquisitions_at_least": 2,
+    "manual_feedback_effective": true,
+    "identity_quote_permits": 1,
+    "worker_starts": 1,
+    "old_controls_fenced_after_stop": true,
+    "cleanup": {
+      "contract": "daily-hot-controller-v1",
+      "status": "STOPPED",
+      "reason": "operator_stop",
+      "cleanup": {
+        "source": null,
+        "hot": {
+          "status": "OWNED_WORKER_STOPPED"
+        },
+        "identity": {
+          "returncode": 70,
+          "forced": false
+        }
+      },
+      "cleanup_seconds": 0.03200000000651926,
+      "cleanup_within_10_seconds": true,
+      "evidence_errors": [],
+      "unmanaged_channels_untouched": [
+        "uni",
+        "focus",
+        "health"
+      ],
+      "reporting": {
+        "status": "COMPLETE",
+        "native_audit_passed": true,
+        "two_fresh_replays_equal": true,
+        "first_replay": {
+          "events": 5,
+          "sequence_sha256": "1f8dcff8a24bcb69de2b0ca760c1c6da92f057944bf6eef253182fb87d7adc4c"
+        },
+        "report_path": "C:\\Users\\danla\\manual92\\p92\\runs\\20261031T213235Z_145e35b7\\owned\\daily_hot_test\\reports\\47a261ac5720436fb7e6f2c4d73be889.json",
+        "seconds": 0.40599999998812564
+      }
+    },
+    "native_final_report": {
+      "audited_at_utc": "2026-11-01T15:00:08.186584+00:00",
+      "configuration_sha256": "ccf777160cfe81dc07c212e6af54a268ff8a5e12588860270b8b5071bbb1ce68",
+      "contract": "daily-hot-native-final-report-v1",
+      "first_replay": {
+        "events": 5,
+        "sequence_sha256": "1f8dcff8a24bcb69de2b0ca760c1c6da92f057944bf6eef253182fb87d7adc4c"
+      },
+      "full_day_capacity_qualified": false,
+      "hot_content_integrity": {
+        "acquisitions": 2,
+        "contract": "full-hot-journal-content-check-v1",
+        "error_count": 0,
+        "errors": [],
+        "observations": 4,
+        "passed": true,
+        "scope": "All Hot stored values against native-verified period receipts; other channels covered by native audit",
+        "skips": 0
+      },
+      "invocation": "34bdad2fb7504876ab8a6dba4f09d23c",
+      "native_audit": {
+        "channels": [
+          {
+            "acquisition_count": 0,
+            "channel": "focus",
+            "expected_slot_count": 0,
+            "member_rows": 4,
+            "missing_slot_ids": [],
+            "observation_count": 0,
+            "requested_symbol_count": 0,
+            "revision_count": 3,
+            "row_count_mismatch_ids": [],
+            "skipped_slot_count": 0,
+            "status_counts": {}
+          },
+          {
+            "acquisition_count": 2,
+            "channel": "hot",
+            "expected_slot_count": 2,
+            "member_rows": 2,
+            "missing_slot_ids": [],
+            "observation_count": 4,
+            "requested_symbol_count": 4,
+            "revision_count": 3,
+            "row_count_mismatch_ids": [],
+            "skipped_slot_count": 0,
+            "status_counts": {
+              "quote": 4
+            }
+          },
+          {
+            "acquisition_count": 0,
+            "channel": "uni",
+            "expected_slot_count": 0,
+            "member_rows": 12,
+            "missing_slot_ids": [],
+            "observation_count": 0,
+            "requested_symbol_count": 0,
+            "revision_count": 3,
+            "row_count_mismatch_ids": [],
+            "skipped_slot_count": 0,
+            "status_counts": {}
+          }
+        ],
+        "database_path": "C:\\Users\\danla\\manual92\\p92\\runs\\20261031T213235Z_145e35b7\\owned\\quote_observation_journal_v2_api_opening_2026-11-01\\2026-11-01.sqlite3",
+        "evidence_bytes": {},
+        "findings": [],
+        "integrity_results": [
+          "ok"
+        ],
+        "membership_contract": "nested-uni-focus-hot-v1",
+        "runs": [
+          {
+            "channel": "focus",
+            "configuration": {
+              "cadence_profile": "interleaved-v1",
+              "poll_seconds": [
+                10,
+                20,
+                40,
+                50
+              ],
+              "watchlist_kind": "focus"
+            },
+            "host": null,
+            "run_id": "existing-focus",
+            "software_version": "synthetic-current-source",
+            "started_at_utc": "2026-11-01T14:20:00.000000Z"
+          },
+          {
+            "channel": "uni",
+            "configuration": {
+              "cadence_profile": "interleaved-v1",
+              "poll_seconds": [
+                0,
+                30
+              ],
+              "watchlist_kind": "uni"
+            },
+            "host": null,
+            "run_id": "existing-uni",
+            "software_version": "synthetic-current-source",
+            "started_at_utc": "2026-11-01T14:20:00.000000Z"
+          },
+          {
+            "channel": "hot",
+            "configuration": {
+              "batch_size": 400,
+              "daily_binding_sha256": "233eec7135c63ec40668a191b4533bb329fc2f7183ab50bb8ed2b392a8691e0a",
+              "daily_hot_contract": "daily-native-hot-acquisition-v2",
+              "fields": "all",
+              "max_dispatch_lateness_seconds": 0.75,
+              "parent_cadence_profile": "interleaved-v1",
+              "poll_seconds": [
+                2,
+                4,
+                6,
+                8,
+                12,
+                14,
+                16,
+                18,
+                22,
+                24,
+                26,
+                28,
+                32,
+                34,
+                36,
+                38,
+                42,
+                44,
+                46,
+                48,
+                52,
+                54,
+                56,
+                58
+              ],
+              "poll_window_end_et": "2026-11-01T10:00:45-05:00",
+              "poll_window_start_et": "2026-11-01T10:00:06-05:00",
+              "retry_seconds": 0.05,
+              "source_label": "daily-native-hot-v1",
+              "watchlist_kind": "hot"
+            },
+            "host": null,
+            "run_id": "daily-hot-ee3c88af3e6c4b9680aa05689a516e47",
+            "software_version": "daily-native-hot-acquisition-v2",
+            "started_at_utc": "2026-11-01T15:00:00.924656Z"
+          },
+          {
+            "channel": "hot",
+            "configuration": {
+              "batch_size": 400,
+              "daily_hot_contract": "daily-hot-collection-periods-v1",
+              "fields": "all",
+              "history_scope": "active five-minute period; closed payloads audited independently",
+              "max_dispatch_lateness_seconds": 0.75,
+              "parent_cadence_profile": "interleaved-v1",
+              "poll_seconds": [
+                2,
+                4,
+                6,
+                8,
+                12,
+                14,
+                16,
+                18,
+                22,
+                24,
+                26,
+                28,
+                32,
+                34,
+                36,
+                38,
+                42,
+                44,
+                46,
+                48,
+                52,
+                54,
+                56,
+                58
+              ],
+              "poll_window_end_et": "2026-11-01T10:00:45-05:00",
+              "poll_window_start_et": "2026-11-01T10:00:06-05:00",
+              "retry_seconds": 0.05,
+              "source_label": "daily-native-hot-v1",
+              "watchlist_kind": "hot"
+            },
+            "host": null,
+            "run_id": "daily-hot-schedule-d45d4a17682c41dcaad1df9b78e24d89",
+            "software_version": "daily-hot-collection-periods-v1",
+            "started_at_utc": "2026-11-01T15:00:00.949643Z"
+          }
+        ],
+        "schema_version": 2,
+        "session_date": "2026-11-01",
+        "storage_bytes": {
+          "database": 110592,
+          "shm": 32768,
+          "wal": 65952
+        },
+        "table_counts": {
+          "poll_run": 4,
+          "poll_slot_skip": 0,
+          "quote_acquisition": 2,
+          "quote_observation": 4,
+          "sampling_channel_member": 18,
+          "sampling_channel_revision": 9,
+          "sampling_membership_revision": 3
+        }
+      },
+      "native_audit_passed": true,
+      "production_activation_inferred": false,
+      "replay_method": "native ordered event IDs; Hot payloads checked separately",
+      "report_id": "47a261ac5720436fb7e6f2c4d73be889",
+      "second_replay": {
+        "events": 5,
+        "sequence_sha256": "1f8dcff8a24bcb69de2b0ca760c1c6da92f057944bf6eef253182fb87d7adc4c"
+      },
+      "status": "COMPLETE",
+      "two_fresh_replays_equal": true,
+      "validation_passed": true
+    },
+    "hot_status_counts": {
+      "quote": 4
+    },
+    "synthetic_sdk_only": true,
+    "production_access": false,
+    "actual_vault_access": false,
+    "p85_changed": false,
+    "full_day_capacity_qualified": false
+  },
+  "gui_proof": {
+    "result": "PASS",
+    "actual_tk_window": true,
+    "tk_version": "8.6.15",
+    "observed_phases": [
+      "verified_empty",
+      "requested_pending",
+      "effective_hot",
+      "own_demotion_pending",
+      "effective_focus",
+      "privileged_limit_pending",
+      "effective_limit",
+      "read_error_retains_feedback_and_disables_edits",
+      "read_recovered_without_reset"
+    ],
+    "errors": [],
+    "auto_closed": true,
+    "executor_stopped": true,
+    "synthetic_only": true,
+    "preview_hold_seconds": 15,
+    "completed_display_visible_seconds": 15.03100000001723,
+    "logical_clock_advanced_for_demotion_hold": true,
+    "provider_requests": 0,
+    "production_access": false
+  },
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_broker_sdk_used": false,
+  "production_changes": false,
+  "production_manual_launch_available": false,
+  "p85_source_settings_or_approval_changed": false,
+  "unchanged_long_capacity_source_recovery_drills_repeated": false,
+  "provider_capacity_qualified": false,
+  "full_day_capacity_qualified": false,
+  "remaining": [
+    "Windows result and actual returned CMD prompt",
+    "Outside-Uni manual identity integration",
+    "Reviewed manual-enabled production delivery and activation before live use"
+  ]
+}
+Saved report: C:\Users\danla\manual92\p92\runs\20261031T213235Z_145e35b7\verification.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
