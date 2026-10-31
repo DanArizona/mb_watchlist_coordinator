@@ -164,17 +164,22 @@ class MultiIdentityGate(DailyIdentityGate):
     def snapshot(self):
         with closing(self._connect()) as c:
             c.execute('BEGIN')
-            source, events, reservations, decisions, selected, terminal, _ = self._read(c)
+            verified=self._read(c)
+        cached=getattr(self,'_frozen_snapshot',None)
+        if cached is not None and cached[0]is verified:return cached[1]
+        source, events, reservations, decisions, selected, terminal, _ = verified
         outcomes = {cid: e['code'] for cid, e in decisions.items()}
         outcomes.update({cid: 'identity_outcome_unknown_no_retry'
             for cid in reservations if cid not in decisions})
         pending = [cid for cid in source['pending'] if cid not in outcomes or outcomes[cid] == 'approved']
-        return freeze({**source, 'pending': pending, 'identity_gate': {
+        result=freeze({**source, 'pending': pending, 'identity_gate': {
             'events': events, 'dispositions': outcomes, 'quote_permits': len(reservations),
             'authorized_symbols': sorted(selected),
             'selected_symbol': next(iter(selected), None), 'provider_stop_required': terminal,
             'all_outbox_pending': source['pending'], 'catalog_id': self.catalog.catalog_id,
             'scope': 'broker_identity_and_bounded_authorization_not_tradability_or_publication'}})
+        self._frozen_snapshot=(verified,result)
+        return result
 
     def _authorize(self, cid, client, *, fault_hook=None):
         snap = plain(self.snapshot()); state = snap['identity_gate']

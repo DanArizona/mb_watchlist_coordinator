@@ -132,18 +132,27 @@ class DailyHotCollector(HotRecoveryCollector):
                     (not set(dispatch['symbols']) <= set(gate['authorized_symbols'])
                         if 'authorized_symbols' in gate else dispatch['symbols'] != [gate['selected_symbol']])):
                 raise ValueError('Native dispatch does not match verified selected membership')
+        if dispatch is None:self._native_publication_state=(publication,gate)
         return True
 
-    def _check(self):
+    def _check(self,*,publication=True):
         if self.collector_lease is None:raise ValueError('Owned prepared daily collector required')
         self._provider_stop()
         super()._check()
-        return self._publication()
+        return self._publication() if publication else None
 
     def quotes(self, symbols, *, fields):
         # This executes after the native durable dispatch, inside its owner lock.
-        verified=self._check()
         state=self.poller.provider_dispatch_state()
+        multi=self.settings.daily_binding['settings'].get('policy_profile')=='multi-40-v1'
+        if multi:
+            # The synchronous native provider state comes from the checked read
+            # after durable dispatch. Its callback just validated this exact
+            # publication/gate view. Reuse that immutable view, with no blocking
+            # factory work between it and this call. No persisted cache bypass.
+            self._check(publication=False)
+            verified=self._native_publication_state
+        else:verified=self._check()
         dispatch=state['pending']['dispatch']
         self.validate_publication(dispatch,verified_state=verified)
         consumed=sum(e['kind']=='dispatch' and bool(e['symbols']) for e in state['events'])
@@ -180,7 +189,7 @@ class DailyHotCollector(HotRecoveryCollector):
 
     def tick(self,*,fault_hook=None):
         from mb_market_data.sampling_acquisition import next_slot
-        self._check()
+        self._check(publication=self.settings.daily_binding['settings'].get('policy_profile')!='multi-40-v1')
         if self.clock()>=timestamp(self.settings.stop_at_utc):return {'status':'window_ended'}
         if self.next is None or self.clock()<self.next.scheduled_at:
             state=self.poller.snapshot()

@@ -60,6 +60,7 @@ def proposed_policy(profile=SINGLE_PROFILE) -> dict:
             maximum_identity_quote_calls=120,
             identity_seconds_between_calls=2,
             maximum_identity_calls_per_symbol=3)
+        value['publication']={'minimum_interval_seconds':10,'pending_membership_visible':True}
         value['collection_history'] = {'active_period_seconds':300,
             'full_schedule_registered':True,
             'closed_payload_validation':'independent_full_journal_audit_and_replay'}

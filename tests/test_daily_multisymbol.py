@@ -310,6 +310,17 @@ def replay_identity(journal):
     return {'events': count, 'sequence_sha256': h.hexdigest()}
 
 
+    def test_compact_collector_projection_keeps_all_rosters_after_full_validation(self):
+        full=self.s.service.snapshot();view=self.s.service.collector_snapshot()
+        for a,b in zip(full['journal'],view['journal']):
+            self.assertEqual(a['content_sha256'],b['content_sha256'])
+            for field in ('revision','uni_symbols','focus_symbols','hot_symbols'):
+                self.assertEqual(a['proposal'][field],b['proposal'][field])
+        with closing(sqlite3.connect(self.s.service.path))as c,c:
+            c.execute('UPDATE publication_event SET payload="{}" WHERE sequence=1')
+        with self.assertRaises((ValueError,KeyError)):self.s.service.collector_snapshot()
+
+
 class MultiNativeTests(unittest.TestCase):
     def setUp(self):
         self.f = MultiFixture(background=self._testMethodName ==
@@ -431,6 +442,46 @@ class MultiSourceContentionTests(unittest.TestCase):
         self.assertEqual(len(self.c.calls),1)
 
 
+class MultiPublicationBatchTests(unittest.TestCase):
+    def setUp(self):
+        self.f=MultiFixture();self.addCleanup(self.f.close)
+        self.c,self.s=self.f.case,self.f.session
+        from mb_watchlist_coordinator.daily_controller import _ControllerPublication
+        self.publisher=_ControllerPublication(self.s.service,minimum_interval_seconds=10)
+
+    def test_batch_defers_new_request_then_publishes_all_pending_symbols_without_another_identity_call(self):
+        self.f.queue(SYMBOLS[:2]);self.s.gate.deliver_pending(client=self.c.client)
+        self.publisher.cycle();self.c.now+=timedelta(seconds=2)
+        self.s.gate.deliver_pending(client=self.c.client)
+        self.assertEqual(self.publisher.cycle()['reason'],'publication_batch_interval')
+        self.assertEqual(len(self.c.store.membership_revisions_in_effective_order()[-1].hot_symbols),1)
+        self.c.now+=timedelta(seconds=8);self.publisher.cycle()
+        self.assertEqual(len(self.c.store.membership_revisions_in_effective_order()[-1].hot_symbols),2)
+        self.assertEqual(len(self.c.calls),2)
+
+    def test_a_new_wrapper_reuses_original_publication_outcome_time_instead_of_resetting_interval(self):
+        from mb_watchlist_coordinator.daily_controller import _ControllerPublication
+        self.f.queue(SYMBOLS[:1]);self.s.gate.deliver_pending(client=self.c.client);self.publisher.cycle()
+        again=_ControllerPublication(self.s.service,minimum_interval_seconds=10)
+        self.c.now+=timedelta(seconds=2)
+        self.assertEqual(again.cycle()['status'],'deferred')
+
+    def test_immediate_restriction_bypasses_addition_batch_interval(self):
+        self.f.queue(SYMBOLS[:1]);self.s.gate.deliver_pending(client=self.c.client);self.publisher.cycle()
+        self.c.now+=timedelta(seconds=2)
+        self.s.requests.restrict_symbol('immediate-cap',symbol=SYMBOLS[0],max_group='focus',
+            actor_id=self.s.binding['policy']['operator_actor_id'])
+        result=self.publisher.cycle()
+        self.assertNotEqual(result['status'],'deferred')
+        self.assertFalse(self.c.store.membership_revisions_in_effective_order()[-1].hot_symbols)
+
+    def test_batch_deferral_still_rejects_modified_publication_history(self):
+        self.f.queue(SYMBOLS[:1]);self.s.gate.deliver_pending(client=self.c.client);self.publisher.cycle()
+        with closing(sqlite3.connect(self.s.service.path))as db,db:
+            db.execute('UPDATE publication_event SET payload="{}" WHERE sequence=1')
+        with self.assertRaises((ValueError,KeyError)):self.publisher.cycle()
+
+
 class MultiPeriodTests(unittest.TestCase):
     def setUp(self):
         self.h=MultiNativeTests('test_multi_symbol_collector_refuses_widened_or_wrong_sealed_roster')
@@ -457,6 +508,16 @@ class MultiPeriodTests(unittest.TestCase):
         self.assertEqual(len(periods),78)
         self.assertEqual(sum(p[3]for p in periods),9360)
         self.assertTrue(all(periods[n][2]==periods[n+1][1]for n in range(77)))
+
+    def test_monday_est_periods_cover_1430_to_2100_utc(self):
+        from zoneinfo import ZoneInfo
+        from mb_watchlist_coordinator.sampling_requests import timestamp
+        from mb_watchlist_coordinator.daily_epoch_collector import period_windows
+        start=datetime(2026,11,2,9,30,tzinfo=ZoneInfo('America/New_York'))
+        periods=period_windows(start.isoformat(),start.replace(hour=16,minute=0).isoformat())
+        self.assertEqual(timestamp(periods[0][1]),datetime(2026,11,2,14,30,tzinfo=timezone.utc))
+        self.assertEqual(timestamp(periods[-1][2]),datetime(2026,11,2,21,tzinfo=timezone.utc))
+        self.assertEqual(sum(p[3]for p in periods),9360)
 
     def test_insufficient_global_call_budget_is_refused_before_state_or_client_creation(self):
         with self.assertRaises(ValueError):
@@ -497,6 +558,54 @@ class MultiPeriodTests(unittest.TestCase):
         self.h.collector=self.h.make()
         with self.assertRaises(ValueError):self.h.collector.prepare()
         self.assertEqual(self.h.quote_calls,calls)
+
+
+    def test_read_only_period_preflight_keeps_all_run_counts_and_never_constructs_a_client(self):
+        self.cross();self.h.collector.close()
+        with closing(sqlite3.connect(self.c.journal))as c:
+            before=c.execute('SELECT count(*) FROM poll_run').fetchone()[0]
+        def forbidden():raise AssertionError('Preflight cannot authenticate or call a provider')
+        self.h.collector=self.h.make(forbidden)
+        self.assertEqual(self.h.collector.check_retained_files(),())
+        with closing(sqlite3.connect(self.c.journal))as c:
+            self.assertEqual(c.execute('SELECT count(*) FROM poll_run').fetchone()[0],before)
+
+    def test_removing_every_old_period_file_is_refused_when_native_outcomes_still_exist(self):
+        self.cross();self.h.collector.close();calls=list(self.h.quote_calls)
+        old=sorted(self.c.journal.parent.glob('*.hot.e*.poller.sqlite3'))[0]
+        prefix=old.name.split('.poller',1)[0]
+        for p in self.c.journal.parent.glob(prefix+'.*'):p.unlink()
+        self.h.collector=self.h.make()
+        with self.assertRaises(ValueError):self.h.collector.check_retained_files()
+        self.assertEqual(self.h.quote_calls,calls)
+
+    def test_shutdown_native_readback_works_after_live_fence_stops_without_dispatch_or_recovery(self):
+        self.cross();calls=list(self.h.quote_calls)
+        with patch.object(self.h.collector.poller,'validate_publication',side_effect=ValueError('live fence stopped'))as live:
+            self.h.collector.close()
+        live.assert_not_called();self.assertEqual(self.h.quote_calls,calls)
+        from mb_watchlist_coordinator.daily_epoch_integrity import verify_journal_content
+        self.assertTrue(verify_journal_content(self.c.journal)['passed'])
+
+    def test_final_report_keeps_coverage_pass_separate_from_failed_hot_content(self):
+        self.cross();self.h.collector.close()
+        from mb_watchlist_coordinator.authenticated_startup import AuthStartupSettings
+        from mb_watchlist_coordinator.daily_supervision import DailyWorkerConfiguration,unseal,read_json
+        from mb_watchlist_coordinator.daily_authenticated_worker import run_report
+        from mb_watchlist_coordinator.sampling_requests import utc_text
+        with closing(sqlite3.connect(self.c.journal))as db,db:
+            db.execute('UPDATE quote_observation SET quote_last_price=99 WHERE ordinal=0')
+        raw=DailyWorkerConfiguration(self.c.settings,str(self.c.root/'catalog'),self.h.settings,
+            AuthStartupSettings(str(self.c.root/'unused.ecfg'),self.h.settings.stop_at_utc)).payload()
+        config=self.c.root/'report-test.json';config.write_text(json.dumps(raw))
+        directory=Path(self.c.settings.state_root)/'reports';directory.mkdir()
+        report_id='1'*32;output=directory/(report_id+'.json');job_path=directory/(report_id+'.job.json')
+        job={'configuration_sha256':digest(raw),'report_id':report_id,'invocation':'synthetic',
+            'output':str(output),'audited_at_utc':utc_text(self.c.now)}
+        job_path.write_text(json.dumps(job));run_report(config,job_path)
+        report=unseal(read_json(output))
+        self.assertTrue(report['native_audit_passed']);self.assertFalse(report['hot_content_integrity']['passed'])
+        self.assertFalse(report['validation_passed']);self.assertTrue(report['two_fresh_replays_equal'])
 
 
 

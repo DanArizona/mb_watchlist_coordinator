@@ -63,7 +63,7 @@ def _invocation_preflight(config, commands, mode, previous_outer, clock):
                         connection.execute('SELECT configuration_json FROM poll_run'))):
                 raise ValueError('Existing native Hot or membership history requires original-ledger recovery')
         if any(p.exists() for p in (journal.with_suffix('.daily-hot-provider-stop.json'),
-                journal.with_suffix('.hot.poller.daily-collector.json'))):
+                journal.with_suffix('.hot.poller.daily-collector.json'),journal.with_suffix('.hot.periods.json'))):
             raise ValueError('Existing Hot collector evidence requires original-ledger recovery')
         return None
     if mode != 'manual_resume' or previous_outer is None:
@@ -113,6 +113,15 @@ def _invocation_preflight(config, commands, mode, previous_outer, clock):
     if (gate['identity_gate']['provider_stop_required'] or stop.exists()
             or manifest.exists() and read_json(manifest).get('provider_stop')):
         raise ValueError('Original provider stop remains latched; review it before resume')
+    if config.publication.policy_profile=='multi-40-v1':
+        from .daily_epoch_collector import make_daily_collector
+        def forbidden():raise AssertionError('Resume preflight cannot prepare a client')
+        collector=make_daily_collector(config.collector,publication_session=reader,client_factory=forbidden,
+            clock=clock,activation_approved=True)
+        try:
+            collector.check_retained_files()
+            if collector.poller.path.exists():collector.poller.snapshot()
+        finally:collector.close()
     return {'previous_outer': str(previous_outer), 'previous_nonce': previous['nonce'],
         'charged_worker_starts': len(saved['starts']), 'maximum_worker_starts': 3,
         'budgets_reset': False, 'minimum_replacement_hold_seconds': 15}

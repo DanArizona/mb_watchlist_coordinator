@@ -1,0 +1,48 @@
+{
+  "contract": "daily-hot-multisymbol-local-development-v1",
+  "result": "IN_PROGRESS",
+  "accepted_paced_run": "development_owned_07_PASS.json",
+  "synthetic_only": true,
+  "native_local_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+  "native_public_commit": "37c22983bc92055dd322085f191b054921d896d2",
+  "native_source_tree": "38e33f634de94693b7b67b89d15418df82cd4d73",
+  "runtime_policy_changes": {
+    "hot_symbols": 40,
+    "identity_calls": 120,
+    "identity_spacing_seconds": 2,
+    "membership_publication_minimum_interval_seconds": 10,
+    "active_collection_period_seconds": 300
+  },
+  "windows_checks_passed": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "activation_approved": false,
+  "prior_failed_verdicts_preserved": true,
+  "remaining": [
+    "Full-roster owned rollover proof",
+    "New rollover telemetry short probe",
+    "Freeze/publish/package",
+    "Windows acceptance and concrete deployment/settings/activation review"
+  ],
+  "focused_regressions": {
+    "tests": 107,
+    "result": "PASS",
+    "seconds": 129.847
+  },
+  "additional_affected_cases": {
+    "tests": 15,
+    "result": "PASS",
+    "seconds": 5.181,
+    "overlap_with_main_regressions": true
+  },
+  "history": {
+    "result": "PASS",
+    "observations": 996300,
+    "cold_prepare_seconds": 0.8330116409997572,
+    "tail_seconds": [
+      0.5838742239993735,
+      0.6022010760007106
+    ],
+    "final_verification_seconds": 12.40358972500053
+  }
+}

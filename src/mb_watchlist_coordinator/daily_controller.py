@@ -22,8 +22,9 @@ from .supervised_hot_worker import progress_receipt, progress_path
 
 class _ControllerPublication:
     """Share short publication reads with the collector; retry only lock entry."""
-    def __init__(self, service):
+    def __init__(self, service,*,minimum_interval_seconds=0):
         self.service, self.identity = service, service.identity
+        self.minimum_interval_seconds=minimum_interval_seconds
     def __getattr__(self, name): return getattr(self.service, name)
     def _call(self, method, **kwargs):
         deadline = time.monotonic()+.2
@@ -33,7 +34,19 @@ class _ControllerPublication:
                 if time.monotonic() >= deadline: raise
                 time.sleep(.005)
     def snapshot(self): return self._call('snapshot')
-    def cycle(self, **kwargs): return self._call('cycle', **kwargs)
+    def cycle(self, **kwargs):
+        if self.minimum_interval_seconds:
+            state=self.snapshot() # Complete current validation, no provider work.
+            at=self.service.now()
+            completed=[e for e in state['outcomes']if e['kind']=='acknowledged']
+            last=timestamp(completed[-1]['recorded_at_utc'])if completed else None
+            if last is not None and at<last:raise ValueError('Publication batch clock reversed')
+            due=last+timedelta(seconds=self.minimum_interval_seconds)if last is not None else at
+            if (state['pending']is None and not state['unacknowledged']
+                    and state.get('batchable_additions_only') is True and at<due):
+                return {'status':'deferred','reason':'publication_batch_interval',
+                    'next_at_utc':utc_text(due),'membership_publication_pending':True}
+        return self._call('cycle',**kwargs)
 
 
 class DailyHotHealth:
@@ -177,7 +190,8 @@ class DailyController:
                 if not create: s['hold_until_utc'] = utc_text(self.clock()+timedelta(seconds=15))
             self.state.change(begin)
             self._live()
-            self.session.service = _ControllerPublication(self.session.service)
+            self.session.service = _ControllerPublication(self.session.service,minimum_interval_seconds=
+                self.session.binding['policy'].get('publication',{}).get('minimum_interval_seconds',0))
             self.worker = DailyManagedWorker(self.root/'workers', command=self.commands['collector'],
                 binding=self.identity, state=self.state, password=self.password,
                 clock=self.clock, monotonic=self.monotonic)
@@ -307,7 +321,10 @@ class DailyController:
             return self.status()
         except ServiceBusy:
             from .operating_plan import MULTI_PROFILE
-            if self.session.settings.policy_profile!=MULTI_PROFILE:raise
+            if self.session.settings.policy_profile!=MULTI_PROFILE:
+                with self.lock:self._terminal('daily_inputs_or_source_failed')
+                self.close(reason='daily_inputs_or_source_failed')
+                raise
             # The pending source/request ledgers decide future work. This is a
             # yield, never an in-place retry or another provider dispatch.
             return self.status()

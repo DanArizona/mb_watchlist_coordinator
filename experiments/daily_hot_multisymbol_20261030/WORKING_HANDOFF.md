@@ -1,3 +1,57 @@
+# Multi-symbol development handoff
+
+## Current status — final multi-symbol candidate
+
+The latest paced owned development run07 PASSes:41 simultaneous candidates,
+40identity calls (minimum interval2.074794s), four real paced synthetic feed children
+(completion-to-start intervals61.04/61.32/61.39s),40Hot members,55Hot acquisitions,
+23empty-membership skips,7concurrent Uni and13Focus acquisitions, zero missing
+slots, original full native coverage audit PASS and Hot stored-value integrity
+PASS. One worker, original3/8/15/10/60s gates, cleanup0.1448s, scope observed empty.
+AllHot rows were quotes;16acquisitions used the complete40symbol roster. Twelve
+native membership revisions include r0/r1 plus ten coalesced additions. Two fresh
+native event-order digests agree (not two full observation-object projections).
+The synthetic SDK/network-denied proof is not live-provider or full-session evidence.
+
+The multi profile now explicitly binds ten-second membership publication batches
+for additions. Pending native ACK completion and membership reductions bypass
+that interval; a dedicated immediate-restriction case passes. Read-only final
+verification can inspect an unfinished original native period after the live
+fence stops, without credentials, dispatch, recovery writes or run registration.
+Original raw FAILED packet/coverage verdicts remain in validation, including runs
+03/04/05 whose data integrity passed but whose Hot coverage failed. Run06 was
+stopped deliberately after a focused batching assertion showed the wrong persisted
+time anchor; the corrected publisher uses original publication ACK outcome time.
+No run has been promoted to Windows or production acceptance.
+
+Final local regression batch:107tests PASS in129.847s. Fifteen focused batching,
+restriction, EST partition and period/final-report cases also PASS in5.181s; these
+include two new cases added after the larger batch. The new packet discovers the
+entire current set, not a hardcoded earlier count. New GUI/provider/unchanged
+15second supervisor drills are not repeated. The full-size final-policy history
+probe is running; collect its result before freezing delivery. Do not repeat the
+unchanged paced run solely to copy the exact same source bytes into a ZIP.
+
+Local native source d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e is published as
+37c22983bc92055dd322085f191b054921d896d2 on native experiment/daily-hot-multi-
+capacity-20261030 with identical tree38e33f634de94693b7b67b89d15418df82cd4d73.
+Coordinator prior checkpoint6f60680 matches public d497c63ee6ae7f6fa43c6ef8ce14fb0a5a71c8f7;
+subsequent files still need final commit/publication. Public coordinator branch
+remains experiment/daily-hot-source-reliability-20261029. No main branch or
+installed production source/environment was changed. Production activation and
+concrete revised settings approval remain pending.
+
+Windows packet scaffold: p85,85_verify_multisymbol.cmd,86_review_multisymbol.cmd.
+Allow about10minutes/up to12; it retains about1.1GB synthetic proof data under runs.
+Do not deliver until final source, focused verification and history evidence are
+frozen. Fresh Hot startup remains pre-open. MondayNov2r0 is584/0/0, published and
+audited; actual morningOV/r1/poller startup still due. Reported refresh expiry
+Nov6covers Monday; no OAuth response was stored in these records.
+
+---
+
+## Historical checkpoints (preserved)
+
 # Multi-symbol development checkpoint — not a qualified release
 
 Operator goal: one practical multi-symbol envelope, forced market-closed bursts

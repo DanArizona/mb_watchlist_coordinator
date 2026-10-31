@@ -18,18 +18,18 @@ class MultiOwnedTests(unittest.TestCase):
         directory=os.environ.get('MB_MULTI_OWNED_PROOF_DIR')
         f=MultiFixture(background=True,root=Path(directory) if directory else None);self.addCleanup(f.close)
         c,s=f.case,f.session
-        logical=c.at.replace(minute=4,second=30);real=datetime.now(timezone.utc)
+        logical=c.at.replace(minute=2,second=0);real=datetime.now(timezone.utc)
         clock=lambda:logical+(datetime.now(timezone.utc)-real)
-        stop=logical+timedelta(seconds=180);background_stop=logical+timedelta(seconds=173)
+        stop=logical+timedelta(seconds=210);background_stop=logical+timedelta(seconds=199)
         settings=DailyCollectorSettings(str(c.journal),plain(s.service.identity),plain(s.binding),plain(s.claim),
-            (logical+timedelta(seconds=6)).isoformat(),stop.isoformat(),72,40)
+            (logical+timedelta(seconds=6)).isoformat(),stop.isoformat(),84,40)
         config=DailyWorkerConfiguration(c.settings,str(c.root/'catalog'),settings,
             AuthStartupSettings(str(c.root/'unused.ecfg'),stop.isoformat()))
         import mb_market_data
         scene={'real_anchor':real.isoformat(),'logical_anchor':logical.isoformat(),
             'native_src':str(Path(mb_market_data.__file__).resolve().parents[1]),'log':str(c.root/'multi-process-events.jsonl'),
             'admit':False,'trace_stacks':False}
-        items=[rss(logical.date(),symbol=x,halt='10:03:00').decode().split('<channel>',1)[1].split('</channel>',1)[0]
+        items=[rss(logical.date(),symbol=x,halt=(logical-timedelta(minutes=1)).strftime('%H:%M:%S')).decode().split('<channel>',1)[1].split('</channel>',1)[0]
             for x in SYMBOLS[:41]]
         scene['feed_body']='<rss><channel>'+''.join(items)+'</channel></rss>'
         scene_path=c.root/'multi-scene.json';scene_path.write_text(json.dumps(scene))
@@ -71,10 +71,16 @@ class MultiOwnedTests(unittest.TestCase):
         thread=threading.Thread(target=writer,daemon=True);thread.start()
         owner=DailyOperatingOwner(c.root/'daily_outer_multi',config,commands=commands,
             controller_entry=entries['controller'],reporter_entry=entries['report'],clock=clock,activation_approved=True)
+        progress_mark=[0]
         began=time.monotonic();proof={'contract':'multi-symbol-paced-owned-proof-v1','result':'FAILED'}
         def stop_requested():
+            elapsed=time.monotonic()-began
+            if elapsed-progress_mark[0]>=30:
+                progress_mark[0]=elapsed
+                print(json.dumps({'phase':'owned_burst_progress','elapsed_seconds':round(elapsed,1),
+                    'concurrent_uni':written['uni'],'concurrent_focus':written['focus']}),flush=True)
             if writer_errors:return True
-            if time.monotonic()-began>=173:
+            if time.monotonic()-began>=199:
                 done.set();thread.join(timeout=1);return True
             return False
         try:
@@ -93,6 +99,10 @@ class MultiOwnedTests(unittest.TestCase):
                 maximum=db.execute('SELECT max(requested_symbol_count) FROM quote_acquisition WHERE channel="hot"').fetchone()[0]
                 full=db.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot" AND requested_symbol_count=40').fetchone()[0]
             self.assertEqual(maximum,40,proof);self.assertGreaterEqual(full,2,proof)
+            with closing(sqlite3.connect(c.journal.as_uri()+'?mode=ro',uri=True))as db:
+                errors=db.execute('SELECT count(*) FROM quote_observation o JOIN quote_acquisition h ON h.acquisition_id=o.acquisition_id '
+                    'WHERE h.channel="hot" AND o.status!="quote"').fetchone()[0]
+            self.assertEqual(errors,0,proof)
             events=[json.loads(line)for line in Path(scene['log']).read_text().splitlines()]
             identity=[e for e in events if e['role']=='identity'and e['event']=='quote']
             intervals=[(datetime.fromisoformat(b['at'])-datetime.fromisoformat(a['at'])).total_seconds()for a,b in zip(identity,identity[1:])]
@@ -101,14 +111,24 @@ class MultiOwnedTests(unittest.TestCase):
             with closing(sqlite3.connect((state/'daily-feed.sqlite3').as_uri()+'?mode=ro',uri=True))as db:
                 feed=[json.loads(r[0])for r in db.execute('SELECT payload FROM feed_event ORDER BY sequence')]
             starts=[e for e in feed if e['kind']=='start'];finishes=[e for e in feed if e['kind']=='finish']
-            self.assertEqual(len(starts),3,feed);self.assertEqual(len(finishes),3,feed)
-            gaps=[(datetime.fromisoformat(starts[n+1]['at_utc'])-datetime.fromisoformat(finishes[n]['at_utc'])).total_seconds()for n in range(2)]
+            self.assertIn(len(starts),(3,4),feed);self.assertEqual(len(finishes),len(starts),feed)
+            gaps=[(datetime.fromisoformat(starts[n+1]['at_utc'])-datetime.fromisoformat(finishes[n]['at_utc'])).total_seconds()for n in range(len(starts)-1)]
             self.assertTrue(all(x>=60 for x in gaps),gaps)
             self.assertGreaterEqual(len(list(c.journal.parent.glob('*.hot.e*.poller.sqlite3'))),2)
+            boundary=logical.replace(minute=5,second=0)
+            with closing(sqlite3.connect(c.journal.as_uri()+'?mode=ro',uri=True))as db:
+                from mb_market_data.quote_observation_store import _utc_text
+                before=db.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot" AND requested_symbol_count=40 '
+                    'AND scheduled_at_utc<?',(_utc_text(boundary,'fixture'),)).fetchone()[0]
+                after=db.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot" AND requested_symbol_count=40 '
+                    'AND scheduled_at_utc>=?',(_utc_text(boundary,'fixture'),)).fetchone()[0]
+            self.assertGreaterEqual(before,2,proof);self.assertGreaterEqual(after,2,proof)
             self.assertTrue(all(written[x]>0 for x in ('uni','focus')))
-            proof.update(result='PASS',source_attempts=3,source_reconciled=True,identity_calls=40,
+            proof.update(result='PASS',source_attempts=len(starts),source_reconciled=True,identity_calls=40,
                 minimum_identity_interval_seconds=min(intervals),source_intervals_seconds=gaps,
-                full_roster_hot_acquisitions=full,worker_starts=1,network='denied',synthetic_only=True,
+                full_roster_hot_acquisitions=full,native_membership_revisions=c.store.membership_revisions_in_effective_order()[-1].revision+1,
+                full_roster_acquisitions_before_rollover=before,full_roster_acquisitions_after_rollover=after,
+                publication_batch_seconds=10,worker_starts=1,network='denied',synthetic_only=True,
                 provider_capacity_qualified=False,full_session_executed=False,production_changes=False)
         finally:
             done.set();thread.join(timeout=2)

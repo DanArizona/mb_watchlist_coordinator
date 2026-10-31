@@ -32,7 +32,7 @@ def verified_period_digest(poller):
     return stored_values_digest(cache['raw_headers'],cache['raw_observations'],cache['raw_skips'])
 
 
-def verify_journal_content(path, *, expected_settings=None):
+def verify_journal_content(path, *, expected_settings=None,unfinished_validator=None):
     path=Path(path).resolve();errors=[];acquisitions=observations=skips=0
     manifest=json.loads(path.with_suffix('.hot.periods.json').read_text())
     body=dict(manifest);sha=body.pop('content_sha256')
@@ -56,14 +56,21 @@ def verify_journal_content(path, *, expected_settings=None):
             actual=stored_values_digest(headers,rows,skip_rows)
             receipts=[path.with_suffix(f'.hot.e{index:02d}.{suffix}.json')for suffix in ('closed','checkpoint')]
             receipt=next((p for p in receipts if p.is_file()),None)
-            if receipt is None:
-                if headers or rows or skip_rows:errors.append(f'period_{index}:verification_receipt_missing')
-            else:
+            value=None;valid=False
+            if receipt is not None:
                 raw=json.loads(receipt.read_text());value=dict(raw);expected=value.pop('content_sha256')
-                if (expected!=digest(value)or value['parent_sha256']!=digest(body['settings'])
-                        or (value['index'],value['start'],value['stop'])!=(index,start,stop)
-                        or value['verified_stored_values']!=actual):
-                    errors.append(f'period_{index}:verified_stored_values_differ')
+                valid=(expected==digest(value)and value['parent_sha256']==digest(body['settings'])
+                    and (value['index'],value['start'],value['stop'])==(index,start,stop)
+                    and value['verified_stored_values']==actual)
+            is_closed=receipts[0].exists()
+            if not valid and not is_closed and unfinished_validator is not None:
+                ledger=path.with_suffix(f'.hot.e{index:02d}.poller.sqlite3')
+                if ledger.is_file():
+                    try:valid=unfinished_validator(index)==actual
+                    except (ValueError,OSError,sqlite3.Error)as error:
+                        errors.append(f'period_{index}:native_readback_'+type(error).__name__)
+            if not valid and (receipt is not None or headers or rows or skip_rows):
+                errors.append(f'period_{index}:verified_stored_values_unavailable_or_differ')
             acquisitions+=len(headers);observations+=len(rows);skips+=len(skip_rows)
         total=c.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot"').fetchone()[0]
         total_rows=c.execute('SELECT count(*) FROM quote_observation o JOIN quote_acquisition h '

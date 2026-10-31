@@ -154,6 +154,8 @@ def run_collector(configuration_path, job_path, *, secret_stream=None, clock=Non
                 raise StartupError('startup_failed')
             collector = make_daily_collector(config.collector, publication_session=view,
                 client_factory=forbidden, clock=clock, activation_approved=True)
+            if hasattr(collector,'check_retained_files') and collector.manifest.exists():
+                collector.check_retained_files()
             if collector.poller.path.exists():
                 collector.poller.snapshot()
             collector.client = lifetime.authenticate(
@@ -194,7 +196,16 @@ def run_collector(configuration_path, job_path, *, secret_stream=None, clock=Non
                     lifetime.first_work.set()
                 if result['status'] in ('blocked', 'budget_exhausted', 'window_ended'):
                     return result
-                time.sleep(.1)
+                delay=.1
+                if config.publication.policy_profile=='multi-40-v1':
+                    # Idle checks still finish well within the original 3s
+                    # progress gate. Align the next iteration to a due slot;
+                    # repeatedly replaying idle state at 10Hz consumes CPU
+                    # needed by the independent source/publication process.
+                    delay=.8
+                    if collector.next is not None:
+                        delay=min(delay,max(0,(collector.next.scheduled_at-clock()).total_seconds()))
+                time.sleep(delay)
             return {'status': 'window_ended'}
     finally:
         # Keep the independent fence/deadline watchdog alive during SDK close.
@@ -285,7 +296,24 @@ def run_report(configuration_path, job_path):
     if multi:
         from .daily_epoch_integrity import verify_journal_content,replay_sequence_digest
         from .daily_collector import DailyCollectorSettings
-        integrity=verify_journal_content(path,expected_settings=DailyCollectorSettings(**raw['collector']).payload())
+        settings=DailyCollectorSettings(**raw['collector'])
+        from .daily_session import DailySettings
+        view=DailyPublicationReader(DailySettings(**raw['publication']),raw['catalog_path'],
+            binding=settings.daily_binding,claim=settings.daily_claim,publication_binding=settings.publication_binding,
+            fence=lambda:None,clock=lambda:timestamp(job['audited_at_utc']))
+        def forbidden():raise AssertionError('Final native verification cannot construct a provider')
+        verifier=make_daily_collector(settings,publication_session=view,client_factory=forbidden,
+            clock=lambda:timestamp(job['audited_at_utc']),activation_approved=True)
+        def unfinished(index):
+            from .daily_epoch_integrity import verified_period_digest
+            active=verifier._make(next(w for w in verifier.windows if w[0]==index))
+            try:
+                state=active.poller.verified_shutdown_snapshot()
+                if state['pending'] is not None:raise ValueError('Unacknowledged native period outcome')
+                return verified_period_digest(active.poller)
+            finally:active.close()
+        try:integrity=verify_journal_content(path,expected_settings=settings.payload(),unfinished_validator=unfinished)
+        finally:verifier.close()
         first,second=replay_sequence_digest(path),replay_sequence_digest(path)
     else:first,second=replay(),replay()
     value = {'contract': 'daily-hot-native-final-report-v1',

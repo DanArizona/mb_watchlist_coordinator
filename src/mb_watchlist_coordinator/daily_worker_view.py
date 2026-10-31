@@ -15,11 +15,11 @@ class _ReadPublication:
     def __init__(self, service):
         self._service, self.identity = service, service.identity
 
-    def snapshot(self):
+    def snapshot(self,*,collector=False):
         deadline = time.monotonic()+.2
         while True:
             try:
-                return self._service.snapshot()
+                return (self._service.collector_snapshot() if collector else self._service.snapshot())
             except ServiceBusy:
                 if time.monotonic() >= deadline: raise
                 time.sleep(.005)
@@ -104,6 +104,6 @@ class DailyPublicationReader:
 
     def validate(self, *, with_state=False):
         self._binding()
-        gate, publication = self.gate.snapshot(), self.service.snapshot()
+        gate, publication = self.gate.snapshot(), self.service.snapshot(collector=self.settings.policy_profile=='multi-40-v1')
         self.fence()
         return (publication, gate) if with_state else True

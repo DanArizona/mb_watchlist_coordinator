@@ -1,0 +1,67 @@
+{
+  "contract": "multi-symbol-paced-owned-proof-v1",
+  "result": "FAILED",
+  "owner": {
+    "contract": "daily-hot-operating-owner-v1",
+    "nonce": "eb205cc5913444268c80ef519a667d42",
+    "configuration_sha256": "021ec746095bc548e5b96ab904bfb864bb35fc36d5f75ab55cffe5f8cc2367f2",
+    "stop_reason": "operator_stop",
+    "result": "STOPPED",
+    "cleanup": {
+      "status": "EXIT_OBSERVED",
+      "backend": "posix_process_group",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0,
+      "reason": null
+    },
+    "cleanup_seconds": 0.04242730399892025,
+    "acquisition_stop_requested_at_utc": "2026-10-31T14:05:05.825916+00:00",
+    "reporting": {
+      "status": "COMPLETE",
+      "report_path": "/workspace/scratch/6ce939acb4eb/multi_owned_development_06/daily_hot_test/reports/6d6d37ad45a84837b7910e0c77775296.json",
+      "native_audit_passed": true,
+      "two_fresh_replays_equal": true,
+      "first_replay": {
+        "events": 6,
+        "sequence_sha256": "880a54e16ac7185bcfc25c7b2ebd4f6237943fab7102b694736b42e7eef3045b"
+      },
+      "hot_content_integrity": {
+        "acquisitions": 0,
+        "contract": "full-hot-journal-content-check-v1",
+        "error_count": 0,
+        "errors": [],
+        "observations": 0,
+        "passed": true,
+        "scope": "All Hot stored values against native-verified period receipts; other channels covered by native audit",
+        "skips": 12
+      },
+      "validation_passed": true,
+      "replay_method": "native ordered event IDs; Hot payloads checked separately",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      }
+    },
+    "failure_type": null,
+    "unmanaged_channels_untouched": [
+      "uni",
+      "focus",
+      "health"
+    ],
+    "full_day_capacity_qualified": false,
+    "production_activation_inferred": false
+  },
+  "elapsed_seconds": 36.081271910001306,
+  "background_acquisitions": {
+    "uni": 2,
+    "focus": 2
+  },
+  "writer_errors": [],
+  "evidence_scope": "Local development run; no Windows or production acceptance",
+  "run_disposition": "Stopped deliberately after a focused batching assertion failed; superseded, not a capacity verdict"
+}

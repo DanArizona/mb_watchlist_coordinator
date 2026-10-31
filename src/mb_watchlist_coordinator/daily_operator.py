@@ -74,7 +74,10 @@ def release_info(source):
 
 def windows_qualification(source, inventory):
     report = read_json(source/'runs/windows-qualification.json')
-    if (report.get('contract') != 'daily-hot-operator-offline-qualification-v1'
+    release=read_json(source/'RELEASE.json')
+    expected=('daily-hot-multisymbol-offline-qualification-v1' if release.get('policy_profile')=='multi-40-v1'
+        else 'daily-hot-operator-offline-qualification-v1')
+    if (report.get('contract') != expected
             or report.get('result') != 'PASS' or report.get('windows_checks_passed') is not True
             or report.get('source_inventory_sha256') != inventory
             or report.get('failures') or report.get('errors') or report.get('skipped')):

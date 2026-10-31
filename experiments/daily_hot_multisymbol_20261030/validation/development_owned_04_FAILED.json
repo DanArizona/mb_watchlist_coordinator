@@ -1,0 +1,66 @@
+{
+  "contract": "multi-symbol-paced-owned-proof-v1",
+  "result": "FAILED",
+  "owner": {
+    "contract": "daily-hot-operating-owner-v1",
+    "nonce": "9afbf109e88d4273a3155e59371e573c",
+    "configuration_sha256": "79a41bd44978cf54e58c69236d4690d60d8016162f6e2983ac628428c09930a9",
+    "stop_reason": "operator_stop",
+    "result": "FAILED",
+    "cleanup": {
+      "status": "EXIT_OBSERVED",
+      "backend": "posix_process_group",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0,
+      "reason": null
+    },
+    "cleanup_seconds": 0.6671320870009367,
+    "acquisition_stop_requested_at_utc": "2026-10-31T14:07:23.025465+00:00",
+    "reporting": {
+      "status": "COMPLETE",
+      "report_path": "/workspace/scratch/6ce939acb4eb/multi_owned_development_04/daily_hot_test/reports/8237c4788ae44526a5e46a56e17e490b.json",
+      "native_audit_passed": false,
+      "two_fresh_replays_equal": true,
+      "first_replay": {
+        "events": 94,
+        "sequence_sha256": "0fb96f5a13f52d60c5e12a0a612f86223bc240d1c303f4e5346f25ee411a7357"
+      },
+      "hot_content_integrity": {
+        "acquisitions": 34,
+        "contract": "full-hot-journal-content-check-v1",
+        "error_count": 0,
+        "errors": [],
+        "observations": 631,
+        "passed": true,
+        "scope": "All Hot stored values against native-verified period receipts; other channels covered by native audit",
+        "skips": 23
+      },
+      "validation_passed": false,
+      "replay_method": "native ordered event IDs; Hot payloads checked separately",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      }
+    },
+    "failure_type": "FinalValidationFailed",
+    "unmanaged_channels_untouched": [
+      "uni",
+      "focus",
+      "health"
+    ],
+    "full_day_capacity_qualified": false,
+    "production_activation_inferred": false
+  },
+  "elapsed_seconds": 175.68328670200026,
+  "background_acquisitions": {
+    "uni": 6,
+    "focus": 12
+  },
+  "writer_errors": [],
+  "evidence_scope": "Local development run; no Windows or production acceptance"
+}

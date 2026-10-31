@@ -1,0 +1,84 @@
+{
+  "contract": "multi-symbol-paced-owned-proof-v1",
+  "result": "PASS",
+  "owner": {
+    "contract": "daily-hot-operating-owner-v1",
+    "nonce": "4dfd970839384a9a8dbe0b5a6813c5b9",
+    "configuration_sha256": "01890e50949182d8964273e45af9816adf2486e39351f961530d36974243b73c",
+    "stop_reason": "operator_stop",
+    "result": "STOPPED",
+    "cleanup": {
+      "status": "EXIT_OBSERVED",
+      "backend": "posix_process_group",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0,
+      "reason": null
+    },
+    "cleanup_seconds": 0.14478870200036908,
+    "acquisition_stop_requested_at_utc": "2026-10-31T14:07:49.015303+00:00",
+    "reporting": {
+      "status": "COMPLETE",
+      "report_path": "/workspace/scratch/6ce939acb4eb/multi_owned_development_07/daily_hot_test/reports/8bff1388b87c4c569e6ca93acefdc0d0.json",
+      "native_audit_passed": true,
+      "two_fresh_replays_equal": true,
+      "first_replay": {
+        "events": 87,
+        "sequence_sha256": "46ab3d754532e4e150409691dbee4c97cf9b79a3f0119a147fb102664b091bf1"
+      },
+      "hot_content_integrity": {
+        "acquisitions": 55,
+        "contract": "full-hot-journal-content-check-v1",
+        "error_count": 0,
+        "errors": [],
+        "observations": 1355,
+        "passed": true,
+        "scope": "All Hot stored values against native-verified period receipts; other channels covered by native audit",
+        "skips": 23
+      },
+      "validation_passed": true,
+      "replay_method": "native ordered event IDs; Hot payloads checked separately",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      }
+    },
+    "failure_type": null,
+    "unmanaged_channels_untouched": [
+      "uni",
+      "focus",
+      "health"
+    ],
+    "full_day_capacity_qualified": false,
+    "production_activation_inferred": false
+  },
+  "elapsed_seconds": 199.92375563899986,
+  "background_acquisitions": {
+    "uni": 7,
+    "focus": 13
+  },
+  "writer_errors": [],
+  "source_attempts": 4,
+  "source_reconciled": true,
+  "identity_calls": 40,
+  "minimum_identity_interval_seconds": 2.074794,
+  "source_intervals_seconds": [
+    61.044618,
+    61.323493,
+    61.387873
+  ],
+  "full_roster_hot_acquisitions": 16,
+  "native_membership_revisions": 12,
+  "publication_batch_seconds": 10,
+  "worker_starts": 1,
+  "network": "denied",
+  "synthetic_only": true,
+  "provider_capacity_qualified": false,
+  "full_session_executed": false,
+  "production_changes": false,
+  "evidence_scope": "Local development run; no Windows or production acceptance"
+}

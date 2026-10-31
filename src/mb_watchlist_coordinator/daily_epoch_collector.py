@@ -200,13 +200,22 @@ class EpochHotCollector:
         r=body['schedule_run']
         self.session.store.record_run(PollRunProvenance(r['run_id'],timestamp(r['started_at_utc']),
             r['software_version'],r['configuration']))
-        # Completed periods retain their original ledgers and receipts. Their
-        # quote payloads are not claimed as freshly checked here. An unfinished
-        # old period is recovered before the current one, without API catch-up.
+        for window in self.check_retained_files():
+            old=self._make(window)
+            try:old.prepare();self._finalize(old,window)
+            finally:old.close()
+        recovered=self.active.prepare(create=not self.active.manifest.exists())
+        self.prepared=True
+        return recovered
+
+    def check_retained_files(self):
+        """Read-only preflight; no ledger recovery, API, lease or run creation."""
+        self._read_manifest();unfinished=[]
         for window in self.windows:
             path=Path(self.settings.journal_path).with_suffix(f'.hot.e{window[0]:02d}.poller.daily-collector.json')
             closed=self._closed(window)
             ledger=Path(self.settings.journal_path).with_suffix(f'.hot.e{window[0]:02d}.poller.sqlite3')
+            if path.exists()!=ledger.exists():raise ValueError('Partial period state requires its original files')
             if not (path.is_file() and ledger.is_file()):
                 from mb_market_data.quote_observation_store import _utc_text
                 bounds=tuple(_utc_text(timestamp(at),'period')for at in window[1:3])
@@ -229,13 +238,9 @@ class EpochHotCollector:
                     raise ValueError('Closed-period identity or sealed head differs; audit original evidence')
             if path.exists() and json.loads(read_process_text(path)).get('provider_stop'):
                 raise ValueError('Provider stop from an earlier period remains latched')
-            if timestamp(window[2])<=self.clock() and not self._closed(window).exists() and path.exists():
-                old=self._make(window)
-                try:old.prepare();self._finalize(old,window)
-                finally:old.close()
-        recovered=self.active.prepare(create=not self.active.manifest.exists())
-        self.prepared=True
-        return recovered
+            if timestamp(window[2])<=self.clock() and not closed.exists() and path.exists():
+                unfinished.append(window)
+        return tuple(unfinished)
 
     def tick(self,*,fault_hook=None):
         if not self.prepared or self.closed:raise ValueError('Prepared period collector required')

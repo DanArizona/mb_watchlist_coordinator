@@ -173,10 +173,32 @@ class MultiPublicationService(SamplingPublicationService):
         return value
 
     def snapshot(self):
-        with owner_lock(self.lock_path):
-            value = self._read()
-            old = getattr(self,'_frozen_read',None)
-            if old is None or old[0] is not value:
-                self._frozen_read = (value,freeze({k:v for k,v in value.items()
-                    if k not in ('request_events','request_states')}))
-            return self._frozen_read[1]
+        with owner_lock(self.lock_path):value=self._read()
+        # _read returns a private completed replay, never modified by _append
+        # or cycle. Pure copying/freezing need not retain the writer's lease.
+        old=getattr(self,'_frozen_read',None)
+        if old is not None and old[0]is value:return old[1]
+        target=value['request_states'][-1].applied
+        latest=value['journal'][-1]['proposal']
+        additions_only=all(set(latest[channel+'_symbols'])<=getattr(target,channel)for channel in ('uni','focus','hot'))
+        result=freeze({**{k:v for k,v in value.items()if k not in ('request_events','request_states')},
+            'batchable_additions_only':additions_only})
+        self._frozen_read=(value,result)
+        return result
+
+    def collector_snapshot(self):
+        """Full original validation, compact immutable collector projection.
+
+        No validation is omitted: _read still replays all changed inputs and
+        compares every current value. The collector needs the verified revision
+        and roster fields, rather than copies of historical plan/ACK metadata.
+        """
+        with owner_lock(self.lock_path):value=self._read()
+        old=getattr(self,'_collector_read',None)
+        if old is not None and old[0]is value:return old[1]
+        result=freeze({'head_sha256':value['head_sha256'],'projection':'verified_collector_membership',
+            'journal':[{'proposal':{k:r['proposal'][k]for k in ('session_date','revision','effective_at_utc',
+                'uni_symbols','focus_symbols','hot_symbols')},'content_sha256':r['content_sha256'],
+                'published_at_utc':r['published_at_utc']}for r in value['journal']]})
+        self._collector_read=(value,result)
+        return result

@@ -54,7 +54,7 @@ def run(root, *, slots=240, hot_count=40, periods=False, background=False):
         s.clock=clock;collector=make();collector.prepare(create=True)
         revisions=c.store.membership_revisions_in_effective_order();revision=revisions[-1]
         members=revision.hot_symbols;slot=collector.next
-        sequence=0;previous=digest(collector.poller.identity);began=time.perf_counter()
+        sequence=0;previous=digest(collector.poller.identity);began=time.perf_counter();rollovers=[]
         with closing(sqlite3.connect(c.journal))as j:
             db=sqlite3.connect(collector.poller.path);db.execute('BEGIN');j.execute('BEGIN')
             def event(kind,at,**payload):
@@ -106,7 +106,8 @@ def run(root, *, slots=240, hot_count=40, periods=False, background=False):
                     if not periods:raise ValueError('Unbounded fixture exhausted its declared window')
                     j.commit();db.commit();db.close()
                     logical[0]=collector.poller.settings.window.end_at+timedelta(milliseconds=10)
-                    collector.tick()
+                    rollover_began=time.perf_counter();collector.tick()
+                    rollovers.append(time.perf_counter()-rollover_began)
                     db=sqlite3.connect(collector.poller.path);db.execute('BEGIN');j.execute('BEGIN')
                     sequence,previous=0,digest(collector.poller.identity)
                     slot=collector.next
@@ -153,12 +154,13 @@ def run(root, *, slots=240, hot_count=40, periods=False, background=False):
             'integrity':integrity,'two_sequence_digests_equal':first==second}),flush=True)
         report={'contract':'multi-symbol-seeded-history-development-v1','result':'PASS'if cold<3 and len(tail)==2 and
             all(t['status']=='acquired'and t['seconds']<2 for t in tail) and audit.passed and first==second
-            and (integrity is None or integrity['passed']) and verification_seconds<60 else'FAILED',
+            and (integrity is None or integrity['passed']) and verification_seconds<60
+            and all(t<3 for t in rollovers) else'FAILED',
             'hot_symbols':hot_count,'seeded_slots':slots-2,'cold_prepare_seconds':cold,'tail':tail,
             'background_present':background,'native_audit_passed':audit.passed,
             'hot_content_integrity':integrity,'first_replay':first,'second_replay':second,
             'two_fresh_sequence_digests_equal':first==second,'final_verification_seconds':verification_seconds,
-            'table_counts':counts,'synthetic_only':True,'provider_capacity_qualified':False,
+            'table_counts':counts,'period_rollover_wall_seconds':{'count':len(rollovers),'max':max(rollovers,default=0)},'synthetic_only':True,'provider_capacity_qualified':False,
             'full_session_executed':False,'full_size_history':slots==9312,'bounded_periods':periods}
         (root/'history-report.json').write_text(json.dumps(report,indent=2)+'\n');return report
     finally:
