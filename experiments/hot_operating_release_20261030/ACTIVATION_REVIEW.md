@@ -1,6 +1,10 @@
 # Monday November 2 production Hot activation review
 
-Status: **NEEDS MULTI-SYMBOL SCOPE REVISION; NOT ACTIVATED.**
+Status: **SUPERSEDED BY THE P85 MULTI-40 REVIEW; NOT ACTIVATED.**
+
+The current qualified proposal is
+[ACTIVATION_REVIEW_20261102.md](../daily_hot_multisymbol_20261030/ACTIVATION_REVIEW_20261102.md).
+This earlier one-symbol proposal is retained as history.
 
 The operator questioned the one-symbol limit and the risk of consuming a market
 day per expansion while natural halt traffic remains sparse. The proposal below

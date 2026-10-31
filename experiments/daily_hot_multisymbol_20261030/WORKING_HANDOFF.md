@@ -4,6 +4,20 @@
 ## Current: Windows88 offline multi-40 acceptance PASS
 
 
+Command86 now REVIEW_READY on MasterBot with the returned CMD prompt: exact p85
+inventory, multi-40 policy, clean installed main6b53ab1/e2ef6f6 and qualified
+Python3.12.13/mb-tools0.6.0/schwabdev4.0.0/cryptography49.0.0/helpers matched.
+See WINDOWS_DEPLOYMENT_ACCEPTANCE.json. No source installation/provider/vault
+access or production change occurred. The concrete Monday proposal is now
+ACTIVATION_REVIEW_20261102.md:40distinct Hot authorizations/active Hot,40outside-r1
+additions, Monday584Uni→624 maximum, Focus40→80; pre-open target09:20, password
+before09:29,09:30–16:00EST (14:30–21:00UTC), same runtime/gates, ten-second
+addition batching and five-minute active payload periods plus full closeout.
+Explicit first production activation/settings approval remains pending. Normal
+Monday r1/catalog binding within the approved fixed scope will not require a
+second permission round. Do not launch today or edit the sealed policy labels.
+
+
 Windows88 run20261031T031744Z_4890752a PASS155.469s, actual returned CMD prompt.
 31focused checks PASS2.776s;109earlier focused passes reused. Original paced
 run reassessment PASS:40Hot/40identitycalls (minimum2.065301s), four valid paced
@@ -21,10 +35,9 @@ Full native audit, Hot value integrity and two native event-order digests PASS,
 Synthetic retained history is not an elapsed full day or real40-symbol provider
 qualification. No production activation/settings adoption is inferred.
 
-Next: original C:/Users/danla/hot85/p85/86_review_multisymbol.cmd (read-only
-installed-baseline/dependency review), then present concrete40-symbol limits,
-period-integrity scope and activation proposal. No new ZIP, install or unchanged
-qualification repeat is needed. See WINDOWS_ACCEPTANCE_P88.json.
+The command86 deployment review has now passed as recorded above. Next is the
+concrete activation proposal; no new ZIP, install or unchanged qualification
+repeat is needed. See WINDOWS_ACCEPTANCE_P88.json for qualification scope.
 
 The operator's retained diagnostic confirms identity client close at14:05:19.101924Z
 and ValueError in the exact inline fence stop branch at14:05:19.103434Z:74.320ms

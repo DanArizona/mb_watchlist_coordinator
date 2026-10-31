@@ -1,6 +1,6 @@
 {
   "contract": "daily-hot-multisymbol-local-development-v1",
-  "result": "WINDOWS_OFFLINE_MULTI40_ACCEPTED_DEPLOYMENT_REVIEW_PENDING",
+  "result": "WINDOWS_MULTI40_QUALIFIED_DEPLOYMENT_REVIEW_READY_ACTIVATION_APPROVAL_PENDING",
   "accepted_paced_run": "development_owned_07_PASS.json",
   "synthetic_only": true,
   "native_local_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
@@ -19,8 +19,9 @@
   "activation_approved": false,
   "prior_failed_verdicts_preserved": true,
   "remaining": [
-    "Read-only deployment review of original p85 release on production computer",
-    "Concrete 40-symbol settings/integrity-scope review and first production activation approval"
+    "Concrete fixed Monday multi-40 release/settings activation approval",
+    "Monday morning ordinary dated input preparation and approved startup",
+    "Controlled live observation and closeout"
   ],
   "focused_regressions": {
     "tests": 107,
@@ -69,14 +70,16 @@
     "result": "PASS",
     "source_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe"
   },
-  "windows_result": "FAILED",
+  "windows_result": "PASS",
   "windows_result_record": "WINDOWS_RESULT.json",
   "windows85_original_result": "FAILED",
   "windows85_stop_boundary_confirmed": true,
   "runtime_changed_since_windows85": false,
-  "next": "Call original p85/86_review_multisymbol.cmd; then concrete release/settings/activation review. No unchanged qualification repeat.",
+  "next": "Explicit approval of ACTIVATION_REVIEW_20261102.md; then Monday ordinary preparation with actual r1/catalog and existing bound commands",
   "windows87_original_result": "FAILED",
   "windows88_result": "PASS",
   "windows88_run": "20261031T031744Z_4890752a",
-  "windows88_seconds": 155.46899999999732
+  "windows88_seconds": 155.46899999999732,
+  "windows86_result": "REVIEW_READY",
+  "windows_acceptance_method": "Windows88 completion with explicit original109focused-check reuse and retained paced-run reassessment; original Windows85/87 failures preserved"
 }

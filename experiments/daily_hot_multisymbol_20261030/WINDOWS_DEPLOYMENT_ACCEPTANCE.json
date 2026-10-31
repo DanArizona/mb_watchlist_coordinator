@@ -1,0 +1,193 @@
+{
+  "contract": "daily-hot-multi40-deployment-windows-acceptance-v1",
+  "result": "ACCEPTED_REVIEW_READY",
+  "basis": "Complete operator-supplied command86 console/JSON and actual returned CMD prompt; Windows files not independently read by the assistant",
+  "command": "C:\\Users\\danla\\hot85\\p85\\86_review_multisymbol.cmd",
+  "source_root": "C:\\Users\\danla\\hot85\\p85",
+  "source_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe",
+  "artifact": "hot_multisymbol_20261031_e7cb9b6.zip",
+  "artifact_sha256": "e8008e90b6ec61671b4ea029ed3168ad4b4cd55830aa7d10b075a76808076fe6",
+  "runtime_source": {
+    "coordinator_commit": "e7cb9b6fa786170455dbfe7c3226d8b18227487e",
+    "coordinator_public_commit": "45c3b0903f81d5006432ae63826ea73b515a28a6",
+    "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "market_data_public_commit": "37c22983bc92055dd322085f191b054921d896d2"
+  },
+  "policy_profile": "multi-40-v1",
+  "policy_sha256": "e3e7d2449214928e7094735ba1f5cbed641dba37c61b0ea085b86e827f5944b6",
+  "reviewed_release": {
+    "contract": "daily-hot-operator-delivery-v1",
+    "status": "CANDIDATE_NOT_ACTIVATED",
+    "proposed_first_session": "2026-11-02",
+    "deployment": "Side-by-side extracted release; existing production repositories stay installed",
+    "production_baselines": {
+      "market_data": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+      "watchlists": "e2ef6f62856ba3226c41456b7779951aa8640cbf"
+    },
+    "dependency_versions": {
+      "mb-tools": "0.6.0",
+      "schwabdev": "4.0.0",
+      "cryptography": "49.0.0"
+    },
+    "policy_profile": "multi-40-v1",
+    "policy_sha256": "e3e7d2449214928e7094735ba1f5cbed641dba37c61b0ea085b86e827f5944b6",
+    "policy": {
+      "contract": "hot-multisymbol-operating-policy-proposal-v1",
+      "status": "PROPOSED_NOT_ADOPTED",
+      "cadence_profile": "interleaved-v1",
+      "hot_enabled": false,
+      "reason_codes": [
+        "LUDP",
+        "M"
+      ],
+      "request_lifetime": "regular_close",
+      "operator_actor_id": "operator:masterbot",
+      "limits": {
+        "maximum_active_hot_symbols": 40,
+        "maximum_distinct_added_symbols_per_session": 40,
+        "maximum_hot_quote_calls": 9360,
+        "maximum_identity_quote_calls": 120,
+        "maximum_directory_retrievals": 2,
+        "maximum_feed_attempts": 390,
+        "feed_seconds_after_completion": 60,
+        "maximum_worker_starts": 3,
+        "identity_seconds_between_calls": 2,
+        "maximum_identity_calls_per_symbol": 3
+      },
+      "stabilization": {
+        "demotion_grace_seconds": 60,
+        "minimum_residence_seconds": 120,
+        "restriction_timing": "immediate_cap"
+      },
+      "deadlines": {
+        "worker_progress_seconds": 3,
+        "credential_seconds": 8,
+        "worker_replacement_hold_seconds": 15,
+        "cleanup_seconds": 10,
+        "reporting_seconds": 60
+      },
+      "source_warnings": [
+        "intermediate_feed_mutations_not_reconstructible",
+        "older_unknown_carryovers_not_proven_complete",
+        "provider_collector_driver_qualification_pending"
+      ],
+      "publication": {
+        "minimum_interval_seconds": 10,
+        "pending_membership_visible": true
+      },
+      "collection_history": {
+        "active_period_seconds": 300,
+        "full_schedule_registered": true,
+        "closed_payload_validation": "independent_full_journal_audit_and_replay"
+      }
+    },
+    "initial_capacity": {
+      "opening_uni_maximum": 600,
+      "uni_with_40_additions_maximum": 640,
+      "opening_focus_maximum": 40,
+      "focus_with_40_additions_maximum": 80,
+      "hot_maximum": 40
+    },
+    "fresh_start": "Pre-open; password must be accepted before 09:29:00 ET. No fresh after-open start or backfill in this increment.",
+    "manual_resume": "Original configuration/state/catalog and budgets, new owned outer after observed cleanup; original 15-second hold",
+    "rollback": "Stop and verify only the Hot owned scope, preserve membership and journals, continue installed Uni/Focus/Health",
+    "evidence": {
+      "WINDOWS_OPERATOR_PREDECESSOR.json": "hot_operating_release_20261030/WINDOWS_ACCEPTANCE.json",
+      "WINDOWS_DEPLOYMENT_PREDECESSOR.json": "hot_operating_release_20261030/WINDOWS_DEPLOYMENT_ACCEPTANCE.json",
+      "LIVE_DAILY_PATH.json": "market_open_daily_check_20261029/WINDOWS_LIVE_ACCEPTANCE.json",
+      "WINDOWS_MEMBERSHIP.json": "membership_status_20261030/WINDOWS_ACCEPTANCE.json",
+      "WINDOWS_LAUNCH.json": "daily_hot_launch_20261029/WINDOWS_ACCEPTANCE.json",
+      "WINDOWS_READ_SHARING.json": "daily_hot_windows_evidence_read_20261029/WINDOWS_ACCEPTANCE.json",
+      "AFTER_HOURS_PROVIDER.json": "after_hours_provider_20261029/WINDOWS_LIVE_ACCEPTANCE.json",
+      "CAPACITY_COMPONENT_ORIGINAL_FAILED_PACKET.json": "daily_hot_operating_20261028/validation/windows_3c0f8cd_review.json"
+    },
+    "evidence_scope": "Accepted component/bounded-live scopes only; original failed packet verdict preserved",
+    "full_day_capacity_qualified": false,
+    "production_activation_approved": false
+  },
+  "observed_repositories": {
+    "market_data": {
+      "root": "C:\\Users\\danla\\Documents\\github\\mb_market_data",
+      "branch": "main",
+      "head": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+      "tracked_clean": true
+    },
+    "watchlists": {
+      "root": "C:\\Users\\danla\\Documents\\github\\schwab_watchlists",
+      "branch": "main",
+      "head": "e2ef6f62856ba3226c41456b7779951aa8640cbf",
+      "tracked_clean": true
+    }
+  },
+  "observed_dependencies": {
+    "qualified": true,
+    "reason": "probe_pass",
+    "python": [
+      3,
+      12,
+      13
+    ],
+    "executable": "C:\\Users\\danla\\anaconda3\\envs\\sea-green\\python.exe",
+    "versions": {
+      "mb-tools": "0.6.0",
+      "schwabdev": "4.0.0",
+      "cryptography": "49.0.0"
+    },
+    "mb_tools_root": "C:\\Users\\danla\\Documents\\github\\mb_tools\\src\\mb_tools",
+    "source": {
+      "__init__.py": {
+        "sha256": "873508b463e1e5388ddf493836ce1dfeca089aef1eac22f851b41701423a2958",
+        "canonical_source_sha256": "a4f32c299d9eac0a0c0fda4f8fc3ea6779364f6830d28c04ca92bde99b618bf7",
+        "expected_sha256": "a4f32c299d9eac0a0c0fda4f8fc3ea6779364f6830d28c04ca92bde99b618bf7"
+      },
+      "schwab_secure/__init__.py": {
+        "sha256": "e9a71e88b415d8576a5879f008956fbf2b058605a202f4bff1408db523e59b70",
+        "canonical_source_sha256": "4598710eb0c749366a632a4f8282614f243dfcd9226afa31b032de161aaff712",
+        "expected_sha256": "4598710eb0c749366a632a4f8282614f243dfcd9226afa31b032de161aaff712"
+      },
+      "schwab_secure/client.py": {
+        "sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea",
+        "canonical_source_sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea",
+        "expected_sha256": "2bad76d4d86aad31e9186e8e7c87028c04f6ae629f0e741bc5d230f3a8c4e6ea"
+      },
+      "schwab_secure/config.py": {
+        "sha256": "519842e37ed80cc39051fae2546ea11f813edd1a1cd73e5019189b86623f483b",
+        "canonical_source_sha256": "7da559d38a29ce3cf771e1524d160ca41d4671eb25221abaf11342347b00b2fa",
+        "expected_sha256": "7da559d38a29ce3cf771e1524d160ca41d4671eb25221abaf11342347b00b2fa"
+      },
+      "schwab_secure/status.py": {
+        "sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141",
+        "canonical_source_sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141",
+        "expected_sha256": "6b264ac2ca99aaefc54b9da2b0a7cf7501a0702608000582e1e5861cfc21a141"
+      },
+      "schwab_secure/reauthorize.py": {
+        "sha256": "ed106cd5e2ca17c592a5bbd6029ec435c2aa9f84b5c9a14c4ba33e636b427601",
+        "canonical_source_sha256": "d1faaf0547730dbe7d9949dc90747e2f14e371e028dba00bf095376141dba1d6",
+        "expected_sha256": "d1faaf0547730dbe7d9949dc90747e2f14e371e028dba00bf095376141dba1d6"
+      },
+      "secure_config/__init__.py": {
+        "sha256": "250a90bc2b3b3dfe17a1b0718059ee2ab7e6a159491c822ee90ccf9cdcc90328",
+        "canonical_source_sha256": "b234604319b99e0fa98e486ec30e8f120419688a8587af13270b76c1d18d0581",
+        "expected_sha256": "b234604319b99e0fa98e486ec30e8f120419688a8587af13270b76c1d18d0581"
+      },
+      "secure_config/ecfg.py": {
+        "sha256": "02a1b77523911dea68fbfbe9961d8a1d3f6d0b9adfd0ed2dc4a495a0cabf7cb4",
+        "canonical_source_sha256": "0bd6c3d2160876cb5d428723694b9c38ba63f64780a1782690d74e33e4f4da6e",
+        "expected_sha256": "0bd6c3d2160876cb5d428723694b9c38ba63f64780a1782690d74e33e4f4da6e"
+      }
+    }
+  },
+  "dependency_detail_basis": "Current command86 console matches the previously reviewed helper versions, paths and byte/canonical-source fingerprints, reproduced here.",
+  "actual_cmd_prompt_returned": true,
+  "source_installation_required": false,
+  "production_changes": false,
+  "provider_access": false,
+  "actual_vault_access": false,
+  "source_changed": false,
+  "settings_adopted": false,
+  "production_activation_approved": false,
+  "prior_qualifications_repeated": false,
+  "full_day_capacity_qualified": false,
+  "accepted_qualification": "../daily_hot_multisymbol_boundary_20261031/WINDOWS_ACCEPTANCE_P88.json",
+  "next": "Request explicit approval of ACTIVATION_REVIEW_20261102.md for the frozen release and fixed Monday multi-40 scope; actual dated r1 binding is ordinary preparation, without another approval round inside this scope."
+}
