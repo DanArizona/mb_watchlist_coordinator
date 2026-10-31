@@ -49,7 +49,9 @@ POLICY = {
 
 MULTI_PROFILE = 'multi-40-v1'
 MANUAL_PROFILE = 'manual-40-v1'
-MULTI_PROFILES = (MULTI_PROFILE, MANUAL_PROFILE)
+BROKER_MANUAL_PROFILE = 'manual-identity-40-v1'
+MANUAL_PROFILES = (MANUAL_PROFILE, BROKER_MANUAL_PROFILE)
+MULTI_PROFILES = (MULTI_PROFILE, *MANUAL_PROFILES)
 SINGLE_PROFILE = 'single-v1'
 
 
@@ -66,13 +68,17 @@ def proposed_policy(profile=SINGLE_PROFILE) -> dict:
         value['collection_history'] = {'active_period_seconds':300,
             'full_schedule_registered':True,
             'closed_payload_validation':'independent_full_journal_audit_and_replay'}
-        if profile == MANUAL_PROFILE:
+        if profile in MANUAL_PROFILES:
             value['contract'] = 'hot-nasdaq-manual-operating-policy-proposal-v1'
             value['manual_controls'] = {'actor_id':value['operator_actor_id'],
                 'allow_restrictions':True,'promotion_scope':'opening_uni_only',
                 'controller_required':True,'sources_share_capacity':True}
             value['limits'].update(maximum_distinct_hot_symbols_per_session=40,
                 maximum_distinct_focus_additions_per_session=40)
+            if profile == BROKER_MANUAL_PROFILE:
+                value['contract'] = 'hot-nasdaq-manual-identity-operating-policy-proposal-v1'
+                value['manual_controls'].update(promotion_scope='catalog_after_shared_broker_identity',
+                    pending_withdrawal=True,identity_execution='existing_controller_only')
     elif profile != SINGLE_PROFILE:
         raise ValueError('Unknown sealed daily policy profile')
     return value

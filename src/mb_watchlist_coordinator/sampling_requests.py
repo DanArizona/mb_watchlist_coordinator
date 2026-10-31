@@ -222,6 +222,11 @@ def admission_reason(kind: str, actor: str, payload: Mapping, *, at: datetime,
                 rejection = capacity(payload, baseline=baseline, requests=requests)
                 if rejection is not None:
                     return rejection
+            identity = getattr(admission, 'identity_rejection', None)
+            if identity is not None:
+                rejection = identity(payload, baseline=baseline, at=at)
+                if rejection is not None:
+                    return rejection
         return None
     if kind == "cancel":
         if actor != payload["owner_id"]:

@@ -1,0 +1,26 @@
+{
+  "contract": "manual-broker-identity-delivery-v1",
+  "status": "OFFLINE_WINDOWS_CANDIDATE",
+  "archive_name": "manual_broker_identity_20261031_e88ed04.zip",
+  "bytes": 818545,
+  "sha256": "7790ba5501202a0444c34a712a65cb2f7e74f3e8337f074c50ea20e748b8d608",
+  "source": {
+    "accepted_p92_predecessor": "408386c6509a52c367048f326d42ee82e590a245",
+    "coordinator_commit": "e88ed0486791e400c6929adab84a2ac755286f2c",
+    "coordinator_tree": "56fe631704e830b8f2d0edfeca4c5294e47fc696",
+    "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "9cadfd501cb684b7c6203c31233acb1df36bb303e45e49a6fb190f4d49fbeda9",
+  "zip_root": "p93",
+  "entry": "93_verify_manual_broker_identity.cmd",
+  "checks": 71,
+  "preview_hold_seconds": 15,
+  "exact_extracted_local_result": "PASS",
+  "windows_checks_passed": false,
+  "publication_destination": "DanArizona/mb_watchlist_coordinator:experiment/manual-membership-20261031",
+  "p85_changed": false,
+  "accepted_p92_packet_changed": false,
+  "production_activation": false,
+  "actual_provider_used": false
+}

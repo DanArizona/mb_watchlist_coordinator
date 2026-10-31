@@ -192,8 +192,8 @@ class ManualMembershipControls:
         if prior is None:
             if not session_start(self.requests.session_date) <= now < self.publication.settings.publish_until:
                 blocked = 'manual_session_closed'
-            elif action == 'promote' and symbol not in self.requests.baseline.uni:
-                blocked = 'manual_identity_confirmation_required'
+            elif action == 'promote':
+                blocked = self._promotion_rejection(symbol)
             elif action in ('limit', 'clear_limit') and not self.allow_restrictions:
                 blocked = 'not_restriction_authority'
         if blocked:
@@ -207,7 +207,8 @@ class ManualMembershipControls:
                 frozenset({symbol}), timestamp(requested['at_utc']),
                 expires_at=min(self.publication.settings.publish_until, session_expiration(self.requests.session_date)),
                 reason=command['reason'], metadata={'sampling_channel': target,
-                    'session_date': str(self.requests.session_date), 'manual_controls': CONTRACT})
+                    'session_date': str(self.requests.session_date), 'manual_controls': CONTRACT,
+                    **self._admission_metadata(symbol)})
             prior = self.requests.submit_request(intent, actor_id=self.actor_id).event
         elif action == 'demote':
             events = self.requests.events()
@@ -227,7 +228,7 @@ class ManualMembershipControls:
                     IntentType.ENSURE_PRESENT, frozenset(original.payload['symbols']), timestamp(requested['at_utc']),
                     expires_at=self.publication.settings.publish_until, reason=command['reason'],
                     metadata={'sampling_channel':'focus','session_date':str(self.requests.session_date),
-                              'manual_controls':CONTRACT}), actor_id=self.actor_id).event
+                              'manual_controls':CONTRACT,**self._admission_metadata(next(iter(original.payload['symbols'])))}), actor_id=self.actor_id).event
                 if not replacement.accepted:
                     self._append('result', cid, accepted=False, rejection_reason=replacement.rejection_reason,
                         backend_sequence=None, backend_sha256=None,
@@ -251,6 +252,11 @@ class ManualMembershipControls:
             backend_sequence=prior.sequence, backend_sha256=prior.event_sha256,
             **({'replacement_sequence':replacement.sequence, 'replacement_sha256':replacement.event_sha256}
                if replacement is not None else {}))
+
+    def _promotion_rejection(self, symbol):
+        return 'manual_identity_confirmation_required' if symbol not in self.requests.baseline.uni else None
+
+    def _admission_metadata(self, symbol):return {}
 
     def snapshot(self):
         """Validate durable receipts and one backend prefix; never drive publication."""

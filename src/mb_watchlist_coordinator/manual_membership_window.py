@@ -175,6 +175,11 @@ class ManualMembershipWindow:
             context+=f"Shared session allowance: Hot {capacity['hot_distinct_used']}/{capacity['hot_limit']}; " \
                 f"Focus additions {capacity['focus_additions_used']}/{capacity['focus_additions_limit']}. "
             context+='Withdrawals do not reset this allowance. Promotions: opening Uni only.'
+        if view.get('promotion_scope')=='catalog_after_shared_broker_identity':
+            context=context.replace('Promotions: opening Uni only.',
+                'Other catalog symbols require broker confirmation; pending requests can be withdrawn.')
+            if 'identity_quote_permits'in view:
+                context+=f" Identity calls {view['identity_quote_permits']}/{view['maximum_identity_quote_permits']}."
         self.context.configure(text=context)
         rows = view.get('commands', [])
         rendered = [(r['command_id'], (r['symbol'] or '—', r['action'], r['requested_group'] or '—',

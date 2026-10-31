@@ -197,7 +197,7 @@ def run_collector(configuration_path, job_path, *, secret_stream=None, clock=Non
                 if result['status'] in ('blocked', 'budget_exhausted', 'window_ended'):
                     return result
                 delay=.1
-                if config.publication.policy_profile in ('multi-40-v1','manual-40-v1'):
+                if config.publication.policy_profile in ('multi-40-v1','manual-40-v1','manual-identity-40-v1'):
                     # Idle checks still finish well within the original 3s
                     # progress gate. Align the next iteration to a due slot;
                     # repeatedly replaying idle state at 10Hz consumes CPU

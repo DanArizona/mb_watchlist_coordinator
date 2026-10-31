@@ -12,11 +12,27 @@ from .daily_launch import configuration
 from .daily_session import regular_path
 from .daily_supervision import DailyProcessState, assert_controller_fence, read_json
 from .manual_membership import ManualMembershipControls, ManualMembershipModel
-from .operating_plan import MANUAL_PROFILE
+from .operating_plan import MANUAL_PROFILES,BROKER_MANUAL_PROFILE
 from .sampling_requests import digest
 
 
 class BoundDailyManualControls(ManualMembershipControls):
+    def __init__(self,*args,reader,**kwargs):
+        self.reader=reader
+        super().__init__(*args,**kwargs)
+
+    def _configuration(self):
+        self.reader._binding()
+        super()._configuration()
+
+    def initialize(self):
+        raise ValueError('A controls window cannot initialize or reset controller state')
+
+
+from .daily_identity_manual_controls import IdentityQueuedManualControls
+
+
+class BoundIdentityDailyManualControls(IdentityQueuedManualControls):
     def __init__(self,*args,reader,**kwargs):
         self.reader=reader
         super().__init__(*args,**kwargs)
@@ -35,7 +51,7 @@ def open_daily_controls(state_root, *, expected_configuration_sha256, clock=None
     root=regular_path(state_root)
     raw=read_json(regular_path(root/'daily-worker.json',exists=True))
     config=configuration(raw)
-    if (config.publication.policy_profile!=MANUAL_PROFILE or config.publication.state_root!=str(root)
+    if (config.publication.policy_profile not in MANUAL_PROFILES or config.publication.state_root!=str(root)
             or digest(raw)!=expected_configuration_sha256):
         raise ValueError('Exact manual-enabled daily configuration required; p85 is not a manual session')
     driver=read_json(regular_path(root/'driver-binding.json',exists=True))
@@ -53,7 +69,8 @@ def open_daily_controls(state_root, *, expected_configuration_sha256, clock=None
         binding=config.collector.daily_binding,claim=config.collector.daily_claim,
         publication_binding=config.collector.publication_binding,fence=fence,clock=clock)
     policy=reader.binding['policy']['manual_controls']
-    controls=BoundDailyManualControls(root/'manual.sqlite3',publication=reader.service._service,
+    cls=BoundIdentityDailyManualControls if config.publication.policy_profile==BROKER_MANUAL_PROFILE else BoundDailyManualControls
+    controls=cls(root/'manual.sqlite3',publication=reader.service._service,
         actor_id=policy['actor_id'],allow_restrictions=policy['allow_restrictions'],clock=clock,reader=reader)
     controls.snapshot() # Read/validate existing receipts; never initialize.
     return controls

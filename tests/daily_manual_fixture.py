@@ -9,15 +9,15 @@ from test_daily_multisymbol import large_catalog
 
 
 class CombinedFixture:
-    def __init__(self, *, universe_size=60, focus_size=2, root=None):
+    def __init__(self, *, universe_size=60, focus_size=2, root=None, profile=MANUAL_PROFILE):
         self.case=legacy.DailySessionTests('test_preview_reads_published_anchor_and_creates_no_application_state_or_client')
         self.case.catalog_factory_override=large_catalog
         self.case.universe_symbols_override=['IBM','MSFT']+[f'C{n:04d}' for n in range(universe_size-2)]
         self.case.focus_symbols_override=self.case.universe_symbols_override[:focus_size]
         if root is not None:self.case.proof_directory_override=str(root)
         self.case.setUp()
-        self.case.settings=replace(self.case.settings,policy_profile=MANUAL_PROFILE,
-            policy_sha256=digest(proposed_policy(MANUAL_PROFILE)))
+        self.case.settings=replace(self.case.settings,policy_profile=profile,
+            policy_sha256=digest(proposed_policy(profile)))
         self.case.session=self.session=DailySession(self.case.settings,self.case.catalog,clock=lambda:self.case.now)
         self.session.attach(create=True,publication_approved=True)
         self.session.gate.monotonic=lambda:self.case.now.timestamp()

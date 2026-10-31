@@ -3,8 +3,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 import time
 
-from .daily_session import DailySettings, identity_gate_type, publication_types, admission_policy, CONTRACT, OWNER, regular_path
-from .operating_plan import MANUAL_PROFILE, MULTI_PROFILES
+from .daily_session import DailySettings, identity_gate_type, publication_types, admission_policy, manual_controls, CONTRACT, OWNER, regular_path
+from .operating_plan import MANUAL_PROFILES, BROKER_MANUAL_PROFILE, MULTI_PROFILES
 from .controller_bootstrap import strict_json
 from .integrated_catalog import DirectoryCatalog
 from .sampling_requests import digest, plain, timestamp
@@ -70,6 +70,10 @@ class DailyPublicationReader:
                 (RecoveryQuery(focus.session_date, focus.session_date),), False), clock=self.clock)
         delivery = NasdaqRecoveryDelivery(self.root/'delivery.sqlite3', live_producer=live,
             recovery_receipts=recovery, producer_id=OWNER, clock=self.clock)
+        if settings.policy_profile==BROKER_MANUAL_PROFILE:
+            from .daily_manual_identity import SharedManualDelivery
+            controls=manual_controls(self.service._service,self.root,policy,clock=self.clock)
+            delivery=SharedManualDelivery(delivery,controls)
         self.gate = identity_gate_type(settings)(self.root/'identity.sqlite3', delivery=delivery,
             catalog=self.catalog, start_at=self.binding['start_at_utc'],
             stop_at=self.binding['stop_at_utc'], clock=self.clock)
@@ -94,7 +98,7 @@ class DailyPublicationReader:
         for name in ('requests.sqlite3', 'publication.sqlite3', 'live.sqlite3',
                      'recovery.sqlite3', 'delivery.sqlite3', 'identity.sqlite3', 'status.json'):
             regular_path(self.root/name, exists=True)
-        if self.settings.policy_profile == MANUAL_PROFILE:
+        if self.settings.policy_profile in MANUAL_PROFILES:
             regular_path(self.root/'manual.sqlite3', exists=True)
         previous = strict_json(read_process_text(self.root/'status.json'))
         content = dict(previous); sha = content.pop('content_sha256')

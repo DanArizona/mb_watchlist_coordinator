@@ -113,7 +113,7 @@ def _invocation_preflight(config, commands, mode, previous_outer, clock):
     if (gate['identity_gate']['provider_stop_required'] or stop.exists()
             or manifest.exists() and read_json(manifest).get('provider_stop')):
         raise ValueError('Original provider stop remains latched; review it before resume')
-    if config.publication.policy_profile in ('multi-40-v1','manual-40-v1'):
+    if config.publication.policy_profile in ('multi-40-v1','manual-40-v1','manual-identity-40-v1'):
         from .daily_epoch_collector import make_daily_collector
         def forbidden():raise AssertionError('Resume preflight cannot prepare a client')
         collector=make_daily_collector(config.collector,publication_session=reader,client_factory=forbidden,

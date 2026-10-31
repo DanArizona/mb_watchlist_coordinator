@@ -22,9 +22,12 @@ EMPTY='<?xml version="1.0"?><rss version="2.0"><channel><title>Nasdaq Trade Halt
 
 
 class DailyManualOwnedTests(unittest.TestCase):
+    profile='manual-40-v1'
+    proof_environment='MB_MANUAL_DAILY_PROOF_DIR'
+
     def setUp(self):
-        proof=os.environ.get('MB_MANUAL_DAILY_PROOF_DIR') if self._testMethodName=='test_owned_controller_collects_manual_and_nasdaq_roster_and_fences_ui_after_stop' else None
-        self.f=CombinedFixture(universe_size=4,root=proof);self.addCleanup(self.f.close)
+        proof=os.environ.get(self.proof_environment) if self._testMethodName=='test_owned_controller_collects_manual_and_nasdaq_roster_and_fences_ui_after_stop' else None
+        self.f=CombinedFixture(universe_size=4,root=proof,profile=self.profile);self.addCleanup(self.f.close)
         self.c=self.f.case
         self.real=datetime.now(timezone.utc);self.logical=self.c.now
         self.clock=lambda:self.logical+(datetime.now(timezone.utc)-self.real)

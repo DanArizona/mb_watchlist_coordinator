@@ -1,0 +1,454 @@
+{
+  "contract": "manual-broker-identity-local-acceptance-v1",
+  "exact_archive_result": {
+    "contract": "manual-shared-broker-identity-offline-qualification-v1",
+    "result": "PASS",
+    "tests": 71,
+    "passed": 71,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "failed_tests": [],
+    "seconds": 34.0352346619984,
+    "platform": "linux",
+    "python": [
+      3,
+      12,
+      14
+    ],
+    "windows_checks_passed": false,
+    "source": {
+      "accepted_p92_predecessor": "408386c6509a52c367048f326d42ee82e590a245",
+      "coordinator_commit": "e88ed0486791e400c6929adab84a2ac755286f2c",
+      "coordinator_tree": "56fe631704e830b8f2d0edfeca4c5294e47fc696",
+      "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+      "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+    },
+    "source_inventory_sha256": "9cadfd501cb684b7c6203c31233acb1df36bb303e45e49a6fb190f4d49fbeda9",
+    "profile": "manual-identity-40-v1",
+    "shared_identity_limits": {
+      "quote_calls": 120,
+      "calls_per_symbol": 3,
+      "minimum_spacing_seconds": 2,
+      "distinct_authorized_symbols": 40
+    },
+    "clock_scope": "Logical future/advanced fixture session only; owned/native checks include actual elapsed time. No live clock override added.",
+    "shared_membership_limits": {
+      "hot_symbols": 40,
+      "focus_additions": 40,
+      "outside_uni_additions": 40,
+      "capacity_nonrecycling": true
+    },
+    "manual_promotion_scope": "Opening Uni without a lookup; other exact catalog symbols after retained shared broker confirmation",
+    "pending_withdrawal_supported": true,
+    "unknown_lookup_retried": false,
+    "owned_proof": {
+      "contract": "manual-outside-uni-owned-collection-proof-v1",
+      "result": "PASS",
+      "manual_symbol": "X000",
+      "nasdaq_symbol": "X001",
+      "both_symbols_outside_opening_uni": true,
+      "identity_quote_permits": 2,
+      "worker_starts": 1,
+      "both_children_live_before_stop": true,
+      "manual_pending_then_effective": true,
+      "old_window_fenced_after_stop": true,
+      "cleanup": {
+        "contract": "daily-hot-controller-v1",
+        "status": "STOPPED",
+        "reason": "operator_stop",
+        "cleanup": {
+          "source": null,
+          "hot": {
+            "status": "OWNED_WORKER_STOPPED"
+          },
+          "identity": {
+            "returncode": 124,
+            "forced": false
+          }
+        },
+        "cleanup_seconds": 0.01885521000076551,
+        "cleanup_within_10_seconds": true,
+        "evidence_errors": [],
+        "unmanaged_channels_untouched": [
+          "uni",
+          "focus",
+          "health"
+        ],
+        "reporting": {
+          "status": "COMPLETE",
+          "native_audit_passed": true,
+          "two_fresh_replays_equal": true,
+          "first_replay": {
+            "events": 8,
+            "sequence_sha256": "b1cdd246de327d8fff67da99e2a29563377760ce5f87a7462c742208cadf55b2"
+          },
+          "report_path": "/workspace/scratch/6ce939acb4eb/manual93_exact_e88ed04/p93/runs/20261031T220413Z_166f79b9/owned/daily_hot_test/reports/ba88825d6c0842b0a1c81f085b74a7c8.json",
+          "seconds": 0.31534272400313057
+        }
+      },
+      "native_final_report": {
+        "audited_at_utc": "2026-11-01T15:00:14.097549+00:00",
+        "configuration_sha256": "487b5ce4f6c224aa8eb965401a798c5bd74351087668cf468cece1f6c2bd42b9",
+        "contract": "daily-hot-native-final-report-v1",
+        "first_replay": {
+          "events": 8,
+          "sequence_sha256": "b1cdd246de327d8fff67da99e2a29563377760ce5f87a7462c742208cadf55b2"
+        },
+        "full_day_capacity_qualified": false,
+        "hot_content_integrity": {
+          "acquisitions": 4,
+          "contract": "full-hot-journal-content-check-v1",
+          "error_count": 0,
+          "errors": [],
+          "observations": 6,
+          "passed": true,
+          "scope": "All Hot stored values against native-verified period receipts; other channels covered by native audit",
+          "skips": 0
+        },
+        "invocation": "3023c6178c254bd0b33eaffb682873c3",
+        "native_audit": {
+          "channels": [
+            {
+              "acquisition_count": 0,
+              "channel": "focus",
+              "expected_slot_count": 0,
+              "member_rows": 9,
+              "missing_slot_ids": [],
+              "observation_count": 0,
+              "requested_symbol_count": 0,
+              "revision_count": 4,
+              "row_count_mismatch_ids": [],
+              "skipped_slot_count": 0,
+              "status_counts": {}
+            },
+            {
+              "acquisition_count": 4,
+              "channel": "hot",
+              "expected_slot_count": 4,
+              "member_rows": 3,
+              "missing_slot_ids": [],
+              "observation_count": 6,
+              "requested_symbol_count": 6,
+              "revision_count": 4,
+              "row_count_mismatch_ids": [],
+              "skipped_slot_count": 0,
+              "status_counts": {
+                "quote": 6
+              }
+            },
+            {
+              "acquisition_count": 0,
+              "channel": "uni",
+              "expected_slot_count": 0,
+              "member_rows": 19,
+              "missing_slot_ids": [],
+              "observation_count": 0,
+              "requested_symbol_count": 0,
+              "revision_count": 4,
+              "row_count_mismatch_ids": [],
+              "skipped_slot_count": 0,
+              "status_counts": {}
+            }
+          ],
+          "database_path": "/workspace/scratch/6ce939acb4eb/manual93_exact_e88ed04/p93/runs/20261031T220413Z_166f79b9/owned/quote_observation_journal_v2_api_opening_2026-11-01/2026-11-01.sqlite3",
+          "evidence_bytes": {},
+          "findings": [],
+          "integrity_results": [
+            "ok"
+          ],
+          "membership_contract": "nested-uni-focus-hot-v1",
+          "runs": [
+            {
+              "channel": "focus",
+              "configuration": {
+                "cadence_profile": "interleaved-v1",
+                "poll_seconds": [
+                  10,
+                  20,
+                  40,
+                  50
+                ],
+                "watchlist_kind": "focus"
+              },
+              "host": null,
+              "run_id": "existing-focus",
+              "software_version": "synthetic-current-source",
+              "started_at_utc": "2026-11-01T14:20:00.000000Z"
+            },
+            {
+              "channel": "uni",
+              "configuration": {
+                "cadence_profile": "interleaved-v1",
+                "poll_seconds": [
+                  0,
+                  30
+                ],
+                "watchlist_kind": "uni"
+              },
+              "host": null,
+              "run_id": "existing-uni",
+              "software_version": "synthetic-current-source",
+              "started_at_utc": "2026-11-01T14:20:00.000000Z"
+            },
+            {
+              "channel": "hot",
+              "configuration": {
+                "batch_size": 400,
+                "daily_binding_sha256": "f311a673f14920bf549ddf5362ed94688e98d635a64aedeb1628d92acf92d280",
+                "daily_hot_contract": "daily-native-hot-acquisition-v2",
+                "fields": "all",
+                "max_dispatch_lateness_seconds": 0.75,
+                "parent_cadence_profile": "interleaved-v1",
+                "poll_seconds": [
+                  2,
+                  4,
+                  6,
+                  8,
+                  12,
+                  14,
+                  16,
+                  18,
+                  22,
+                  24,
+                  26,
+                  28,
+                  32,
+                  34,
+                  36,
+                  38,
+                  42,
+                  44,
+                  46,
+                  48,
+                  52,
+                  54,
+                  56,
+                  58
+                ],
+                "poll_window_end_et": "2026-11-01T10:00:45-05:00",
+                "poll_window_start_et": "2026-11-01T10:00:06-05:00",
+                "retry_seconds": 0.05,
+                "source_label": "daily-native-hot-v1",
+                "watchlist_kind": "hot"
+              },
+              "host": null,
+              "run_id": "daily-hot-ce7acc5502004a2ebeb5fda542e56c72",
+              "software_version": "daily-native-hot-acquisition-v2",
+              "started_at_utc": "2026-11-01T15:00:00.662023Z"
+            },
+            {
+              "channel": "hot",
+              "configuration": {
+                "batch_size": 400,
+                "daily_hot_contract": "daily-hot-collection-periods-v1",
+                "fields": "all",
+                "history_scope": "active five-minute period; closed payloads audited independently",
+                "max_dispatch_lateness_seconds": 0.75,
+                "parent_cadence_profile": "interleaved-v1",
+                "poll_seconds": [
+                  2,
+                  4,
+                  6,
+                  8,
+                  12,
+                  14,
+                  16,
+                  18,
+                  22,
+                  24,
+                  26,
+                  28,
+                  32,
+                  34,
+                  36,
+                  38,
+                  42,
+                  44,
+                  46,
+                  48,
+                  52,
+                  54,
+                  56,
+                  58
+                ],
+                "poll_window_end_et": "2026-11-01T10:00:45-05:00",
+                "poll_window_start_et": "2026-11-01T10:00:06-05:00",
+                "retry_seconds": 0.05,
+                "source_label": "daily-native-hot-v1",
+                "watchlist_kind": "hot"
+              },
+              "host": null,
+              "run_id": "daily-hot-schedule-a5b00b8997e24d5fad13cad7de8e5b75",
+              "software_version": "daily-hot-collection-periods-v1",
+              "started_at_utc": "2026-11-01T15:00:00.677536Z"
+            }
+          ],
+          "schema_version": 2,
+          "session_date": "2026-11-01",
+          "storage_bytes": {
+            "database": 106496,
+            "shm": 32768,
+            "wal": 189552
+          },
+          "table_counts": {
+            "poll_run": 4,
+            "poll_slot_skip": 0,
+            "quote_acquisition": 4,
+            "quote_observation": 6,
+            "sampling_channel_member": 31,
+            "sampling_channel_revision": 12,
+            "sampling_membership_revision": 4
+          }
+        },
+        "native_audit_passed": true,
+        "production_activation_inferred": false,
+        "replay_method": "native ordered event IDs; Hot payloads checked separately",
+        "report_id": "ba88825d6c0842b0a1c81f085b74a7c8",
+        "second_replay": {
+          "events": 8,
+          "sequence_sha256": "b1cdd246de327d8fff67da99e2a29563377760ce5f87a7462c742208cadf55b2"
+        },
+        "status": "COMPLETE",
+        "two_fresh_replays_equal": true,
+        "validation_passed": true
+      },
+      "hot_status_counts": {
+        "quote": 6
+      },
+      "identity_events": [
+        {
+          "at_utc": "2026-11-01T15:00:00.433792+00:00",
+          "command_id": "manual:manual-9198c98853dd44de82eeea1b0ef0b85f",
+          "command_sha256": "f164a43a444ce1f7f59d479620a84a0e10e010c01622d058c7b40d3cb5aee0f2",
+          "event_sha256": "2add1725b41fea2ebb0379c1a9abf77f430b1672f4cbd0eb378b4ae780bf876b",
+          "kind": "reservation",
+          "previous_sha256": "9fdda89606246ee2325c08c79e62ef900a7565274b6151cf91d43137f5caa687",
+          "sequence": 1,
+          "symbol": "X000"
+        },
+        {
+          "at_utc": "2026-11-01T15:00:00.470070+00:00",
+          "code": "approved",
+          "command_id": "manual:manual-9198c98853dd44de82eeea1b0ef0b85f",
+          "command_sha256": "f164a43a444ce1f7f59d479620a84a0e10e010c01622d058c7b40d3cb5aee0f2",
+          "event_sha256": "a256bc2e177aeca1b1900faf5768e1809a28b3159a0dfed16cc0377062afdb5c",
+          "kind": "decision",
+          "outcome": {
+            "elapsed_seconds": 0.021557724998274352,
+            "response": {
+              "X000": {
+                "assetMainType": "EQUITY",
+                "assetSubType": "COE",
+                "quote": {
+                  "lastPrice": 12.0
+                },
+                "symbol": "X000"
+              }
+            },
+            "reuse_of": null,
+            "status": 200,
+            "stopped": false,
+            "transport": "returned"
+          },
+          "previous_sha256": "2add1725b41fea2ebb0379c1a9abf77f430b1672f4cbd0eb378b4ae780bf876b",
+          "sequence": 2,
+          "symbol": "X000"
+        },
+        {
+          "at_utc": "2026-11-01T15:00:02.476274+00:00",
+          "command_id": "nasdaq-halt-293d41934a22971e34c2579526bc7e42a2f95ae76ca4bb822ef97dff93000ce6",
+          "command_sha256": "7782e834d5b6089a7c403e20a336b922a6cd5c2ce70c3fc8cf85384fb9568f56",
+          "event_sha256": "3138263bdab53c380ec220155c20b991339e5941b5a84fe00d5da69fcaf283d6",
+          "kind": "reservation",
+          "previous_sha256": "a256bc2e177aeca1b1900faf5768e1809a28b3159a0dfed16cc0377062afdb5c",
+          "sequence": 3,
+          "symbol": "X001"
+        },
+        {
+          "at_utc": "2026-11-01T15:00:02.509395+00:00",
+          "code": "approved",
+          "command_id": "nasdaq-halt-293d41934a22971e34c2579526bc7e42a2f95ae76ca4bb822ef97dff93000ce6",
+          "command_sha256": "7782e834d5b6089a7c403e20a336b922a6cd5c2ce70c3fc8cf85384fb9568f56",
+          "event_sha256": "d701b606470d41019d46612ce0a0fc7b72d42455b8fedf8bb8d784194105ede0",
+          "kind": "decision",
+          "outcome": {
+            "elapsed_seconds": 0.02151161499932641,
+            "response": {
+              "X001": {
+                "assetMainType": "EQUITY",
+                "assetSubType": "COE",
+                "quote": {
+                  "lastPrice": 12.0
+                },
+                "symbol": "X001"
+              }
+            },
+            "reuse_of": null,
+            "status": 200,
+            "stopped": false,
+            "transport": "returned"
+          },
+          "previous_sha256": "3138263bdab53c380ec220155c20b991339e5941b5a84fe00d5da69fcaf283d6",
+          "sequence": 4,
+          "symbol": "X001"
+        }
+      ],
+      "synthetic_sdk_only": true,
+      "production_access": false,
+      "actual_vault_access": false,
+      "full_day_capacity_qualified": false,
+      "p85_changed": false
+    },
+    "mixed_burst_proof": {
+      "result": "PASS",
+      "manual_admissions": 20,
+      "nasdaq_admissions": 20,
+      "hot_symbols": 40,
+      "identity_quote_permits": 40,
+      "overflow_extra_provider_calls": 0,
+      "maximum_logical_pump_elapsed_seconds": 0.3094965210002556,
+      "forty_symbol_native_hot_acquisitions": 2,
+      "native_quote_observations": 80,
+      "maximum_native_cycle_elapsed_seconds": 0.04233098499753396,
+      "native_audit_passed": true,
+      "native_dispatch_clock": "logical due slot plus actual elapsed UTC; original 0.75-second limit",
+      "clock": "logical advance only; real SQLite and measured pump elapsed time",
+      "provider_capacity_qualified": false,
+      "full_day_capacity_qualified": false
+    },
+    "gui_proof": {
+      "result": "NOT_EXERCISED",
+      "reason": "Actual Windows GUI remains due"
+    },
+    "network": "denied",
+    "actual_vault_access": false,
+    "actual_broker_sdk_used": false,
+    "actual_provider_used": false,
+    "production_changes": false,
+    "production_start_command_generated": false,
+    "p85_source_settings_or_approval_changed": false,
+    "prior_p92_windows_acceptance": "ACCEPTED 45/45 retained; affected regressions included",
+    "unchanged_long_history_feed_recovery_or_provider_drills_repeated": false,
+    "provider_capacity_qualified": false,
+    "full_day_capacity_qualified": false,
+    "remaining": [
+      "Windows result and actual returned CMD prompt",
+      "Concrete manual-enabled operating delivery/review and activation before live use"
+    ]
+  },
+  "exact_archive_sha256": "7790ba5501202a0444c34a712a65cb2f7e74f3e8337f074c50ea20e748b8d608",
+  "additional_regressions": {
+    "combined_new_manual_ui_admission": {
+      "passed": 110,
+      "seconds": 33.421
+    },
+    "prior_daily_session_review_launch_multi_identity": {
+      "passed": 83,
+      "seconds": 24.757
+    }
+  },
+  "initial_archive_failure_preserved": "INITIAL_ARCHIVE_FAILURE.json",
+  "correction_scope": "Package the unchanged lazy quote fixture; runtime and assertions unchanged",
+  "actual_windows_or_tk_result": "PENDING"
+}

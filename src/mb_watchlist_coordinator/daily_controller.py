@@ -301,7 +301,7 @@ class DailyController:
             hierarchy = self.session.store.latest_membership_revision_effective_at(self.clock())
             report['effective_revision'] = hierarchy.revision if hierarchy else None
             report['hot_symbols'] = list(hierarchy.hot_symbols) if hierarchy else []
-            if self.session.settings.policy_profile == 'manual-40-v1':
+            if self.session.settings.policy_profile in ('manual-40-v1','manual-identity-40-v1'):
                 report['manual_controls'] = {'enabled':True,
                     'actor_id':self.session.binding['policy']['manual_controls']['actor_id'],
                     'receipt_path':str(self.root/'manual.sqlite3'),'shared_hot_capacity':40}

@@ -221,7 +221,7 @@ class DailyOperatingOwner:
                 try: reporting=self._report(stopped_at,min(bounds.report_end,self.monotonic()+60))
                 except Exception as error: reporting={'status':'REPORT_INCOMPLETE','error_type':type(error).__name__}
             receipt['reporting']=reporting
-            if (self.configuration.publication.policy_profile in ('multi-40-v1','manual-40-v1')
+            if (self.configuration.publication.policy_profile in ('multi-40-v1','manual-40-v1','manual-identity-40-v1')
                     and reporting.get('validation_passed') is False and receipt['result']=='STOPPED'):
                 receipt['result']='FAILED';receipt['failure_type']='FinalValidationFailed'
             atomic_json(self.root/'operating-result.json',sealed(receipt))

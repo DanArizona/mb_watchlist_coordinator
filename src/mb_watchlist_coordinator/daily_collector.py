@@ -115,10 +115,10 @@ class DailyHotCollector(HotRecoveryCollector):
 
     def _publication(self):
         verified = self.session.validate(with_state=True)
-        publication, gate = (verified if self.settings.daily_binding['settings'].get('policy_profile') in ('multi-40-v1','manual-40-v1')
+        publication, gate = (verified if self.settings.daily_binding['settings'].get('policy_profile') in ('multi-40-v1','manual-40-v1','manual-identity-40-v1')
                              else map(plain, verified))
         gate = gate['identity_gate']
-        if self.settings.daily_binding['settings'].get('policy_profile') == 'manual-40-v1':
+        if self.settings.daily_binding['settings'].get('policy_profile') in ('manual-40-v1','manual-identity-40-v1'):
             # Manual scope is the immutable verified opening Uni. The shared
             # request policy separately checks source ownership and capacity;
             # Nasdaq outside-Uni membership still requires broker confirmation.
@@ -150,7 +150,7 @@ class DailyHotCollector(HotRecoveryCollector):
     def quotes(self, symbols, *, fields):
         # This executes after the native durable dispatch, inside its owner lock.
         state=self.poller.provider_dispatch_state()
-        multi=self.settings.daily_binding['settings'].get('policy_profile') in ('multi-40-v1','manual-40-v1')
+        multi=self.settings.daily_binding['settings'].get('policy_profile') in ('multi-40-v1','manual-40-v1','manual-identity-40-v1')
         if multi:
             # The synchronous native provider state comes from the checked read
             # after durable dispatch. Its callback just validated this exact
@@ -175,7 +175,7 @@ class DailyHotCollector(HotRecoveryCollector):
         # publication check above; avoid repeating that same whole graph here.
         # Deferred factories and the unchanged single-symbol profile still
         # recheck after client preparation, before the original time gate.
-        if new_client or self.settings.daily_binding['settings'].get('policy_profile') not in ('multi-40-v1','manual-40-v1'):
+        if new_client or self.settings.daily_binding['settings'].get('policy_profile') not in ('multi-40-v1','manual-40-v1','manual-identity-40-v1'):
             self._check()
         if (self.clock()>=timestamp(self.settings.stop_at_utc)
                 or (self.clock()-timestamp(dispatch['scheduled_at_utc'])).total_seconds()>.75):
@@ -195,7 +195,7 @@ class DailyHotCollector(HotRecoveryCollector):
 
     def tick(self,*,fault_hook=None):
         from mb_market_data.sampling_acquisition import next_slot
-        self._check(publication=self.settings.daily_binding['settings'].get('policy_profile') not in ('multi-40-v1','manual-40-v1'))
+        self._check(publication=self.settings.daily_binding['settings'].get('policy_profile') not in ('multi-40-v1','manual-40-v1','manual-identity-40-v1'))
         if self.clock()>=timestamp(self.settings.stop_at_utc):return {'status':'window_ended'}
         if self.next is None or self.clock()<self.next.scheduled_at:
             state=self.poller.snapshot()

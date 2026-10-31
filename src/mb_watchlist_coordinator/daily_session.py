@@ -21,7 +21,7 @@ import time
 from .controller_bootstrap import _proposal, strict_json
 from .integrated_identity import IdentityGatedDelivery
 from .nasdaq_recovery import regular_window
-from .operating_plan import proposed_policy, validate_policy, SINGLE_PROFILE, MULTI_PROFILE, MANUAL_PROFILE, MULTI_PROFILES
+from .operating_plan import proposed_policy, validate_policy, SINGLE_PROFILE, MULTI_PROFILE, MANUAL_PROFILE, MANUAL_PROFILES, BROKER_MANUAL_PROFILE, MULTI_PROFILES
 from .sampling_requests import digest, freeze, plain, timestamp, utc_text
 from .sampling_service import owner_lock
 from .recovery_workers import atomic_json, read_process_text
@@ -247,12 +247,18 @@ class DailySession:
                 settings=RecoverySettings(opening.session_date, 'late_start', (query,), False), clock=self.clock)
             self.delivery = NasdaqRecoveryDelivery(self.root/'delivery.sqlite3', live_producer=self.live,
                 recovery_receipts=self.recovery, producer_id=OWNER, clock=self.clock)
-            self.gate = identity_gate_type(self.settings)(self.root/'identity.sqlite3', delivery=self.delivery,
+            gate_delivery=self.delivery
+            if self.settings.policy_profile==BROKER_MANUAL_PROFILE:
+                self.manual=manual_controls(self.service,self.root,policy,clock=self.clock)
+                from .daily_manual_identity import SharedManualDelivery
+                gate_delivery=SharedManualDelivery(self.delivery,self.manual)
+            self.gate = identity_gate_type(self.settings)(self.root/'identity.sqlite3', delivery=gate_delivery,
                 catalog=self.catalog, start_at=self.binding['start_at_utc'],
                 stop_at=self.binding['stop_at_utc'], clock=self.clock)
             if create:
                 self.requests.initialize(); self.service.initialize(); self.live.initialize()
                 self.recovery.initialize(create=True); self.delivery.initialize(create=True)
+                if self.settings.policy_profile==BROKER_MANUAL_PROFILE:self.manual.initialize()
                 self.gate.initialize(create=True)
                 if fault_hook: fault_hook('after_ledgers_initialized')
                 atomic_json(self.root/'session.json', {'claim': self.claim, 'binding': self.binding,
@@ -260,13 +266,14 @@ class DailySession:
             else:
                 required = ('requests.sqlite3', 'publication.sqlite3', 'live.sqlite3',
                     'recovery.sqlite3', 'delivery.sqlite3', 'identity.sqlite3', 'status.json')
-                if self.settings.policy_profile == MANUAL_PROFILE: required += ('manual.sqlite3',)
+                if self.settings.policy_profile in MANUAL_PROFILES: required += ('manual.sqlite3',)
                 if any(not regular_path(self.root/name, exists=True).is_file() for name in required):
                     raise ValueError('Restore every original daily ledger before reopening')
             if self.settings.policy_profile == MANUAL_PROFILE:
                 self.manual = manual_controls(self.service,self.root,policy,clock=self.clock)
                 if create: self.manual.initialize()
                 else: self.manual.snapshot()
+            elif self.settings.policy_profile==BROKER_MANUAL_PROFILE:self.manual.snapshot()
             self.attached = True
             self.validate()
             return self.status()
@@ -343,6 +350,9 @@ class DailySession:
 
 
 def identity_gate_type(settings):
+    if settings.policy_profile==BROKER_MANUAL_PROFILE:
+        from .daily_manual_identity import SharedManualIdentityGate
+        return SharedManualIdentityGate
     if settings.policy_profile in MULTI_PROFILES:
         from .daily_multi_identity import MultiIdentityGate
         return MultiIdentityGate
@@ -365,12 +375,16 @@ def publication_types(profile):
 def admission_policy(settings,catalog,policy):
     from .daily_admission import DailyAdmissionPolicy
     cls, sources, extra = DailyAdmissionPolicy, frozenset({OWNER}), {}
-    if settings.policy_profile == MANUAL_PROFILE:
+    if settings.policy_profile in MANUAL_PROFILES:
         from .daily_shared_admission import SharedManualAdmissionPolicy
         cls=SharedManualAdmissionPolicy
         actor=policy['manual_controls']['actor_id'];sources=frozenset({OWNER,actor})
         extra={'manual_actor_id':actor,'maximum_hot':policy['limits']['maximum_distinct_hot_symbols_per_session'],
                'maximum_focus_additions':policy['limits']['maximum_distinct_focus_additions_per_session']}
+        if settings.policy_profile==BROKER_MANUAL_PROFILE:
+            from .daily_broker_admission import BrokerManualAdmissionPolicy
+            cls=BrokerManualAdmissionPolicy
+            extra['identity_gate_path']=str(Path(settings.state_root)/'identity.sqlite3')
     return cls(catalog.catalog_id,frozenset(catalog.symbols),sources,
         policy['limits']['maximum_distinct_added_symbols_per_session'],'session',**extra)
 
@@ -378,7 +392,11 @@ def admission_policy(settings,catalog,policy):
 def manual_controls(service,root,policy,*,clock):
     from .manual_membership import ManualMembershipControls
     spec=policy['manual_controls']
-    return ManualMembershipControls(Path(root)/'manual.sqlite3',publication=service,
+    cls=ManualMembershipControls
+    if spec['promotion_scope']=='catalog_after_shared_broker_identity':
+        from .daily_identity_manual_controls import IdentityQueuedManualControls
+        cls=IdentityQueuedManualControls
+    return cls(Path(root)/'manual.sqlite3',publication=service,
         actor_id=spec['actor_id'],allow_restrictions=spec['allow_restrictions'],clock=clock)
 
 
