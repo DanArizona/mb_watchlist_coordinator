@@ -335,11 +335,14 @@ class ManualMembershipControls:
                             settled = not pending and RANK[row['effective_group']] <= RANK[target]
                             cancelled = target == 'focus' and any(e.accepted and e.kind == 'cancel'
                                 and e.payload['owner_id'] == self.actor_id and e.payload['request_id'] == cid+':replacement' for e in events)
+                            restricted = target == 'focus' and any(RANK[target] > RANK[r['max_group']] for r in restrictions)
                             row.update(status='WITHDRAWN' if cancelled else 'PENDING' if pending else 'EFFECTIVE' if settled else 'LOWERED' if others else 'PENDING',
                                 detail='Own higher request replaced by lower demand; other sources still request higher membership.' if others else
                                     'Own demand lowered; stabilization/publication may retain higher membership.' if not settled else
                                     'Own demand lowered and native effective membership confirms the demotion.',
                                 publication_pending=pending or not settled and not others and not cancelled)
+                            if restricted and not cancelled:
+                                row.update(status='BLOCKED',detail='Active privileged restriction caps the replacement Focus request.')
                         elif action == 'withdraw':
                             row.update(status='WITHDRAWN', detail=('Own demand withdrawn; other sources still request membership.' if others else
                                 'Own demand withdrawn; stabilization or opening membership may retain the symbol.' if holds or row['effective_group'] != 'absent' else 'Own request withdrawn.'))
@@ -352,12 +355,16 @@ class ManualMembershipControls:
                         else:
                             row.update(status='PENDING' if pending else 'CLEARED', detail='Restriction released; remaining source demand and policy determine membership.')
                 rows.append(row)
+            summary=getattr(self.requests.admission,'capacity_summary',None)
+            shared=summary(baseline=self.requests.baseline,requests=[e.payload for e in events
+                if e.kind=='request'and e.accepted])if summary is not None else None
             return {'contract': CONTRACT, 'observed_at_utc': utc_text(now),
                 'session_date': str(self.requests.session_date), 'actor_id': self.actor_id,
                 'allow_restrictions': self.allow_restrictions, 'promotion_scope': self.identity['promotion_scope'],
                 'effective_revision': current['proposal']['revision'] if current else None,
                 'members': members, 'commands': rows, 'processed_sequence': source['processed_sequence'],
                 'publication_pending': source['pending'] is not None or source['processed_sequence']>effective_processed or any(r['publication_pending'] for r in rows),
+                'shared_capacity':shared,
                 'provider_access': False, 'process_control': False}
 
 

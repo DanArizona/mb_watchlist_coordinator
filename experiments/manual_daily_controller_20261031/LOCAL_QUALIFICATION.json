@@ -1,0 +1,349 @@
+{
+  "contract": "combined-daily-controller-local-acceptance-v1",
+  "exact_archive_verified": true,
+  "archive_name": "nasdaq_manual_controller_20261031_509ffa1.zip",
+  "archive_sha256": "cd819fe7cb9d7b79552bc24ee776f0cfa525a45897efa562464a08e0bc145842",
+  "exact_packet_result": {
+    "contract": "nasdaq-manual-daily-controller-offline-qualification-v1",
+    "result": "PASS",
+    "tests": 45,
+    "passed": 45,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "failed_tests": [],
+    "seconds": 17.358331457999157,
+    "platform": "linux",
+    "python": [
+      3,
+      12,
+      14
+    ],
+    "windows_checks_passed": false,
+    "source": {
+      "coordinator_commit": "509ffa1f264f4a3d7b51e089e96c150cfbde1ca6",
+      "coordinator_tree": "593fc19e2ff32c4bd080ddd5599da1fc2d03ebd2",
+      "manual_predecessor": "aa6deb13d2f3d34cf651b4ef96c4d41fc44d8a7a",
+      "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+      "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+    },
+    "source_inventory_sha256": "0fe97051239481b85bec071ec699bddb4c8fd749a2c45814f6d6a85440c45cb5",
+    "profile": "manual-40-v1",
+    "sources": [
+      "nasdaq-shared-daily",
+      "operator:masterbot"
+    ],
+    "shared_hot_session_limit": 40,
+    "shared_focus_additions_session_limit": 40,
+    "capacity_nonrecycling": true,
+    "manual_promotion_scope": "verified opening Uni only; outside-Uni manual broker integration remains next",
+    "owned_proof": {
+      "contract": "owned-nasdaq-manual-controller-proof-v1",
+      "result": "PASS",
+      "manual_symbol": "IBM",
+      "nasdaq_symbol": "MSFT",
+      "combined_roster_native_acquisitions_at_least": 2,
+      "manual_feedback_effective": true,
+      "identity_quote_permits": 1,
+      "worker_starts": 1,
+      "old_controls_fenced_after_stop": true,
+      "cleanup": {
+        "contract": "daily-hot-controller-v1",
+        "status": "STOPPED",
+        "reason": "operator_stop",
+        "cleanup": {
+          "source": null,
+          "hot": {
+            "status": "OWNED_WORKER_STOPPED"
+          },
+          "identity": {
+            "returncode": 70,
+            "forced": false
+          }
+        },
+        "cleanup_seconds": 0.03684670700022252,
+        "cleanup_within_10_seconds": true,
+        "evidence_errors": [],
+        "unmanaged_channels_untouched": [
+          "uni",
+          "focus",
+          "health"
+        ],
+        "reporting": {
+          "status": "COMPLETE",
+          "native_audit_passed": true,
+          "two_fresh_replays_equal": true,
+          "first_replay": {
+            "events": 5,
+            "sequence_sha256": "1f8dcff8a24bcb69de2b0ca760c1c6da92f057944bf6eef253182fb87d7adc4c"
+          },
+          "report_path": "/workspace/scratch/6ce939acb4eb/manual92_exact_509ffa1/p92/runs/20261031T212323Z_0951865a/owned/daily_hot_test/reports/1fca8f9620d740f584a65e2bcdf39648.json",
+          "seconds": 0.3655702809992363
+        }
+      },
+      "native_final_report": {
+        "audited_at_utc": "2026-11-01T15:00:08.146293+00:00",
+        "configuration_sha256": "e97bdf141141d5430b34acaf82c3994fbe6a695cccdc9ede00dd769ec719538d",
+        "contract": "daily-hot-native-final-report-v1",
+        "first_replay": {
+          "events": 5,
+          "sequence_sha256": "1f8dcff8a24bcb69de2b0ca760c1c6da92f057944bf6eef253182fb87d7adc4c"
+        },
+        "full_day_capacity_qualified": false,
+        "hot_content_integrity": {
+          "acquisitions": 2,
+          "contract": "full-hot-journal-content-check-v1",
+          "error_count": 0,
+          "errors": [],
+          "observations": 4,
+          "passed": true,
+          "scope": "All Hot stored values against native-verified period receipts; other channels covered by native audit",
+          "skips": 0
+        },
+        "invocation": "561138fb53b348f5a2ae8e97b4d83f78",
+        "native_audit": {
+          "channels": [
+            {
+              "acquisition_count": 0,
+              "channel": "focus",
+              "expected_slot_count": 0,
+              "member_rows": 4,
+              "missing_slot_ids": [],
+              "observation_count": 0,
+              "requested_symbol_count": 0,
+              "revision_count": 3,
+              "row_count_mismatch_ids": [],
+              "skipped_slot_count": 0,
+              "status_counts": {}
+            },
+            {
+              "acquisition_count": 2,
+              "channel": "hot",
+              "expected_slot_count": 2,
+              "member_rows": 2,
+              "missing_slot_ids": [],
+              "observation_count": 4,
+              "requested_symbol_count": 4,
+              "revision_count": 3,
+              "row_count_mismatch_ids": [],
+              "skipped_slot_count": 0,
+              "status_counts": {
+                "quote": 4
+              }
+            },
+            {
+              "acquisition_count": 0,
+              "channel": "uni",
+              "expected_slot_count": 0,
+              "member_rows": 12,
+              "missing_slot_ids": [],
+              "observation_count": 0,
+              "requested_symbol_count": 0,
+              "revision_count": 3,
+              "row_count_mismatch_ids": [],
+              "skipped_slot_count": 0,
+              "status_counts": {}
+            }
+          ],
+          "database_path": "/workspace/scratch/6ce939acb4eb/manual92_exact_509ffa1/p92/runs/20261031T212323Z_0951865a/owned/quote_observation_journal_v2_api_opening_2026-11-01/2026-11-01.sqlite3",
+          "evidence_bytes": {},
+          "findings": [],
+          "integrity_results": [
+            "ok"
+          ],
+          "membership_contract": "nested-uni-focus-hot-v1",
+          "runs": [
+            {
+              "channel": "focus",
+              "configuration": {
+                "cadence_profile": "interleaved-v1",
+                "poll_seconds": [
+                  10,
+                  20,
+                  40,
+                  50
+                ],
+                "watchlist_kind": "focus"
+              },
+              "host": null,
+              "run_id": "existing-focus",
+              "software_version": "synthetic-current-source",
+              "started_at_utc": "2026-11-01T14:20:00.000000Z"
+            },
+            {
+              "channel": "uni",
+              "configuration": {
+                "cadence_profile": "interleaved-v1",
+                "poll_seconds": [
+                  0,
+                  30
+                ],
+                "watchlist_kind": "uni"
+              },
+              "host": null,
+              "run_id": "existing-uni",
+              "software_version": "synthetic-current-source",
+              "started_at_utc": "2026-11-01T14:20:00.000000Z"
+            },
+            {
+              "channel": "hot",
+              "configuration": {
+                "batch_size": 400,
+                "daily_binding_sha256": "2834013b175a33e72c66607990bd1bb1edfeaada433a6e6a79f625e8181716cb",
+                "daily_hot_contract": "daily-native-hot-acquisition-v2",
+                "fields": "all",
+                "max_dispatch_lateness_seconds": 0.75,
+                "parent_cadence_profile": "interleaved-v1",
+                "poll_seconds": [
+                  2,
+                  4,
+                  6,
+                  8,
+                  12,
+                  14,
+                  16,
+                  18,
+                  22,
+                  24,
+                  26,
+                  28,
+                  32,
+                  34,
+                  36,
+                  38,
+                  42,
+                  44,
+                  46,
+                  48,
+                  52,
+                  54,
+                  56,
+                  58
+                ],
+                "poll_window_end_et": "2026-11-01T10:00:45-05:00",
+                "poll_window_start_et": "2026-11-01T10:00:06-05:00",
+                "retry_seconds": 0.05,
+                "source_label": "daily-native-hot-v1",
+                "watchlist_kind": "hot"
+              },
+              "host": null,
+              "run_id": "daily-hot-aee01b9185e14b6b8a8ce6e61d8d1b92",
+              "software_version": "daily-native-hot-acquisition-v2",
+              "started_at_utc": "2026-11-01T15:00:00.689968Z"
+            },
+            {
+              "channel": "hot",
+              "configuration": {
+                "batch_size": 400,
+                "daily_hot_contract": "daily-hot-collection-periods-v1",
+                "fields": "all",
+                "history_scope": "active five-minute period; closed payloads audited independently",
+                "max_dispatch_lateness_seconds": 0.75,
+                "parent_cadence_profile": "interleaved-v1",
+                "poll_seconds": [
+                  2,
+                  4,
+                  6,
+                  8,
+                  12,
+                  14,
+                  16,
+                  18,
+                  22,
+                  24,
+                  26,
+                  28,
+                  32,
+                  34,
+                  36,
+                  38,
+                  42,
+                  44,
+                  46,
+                  48,
+                  52,
+                  54,
+                  56,
+                  58
+                ],
+                "poll_window_end_et": "2026-11-01T10:00:45-05:00",
+                "poll_window_start_et": "2026-11-01T10:00:06-05:00",
+                "retry_seconds": 0.05,
+                "source_label": "daily-native-hot-v1",
+                "watchlist_kind": "hot"
+              },
+              "host": null,
+              "run_id": "daily-hot-schedule-ec1825d8883048bcafe236bca370cc92",
+              "software_version": "daily-hot-collection-periods-v1",
+              "started_at_utc": "2026-11-01T15:00:00.704290Z"
+            }
+          ],
+          "schema_version": 2,
+          "session_date": "2026-11-01",
+          "storage_bytes": {
+            "database": 110592,
+            "shm": 32768,
+            "wal": 65952
+          },
+          "table_counts": {
+            "poll_run": 4,
+            "poll_slot_skip": 0,
+            "quote_acquisition": 2,
+            "quote_observation": 4,
+            "sampling_channel_member": 18,
+            "sampling_channel_revision": 9,
+            "sampling_membership_revision": 3
+          }
+        },
+        "native_audit_passed": true,
+        "production_activation_inferred": false,
+        "replay_method": "native ordered event IDs; Hot payloads checked separately",
+        "report_id": "1fca8f9620d740f584a65e2bcdf39648",
+        "second_replay": {
+          "events": 5,
+          "sequence_sha256": "1f8dcff8a24bcb69de2b0ca760c1c6da92f057944bf6eef253182fb87d7adc4c"
+        },
+        "status": "COMPLETE",
+        "two_fresh_replays_equal": true,
+        "validation_passed": true
+      },
+      "hot_status_counts": {
+        "quote": 4
+      },
+      "synthetic_sdk_only": true,
+      "production_access": false,
+      "actual_vault_access": false,
+      "p85_changed": false,
+      "full_day_capacity_qualified": false
+    },
+    "gui_proof": {
+      "result": "NOT_EXERCISED",
+      "reason": "No local desktop; actual Windows preview remains due"
+    },
+    "network": "denied",
+    "actual_vault_access": false,
+    "actual_broker_sdk_used": false,
+    "production_changes": false,
+    "production_manual_launch_available": false,
+    "p85_source_settings_or_approval_changed": false,
+    "unchanged_long_capacity_source_recovery_drills_repeated": false,
+    "provider_capacity_qualified": false,
+    "full_day_capacity_qualified": false,
+    "remaining": [
+      "Windows result and actual returned CMD prompt",
+      "Outside-Uni manual identity integration",
+      "Reviewed manual-enabled production delivery and activation before live use"
+    ]
+  },
+  "additional_regressions": {
+    "manual_request_policy_admission": {
+      "passed": 176,
+      "seconds": 2.144
+    },
+    "prior_daily_session_review_launch_multi_identity": {
+      "passed": 83,
+      "seconds": 29.215
+    }
+  },
+  "windows_result": "PENDING; no Windows or Tk execution claimed by the Linux result"
+}

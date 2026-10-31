@@ -3,7 +3,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 import time
 
-from .daily_session import DailySettings, identity_gate_type, publication_types, CONTRACT, OWNER, regular_path
+from .daily_session import DailySettings, identity_gate_type, publication_types, admission_policy, CONTRACT, OWNER, regular_path
+from .operating_plan import MANUAL_PROFILE, MULTI_PROFILES
 from .controller_bootstrap import strict_json
 from .integrated_catalog import DirectoryCatalog
 from .sampling_requests import digest, plain, timestamp
@@ -32,7 +33,6 @@ class DailyPublicationReader:
         from .sampling_journal import SamplingJournal
         from .sampling_projection import SamplingMembership
         from .sampling_policy import SamplingPolicy
-        from .daily_admission import DailyAdmissionPolicy as AdmissionPolicy
         from .sampling_request_store import SamplingRequestStore
         from .sampling_service import SamplingPublicationService, PublicationSettings
         from .nasdaq_sampling import NasdaqSamplingProducer, HaltProducerSettings
@@ -57,9 +57,7 @@ class DailyPublicationReader:
             session_date=focus.session_date, baseline=SamplingMembership(
                 frozenset(focus.uni_symbols), frozenset(focus.focus_symbols), frozenset()),
             policy=SamplingPolicy(policy['operator_actor_id'], **policy['stabilization']),
-            admission=AdmissionPolicy(self.catalog.catalog_id, frozenset(self.catalog.symbols),
-                frozenset({OWNER}), policy['limits']['maximum_distinct_added_symbols_per_session'],
-                'session'), clock=self.clock)
+            admission=admission_policy(settings,self.catalog,policy), clock=self.clock)
         self.service = _ReadPublication(SamplingPublicationService(self.root/'publication.sqlite3',
             request_store=self.requests, journal=SamplingJournal(self.store),
             settings=PublicationSettings('daily-hot-publication', 1, .5,
@@ -96,6 +94,8 @@ class DailyPublicationReader:
         for name in ('requests.sqlite3', 'publication.sqlite3', 'live.sqlite3',
                      'recovery.sqlite3', 'delivery.sqlite3', 'identity.sqlite3', 'status.json'):
             regular_path(self.root/name, exists=True)
+        if self.settings.policy_profile == MANUAL_PROFILE:
+            regular_path(self.root/'manual.sqlite3', exists=True)
         previous = strict_json(read_process_text(self.root/'status.json'))
         content = dict(previous); sha = content.pop('content_sha256')
         if (sha != digest(content) or previous['binding_sha256'] != self.binding['binding_sha256']
@@ -104,6 +104,6 @@ class DailyPublicationReader:
 
     def validate(self, *, with_state=False):
         self._binding()
-        gate, publication = self.gate.snapshot(), self.service.snapshot(collector=self.settings.policy_profile=='multi-40-v1')
+        gate, publication = self.gate.snapshot(), self.service.snapshot(collector=self.settings.policy_profile in MULTI_PROFILES)
         self.fence()
         return (publication, gate) if with_state else True

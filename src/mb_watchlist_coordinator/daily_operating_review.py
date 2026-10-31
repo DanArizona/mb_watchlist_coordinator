@@ -5,11 +5,10 @@ from pathlib import Path
 from .authenticated_startup import AuthStartupSettings
 from .controller_bootstrap import _proposal
 from .daily_collector import DailyCollectorSettings
-from .daily_session import DailySettings, DailySession, OWNER, regular_path, publication_types
+from .daily_session import DailySettings, DailySession, OWNER, regular_path, publication_types, admission_policy
 from .daily_supervision import DailyWorkerConfiguration,read_json
 from .integrated_catalog import DirectoryCatalog
 from .operating_plan import proposed_policy, SINGLE_PROFILE
-from .daily_admission import DailyAdmissionPolicy as AdmissionPolicy
 from .sampling_policy import SamplingPolicy
 from .sampling_projection import SamplingMembership
 from .sampling_request_store import SamplingRequestStore
@@ -36,8 +35,7 @@ def build_operating_review(opening,focus,*,journal,catalog,state_root,ecfg,clock
         session_date=proposal.session_date,baseline=SamplingMembership(
             frozenset(proposal.uni_symbols),frozenset(proposal.focus_symbols),frozenset()),
         policy=SamplingPolicy(policy['operator_actor_id'],**policy['stabilization']),
-        admission=AdmissionPolicy(directory.catalog_id,frozenset(directory.symbols),frozenset({OWNER}),
-            policy['limits']['maximum_distinct_added_symbols_per_session'],'session'))
+        admission=admission_policy(settings,directory,policy))
     store=QuoteObservationStore(settings.journal_path,session_date=proposal.session_date,schema_version=2)
     service=SamplingPublicationService(Path(settings.state_root)/'publication.sqlite3',
         request_store=requests,journal=SamplingJournal(store),settings=PublicationSettings('daily-hot-publication',1,.5,

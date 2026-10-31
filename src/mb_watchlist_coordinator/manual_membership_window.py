@@ -165,9 +165,17 @@ class ManualMembershipWindow:
         self.banner.configure(text=('Verified manual membership' if value.get('fresh') else
             'UNAVAILABLE — showing last verified feedback; controls disabled'),
             foreground='#17653a' if value.get('fresh') else '#a12222')
-        self.context.configure(text=f"Session {view.get('session_date', '?')} | Operator {view.get('actor_id', '?')} | "
+        context=f"Session {view.get('session_date', '?')} | Operator {view.get('actor_id', '?')} | " \
             f"Effective revision {view.get('effective_revision', '?')} | Verified {view.get('observed_at_utc', '?')}\n"
-            'Promotions: verified opening Uni only in this candidate. Other symbols require identity/admission support.')
+        context+='Promotions: verified opening Uni only in this candidate. Other symbols require identity/admission support.'
+        if view.get('shared_capacity'):
+            capacity=view['shared_capacity']
+            context=f"Session {view['session_date']} | Operator {view['actor_id']} | " \
+                f"Effective revision {view['effective_revision']} | Verified {view['observed_at_utc']}\n"
+            context+=f"Shared session allowance: Hot {capacity['hot_distinct_used']}/{capacity['hot_limit']}; " \
+                f"Focus additions {capacity['focus_additions_used']}/{capacity['focus_additions_limit']}. "
+            context+='Withdrawals do not reset this allowance. Promotions: opening Uni only.'
+        self.context.configure(text=context)
         rows = view.get('commands', [])
         rendered = [(r['command_id'], (r['symbol'] or '—', r['action'], r['requested_group'] or '—',
             r['status'], r['effective_group'], 'pending' if r['publication_pending'] else 'settled')) for r in rows]

@@ -21,7 +21,7 @@ import time
 from .controller_bootstrap import _proposal, strict_json
 from .integrated_identity import IdentityGatedDelivery
 from .nasdaq_recovery import regular_window
-from .operating_plan import proposed_policy, validate_policy, SINGLE_PROFILE, MULTI_PROFILE
+from .operating_plan import proposed_policy, validate_policy, SINGLE_PROFILE, MULTI_PROFILE, MANUAL_PROFILE, MULTI_PROFILES
 from .sampling_requests import digest, freeze, plain, timestamp, utc_text
 from .sampling_service import owner_lock
 from .recovery_workers import atomic_json, read_process_text
@@ -92,7 +92,7 @@ class DailySettings:
             raise ValueError('Daily session paths or opening/Focus binding differ')
         lock, bridge = _preview_journal(str(journal), opening.session_date,self.policy_profile)
         with lock:
-            revisions = (bridge.revisions(opening_only=True) if self.policy_profile == MULTI_PROFILE
+            revisions = (bridge.revisions(opening_only=True) if self.policy_profile in MULTI_PROFILES
                          else bridge.revisions())
         if (len(revisions) < 2 or
                 [r['content_sha256'] for r in revisions[:2]] !=
@@ -195,7 +195,6 @@ class DailySession:
             from .sampling_journal import SamplingJournal
             from .sampling_projection import SamplingMembership
             from .sampling_policy import SamplingPolicy
-            from .daily_admission import DailyAdmissionPolicy as AdmissionPolicy
             from .sampling_request_store import SamplingRequestStore
             from .sampling_service import SamplingPublicationService, PublicationSettings
             from .nasdaq_sampling import NasdaqSamplingProducer, HaltProducerSettings
@@ -235,9 +234,7 @@ class DailySession:
                 session_date=opening.session_date, baseline=SamplingMembership(
                     frozenset(focus.uni_symbols), frozenset(focus.focus_symbols), frozenset()),
                 policy=SamplingPolicy(policy['operator_actor_id'], **policy['stabilization']),
-                admission=AdmissionPolicy(self.catalog.catalog_id, frozenset(self.catalog.symbols),
-                    frozenset({OWNER}), policy['limits']['maximum_distinct_added_symbols_per_session'],
-                    'session'), clock=self.clock)
+                admission=admission_policy(self.settings,self.catalog,policy), clock=self.clock)
             self.service = SamplingPublicationService(self.root/'publication.sqlite3',
                 request_store=self.requests, journal=self.journal,
                 settings=PublicationSettings('daily-hot-publication', 1, .5,
@@ -263,8 +260,13 @@ class DailySession:
             else:
                 required = ('requests.sqlite3', 'publication.sqlite3', 'live.sqlite3',
                     'recovery.sqlite3', 'delivery.sqlite3', 'identity.sqlite3', 'status.json')
+                if self.settings.policy_profile == MANUAL_PROFILE: required += ('manual.sqlite3',)
                 if any(not regular_path(self.root/name, exists=True).is_file() for name in required):
                     raise ValueError('Restore every original daily ledger before reopening')
+            if self.settings.policy_profile == MANUAL_PROFILE:
+                self.manual = manual_controls(self.service,self.root,policy,clock=self.clock)
+                if create: self.manual.initialize()
+                else: self.manual.snapshot()
             self.attached = True
             self.validate()
             return self.status()
@@ -341,7 +343,7 @@ class DailySession:
 
 
 def identity_gate_type(settings):
-    if settings.policy_profile == MULTI_PROFILE:
+    if settings.policy_profile in MULTI_PROFILES:
         from .daily_multi_identity import MultiIdentityGate
         return MultiIdentityGate
     if settings.policy_profile != SINGLE_PROFILE:
@@ -350,7 +352,7 @@ def identity_gate_type(settings):
 
 
 def publication_types(profile):
-    if profile == MULTI_PROFILE:
+    if profile in MULTI_PROFILES:
         from .daily_multi_publication import MultiMembershipStore, MultiSamplingJournal, MultiPublicationService
         return MultiMembershipStore, MultiSamplingJournal, MultiPublicationService
     if profile != SINGLE_PROFILE:raise ValueError('Unknown daily publication profile')
@@ -358,6 +360,26 @@ def publication_types(profile):
     from .sampling_journal import SamplingJournal
     from .sampling_service import SamplingPublicationService
     return DailyQuoteObservationStore, SamplingJournal, SamplingPublicationService
+
+
+def admission_policy(settings,catalog,policy):
+    from .daily_admission import DailyAdmissionPolicy
+    cls, sources, extra = DailyAdmissionPolicy, frozenset({OWNER}), {}
+    if settings.policy_profile == MANUAL_PROFILE:
+        from .daily_shared_admission import SharedManualAdmissionPolicy
+        cls=SharedManualAdmissionPolicy
+        actor=policy['manual_controls']['actor_id'];sources=frozenset({OWNER,actor})
+        extra={'manual_actor_id':actor,'maximum_hot':policy['limits']['maximum_distinct_hot_symbols_per_session'],
+               'maximum_focus_additions':policy['limits']['maximum_distinct_focus_additions_per_session']}
+    return cls(catalog.catalog_id,frozenset(catalog.symbols),sources,
+        policy['limits']['maximum_distinct_added_symbols_per_session'],'session',**extra)
+
+
+def manual_controls(service,root,policy,*,clock):
+    from .manual_membership import ManualMembershipControls
+    spec=policy['manual_controls']
+    return ManualMembershipControls(Path(root)/'manual.sqlite3',publication=service,
+        actor_id=spec['actor_id'],allow_restrictions=spec['allow_restrictions'],clock=clock)
 
 
 def main(argv=None):

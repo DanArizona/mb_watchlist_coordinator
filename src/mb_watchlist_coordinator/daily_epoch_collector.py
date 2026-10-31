@@ -21,7 +21,7 @@ from mb_market_data.sampling_membership import SamplingChannel
 from mb_market_data.polling_cadence import RESERVED_HOT_SECONDS
 from .daily_collector import DailyHotCollector,DailyCollectorSettings
 from .nasdaq_recovery import regular_window
-from .operating_plan import MULTI_PROFILE
+from .operating_plan import MULTI_PROFILES
 from .recovery_workers import atomic_json,read_process_text
 from .sampling_requests import digest,freeze,plain,timestamp,utc_text
 
@@ -111,7 +111,7 @@ class EpochHotCollector:
         self.client_factory,self._client=client_factory,None
         self.windows=period_windows(settings.start_at_utc,settings.stop_at_utc)
         if (not self.windows or settings.max_quote_calls<sum(p[3]for p in self.windows)
-                or settings.daily_binding['settings'].get('policy_profile')!=MULTI_PROFILE):
+                or settings.daily_binding['settings'].get('policy_profile') not in MULTI_PROFILES):
             raise ValueError('Period schedule must fit the exact full-session call budget')
         self.manifest=Path(settings.journal_path).with_suffix('.hot.periods.json')
         self.provider_stop_path=Path(settings.journal_path).with_suffix('.daily-hot-provider-stop.json')
@@ -268,5 +268,5 @@ class EpochHotCollector:
 
 
 def make_daily_collector(settings,**kwargs):
-    cls=EpochHotCollector if settings.daily_binding['settings'].get('policy_profile')==MULTI_PROFILE else DailyHotCollector
+    cls=EpochHotCollector if settings.daily_binding['settings'].get('policy_profile') in MULTI_PROFILES else DailyHotCollector
     return cls(settings,**kwargs)

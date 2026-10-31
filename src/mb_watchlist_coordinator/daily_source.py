@@ -31,8 +31,8 @@ class _Delivery:
 
 class _Authority(NasdaqRecoverySupervisor):
     def cycle(self,**kwargs):
-        from .operating_plan import MULTI_PROFILE
-        if self.delivery.session.settings.policy_profile!=MULTI_PROFILE:
+        from .operating_plan import MULTI_PROFILES
+        if self.delivery.session.settings.policy_profile not in MULTI_PROFILES:
             return super().cycle(**kwargs)
         # An authority ownership failure and a nested publication read/write
         # collision are different. Never replay an entire operation on either.

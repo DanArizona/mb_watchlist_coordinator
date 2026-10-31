@@ -48,12 +48,14 @@ POLICY = {
 
 
 MULTI_PROFILE = 'multi-40-v1'
+MANUAL_PROFILE = 'manual-40-v1'
+MULTI_PROFILES = (MULTI_PROFILE, MANUAL_PROFILE)
 SINGLE_PROFILE = 'single-v1'
 
 
 def proposed_policy(profile=SINGLE_PROFILE) -> dict:
     value = json.loads(json.dumps(POLICY))
-    if profile == MULTI_PROFILE:
+    if profile in MULTI_PROFILES:
         value['contract'] = 'hot-multisymbol-operating-policy-proposal-v1'
         value['limits'].update(maximum_active_hot_symbols=40,
             maximum_distinct_added_symbols_per_session=40,
@@ -64,6 +66,13 @@ def proposed_policy(profile=SINGLE_PROFILE) -> dict:
         value['collection_history'] = {'active_period_seconds':300,
             'full_schedule_registered':True,
             'closed_payload_validation':'independent_full_journal_audit_and_replay'}
+        if profile == MANUAL_PROFILE:
+            value['contract'] = 'hot-nasdaq-manual-operating-policy-proposal-v1'
+            value['manual_controls'] = {'actor_id':value['operator_actor_id'],
+                'allow_restrictions':True,'promotion_scope':'opening_uni_only',
+                'controller_required':True,'sources_share_capacity':True}
+            value['limits'].update(maximum_distinct_hot_symbols_per_session=40,
+                maximum_distinct_focus_additions_per_session=40)
     elif profile != SINGLE_PROFILE:
         raise ValueError('Unknown sealed daily policy profile')
     return value
@@ -72,7 +81,7 @@ def proposed_policy(profile=SINGLE_PROFILE) -> dict:
 def validate_policy(value: dict) -> dict:
     # Candidate policy values are deliberately sealed in this increment.
     # Editing a JSON file cannot silently widen scope or enable a missing driver.
-    profiles = (SINGLE_PROFILE, MULTI_PROFILE)
+    profiles = (SINGLE_PROFILE, *MULTI_PROFILES)
     profile = next((p for p in profiles if digest(value) == digest(proposed_policy(p))), None)
     if (not isinstance(value, dict) or profile is None
             or type(value.get("hot_enabled")) is not bool):

@@ -1,0 +1,26 @@
+{
+  "contract": "combined-daily-controller-delivery-v1",
+  "status": "OFFLINE_WINDOWS_CANDIDATE",
+  "archive_name": "nasdaq_manual_controller_20261031_509ffa1.zip",
+  "bytes": 801641,
+  "sha256": "cd819fe7cb9d7b79552bc24ee776f0cfa525a45897efa562464a08e0bc145842",
+  "source": {
+    "coordinator_commit": "509ffa1f264f4a3d7b51e089e96c150cfbde1ca6",
+    "coordinator_tree": "593fc19e2ff32c4bd080ddd5599da1fc2d03ebd2",
+    "manual_predecessor": "aa6deb13d2f3d34cf651b4ef96c4d41fc44d8a7a",
+    "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "0fe97051239481b85bec071ec699bddb4c8fd749a2c45814f6d6a85440c45cb5",
+  "zip_root": "p92",
+  "entry": "92_verify_shared_manual_controller.cmd",
+  "checks": 45,
+  "preview_hold_seconds": 15,
+  "exact_extracted_local_result": "PASS",
+  "windows_checks_passed": false,
+  "publication_destination": "DanArizona/mb_watchlist_coordinator:experiment/manual-membership-20261031",
+  "scope": "Combined Nasdaq/manual daily controller; manual promotions within verified opening Uni",
+  "p85_changed": false,
+  "production_activation": false,
+  "actual_provider_used": false
+}

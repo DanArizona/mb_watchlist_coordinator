@@ -301,6 +301,10 @@ class DailyController:
             hierarchy = self.session.store.latest_membership_revision_effective_at(self.clock())
             report['effective_revision'] = hierarchy.revision if hierarchy else None
             report['hot_symbols'] = list(hierarchy.hot_symbols) if hierarchy else []
+            if self.session.settings.policy_profile == 'manual-40-v1':
+                report['manual_controls'] = {'enabled':True,
+                    'actor_id':self.session.binding['policy']['manual_controls']['actor_id'],
+                    'receipt_path':str(self.root/'manual.sqlite3'),'shared_hot_capacity':40}
             return self.health.publish(report)
 
     def step(self, *, synthetic=None):
@@ -320,8 +324,8 @@ class DailyController:
             if self.stopped(): return self.close(reason='controller_blocked_or_stopped')
             return self.status()
         except ServiceBusy:
-            from .operating_plan import MULTI_PROFILE
-            if self.session.settings.policy_profile!=MULTI_PROFILE:
+            from .operating_plan import MULTI_PROFILES
+            if self.session.settings.policy_profile not in MULTI_PROFILES:
                 with self.lock:self._terminal('daily_inputs_or_source_failed')
                 self.close(reason='daily_inputs_or_source_failed')
                 raise

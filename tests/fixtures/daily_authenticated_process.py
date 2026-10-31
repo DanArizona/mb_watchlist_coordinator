@@ -38,8 +38,9 @@ class Response:
     ok = status_code == 200
     def __init__(self, symbol): self.symbol = symbol
     def json(self):
-        return {self.symbol: {'symbol': self.symbol, 'assetMainType': 'EQUITY',
-            'assetSubType': 'COE', 'quote': {'lastPrice': 12.0}}} if self.ok else {}
+        symbols=self.symbol if isinstance(self.symbol,list) else [self.symbol]
+        return {symbol: {'symbol': symbol, 'assetMainType': 'EQUITY',
+            'assetSubType': 'COE', 'quote': {'lastPrice': 12.0}} for symbol in symbols} if self.ok else {}
 class Client:
     def __init__(self):
         record('constructed')
@@ -50,7 +51,7 @@ class Client:
     def quotes(self, symbols, *, fields):
         record('quote:'+symbols[0])
         if mode == 'quote_hang': time.sleep(60)
-        return Response(symbols[0])
+        return Response(list(symbols) if scenario.get('multi_quote_response') else symbols[0])
     def close(self):
         record('closed')
         if mode == 'close_hang': time.sleep(60)

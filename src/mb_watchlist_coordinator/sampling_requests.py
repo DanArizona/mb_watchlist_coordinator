@@ -217,6 +217,11 @@ def admission_reason(kind: str, actor: str, payload: Mapping, *, at: datetime,
                     reserved.update(set(request["symbols"]) - baseline.uni)
             if len(reserved | extra) > admission.max_additional_symbols:
                 return "session_admission_capacity"
+            capacity = getattr(admission, 'capacity_rejection', None)
+            if capacity is not None:
+                rejection = capacity(payload, baseline=baseline, requests=requests)
+                if rejection is not None:
+                    return rejection
         return None
     if kind == "cancel":
         if actor != payload["owner_id"]:

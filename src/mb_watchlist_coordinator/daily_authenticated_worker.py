@@ -197,7 +197,7 @@ def run_collector(configuration_path, job_path, *, secret_stream=None, clock=Non
                 if result['status'] in ('blocked', 'budget_exhausted', 'window_ended'):
                     return result
                 delay=.1
-                if config.publication.policy_profile=='multi-40-v1':
+                if config.publication.policy_profile in ('multi-40-v1','manual-40-v1'):
                     # Idle checks still finish well within the original 3s
                     # progress gate. Align the next iteration to a due slot;
                     # repeatedly replaying idle state at 10Hz consumes CPU
@@ -290,8 +290,8 @@ def run_report(configuration_path, job_path):
         for event in QuoteJournalReplayReader(path).events():
             count += 1; sha.update((event.event_id+'\n').encode())
         return {'events': count, 'sequence_sha256': sha.hexdigest()}
-    from .operating_plan import MULTI_PROFILE
-    multi=raw['publication'].get('policy_profile')==MULTI_PROFILE
+    from .operating_plan import MULTI_PROFILES
+    multi=raw['publication'].get('policy_profile') in MULTI_PROFILES
     integrity=None
     if multi:
         from .daily_epoch_integrity import verify_journal_content,replay_sequence_digest
