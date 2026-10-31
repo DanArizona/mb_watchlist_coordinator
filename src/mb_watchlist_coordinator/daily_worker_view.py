@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 import time
 
-from .daily_session import DailySettings, DailyIdentityGate, CONTRACT, OWNER, regular_path
+from .daily_session import DailySettings, identity_gate_type, publication_types, CONTRACT, OWNER, regular_path
 from .controller_bootstrap import strict_json
 from .integrated_catalog import DirectoryCatalog
 from .sampling_requests import digest, plain, timestamp
@@ -39,6 +39,7 @@ class DailyPublicationReader:
         from .nasdaq_recovery import NasdaqRecoveryReceipts, RecoverySettings, RecoveryQuery
         from .nasdaq_recovery_delivery import NasdaqRecoveryDelivery
         from .controller_bootstrap import _proposal
+        QuoteObservationStore, SamplingJournal, SamplingPublicationService = publication_types(settings.policy_profile)
         self.settings, self.binding, self.claim = settings, plain(binding), plain(claim)
         self.clock = clock or (lambda: datetime.now(timezone.utc))
         if not callable(fence): raise ValueError('Explicit worker ownership fence required')
@@ -57,7 +58,8 @@ class DailyPublicationReader:
                 frozenset(focus.uni_symbols), frozenset(focus.focus_symbols), frozenset()),
             policy=SamplingPolicy(policy['operator_actor_id'], **policy['stabilization']),
             admission=AdmissionPolicy(self.catalog.catalog_id, frozenset(self.catalog.symbols),
-                frozenset({OWNER}), 1, 'session'), clock=self.clock)
+                frozenset({OWNER}), policy['limits']['maximum_distinct_added_symbols_per_session'],
+                'session'), clock=self.clock)
         self.service = _ReadPublication(SamplingPublicationService(self.root/'publication.sqlite3',
             request_store=self.requests, journal=SamplingJournal(self.store),
             settings=PublicationSettings('daily-hot-publication', 1, .5,
@@ -70,7 +72,7 @@ class DailyPublicationReader:
                 (RecoveryQuery(focus.session_date, focus.session_date),), False), clock=self.clock)
         delivery = NasdaqRecoveryDelivery(self.root/'delivery.sqlite3', live_producer=live,
             recovery_receipts=recovery, producer_id=OWNER, clock=self.clock)
-        self.gate = DailyIdentityGate(self.root/'identity.sqlite3', delivery=delivery,
+        self.gate = identity_gate_type(settings)(self.root/'identity.sqlite3', delivery=delivery,
             catalog=self.catalog, start_at=self.binding['start_at_utc'],
             stop_at=self.binding['stop_at_utc'], clock=self.clock)
         if plain(self.service.identity) != plain(publication_binding):

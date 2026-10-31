@@ -34,11 +34,11 @@ class DailyCollectorSettings:
         if (not window_start <= start < stop <= window_stop
                 or type(self.max_quote_calls) is not int or not 1 <= self.max_quote_calls <= 9360
                 or self.max_quote_calls > policy['limits']['maximum_hot_quote_calls']
-                or type(self.max_symbols) is not int or self.max_symbols != 1
+                or type(self.max_symbols) is not int or not 1 <= self.max_symbols <= 400
                 or self.max_symbols != policy['limits']['maximum_active_hot_symbols']
                 or self.journal_path != binding['settings']['journal_path']
                 or self.publication_binding['journal']['path'] != self.journal_path):
-            raise ValueError('Explicit daily collector window, one-symbol limit and call ceiling required')
+            raise ValueError('Explicit daily collector window, sealed symbol limit and call ceiling required')
         return {'contract':'daily-hot-collector-v1', 'journal_path':self.journal_path,
             'publication_binding':plain(self.publication_binding),
             'daily_binding':binding, 'daily_claim':plain(self.daily_claim),
@@ -50,7 +50,7 @@ class DailyCollectorSettings:
 
 class DailyHotCollector(HotRecoveryCollector):
     def __init__(self, settings, *, publication_session, client_factory, clock=None,
-                 activation_approved=False):
+                 activation_approved=False, _epoch_spec=None):
         from mb_market_data.daily_hot_acquisition import DailyHotPoller
         from mb_market_data.sampling_acquisition import AcquisitionSettings
         from mb_market_data.sampling_membership import SamplingChannel
@@ -68,14 +68,19 @@ class DailyHotCollector(HotRecoveryCollector):
                 or plain(self.session.claim) != plain(settings.daily_claim)
                 or plain(self.session.service.identity) != plain(settings.publication_binding)):
             raise ValueError('Collector must share the owned publication session')
-        self.poller = DailyHotPoller(self.session.store,
+        poller_type=DailyHotPoller
+        extra={}
+        if _epoch_spec is not None:
+            from .daily_epoch_collector import EpochHotPoller
+            poller_type=EpochHotPoller;extra={'epoch_spec':_epoch_spec}
+        self.poller = poller_type(self.session.store,
             settings=AcquisitionSettings(SamplingChannel.HOT, RESERVED_HOT_SECONDS,
                 PollWindow(timestamp(settings.start_at_utc),timestamp(settings.stop_at_utc)),
                 400, 'all', 'daily-native-hot-v1', .75, .05), client=self,
             daily_binding=settings.daily_binding, daily_claim=settings.daily_claim,
             publication_binding=settings.publication_binding,
             validate_publication=self.validate_publication, clock=self.clock,
-            activation_approved=activation_approved,max_quote_calls=settings.max_quote_calls)
+            activation_approved=activation_approved,max_quote_calls=settings.max_quote_calls,**extra)
         self.manifest = self.poller.path.with_suffix('.daily-collector.json')
         self.next, self.refused_call = None, False
 
@@ -109,7 +114,9 @@ class DailyHotCollector(HotRecoveryCollector):
                 lease.__exit__(None,None,None)
 
     def _publication(self):
-        publication, gate = map(plain, self.session.validate(with_state=True))
+        verified = self.session.validate(with_state=True)
+        publication, gate = (verified if self.settings.daily_binding['settings'].get('policy_profile') == 'multi-40-v1'
+                             else map(plain, verified))
         gate = gate['identity_gate']
         if gate['provider_stop_required']:
             raise ValueError('Identity provider stop prevents new collection')
@@ -122,7 +129,8 @@ class DailyHotCollector(HotRecoveryCollector):
                 if r['proposal']['revision'] == dispatch['revision']), None)
             if (revision is None or
                     list(revision['proposal']['hot_symbols']) != dispatch['symbols'] or
-                    dispatch['symbols'] != [gate['selected_symbol']]):
+                    (not set(dispatch['symbols']) <= set(gate['authorized_symbols'])
+                        if 'authorized_symbols' in gate else dispatch['symbols'] != [gate['selected_symbol']])):
                 raise ValueError('Native dispatch does not match verified selected membership')
         return True
 
@@ -145,8 +153,15 @@ class DailyHotCollector(HotRecoveryCollector):
                 or (self.clock()-timestamp(dispatch['scheduled_at_utc'])).total_seconds()>.75):
             self.refused_call=True
             raise ValueError('Collector call budget, roster, slot or window gate refused')
-        if self.client is None:self.client=self.client_factory()
-        self._check()
+        new_client = self.client is None
+        if new_client:self.client=self.client_factory()
+        # The owned daily worker authenticates before prepare/tick. A prepared
+        # multi-symbol client introduces no blocking work after the exact
+        # publication check above; avoid repeating that same whole graph here.
+        # Deferred factories and the unchanged single-symbol profile still
+        # recheck after client preparation, before the original time gate.
+        if new_client or self.settings.daily_binding['settings'].get('policy_profile') != 'multi-40-v1':
+            self._check()
         if (self.clock()>=timestamp(self.settings.stop_at_utc)
                 or (self.clock()-timestamp(dispatch['scheduled_at_utc'])).total_seconds()>.75):
             self.refused_call=True

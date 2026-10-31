@@ -188,7 +188,8 @@ class DailyController:
             self.identity_client = DailyIdentityClient(self.root, self.commands['identity'],
                 password=self.password, invocation=self.invocation,
                 configuration_sha256=self.identity['configuration_sha256'], clock=self.clock,
-                stop_requested=self.stopped)
+                stop_requested=self.stopped,
+                maximum_calls=self.session.binding['policy']['limits']['maximum_identity_quote_calls'])
             self.source = DailySourcePump(self.session, identity_client=self.identity_client,
                 limits=collection_feed_limits(self.configuration.collector),
                 clock=self.clock, feed_client_factory=self.feed_factory,
@@ -303,6 +304,12 @@ class DailyController:
             if plain(self.session.gate.snapshot())['identity_gate']['provider_stop_required']:
                 with self.lock: self._terminal('identity_provider_stop_required')
             if self.stopped(): return self.close(reason='controller_blocked_or_stopped')
+            return self.status()
+        except ServiceBusy:
+            from .operating_plan import MULTI_PROFILE
+            if self.session.settings.policy_profile!=MULTI_PROFILE:raise
+            # The pending source/request ledgers decide future work. This is a
+            # yield, never an in-place retry or another provider dispatch.
             return self.status()
         except BaseException:
             with self.lock: self._terminal('daily_inputs_or_source_failed')

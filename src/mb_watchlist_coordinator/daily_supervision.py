@@ -262,12 +262,15 @@ def stop_process(child, *, cooperative=.5):
 
 
 class DailyIdentityClient:
-    """Three bounded identity requests to one owned authenticated child."""
+    """Policy-bounded identity requests to one owned authenticated child."""
     def __init__(self, root, command, *, password, invocation, configuration_sha256,
-                 clock, stop_requested=lambda: False):
+                 clock, stop_requested=lambda: False, maximum_calls=3):
         self.root, self.command = Path(root), tuple(command)
         self.password, self.invocation, self.clock = password, invocation, clock
         self.configuration_sha256, self.stop_requested = configuration_sha256, stop_requested
+        if type(maximum_calls) is not int or not 1 <= maximum_calls <= 120:
+            raise ValueError('Sealed identity call bound required')
+        self.maximum_calls = maximum_calls
         self.child, self.token, self.calls = None, uuid.uuid4().hex, 0
         self.job = {'contract': 'daily-identity-process-v1', 'invocation': invocation,
             'token': self.token, 'configuration_sha256': configuration_sha256,
@@ -303,7 +306,7 @@ class DailyIdentityClient:
         raise StartupError('provider_failed')
 
     def quotes(self, symbols, *, fields):
-        if self.calls >= 3 or len(symbols) != 1 or fields != 'all' or self.stop_requested():
+        if self.calls >= self.maximum_calls or len(symbols) != 1 or fields != 'all' or self.stop_requested():
             raise StartupError('provider_failed')
         self.calls += 1
         request = {'token': self.token, 'invocation': self.invocation,

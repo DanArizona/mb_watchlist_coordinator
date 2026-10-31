@@ -18,7 +18,7 @@ from .daily_session import regular_path
 from .daily_supervision import read_json, sealed
 from .installed_startup_probe import inspect_dependencies
 from .live_profile import source_guard
-from .operating_plan import proposed_policy
+from .operating_plan import proposed_policy, SINGLE_PROFILE
 from .sampling_requests import digest, timestamp, utc_text
 
 CONTRACT = 'daily-hot-operator-delivery-v1'
@@ -62,9 +62,10 @@ def release_info(source):
     sha = source_guard(source)
     manifest = read_json(source/'SOURCE_INVENTORY.json')
     release = read_json(source/'RELEASE.json')
+    policy = proposed_policy(release.get('policy_profile', SINGLE_PROFILE))
     if (manifest['contract'] != 'daily-hot-operating-release-source-v1'
             or release['contract'] != CONTRACT
-            or release['policy_sha256'] != digest(proposed_policy())
+            or release['policy_sha256'] != digest(policy)
             or release['dependency_versions'] != DEPENDENCIES
             or release['production_baselines'] != {'market_data': MARKET_BASE, 'watchlists': WATCHLIST_BASE}):
         raise OperatorError('Original operating release and policy required')
@@ -179,7 +180,8 @@ def _write_review(source, review, number):
         'window_utc': {'start': utc_text(start), 'stop': utc_text(stop)},
         'fresh_password_deadline_et': (start-timedelta(seconds=FRESH_START_LEAD_SECONDS)).astimezone(ET).isoformat() if review['mode']=='fresh' else None,
         'state_root': raw['publication']['state_root'], 'outer_root': review['outer_root'],
-        'journal_path': raw['publication']['journal_path'], 'policy': proposed_policy(),
+        'journal_path': raw['publication']['journal_path'],
+        'policy': raw['collector']['daily_binding']['policy'],
         'start_command_after_approval': cmdline([str(folder/'START_HOT.cmd'), '--approved-review-sha256',
                                               review['review_sha256'], '--activation-approved']),
         'production_changes': False, 'provider_access': False, 'actual_vault_access': False,
@@ -198,7 +200,7 @@ def _next_review(source, day, first=1):
 def prepare_day(source, opening, focus, *, journal, ecfg, market_data_root, watchlists_root,
                 clock=None, repo_reader=git_state, qualification_reader=windows_qualification,
                 dependency_reader=inspect_dependencies):
-    source, _, _ = release_info(source)
+    source, _, release = release_info(source)
     deployment = review_deployment(source, market_data_root, watchlists_root, repo_reader=repo_reader,
         qualification_reader=qualification_reader, dependency_reader=dependency_reader)
     opening, focus, journal, ecfg = (_path(opening, exists=True), _path(focus, exists=True),
@@ -217,7 +219,8 @@ def prepare_day(source, opening, focus, *, journal, ecfg, market_data_root, watc
     number = _next_review(source, day)
     state, catalog, outer = (runs/('daily_hot_'+day), runs/('daily_catalog_'+day), runs/f'daily_outer_{day}_{number:02d}')
     review = build_launch_review(source, opening, focus, journal=journal, catalog=catalog, state_root=state,
-        ecfg=ecfg, outer_root=outer, clock=clock, dependency_reader=dependency_reader)
+        ecfg=ecfg, outer_root=outer, clock=clock, dependency_reader=dependency_reader,
+        policy_profile=release.get('policy_profile', SINGLE_PROFILE))
     summary = _write_review(source, review, number)
     (Path(summary['review_path']).parent/'deployment-review.json').write_text(
         json.dumps(deployment, indent=2)+'\n', encoding='utf-8')
@@ -257,7 +260,7 @@ def prepare_resume(source, previous_review, *, clock=None, qualification_reader=
         journal=pub['journal_path'], catalog=raw['catalog_path'], state_root=pub['state_root'],
         ecfg=raw['authentication']['ecfg_path'], outer_root=source/'runs'/f'daily_outer_{day}_{number:02d}',
         mode='manual_resume', previous_outer=previous['outer_root'], clock=clock,
-        dependency_reader=dependency_reader)
+        dependency_reader=dependency_reader, policy_profile=pub.get('policy_profile', SINGLE_PROFILE))
     return _write_review(source, review, number)
 
 

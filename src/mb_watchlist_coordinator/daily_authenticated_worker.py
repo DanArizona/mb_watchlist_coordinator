@@ -11,7 +11,7 @@ import time
 
 from .authenticated_hot_worker import _silence_sdk_output
 from .authenticated_startup import StartupError, prepare_authenticated_client, receive_password
-from .daily_collector import DailyHotCollector
+from .daily_epoch_collector import make_daily_collector
 from .daily_supervision import (DailyWorkerConfiguration, DailyProcessState,
     assert_controller_fence, read_json, sealed, unseal, validate_daily_job)
 from .daily_worker_view import DailyPublicationReader
@@ -152,7 +152,7 @@ def run_collector(configuration_path, job_path, *, secret_stream=None, clock=Non
                 clock=clock, fence=lifetime.fence)
             def forbidden():
                 raise StartupError('startup_failed')
-            collector = DailyHotCollector(config.collector, publication_session=view,
+            collector = make_daily_collector(config.collector, publication_session=view,
                 client_factory=forbidden, clock=clock, activation_approved=True)
             if collector.poller.path.exists():
                 collector.poller.snapshot()
@@ -238,7 +238,8 @@ def _run_identity(configuration_path, job_path, *, secret_stream=None, clock=Non
             if (set(request) != {'token', 'invocation', 'sequence', 'symbols', 'fields'}
                     or request['token'] != job['token'] or request['invocation'] != job['invocation']
                     or type(request['sequence']) is not int or not completed <= request['sequence'] <= completed+1
-                    or request['sequence'] > 3 or len(request['symbols']) != 1 or request['fields'] != 'all'):
+                    or request['sequence'] > config.collector.daily_binding['policy']['limits']['maximum_identity_quote_calls']
+                    or len(request['symbols']) != 1 or request['fields'] != 'all'):
                 raise ValueError('Daily identity request differs')
             if request['sequence'] == completed:
                 time.sleep(.02); continue
@@ -278,11 +279,22 @@ def run_report(configuration_path, job_path):
         for event in QuoteJournalReplayReader(path).events():
             count += 1; sha.update((event.event_id+'\n').encode())
         return {'events': count, 'sequence_sha256': sha.hexdigest()}
-    first, second = replay(), replay()
+    from .operating_plan import MULTI_PROFILE
+    multi=raw['publication'].get('policy_profile')==MULTI_PROFILE
+    integrity=None
+    if multi:
+        from .daily_epoch_integrity import verify_journal_content,replay_sequence_digest
+        from .daily_collector import DailyCollectorSettings
+        integrity=verify_journal_content(path,expected_settings=DailyCollectorSettings(**raw['collector']).payload())
+        first,second=replay_sequence_digest(path),replay_sequence_digest(path)
+    else:first,second=replay(),replay()
     value = {'contract': 'daily-hot-native-final-report-v1',
         'configuration_sha256': digest(raw), 'status': 'COMPLETE',
         'report_id': job['report_id'], 'invocation': job['invocation'], 'audited_at_utc': job['audited_at_utc'],
         'native_audit_passed': audit.passed, 'native_audit': asdict(audit),
+        'hot_content_integrity':integrity,
+        'validation_passed':audit.passed and first==second and (integrity is None or integrity['passed']),
+        'replay_method':'native ordered event IDs; Hot payloads checked separately' if multi else 'native full event reader',
         'first_replay': first, 'second_replay': second, 'two_fresh_replays_equal': first == second,
         'full_day_capacity_qualified': False, 'production_activation_inferred': False}
     # Native audit dataclasses contain date/datetime values.

@@ -11,7 +11,7 @@ import sqlite3
 from .daily_feed import DailyFeedClient,DailyFeedLimits,DailyFeedTransport
 from .nasdaq_recovery_supervisor import NasdaqRecoverySupervisor,_failure_details
 from .sampling_requests import canonical,freeze,plain,digest,utc_text
-from .sampling_service import owner_lock
+from .sampling_service import owner_lock,ServiceBusy
 from .recovery_workers import atomic_json
 
 
@@ -30,6 +30,23 @@ class _Delivery:
 
 
 class _Authority(NasdaqRecoverySupervisor):
+    def cycle(self,**kwargs):
+        from .operating_plan import MULTI_PROFILE
+        if self.delivery.session.settings.policy_profile!=MULTI_PROFILE:
+            return super().cycle(**kwargs)
+        # An authority ownership failure and a nested publication read/write
+        # collision are different. Never replay an entire operation on either.
+        lease=owner_lock(self.path.with_suffix('.owner.lock'))
+        try:lease.__enter__()
+        except ServiceBusy:
+            return {'status':'BLOCKED','detail':'Authority already owned','status_persisted':False}
+        try:
+            return self._cycle(**kwargs)
+        except ServiceBusy:
+            return {'status':'WAITING','detail':'publication_evidence_busy','status_persisted':False,
+                'discovery_scope_reconciled':False,'operation_retried':False}
+        finally:lease.__exit__(None,None,None)
+
     def _identity(self):
         value=super()._identity()
         value.update(contract='daily-nasdaq-publication-authority-v1',production_access=True,

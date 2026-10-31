@@ -47,18 +47,37 @@ POLICY = {
 }
 
 
-def proposed_policy() -> dict:
-    return json.loads(json.dumps(POLICY))
+MULTI_PROFILE = 'multi-40-v1'
+SINGLE_PROFILE = 'single-v1'
+
+
+def proposed_policy(profile=SINGLE_PROFILE) -> dict:
+    value = json.loads(json.dumps(POLICY))
+    if profile == MULTI_PROFILE:
+        value['contract'] = 'hot-multisymbol-operating-policy-proposal-v1'
+        value['limits'].update(maximum_active_hot_symbols=40,
+            maximum_distinct_added_symbols_per_session=40,
+            maximum_identity_quote_calls=120,
+            identity_seconds_between_calls=2,
+            maximum_identity_calls_per_symbol=3)
+        value['collection_history'] = {'active_period_seconds':300,
+            'full_schedule_registered':True,
+            'closed_payload_validation':'independent_full_journal_audit_and_replay'}
+    elif profile != SINGLE_PROFILE:
+        raise ValueError('Unknown sealed daily policy profile')
+    return value
 
 
 def validate_policy(value: dict) -> dict:
     # Candidate policy values are deliberately sealed in this increment.
     # Editing a JSON file cannot silently widen scope or enable a missing driver.
-    if (not isinstance(value, dict) or digest(value) != digest(POLICY)
+    profiles = (SINGLE_PROFILE, MULTI_PROFILE)
+    profile = next((p for p in profiles if digest(value) == digest(proposed_policy(p))), None)
+    if (not isinstance(value, dict) or profile is None
             or type(value.get("hot_enabled")) is not bool):
         raise ValueError("Policy differs from the explicit Hot-disabled review candidate")
     SamplingPolicy(value["operator_actor_id"], **value["stabilization"])
-    return proposed_policy()
+    return proposed_policy(profile)
 
 
 def build_plan(opening_path: Path, focus_path: Path, *, market_data_root: Path,

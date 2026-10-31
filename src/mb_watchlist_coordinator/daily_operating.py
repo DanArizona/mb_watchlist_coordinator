@@ -250,4 +250,7 @@ class DailyOperatingOwner:
             if report[name]!=job[name]: raise ValueError('Unbound or stale daily reporter result')
         return {'status':'COMPLETE','report_path':job['output'],'native_audit_passed':report['native_audit_passed'],
             'two_fresh_replays_equal':report['two_fresh_replays_equal'],'first_replay':report['first_replay'],
+            'hot_content_integrity':report.get('hot_content_integrity'),
+            'validation_passed':report.get('validation_passed',report['native_audit_passed'] and report['two_fresh_replays_equal']),
+            'replay_method':report.get('replay_method','native full event reader'),
             'cleanup':cleanup}

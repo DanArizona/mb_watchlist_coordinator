@@ -1,0 +1,22 @@
+{
+  "contract": "multi-symbol-seeded-history-development-v1",
+  "result": "FAILED",
+  "hot_symbols": 40,
+  "seeded_slots": 9310,
+  "cold_prepare_seconds": 25.142431505000786,
+  "tail": [
+    {
+      "seconds": 1.2209473699995215,
+      "status": "missed",
+      "slot_id": "hot:2026-10-31T15:59:56-04:00",
+      "gate": "before_dispatch_deadline",
+      "gate_lateness_seconds": 1.268243,
+      "state_prepare_seconds": 1.1475236480000603
+    }
+  ],
+  "background_present": false,
+  "synthetic_only": true,
+  "provider_capacity_qualified": false,
+  "full_session_executed": false,
+  "full_size_history": true
+}

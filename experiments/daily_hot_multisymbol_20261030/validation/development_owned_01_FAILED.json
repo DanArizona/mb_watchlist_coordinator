@@ -1,0 +1,68 @@
+{
+  "contract": "multi-symbol-paced-owned-proof-v1",
+  "result": "FAILED",
+  "owner": {
+    "contract": "daily-hot-operating-owner-v1",
+    "nonce": "bed6e394f409474bbd749ca2f816fac4",
+    "configuration_sha256": "197143fc75257fb31ddf2e5cf70b76893eb3bb50deb5d3d34dc76fee746fd2e1",
+    "stop_reason": "controller_progress_stale",
+    "result": "FAILED",
+    "cleanup": {
+      "status": "EXIT_OBSERVED",
+      "backend": "posix_process_group",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0,
+      "reason": null
+    },
+    "cleanup_seconds": 0.10291071500068938,
+    "acquisition_stop_requested_at_utc": "2026-10-31T14:06:33.126877+00:00",
+    "reporting": {
+      "status": "COMPLETE",
+      "report_path": "/workspace/scratch/6ce939acb4eb/multi_owned_development_01/daily_hot_test/reports/2d050e0f75d8473598ca2f31fa1a1081.json",
+      "native_audit_passed": false,
+      "two_fresh_replays_equal": true,
+      "first_replay": {
+        "events": 63,
+        "sequence_sha256": "0ccdbc30db2cf3f78250a903a706cc2b4d201e8c49bcfd1dadd24ec48119577d"
+      },
+      "hot_content_integrity": {
+        "acquisitions": 22,
+        "contract": "full-hot-journal-content-check-v1",
+        "error_count": 1,
+        "errors": [
+          "period_7:verification_receipt_missing"
+        ],
+        "observations": 272,
+        "passed": false,
+        "scope": "All Hot stored values against native-verified period receipts; other channels covered by native audit",
+        "skips": 23
+      },
+      "validation_passed": false,
+      "replay_method": "native ordered event IDs; Hot payloads checked separately",
+      "cleanup": {
+        "status": "EXIT_OBSERVED",
+        "backend": "posix_process_group",
+        "scope_empty_observed": true,
+        "forced": false,
+        "controller_returncode": 0,
+        "reason": null
+      }
+    },
+    "failure_type": null,
+    "unmanaged_channels_untouched": [
+      "uni",
+      "focus",
+      "health"
+    ],
+    "full_day_capacity_qualified": false,
+    "production_activation_inferred": false
+  },
+  "elapsed_seconds": 123.68915711000045,
+  "background_acquisitions": {
+    "uni": 5,
+    "focus": 8
+  },
+  "writer_errors": [],
+  "evidence_scope": "Local development run, not Windows acceptance or production activation"
+}

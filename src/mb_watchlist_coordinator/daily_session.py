@@ -14,18 +14,33 @@ import os
 from pathlib import Path
 import sqlite3
 from contextlib import closing
+from functools import lru_cache
+from threading import RLock
 import time
 
 from .controller_bootstrap import _proposal, strict_json
 from .integrated_identity import IdentityGatedDelivery
 from .nasdaq_recovery import regular_window
-from .operating_plan import proposed_policy, validate_policy
+from .operating_plan import proposed_policy, validate_policy, SINGLE_PROFILE, MULTI_PROFILE
 from .sampling_requests import digest, freeze, plain, timestamp, utc_text
 from .sampling_service import owner_lock
 from .recovery_workers import atomic_json, read_process_text
 
 CONTRACT = 'daily-hot-publication-session-v1'
 OWNER = 'nasdaq-shared-daily'
+
+
+@lru_cache(maxsize=8)
+def _preview_journal(path, day, profile):
+    """Reuse only the native raw-value-checked membership parser, not a read.
+
+    Each preview still opens a current read transaction and compares every
+    header/member value. Its per-store immutable parse cache previously got
+    discarded by every preview, reparsing all600-symbol historical revisions.
+    Serialize access to that derived parser when monitor/owner threads overlap.
+    """
+    Store, Journal, _ = publication_types(profile)
+    return RLock(), Journal(Store(path, session_date=day, schema_version=2))
 
 
 def regular_path(value, *, exists=False):
@@ -43,6 +58,7 @@ class DailySettings:
     opening_proposal: str
     focus_proposal: str
     policy_sha256: str
+    policy_profile: str = SINGLE_PROFILE
 
     def preview(self):
         """Read published bytes/cadence; create no application state or requests.
@@ -57,7 +73,7 @@ class DailySettings:
         opening, h0 = _proposal(regular_path(self.opening_proposal, exists=True))
         focus, h1 = _proposal(regular_path(self.focus_proposal, exists=True))
         start, stop = regular_window(opening.session_date)
-        policy = validate_policy(proposed_policy())
+        policy = validate_policy(proposed_policy(self.policy_profile))
         if self.policy_sha256 != digest(policy):
             raise ValueError('Explicit proposed operating-policy hash differs')
         if (not root.name.startswith('daily_hot_') or not root.parent.is_dir()
@@ -74,8 +90,10 @@ class DailySettings:
                 or opening.focus_symbols or opening.hot_symbols or focus.hot_symbols
                 or not 1 <= len(focus.focus_symbols) <= 40):
             raise ValueError('Daily session paths or opening/Focus binding differ')
-        store = QuoteObservationStore(journal, session_date=opening.session_date, schema_version=2)
-        revisions = SamplingJournal(store).revisions()
+        lock, bridge = _preview_journal(str(journal), opening.session_date,self.policy_profile)
+        with lock:
+            revisions = (bridge.revisions(opening_only=True) if self.policy_profile == MULTI_PROFILE
+                         else bridge.revisions())
         if (len(revisions) < 2 or
                 [r['content_sha256'] for r in revisions[:2]] !=
                 [opening.content_sha256, focus.content_sha256]):
@@ -183,6 +201,7 @@ class DailySession:
             from .nasdaq_sampling import NasdaqSamplingProducer, HaltProducerSettings
             from .nasdaq_recovery import NasdaqRecoveryReceipts, RecoverySettings, RecoveryQuery
             from .nasdaq_recovery_delivery import NasdaqRecoveryDelivery
+            QuoteObservationStore, SamplingJournal, SamplingPublicationService = publication_types(self.settings.policy_profile)
             self._time()
             if self.settings.preview() != self.binding:
                 raise ValueError('Daily inputs changed while acquiring ownership')
@@ -217,7 +236,8 @@ class DailySession:
                     frozenset(focus.uni_symbols), frozenset(focus.focus_symbols), frozenset()),
                 policy=SamplingPolicy(policy['operator_actor_id'], **policy['stabilization']),
                 admission=AdmissionPolicy(self.catalog.catalog_id, frozenset(self.catalog.symbols),
-                    frozenset({OWNER}), 1, 'session'), clock=self.clock)
+                    frozenset({OWNER}), policy['limits']['maximum_distinct_added_symbols_per_session'],
+                    'session'), clock=self.clock)
             self.service = SamplingPublicationService(self.root/'publication.sqlite3',
                 request_store=self.requests, journal=self.journal,
                 settings=PublicationSettings('daily-hot-publication', 1, .5,
@@ -230,7 +250,7 @@ class DailySession:
                 settings=RecoverySettings(opening.session_date, 'late_start', (query,), False), clock=self.clock)
             self.delivery = NasdaqRecoveryDelivery(self.root/'delivery.sqlite3', live_producer=self.live,
                 recovery_receipts=self.recovery, producer_id=OWNER, clock=self.clock)
-            self.gate = DailyIdentityGate(self.root/'identity.sqlite3', delivery=self.delivery,
+            self.gate = identity_gate_type(self.settings)(self.root/'identity.sqlite3', delivery=self.delivery,
                 catalog=self.catalog, start_at=self.binding['start_at_utc'],
                 stop_at=self.binding['stop_at_utc'], clock=self.clock)
             if create:
@@ -286,6 +306,8 @@ class DailySession:
             'publication_pending': pub['pending'] is not None or bool(pub['unacknowledged']),
             'identity_quote_permits': gate['identity_gate']['quote_permits'],
             'selected_symbol': gate['identity_gate']['selected_symbol'],
+            'authorized_symbols': gate['identity_gate'].get('authorized_symbols',
+                [gate['identity_gate']['selected_symbol']] if gate['identity_gate']['selected_symbol'] else []),
             'pending_source_commands': len(gate['identity_gate']['all_outbox_pending']),
             'source_warnings': self.binding['policy']['source_warnings'],
             'collector_running': False, 'live_launch_available': False,
@@ -316,6 +338,26 @@ class DailySession:
         if self.lease is not None:
             lease, self.lease = self.lease, None
             lease.__exit__(None, None, None)
+
+
+def identity_gate_type(settings):
+    if settings.policy_profile == MULTI_PROFILE:
+        from .daily_multi_identity import MultiIdentityGate
+        return MultiIdentityGate
+    if settings.policy_profile != SINGLE_PROFILE:
+        raise ValueError('Unknown daily identity profile')
+    return DailyIdentityGate
+
+
+def publication_types(profile):
+    if profile == MULTI_PROFILE:
+        from .daily_multi_publication import MultiMembershipStore, MultiSamplingJournal, MultiPublicationService
+        return MultiMembershipStore, MultiSamplingJournal, MultiPublicationService
+    if profile != SINGLE_PROFILE:raise ValueError('Unknown daily publication profile')
+    from mb_market_data.daily_journal import DailyQuoteObservationStore
+    from .sampling_journal import SamplingJournal
+    from .sampling_service import SamplingPublicationService
+    return DailyQuoteObservationStore, SamplingJournal, SamplingPublicationService
 
 
 def main(argv=None):

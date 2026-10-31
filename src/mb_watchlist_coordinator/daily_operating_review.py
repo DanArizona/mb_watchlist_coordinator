@@ -5,10 +5,10 @@ from pathlib import Path
 from .authenticated_startup import AuthStartupSettings
 from .controller_bootstrap import _proposal
 from .daily_collector import DailyCollectorSettings
-from .daily_session import DailySettings, DailySession, OWNER, regular_path
+from .daily_session import DailySettings, DailySession, OWNER, regular_path, publication_types
 from .daily_supervision import DailyWorkerConfiguration,read_json
 from .integrated_catalog import DirectoryCatalog
-from .operating_plan import proposed_policy
+from .operating_plan import proposed_policy, SINGLE_PROFILE
 from .daily_admission import DailyAdmissionPolicy as AdmissionPolicy
 from .sampling_policy import SamplingPolicy
 from .sampling_projection import SamplingMembership
@@ -19,10 +19,11 @@ from .sampling_requests import digest, plain, timestamp
 
 
 def build_operating_review(opening,focus,*,journal,catalog,state_root,ecfg,clock=None,
-                           collection_window=None):
-    from mb_market_data.daily_journal import DailyQuoteObservationStore as QuoteObservationStore
+                           collection_window=None, policy_profile=SINGLE_PROFILE):
+    QuoteObservationStore, SamplingJournal, SamplingPublicationService = publication_types(policy_profile)
     settings=DailySettings(str(regular_path(state_root)),str(regular_path(journal,exists=True)),
-        str(regular_path(opening,exists=True)),str(regular_path(focus,exists=True)),digest(proposed_policy()))
+        str(regular_path(opening,exists=True)),str(regular_path(focus,exists=True)),
+        digest(proposed_policy(policy_profile)),policy_profile)
     directory=DirectoryCatalog.load(regular_path(catalog))
     session=DailySession(settings,directory,clock=clock) # describes only; no attach/initialize
     if session.claim_path.exists():
@@ -35,7 +36,8 @@ def build_operating_review(opening,focus,*,journal,catalog,state_root,ecfg,clock
         session_date=proposal.session_date,baseline=SamplingMembership(
             frozenset(proposal.uni_symbols),frozenset(proposal.focus_symbols),frozenset()),
         policy=SamplingPolicy(policy['operator_actor_id'],**policy['stabilization']),
-        admission=AdmissionPolicy(directory.catalog_id,frozenset(directory.symbols),frozenset({OWNER}),1,'session'))
+        admission=AdmissionPolicy(directory.catalog_id,frozenset(directory.symbols),frozenset({OWNER}),
+            policy['limits']['maximum_distinct_added_symbols_per_session'],'session'))
     store=QuoteObservationStore(settings.journal_path,session_date=proposal.session_date,schema_version=2)
     service=SamplingPublicationService(Path(settings.state_root)/'publication.sqlite3',
         request_store=requests,journal=SamplingJournal(store),settings=PublicationSettings('daily-hot-publication',1,.5,
@@ -48,7 +50,8 @@ def build_operating_review(opening,focus,*,journal,catalog,state_root,ecfg,clock
         raise ValueError('Explicit collection start, stop and quote ceiling required')
     configuration=DailyWorkerConfiguration(settings,str(directory.path),
         DailyCollectorSettings(settings.journal_path,plain(service.identity),plain(session.binding),plain(session.claim),
-            window['start_at_utc'],window['stop_at_utc'],window['max_quote_calls'],1),
+            window['start_at_utc'],window['stop_at_utc'],window['max_quote_calls'],
+            policy['limits']['maximum_active_hot_symbols']),
         AuthStartupSettings(str(regular_path(ecfg)),window['stop_at_utc']))
     raw=configuration.payload()
     content={'contract':'daily-hot-operating-review-v1','session_date':session.binding['session_date'],
