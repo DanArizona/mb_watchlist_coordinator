@@ -1,0 +1,84 @@
+{
+  "contract": "manual-membership-candidate-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 54,
+  "passed": 54,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 1.435031158001948,
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "windows_checks_passed": false,
+  "source": {
+    "accepted_operating_predecessor": "87565fb23099db9bf2e470fc748ed634782f86a1",
+    "coordinator_commit": "57bf2f22639b044d8f79ac4bc27d26acfc562068",
+    "coordinator_tree": "3baa2353c0882adc2e3e3272cb9da66a247af804",
+    "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "7c609655fd638f481f460b75a806dd671421e0938e7459f0d435fc02e7a0882b",
+  "manual_actions": [
+    "request_focus",
+    "request_hot",
+    "demote_own_request_to_focus_or_uni",
+    "withdraw_own_request",
+    "privileged_limit",
+    "clear_selected_privileged_limit"
+  ],
+  "feedback": [
+    "requested",
+    "pending",
+    "effective",
+    "blocked_restricted",
+    "withdrawn",
+    "other_source_demand",
+    "policy_holds"
+  ],
+  "native_proof": {
+    "native_audit_passed": true,
+    "effective_revision": 4,
+    "nasdaq_hot_demand_survives_own_demotion_and_withdrawal": true,
+    "privileged_limit_removed_hot_while_retaining_demand": true,
+    "restart_feedback_reconstructed": true,
+    "quote_acquisitions": 0
+  },
+  "gui_proof": {
+    "result": "NOT_EXERCISED",
+    "reason": "No local desktop; actual Windows GUI proof remains due"
+  },
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_provider_used": false,
+  "production_changes": false,
+  "p85_source_or_approval_changed": false,
+  "daily_controller_changed": false,
+  "promotion_scope": "verified opening Uni only; outside-Uni manual broker admission is not bypassed",
+  "production_manual_launch_available": false,
+  "automatic_controller_process_integration_qualified": false,
+  "clock_scope": "Logical future session in synthetic fixture only; real UI/read/SQLite operations",
+  "unchanged_hot_capacity_provider_recovery_proofs_repeated": false,
+  "remaining": [
+    "Windows qualification and actual returned CMD prompt",
+    "Reviewed manual-enabled daily composition, outside-Uni identity integration and affected controller qualification"
+  ],
+  "basis": "Exact frozen ZIP independently extracted and executed on Linux; no desktop available. Windows and actual Tk qualification remain due.",
+  "additional_unchanged_backend_regression": {
+    "tests": 114,
+    "passed": 114,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.839,
+    "modules": [
+      "test_sampling_requests",
+      "test_sampling_policy",
+      "test_sampling_service",
+      "test_sampling_admission"
+    ]
+  }
+}

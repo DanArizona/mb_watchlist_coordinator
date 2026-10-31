@@ -1,0 +1,99 @@
+{
+  "contract": "manual-membership-windows-acceptance-v1",
+  "result": "PASS",
+  "basis": "Complete operator-supplied attached console and final JSON, including actual returned CMD prompt. Original Windows files not independently read.",
+  "windows_run": "20261031T185640Z_verify_9f503f3f",
+  "console_sha256": "ced6dac2fa5c8942c752fab220db3ab298f1554c1eaaf3b1824011e63caed3db",
+  "actual_returned_cmd_prompt": true,
+  "verification": {
+    "contract": "manual-membership-candidate-offline-qualification-v1",
+    "result": "PASS",
+    "tests": 54,
+    "passed": 54,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "failed_tests": [],
+    "seconds": 7.952999999979511,
+    "platform": "win32",
+    "python": [
+      3,
+      12,
+      13
+    ],
+    "windows_checks_passed": true,
+    "source": {
+      "accepted_operating_predecessor": "87565fb23099db9bf2e470fc748ed634782f86a1",
+      "coordinator_commit": "57bf2f22639b044d8f79ac4bc27d26acfc562068",
+      "coordinator_tree": "3baa2353c0882adc2e3e3272cb9da66a247af804",
+      "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+      "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+    },
+    "source_inventory_sha256": "7c609655fd638f481f460b75a806dd671421e0938e7459f0d435fc02e7a0882b",
+    "manual_actions": [
+      "request_focus",
+      "request_hot",
+      "demote_own_request_to_focus_or_uni",
+      "withdraw_own_request",
+      "privileged_limit",
+      "clear_selected_privileged_limit"
+    ],
+    "feedback": [
+      "requested",
+      "pending",
+      "effective",
+      "blocked_restricted",
+      "withdrawn",
+      "other_source_demand",
+      "policy_holds"
+    ],
+    "native_proof": {
+      "native_audit_passed": true,
+      "effective_revision": 4,
+      "nasdaq_hot_demand_survives_own_demotion_and_withdrawal": true,
+      "privileged_limit_removed_hot_while_retaining_demand": true,
+      "restart_feedback_reconstructed": true,
+      "quote_acquisitions": 0
+    },
+    "gui_proof": {
+      "result": "PASS",
+      "actual_tk_window": true,
+      "tk_version": "8.6.15",
+      "observed_phases": [
+        "verified_empty",
+        "requested_pending",
+        "effective_hot",
+        "own_demotion_pending",
+        "effective_focus",
+        "privileged_limit_pending",
+        "effective_limit",
+        "read_error_retains_feedback_and_disables_edits",
+        "read_recovered_without_reset"
+      ],
+      "errors": [],
+      "auto_closed": true,
+      "executor_stopped": true,
+      "synthetic_only": true,
+      "logical_clock_advanced_for_demotion_hold": true,
+      "provider_requests": 0,
+      "production_access": false
+    },
+    "network": "denied",
+    "actual_vault_access": false,
+    "actual_provider_used": false,
+    "production_changes": false,
+    "p85_source_or_approval_changed": false,
+    "daily_controller_changed": false,
+    "promotion_scope": "verified opening Uni only; outside-Uni manual broker admission is not bypassed",
+    "production_manual_launch_available": false,
+    "automatic_controller_process_integration_qualified": false,
+    "clock_scope": "Logical future session in synthetic fixture only; real UI/read/SQLite operations",
+    "unchanged_hot_capacity_provider_recovery_proofs_repeated": false,
+    "remaining": [
+      "Windows qualification and actual returned CMD prompt",
+      "Reviewed manual-enabled daily composition, outside-Uni identity integration and affected controller qualification"
+    ]
+  },
+  "scope": "Original p89 manual-controls adapter/window on synthetic ledgers; production controller integration remains pending.",
+  "prior_windows_run_repeated": false
+}

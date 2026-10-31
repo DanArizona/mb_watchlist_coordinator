@@ -1,0 +1,20 @@
+{
+  "artifact": "manual_membership_20261031_57bf2f2.zip",
+  "bytes": 450682,
+  "sha256": "d8839a9451560a94167be0c546cf45bae2e593c95ada47d83dfedc2dce0ed52c",
+  "source_commit": "57bf2f22639b044d8f79ac4bc27d26acfc562068",
+  "source_tree": "3baa2353c0882adc2e3e3272cb9da66a247af804",
+  "source_inventory_sha256": "7c609655fd638f481f460b75a806dd671421e0938e7459f0d435fc02e7a0882b",
+  "existing_runtime_source_files_unchanged": 83,
+  "github_publication": {
+    "repository": "DanArizona/mb_watchlist_coordinator",
+    "branch": "experiment/manual-membership-20261031",
+    "status": "APPROVED_PENDING_PUBLICATION",
+    "approval_record": "PUBLICATION_APPROVAL_20261031.json",
+    "prior_automatic_rejections": 2,
+    "prior_rejection_reason": "Automatic approval review requires direct user-authored approval for this candidate and destination; the standing authorization record was not accepted."
+  },
+  "windows_qualification": "ACCEPTED_54_OF_54_AND_ALL_9_GUI_PHASES",
+  "p85_unchanged": true,
+  "windows_acceptance_record": "WINDOWS_ACCEPTANCE.json"
+}

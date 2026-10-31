@@ -1,0 +1,14 @@
+{
+  "contract": "manual-membership-publication-approval-v1",
+  "status": "APPROVED",
+  "recorded_at_utc": "2026-10-31T19:50:08.154352+00:00",
+  "approval_basis": "Direct user instruction in this chat; recording time is not the user-message timestamp.",
+  "user_approval_verbatim": "Ok. Please publish this candidate’s source, tests and documentation to `DanArizona/mb_watchlist_coordinator`, branch `experiment/manual-membership-20261031`",
+  "repository": "DanArizona/mb_watchlist_coordinator",
+  "branch": "experiment/manual-membership-20261031",
+  "candidate_source_local_commit": "2ae9aab2324bc0b10c4b88f96bf9cc55b12d1141",
+  "candidate_source_tree": "0f8536e219352bf0995e4f5647b83494864efdae",
+  "includes": "Manual-control source, tests, documentation, scoped acceptance/validation records, fifteen-second preview and steady-button fix.",
+  "production_activation_or_main_merge_authorized": false,
+  "p85_source_settings_and_approval_changed": false
+}

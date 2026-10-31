@@ -1,0 +1,18 @@
+{
+  "contract": "manual-membership-steady-buttons-development-v1",
+  "result": "PASS",
+  "recorded_at_utc": "2026-10-31T19:44:52.866648+00:00",
+  "cause": "Routine background reads disabled/re-enabled all controls on every refresh.",
+  "change": "Preserve enabled states during routine reads; apply widget state only when changed; queue at most one deliberate click behind its read and cancel on failed/delayed read or close.",
+  "affected_ui_checks": 18,
+  "passed": 18,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 0.243,
+  "actual_tk_visual_confirmation": false,
+  "original_windows54_acceptance_unchanged": true,
+  "accepted_windows_checks_repeated": false,
+  "backend_source_changed": false,
+  "p85_changed": false,
+  "delivery": "Include in next manual development candidate; no separate preview repeat requested."
+}

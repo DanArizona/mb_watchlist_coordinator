@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "verification_scope": "Nonvisual scheduler check of the unchanged synthetic phases and real elapsed presentation timer; not an actual Tk window.",
+  "actual_tk_window": false,
+  "preview_hold_seconds": 15,
+  "completed_display_visible_seconds": 15.022869264001201,
+  "elapsed_seconds": 15.378216953999072,
+  "observed_phases": [
+    "verified_empty",
+    "requested_pending",
+    "effective_hot",
+    "own_demotion_pending",
+    "effective_focus",
+    "privileged_limit_pending",
+    "effective_limit",
+    "read_error_retains_feedback_and_disables_edits",
+    "read_recovered_without_reset"
+  ],
+  "source_runtime_changed": false,
+  "original_windows54_repeated": false
+}
