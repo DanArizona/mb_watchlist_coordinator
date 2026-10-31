@@ -1,6 +1,23 @@
 # Multi-symbol development handoff
 
 
+## Windows87 follow-up — FAILED, retained diagnostics pending
+
+Run20261031T025118Z_b78fe20e:17focused tests PASS2.870s, completionFAILED3.578s.
+The retained reassessment passed source readiness/feed checks, then found an
+original synthetic role event labelled failed. Its finally block also found
+changed persistent fingerprints and masked the primary assertion. It did not
+record the changed filenames. Capacity did not execute. Original85verdict stays
+FAILED; the p85 acceptance pointer was not advanced. No runtime changes.
+
+The original wrapper labels every caught exception failed, including fence/stop
+exceptions. The role/time/frames are needed before classifying this one. Preview
+code documents SQLite WAL/SHM coordination files may be created by reads, and
+publication readers use existing owner locks; no changed-file cause is proven.
+Do not treat the mismatch boolean as proof of data corruption. Do not ignore any
+role failure or relax preservation checks. Read stdlib-only failure events/tail
+and recent file timestamps first; no new diagnostic ZIP or unchanged87repeat.
+
 ## Windows85 finding — original FAILED verdict retained
 
 Operator run20261031T021243Z_46ab7a08 returned the CMD prompt:109focused tests

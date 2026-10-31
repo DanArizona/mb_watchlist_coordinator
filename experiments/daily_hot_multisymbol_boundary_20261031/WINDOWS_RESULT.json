@@ -1,0 +1,43 @@
+{
+  "contract": "multisymbol-completion-windows-result-v1",
+  "result": "FAILED",
+  "basis": "Operator-supplied full console, final JSON and returned CMD prompt; Windows files not independently read",
+  "run": "20261031T025118Z_b78fe20e",
+  "source_commit": "128edf48a53c17f54238233a2650a48b83aa5605",
+  "source_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe",
+  "completion_inventory_sha256": "2b943fbc1dcf6c9216cb8a471597a949be12e12779d48d776aea9b6ec2d407af",
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "focused_tests": {
+    "tests": 17,
+    "passed": 17,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 2.87
+  },
+  "seconds": 3.578,
+  "primary_assertion": "Synthetic role recorded a failure",
+  "secondary_assertion": "Closed evidence changed during read-only reassessment",
+  "secondary_exception_masked_primary": true,
+  "role_error_type_frames_and_timestamp_pending": true,
+  "changed_file_names_and_hash_deltas_not_recorded_by_p87": true,
+  "reassessment": null,
+  "capacity_proof": null,
+  "capacity_executed": false,
+  "original_evidence_preserved_reported": false,
+  "original_verification_sha256": "0ee806ecd269b263ed2c2ddacfb0bc7231bf87ed9f8c231c85ad8c80ab1922c8",
+  "original_windows85_result": "FAILED",
+  "windows_checks_passed": false,
+  "controller_runtime_changed": false,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "actual_provider_used": false,
+  "actual_vault_access": false,
+  "finding": "Source stop-boundary cause remains confirmed. Remaining paced assertions were not yet qualified; role failure and preservation mismatch require distinct retained diagnostics. Do not rerun87 unchanged or infer native journal corruption from the boolean mismatch.",
+  "next": "Read original synthetic failed events/tail and file timestamps with stdlib only; do not open SQLite or import application readers before this diagnostic."
+}
