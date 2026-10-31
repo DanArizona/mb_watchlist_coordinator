@@ -1,0 +1,21 @@
+{
+  "contract": "exact-multisymbol-zip-content-check-v1",
+  "result": "PASS",
+  "files": 272,
+  "archive": "hot_multisymbol_20261031_e7cb9b6.zip",
+  "archive_sha256": "e8008e90b6ec61671b4ea029ed3168ad4b4cd55830aa7d10b075a76808076fe6",
+  "source_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe",
+  "bytes": 786949,
+  "cmd_line_endings": "CRLF",
+  "source": {
+    "accepted_operating_predecessor": "8fcdaddff54c92f4e9f33416ef15e79b899dcbc5",
+    "coordinator_commit": "e7cb9b6fa786170455dbfe7c3226d8b18227487e",
+    "coordinator_public_commit": "45c3b0903f81d5006432ae63826ea73b515a28a6",
+    "coordinator_tree": "3ea19615fde3f026eeb040ebe7194855b1576542",
+    "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "market_data_public_commit": "37c22983bc92055dd322085f191b054921d896d2",
+    "market_data_tree": "38e33f634de94693b7b67b89d15418df82cd4d73",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "evidence_scope": "Local synthetic/exact-source check; Windows and production approval pending"
+}

@@ -1,6 +1,6 @@
 {
   "contract": "daily-hot-multisymbol-local-development-v1",
-  "result": "IN_PROGRESS",
+  "result": "READY_FOR_WINDOWS",
   "accepted_paced_run": "development_owned_07_PASS.json",
   "synthetic_only": true,
   "native_local_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
@@ -19,10 +19,9 @@
   "activation_approved": false,
   "prior_failed_verdicts_preserved": true,
   "remaining": [
-    "Full-roster owned rollover proof",
-    "New rollover telemetry short probe",
-    "Freeze/publish/package",
-    "Windows acceptance and concrete deployment/settings/activation review"
+    "Actual Windows85 qualification and returned CMD prompt",
+    "Exact-candidate read-only deployment review",
+    "Concrete revised settings/integrity scope and production activation approval"
   ],
   "focused_regressions": {
     "tests": 107,
@@ -44,5 +43,31 @@
       0.6022010760007106
     ],
     "final_verification_seconds": 12.40358972500053
+  },
+  "candidate_local_commit": "e7cb9b6fa786170455dbfe7c3226d8b18227487e",
+  "candidate_public_commit": "45c3b0903f81d5006432ae63826ea73b515a28a6",
+  "candidate_tree": "3ea19615fde3f026eeb040ebe7194855b1576542",
+  "full_roster_rollover": {
+    "result": "PASS",
+    "hot_acquisitions": 55,
+    "empty_skips": 23,
+    "all_channels_missing_slots": 0,
+    "full_roster_before": 8,
+    "full_roster_after": 8,
+    "worker_starts": 1,
+    "cleanup_seconds": 0.10599000199999864
+  },
+  "rollover_wall_seconds": {
+    "result": "PASS",
+    "maximum": 1.4797671699998318,
+    "original_progress_budget_seconds": 3
+  },
+  "exact_zip": {
+    "filename": "hot_multisymbol_20261031_e7cb9b6.zip",
+    "files": 272,
+    "sha256": "e8008e90b6ec61671b4ea029ed3168ad4b4cd55830aa7d10b075a76808076fe6",
+    "exact_extracted_tests": 23,
+    "result": "PASS",
+    "source_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe"
   }
 }

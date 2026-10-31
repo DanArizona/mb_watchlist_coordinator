@@ -1,6 +1,42 @@
 # Multi-symbol development handoff
 
-## Current status — final multi-symbol candidate
+## Delivery freeze and next operator step
+
+Final code/local e7cb9b6fa786170455dbfe7c3226d8b18227487e is published as
+45c3b0903f81d5006432ae63826ea73b515a28a6 with identical tree
+3ea19615fde3f026eeb040ebe7194855b1576542. Native d37d2c3/public37c2298 retains
+tree38e33f634de94693b7b67b89d15418df82cd4d73. The frozen distribution is
+hot_multisymbol_20261031_e7cb9b6.zip (UTC build label),786949bytes,SHA256
+ e8008e90b6ec61671b4ea029ed3168ad4b4cd55830aa7d10b075a76808076fe6.
+Inventory0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe;
+272inventoriedfiles; exact ZIP extraction and CRLF CMD checks PASS;23 affected
+exact-extraction cases PASS in8.339s. Source unchanged after execution.
+
+The stronger final owned rollover run08 PASSes:40members/40identitycalls,55Hot
+acquisitions,23empty skips,7Uni/13Focus acquisitions, zero missing across all
+channels, one worker; eight complete40symbol acquisitions before the five-minute
+boundary and eight after. Original paced feed intervals remain >=60s; identity
+starts >=2s. Native audit, fullHot content check and native-order event-ID digests
+pass; owned cleanup0.106s,scope observed empty. The final-policy996300row history
+also PASSes:0.833s cold,0.584/0.602s tail,0.447/0.449s before API,12.404s final
+verification. New short rollover telemetry PASSes two transitions,max1.480s<3s.
+These remain separate explicit synthetic/bounded scopes, not an elapsed market
+day, representative real40symbol provider performance or production activation.
+
+Windows next: extract to C:\Users\danla\hot85, then call p85\85_verify_multisymbol.cmd
+in sea-green CMD. About10minutes/up to12; about1.1GB synthetic evidence. Save final
+JSON and actual returned prompt. After acceptance,86_review_multisymbol.cmd is
+read-only exact-candidate deployment review. Do not activate or install based on
+local results. The current source/ZIP are frozen; further records are docs only.
+Previously accepted Windows/live/GUI/old15second recovery scopes need no unchanged
+repeat. Proposed ten-second batching applies to additions; native ACK completion
+and reductions bypass it, preserving immediate restriction priority. Final01/old
+packet FAILED verdicts stay FAILED. All sources/tests/docs and review evidence are
+covered by the user's standing experiment-branch publication permission; actual
+production installation/activation still needs the concrete approval.
+
+
+## Earlier candidate snapshot (superseded by delivery freeze above)
 
 The latest paced owned development run07 PASSes:41 simultaneous candidates,
 40identity calls (minimum interval2.074794s), four real paced synthetic feed children
