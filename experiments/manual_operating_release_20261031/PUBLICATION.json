@@ -1,0 +1,29 @@
+{
+  "contract": "p94-github-publication-confirmation-v1",
+  "result": "PUBLISHED_AND_VERIFIED",
+  "verified_at_utc": "2026-10-31T23:17:24.246693+00:00",
+  "repository": "DanArizona/mb_watchlist_coordinator",
+  "branch": "experiment/manual-membership-20261031",
+  "public_source_commit": "d650e004f07881baa82b345112c96dddd734136c",
+  "public_source_tree": "e98e95906c339966c8e41dcdac8d5c16cc48aeec",
+  "matching_local_commit": "6bbf1e010f211759429cfab6f8e71814f0e4b972",
+  "matching_local_tree": "e98e95906c339966c8e41dcdac8d5c16cc48aeec",
+  "branch_head_and_full_tree_verified": true,
+  "previous_public_head": "69785df4a679777b7250e49576d81ee1949f60c6",
+  "expected_head_lease_used": true,
+  "force_update": false,
+  "scope": [
+    "source",
+    "tests",
+    "documentation",
+    "proposed settings",
+    "Windows qualification and deployment acceptance records",
+    "explicit publication authorization"
+  ],
+  "publication_authorization": "PUBLICATION_APPROVAL.json",
+  "windows_qualification": "ACCEPTED 48/48",
+  "deployment_review": "ACCEPTED REVIEW_READY",
+  "frozen_artifact_sha256": "5e42ab4a2cf821177d91ddb080d7731667a35a52cd3bda034e5246fcfe7a429d",
+  "production_activation_authorized": false,
+  "monday_p85_changed": false
+}

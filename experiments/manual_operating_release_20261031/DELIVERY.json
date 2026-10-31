@@ -24,11 +24,14 @@
   "proposed_first_manual_session": "2026-11-03",
   "planning_date_is_activation_approval": false,
   "publication_destination": "DanArizona/mb_watchlist_coordinator:experiment/manual-membership-20261031",
-  "public_publication_status": "EXPLICITLY_APPROVED_PENDING_PUBLISH_CONFIRMATION",
+  "public_publication_status": "PUBLISHED_AND_VERIFIED",
   "windows_acceptance": "WINDOWS_ACCEPTANCE.json",
   "deployment_review": "WINDOWS_DEPLOYMENT_ACCEPTANCE.json",
   "readonly_deployment_result": "REVIEW_READY",
   "activation_approval_status": "PENDING_CONCRETE_DATED_MANUAL_ACTIVATION",
   "prior_publication_block_reason": "Review treated publication of this new manual operating-release package and operational settings as outside the earlier broker-identity publication authorization.",
-  "publication_approval": "PUBLICATION_APPROVAL.json"
+  "publication_approval": "PUBLICATION_APPROVAL.json",
+  "publication_confirmation": "PUBLICATION.json",
+  "public_source_commit": "d650e004f07881baa82b345112c96dddd734136c",
+  "public_source_tree": "e98e95906c339966c8e41dcdac8d5c16cc48aeec"
 }

@@ -25,8 +25,9 @@ The concrete manual release is ready for dated activation review; no manual
 production session is approved or inferred. Monday p85 keeps its existing
 approval. The operator explicitly approved publication of p94 source, tests,
 documentation, proposed settings and acceptance records to the existing
-experiment/manual-membership-20261031 branch. See PUBLICATION_APPROVAL.json;
-GitHub confirmation is recorded separately after publication.
+experiment/manual-membership-20261031 branch. Publication is complete at public
+commit d650e004f07881baa82b345112c96dddd734136c, verified against the complete
+local source tree. See PUBLICATION_APPROVAL.json and PUBLICATION.json.
 
 ## Qualify and review on Windows
 

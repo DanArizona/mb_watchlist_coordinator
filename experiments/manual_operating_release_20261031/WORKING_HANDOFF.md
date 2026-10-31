@@ -39,11 +39,12 @@ one-session capacity ladder or unchanged qualification rerun is due.
 The operator explicitly approved publication of p94 source, tests, documentation,
 proposed settings and acceptance records to DanArizona/mb_watchlist_coordinator,
 branch experiment/manual-membership-20261031. PUBLICATION_APPROVAL.json retains
-the exact request. This resolves the earlier automatic review block; no bypass
-was attempted before that approval. Last verified public branch before p94 is
-p93 acceptance69785df4a679777b7250e49576d81ee1949f60c6. Publish the complete current
-tree with an expected-head lease and verify the remote commit/tree. The earlier
-01f5865 payload is stale and must not be reused.
+the exact request. This resolved the earlier automatic review block; no bypass
+was attempted before that approval. Public commit d650e004f07881baa82b345112c96dddd734136c
+was verified as the branch head and matches local6bbf1e0's complete tree
+e98e95906c339966c8e41dcdac8d5c16cc48aeec. No force push or main mutation occurred.
+See PUBLICATION.json. The frozen ZIP/source/settings and acceptance evidence are
+unchanged. A subsequent documentation-only commit records this confirmation.
 
 Next independent development: read-only Overlay adapter inputs/fixtures and
 integration. A concrete dated manual activation decision is separate from this
