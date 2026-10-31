@@ -1,0 +1,44 @@
+{
+  "contract": "multisymbol-windows87-retained-diagnostic-v1",
+  "result": "HARNESS_CORRECTION_READY_WINDOWS88_PENDING",
+  "basis": "Operator-supplied stdlib-only log/timestamp diagnostic and returned CMD prompt; original Windows files not independently read",
+  "original_run": "20261031T021243Z_46ab7a08",
+  "failed_completion_run": "20261031T025118Z_b78fe20e",
+  "owner_stop_at_utc": "2026-10-31T14:05:19.029114+00:00",
+  "identity_client_closed_at_utc": "2026-10-31T14:05:19.101924+00:00",
+  "identity_failed_at_utc": "2026-10-31T14:05:19.103434+00:00",
+  "identity_seconds_after_stop": 0.07432,
+  "original_owner_cleanup_seconds": 0.156,
+  "identity_failure": {
+    "error_type": "ValueError",
+    "frames": [
+      "<module>",
+      "run_identity",
+      "_run_identity",
+      "fence"
+    ]
+  },
+  "code_observation": "The frozen _Lifetime.fence raises ValueError directly only for the explicit identity stop path. Controller-integrity/staleness errors add assert_controller_fence frames and remain blocking.",
+  "latest_collector_quote_at_utc": "2026-10-31T14:05:18.158122+00:00",
+  "latest_collector_symbol_count": 40,
+  "recent_files": [
+    {
+      "path": "owned/quote_observation_journal_v2_api_opening_2026-10-31/2026-10-31.sqlite3-shm",
+      "bytes": 32768,
+      "modified_utc": "2026-10-31T02:51:22.106876+00:00"
+    },
+    {
+      "path": "owned/quote_observation_journal_v2_api_opening_2026-10-31/2026-10-31.sqlite3-wal",
+      "bytes": 0,
+      "modified_utc": "2026-10-31T02:51:21.776834+00:00"
+    }
+  ],
+  "preservation_mismatch_disposition": "Consistent with creation of the zero-byte WAL. P87 did not retain before/after maps; its exact historical delta cannot be recovered from its final boolean alone.",
+  "correction": "Keep all database and nonempty WAL bytes protected; normalize absent/zero-byte WAL and recognized SQLite SHM. Record before/after hashes and changed filenames without masking the primary exception.",
+  "original_windows85_result": "FAILED",
+  "original_windows87_result": "FAILED",
+  "windows88_result": "PENDING",
+  "runtime_changed": false,
+  "production_changes": false,
+  "production_activation_approved": false
+}

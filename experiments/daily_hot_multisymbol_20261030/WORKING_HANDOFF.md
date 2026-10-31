@@ -1,6 +1,29 @@
 # Multi-symbol development handoff
 
 
+## Current: corrected p88 completion, Windows pending
+
+The operator's retained diagnostic confirms identity client close at14:05:19.101924Z
+and ValueError in the exact inline fence stop branch at14:05:19.103434Z:74.320ms
+after owner Stop, within0.156s confirmed cleanup. Last40-symbol collector dispatch
+was14:05:18.158122Z. Only SQLite SHM32768bytes and WAL0bytes have listed write times
+near the p87 check. The missing old before-map prevents proving its exact delta.
+
+P88 accepts only that bound identity explicit-stop stack after Stop and within
+confirmed cleanup, preceded by client close and backed by the original identity
+job/token Stop marker. Active/provider/collector/deeper fence errors still fail.
+Its preservation check protects all durable bytes and every nonempty WAL, treating
+only recognized SHM and absent/empty WAL as coordination. Both hash maps and changed
+filenames are saved; the primary error is preserved. Capacity runs independently
+once focused checks pass, while overall PASS still requires both evidence scopes.
+
+31focused tests PASS1.971s. Retained development run and trusted injected normal-stop
+log regression both PASS; persistent bytes unchanged. Runtime, deadlines, cadence
+and the original p85 sources remain frozen. Original85and87verdicts stayFAILED.
+See WINDOWS_DIAGNOSTIC.json and
+LOCAL_VALIDATION_P88.json in experiments/daily_hot_multisymbol_boundary_20261031.
+No new live-provider or production activation qualification is implied.
+
 ## Windows87 follow-up — FAILED, retained diagnostics pending
 
 Run20261031T025118Z_b78fe20e:17focused tests PASS2.870s, completionFAILED3.578s.

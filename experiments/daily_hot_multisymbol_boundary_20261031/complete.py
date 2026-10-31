@@ -77,24 +77,28 @@ def complete(source, prior):
         str(source/'market_data/src'), str(source/'coordinator/tests')]
     from mb_watchlist_coordinator.daily_operator import release_info
     from mb_watchlist_coordinator.recovery_workers import atomic_json
-    from multisymbol_closed_checks import assess_closed_owned, retained_fingerprints
+    from multisymbol_closed_checks import (assess_closed_owned, retained_fingerprints,
+        fingerprint_changes, coordination_files)
     deny_network()
     release_info(source)
     original_bytes = (prior/'verification.json').read_bytes()
     original = json.loads(original_bytes)
     reused = validate_prior(original)
     before = retained_fingerprints(prior)
+    coordination_before = coordination_files(prior)
     folder = ROOT/'runs'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ_')+uuid4().hex[:8])
     folder.mkdir(parents=True, exist_ok=False)
     (folder/'original-verification.json').write_bytes(original_bytes)
+    atomic_json(folder/'durable-files-before.json', before)
     marker = source/'runs/windows-qualification.json'
     if marker.exists(): shutil.copyfile(marker, folder/'previous-windows-qualification.json')
-    print('OFFLINE completion: 17 boundary/evidence checks, read-only reassessment of the retained Windows run, then the missing full-size synthetic history proof.', flush=True)
+    print('OFFLINE corrected completion: 31 boundary/evidence checks, retained-run reassessment, then the missing full-size synthetic history proof.', flush=True)
     print('The 109 passing checks and the 200-second paced burst are reused. No password, API or production changes.', flush=True)
     print('Allow several minutes and about 1.1 GB of new synthetic evidence. Original deadlines and cadence remain.', flush=True)
     began = time.monotonic()
     reassessed = capacity = None
-    problem = None
+    problem = problem_detail = None
+    stage_errors = []
     suite = unittest.defaultTestLoader.loadTestsFromNames(['test_multisymbol_closed_checks',
         'test_daily_source_stop_boundary', 'test_multisymbol_completion'])
     class Log:
@@ -115,39 +119,64 @@ def complete(source, prior):
             print(json.dumps({'phase': 'retained_owned_reassessment', 'result': 'PASS',
                 'readiness': reassessed['source_readiness_before_stop'],
                 'full_roster_before_rollover': reassessed['full_roster_acquisitions_before_rollover'],
-                'full_roster_after_rollover': reassessed['full_roster_acquisitions_after_rollover']}), flush=True)
-            path = source/'coordinator/experiments/daily_hot_multisymbol_20261030/history_probe.py'
-            spec = importlib.util.spec_from_file_location('unchanged_multi_history_proof', path)
-            history = importlib.util.module_from_spec(spec); spec.loader.exec_module(history)
-            capacity = history.run(folder/'multi_history_full', slots=9312, periods=True, background=True)
+                'full_roster_after_rollover': reassessed['full_roster_acquisitions_after_rollover'],
+                'expected_identity_shutdown_events': len(reassessed['expected_identity_shutdown_events']),
+                'durable_files_unchanged': reassessed['persistent_files_unchanged']}), flush=True)
         except Exception as error:
             import traceback
             traceback.print_exc(file=output)
             problem = type(error).__name__
+            problem_detail = {'error_type': problem, 'message': str(error),
+                'closed_evidence_changes': getattr(error, 'closed_evidence_changes', None)}
+            stage_errors.append(dict(problem_detail, phase='retained_owned_reassessment'))
+        # Capacity is independent evidence. A retained-run finding must not
+        # keep this previously skipped proof from being collected again.
+        if checked.wasSuccessful() and not checked.skipped:
+            try:
+                path = source/'coordinator/experiments/daily_hot_multisymbol_20261030/history_probe.py'
+                spec = importlib.util.spec_from_file_location('unchanged_multi_history_proof', path)
+                history = importlib.util.module_from_spec(spec); spec.loader.exec_module(history)
+                capacity = history.run(folder/'multi_history_full', slots=9312, periods=True, background=True)
+            except Exception as error:
+                import traceback
+                traceback.print_exc(file=output)
+                detail = {'error_type': type(error).__name__, 'message': str(error), 'phase': 'full_size_history'}
+                stage_errors.append(detail)
+                if problem is None:
+                    problem, problem_detail = type(error).__name__, detail
     guard(source, ORIGINAL_INVENTORY); guard(ROOT, own_inventory)
-    unchanged = retained_fingerprints(prior) == before
+    after = retained_fingerprints(prior)
+    atomic_json(folder/'durable-files-after.json', after)
+    changes = fingerprint_changes(before, after)
+    unchanged = not changes
     passed = (checked.wasSuccessful() and not checked.skipped and problem is None and unchanged and
         reassessed is not None and capacity is not None and capacity['result'] == 'PASS')
     report = {'contract': 'daily-hot-multisymbol-offline-qualification-v1',
-        'qualification_revision': 'retained-run-stop-boundary-completion-v1',
+        'qualification_revision': 'retained-run-stop-and-sidecar-completion-v2',
         'result': 'PASS' if passed else 'FAILED', 'tests': checked.testsRun,
         'passed': checked.testsRun-len(checked.failures)-len(checked.errors)-len(checked.skipped),
         'failures': len(checked.failures), 'errors': len(checked.errors), 'skipped': len(checked.skipped),
         'failed_tests': [t.id() for t, _ in checked.failures+checked.errors],
-        'completion_error_type': problem, 'seconds': time.monotonic()-began,
+        'completion_error_type': problem, 'completion_error_detail': problem_detail,
+        'stage_errors': stage_errors,
+        'seconds': time.monotonic()-began,
         'platform': sys.platform, 'python': list(sys.version_info[:3]),
         'windows_checks_passed': bool(passed and os.name == 'nt'),
         'source_inventory_sha256': ORIGINAL_INVENTORY, 'completion_inventory_sha256': own_inventory,
         'source': original['source'], 'original_run': str(prior),
         'original_verification_sha256': hashlib.sha256(original_bytes).hexdigest(),
         'original_evidence_preserved': unchanged, 'prior_windows_components': reused,
+        'file_preservation_scope': 'Every durable file and every nonempty WAL. SQLite SHM and absent/empty WAL are coordination state.',
+        'durable_file_changes': changes, 'sqlite_coordination_before': coordination_before,
+        'sqlite_coordination_after': coordination_files(prior),
         'corrected_owned_reassessment': reassessed, 'capacity_proof': capacity,
         'controller_runtime_changed': False, 'original_deadlines_and_cadence_unchanged': True,
         'network': 'denied', 'actual_vault_access': False, 'actual_provider_used': False,
         'production_changes': False, 'production_hot_enabled': False, 'proposed_values_adopted': False,
         'provider_capacity_qualified': False, 'full_day_capacity_qualified': False,
         'operating_release_qualified': False, 'production_activation_approved': False,
-        'remaining': ['Exact-candidate read-only deployment review',
+        'remaining': ([] if passed else ['Complete retained-run reassessment and full-size Windows history proof'])+
+            ['Exact-candidate read-only deployment review',
             'Concrete 40-symbol settings/integrity scope and first production activation approval']}
     atomic_json(folder/'verification.json', report)
     # This is a mutable acceptance pointer, not the original failed verdict.

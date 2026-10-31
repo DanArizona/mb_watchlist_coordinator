@@ -5,6 +5,7 @@ Never start a process, dispatch, initialize/attach, recover, or rewrite this run
 The source's active readiness and its later stop status are different facts.
 """
 from contextlib import closing
+from datetime import timedelta
 import hashlib
 import json
 from pathlib import Path
@@ -65,12 +66,16 @@ def active_source_at_stop(events, stopped_at, *, started_at):
 
 
 def retained_fingerprints(root):
-    """Protect persistent evidence; SQLite's volatile shared-memory file is not data."""
+    """Hash every durable byte, including every nonempty SQLite WAL.
+
+    A recognized SQLite SHM is coordination state. An absent WAL and a zero-byte
+    WAL contain the same amount of journal data. No nonempty WAL is excluded.
+    """
     result = {}
     for path in sorted(Path(root).rglob('*')):
         if path.is_symlink():
             raise ValueError('Closed evidence may not contain symlinks')
-        if not path.is_file() or path.name.endswith('-shm'):
+        if not path.is_file() or sqlite_coordination_file(path):
             continue
         sha = hashlib.sha256()
         with path.open('rb') as file:
@@ -80,17 +85,95 @@ def retained_fingerprints(root):
     return result
 
 
-def assess_closed_owned(root):
-    root = Path(root).resolve()
+def sqlite_coordination_file(path):
+    if not path.name.endswith(('-wal', '-shm')):
+        return False
+    database = path.with_name(path.name[:-4])
+    if database.is_symlink() or not database.is_file():
+        return False
+    with database.open('rb') as file:
+        if file.read(16) != b'SQLite format 3\0':
+            return False
+    return path.name.endswith('-shm') or path.stat().st_size == 0
+
+
+def coordination_files(root):
+    return {p.relative_to(root).as_posix(): p.stat().st_size
+        for p in sorted(Path(root).rglob('*'))
+        if p.is_file() and not p.is_symlink() and sqlite_coordination_file(p)}
+
+
+def fingerprint_changes(before, after):
+    return [{'path': name, 'change': ('added' if name not in before else
+        'removed' if name not in after else 'changed'),
+        'before_sha256': before.get(name), 'after_sha256': after.get(name)}
+        for name in sorted(set(before) | set(after)) if before.get(name) != after.get(name)]
+
+
+def checked_read(root, operation):
+    """Preserve the primary exception and attach any durable file differences."""
     before = retained_fingerprints(root)
     require(bool(before), 'Original closed run is absent')
     try:
-        result = _assess_closed_owned(root)
-    finally:
-        require(retained_fingerprints(root) == before, 'Closed evidence changed during read-only reassessment')
+        result = operation()
+    except BaseException as error:
+        try:
+            changes = fingerprint_changes(before, retained_fingerprints(root))
+            error.closed_evidence_changes = changes
+            if changes:
+                error.add_note('Durable evidence differences: '+json.dumps(changes))
+        except Exception as inspection_error:
+            error.add_note('Preservation inspection also failed: '+repr(inspection_error))
+        raise
+    changes = fingerprint_changes(before, retained_fingerprints(root))
+    if changes:
+        error = AssertionError('Durable closed evidence changed: '+json.dumps(changes))
+        error.closed_evidence_changes = changes
+        raise error
+    return result, before
+
+
+def assess_closed_owned(root):
+    root = Path(root).resolve()
+    coordination_before = coordination_files(root)
+    result, before = checked_read(root, lambda: _assess_closed_owned(root))
     result['persistent_files_unchanged'] = True
     result['persistent_evidence_sha256'] = digest(before)
+    result['file_preservation_scope'] = 'All durable files; every nonempty WAL. Recognized SQLite SHM and absent/empty WAL are coordination state.'
+    result['sqlite_coordination_before'] = coordination_before
+    result['sqlite_coordination_after'] = coordination_files(root)
     return result
+
+
+def classify_role_events(events, owner, *, identity_stop_verified):
+    """Accept only the inline identity stop check, after this owner's Stop.
+
+    The frozen wrapper catches BaseException and writes `failed` even when
+    _Lifetime.fence raises its explicit 'Daily process stop requested' value.
+    An assert_controller_fence error has a deeper stack and is not accepted.
+    """
+    stop = timestamp(owner['acquisition_stop_requested_at_utc'])
+    end = stop+timedelta(seconds=owner['cleanup_seconds'])
+    require(not any(e.get('event') == 'quote' and timestamp(e['at']) >= stop for e in events),
+        'Provider dispatch recorded after the owner Stop cutoff')
+    failed = [e for e in events if e.get('event') == 'failed']
+    require(len(failed) <= 1, 'Multiple synthetic role failures require investigation')
+    expected = []
+    for error in failed:
+        at = timestamp(error['at'])
+        closed = [e for e in events[:events.index(error)] if e.get('role') == 'identity'
+            and e.get('event') == 'closed' and stop <= timestamp(e['at']) <= at]
+        valid = (identity_stop_verified and owner['result'] == 'STOPPED' and
+            owner['stop_reason'] == 'operator_stop' and owner.get('failure_type') is None and
+            owner['cleanup']['status'] == 'EXIT_OBSERVED' and
+            owner['cleanup']['scope_empty_observed'] is True and
+            error.get('role') == 'identity' and error.get('error_type') == 'ValueError' and
+            error.get('frames') == ['<module>', 'run_identity', '_run_identity', 'fence'] and
+            stop <= at <= end and bool(closed))
+        require(valid, 'Unexpected synthetic role failure: '+json.dumps(error))
+        expected.append(dict(error, qualification_classification='explicit_identity_stop_after_owner_stop',
+            seconds_after_stop=(at-stop).total_seconds()))
+    return expected
 
 
 def _assess_closed_owned(root):
@@ -166,7 +249,16 @@ def _assess_closed_owned(root):
     require(readiness['feed_head_sha256'] == feed_state['head_sha256'],
         'Feed changed after the last verified active readiness report')
     events = [json.loads(line) for line in (root/'multi-process-events.jsonl').read_text().splitlines()]
-    require(all(e['event'] != 'failed' for e in events), 'Synthetic role recorded a failure')
+    jobs = [unseal(read_json(p)) for p in state.glob('*.identity.json')]
+    require(len(jobs) == 1, 'One original identity process job required')
+    job = jobs[0]
+    require(job['contract'] == 'daily-identity-process-v1' and
+        job['configuration_sha256'] == digest(raw) and
+        job['invocation'] == driver['active_invocation'] and
+        timestamp(job['started_at_utc']) < timestamp(stopped) and
+        (state/(job['token']+'.stop')).read_text() == job['token'],
+        'Original bound identity Stop marker required')
+    expected_shutdown = classify_role_events(events, owner, identity_stop_verified=True)
     identity = [e for e in events if e['role'] == 'identity' and e['event'] == 'quote']
     intervals = [(timestamp(b['at'])-timestamp(a['at'])).total_seconds() for a, b in zip(identity, identity[1:])]
     require(len(identity) == 40 and all(x >= 2 for x in intervals), 'Identity call count/spacing failed')
@@ -226,6 +318,7 @@ def _assess_closed_owned(root):
         'hot_symbols': 40, 'full_roster_hot_acquisitions': full,
         'full_roster_acquisitions_before_rollover': before, 'full_roster_acquisitions_after_rollover': after,
         'background_acquisitions': background, 'worker_starts': 1,
+        'expected_identity_shutdown_events': expected_shutdown,
         'native_audit_passed': True, 'hot_content_integrity': integrity,
         'first_replay': report['first_replay'], 'owner': owner,
         'qualification_clock': 'retained original owner Stop cutoff; no live clock changed',

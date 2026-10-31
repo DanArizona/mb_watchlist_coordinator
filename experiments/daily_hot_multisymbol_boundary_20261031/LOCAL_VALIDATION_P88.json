@@ -1,0 +1,27 @@
+{
+  "contract": "multisymbol-stop-and-sidecar-local-validation-v2",
+  "result": "PASS",
+  "focused_tests": {
+    "tests": 31,
+    "passed": 31,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 1.971
+  },
+  "retained_development_run_reassessment": "PASS",
+  "trusted_log_injection_regression": {
+    "result": "PASS",
+    "injection_scope": "Path.read_text of original synthetic log only; no retained file modified",
+    "expected_stop_event_count": 1
+  },
+  "retained_read_probes_seconds": 15.27610308900148,
+  "retained_durable_files_unchanged": true,
+  "runtime_changed": false,
+  "windows_qualification_completed": false,
+  "unchanged_paced_and_full_size_history_repeated": false,
+  "original_failed_verdicts_preserved": true,
+  "network": "denied",
+  "actual_provider_used": false,
+  "production_changes": false
+}
