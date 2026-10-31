@@ -1,0 +1,91 @@
+{
+  "contract": "daily-hot-multisymbol-windows-result-v1",
+  "result": "FAILED",
+  "basis": "Operator-supplied full console/final JSON and actual returned CMD prompt; original Windows files not independently read",
+  "original_run": "20261031T021243Z_46ab7a08",
+  "source_local_commit": "e7cb9b6fa786170455dbfe7c3226d8b18227487e",
+  "source_public_commit": "45c3b0903f81d5006432ae63826ea73b515a28a6",
+  "native_local_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+  "source_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe",
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "tests": 110,
+  "passed": 109,
+  "failures": 1,
+  "errors": 0,
+  "skipped": 0,
+  "focused_checks": {
+    "tests": 109,
+    "result": "PASS",
+    "seconds": 129.973
+  },
+  "failed_test": "test_daily_multisymbol_owned.MultiOwnedTests.test_paced_forty_symbol_admissions_cross_period_while_uni_focus_keep_writing",
+  "failed_assertion": "status['source_reconciled'] is True after owner.run returns",
+  "final_controller": {
+    "state": "STOPPED",
+    "source_reconciled": false,
+    "source_status": "INCOMPLETE",
+    "terminal": null,
+    "effective_revision": 11,
+    "hot_symbols": 40,
+    "worker_starts": 1
+  },
+  "owner_component": {
+    "result": "STOPPED",
+    "stop_reason": "operator_stop",
+    "cleanup_seconds": 0.156,
+    "backend": "windows_job",
+    "scope_empty_observed": true,
+    "forced": false,
+    "controller_returncode": 0,
+    "reporting": "COMPLETE",
+    "native_audit_passed": true,
+    "hot_content_integrity_passed": true,
+    "hot_acquisitions": 54,
+    "hot_observations": 1336,
+    "empty_skips": 24,
+    "two_native_order_digests_equal": true,
+    "sequence_sha256": "6d599f018b670bead8527189d5a916641cd281303a55ba29ed48b39ea2dca8d3",
+    "acquisition_stop_requested_at_utc": "2026-10-31T14:05:19.029114+00:00"
+  },
+  "background": {
+    "uni": 7,
+    "focus": 13,
+    "writer_errors": []
+  },
+  "capacity_proof": null,
+  "capacity_disposition": "Not executed because owned proof failed; remains pending on Windows",
+  "source_stop_reason_independently_confirmed": false,
+  "local_reproduction": {
+    "active_source": "READY_WITH_GAPS",
+    "active_discovery_scope_reconciled": true,
+    "after_stop_status": "INCOMPLETE",
+    "after_stop_reasons": [
+      "stop_requested"
+    ],
+    "after_stop_controller_boolean": false,
+    "scope": "Deterministic source API reproduction; not proof of this Windows run cause",
+    "regression_tests": {
+      "tests": 2,
+      "result": "PASS",
+      "seconds": 2.631,
+      "file": "tests/test_daily_source_stop_boundary.py"
+    }
+  },
+  "runtime_changed": false,
+  "original_failed_verdict_preserved": true,
+  "production_changes": false,
+  "production_hot_enabled": false,
+  "actual_vault_access": false,
+  "actual_provider_used": false,
+  "remaining": [
+    "Read retained Windows source statuses to confirm active readiness and exact final reason",
+    "Correct active/stop qualification boundary without accepting source failures",
+    "Missing Windows capacity proof",
+    "Exact-candidate deployment/settings/activation review"
+  ]
+}

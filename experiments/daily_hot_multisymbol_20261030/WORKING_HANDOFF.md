@@ -1,5 +1,26 @@
 # Multi-symbol development handoff
 
+
+## Windows85 finding — original FAILED verdict retained
+
+Operator run20261031T021243Z_46ab7a08 returned the CMD prompt:109focused tests
+PASS, one paced-owned test FAILED at its post-stop source_reconciled assertion.
+All40Hot symbols were present, no terminal driver error; WindowsJob cleanup
+0.156s,scopeempty,54Hot acquisitions+24empty skips, native coverage/content checks
+and native-order digests PASS,7Uni/13Focus acquisitions, no writer errors. The
+full-size capacity step was not executed. This is not overall Windows acceptance.
+
+Code review and deterministic source reproduction prove that a normal stop can
+replace a reconciled source report with INCOMPLETE/reasons=[stop_requested], then
+DailyController.status maps the absent discovery field to false. The new paced
+multi test reads that flag only after owner.run/cleanup, unlike the older paced
+source proof which retained pre-stop cutover evidence. This is a test-boundary
+flaw; the actual Windows final reason still needs a read-only source-ledger read.
+Do not label this Windows failure fixed or reassessed PASS before that evidence.
+No runtime/gate/deadline/cadence changes have been made. Preserve the run and use
+its109passing checks. A diagnostic read is requested; do not rerun85unchanged.
+
+
 ## Delivery freeze and next operator step
 
 Final code/local e7cb9b6fa786170455dbfe7c3226d8b18227487e is published as
