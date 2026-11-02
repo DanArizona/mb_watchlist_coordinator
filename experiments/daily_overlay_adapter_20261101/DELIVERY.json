@@ -1,0 +1,30 @@
+{
+  "contract": "daily-overlay-adapter-delivery-v1",
+  "status": "WINDOWS_QUALIFIED_VISUAL_FEEDBACK_PENDING",
+  "archive_name": "daily_overlay_adapter_20261101_1cd53fe.zip",
+  "bytes": 947686,
+  "sha256": "8623b361296f096728741aa88e27b0c4e480ba205bc9ee00a6f31bcbc7739ed3",
+  "zip_root": "p96",
+  "source": {
+    "accepted_manual_delivery_base": "9d5ac24d1f18aa54b8a2161fbaa787ed523d2d1c",
+    "accepted_native_base": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "coordinator_commit": "1cd53fe45b223b98ace2e7ae2b869e7ded59b963",
+    "coordinator_tree": "8e2440db9e033be01916521906d3cba5f9545b3b",
+    "market_data_commit": "2453582016dffc05d6da9b03397bbea7b444ea77",
+    "market_data_tree": "3c474a9a0da8512747feb33a00466de001d39ac9",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "bff9430cb35a46a33a39e1afd18a864e58301d201af9a7560cc972f68bca773f",
+  "local_exact_checks": "PASS 97/97",
+  "checks_seconds": 3.426636462998431,
+  "windows_checks_passed": true,
+  "real_browser_inspection": "EXECUTION_OBSERVED_VISUAL_FEEDBACK_PENDING",
+  "public_publication": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
+  "approved_p85_changed": false,
+  "p94_activation_changed": false,
+  "provider_access": false,
+  "production_changes": false,
+  "publication_block_reason": "Automatic review treated the new p96 Overlay source as outside build-only authorization and required explicit publication approval. No GitHub tree/commit/ref mutation completed.",
+  "windows_acceptance": "WINDOWS_ACCEPTANCE.json",
+  "preview_observation": "WINDOWS_PREVIEW_OBSERVATION.json"
+}

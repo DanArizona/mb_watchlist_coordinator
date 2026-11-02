@@ -221,6 +221,7 @@ def run_trial(review, *, trial_approved=False, market_open_confirmed=False, cloc
         secret=(prompt or SessionPassword.prompt)(identity)
         try:validate_trial_review(review,clock=clock)
         except BaseException:
+            secret.feedback.finish()
             secret.close();raise
         return secret
     return run_launch(launch,approved_review_sha256=launch['review_sha256'],activation_approved=True,

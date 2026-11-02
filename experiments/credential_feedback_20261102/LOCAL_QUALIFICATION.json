@@ -1,0 +1,61 @@
+{
+  "contract": "password-feedback-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 100,
+  "passed": 100,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 10.03729192100218,
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "source": {
+    "base_coordinator_commit": "8d7d2d202db45d95a393508691c5638ee50545e2",
+    "coordinator_commit": "42b84955de8faa728f89b9f7fb9473cd894c38df",
+    "coordinator_tree": "af6ca422ae9b595048504e882722a256e71522e1",
+    "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "market_data_tree": "38e33f634de94693b7b67b89d15418df82cd4d73",
+    "runtime_changes": [
+      "src/mb_watchlist_coordinator/after_hours_profile.py",
+      "src/mb_watchlist_coordinator/authenticated_startup.py",
+      "src/mb_watchlist_coordinator/daily_launch.py",
+      "src/mb_watchlist_coordinator/daily_operating.py",
+      "src/mb_watchlist_coordinator/daily_operator.py",
+      "src/mb_watchlist_coordinator/installed_startup_probe.py",
+      "src/mb_watchlist_coordinator/live_profile.py",
+      "src/mb_watchlist_coordinator/market_open_check.py"
+    ],
+    "unchanged_approved_p85_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe"
+  },
+  "source_inventory_sha256": "66777ebf4d256525e6bfb48943a1c8bf8d4c7cd942bc180516bc0d2e1f3e5d69",
+  "windows_checks_passed": false,
+  "scope": "Shared coordinator prompt submission and parent-confirmed credential acceptance; unchanged control decisions",
+  "interactive_coordinator_entry_points_covered": [
+    "daily_fresh_and_manual_resume",
+    "bounded_market_open",
+    "after_hours",
+    "older_bounded_live_profile",
+    "installed_one_quote_probe"
+  ],
+  "synthetic_only": true,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_provider_used": false,
+  "production_changes": false,
+  "approved_p85_modified": false,
+  "p94_modified": false,
+  "p96_modified": false,
+  "password_protocol_changed": false,
+  "provider_budgets_changed": false,
+  "watchdog_deadlines_changed": false,
+  "production_activation_approved": false,
+  "remaining": [
+    "Actual Windows result and returned CMD prompt",
+    "Incorporate into a reviewed subsequent operating delivery before real launches use the correction"
+  ]
+}

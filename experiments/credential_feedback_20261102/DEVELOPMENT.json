@@ -1,0 +1,101 @@
+{
+  "contract": "password-feedback-development-record-v1",
+  "base_coordinator_commit": "8d7d2d202db45d95a393508691c5638ee50545e2",
+  "native_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+  "new_tests_initial": {
+    "result": "PASS",
+    "tests": 16,
+    "seconds": 4.16
+  },
+  "new_parent_entry_point_tests": {
+    "result": "PASS",
+    "tests": 5,
+    "seconds": 1.159
+  },
+  "first_regression_run": {
+    "result": "FAILED",
+    "tests": 77,
+    "passed": 76,
+    "failures": 0,
+    "errors": 1,
+    "seconds": 4.677,
+    "error_test": "test_daily_operator.OperatorTests.test_monday_est_review_uses_1430_to_2100_utc_without_a_clock_cli_override",
+    "error_type": "MembershipRevisionError",
+    "error_detail": "effective_at cannot precede published_at",
+    "cause": "Historical synthetic November 1 fixture used the actual November 2 native publication clock",
+    "correction": "Use the same synthetic Sunday clock for native fixture publication; product clocks and no-backdating guards unchanged"
+  },
+  "corrected_historical_clock_test": {
+    "result": "PASS",
+    "tests": 1,
+    "seconds": 0.098
+  },
+  "windows_result": "PENDING",
+  "production_installation_or_activation_performed": false,
+  "first_exact_archive_report": {
+    "contract": "password-feedback-offline-qualification-v1",
+    "result": "FAILED",
+    "tests": 100,
+    "passed": 98,
+    "failures": 0,
+    "errors": 2,
+    "skipped": 0,
+    "failed_tests": [
+      "test_market_open_check.MarketOpenCheckTests.test_mid_prompt_expiry_clears_secret_and_does_not_launch_an_owner",
+      "test_market_open_check.MarketOpenCheckTests.test_mid_prompt_input_change_keeps_existing_rechecks_and_secret_cleanup"
+    ],
+    "seconds": 10.097451556001033,
+    "platform": "linux",
+    "python": [
+      3,
+      12,
+      14
+    ],
+    "source": {
+      "base_coordinator_commit": "8d7d2d202db45d95a393508691c5638ee50545e2",
+      "coordinator_commit": "4b1d3e5f1087e65162102d28c7835ab6cb668898",
+      "coordinator_tree": "1a81b17a3b4e1382079b1eb57d4cd1dcd51d5f6a",
+      "market_data_commit": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+      "market_data_tree": "38e33f634de94693b7b67b89d15418df82cd4d73",
+      "runtime_changes": [
+        "src/mb_watchlist_coordinator/after_hours_profile.py",
+        "src/mb_watchlist_coordinator/authenticated_startup.py",
+        "src/mb_watchlist_coordinator/daily_launch.py",
+        "src/mb_watchlist_coordinator/daily_operating.py",
+        "src/mb_watchlist_coordinator/daily_operator.py",
+        "src/mb_watchlist_coordinator/installed_startup_probe.py",
+        "src/mb_watchlist_coordinator/live_profile.py",
+        "src/mb_watchlist_coordinator/market_open_check.py"
+      ],
+      "unchanged_approved_p85_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe"
+    },
+    "source_inventory_sha256": "855624720bade4ba03ed1fe0e9bf8ab6f27868f37eb0ceee6a8be812ad58f8ac",
+    "windows_checks_passed": false,
+    "scope": "Shared coordinator prompt submission and parent-confirmed credential acceptance; unchanged control decisions",
+    "interactive_coordinator_entry_points_covered": [
+      "daily_fresh_and_manual_resume",
+      "bounded_market_open",
+      "after_hours",
+      "older_bounded_live_profile",
+      "installed_one_quote_probe"
+    ],
+    "synthetic_only": true,
+    "network": "denied",
+    "actual_vault_access": false,
+    "actual_provider_used": false,
+    "production_changes": false,
+    "approved_p85_modified": false,
+    "p94_modified": false,
+    "p96_modified": false,
+    "password_protocol_changed": false,
+    "provider_budgets_changed": false,
+    "watchdog_deadlines_changed": false,
+    "production_activation_approved": false,
+    "remaining": [
+      "Actual Windows result and returned CMD prompt",
+      "Incorporate into a reviewed subsequent operating delivery before real launches use the correction"
+    ]
+  },
+  "first_exact_archive_sha256": "66d8bd35815f8001302ef7d58cee4adf7529ec32fedc3628c06c7de4c510e4ca",
+  "first_exact_archive_disposition": "Preserved FAILED98/100; old fixed-date p75 fixture setup errors. Replaced in the focused verification scope by two prompt-wrapper unit boundary checks; no product guard or p75 source/fixture changes."
+}

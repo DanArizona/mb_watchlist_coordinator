@@ -400,9 +400,11 @@ def run_profile(review, *, trial_approved=False, market_closed_confirmed=False,
                     if now >= active_end or clock() >= end: reason = 'active_deadline_ended'; break
                     if (root/'worker-status.json').exists():
                         status = bound_status(root, config)
+                        if status['phase'] == 'COMPLETE': password.feedback.accepted()
                         if status['phase'] in ('COMPLETE', 'FAILED'): reason = status.get('reason', 'worker_failed'); break
                         if status['phase'] == 'ACTIVE' and not 0 <= (clock()-timestamp(status['observed_at_utc'])).total_seconds() < 3:
                             reason = 'worker_progress_stale'; break
+                        if status['phase'] == 'ACTIVE': password.feedback.accepted()
                     if (not status or status['phase'] != 'ACTIVE') and now-began >= 3:
                         reason = 'cold_progress_deadline_ended'; break
                     if scope.child.poll() is not None: reason = 'worker_exited'; break
@@ -439,4 +441,6 @@ def run_profile(review, *, trial_approved=False, market_closed_confirmed=False,
                     atomic_json(root/'owner-result.json', sealed(receipt))
         return root, receipt
     finally:
-        if password is not None: password.close()
+        if password is not None:
+            password.feedback.finish()
+            password.close()

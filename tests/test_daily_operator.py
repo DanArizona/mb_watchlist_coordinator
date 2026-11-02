@@ -318,7 +318,12 @@ class OperatorTests(unittest.TestCase):
                 value = datetime(2026, 11, 1, 12, tzinfo=ZoneInfo('America/New_York'))
                 return value.astimezone(tz) if tz else value.replace(tzinfo=None)
         self.old.doCleanups()
-        with patch.object(session_fixture, 'datetime', Sunday):
+        # Keep publication times in the same synthetic Sunday as the fixture.
+        # The real wall clock can now be later than this historical Monday;
+        # the native no-backdating guard remains unchanged.
+        with patch.object(session_fixture, 'datetime', Sunday), patch(
+                'mb_market_data.quote_observation_store._utc_now',
+                lambda: Sunday.now(ZoneInfo('UTC'))):
             self.setUp()
         result = self.prepare()
         self.assertEqual(result['session_date'], '2026-11-02')

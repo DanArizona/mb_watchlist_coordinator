@@ -1,0 +1,57 @@
+{
+  "contract": "daily-readonly-overlay-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 97,
+  "passed": 97,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 3.426636462998431,
+  "platform": "linux",
+  "python": [
+    3,
+    12,
+    14
+  ],
+  "versions": {
+    "dash": "4.5.0",
+    "plotly": "7.1.0",
+    "Flask": "3.1.3",
+    "Werkzeug": "3.1.9"
+  },
+  "source": {
+    "accepted_manual_delivery_base": "9d5ac24d1f18aa54b8a2161fbaa787ed523d2d1c",
+    "accepted_native_base": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "coordinator_commit": "1cd53fe45b223b98ace2e7ae2b869e7ded59b963",
+    "coordinator_tree": "8e2440db9e033be01916521906d3cba5f9545b3b",
+    "market_data_commit": "2453582016dffc05d6da9b03397bbea7b444ea77",
+    "market_data_tree": "3c474a9a0da8512747feb33a00466de001d39ac9",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "bff9430cb35a46a33a39e1afd18a864e58301d201af9a7560cc972f68bca773f",
+  "windows_checks_passed": false,
+  "focused_adapter_cli_and_dash_transport_checks": 58,
+  "existing_overlay_regression_checks": 39,
+  "actual_dash_layout_and_callback_transport": true,
+  "actual_browser_preview_executed": false,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_provider_used": false,
+  "production_changes": false,
+  "membership_writes": false,
+  "process_control": false,
+  "p85_or_p94_packet_changed": false,
+  "controller_collector_or_policy_changed": false,
+  "full_native_audit_replaced": false,
+  "unrecorded_slot_coverage_assessed": false,
+  "full_day_viewer_performance_qualified": false,
+  "full_day_provider_capacity_qualified": false,
+  "clock_scope": "Logical future session in synthetic fixtures only; real reader/view use actual UTC",
+  "qualification_scope": "Read-only native/source/candle adaptation, knowledge times, failure retention, existing chart, Dash callback transport, loopback display lifecycle",
+  "remaining": [
+    "Actual Windows qualification and returned CMD prompt",
+    "Inspect the synthetic browser preview; it stays open until stopped",
+    "Read-only attachment to a dated running session and longer-session view behavior"
+  ]
+}

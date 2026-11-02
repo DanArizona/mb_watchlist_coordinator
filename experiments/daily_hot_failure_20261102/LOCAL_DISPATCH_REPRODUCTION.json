@@ -1,0 +1,88 @@
+{
+  "contract": "hot-final-dispatch-gate-offline-reproduction-v1",
+  "result": "PASS_REPRODUCTION_OF_EXISTING_BEHAVIOR",
+  "cases": [
+    {
+      "scenario": "still_before_750ms",
+      "synthetic_symbols": 11,
+      "local_check_clock_advance_milliseconds": 0,
+      "callback_entered_at_lateness_milliseconds": 748.125,
+      "clock_after_check_lateness_milliseconds": 748.125,
+      "batch_attempt_counter": 1,
+      "synthetic_provider_calls": 1,
+      "observation_status_counts": {
+        "quote": 11
+      },
+      "details": [],
+      "refused_call_latched": false,
+      "collector_tick_status": "acquired",
+      "collector_tick_reason": null
+    },
+    {
+      "scenario": "three_ms_local_check_crosses_750ms",
+      "synthetic_symbols": 11,
+      "local_check_clock_advance_milliseconds": 3,
+      "callback_entered_at_lateness_milliseconds": 748.125,
+      "clock_after_check_lateness_milliseconds": 751.125,
+      "batch_attempt_counter": 1,
+      "synthetic_provider_calls": 0,
+      "observation_status_counts": {
+        "request_error": 11
+      },
+      "details": [
+        "ValueError: Collector call budget, roster, slot or window gate refused"
+      ],
+      "refused_call_latched": true,
+      "collector_tick_status": "blocked",
+      "collector_tick_reason": "provider_dispatch_gate_or_client_stopped"
+    },
+    {
+      "scenario": "real_symbol_limit_violation",
+      "synthetic_symbols": 41,
+      "local_check_clock_advance_milliseconds": 0,
+      "callback_entered_at_lateness_milliseconds": 748.125,
+      "clock_after_check_lateness_milliseconds": 748.125,
+      "batch_attempt_counter": 1,
+      "synthetic_provider_calls": 0,
+      "observation_status_counts": {
+        "request_error": 41
+      },
+      "details": [
+        "ValueError: Collector call budget, roster, slot or window gate refused"
+      ],
+      "refused_call_latched": true,
+      "collector_tick_status": "blocked",
+      "collector_tick_reason": "provider_dispatch_gate_or_client_stopped"
+    },
+    {
+      "scenario": "real_call_limit_violation",
+      "synthetic_symbols": 11,
+      "local_check_clock_advance_milliseconds": 0,
+      "callback_entered_at_lateness_milliseconds": 748.125,
+      "clock_after_check_lateness_milliseconds": 748.125,
+      "batch_attempt_counter": 1,
+      "synthetic_provider_calls": 0,
+      "observation_status_counts": {
+        "request_error": 11
+      },
+      "details": [
+        "ValueError: Collector call budget, roster, slot or window gate refused"
+      ],
+      "refused_call_latched": true,
+      "collector_tick_status": "blocked",
+      "collector_tick_reason": "provider_dispatch_gate_or_client_stopped"
+    }
+  ],
+  "scope": "Actual quote callback, normalization and collector tick; synthetic prepared publication/ledger seam",
+  "demonstrated": "A local deadline crossing after entry at 748.125ms can produce one refused batch, 11 request_error observations, and blocked tick with no provider call",
+  "actual_windows_failing_predicate_independently_measured": false,
+  "cause_of_original_extra_local_delay_proven": false,
+  "root_cause_of_28_earlier_missing_slots_proven": false,
+  "actual_vault_access": false,
+  "actual_provider_used": false,
+  "network": "denied",
+  "production_changes": false,
+  "frozen_p85_modified": false,
+  "runtime_fix_applied": false,
+  "deadlines_relaxed": false
+}

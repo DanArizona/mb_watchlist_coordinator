@@ -1,0 +1,236 @@
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>powershell -NoProfile -Command "Expand-Archive -LiteralPath 'C:\Users\danla\Downloads\daily_overlay_adapter_20261101_1cd53fe.zip' -DestinationPath 'C:\Users\danla\overlay96'"
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>call "C:\Users\danla\overlay96\p96\96_verify_overlay_adapter.cmd"
+OFFLINE read-only daily Overlay: 97 focused and existing-chart checks. Synthetic journals and RSS; no password, API or production access.
+test_announced_future_resumption_is_known_but_halt_line_stops_at_cutoff (test_daily_overlay.DailyOverlayTests.test_announced_future_resumption_is_known_but_halt_line_stops_at_cutoff) ... ok
+test_binding_change_requires_an_explicitly_new_reader (test_daily_overlay.DailyOverlayTests.test_binding_change_requires_an_explicitly_new_reader) ... ok
+test_blocked_source_reasons_and_history_gaps_remain_visible (test_daily_overlay.DailyOverlayTests.test_blocked_source_reasons_and_history_gaps_remain_visible) ... ok
+test_candle_cache_acquired_later_is_not_visible_early (test_daily_overlay.DailyOverlayTests.test_candle_cache_acquired_later_is_not_visible_early) ... ok
+test_carryover_halt_line_is_clipped_to_the_current_regular_session (test_daily_overlay.DailyOverlayTests.test_carryover_halt_line_is_clipped_to_the_current_regular_session) ... ok
+test_closed_session_accepts_a_cache_known_now_without_extending_chart_date (test_daily_overlay.DailyOverlayTests.test_closed_session_accepts_a_cache_known_now_without_extending_chart_date) ... ok
+test_corrupt_candle_cache_is_explicitly_unavailable (test_daily_overlay.DailyOverlayTests.test_corrupt_candle_cache_is_explicitly_unavailable) ... ok
+test_demoted_symbol_keeps_selectable_history_and_current_band_changes (test_daily_overlay.DailyOverlayTests.test_demoted_symbol_keeps_selectable_history_and_current_band_changes) ... ok
+test_existing_durable_bytes_unchanged_after_source_read (test_daily_overlay.DailyOverlayTests.test_existing_durable_bytes_unchanged_after_source_read) ... ok
+test_failed_read_keeps_only_selected_symbols_last_verified_chart (test_daily_overlay.DailyOverlayTests.test_failed_read_keeps_only_selected_symbols_last_verified_chart) ... ok
+test_feed_raw_body_tampering_is_unavailable (test_daily_overlay.DailyOverlayTests.test_feed_raw_body_tampering_is_unavailable) ... ok
+test_future_capture_does_not_disclose_resumption_before_it_was_known (test_daily_overlay.DailyOverlayTests.test_future_capture_does_not_disclose_resumption_before_it_was_known) ... ok
+test_future_completed_quote_is_not_visible_early (test_daily_overlay.DailyOverlayTests.test_future_completed_quote_is_not_visible_early) ... ok
+test_future_membership_waits_for_its_native_effective_time (test_daily_overlay.DailyOverlayTests.test_future_membership_waits_for_its_native_effective_time) ... ok
+test_halt_and_resumption_have_separate_knowledge_times (test_daily_overlay.DailyOverlayTests.test_halt_and_resumption_have_separate_knowledge_times) ... ok
+test_later_blank_fields_do_not_retract_a_known_resumption (test_daily_overlay.DailyOverlayTests.test_later_blank_fields_do_not_retract_a_known_resumption) ... ok
+test_membership_tampering_is_unavailable (test_daily_overlay.DailyOverlayTests.test_membership_tampering_is_unavailable) ... ok
+test_missing_candle_cache_does_not_hide_quotes (test_daily_overlay.DailyOverlayTests.test_missing_candle_cache_does_not_hide_quotes) ... ok
+test_missing_source_is_unavailable_not_a_verified_empty_feed (test_daily_overlay.DailyOverlayTests.test_missing_source_is_unavailable_not_a_verified_empty_feed) ... ok
+test_missing_state_is_not_created (test_daily_overlay.DailyOverlayTests.test_missing_state_is_not_created) ... ok
+test_native_figure_renders_quotes_and_membership_without_inventing_candles (test_daily_overlay.DailyOverlayTests.test_native_figure_renders_quotes_and_membership_without_inventing_candles) ... ok
+test_native_snapshot_does_not_mix_membership_and_quotes_across_commit (test_daily_overlay.DailyOverlayTests.test_native_snapshot_does_not_mix_membership_and_quotes_across_commit) ... ok
+test_new_symbol_is_available_to_existing_overlay_without_candle_cache (test_daily_overlay.DailyOverlayTests.test_new_symbol_is_available_to_existing_overlay_without_candle_cache) ... ok
+test_no_halt_is_inferred_from_a_quote_gap_or_security_status (test_daily_overlay.DailyOverlayTests.test_no_halt_is_inferred_from_a_quote_gap_or_security_status) ... ok
+test_other_symbols_quote_payloads_are_not_read (test_daily_overlay.DailyOverlayTests.test_other_symbols_quote_payloads_are_not_read) ... ok
+test_preopen_view_does_not_invent_effective_membership (test_daily_overlay.DailyOverlayTests.test_preopen_view_does_not_invent_effective_membership) ... ok
+test_quote_resumption_is_separate_from_trade_resumption (test_daily_overlay.DailyOverlayTests.test_quote_resumption_is_separate_from_trade_resumption) ... ok
+test_quote_row_count_mismatch_is_unavailable (test_daily_overlay.DailyOverlayTests.test_quote_row_count_mismatch_is_unavailable) ... ok
+test_read_can_recover_without_resetting_the_binding_or_baseline (test_daily_overlay.DailyOverlayTests.test_read_can_recover_without_resetting_the_binding_or_baseline) ... ok
+test_read_only_sql_never_initializes_or_takes_owner_locks (test_daily_overlay.DailyOverlayTests.test_read_only_sql_never_initializes_or_takes_owner_locks) ... ok
+test_recorded_per_run_cadence_is_preserved (test_daily_overlay.DailyOverlayTests.test_recorded_per_run_cadence_is_preserved) ... ok
+test_saved_completed_candles_attach_to_existing_figure (test_daily_overlay.DailyOverlayTests.test_saved_completed_candles_attach_to_existing_figure) ... ok
+test_slow_refresh_does_not_queue_another_read (test_daily_overlay.DailyOverlayTests.test_slow_refresh_does_not_queue_another_read) ... ok
+test_source_read_failure_keeps_confirmed_facts_with_last_verified_label (test_daily_overlay.DailyOverlayTests.test_source_read_failure_keeps_confirmed_facts_with_last_verified_label) ... ok
+test_source_status_chain_tampering_is_unavailable (test_daily_overlay.DailyOverlayTests.test_source_status_chain_tampering_is_unavailable) ... ok
+test_source_status_staleness_is_separate_from_a_successful_evidence_read (test_daily_overlay.DailyOverlayTests.test_source_status_staleness_is_separate_from_a_successful_evidence_read) ... ok
+test_stale_controller_is_never_reported_as_live_collection (test_daily_overlay.DailyOverlayTests.test_stale_controller_is_never_reported_as_live_collection) ... ok
+test_stopped_controller_and_retained_membership_are_separate (test_daily_overlay.DailyOverlayTests.test_stopped_controller_and_retained_membership_are_separate) ... ok
+test_unpublished_symbol_selection_is_refused (test_daily_overlay.DailyOverlayTests.test_unpublished_symbol_selection_is_refused) ... ok
+test_wrong_native_identity_is_unavailable (test_daily_overlay.DailyOverlayTests.test_wrong_native_identity_is_unavailable) ... ok
+test_wrong_symbol_cache_is_unavailable_without_discarding_quotes (test_daily_overlay.DailyOverlayTests.test_wrong_symbol_cache_is_unavailable_without_discarding_quotes) ... ok
+test_actual_callback_renders_existing_chart_from_selected_native_quote (test_daily_overlay_view.DailyOverlayViewTests.test_actual_callback_renders_existing_chart_from_selected_native_quote) ... ok
+test_actual_dash_layout_has_monitor_chart_alerts_and_no_membership_edit_actions (test_daily_overlay_view.DailyOverlayViewTests.test_actual_dash_layout_has_monitor_chart_alerts_and_no_membership_edit_actions) ... ok
+test_confirmed_facts_display_actual_event_and_separate_knowledge_times (test_daily_overlay_view.DailyOverlayViewTests.test_confirmed_facts_display_actual_event_and_separate_knowledge_times) ... ok
+test_failed_new_symbol_does_not_relabel_previous_symbols_chart (test_daily_overlay_view.DailyOverlayViewTests.test_failed_new_symbol_does_not_relabel_previous_symbols_chart) ... ok
+test_failed_refresh_retains_chart_and_labels_all_saved_health (test_daily_overlay_view.DailyOverlayViewTests.test_failed_refresh_retains_chart_and_labels_all_saved_health) ... ok
+test_reading_or_changing_tabs_does_not_call_display_stop (test_daily_overlay_view.DailyOverlayViewTests.test_reading_or_changing_tabs_does_not_call_display_stop) ... ok
+test_recorded_health_does_not_claim_os_process_ownership (test_daily_overlay_view.DailyOverlayViewTests.test_recorded_health_does_not_claim_os_process_ownership) ... ok
+test_source_read_failure_is_visible_in_monitor_without_opening_alerts (test_daily_overlay_view.DailyOverlayViewTests.test_source_read_failure_is_visible_in_monitor_without_opening_alerts) ... ok
+test_stop_button_only_routes_to_injected_display_stop (test_daily_overlay_view.DailyOverlayViewTests.test_stop_button_only_routes_to_injected_display_stop) ... ok
+test_tab_navigation_keeps_refresh_controls_mounted_without_reading_again (test_daily_overlay_view.DailyOverlayViewTests.test_tab_navigation_keeps_refresh_controls_mounted_without_reading_again) ... ok
+test_generated_summary_routes_to_its_original_state_and_journal (test_daily_overlay_cli.DailyOverlayCLITests.test_generated_summary_routes_to_its_original_state_and_journal) ... ok
+test_missing_state_snapshot_returns_unavailable_without_creating_files (test_daily_overlay_cli.DailyOverlayCLITests.test_missing_state_snapshot_returns_unavailable_without_creating_files) ... ok
+test_no_browser_option_keeps_viewer_start_independent_of_browser_launch (test_daily_overlay_cli.DailyOverlayCLITests.test_no_browser_option_keeps_viewer_start_independent_of_browser_launch) ... ok
+test_one_shot_snapshot_does_not_construct_a_browser_or_server (test_daily_overlay_cli.DailyOverlayCLITests.test_one_shot_snapshot_does_not_construct_a_browser_or_server) ... ok
+test_only_read_verbs_are_accepted_before_any_password_or_owner (test_daily_overlay_cli.DailyOverlayCLITests.test_only_read_verbs_are_accepted_before_any_password_or_owner) ... ok
+test_summary_journal_rebinding_is_refused (test_daily_overlay_cli.DailyOverlayCLITests.test_summary_journal_rebinding_is_refused) ... ok
+test_viewer_is_loopback_only_and_stops_only_its_wsgi_server (test_daily_overlay_cli.DailyOverlayCLITests.test_viewer_is_loopback_only_and_stops_only_its_wsgi_server) ... ok
+test_overlay_rejects_cache_for_another_symbol (tests.test_observation_overlay.TestObservationOverlayCacheArtifact.test_overlay_rejects_cache_for_another_symbol) ... ok
+test_round_trip_preserves_provenance_and_is_immutable (tests.test_observation_overlay.TestObservationOverlayCacheArtifact.test_round_trip_preserves_provenance_and_is_immutable) ... ok
+test_before_first_revision_symbol_is_outside_with_no_quotes (tests.test_observation_overlay.TestObservationOverlayProjection.test_before_first_revision_symbol_is_outside_with_no_quotes) ... ok
+test_incremental_projector_keeps_only_selected_symbol_evidence (tests.test_observation_overlay.TestObservationOverlayProjection.test_incremental_projector_keeps_only_selected_symbol_evidence) ... ok
+test_quote_is_visible_only_at_acquisition_completion (tests.test_observation_overlay.TestObservationOverlayProjection.test_quote_is_visible_only_at_acquisition_completion) ... ok
+test_rejects_legacy_channel_revisions (tests.test_observation_overlay.TestObservationOverlayProjection.test_rejects_legacy_channel_revisions) ... ok
+test_rejects_out_of_order_events (tests.test_observation_overlay.TestObservationOverlayProjection.test_rejects_out_of_order_events) ... ok
+test_same_timestamp_revisions_project_uni_then_focus (tests.test_observation_overlay.TestObservationOverlayProjection.test_same_timestamp_revisions_project_uni_then_focus) ... ok
+test_uni_focus_hot_removal_sequence_is_preserved (tests.test_observation_overlay.TestObservationOverlayProjection.test_uni_focus_hot_removal_sequence_is_preserved) ... ok
+test_cache_rejects_duplicate_or_out_of_order_candles (tests.test_observation_overlay.TestOverlayCandleVisibility.test_cache_rejects_duplicate_or_out_of_order_candles) ... ok
+test_candle_is_hidden_until_its_interval_closes (tests.test_observation_overlay.TestOverlayCandleVisibility.test_candle_is_hidden_until_its_interval_closes) ... ok
+test_all_time_axes_stay_on_session_when_first_candle_appears (tests.test_observation_overlay_view.TestObservationOverlayView.test_all_time_axes_stay_on_session_when_first_candle_appears) ... ok
+test_applies_independent_quote_point_display_styles (tests.test_observation_overlay_view.TestObservationOverlayView.test_applies_independent_quote_point_display_styles) ... ok
+test_bounds_point_style_and_uses_fixed_chart_height (tests.test_observation_overlay_view.TestObservationOverlayView.test_bounds_point_style_and_uses_fixed_chart_height) ... ok
+test_centers_candles_and_volume_on_five_minute_intervals (tests.test_observation_overlay_view.TestObservationOverlayView.test_centers_candles_and_volume_on_five_minute_intervals) ... ok
+test_consecutive_request_errors_form_one_scheduled_time_span (tests.test_observation_overlay_view.TestObservationOverlayView.test_consecutive_request_errors_form_one_scheduled_time_span) ... ok
+test_detailed_observation_fields_describe_quote_result_and_trade_age (tests.test_observation_overlay_view.TestObservationOverlayView.test_detailed_observation_fields_describe_quote_result_and_trade_age) ... ok
+test_figure_contains_candles_volume_quotes_and_membership_bands (tests.test_observation_overlay_view.TestObservationOverlayView.test_figure_contains_candles_volume_quotes_and_membership_bands) ... ok
+test_four_hover_modes_keep_observations_and_features_distinct (tests.test_observation_overlay_view.TestObservationOverlayView.test_four_hover_modes_keep_observations_and_features_distinct) ... ok
+test_halt_segment_uses_first_in_halt_quote_and_recorded_release (tests.test_observation_overlay_view.TestObservationOverlayView.test_halt_segment_uses_first_in_halt_quote_and_recorded_release) ... ok
+test_horizontal_autorange_reset_restores_regular_session (tests.test_observation_overlay_view.TestObservationOverlayView.test_horizontal_autorange_reset_restores_regular_session) ... ok
+test_manual_zoom_stays_put_when_replay_crosses_view_edge (tests.test_observation_overlay_view.TestObservationOverlayView.test_manual_zoom_stays_put_when_replay_crosses_view_edge) ... ok
+test_membership_shapes_are_confined_to_data_panels (tests.test_observation_overlay_view.TestObservationOverlayView.test_membership_shapes_are_confined_to_data_panels) ... ok
+test_navigator_preserves_full_price_scale_when_main_plot_is_zoomed (tests.test_observation_overlay_view.TestObservationOverlayView.test_navigator_preserves_full_price_scale_when_main_plot_is_zoomed) ... ok
+test_no_zoom_stays_at_regular_session_even_after_close (tests.test_observation_overlay_view.TestObservationOverlayView.test_no_zoom_stays_at_regular_session_even_after_close) ... ok
+test_off_hours_filter_and_reference_causality (tests.test_observation_overlay_view.TestObservationOverlayView.test_off_hours_filter_and_reference_causality) ... ok
+test_offscreen_reference_does_not_expand_regular_hours_axis (tests.test_observation_overlay_view.TestObservationOverlayView.test_offscreen_reference_does_not_expand_regular_hours_axis) ... ok
+test_pan_and_zoom_cannot_leave_session_and_volume_stays_on_zero (tests.test_observation_overlay_view.TestObservationOverlayView.test_pan_and_zoom_cannot_leave_session_and_volume_stays_on_zero) ... ok
+test_percent_ticks_preserve_price_range_and_reference_lines (tests.test_observation_overlay_view.TestObservationOverlayView.test_percent_ticks_preserve_price_range_and_reference_lines) ... ok
+test_reapplies_axis_autorange_reset (tests.test_observation_overlay_view.TestObservationOverlayView.test_reapplies_axis_autorange_reset) ... ok
+test_reapplies_browser_axis_ranges_to_updated_figure (tests.test_observation_overlay_view.TestObservationOverlayView.test_reapplies_browser_axis_ranges_to_updated_figure) ... ok
+test_replay_starts_with_full_session_and_keeps_navigator_fixed (tests.test_observation_overlay_view.TestObservationOverlayView.test_replay_starts_with_full_session_and_keeps_navigator_fixed) ... ok
+test_summarizes_visible_evidence_and_current_band (tests.test_observation_overlay_view.TestObservationOverlayView.test_summarizes_visible_evidence_and_current_band) ... ok
+test_uses_readable_theme_specific_hover (tests.test_observation_overlay_view.TestObservationOverlayView.test_uses_readable_theme_specific_hover) ... ok
+test_zoom_ahead_of_data_follows_when_data_reaches_right_edge (tests.test_observation_overlay_view.TestObservationOverlayView.test_zoom_ahead_of_data_follows_when_data_reaches_right_edge) ... ok
+test_zoom_inside_existing_data_stays_fixed_through_replay (tests.test_observation_overlay_view.TestObservationOverlayView.test_zoom_inside_existing_data_stays_fixed_through_replay) ... ok
+test_zoom_keeps_price_volume_and_navigator_viewports_aligned (tests.test_observation_overlay_view.TestObservationOverlayView.test_zoom_keeps_price_volume_and_navigator_viewports_aligned) ... ok
+test_confirmed_knrx_halt_does_not_mark_prior_gap (tests.test_overlay_halts.TestOverlayHalts.test_confirmed_knrx_halt_does_not_mark_prior_gap) ... ok
+test_projector_exposes_markers_only_after_event_time (tests.test_overlay_halts.TestOverlayHalts.test_projector_exposes_markers_only_after_event_time) ... ok
+
+----------------------------------------------------------------------
+Ran 97 tests in 9.356s
+
+OK
+{
+  "contract": "daily-readonly-overlay-offline-qualification-v1",
+  "result": "PASS",
+  "tests": 97,
+  "passed": 97,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_tests": [],
+  "seconds": 9.625,
+  "platform": "win32",
+  "python": [
+    3,
+    12,
+    13
+  ],
+  "versions": {
+    "dash": "4.4.1",
+    "plotly": "7.0.0",
+    "Flask": "3.1.3",
+    "Werkzeug": "3.1.8"
+  },
+  "source": {
+    "accepted_manual_delivery_base": "9d5ac24d1f18aa54b8a2161fbaa787ed523d2d1c",
+    "accepted_native_base": "d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e",
+    "coordinator_commit": "1cd53fe45b223b98ace2e7ae2b869e7ded59b963",
+    "coordinator_tree": "8e2440db9e033be01916521906d3cba5f9545b3b",
+    "market_data_commit": "2453582016dffc05d6da9b03397bbea7b444ea77",
+    "market_data_tree": "3c474a9a0da8512747feb33a00466de001d39ac9",
+    "production_native_baseline": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c"
+  },
+  "source_inventory_sha256": "bff9430cb35a46a33a39e1afd18a864e58301d201af9a7560cc972f68bca773f",
+  "windows_checks_passed": true,
+  "focused_adapter_cli_and_dash_transport_checks": 58,
+  "existing_overlay_regression_checks": 39,
+  "actual_dash_layout_and_callback_transport": true,
+  "actual_browser_preview_executed": false,
+  "network": "denied",
+  "actual_vault_access": false,
+  "actual_provider_used": false,
+  "production_changes": false,
+  "membership_writes": false,
+  "process_control": false,
+  "p85_or_p94_packet_changed": false,
+  "controller_collector_or_policy_changed": false,
+  "full_native_audit_replaced": false,
+  "unrecorded_slot_coverage_assessed": false,
+  "full_day_viewer_performance_qualified": false,
+  "full_day_provider_capacity_qualified": false,
+  "clock_scope": "Logical future session in synthetic fixtures only; real reader/view use actual UTC",
+  "qualification_scope": "Read-only native/source/candle adaptation, knowledge times, failure retention, existing chart, Dash callback transport, loopback display lifecycle",
+  "remaining": [
+    "Actual Windows qualification and returned CMD prompt",
+    "Inspect the synthetic browser preview; it stays open until stopped",
+    "Read-only attachment to a dated running session and longer-session view behavior"
+  ]
+}
+Saved report: C:\Users\danla\overlay96\p96\runs\20261101T205630Z_verify_efce19af\verification.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>call "C:\Users\danla\overlay96\p96\97_preview_overlay_adapter.cmd"
+SYNTHETIC browser preview. Stays open until Stop display or Ctrl+C. No password, API, controller launch or production access.
+{"synthetic_preview_phase": "opening_membership_and_saved_candles", "provider_requests": 0}
+Read-only daily Overlay: http://127.0.0.1:8056
+Stop display or Ctrl+C closes only this viewer. Collectors continue.
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /assets/quote_dashboard.css?m=1793562810.0 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-component-suites/dash/deps/polyfill@7.v4_4_1m1789165568.12.1.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-component-suites/dash/deps/react@18.v4_4_1m1789165568.3.1.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-component-suites/dash/deps/react-dom@18.v4_4_1m1789165568.3.1.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-component-suites/dash/deps/prop-types@15.v4_4_1m1789165568.8.1.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /assets/observation_overlay_hover.js?m=1793562810.0 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-component-suites/dash/dash-renderer/build/dash_renderer.v4_4_1m1789165568.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-component-suites/dash/dcc/dash_core_components.v4_4_1m1789165568.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-component-suites/dash/html/dash_html_components.v4_4_1m1789165568.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-component-suites/dash/dcc/dash_core_components-shared.v4_4_1m1789165568.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-component-suites/dash/dash_table/bundle.v7_4_1m1789165568.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_favicon.ico?v=4.4.1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-layout HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-dependencies HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:15] "GET /_dash-component-suites/dash/dcc/async-dropdown.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:16] "GET /_dash-component-suites/dash/dcc/async-slider.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:16] "GET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:16] "GET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:16] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:16] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:16] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:21] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+{"synthetic_preview_phase": "NVDA_added_to_Hot_Focus_Uni_quote_without_candles", "provider_requests": 0}
+127.0.0.1 - - [01/Nov/2026 14:57:26] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:31] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+{"synthetic_preview_phase": "resumption_knowledge_and_saved_candles_arrive", "provider_requests": 0}
+127.0.0.1 - - [01/Nov/2026 14:57:37] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+{"synthetic_preview_phase": "read_failure_last_verified_chart", "provider_requests": 0}
+127.0.0.1 - - [01/Nov/2026 14:57:42] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:47] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:52] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:57:57] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+{"synthetic_preview_phase": "stopped_controller_membership_and_chart_retained", "provider_requests": 0}
+Preview complete. Inspect as long as needed; Stop display or Ctrl+C ends only this viewer.
+127.0.0.1 - - [01/Nov/2026 14:58:02] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:06] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:11] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:16] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:21] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:26] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:31] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:36] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:41] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:43] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:43] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:46] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:48] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:48] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:51] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:58:56] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:59:01] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:59:06] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:59:11] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:59:14] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:59:14] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:59:16] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:59:21] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:59:26] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:59:31] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:59:36] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 14:59:38] "POST /_dash-update-component?endId=fw2IpbeiSYVjVKd0IUcq7vDk~26ca7638b43fff861892db4fea59e61ff233b66daad9191d1bb09315691e57f6 HTTP/1.1" 200 -
+Saved preview result: C:\Users\danla\overlay96\p96\runs\20261101T205715Z_preview_8b2e1a4b\preview-result.json
+
+(sea-green) C:\Users\danla\Documents\github\mb_market_data>

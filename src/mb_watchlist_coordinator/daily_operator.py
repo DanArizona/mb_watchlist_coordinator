@@ -319,6 +319,7 @@ def start_day(source, path, *, approved_review_sha256=None, activation_approved=
             startup_window()
             return secret
         except BaseException:
+            secret.feedback.finish()
             secret.close()
             raise
     return run_launch(value, approved_review_sha256=approved_review_sha256,

@@ -232,13 +232,18 @@ def run_probe(ecfg_path,output_root,expected,child_command,*,inventory=None,prom
         report.update(child_receipt=receipt,quote_dispatch_permits=receipt['quote_dispatch_permits'],
             result=receipt['result'] if child.returncode==0 else 'FAILED',
             reason=receipt['reason'] if child.returncode==0 or receipt['result']=='FAILED' else 'startup_failed')
+        # The bounded, nonce-checked receipt charges a quote only after the
+        # existing encrypted-config/client startup has succeeded.
+        if receipt['quote_dispatch_permits'] == 1: source.feedback.accepted()
     except KeyboardInterrupt:report.update(result='FAILED',reason='operator_interrupted')
     except StartupError as error:report.update(result='FAILED',reason=error.code)
     except Exception:report.update(result='FAILED',reason='startup_failed')
     finally:
         if child is not None:stop_exact_child(child)
         if frame is not None:frame[:]=b'\0'*len(frame)
-        if source is not None:source.close()
+        if source is not None:
+            source.feedback.finish()
+            source.close()
     return save_report(output_root,report,child)
 
 

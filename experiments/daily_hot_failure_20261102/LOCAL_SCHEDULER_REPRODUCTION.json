@@ -1,0 +1,40 @@
+{
+  "contract": "hot-scheduler-advance-native-reproduction-v1",
+  "result": "PASS_REPRODUCTION_OF_EXISTING_BEHAVIOR",
+  "cases": [
+    {
+      "synthetic_post_response_clock_advance_seconds": 0,
+      "first_cycle_status": "acquired",
+      "next_scheduled_second_after_first_cycle": 56,
+      "synthetic_provider_calls": 3,
+      "native_audit_passed": true,
+      "missing_slot_ids": [],
+      "missing_slots_with_any_ledger_event": [],
+      "native_ledger_event_count": 11,
+      "two_fresh_native_replays_equal": true
+    },
+    {
+      "synthetic_post_response_clock_advance_seconds": 3,
+      "first_cycle_status": "acquired",
+      "next_scheduled_second_after_first_cycle": 58,
+      "synthetic_provider_calls": 2,
+      "native_audit_passed": false,
+      "missing_slot_ids": [
+        "hot:2026-11-03T15:59:56-05:00"
+      ],
+      "missing_slots_with_any_ledger_event": [],
+      "native_ledger_event_count": 8,
+      "two_fresh_native_replays_equal": true
+    }
+  ],
+  "scope": "Original collector tick, synthetic publication/SDK, actual native persistence/audit/replays; logical clock fault",
+  "actual_windows_six_unmatched_slots_explained": false,
+  "original_delay_cause_proven": false,
+  "runtime_fix_applied": false,
+  "deadlines_relaxed": false,
+  "frozen_p85_modified": false,
+  "production_changes": false,
+  "actual_provider_used": false,
+  "actual_vault_access": false,
+  "network": "denied"
+}

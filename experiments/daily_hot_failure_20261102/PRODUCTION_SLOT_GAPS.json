@@ -1,0 +1,313 @@
+{
+  "contract": "production-hot-missing-slot-classification-v1",
+  "session_date": "2026-11-02",
+  "basis": "Operator-supplied read-only CMD query output. Actual Windows source files not independently read. Query selected missed,abandoned,write_failed only.",
+  "missing_count": 28,
+  "counts": {
+    "before_dispatch_deadline": 18,
+    "before_api_deadline": 4,
+    "no_matching_exceptional_event": 6,
+    "write_failed_matches": 0
+  },
+  "dispatch_deadline_seconds": 0.75,
+  "slots": [
+    {
+      "slot_id": "hot:2026-11-02T09:36:36-05:00",
+      "ledger_events": []
+    },
+    {
+      "slot_id": "hot:2026-11-02T09:36:54-05:00",
+      "ledger_events": []
+    },
+    {
+      "slot_id": "hot:2026-11-02T09:37:54-05:00",
+      "ledger_events": []
+    },
+    {
+      "slot_id": "hot:2026-11-02T09:38:14-05:00",
+      "ledger_events": []
+    },
+    {
+      "slot_id": "hot:2026-11-02T09:39:06-05:00",
+      "ledger_events": []
+    },
+    {
+      "slot_id": "hot:2026-11-02T09:42:36-05:00",
+      "ledger_events": []
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:05:54-05:00",
+      "ledger_events": [
+        {
+          "kind": "abandoned",
+          "recorded_at_utc": "2026-11-02T15:05:54.818582+00:00",
+          "reason": "dispatch_budget_passed_before_api",
+          "gate": "before_api_deadline",
+          "lateness_seconds": 0.818582
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:12:34-05:00",
+      "ledger_events": [
+        {
+          "kind": "abandoned",
+          "recorded_at_utc": "2026-11-02T15:12:35.196253+00:00",
+          "reason": "dispatch_budget_passed_before_api",
+          "gate": "before_api_deadline",
+          "lateness_seconds": 1.196253
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:16:58-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:16:58.942096+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 0.942096
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:22:46-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:22:46.853179+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 0.853179
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:26:02-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:26:02.880954+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 0.880954
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:28:18-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:28:18.886588+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 0.886588
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:29:26-05:00",
+      "ledger_events": [
+        {
+          "kind": "abandoned",
+          "recorded_at_utc": "2026-11-02T15:29:26.945730+00:00",
+          "reason": "dispatch_budget_passed_before_api",
+          "gate": "before_api_deadline",
+          "lateness_seconds": 0.94573
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:30:36-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:30:36.875823+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 0.875823
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:31:42-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:31:42.826803+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 0.826803
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:32:48-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:32:48.818392+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 0.818392
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:32:54-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:32:55.084575+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 1.084575
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:37:28-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:37:29.047967+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 1.047967
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:40:58-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:40:59.006738+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 1.006738
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:43:16-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:43:17.134558+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 1.134558
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:44:26-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:44:27.026570+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 1.02657
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:45:32-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:45:33.045397+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 1.045397
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:50:12-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:50:13.057653+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 1.057653
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:51:24-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:51:24.810966+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 0.810966
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:52:34-05:00",
+      "ledger_events": [
+        {
+          "kind": "abandoned",
+          "recorded_at_utc": "2026-11-02T15:52:34.828513+00:00",
+          "reason": "dispatch_budget_passed_before_api",
+          "gate": "before_api_deadline",
+          "lateness_seconds": 0.828513
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:54:52-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:54:53.142533+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 1.142533
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:54:54-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:54:55.307910+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 1.30791
+        }
+      ]
+    },
+    {
+      "slot_id": "hot:2026-11-02T10:56:04-05:00",
+      "ledger_events": [
+        {
+          "kind": "missed",
+          "recorded_at_utc": "2026-11-02T15:56:05.219187+00:00",
+          "reason": "late_dispatch_no_catchup",
+          "gate": "before_dispatch_deadline",
+          "lateness_seconds": 1.219187
+        }
+      ]
+    }
+  ],
+  "known_lateness_min_seconds": 0.810966,
+  "known_lateness_max_seconds": 1.30791,
+  "final_request_error_slot_is_separate_from_missing_slots": true,
+  "underlying_source_of_delay_proven": false,
+  "six_unmatched_slots_have_no_event_of_any_kind_proven": false,
+  "runtime_fix_applied": false,
+  "frozen_p85_modified": false,
+  "production_changes": false,
+  "actual_provider_used": false,
+  "actual_vault_access": false
+}

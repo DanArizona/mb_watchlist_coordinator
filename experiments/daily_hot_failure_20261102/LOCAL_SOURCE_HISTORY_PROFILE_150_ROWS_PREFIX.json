@@ -1,0 +1,54 @@
+{
+  "contract": "source-history-growth-offline-profile-v1",
+  "result": "PROFILE_COMPLETED",
+  "captures_added": 90,
+  "rows_per_capture": 150,
+  "authorized_symbols": 11,
+  "identity_quote_permits": 11,
+  "opening_uni_symbols": 600,
+  "opening_focus_symbols": 40,
+  "elapsed_seconds": 15.760733164999692,
+  "measurements": [
+    {
+      "retained_current_captures": 2,
+      "append_seconds": 0.009119168000324862,
+      "first_collector_publication_read_seconds": 0.04370911300065927,
+      "unchanged_collector_publication_read_seconds": 0.021612656997604063
+    },
+    {
+      "retained_current_captures": 11,
+      "append_seconds": 0.016212386999541195,
+      "first_collector_publication_read_seconds": 0.051514246999431634,
+      "unchanged_collector_publication_read_seconds": 0.019969429999036947
+    },
+    {
+      "retained_current_captures": 31,
+      "append_seconds": 0.02061836999928346,
+      "first_collector_publication_read_seconds": 0.09348384300028556,
+      "unchanged_collector_publication_read_seconds": 0.021476095000252826
+    },
+    {
+      "retained_current_captures": 61,
+      "append_seconds": 0.04163142900142702,
+      "first_collector_publication_read_seconds": 0.09917752100227517,
+      "unchanged_collector_publication_read_seconds": 0.020837467000092147
+    },
+    {
+      "retained_current_captures": 91,
+      "append_seconds": 0.036605490000511054,
+      "first_collector_publication_read_seconds": 0.17251008799939882,
+      "unchanged_collector_publication_read_seconds": 0.025106667999352794
+    }
+  ],
+  "last_changed_read_profile": "         672193 function calls (459065 primitive calls) in 0.342 seconds\n\n   Ordered by: cumulative time\n   List reduced from 331 to 30 due to restriction <30>\n\n   ncalls  tottime  percall  cumtime  percall filename:lineno(function)\n        1    0.000    0.000    0.343    0.343 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/daily_worker_view.py:109(validate)\n        1    0.000    0.000    0.311    0.311 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/daily_multi_identity.py:164(snapshot)\n        1    0.000    0.000    0.310    0.310 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/daily_multi_identity.py:91(_read)\n        1    0.008    0.008    0.300    0.300 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/daily_multi_identity.py:101(_read_uncached)\n        1    0.000    0.000    0.276    0.276 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/nasdaq_recovery_delivery.py:196(snapshot)\n        1    0.000    0.000    0.275    0.275 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/nasdaq_recovery_delivery.py:139(_read)\n        1    0.007    0.007    0.259    0.259 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/nasdaq_recovery_delivery.py:56(_sources)\n        1    0.000    0.000    0.124    0.124 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/nasdaq_sampling.py:397(snapshot)\n126097/129    0.069    0.000    0.119    0.001 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/sampling_requests.py:30(plain)\n73785/345    0.086    0.000    0.102    0.000 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/sampling_requests.py:74(freeze)\n14062/437    0.004    0.000    0.098    0.000 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/sampling_requests.py:78(<genexpr>)\n165562/165554    0.018    0.000    0.053    0.000 {built-in method builtins.isinstance}\n        4    0.000    0.000    0.039    0.010 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/sampling_request_store.py:77(_read_history)\n    28054    0.004    0.000    0.034    0.000 <frozen abc>:117(__instancecheck__)\n        4    0.004    0.001    0.033    0.008 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/sampling_requests.py:327(replay_requests)\n    28054    0.009    0.000    0.030    0.000 {built-in method _abc._abc_instancecheck}\n        3    0.000    0.000    0.030    0.010 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/sampling_request_store.py:91(validated_history)\n        1    0.000    0.000    0.027    0.027 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/nasdaq_sampling.py:299(_read)\n        1    0.001    0.001    0.027    0.027 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/nasdaq_sampling.py:305(_read_serialized)\n      133    0.022    0.000    0.022    0.000 {method 'execute' of 'sqlite3.Connection' objects}\n    28058    0.005    0.000    0.021    0.000 <frozen abc>:121(__subclasscheck__)\n        2    0.000    0.000    0.021    0.010 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/daily_multi_publication.py:107(membership_revisions_in_effective_order)\n        2    0.000    0.000    0.021    0.010 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/daily_multi_publication.py:37(_proof)\n        2    0.000    0.000    0.020    0.010 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/sampling_request_store.py:100(events)\n        1    0.000    0.000    0.020    0.020 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/daily_worker_view.py:84(_binding)\n      274    0.000    0.000    0.019    0.000 /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py:299(loads)\n        1    0.000    0.000    0.018    0.018 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/daily_session.py:63(preview)\n      274    0.001    0.000    0.018    0.000 /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py:333(decode)\n       81    0.000    0.000    0.018    0.000 <string>:2(__init__)\n       81    0.001    0.000    0.018    0.000 /workspace/scratch/6ce939acb4eb/co_hot_slot_reliability_20261102/src/mb_watchlist_coordinator/sampling_projection.py:52(__post_init__)\n\n\n",
+  "profile_scope": "Separate full gate replay after clearing its derived in-memory cache; duration samples above are not profiled",
+  "scope": "Actual persisted source/request/publication reader; synthetic receipts and logical 60-second spacing; Linux microprofile",
+  "feed_transport_or_owned_process_qualified": false,
+  "original_windows_delay_cause_proven": false,
+  "runtime_fix_applied": false,
+  "actual_provider_used": false,
+  "actual_vault_access": false,
+  "network": "denied",
+  "frozen_p85_modified": false,
+  "production_changes": false
+}

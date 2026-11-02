@@ -1,0 +1,231 @@
+{
+  "contract": "production-hot-failure-operator-evidence-v1",
+  "session_date": "2026-11-02",
+  "basis": "Operator-supplied Windows status, saved final-audit findings, stop/heartbeat output and membership screenshot; original Windows files not independently read",
+  "result": "FAILED_INTERVAL_ROOT_CAUSE_PENDING",
+  "latest_ordinary_health_at_et": "2026-11-02T11:14:37-05:00",
+  "ordinary_channels": {
+    "uni": {
+      "state": "RUNNING",
+      "candidate_pid": 19376,
+      "acquisitions": 210,
+      "members": 592,
+      "missing_after_grace": 0,
+      "last_slot_et": "11:14:30"
+    },
+    "focus": {
+      "state": "RUNNING",
+      "candidate_pid": 16116,
+      "acquisitions": 418,
+      "members": 50,
+      "missing_after_grace": 0,
+      "last_slot_et": "11:14:20"
+    }
+  },
+  "outer": {
+    "nonce": "54c2974b9a7d43b69a435abcf9abbbbb",
+    "result": "FAILED",
+    "stop_reason": "controller_progress_stale",
+    "acquisition_stop_requested_at_utc": "2026-11-02T15:57:19.858960+00:00",
+    "failure_type": null,
+    "cleanup_seconds": 0.26600000000325963,
+    "cleanup": {
+      "backend": "windows_job",
+      "status": "EXIT_OBSERVED",
+      "scope_empty_observed": true,
+      "forced": false,
+      "controller_returncode": 0
+    }
+  },
+  "controller": {
+    "state": "BLOCKED",
+    "terminal": "native_blocked",
+    "worker_starts": 1,
+    "effective_revision": 12,
+    "hot_symbols": [
+      "AZR",
+      "BMHL",
+      "GSIW",
+      "HCTI",
+      "MF",
+      "PHOE",
+      "PMN",
+      "RIBB",
+      "SGML",
+      "TOP",
+      "XMAX"
+    ],
+    "source_reconciled": false
+  },
+  "native_final_report": {
+    "file": "C:\\Users\\danla\\hot85\\p85\\runs\\daily_hot_20261102\\reports\\2a1fb5982708495384981da987688362.json",
+    "audited_at_utc": "2026-11-02T15:57:19.858960+00:00",
+    "native_audit_passed": false,
+    "validation_passed": false,
+    "two_fresh_replays_equal": true,
+    "replay_events": 2554,
+    "replay_sequence_sha256": "7f2dba3b63e8ba4c0e032e9e9aaaa87f6c2911e64e983cd187e8d4386247cce7",
+    "hot_content_integrity": {
+      "passed": true,
+      "acquisitions": 2016,
+      "observations": 16301,
+      "skips": 52,
+      "error_count": 0
+    },
+    "audit_findings": [
+      {
+        "code": "missing_poll_slots",
+        "detail": "hot: 28 configured slots have neither an acquisition nor an empty-membership skip"
+      }
+    ],
+    "hot": {
+      "acquisitions": 2016,
+      "expected_slots": 2096,
+      "empty_membership_skips": 52,
+      "missing_slots": 28,
+      "quote_observations": 16290,
+      "request_error_observations": 11,
+      "first_missing_slots_et": [
+        "09:36:36",
+        "09:36:54",
+        "09:37:54",
+        "09:38:14",
+        "09:39:06",
+        "09:42:36",
+        "10:05:54",
+        "10:12:34",
+        "10:16:58",
+        "10:22:46"
+      ]
+    },
+    "uni": {
+      "acquisitions": 175,
+      "expected_slots": 175,
+      "missing_slots": 0,
+      "quote_observations": 103086
+    },
+    "focus": {
+      "acquisitions": 350,
+      "expected_slots": 349,
+      "missing_slots": 0,
+      "quote_observations": 16424
+    }
+  },
+  "provider_stop_receipt": null,
+  "last_heartbeat": {
+    "collector_status": "blocked",
+    "completed_at_utc": "2026-11-02T15:57:18.841173+00:00",
+    "generation": 1,
+    "slot_id": "hot:2026-11-02T10:57:18-05:00",
+    "pid": 33476,
+    "token": "fb599ee2cc6c4960a0b27010d61333b5",
+    "identity_sha256": "a82985e30fa59d44722de58e622bb95e0333111c4c5658d5f2973a54eab10cbb",
+    "progress": "completed",
+    "recovery": null
+  },
+  "driver_stop": {
+    "status": "STOPPED",
+    "reason": "controller_blocked_or_stopped",
+    "cleanup_seconds": 0.21799999999348074,
+    "cleanup_within_10_seconds": true,
+    "evidence_errors": [],
+    "hot_cleanup_status": "EXTERNAL_WORKER_UNCHANGED",
+    "identity_returncode": 124,
+    "identity_forced": false,
+    "source_cleanup": null,
+    "reporting": "NOT_REQUESTED"
+  },
+  "membership_gui_observed": {
+    "verified_at_et": "2026-11-02T11:13:19-05:00",
+    "effective_revision": 12,
+    "hot": 11,
+    "focus_additions_since_r1": 10,
+    "uni_additions_since_r1": 8,
+    "controller": "BLOCKED",
+    "collector_saved": "BLOCKED",
+    "source_saved": "INCOMPLETE",
+    "last_hot_slot_et": "2026-11-02T10:57:18-05:00",
+    "last_requested_symbols": 11,
+    "meaning": "Retained membership verified; active collection is correctly marked blocked"
+  },
+  "inferences_not_yet_proven": [
+    "Collector block appears before outer stop; outer stale label may be secondary to STOPPING state",
+    "11 request-error observations may represent one failed batch, not 11 provider calls",
+    "Cause of 28 earlier slot gaps and final blocked request still require acquisition-ledger timing/detail evidence"
+  ],
+  "resume": "Current terminal state fails original manual-resume preflight; no state reset or override performed",
+  "next": "Classify all 28 missing slots against saved native-ledger missed/abandoned/write_failed events, then prepare a focused correction/instrumentation candidate. No additional raw quote payloads or repeated provider/capacity trial required for this analysis.",
+  "frozen_p85_modified": false,
+  "password_feedback_fix_installed": false,
+  "last_period_ledger_observation": {
+    "file": "2026-11-02.hot.e17.poller.sqlite3",
+    "preceding_successful_slots_et": [
+      "10:57:12",
+      "10:57:14",
+      "10:57:16"
+    ],
+    "failed_slot_et": "2026-11-02T10:57:18-05:00",
+    "dispatch_at_utc": "2026-11-02T15:57:18.655506+00:00",
+    "dispatch_recorded_at_utc": "2026-11-02T15:57:18.667447+00:00",
+    "wrapper_request_started_at_utc": "2026-11-02T15:57:18.748125+00:00",
+    "response_received_at_utc": null,
+    "assembled_at_utc": "2026-11-02T15:57:18.751973+00:00",
+    "collector_seconds": 0.0016000999603420496,
+    "status": "request_error",
+    "detail": "ValueError: Collector call budget, roster, slot or window gate refused",
+    "batch_symbols": 11,
+    "interpretation": "One local pre-provider refusal produces a per-symbol request_error for every symbol in that batch. The callback rejected before invoking the authenticated Schwab client; these are not 11 failed HTTP requests."
+  },
+  "latest_driver_live_observation": {
+    "observed_at_utc": "2026-11-02T15:57:19.842808+00:00",
+    "state": "STOPPING",
+    "invocation": "56620cbbb45b4c2bae83a3e869408046",
+    "identity_sha256": "dea513be84335157dec97b4dcc705665ae5e9092773123ada3a95e8bbcbf81f0",
+    "age_at_outer_stop_milliseconds": 16.152
+  },
+  "confirmed_code_paths": [
+    "fetch_quotes_batched increments its batch counter before calling the supplied quotes callback and records an error result for every symbol if that callback raises",
+    "DailyHotCollector.quotes raises this exact ValueError in its local pre-provider gate; the broker call is later",
+    "The outer _driver_fresh requires both RUNNING state and age below 3 seconds; STOPPING also fails that check and receives the generic stale label"
+  ],
+  "current_inferences": [
+    "750ms local dispatch deadline is strongly indicated: native dispatch655.506ms, wrapper entry748.125ms, error assembled751.973ms after scheduled slot. The generic exception does not record which gate predicate failed.",
+    "Fresh STOPPING evidence16.152ms before the outer stop strongly indicates shutdown classification can explain the misleading controller_progress_stale label; the exact read snapshot taken by the outer was not retained.",
+    "The 28 earlier missing slots remain real pre-stop coverage gaps; their cause is not resolved by this final batch detail."
+  ],
+  "cross_channel_timing_observation": {
+    "basis": "Operator-supplied acquisition timing query and sample_summary.csv/Hot acknowledgement excerpts",
+    "uni_latest_acquisition_completed_et": "2026-11-02T10:57:00.719776-05:00",
+    "uni_batches": 2,
+    "uni_symbols": 592,
+    "uni_latest_journal_write_seconds": 0.062,
+    "uni_latest_reported_end_to_end_seconds": 0.843,
+    "focus_latest_before_failure_completed_et": "2026-11-02T10:57:10.202348-05:00",
+    "focus_symbols": 50,
+    "focus_latest_reported_journal_write_seconds": 0.0,
+    "focus_latest_reported_end_to_end_seconds": 0.203,
+    "previous_hot_completed_et": "2026-11-02T10:57:16.422899-05:00",
+    "previous_hot_acknowledged_event_recorded_at_utc": "2026-11-02T15:57:16.514420+00:00",
+    "previous_hot_journal_seconds": 0.0037598999915644526,
+    "failed_hot_acknowledged_event_recorded_at_utc": "2026-11-02T15:57:18.837004+00:00",
+    "failed_hot_journal_seconds": 0.0023031000164337456,
+    "request_overlap_with_failed_hot_attempt_observed": false,
+    "long_acquisition_journal_write_observed_in_these_excerpts": false,
+    "timing_limitations": [
+      "Reported CSV durations are rounded/timer-limited; 0.0 is not a literal zero-duration write",
+      "End-to-end summary timing precedes final summary flush/console output",
+      "Hot acknowledgement recorded_at precedes its own sidecar append completion",
+      "No retained substage split for wake-up, ownership-lock wait, source/publication validation and native initial read"
+    ],
+    "interpretation": "No evidence that an overlapping Uni/Focus quote request or a long recorded acquisition-journal write caused this final refusal. The additional pre-dispatch delay remains unallocated, not proven to be any specific CPU/disk/lock source."
+  },
+  "offline_last_gate_reproduction": {
+    "file": "experiments/daily_hot_failure_20261102/LOCAL_DISPATCH_REPRODUCTION.json",
+    "cases": 4,
+    "result": "PASS_REPRODUCTION_OF_EXISTING_BEHAVIOR",
+    "scope": "Actual callback, batch normalization and tick classification with synthetic prepared publication/native sample seams",
+    "finding": "Advancing the logical clock by 3ms during the local final check after 748.125ms yields the same ValueError, 11 request_error observations and blocked tick, with zero synthetic provider calls. Within-limit request succeeds; genuine symbol/call-budget violations also remain blocked.",
+    "runtime_fix_applied": false,
+    "production_changes": false
+  }
+}

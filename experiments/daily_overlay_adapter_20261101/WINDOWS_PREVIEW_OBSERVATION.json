@@ -1,0 +1,43 @@
+{
+  "contract": "daily-overlay-browser-console-observation-v1",
+  "result": "EXECUTION_OBSERVED_VISUAL_FEEDBACK_PENDING",
+  "basis": "Operator console with browser asset/refresh activity, all five emitted fixture phases, saved report path and returned CMD prompt",
+  "console_sha256": "e24c02e61f0226964f5d1b039b02c8ebeddd1aeee4ac962c027132238624fe05",
+  "preview_run": "20261101T205715Z_preview_8b2e1a4b",
+  "preview_report_path": "C:\\Users\\danla\\overlay96\\p96\\runs\\20261101T205715Z_preview_8b2e1a4b\\preview-result.json",
+  "original_preview_json_independently_read": false,
+  "operator_visual_feedback_supplied": false,
+  "phases_emitted": [
+    {
+      "synthetic_preview_phase": "opening_membership_and_saved_candles",
+      "provider_requests": 0
+    },
+    {
+      "synthetic_preview_phase": "NVDA_added_to_Hot_Focus_Uni_quote_without_candles",
+      "provider_requests": 0
+    },
+    {
+      "synthetic_preview_phase": "resumption_knowledge_and_saved_candles_arrive",
+      "provider_requests": 0
+    },
+    {
+      "synthetic_preview_phase": "read_failure_last_verified_chart",
+      "provider_requests": 0
+    },
+    {
+      "synthetic_preview_phase": "stopped_controller_membership_and_chart_retained",
+      "provider_requests": 0
+    }
+  ],
+  "http_responses_observed": 57,
+  "http_status_codes": [
+    200
+  ],
+  "browser_assets_and_plotly_js_served": true,
+  "continued_refreshes_after_final_phase": true,
+  "returned_cmd_prompt_observed": true,
+  "visual_acceptance": "PENDING_OPERATOR_FEEDBACK",
+  "scope_note": "HTTP200 and emitted phases establish execution/response activity; they do not independently prove visible symbol selection, chart appearance or interactive correctness.",
+  "repeat_required": false,
+  "no_qualification_rerun_requested": true
+}

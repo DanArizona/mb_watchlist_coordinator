@@ -1,0 +1,42 @@
+{
+  "contract": "source-history-optimization-local-validation-v1",
+  "result": "PASS_LOCAL_COMPONENT_SCOPE",
+  "source_sha256": {
+    "src/mb_watchlist_coordinator/nasdaq_sampling.py": "a7a2db360e99427db31ca596e37c57d0214fd5bcaddaab082c26f2508a24da46",
+    "tests/test_nasdaq_event_value_cache.py": "595aff674b333e967715bd91107a8726dec41ec88f81d12ff06d25622519bfb0",
+    "tests/test_nasdaq_receipt_prefix.py": "a2a6d0e8a8ab0e3636ff394a2cf059810e93ce66623d2a7fccdbc706b6a03432"
+  },
+  "test_runs": [
+    {
+      "command": "PYTHONPATH=src:tests:../native_multi_capacity/src python -B -m unittest test_nasdaq_event_value_cache.EventValueCacheTests test_nasdaq_receipt_prefix.ReceiptPrefixTests test_nasdaq_sampling test_nasdaq_recovery test_nasdaq_recovery_delivery",
+      "tests": 99,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 1.056
+    },
+    {
+      "command": "PYTHONPATH=src:tests:../native_multi_capacity/src python -B -m unittest test_daily_multisymbol test_daily_source.DailySourceTests test_daily_source_reliability.DailySourceReliabilityTests test_daily_collector.DailyCollectorTests test_daily_manual_identity",
+      "tests": 97,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 101.061
+    }
+  ],
+  "total_tests": 196,
+  "new_focused_tests": 13,
+  "qualification_scope": "Pure timestamp/event identity memoization and byte-compared source receipt prefix reuse, with current delivery/request revalidation; affected local source/publication/native/manual integration",
+  "network": "denied",
+  "actual_provider_used": false,
+  "actual_vault_access": false,
+  "production_changes": false,
+  "frozen_p85_modified": false,
+  "windows_qualification": "PENDING",
+  "complete_operating_correction_ready": false,
+  "original_windows_delay_cause_proven": false,
+  "remaining": [
+    "Consistent nonfatal final deadline classification while retaining genuine policy stops",
+    "Durable explanations for future-only scheduler skips; retain real coverage failure",
+    "Persisted phase timing and accurate shutdown reason",
+    "Exact operating candidate packaging and affected Windows checks before deployment review"
+  ]
+}

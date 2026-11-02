@@ -1,0 +1,21 @@
+{
+  "contract": "source-history-profile-provenance-notes-v1",
+  "original_runtime_profile": "LOCAL_SOURCE_HISTORY_PROFILE_150_ROWS.json",
+  "pure_value_cache_profile": "LOCAL_SOURCE_HISTORY_PROFILE_150_ROWS_CACHED.json",
+  "value_and_exact_prefix_cache_profile": "LOCAL_SOURCE_HISTORY_PROFILE_150_ROWS_PREFIX.json",
+  "full_390_receipt_prefix_profile": "LOCAL_SOURCE_HISTORY_PROFILE_FULL_PREFIX.json",
+  "small_11_row_exploratory_profile": "LOCAL_SOURCE_HISTORY_PROFILE.json",
+  "small_profile_last_duration_includes_python_profiler_overhead": true,
+  "large_profiles_duration_samples_include_python_profiler_overhead": false,
+  "large_profiles_call_profiles_collected_separately": true,
+  "profile_boolean_runtime_fix_applied_false_means_no_completed_or_deployed_operating_correction": true,
+  "candidate_source_code_changed_in_cached_and_prefix_profiles": true,
+  "timings_are_uncontrolled_linux_component_measurements_not_windows_deadline_qualification": true,
+  "full_profile_total_receipts": 390,
+  "full_profile_rows_per_repeated_current_capture": 150,
+  "full_profile_authorized_hot_symbols": 11,
+  "clock": "Logical 60-second spacing only. Original live clocks and deadlines unchanged.",
+  "actual_provider_used": false,
+  "actual_vault_access": false,
+  "production_changes": false
+}

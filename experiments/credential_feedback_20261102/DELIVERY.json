@@ -1,0 +1,27 @@
+{
+  "contract": "password-feedback-delivery-v1",
+  "status": "LOCAL_QUALIFIED_WINDOWS_PENDING",
+  "artifact": "password_feedback_20261102_42b8495.zip",
+  "bytes": 859113,
+  "sha256": "cf50ca8c910ba4f151c7c0aba6e70d0ef2ceb9acaacda7551f90eec38f45671c",
+  "source_commit": "42b84955de8faa728f89b9f7fb9473cd894c38df",
+  "source_tree": "af6ca422ae9b595048504e882722a256e71522e1",
+  "source_inventory_sha256": "66777ebf4d256525e6bfb48943a1c8bf8d4c7cd942bc180516bc0d2e1f3e5d69",
+  "local_exact_archive_result": "PASS",
+  "local_tests": 100,
+  "local_new_feedback_tests": 23,
+  "local_seconds": 10.03729192100218,
+  "local_report": "/workspace/scratch/6ce939acb4eb/credential_feedback_20261102_final_exact/with spaces/p99/runs/20261102T145043Z_fd0facdb/verification.json",
+  "windows_root": "C:\\Users\\danla\\cred99\\p99",
+  "windows_qualification": "PENDING",
+  "installation_or_live_launch_available": false,
+  "frozen_p85_source_inventory_verified_unchanged": true,
+  "frozen_p85_files_verified": 272,
+  "p94_and_p96_checkouts_unchanged": true,
+  "runtime_change_scope": "Shared coordinator prompt feedback and existing parent readiness relay only",
+  "remaining": [
+    "Actual Windows offline result and returned CMD prompt",
+    "Reviewed subsequent operating delivery integration"
+  ],
+  "publication_performed": false
+}

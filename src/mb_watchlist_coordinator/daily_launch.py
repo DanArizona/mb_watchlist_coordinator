@@ -204,6 +204,7 @@ def run_launch(review, *, approved_review_sha256=None, activation_approved=False
         return owner.run(password, stop_requested_callback=stop_requested_callback)
     finally:
         if password is not None:
+            password.feedback.finish()
             password.close()
 
 

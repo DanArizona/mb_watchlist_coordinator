@@ -15,7 +15,9 @@ from collections.abc import Mapping
 from contextlib import closing
 from dataclasses import dataclass
 from datetime import datetime, time, timezone
+from functools import lru_cache
 from pathlib import Path
+from threading import RLock
 from zoneinfo import ZoneInfo
 
 from .models import IntentType, ProducerIntent
@@ -65,16 +67,32 @@ class HaltProducerSettings:
         return value
 
 
-def event_time(record: Mapping) -> datetime:
-    day = datetime.strptime(record["halt_date"], "%m/%d/%Y").date()
-    text = "".join(record["halt_time"].split())
+@lru_cache(maxsize=4096)
+def _event_time_value(halt_date: str, halt_time: str) -> datetime:
+    """Reuse pure parsing only; every receipt and policy check still runs.
+
+    Repeated CURRENT captures contain the same dated halt rows. The immutable
+    datetime depends only on these exact strings and the fixed Eastern zone;
+    no source identity, clock, eligibility or admission result is cached.
+    """
+    day = datetime.strptime(halt_date, "%m/%d/%Y").date()
+    text = "".join(halt_time.split())
     if not re.fullmatch(r"\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?", text):
         raise ValueError("Invalid halt time")
     return datetime.combine(day, time.fromisoformat(text), ET)
 
 
+def event_time(record: Mapping) -> datetime:
+    return _event_time_value(record["halt_date"], record["halt_time"])
+
+
+@lru_cache(maxsize=4096)
+def _event_identity_value(symbol: str, at_utc: str) -> str:
+    return "nasdaq-halt-" + digest([symbol, at_utc])
+
+
 def halt_event_id(record: Mapping) -> str:
-    return "nasdaq-halt-" + digest([record["symbol"], utc_text(event_time(record))])
+    return _event_identity_value(record["symbol"], utc_text(event_time(record)))
 
 
 @dataclass(frozen=True, slots=True)
@@ -119,18 +137,38 @@ class HaltSnapshot:
 
 def _reduce(identity, receipts):
     """Derive commands and observation outcomes solely from validated input history."""
-    previous = digest(identity)
-    seen, commands, outcomes = {}, {}, []
-    current_started = False
-    startup_floor = None
-    last_at = last_capture = None
+    commands, outcomes, _ = _reduce_tail(identity, receipts)
+    return commands, outcomes
+
+
+def _reduce_tail(identity, receipts, *, prefix=None):
+    """Continue a fully verified, immutable prefix after its exact row check.
+
+    Only NasdaqSamplingProducer's private reader supplies a prefix. Its current
+    SQLite sequence/capture/payload rows must still match every old row byte
+    for byte. Cold reads and independent delivery proofs start from scratch.
+    """
+    identity_text = canonical(identity)
+    if prefix is not None and prefix['identity'] != identity_text:
+        raise ValueError('Nasdaq receipt identity changed')
+    previous = digest(identity) if prefix is None else prefix['head_sha256']
+    seen = {} if prefix is None else dict(prefix['seen'])
+    commands = {} if prefix is None else dict(prefix['commands'])
+    outcomes = [] if prefix is None else list(prefix['outcomes'])
+    current_started = False if prefix is None else prefix['current_started']
+    startup_floor = None if prefix is None else prefix['startup_floor']
+    last_at = None if prefix is None else prefix['last_at']
+    last_capture = None if prefix is None else prefix['last_capture']
     baseline = identity["request_identity"]["baseline"]
     session = identity["request_identity"]["session_date"]
     settings = identity["settings"]
     start = datetime.combine(datetime.fromisoformat(session).date(), time(9, 30), ET)
     stop = start.replace(hour=16, minute=0)
-    capture_ids = set()
-    for number, receipt in enumerate(receipts, 1):
+    capture_ids = set() if prefix is None else set(prefix['capture_ids'])
+    count = 0 if prefix is None else prefix['count']
+    processed = count
+    for number, receipt in enumerate(receipts, count+1):
+        processed = number
         value = dict(receipt)
         checksum = value.pop("event_sha256")
         if value["sequence"] != number or value["previous_sha256"] != previous or digest(value) != checksum:
@@ -202,7 +240,12 @@ def _reduce(identity, receipts):
         outcomes.append({"capture_id": snap.capture_id, "mode": "CURRENT", "events": observations,
                          "status": "initial_baseline" if first else "incremental"})
         previous, last_at, last_capture = checksum, at, snap.retrieved_at
-    return commands, outcomes
+    state = {'identity':identity_text, 'head_sha256':previous,
+        'seen':seen, 'commands':commands, 'outcomes':outcomes,
+        'current_started':current_started, 'startup_floor':startup_floor,
+        'last_at':last_at, 'last_capture':last_capture,
+        'capture_ids':frozenset(capture_ids), 'count':processed}
+    return commands, outcomes, state
 
 
 def _intent(command):
@@ -217,6 +260,7 @@ class NasdaqSamplingProducer:
         self.path = Path(path)
         self.request_store = request_store
         self.settings = settings
+        self._read_lock = RLock()
         self.clock = clock or (lambda: datetime.now(timezone.utc))
         self.identity = json.loads(canonical({"contract": self.contract,
             "request_identity": request_store.identity, "settings": settings.payload()}))
@@ -253,17 +297,33 @@ class NasdaqSamplingProducer:
                 self._read(conn)
 
     def _read(self, conn):
+        # Public readers acquire their SQLite snapshot inside this section;
+        # shared in-process callers cannot install derived prefixes out of order.
+        with self._read_lock:
+            return self._read_serialized(conn)
+
+    def _read_serialized(self, conn):
         self._check()
         row = conn.execute("SELECT payload FROM halt_identity WHERE id=1").fetchone()
         if not row or row[0] != canonical(self.identity):
             raise ValueError("Nasdaq producer identity mismatch")
+        rows = tuple(conn.execute("SELECT * FROM halt_receipt ORDER BY sequence"))
+        cached = getattr(self, '_receipt_reduction', None)
+        if cached is not None:
+            old_rows, prefix = cached
+            if (prefix['identity'] != canonical(self.identity)
+                    or rows[:len(old_rows)] != old_rows):
+                raise ValueError('Nasdaq receipt history changed or is incomplete')
+            consumed = len(old_rows)
+        else:
+            prefix, consumed = None, 0
         receipts = []
-        for seq, cid, payload in conn.execute("SELECT * FROM halt_receipt ORDER BY sequence"):
+        for seq, cid, payload in rows:
             r = json.loads(payload)
             if r["sequence"] != seq or r["snapshot"]["capture_id"] != cid:
                 raise ValueError("Nasdaq receipt columns differ from payload")
             receipts.append(r)
-        commands, outcomes = _reduce(self.identity, receipts)
+        commands, outcomes, reduction = _reduce_tail(self.identity, receipts[consumed:], prefix=prefix)
         deliveries = {k: json.loads(v) for k, v in conn.execute("SELECT * FROM halt_delivery")}
         if self.settings.reuse_active_symbol_requests:
             events, _, aliases = self.request_store.validated_reuse_history()
@@ -308,6 +368,9 @@ class NasdaqSamplingProducer:
                     or delivery["request_sequence"] != event.sequence
                     or delivery["rejection_reason"] != event.rejection_reason):
                 raise ValueError("Nasdaq delivery acknowledgement differs from request history")
+        # Install only after all receipt, delivery and current request checks
+        # succeed. Nothing persists or survives a reader/process restart.
+        self._receipt_reduction = rows, freeze(reduction)
         return receipts, commands, outcomes, deliveries
 
     def record_snapshot(self, snapshot: HaltSnapshot):
@@ -326,7 +389,7 @@ class NasdaqSamplingProducer:
                 value = {"sequence": len(receipts) + 1, "snapshot": payload, "recorded_at_utc": utc_text(at),
                          "previous_sha256": receipts[-1]["event_sha256"] if receipts else digest(self.identity)}
                 value["event_sha256"] = digest(value)
-                _reduce(self.identity, receipts + [value])
+                _reduce_tail(self.identity, [value], prefix=self._receipt_reduction[1])
                 conn.execute("INSERT INTO halt_receipt VALUES (?,?,?)",
                              (value["sequence"], snapshot.capture_id, canonical(value)))
                 return freeze(value), True

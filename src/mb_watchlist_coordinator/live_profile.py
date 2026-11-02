@@ -259,11 +259,12 @@ def run_live(source_root, opening, focus, ecfg, profile, *, market_open_confirme
                 r0.content_sha256, r1.content_sha256, str(ecfg), utc_text(at), nonce,
                 digest(observed), '', (), profile=profile, catalog_mode='owned_directory')
         before = settings(clock()).plan()
-        password = frame = None
+        password = frame = feedback = None
         pointer = None
         try:
             password = (prompt or SessionPassword.prompt)(digest({'contract': CONTRACT,
                 'source_files': plain(before.public['source_file_sha256']), 'nonce': nonce}))
+            feedback = password.feedback
             plan = settings(clock()).plan()
             if before.public['source_file_sha256'] != plan.public['source_file_sha256']:
                 raise ValueError('Inputs changed while waiting for the human prompt')
@@ -283,6 +284,8 @@ def run_live(source_root, opening, focus, ecfg, profile, *, market_open_confirme
                 if time.monotonic()-last[0] >= 10:
                     from .outer_harness import read_status
                     state = read_status(Path(value['outer_root'])/'controller-status.json', nonce)
+                    if state and state['phase'] in ('ACTIVE', 'GOAL_COMPLETE'):
+                        feedback.accepted()
                     progress('Live Hot profile: '+(state['phase'] if state else 'STARTING'), flush=True)
                     last[0] = time.monotonic()
                 return stop_request(value, sha) is not None
@@ -308,6 +311,7 @@ def run_live(source_root, opening, focus, ecfg, profile, *, market_open_confirme
                 atomic_json(runs/'active_live_profile.json', dict(pointer, phase='CLOSED'))
             raise
         finally:
+            if feedback is not None: feedback.finish()
             if frame is not None: frame[:] = b'\0'*len(frame)
             if password is not None: password.close()
 

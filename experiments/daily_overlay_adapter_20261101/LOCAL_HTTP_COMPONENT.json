@@ -1,0 +1,21 @@
+{
+  "contract": "retained-overlay-http-component-evidence-v1",
+  "basis": "Actual same-process loopback HTTP/WSGI smoke from the prior corrected archive; UI/CLI/native server files unchanged; final reader changes covered by exact97-suite",
+  "original_coordinator_source": "44778108720086f7658233c0480297e21fc7aba7",
+  "proof": {
+    "contract": "daily-overlay-loopback-http-smoke-v1",
+    "result": "PASS",
+    "actual_wsgi_server": true,
+    "index_and_layout_http_status": 200,
+    "actual_refresh_http_status": 200,
+    "native_hot_quote_rendered": true,
+    "actual_display_stop_http_status": 200,
+    "owned_wsgi_server_stopped": true,
+    "actual_browser_rendered": false,
+    "browser_scope": "Not exercised: local browser runtime unavailable; Windows preview inspection remains due",
+    "provider_requests": 0,
+    "production_access": false,
+    "other_process_control": false
+  },
+  "actual_browser_rendered": false
+}

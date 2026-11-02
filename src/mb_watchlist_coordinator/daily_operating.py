@@ -187,13 +187,18 @@ class DailyOperatingOwner:
                 if phase=='STOPPED': reason='controller_stopped';break
                 if scope.child.poll() is not None: reason='controller_exited';break
                 if phase!='ACTIVE' and now>=self.bootstrap_end: reason='bootstrap_deadline';break
-                if phase=='ACTIVE' and not self._driver_fresh(): reason='controller_progress_stale';break
+                if phase=='ACTIVE':
+                    if not self._driver_fresh(): reason='controller_progress_stale';break
+                    # ACTIVE follows the existing bound identity-role credential
+                    # receipt; this output does not replace worker progress.
+                    password.feedback.accepted()
                 self.sleep(.02)
         except KeyboardInterrupt:
             reason='operator_stop'
         except Exception as error:
             reason='operating_evidence_or_launch_failed';failure=type(error).__name__
         finally:
+            password.feedback.finish()
             stopped=self.monotonic();stopped_at=self.clock();bounds=self.bounds.stopped_at(stopped)
             try:
                 atomic_json(self.root/'STOP.json',sealed({'contract':CONTRACT,'nonce':self.binding['nonce'],

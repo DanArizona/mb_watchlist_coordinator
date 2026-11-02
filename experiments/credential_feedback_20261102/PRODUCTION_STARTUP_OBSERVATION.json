@@ -1,0 +1,86 @@
+{
+  "contract": "production-hot-startup-operator-evidence-v1",
+  "session_date": "2026-11-02",
+  "basis": "Operator-supplied console outputs in this chat; original Windows files not independently read",
+  "status": "PREOPEN_STARTUP_OBSERVED_OPENING_CHECK_PENDING",
+  "installed_repositories": {
+    "market_data": {
+      "branch": "main",
+      "head": "6b53ab1d12e4e1fdaf4deb1d70b717e13570358c",
+      "tracked_clean": true
+    },
+    "watchlists": {
+      "branch": "main",
+      "head": "e2ef6f62856ba3226c41456b7779951aa8640cbf",
+      "tracked_clean": true
+    }
+  },
+  "credential_status_observed_at_utc": "2026-11-02T13:35:13.245807+00:00",
+  "refresh_expires_at_utc": "2026-11-06T23:16:18.164031+00:00",
+  "overnight_volume": {
+    "result": "PASS",
+    "symbols": 584,
+    "failed": 0,
+    "completed_at_et": "2026-11-02T09:08:36.628160-05:00",
+    "run": "2026-11-02-09-01-15-session-2026-11-02"
+  },
+  "focus": {
+    "result": "PASS",
+    "symbols": 40,
+    "run": "2026-11-02-09-09-26",
+    "content_sha256": "0d258e3a71182f1874fb2ccd5e5155207522f19c5ff99413ac58469618c5683a"
+  },
+  "opening_publication": {
+    "result": "inserted",
+    "published_at_utc": "2026-11-02T14:10:18.786423+00:00",
+    "effective_at_utc": "2026-11-02T14:30:00+00:00",
+    "uni": 584,
+    "focus": 40,
+    "hot": 0,
+    "audit": "PASS",
+    "replay_events": 2,
+    "replay_sequence_sha256": "e53957e105932f00ea801945595033b8886adbc96e43300c039ce018226c729d"
+  },
+  "ordinary_polling_startup": {
+    "uni_at_et": "2026-11-02T09:12:54-05:00",
+    "focus_at_et": "2026-11-02T09:13:20-05:00",
+    "latest_health_at_et": "2026-11-02T09:13:47-05:00",
+    "uni_status": "WAITING",
+    "focus_status": "WAITING",
+    "watchdog": "RUNNING",
+    "uni_candidate_pid": 19376,
+    "focus_candidate_pid": 16116,
+    "opening_committed_outcomes_check": "PENDING"
+  },
+  "hot_release": {
+    "root": "C:\\Users\\danla\\hot85\\p85",
+    "profile": "multi-40-v1",
+    "source_inventory_sha256": "0c5f9d7a2dfcdd72ffc9d3d07b7ea2e4b9528139a948496e4fd921476fdf6ffe",
+    "review_path": "C:\\Users\\danla\\hot85\\p85\\runs\\review_20261102_01\\launch-review.json",
+    "review_sha256": "00f2bd26bbf937b379374ea77c48308190ad0932947049b60df547e797a00165",
+    "catalog_result": "SAVED",
+    "directory_requests": 2,
+    "actual_start_command_supplied": true,
+    "approval": "Existing explicit Monday p85 release/settings/activation and bounded manual resume approval"
+  },
+  "hot_status": {
+    "observed_at_utc": "2026-11-02T14:25:29.677204+00:00",
+    "outer_state": "ACTIVE",
+    "outer_nonce": "54c2974b9a7d43b69a435abcf9abbbbb",
+    "outer_check_age_seconds": 0.073827,
+    "controller_state": "RUNNING_WITH_SOURCE_GAPS",
+    "controller_check_age_seconds": 0.236512,
+    "worker_starts": 1,
+    "hot_symbols": [],
+    "effective_revision": null,
+    "source_reconciled": false,
+    "alerts": [
+      "source_reconciliation_incomplete"
+    ]
+  },
+  "interpretation": "Active pre-open owner/controller confirms startup; source intentionally waits for 09:30 and opening membership is not yet effective. Status command provider_access=false describes the read-only inspection.",
+  "membership_gui_visibility": "NOT_YET_CONFIRMED_BY_OPERATOR",
+  "post_open_admissions_or_quotes_observed": false,
+  "sustained_provider_or_full_session_qualified": false,
+  "password_feedback_issue": "Last visible console line remained the hidden password prompt after successful startup; corrected separately in development, not applied to running p85"
+}

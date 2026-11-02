@@ -11,6 +11,7 @@ import json
 import logging
 from pathlib import Path
 import re
+import sys
 import warnings
 
 from .sampling_requests import canonical, timestamp
@@ -28,6 +29,48 @@ class StartupError(RuntimeError):
         super().__init__(self.code)
 
 
+class PasswordFeedback:
+    """Fixed, nonsecret console messages for one human password submission.
+
+    Child/SDK output remains suppressed. Only the parent that validates an
+    existing authentication/readiness receipt calls accepted(). Console output
+    is observational: an unavailable output stream must not change ownership,
+    authentication, provider dispatch, deadlines, or cleanup.
+    """
+    def __init__(self, *, visible=False, stream=None):
+        self.visible = visible
+        self.stream = sys.stdout if stream is None else stream
+        self.received = self.confirmed = self.finished = False
+
+    def _write(self, text):
+        if self.visible:
+            try:
+                print(text, file=self.stream, flush=True)
+            except (OSError, ValueError):
+                pass
+
+    def submitted(self):
+        if not self.received and not self.finished:
+            self.received = True
+            self._write('Password received. Verifying encrypted configuration; please wait...')
+
+    def accepted(self):
+        if self.received and not self.confirmed and not self.finished:
+            self.confirmed = True
+            self._write('Encrypted configuration accepted.')
+
+    def finish(self):
+        if not self.finished:
+            self.finished = True
+            if self.received and not self.confirmed:
+                self._write('Startup ended before encrypted configuration acceptance was confirmed. Check the startup result.')
+
+    def entry_failed(self):
+        if not self.finished:
+            self.finished = True
+            self._write('Password entry was not accepted; startup did not continue.')
+
+
 class SessionPassword:
     """One manual controller session; clearing is best effort, not RAM erasure."""
     def __init__(self, password, configuration_sha256):
@@ -40,6 +83,7 @@ class SessionPassword:
         if not 1 <= len(value) <= MAX_PASSWORD_BYTES or not valid:
             raise StartupError('secret_handoff_invalid')
         self._value = bytearray(value)
+        self.feedback = PasswordFeedback()
         self.identity = {'contract': 'anonymous-stdin-secret-v1',
             'configuration_sha256': configuration_sha256}
 
@@ -47,12 +91,20 @@ class SessionPassword:
 
     @classmethod
     def prompt(cls, configuration_sha256):
+        feedback = PasswordFeedback(visible=True)
         try:
             with warnings.catch_warnings():
                 warnings.simplefilter('error', getpass.GetPassWarning)
                 password = getpass.getpass('Encrypted config password: ')
-            return cls(password, configuration_sha256)
+            secret = cls(password, configuration_sha256)
+            secret.feedback = feedback
+            feedback.submitted()
+            return secret
+        except KeyboardInterrupt:
+            feedback.entry_failed()
+            raise
         except Exception:
+            feedback.entry_failed()
             raise StartupError('credentials_unavailable') from None
 
     def frame(self, token):
