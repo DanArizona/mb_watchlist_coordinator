@@ -218,8 +218,19 @@ class DailyHotCollector(HotRecoveryCollector):
         result=self.poller.sample(slot,fault_hook=fault_hook)
         if self.refused_call or getattr(self.client,'halt_reason',None):
             return dict(result,status='blocked',reason='provider_dispatch_gate_or_client_stopped')
-        self.next=next_slot(self.poller.settings,after=max(slot.scheduled_at,self.clock()))
-        return result
+        # Keep the future-only/no-catch-up scheduling rule, but do not let a
+        # slow preceding cycle silently erase configured slot IDs. The native
+        # ledger records overrun misses, not empty skips or quote acquisitions.
+        now=self.clock()
+        candidate=next_slot(self.poller.settings,after=slot.scheduled_at)
+        overruns=[]
+        while candidate is not None and candidate.scheduled_at<=now:
+            overruns.append(candidate)
+            candidate=next_slot(self.poller.settings,after=candidate.scheduled_at)
+        if overruns:
+            self.poller.record_prior_cycle_overruns(overruns)
+        self.next=candidate
+        return dict(result,prior_cycle_overrun_slot_ids=[s.slot_id for s in overruns]) if overruns else result
 
     def _provider_stop(self):
         value=None
