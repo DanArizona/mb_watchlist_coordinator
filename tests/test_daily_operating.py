@@ -133,6 +133,34 @@ class DailyOperatingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'ownership absent'):fence.check()
         self.assertEqual(inspect_operating_status(owner.root,clock=self.fixture.clock)['state'],'OWNER_LOST')
 
+    def test_driver_progress_distinguishes_fresh_terminal_from_stale(self):
+        owner = self.owner()
+        raw = {'configuration_sha256': owner.binding['configuration_sha256']}
+        observed = self.fixture.clock()
+        live = {'identity_sha256': digest(raw),
+                'state': 'RUNNING', 'observed_at_utc': observed.isoformat()}
+
+        def read_driver(path):
+            return raw if Path(path).name == 'driver-binding.json' else live
+
+        with patch('mb_watchlist_coordinator.daily_operating.read_json', side_effect=read_driver), \
+             patch('mb_watchlist_coordinator.daily_operating.unseal', side_effect=lambda value:value):
+            self.assertIsNone(owner._driver_progress())
+            live['state'] = 'STOPPING'
+            self.assertEqual(owner._driver_progress(), 'controller_stopping')
+            live['state'] = 'BLOCKED'
+            self.assertEqual(owner._driver_progress(), 'controller_blocked')
+            live['state'] = 'RUNNING'
+            live['observed_at_utc'] = (observed-timedelta(seconds=4)).isoformat()
+            self.assertEqual(owner._driver_progress(), 'controller_progress_stale')
+            live['state'] = 'STOPPING'
+            self.assertEqual(owner._driver_progress(), 'controller_progress_stale')
+            live['observed_at_utc'] = (observed+timedelta(seconds=1)).isoformat()
+            self.assertEqual(owner._driver_progress(), 'controller_progress_stale')
+            live['observed_at_utc'] = observed.isoformat()
+            live['state'] = 'UNKNOWN'
+            self.assertEqual(owner._driver_progress(), 'controller_not_running')
+
     def test_detected_stop_keeps_its_original_cleanup_deadline_if_parent_recovers(self):
         fence=ParentFence(self.case.root,{},self.fixture.clock)
         with patch.object(fence,'check',side_effect=(False,True)), \
