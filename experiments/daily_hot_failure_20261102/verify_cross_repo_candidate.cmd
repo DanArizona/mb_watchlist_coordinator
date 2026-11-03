@@ -56,5 +56,7 @@ python -B -m unittest -v test_daily_collector.DailyCollectorTests.test_final_loc
 if errorlevel 1 exit /b 1
 python -B -m unittest -v test_daily_operating.DailyOperatingTests.test_driver_progress_distinguishes_fresh_terminal_from_stale
 if errorlevel 1 exit /b 1
+python -B -m unittest -v test_daily_fatal_gates
+if errorlevel 1 exit /b 1
 echo Targeted offline regressions completed with zero test errors.
 exit /b 0
