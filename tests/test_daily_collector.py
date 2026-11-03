@@ -72,6 +72,64 @@ class DailyCollectorTests(unittest.TestCase):
             self.assertEqual(c.execute('SELECT count(*) FROM poll_slot_skip WHERE channel="hot"').fetchone()[0],1)
         self.assertEqual(len(self.case.store.membership_revisions_in_effective_order()),3)
 
+    def test_final_local_deadline_is_durable_miss_not_block_or_request_error(self):
+        self.collector.prepare(create=True)
+        self.tick(52)
+        self.admit()
+        original_check=self.collector._check
+        crossed=[False]
+        def slow_check(*,publication=True):
+            verified=original_check(publication=publication)
+            if not publication and not crossed[0]:
+                crossed[0]=True
+                self.case.now+=timedelta(milliseconds=751)
+            return verified
+        with patch.object(self.collector,'_check',side_effect=slow_check):
+            outcome=self.tick(54)
+        self.assertEqual(outcome['status'],'missed',outcome)
+        self.assertEqual(outcome['gate'],'final_pre_provider_deadline')
+        self.assertFalse(self.collector.refused_call)
+        self.assertEqual(self.calls,[])
+        ledger=self.collector.poller.snapshot()['events']
+        self.assertTrue(any(e['kind']=='abandoned' and
+            e.get('reason')=='final_pre_provider_deadline_no_api' for e in ledger))
+        with closing(sqlite3.connect(self.case.journal)) as c:
+            self.assertEqual(c.execute('SELECT count(*) FROM quote_acquisition WHERE channel="hot"').fetchone()[0],0)
+        self.case.now=self.case.now.replace(microsecond=0)
+        later=self.tick(56)
+        self.assertEqual(later['status'],'acquired',later)
+        self.assertEqual(self.calls,[['NVDA']])
+        audit=audit_quote_journal(self.case.journal,
+            audited_at=self.case.now.replace(hour=16,minute=0,second=0))
+        self.assertFalse(audit.passed)
+        self.assertEqual(len(next(c for c in audit.channels if c.channel=='hot').missing_slot_ids),1)
+        reader=lambda:tuple(QuoteJournalReplayReader(self.case.journal).events())
+        self.assertEqual(reader(),reader())
+
+    def test_prior_cycle_overrun_has_durable_miss_without_catchup(self):
+        self.collector.prepare(create=True)
+        self.tick(52)
+        self.admit()
+        def slow_after_response(stage):
+            if stage=='after_response':
+                self.case.now+=timedelta(seconds=3)
+        first=self.tick(54,fault_hook=slow_after_response)
+        self.assertEqual(first['status'],'acquired',first)
+        self.assertEqual(len(first['prior_cycle_overrun_slot_ids']),1)
+        self.assertEqual(self.collector.next.scheduled_at.second,58)
+        self.assertEqual(len(self.calls),1)
+        events=self.collector.poller.snapshot()['events']
+        self.assertTrue(any(e['kind']=='missed' and
+            e.get('reason')=='prior_cycle_overrun_no_catchup' for e in events))
+        self.tick(58)
+        self.assertEqual(len(self.calls),2)
+        audit=audit_quote_journal(self.case.journal,
+            audited_at=self.case.now.replace(hour=16,minute=0,second=0))
+        self.assertFalse(audit.passed)
+        self.assertEqual(len(next(c for c in audit.channels if c.channel=='hot').missing_slot_ids),1)
+        reader=lambda:tuple(QuoteJournalReplayReader(self.case.journal).events())
+        self.assertEqual(reader(),reader())
+
     def test_isolated_constructor_still_refuses_the_daily_journal(self):
         with self.assertRaises(ValueError):
             IsolatedSamplingPoller(self.case.store,settings=self.collector.poller.settings,client=self.collector)
