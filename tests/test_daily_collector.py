@@ -76,16 +76,20 @@ class DailyCollectorTests(unittest.TestCase):
         self.collector.prepare(create=True)
         self.tick(52)
         self.admit()
-        original_check=self.collector._check
+        # Advance the clock at the final callback validation boundary.
+        # The fixture does not necessarily select the multi-40 policy, so
+        # patching only _check(publication=False) can miss this path entirely.
+        original_validate=self.collector.validate_publication
         crossed=[False]
-        def slow_check(*,publication=True):
-            verified=original_check(publication=publication)
-            if not publication and not crossed[0]:
+        def slow_validate(dispatch, *, verified_state=None):
+            validated=original_validate(dispatch,verified_state=verified_state)
+            if dispatch is not None and not crossed[0]:
                 crossed[0]=True
                 self.case.now+=timedelta(milliseconds=751)
-            return verified
-        with patch.object(self.collector,'_check',side_effect=slow_check):
+            return validated
+        with patch.object(self.collector,'validate_publication',side_effect=slow_validate):
             outcome=self.tick(54)
+        self.assertTrue(crossed[0], 'Final callback fault must actually execute')
         self.assertEqual(outcome['status'],'missed',outcome)
         self.assertEqual(outcome['gate'],'final_pre_provider_deadline')
         self.assertFalse(self.collector.refused_call)
