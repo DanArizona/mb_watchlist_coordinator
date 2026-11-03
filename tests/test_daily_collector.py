@@ -115,6 +115,61 @@ class DailyCollectorTests(unittest.TestCase):
         reader=lambda:tuple(QuoteJournalReplayReader(self.case.journal).events())
         self.assertEqual(reader(),reader())
 
+    def test_final_deadline_abandonment_survives_restart_without_retry(self):
+        self.collector.prepare(create=True)
+        self.tick(52)
+        self.admit()
+        validate=self.collector.validate_publication
+        crossed=[False]
+        def expire_after_validation(dispatch, *, verified_state=None):
+            result=validate(dispatch, verified_state=verified_state)
+            if dispatch is not None and not crossed[0]:
+                crossed[0]=True
+                self.case.now+=timedelta(milliseconds=751)
+            return result
+        with patch.object(self.collector,'validate_publication',
+                          side_effect=expire_after_validation):
+            outcome=self.tick(54)
+        self.assertTrue(crossed[0])
+        self.assertEqual(outcome['status'],'missed')
+        self.assertEqual(outcome['gate'],'final_pre_provider_deadline')
+        self.assertEqual(self.calls,[])
+        old=self.collector.poller.snapshot()
+        slot=outcome['slot_id']
+        self.assertEqual(old['finished'][slot]['kind'],'abandoned')
+        self.assertEqual(sum(e['kind']=='dispatch' and bool(e['symbols'])
+                             for e in old['events']),1)
+        self.collector.close()
+        self.case.now=self.case.now.replace(second=55,microsecond=0)
+        self.collector=self.make()
+        self.collector.prepare()
+        recovered=self.collector.poller.snapshot()
+        self.assertEqual(recovered['finished'][slot]['kind'],'abandoned')
+        self.assertIsNone(recovered['pending'])
+        self.assertEqual(sum(e['kind']=='dispatch' and bool(e['symbols'])
+                             for e in recovered['events']),1)
+        self.assertEqual(self.collector.next.scheduled_at.second,56)
+        self.assertEqual(self.tick(56)['status'],'acquired')
+        self.assertEqual(self.tick(58)['status'],'acquired')
+        self.assertEqual(self.calls,[['NVDA'],['NVDA']])
+        final=self.collector.poller.snapshot()
+        self.assertEqual(sum(e['kind']=='dispatch' and bool(e['symbols'])
+                             for e in final['events']),3)
+        self.assertEqual(sum(e['kind']=='abandoned' and e['slot_id']==slot
+                             for e in final['events']),1)
+        with closing(sqlite3.connect(self.case.journal)) as connection:
+            self.assertEqual(connection.execute(
+                'SELECT count(*) FROM quote_acquisition WHERE channel="hot"').fetchone()[0],2)
+            self.assertEqual(connection.execute(
+                'SELECT count(*) FROM quote_observation WHERE status="request_error"').fetchone()[0],0)
+        audit=audit_quote_journal(self.case.journal,
+            audited_at=self.case.now.replace(hour=16,minute=0,second=0))
+        hot=next(c for c in audit.channels if c.channel=='hot')
+        self.assertFalse(audit.passed)
+        self.assertEqual([str(s) for s in hot.missing_slot_ids],[slot])
+        replay=lambda:tuple(QuoteJournalReplayReader(self.case.journal).events())
+        self.assertEqual(replay(),replay())
+
     def test_prior_cycle_overrun_has_durable_miss_without_catchup(self):
         self.collector.prepare(create=True)
         self.tick(52)
