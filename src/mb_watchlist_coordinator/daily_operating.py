@@ -148,14 +148,29 @@ class DailyOperatingOwner:
             raise ValueError('Daily child status belongs to another invocation')
         return value
 
-    def _driver_fresh(self):
+    def _driver_progress(self):
+        """Classify driver state and heartbeat age independently.
+
+        A fresh terminal transition must stop the outer, but must not be
+        misreported as a three-second heartbeat timeout.
+        """
         root = Path(self.configuration.publication.state_root)
         raw = read_json(root/'driver-binding.json')
         live = unseal(read_json(root/'driver-live.json'))
         if (raw['configuration_sha256'] != self.binding['configuration_sha256']
                 or live['identity_sha256'] != digest(raw)):
             raise ValueError('Daily driver heartbeat binding differs')
-        return live['state']=='RUNNING' and 0 <= (self.clock()-timestamp(live['observed_at_utc'])).total_seconds() < 3
+        age = (self.clock()-timestamp(live['observed_at_utc'])).total_seconds()
+        if not 0 <= age < 3:
+            return 'controller_progress_stale'
+        state = live['state']
+        if state == 'RUNNING':
+            return None
+        if state == 'STOPPING':
+            return 'controller_stopping'
+        if state == 'BLOCKED':
+            return 'controller_blocked'
+        return 'controller_not_running'
 
     def run(self, password, *, stop_requested_callback=lambda:False):
         if self.used or not isinstance(password,SessionPassword) or password.identity['configuration_sha256'] != digest(self.raw):
@@ -188,7 +203,8 @@ class DailyOperatingOwner:
                 if scope.child.poll() is not None: reason='controller_exited';break
                 if phase!='ACTIVE' and now>=self.bootstrap_end: reason='bootstrap_deadline';break
                 if phase=='ACTIVE':
-                    if not self._driver_fresh(): reason='controller_progress_stale';break
+                    progress_reason = self._driver_progress()
+                    if progress_reason is not None: reason=progress_reason;break
                     # ACTIVE follows the existing bound identity-role credential
                     # receipt; this output does not replace worker progress.
                     password.feedback.accepted()
