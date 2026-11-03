@@ -33,12 +33,12 @@ if /I not "%NATIVE_HEAD%"=="53fc9d62155063b3ae2bc5f0bacfd604866241e0" (
 )
 REM This verifier is itself a later commit: require the exact tested source
 REM checkpoint to be an ancestor and no subsequent changes to target sources.
-git -C "%MB_COORD_CHECKOUT%" merge-base --is-ancestor bc4d737756022cac932f8885d8f6b85d99ac687c HEAD
+git -C "%MB_COORD_CHECKOUT%" merge-base --is-ancestor 7fe7af295e2d5cc5ac91ab30bd6850f98ae8cbd5 HEAD
 if errorlevel 1 (
   echo ERROR: coordinator correction baseline missing.
   exit /b 2
 )
-git -C "%MB_COORD_CHECKOUT%" diff --quiet bc4d737756022cac932f8885d8f6b85d99ac687c HEAD -- src/mb_watchlist_coordinator/daily_collector.py src/mb_watchlist_coordinator/daily_operating.py tests/test_daily_collector.py tests/test_daily_operating.py
+git -C "%MB_COORD_CHECKOUT%" diff --quiet 7fe7af295e2d5cc5ac91ab30bd6850f98ae8cbd5 HEAD -- src/mb_watchlist_coordinator/daily_collector.py src/mb_watchlist_coordinator/daily_operating.py tests/test_daily_collector.py tests/test_daily_operating.py
 if errorlevel 1 (
   echo ERROR: coordinator target sources differ from recorded candidate.
   exit /b 2
