@@ -164,10 +164,15 @@ class DailyHotCollector(HotRecoveryCollector):
         consumed=sum(e['kind']=='dispatch' and bool(e['symbols']) for e in state['events'])
         if (consumed>self.settings.max_quote_calls or len(symbols)>self.settings.max_symbols
                 or tuple(symbols)!=tuple(dispatch['symbols']) or fields!='all'
-                or not timestamp(self.settings.start_at_utc)<=self.clock()<timestamp(self.settings.stop_at_utc)
-                or (self.clock()-timestamp(dispatch['scheduled_at_utc'])).total_seconds()>.75):
+                or not timestamp(self.settings.start_at_utc)<=self.clock()<timestamp(self.settings.stop_at_utc)):
             self.refused_call=True
             raise ValueError('Collector call budget, roster, slot or window gate refused')
+        if (self.clock()-timestamp(dispatch['scheduled_at_utc'])).total_seconds()>.75:
+            # Only a verified, still-in-window local expiration is nonfatal.
+            # Native acquisition persists the already-durable dispatch as
+            # abandoned, never as a provider request_error.
+            from mb_market_data.schwab_quotes import PreProviderDeadlineExpired
+            raise PreProviderDeadlineExpired('Final collector gate expired before provider call')
         new_client = self.client is None
         if new_client:self.client=self.client_factory()
         # The owned daily worker authenticates before prepare/tick. A prepared
@@ -177,10 +182,12 @@ class DailyHotCollector(HotRecoveryCollector):
         # recheck after client preparation, before the original time gate.
         if new_client or self.settings.daily_binding['settings'].get('policy_profile') not in ('multi-40-v1','manual-40-v1','manual-identity-40-v1'):
             self._check()
-        if (self.clock()>=timestamp(self.settings.stop_at_utc)
-                or (self.clock()-timestamp(dispatch['scheduled_at_utc'])).total_seconds()>.75):
+        if self.clock()>=timestamp(self.settings.stop_at_utc):
             self.refused_call=True
-            raise ValueError('Collector gate expired during client preparation')
+            raise ValueError('Collector window expired during client preparation')
+        if (self.clock()-timestamp(dispatch['scheduled_at_utc'])).total_seconds()>.75:
+            from mb_market_data.schwab_quotes import PreProviderDeadlineExpired
+            raise PreProviderDeadlineExpired('Final collector gate expired during client preparation')
         response=self.client.quotes(symbols,fields=fields)
         if response.status_code in (401,403,429):
             self.refused_call=True
