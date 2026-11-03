@@ -103,6 +103,11 @@ class DailyCollectorTests(unittest.TestCase):
         later=self.tick(56)
         self.assertEqual(later['status'],'acquired',later)
         self.assertEqual(self.calls,[['NVDA']])
+        # Complete the final configured :58 slot before auditing the full
+        # tail window. Only the deliberately abandoned :54 slot is missing.
+        final=self.tick(58)
+        self.assertEqual(final['status'],'acquired',final)
+        self.assertEqual(self.calls,[['NVDA'],['NVDA']])
         audit=audit_quote_journal(self.case.journal,
             audited_at=self.case.now.replace(hour=16,minute=0,second=0))
         self.assertFalse(audit.passed)
