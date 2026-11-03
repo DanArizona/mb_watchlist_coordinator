@@ -31,8 +31,21 @@ if /I not "%NATIVE_HEAD%"=="53fc9d62155063b3ae2bc5f0bacfd604866241e0" (
   echo ERROR: native candidate commit differs. Do not run this exact-pair verifier.
   exit /b 2
 )
-if /I not "%COORD_HEAD%"=="8bbd4ad32ca9cdee54573d9df63f052f7c4c0911" (
-  echo ERROR: coordinator candidate commit differs. Do not run this exact-pair verifier.
+REM This verifier is itself a later commit: require the exact tested source
+REM checkpoint to be an ancestor and no subsequent changes to target sources.
+git -C "%MB_COORD_CHECKOUT%" merge-base --is-ancestor 8bbd4ad32ca9cdee54573d9df63f052f7c4c0911 HEAD
+if errorlevel 1 (
+  echo ERROR: coordinator correction baseline missing.
+  exit /b 2
+)
+git -C "%MB_COORD_CHECKOUT%" diff --quiet 8bbd4ad32ca9cdee54573d9df63f052f7c4c0911 HEAD -- src/mb_watchlist_coordinator/daily_collector.py src/mb_watchlist_coordinator/daily_operating.py tests/test_daily_collector.py tests/test_daily_operating.py
+if errorlevel 1 (
+  echo ERROR: coordinator target sources differ from recorded candidate.
+  exit /b 2
+)
+git -C "%MB_COORD_CHECKOUT%" diff --quiet HEAD -- src/mb_watchlist_coordinator/daily_collector.py src/mb_watchlist_coordinator/daily_operating.py tests/test_daily_collector.py tests/test_daily_operating.py
+if errorlevel 1 (
+  echo ERROR: uncommitted candidate source changes.
   exit /b 2
 )
 set "PYTHONPATH=%MB_COORD_CHECKOUT%\src;%MB_NATIVE_CHECKOUT%\src;%MB_COORD_CHECKOUT%\tests;%MB_NATIVE_CHECKOUT%\tests"
