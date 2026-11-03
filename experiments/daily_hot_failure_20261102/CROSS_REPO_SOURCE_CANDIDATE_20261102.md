@@ -8,7 +8,7 @@ This manifest documents a cross-repository experimental source correction. It do
 
 - Coordinator branch: `DanArizona/mb_watchlist_coordinator:experiment/hot-slot-reliability-20261102` (contains previously published immutable source-prefix optimization plus new source changes and two focused native integration test cases).
 - Native branch: `DanArizona/mb_market_data:experiment/hot-native-deadline-20261102`, derived from remotely accessible `experiment/daily-hot-multi-capacity-20261030`. Latest native edit `53fc9d62155063b3ae2bc5f0bacfd604866241e0`.
-- **Important provenance gap:** the previously accepted separate local native backend commit `d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e` is not reachable via the GitHub connection. Its exact tree equivalence to the available native branch has **not** been demonstrated. The candidate must not replace that accepted backend without a source/tree comparison.
+- **Provenance gate RESOLVED (2026-11-03):** the earlier chat inspected clean local commit `d37d2c37e3ac9cc2c860d0a2313a1526e30fd23e` and reported an empty complete tree diff against published commit `37c22983bc92055dd322085f191b054921d896d2`. Both have Git tree `38e33f634de94693b7b67b89d15418df82cd4d73` with 151 tracked entries. The GitHub connector independently verified the published commit tree and confirmed that `53fc9d62155063b3ae2bc5f0bacfd604866241e0` descends from `37c2298` with seven commits across four files. Source-baseline equivalence accepted; changes themselves are untested.
 
 ## Implemented (not executed)
 
@@ -28,7 +28,7 @@ This manifest documents a cross-repository experimental source correction. It do
 
 ## Qualification gates
 
-1. Retrieve/verify the exact approved native baseline tree; reconcile this experimental branch to it without regenerating historical acceptance evidence.
+1. **COMPLETE:** Exact accepted native baseline tree confirmed through clean local comparison and GitHub verification; historical acceptance evidence retained unchanged.
 2. Run targeted offline native and Coordinator tests with both source checkouts in a compatible Python environment. Record true results and source fingerprints.
 3. Run bounded forced bursts and synthetic retained-history (including Windows scheduler-overrun conditions) without changing real provider budgets or cadence.
 4. Build a *single* exact Windows qualification artifact with source inventory and SHA-256. Run its offline verification on MasterBot without touching installed p85.
