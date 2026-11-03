@@ -33,12 +33,12 @@ if /I not "%NATIVE_HEAD%"=="53fc9d62155063b3ae2bc5f0bacfd604866241e0" (
 )
 REM This verifier is itself a later commit: require the exact tested source
 REM checkpoint to be an ancestor and no subsequent changes to target sources.
-git -C "%MB_COORD_CHECKOUT%" merge-base --is-ancestor 7fe7af295e2d5cc5ac91ab30bd6850f98ae8cbd5 HEAD
+git -C "%MB_COORD_CHECKOUT%" merge-base --is-ancestor 277b57c28f437ad3604d36e781283b026f08416f HEAD
 if errorlevel 1 (
   echo ERROR: coordinator correction baseline missing.
   exit /b 2
 )
-git -C "%MB_COORD_CHECKOUT%" diff --quiet 7fe7af295e2d5cc5ac91ab30bd6850f98ae8cbd5 HEAD -- src/mb_watchlist_coordinator/daily_collector.py src/mb_watchlist_coordinator/daily_operating.py tests/test_daily_collector.py tests/test_daily_operating.py
+git -C "%MB_COORD_CHECKOUT%" diff --quiet 277b57c28f437ad3604d36e781283b026f08416f HEAD -- src/mb_watchlist_coordinator/daily_collector.py src/mb_watchlist_coordinator/daily_operating.py tests/test_daily_collector.py tests/test_daily_operating.py
 if errorlevel 1 (
   echo ERROR: coordinator target sources differ from recorded candidate.
   exit /b 2
@@ -57,6 +57,8 @@ if errorlevel 1 exit /b 1
 python -B -m unittest -v test_daily_operating.DailyOperatingTests.test_driver_progress_distinguishes_fresh_terminal_from_stale
 if errorlevel 1 exit /b 1
 python -B -m unittest -v test_daily_fatal_gates
+if errorlevel 1 exit /b 1
+python -B -m unittest -v test_daily_collector.DailyCollectorTests.test_final_deadline_abandonment_survives_restart_without_retry test_daily_collector.DailyCollectorTests.test_saved_assembled_response_recovers_without_a_second_provider_call test_daily_collector.DailyCollectorTests.test_unknown_dispatch_is_never_retried_or_filled_with_later_quotes test_daily_collector.DailyCollectorTests.test_hot_call_ceiling_persists_across_restarts
 if errorlevel 1 exit /b 1
 echo Targeted offline regressions completed with zero test errors.
 exit /b 0
