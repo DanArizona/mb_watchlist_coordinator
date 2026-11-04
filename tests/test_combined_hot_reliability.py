@@ -24,12 +24,19 @@ from test_daily_multisymbol import full_quotes
 from test_integrated_identity import Response
 
 
+# Full test selectors remain in console/result.json; only folder names are short.
+PROOF_CASE_DIRS = {
+    'test_mixed_admission_native_quotes_audit_and_replay': 'ok',
+    'test_mixed_deadline_restart_retains_gap_and_never_retries_slot': 'gap',
+}
+
+
 class CombinedHotReliabilityTests(unittest.TestCase):
     """Requalify the composition, not just its old separate components."""
 
     def setUp(self):
         proof = os.environ.get('MB_COMBINED_HOT_PROOF_ROOT')
-        root = Path(proof) / self._testMethodName if proof else None
+        root = Path(proof) / PROOF_CASE_DIRS[self._testMethodName] if proof else None
         self.f = CombinedFixture(profile=BROKER_MANUAL_PROFILE, root=root)
         self.addCleanup(self.f.close)
         self.c, self.s = self.f.case, self.f.session

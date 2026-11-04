@@ -48,6 +48,28 @@ def check_checkout(root: Path) -> str:
     return git(root, 'rev-parse', 'HEAD')
 
 
+def evidence_paths(coord: Path, stamp: str, nonce: str) -> dict[str, Path]:
+    """Compact retained evidence under this checkout; never reuse an old run."""
+    root = coord / 'output' / 'hmi' / (stamp + '-' + nonce)
+    return {'run': root, 'mixed': root / 'p' / 'm',
+            'owned': root / 'p' / 'o', 'burst': root / 'p' / 'b.json'}
+
+
+def check_windows_path_budget(paths) -> None:
+    """Reserve space for unchanged journal, sidecar and worker filenames.
+
+    This conservative runner budget avoids depending on system long-path
+    settings. It does not shorten or change native evidence filenames.
+    """
+    fixture_roots = (paths['mixed'] / 'ok', paths['mixed'] / 'gap', paths['owned'])
+    for root in fixture_roots:
+        units = len(str(root).encode('utf-16-le')) // 2
+        if units + 128 > 240:
+            raise ValueError(
+                f'Windows evidence path budget exceeded: {root}. '
+                'Use a shorter isolated checkout path; no fixture has started.')
+
+
 class Tee:
     def __init__(self, *streams):
         self.streams = streams
@@ -97,26 +119,34 @@ def main() -> int:
         suite = unittest.defaultTestLoader.loadTestsFromNames(TESTS)
         if suite.countTestCases() != len(TESTS):
             raise ValueError('Unexpected discovered test count; no partial qualification')
-        stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
-        run_root = coord / 'output' / 'hot_manual_integration_20261104' / (stamp + '-' + uuid4().hex[:8])
-        run_root.mkdir(parents=True, exist_ok=False)
-        proof_root = run_root / 'proofs'
-        proof_root.mkdir()
-        mixed_root = proof_root / 'mixed'
-        mixed_root.mkdir()
+        started_at = datetime.now(timezone.utc)
+        stamp = started_at.strftime('%Y%m%dT%H%M%SZ')
+        paths = evidence_paths(coord, stamp, uuid4().hex[:8])
+        if os.name == 'nt':
+            check_windows_path_budget(paths)
+        paths['run'].mkdir(parents=True, exist_ok=False)
+        run_root = paths['run']
+        mixed_root = paths['mixed']
+        mixed_root.mkdir(parents=True, exist_ok=False)
         # No broad environment can redirect test fixtures into production.
         for key in tuple(os.environ):
             if key.startswith('MB_') and ('PROOF' in key or key.endswith('_PROOF_DIR')):
                 del os.environ[key]
         os.environ['MB_COMBINED_HOT_PROOF_ROOT'] = str(mixed_root)
-        os.environ['MB_MANUAL_IDENTITY_PROOF_DIR'] = str(proof_root / 'owned_outside_uni')
-        os.environ['MB_MANUAL_IDENTITY_BURST_PROOF'] = str(proof_root / 'mixed_40_burst.json')
+        os.environ['MB_MANUAL_IDENTITY_PROOF_DIR'] = str(paths['owned'])
+        os.environ['MB_MANUAL_IDENTITY_BURST_PROOF'] = str(paths['burst'])
         report = {
             'contract': 'nasdaq-manual-corrected-hot-integration-v1',
             'native_commit': native_head, 'coordinator_commit': coord_head,
             'coordinator_runtime_base': COORDINATOR_BASE,
             'python': sys.version, 'platform': sys.platform,
             'selectors': list(TESTS), 'result': 'STARTED',
+            'started_at_utc': started_at.isoformat(),
+            'evidence_layout': 'compact-windows-v2',
+            'proof_paths': {'mixed_healthy': str(mixed_root / 'ok'),
+                            'mixed_deadline': str(mixed_root / 'gap'),
+                            'owned_outside_uni': str(paths['owned']),
+                            'mixed_40_burst': str(paths['burst'])},
             'scope': 'synthetic inputs, real journals/native collector and owned test processes',
             'production_activation': False, 'real_provider_calls_requested': False,
             'full_day_provider_capacity_qualified': False,

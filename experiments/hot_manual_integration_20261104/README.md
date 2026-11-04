@@ -28,7 +28,7 @@ The corrected combined release still requires qualification and activation revie
 No runtime modules or policy settings are changed. Two new integration tests
 combine outside-opening-Uni manual X000 and synthetic Nasdaq X001 admission,
 shared identity authorization, atomic membership publication and the actual
-native five-minute-period collector. They prove the healthy tail-window path,
+native five-minute-period collector. They test the healthy tail-window path,
 and inject final local deadline expiration into that same mixed composition.
 The latter restarts the collector and must retain the missing slot, avoid a
 second dispatch for that slot, collect only future slots and preserve the raw
@@ -63,21 +63,55 @@ journal, Hot activation, repository installation or scheduled task is requested.
 The owned-process fixtures use synthetic credentials/SDK responses only.
 Each run retains `console.txt`, `result.json`, the new scenarios' real synthetic
 journals/sidecars and owned-controller proof evidence under a fresh timestamped
-`output/hot_manual_integration_20261104/` directory in the isolated Coordinator.
+`output/hmi/` directory in the isolated Coordinator (compact-windows-v2 layout).
+Full test selectors and the proof-directory mapping remain in `result.json`.
 Run-level PASS means eight test cases passed without failures, errors or skips;
 it does not change the deliberate missing-slot test's native audit FAIL.
 
-## Validation status at publication
+## Validation status at initial publication
 
 New Python syntax and seven LOCAL VERIFIER-ONLY contract tests passed. Those
 checks cover Git clean/dirty and untracked-Python refusal, receipt isolation,
 console retention, unique selector declarations and syntax. They are **not**
 execution of the actual integration fixtures.
 
-The new eight-case combined runtime qualification is **PENDING on Windows**.
 Direct Git checkout/archive access in this assistant runtime was unavailable;
 repository inspection and publication used the GitHub connector. No local
-end-to-end execution or Windows result is claimed.
+end-to-end execution or Windows result was claimed at initial publication.
+
+## November 4 Windows path failure and correction
+
+Checkpoint `585220245fc9195d6456475292d1f3381fb2f7fa` failed during the first
+fixture's setup, before either mixed-source acquisition test body ran.
+Windows returned `WinError 206` while creating the journal directory. The
+operator's directory path was 252 characters; the proposed database path
+was 271 characters. The retained failed run is
+`output/hot_manual_integration_20261104/20261104T155229681584Z-65a2486c/`.
+Its result remains FAIL: one test entered, one setup error. No runtime or
+provider conclusion follows from that failed setup.
+
+The correction changes only verifier/test evidence paths and documentation:
+`output/hmi/<UTC-second-stamp>-<random-id>/p/m/ok`, `p/m/gap`, and `p/o`.
+The full test names remain unchanged. Production journal directory names,
+native sidecars, all test assertions, eight selectors, source pins, budgets,
+and timing limits remain unchanged. New runs cannot overwrite the failed run.
+The Windows verifier checks a conservative path budget before creating its
+output or starting a fixture. No Windows long-path policy, registry setting,
+production checkout, environment installation, or runtime module is modified.
+
+Seven local layout checks passed, including reconstruction of the operator's
+252-character failing path, compact native/sidecar paths, overly long path
+refusal, isolated-output containment, distinct run IDs, full selector/alias
+mapping and no-write layout checks. Python syntax passed; AST comparison
+confirmed that only the fixture-root assignment changed in the integration
+class. These are **not** Windows filesystem execution or Hot integration
+results. The actual eight-case combined qualification remains **PENDING**.
+
+The layout-only regression can be run independently with:
+
+```cmd
+python -B experiments\hot_manual_integration_20261104\test_path_layout.py
+```
 
 ## Remaining operating gate
 
