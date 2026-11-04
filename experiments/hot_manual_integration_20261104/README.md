@@ -1,5 +1,32 @@
 # Nasdaq + manual requests + corrected Hot collector
 
+## November 4 Windows acceptance — eight tests PASS
+
+The operator supplied the complete console and final result JSON for run
+`20261104T165429Z-2651797d`. All eight selected tests passed with zero failures,
+errors or skips. The result JSON reports 30.875 seconds; unittest displays
+30.876 seconds. Environment: Windows, Anaconda Python 3.12.13.
+
+Exact tested pair:
+- Native: `53fc9d62155063b3ae2bc5f0bacfd604866241e0`.
+- Coordinator: `2aad2ae1817863c047fc12ed65983465f226bbc0`.
+- Coordinator runtime base: `5b04b479164eb01e6d8eb2b142f70bb9dabf629c`.
+
+See `WINDOWS_ACCEPTANCE_20261104.json`. This acceptance is based on the operator's
+supplied output; the original Windows proof files have not been independently
+accessed by the assistant. Evidence remains in the isolated Coordinator at
+`output/hmi/20261104T165429Z-2651797d/`.
+
+The deliberately expired dispatch test passed because its missing native slot
+and raw audit FAIL were preserved across restart, with no retry/backfill and
+successful collection of future slots. Test PASS does not convert that native
+audit to PASS. All providers and credentials were synthetic. This is not live
+Nasdaq/Schwab, sustained real-provider capacity or production activation.
+
+No runtime, fixture assertion, deadline or operating setting is changed to
+record acceptance. No repeat of this unchanged eight-case test is due merely
+because acceptance documentation was committed.
+
 ## Priority reset — 2026-11-04
 
 The operator's immediate objective is usable automatic Nasdaq LUDP/M admission
@@ -43,7 +70,7 @@ shared across both sources with own withdrawal preserving Nasdaq demand; and
 retained-state controller resume with old controls fenced. No new automatic
 suppression policy is introduced. Ordinary demotion remains the accepted scope.
 
-## One Windows verification block
+## Reproducible Windows verification (already accepted for the pair above)
 
 Use the existing isolated reliability checkouts and `sea-green`, not the
 closeout experiment or a production checkout. The runner verifies actual
@@ -68,18 +95,19 @@ Full test selectors and the proof-directory mapping remain in `result.json`.
 Run-level PASS means eight test cases passed without failures, errors or skips;
 it does not change the deliberate missing-slot test's native audit FAIL.
 
-## Validation status at initial publication
+## Validation status at initial publication (historical)
 
 New Python syntax and seven LOCAL VERIFIER-ONLY contract tests passed. Those
 checks cover Git clean/dirty and untracked-Python refusal, receipt isolation,
-console retention, unique selector declarations and syntax. They are **not**
+console retention, unique selector declarations and syntax. They are not
 execution of the actual integration fixtures.
 
-Direct Git checkout/archive access in this assistant runtime was unavailable;
+Direct Git checkout/archive access in that assistant runtime was unavailable;
 repository inspection and publication used the GitHub connector. No local
 end-to-end execution or Windows result was claimed at initial publication.
+The later operator-supplied Windows acceptance is recorded above.
 
-## November 4 Windows path failure and correction
+## November 4 Windows path failure and correction (retained)
 
 Checkpoint `585220245fc9195d6456475292d1f3381fb2f7fa` failed during the first
 fixture's setup, before either mixed-source acquisition test body ran.
@@ -104,10 +132,10 @@ Seven local layout checks passed, including reconstruction of the operator's
 refusal, isolated-output containment, distinct run IDs, full selector/alias
 mapping and no-write layout checks. Python syntax passed; AST comparison
 confirmed that only the fixture-root assignment changed in the integration
-class. These are **not** Windows filesystem execution or Hot integration
-results. The actual eight-case combined qualification remains **PENDING**.
+class. These local checks alone were not Windows execution; the subsequent
+Windows rerun at `2aad2ae` passed all eight cases as recorded above.
 
-The layout-only regression can be run independently with:
+The layout-only regression is retained for reproducibility:
 
 ```cmd
 python -B experiments\hot_manual_integration_20261104\test_path_layout.py
@@ -115,11 +143,13 @@ python -B experiments\hot_manual_integration_20261104\test_path_layout.py
 
 ## Remaining operating gate
 
-After this bounded combined run, use its retained evidence to decide the next
-changed-path check: simultaneous source/manual load with retained history and
-actual owned-process deadlines, followed by one reviewable corrected
-manual-enabled operating candidate. Reuse earlier accepted qualifications within
-their scopes; do not repeat unchanged long profiles. Any live trial or production
-activation needs concrete release/settings/date approval. Original 750 ms,
-40-symbol, budget and cleanup limits remain unchanged. Frozen p85 and its
-November 2 failure remain intact; do not reset its terminal or recycle budgets.
+Use the retained passing evidence to target only the remaining changed operating
+path: simultaneous source/manual work with retained source history and actual
+owned-process deadlines, followed by one reviewable corrected manual-enabled
+operating candidate. The mixed burst uses logical time and the owned-worker
+case is short; neither alone establishes the combined retained-history load.
+Reuse earlier accepted qualifications within their scopes; do not repeat
+unchanged long profiles. Any live trial or production activation needs concrete
+release/settings/date approval. Original 750 ms, 40-symbol, budget and cleanup
+limits remain unchanged. Frozen p85 and its November 2 failure remain intact;
+do not reset its terminal or recycle budgets.
