@@ -1,0 +1,61 @@
+{
+  "record_contract": "operator-reported-windows-qualification-v1",
+  "recorded_for_date": "2026-11-04",
+  "qualification_contract": "nasdaq-manual-corrected-hot-integration-v1",
+  "result": "PASS",
+  "evidence_basis": "Operator supplied complete Windows console and result.json text in the project conversation. Original Windows proof files have not been independently accessed by the assistant.",
+  "run_id": "20261104T165429Z-2651797d",
+  "started_at_utc": "2026-11-04T16:54:29.008922+00:00",
+  "native_commit": "53fc9d62155063b3ae2bc5f0bacfd604866241e0",
+  "coordinator_commit": "2aad2ae1817863c047fc12ed65983465f226bbc0",
+  "coordinator_runtime_base": "5b04b479164eb01e6d8eb2b142f70bb9dabf629c",
+  "platform": "win32",
+  "python_version": "3.12.13",
+  "python_distribution": "Anaconda",
+  "tests_run": 8,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds": 30.875,
+  "unittest_display_elapsed_seconds": 30.876,
+  "evidence_layout": "compact-windows-v2",
+  "evidence_relative_directory": "output/hmi/20261104T165429Z-2651797d",
+  "result_relative_path": "output/hmi/20261104T165429Z-2651797d/result.json",
+  "proof_relative_paths": {
+    "mixed_healthy": "p/m/ok/mixed-reliability-proof.json",
+    "mixed_deadline": "p/m/gap/mixed-reliability-proof.json",
+    "owned_outside_uni": "p/o/manual-identity-proof.json",
+    "mixed_40_burst": "p/b.json"
+  },
+  "selectors": [
+    "test_combined_hot_reliability.CombinedHotReliabilityTests.test_mixed_admission_native_quotes_audit_and_replay",
+    "test_combined_hot_reliability.CombinedHotReliabilityTests.test_mixed_deadline_restart_retains_gap_and_never_retries_slot",
+    "test_daily_manual_identity_owned.ManualIdentityOwnedTests.test_owned_controller_collects_manual_and_nasdaq_roster_and_fences_ui_after_stop",
+    "test_daily_manual_identity.DailyManualIdentityTests.test_forty_mixed_outside_admissions_share_capacity_and_overflow_without_extra_call",
+    "test_daily_manual.DailyManualTests.test_concurrent_sources_cannot_both_take_fortieth_slot",
+    "test_daily_manual_identity.DailyManualIdentityTests.test_outside_own_demotion_and_restriction_reuse_original_identity",
+    "test_daily_manual_identity.DailyManualIdentityTests.test_nasdaq_and_manual_reuse_one_exact_symbol_confirmation",
+    "test_daily_manual_owned.DailyManualOwnedTests.test_manual_resume_retains_budgets_and_fences_the_old_window"
+  ],
+  "scope": "Synthetic source records, synthetic quote responses and synthetic credential handoff; real request/publication journals, native Hot collector, actual owned test processes, native audits and replay checks.",
+  "deliberate_deadline_case": {
+    "test_result": "PASS",
+    "underlying_native_audit": "FAIL_EXPECTED_AND_PRESERVED",
+    "meaning": "The test passed because the intentionally missed slot remained missing, was not retried, and future collection/restart behavior satisfied the assertions. This is not a repaired or zero-gap native audit."
+  },
+  "previous_failed_run_preserved": {
+    "run_id": "20261104T155229681584Z-65a2486c",
+    "coordinator_commit": "585220245fc9195d6456475292d1f3381fb2f7fa",
+    "result": "FAIL",
+    "tests_run": 1,
+    "errors": 1,
+    "cause": "Windows path length in synthetic fixture setup (WinError 206); no mixed-source test body completed in that run."
+  },
+  "runtime_or_policy_changed_for_acceptance": false,
+  "production_activation": false,
+  "real_provider_calls_requested": false,
+  "live_nasdaq_transport_qualified_by_this_run": false,
+  "full_day_provider_capacity_qualified": false,
+  "production_installation_or_main_merge_authorized_by_this_record": false,
+  "follow_up": "Review retained native/owned-process proof details and qualify only the remaining changed operating path under concurrent source/manual work and retained history before a concrete corrected release/live-activation review. Do not repeat this unchanged eight-case run solely to record acceptance. Preserve frozen p85 and the November 2 production failure."
+}
